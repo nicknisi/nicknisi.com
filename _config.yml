@@ -1,0 +1,4 @@
+name: Nick Nisi
+markdown: redcarpet
+pygments: true
+permalink: /:title/

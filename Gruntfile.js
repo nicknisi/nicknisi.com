@@ -1,0 +1,72 @@
+/*jshint camelcase:false,node:true*/
+module.exports = function (grunt) {
+
+	require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
+
+	// Project configuration.
+	grunt.initConfig({
+		// Task configuration.
+		config: {
+			root: './',
+			cssDir: '<%= config.root %>/css/',
+			jsDir: '<%= config.root %>/js/',
+			imgDir: '<%= config.root %>/img/'
+		},
+		watch: {
+			content: {
+				files: [
+					'<%= config.root %>/_drafts/**/*',
+					'<%= config.root %>/_posts/**/*',
+					'<%= config.root %>/_layouts/**/*',
+					'<%= config.root %>/_includes/**/*',
+					'<%= config.root %>/styl/**/*',
+					'<%= config.root %>/js/**/*'
+				],
+				tasks: ['content']
+			}
+		},
+		stylus: {
+			assets: {
+				files: {
+					'<%=config.root %>/css/main.css': '<%= config.root %>/styl/main.styl'
+				}
+			}
+		},
+		shell: {
+			jekyll: {
+				command: 'jekyll build --drafts',
+				options: {
+					stdout: true,
+					stderr: true,
+					execOptions: {
+						cwd: '<%= config.root %>'
+					}
+				}
+			},
+			pygments: {
+				command: 'pygmentize -S default -f html > pygments.css',
+				options: {
+					stdout: true,
+					execOptions: {
+						cwd: 'css'
+					}
+				}
+			},
+			deploy: {
+				command: 'rsync --compress --recursive --checkSum --delete _ssite/ nicknisi:/var/www/nicknisi.com/public_html',
+				options: {
+					stdout: true,
+					execOptions: {
+						cwd: '.'
+					}
+				}
+			}
+		}
+	});
+
+	// Default task.
+	grunt.registerTask('default', ['watch']);
+	grunt.registerTask('content', ['stylus:assets', 'shell:jekyll']);
+	grunt.registerTask('deploy', ['content', 'shell:deploy']);
+
+};
