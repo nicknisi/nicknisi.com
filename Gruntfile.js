@@ -32,6 +32,15 @@ module.exports = function (grunt) {
 				}
 			}
 		},
+		connect: {
+			server: {
+				options: {
+					hostname: '*',
+					port: 4000,
+					base: '<%=config.root %>/_site'
+				}
+			}
+		},
 		shell: {
 			jekyll: {
 				command: 'jekyll build --drafts',
@@ -68,5 +77,6 @@ module.exports = function (grunt) {
 	grunt.registerTask('default', ['watch']);
 	grunt.registerTask('content', ['stylus:assets', 'shell:jekyll']);
 	grunt.registerTask('deploy', ['content', 'shell:deploy']);
+	grunt.registerTask('dev', ['connect:server', 'watch']);
 
 };
