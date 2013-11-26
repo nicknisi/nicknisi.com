@@ -1,0 +1,135 @@
+// colorscheme
+$blue = #2E88A3;
+$black = #000;
+$white = #fff;
+$orange = #E18728;
+$dark = #444444;
+$light = #F5F5F5;
+$lightText = darken(#eff0f1, 20%);
+$darkText = lighten($dark, 25%);
+
+#resume {
+	font-family: Simonetta;
+	padding: 15px;
+	color: $dark;
+
+	.icon {
+		// font-size: 0.9em;
+		padding-right: 5px;
+	}
+
+	h1, h2, h3, h4, h5 {
+		padding: 2px;
+		margin: 2px;
+	}
+
+	em {
+		color: $lightText;
+		font-weight: normal;
+		font-size: 0.8em;
+		text-align: right;
+	}
+
+	h1 {
+		padding: 0;
+		margin: 0;
+		img {
+			-webkit-transform: rotate(5deg);
+			-moz-transform: rotate(5deg);
+			-ms-transform: rotate(5deg);
+			transform: rotate(5deg);
+			border: 5px solid $white;
+
+			-webkit-box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+			-mox-box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+			box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+
+			float: right;
+			width: 200px;
+			height: 150px;
+			-webkit-transition: all 1s ease-in-out;
+			-moz-transition: all 1s ease-in-out;
+			-o-transition: all 1s ease-in-out;
+			-ms-transition: all 1s ease-in-out;
+			&:hover {
+				-webkit-transform: rotate(0);
+				-moz-transform: rotate(0);
+				-ms-transform: rotate(0);
+				transform: rotate(0);
+
+				-webkit-transition: all 0.2s ease-in-out;
+				-moz-transition: all 0.2s ease-in-out;
+				-o-transition: all 0.2s ease-in-out;
+				-ms-transition: all 0.2s ease-in-out;
+			}
+		}
+	}
+
+	h3 {
+		em {
+			float: right;
+		}
+	}
+
+	hr {
+		padding: 0;
+		margin: 0;
+	}
+
+	a, a:link, a:visited {
+		color: $blue;
+		text-decoration: none;
+		font-weight: bold;
+	}
+
+	h1 {
+		font-size: 3em;
+		text-shadow: 2px 2px 5px $dark;
+	}
+
+	h2 {
+		font-style: italic;
+	}
+
+	h3 {
+		font-size: 1.1em;
+	}
+
+	h4 {
+		padding-left: 50px;
+		// padding-right: 150px;
+		em {
+			float: right;
+		}
+	}
+
+	blockquote {
+		text-align: center;
+		color: $darkText;
+	}
+
+	ul {
+		padding-left: 100px;
+		padding-right: 100px;
+		li {
+			list-style-type: square;
+		}
+	}
+
+	.page-break {
+		display: none;
+	}
+
+	// overrides to make it better for print
+	@media print {
+		img {
+			display: none;
+		}
+		a,a:link,a:visited {
+		}
+		.page-break {
+			display: block;
+			page-break-before: always;
+		}
+	}
+}

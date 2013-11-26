@@ -10,7 +10,7 @@ module.exports = function (grunt) {
 			root: './',
 			cssDir: '<%= config.root %>/css/',
 			jsDir: '<%= config.root %>/js/',
-			imgDir: '<%= config.root %>/img/'
+			imgDir: '<%= config.root %>/img/',
 		},
 		watch: {
 			content: {
@@ -20,7 +20,8 @@ module.exports = function (grunt) {
 					'<%= config.root %>/_layouts/**/*',
 					'<%= config.root %>/_includes/**/*',
 					'<%= config.root %>/styl/**/*',
-					'<%= config.root %>/js/**/*'
+					'<%= config.root %>/js/**/*',
+					'<%= config.root %>/*.md',
 				],
 				tasks: ['content']
 			}
@@ -28,7 +29,8 @@ module.exports = function (grunt) {
 		stylus: {
 			assets: {
 				files: {
-					'<%=config.root %>/css/main.css': '<%= config.root %>/styl/main.styl'
+					'<%=config.root %>/css/main.css': '<%= config.root %>/styl/main.styl',
+					'<%=config.root %>/css/resume.css': '<%= config.root %>/styl/resume.styl'
 				}
 			}
 		},
