@@ -15,6 +15,7 @@
     "grunt-contrib-stylus": "~0.10.0",
     "matchdep": "~0.3.0",
     "grunt-contrib-connect": "~0.5.0",
-    "nib": "~1.0.1"
+    "nib": "~1.0.1",
+    "grunt-contrib-cssmin": "~0.7.0"
   }
 }

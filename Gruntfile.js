@@ -45,8 +45,18 @@ module.exports = function (grunt) {
 			}
 		},
 		shell: {
-			jekyll: {
+			jekyllDev: {
 				command: 'jekyll build --drafts',
+				options: {
+					stdout: true,
+					stderr: true,
+					execOptions: {
+						cwd: '<%= config.root %>'
+					}
+				}
+			},
+			jekyll: {
+				command: 'jekyll build',
 				options: {
 					stdout: true,
 					stderr: true,
@@ -79,8 +89,9 @@ module.exports = function (grunt) {
 
 	// Default task.
 	grunt.registerTask('default', ['watch']);
-	grunt.registerTask('content', ['stylus:assets', 'shell:jekyll']);
-	grunt.registerTask('deploy', ['content', 'shell:deploy']);
+	grunt.registerTask('content', ['stylus:assets', 'shell:jekyllDev']);
+	grunt.registerTask('contentprod', ['stylus:assets', 'shell:jekyll']);
+	grunt.registerTask('deploy', ['contentprod', 'shell:deploy']);
 	grunt.registerTask('dev', ['connect:server', 'watch']);
 
 };
