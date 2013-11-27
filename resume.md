@@ -6,7 +6,7 @@ layout: resume
 
 -----------
 
-<span class="icon fa-mobile-phone"></span>402.216.1612 | <span class="icon fa-envelope"></span><nick@nisi.org> | <span class="icon fa-globe"></span>[www.nicknisi.com](http://nicknisi.com) |  <span class="icon fa-github"></span>[@nicknisi](https://github.com/nicknisi)
+<span class="icon fa fa-mobile-phone"></span>402.216.1612 | <span class="icon fa fa-envelope"></span><nick@nisi.org> | <span class="icon fa fa-globe"></span>[www.nicknisi.com](http://nicknisi.com) |  <span class="icon fa fa-github"></span>[@nicknisi](https://github.com/nicknisi)
 
 ## Summary
 
@@ -14,7 +14,7 @@ A highly motivated Software Developer with strong communication skills and work 
 
 -----------
 
-## <span class="icon fa-code-fork"></span>Skills
+## <span class="icon fa fa-code-fork"></span>Skills
 
 + Scalable, responsive HTML5 and CSS3.
 + Fluent in JavaScript (functional, Object-oriented, unobtrusive) and experience using Backbone, jQuery, Dojo, RequireJS, Kinetic, and Impact.
@@ -24,7 +24,7 @@ A highly motivated Software Developer with strong communication skills and work 
 
 -----------
 
-## <span class="icon fa-briefcase"></span>Experience
+## <span class="icon fa fa-briefcase"></span>Experience
 
 ### SitePen _Remote_
 #### Software Engineer _July 2013 - Present_
@@ -65,7 +65,7 @@ A highly motivated Software Developer with strong communication skills and work 
 
 -----------
 
-## <span class="icon fa-group"></span>Community
+## <span class="icon fa fa-group"></span>Community
 
 A regular attendee of the Omaha Dynamic Language Users Group, NebraskaJS, and the Omaha Java Users Group. Co-organizer of [Beer &&
 Code](http://beerandcode.org), a monthly social gathering of software developers.
@@ -93,7 +93,7 @@ Code](http://beerandcode.org), a monthly social gathering of software developers
 
 -----------
 
-## <span class="icon fa-book"></span>Education
+## <span class="icon fa fa-book"></span>Education
 
 
 ### The George Washington University _Distance Learning_

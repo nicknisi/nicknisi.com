@@ -1,3 +1,4 @@
+@import '../css/font-awesome.css';
 #resume{font-family:Simonetta;padding:15px;color:#444;}
 #resume .icon{padding-right:5px}
 #resume h1,#resume h2,#resume h3,#resume h4,#resume h5{padding:2px;margin:2px}
