@@ -27,5 +27,5 @@ a,a:link,a:visited{color:#2e88a3;text-decoration:none}
 #header-name a{color:#444}
 #header-name em{font-weight:600;font-style:normal}
 nav{display:inline-block;}
-nav ul{display:inline;}
+nav ul{padding:0;display:inline;}
 nav ul li{display:inline-block}

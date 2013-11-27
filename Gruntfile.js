@@ -65,9 +65,10 @@ module.exports = function (grunt) {
 				}
 			},
 			deploy: {
-				command: 'rsync --compress --recursive --checkSum --delete _ssite/ nicknisi:/var/www/nicknisi.com/public_html',
+				command: 'rsync --compress --recursive --checksum --delete _site/ nicknisi@nicknisi.com:/var/www/nicknisi.com/public_html',
 				options: {
 					stdout: true,
+					stderr: true,
 					execOptions: {
 						cwd: '.'
 					}
