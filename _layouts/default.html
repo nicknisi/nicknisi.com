@@ -1,44 +1,39 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<meta name="viewport" content="initial-scale=1.0,user-scalable=0">
 		<link rel="shortcut icon" href="img/favicon.ico"/>
-		<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,700italic,400,300,700' rel='stylesheet' type='text/css'>
 		<title>{% if page.title %} {{ page.title }} - {% endif %}Nick Nisi</title>
 
-        <!-- Custom CSS -->
-        <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css">
-        <link rel="stylesheet" href="/css/main.css">
+		<!-- Custom CSS -->
+		<link rel="stylesheet" href="/css/main.css">
 
-    </head>
-    <body>
-
-        <div class="site">
-          <div class="header">
-            <h1 class="title"><a href="/">{{ site.name }}</a></h1>
-            <a class="extra" href="/">home</a>
-          </div>
-
-          {{ content }}
-
-          <div class="footer">
-            <div class="contact">
-              <p>
-                Your Name<br />
-                What You Are<br />
-                you@example.com
-              </p>
-            </div>
-            <div class="contact">
-              <p>
-                <a href="https://github.com/yourusername">github.com/yourusername</a><br />
-                <a href="https://twitter.com/yourusername">twitter.com/yourusername</a><br />
-              </p>
-            </div>
-          </div>
-        </div>
-
-    </body>
+	</head>
+	<body class="container">
+		<div class="header">
+			<h1>Nick<em>Nisi</em></h1>
+			<nav id="main-nav">
+				<ul>
+					<li><a href="/about">About</a></li>
+					<li><a href="/projects">Projects</a></li>
+				</ul>
+			</nav>
+			<nav id="social-nav">
+				<ul>
+					<li><a href="https://github.com/nicknisi">Github</a></li>
+					<li><a href="https://twitter.com/nicknisi">Twitter</a></li>
+					<li><a href="https://linkedin.com/in/nicknisi">LinkedIn</a></li>
+					<li><a href="/feed.xml">Feed</a></li>
+				</ul>
+			</nav>
+		</div>
+		<div class="site content">
+			{{ content }}
+		</div>
+		<footer>
+			I'm Nick Nisi, a programmer living in Omaha, NE. You can find me on github and twitter.
+		</footer>
+	</body>
 </html>

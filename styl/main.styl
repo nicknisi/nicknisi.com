@@ -1,1 +1,64 @@
-@import "pygments.css";
+@import 'nib';
+@import url('http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600,700,800');
+@import 'pygments.css';
+
+@import 'grid';
+
+// global-reset();
+
+$blue = #2E88A3;
+$black = #000;
+$white = #fff;
+$orange = #E18728;
+$dark = #444444;
+$light = #F5F5F5;
+$lightText = darken(#eff0f1, 20%);
+$darkText = lighten($dark, 25%);
+
+*, *:after, *:before {
+	box-sizing(border-box);
+}
+
+html, body {
+	// height: 100%;
+	overflow: auto;
+	font-size: 100%;
+}
+
+body {
+	font-family: 'open sans';
+	font-weight: 300;
+	font-size: 1.5em;
+	color: $dark;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-size: 130%;
+	font-weight: 100;
+	font-variant: small-caps;
+	em {
+		font-style: normal;
+		font-weight: 600;
+	}
+	margin: 5px auto;
+}
+
+a, a:link, a:visited {
+	color: $blue;
+	text-decoration: none;
+}
+
+.header {
+	margin-top: 100px;
+	margin-bottom: 35px;
+}
+
+nav {
+	display: inline-block;
+	ul {
+		display: inline;
+		li {
+			display: inline-block;
+		}
+	}
+}

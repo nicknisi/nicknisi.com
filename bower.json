@@ -1,0 +1,20 @@
+{
+  "name": "nicknisi.com",
+  "version": "0.0.0",
+  "homepage": "www.nicknisi.com",
+  "authors": [
+    "Nick Nisi <nick@nisi.org>"
+  ],
+  "license": "BSD",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "font-awesome": "~4.0.3"
+  }
+}

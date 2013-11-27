@@ -22,6 +22,7 @@ module.exports = function (grunt) {
 					'<%= config.root %>/styl/**/*',
 					'<%= config.root %>/js/**/*',
 					'<%= config.root %>/*.md',
+					'<%= config.root %>/*.html',
 				],
 				tasks: ['content']
 			}

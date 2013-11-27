@@ -1,1 +1,27 @@
-@import "pygments.css";
+@import url("http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600,700,800");
+@import 'pygments.css';
+.container{width:80%;margin:auto;overflow:hidden}
+[class^="grid-"]{display:inline;float:left;margin-left:1%;margin-right:1%}
+.grid-1{width:6.333333333333332%}
+.grid-2{width:14.666666666666666%}
+.grid-3{width:23%}
+.grid-4{width:31.33333333333333%}
+.grid-5{width:39.666666666666664%}
+.grid-6{width:48%}
+.grid-7{width:56.333333333333336%}
+.grid-8{width:64.66666666666666%}
+.grid-9{width:73%}
+.grid-10{width:81.33333333333333%}
+.grid-11{width:89.66666666666666%}
+.grid-12{width:98%}
+@media screen and (max-width: 480px){[class^="grid-"]{float:none;display:block;width:100%;margin:0}
+}*,*:after,*:before{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}
+html,body{overflow:auto;font-size:100%}
+body{font-family:'open sans';font-weight:300;font-size:1.5em;color:#444}
+h1,h2,h3,h4,h5,h6{font-size:130%;font-weight:100;font-variant:small-caps;margin:5px auto}
+h1 em,h2 em,h3 em,h4 em,h5 em,h6 em{font-style:normal;font-weight:600}
+a,a:link,a:visited{color:#2e88a3;text-decoration:none}
+.header{margin-top:100px;margin-bottom:35px}
+nav{display:inline-block;}
+nav ul{display:inline;}
+nav ul li{display:inline-block}
