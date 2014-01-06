@@ -1,0 +1,42 @@
+---
+layout: post
+title: Leapcopter - Nodecopter and Leap Motion
+published: true
+comments: true
+tags: javascript drone nodecopter leapjs leapmotion node
+---
+
+![Leapcopter in Action](/img/leapcopter.png)
+
+I finally purchased a Parrot AR Drone 2.0 this week after having a blast
+playing with one at JSConf last year! I also recently got a Leap Motion
+controller, and I thought it would be fun to get them to play together!
+
+<iframe width="560" height="315" src="//www.youtube.com/embed/wRECaiWOaIA" frameborder="0"
+allowfullscreen></iframe>
+
+> Source available on [Github](https://github.com/nicknisi/leapcopter).
+
+The [leapjs](https://github.com/leapmotion/leapjs) code was a bit buggy, especially when trying to use it from
+Node, so I am interacting with the Leap Motion exclusively in Chrome and
+then using socket.io to send commands up to the server, which is
+controlling the drone.
+
+On the server, I am using [node-ar-drone](https://github.com/felixge/node-ar-drone) to control the drone, and
+[ar-drone-png-stream](https://github.com/Soarez/ar-drone-png-stream) to
+get the video feed from the drone in the browser.
+
+Here is a list of gestures and the what action they invoke:
+
+* Key Tap - toggle the drown (takeoff/land)
+* Circle - make the drone do a flip
+* Tilt Palm Down -  make the drone go forward
+* Tilt Palm Up - make the drone go backwards
+
+The drone moves very slowly, as I didn't trust a Leap-controlled drone to
+go flying fast in my house quite yet. Also, once 'Land' is triggered, the
+drone won't take off again, just in case I panic and start flailing about
+in front of the sensor.
+
+My future plans for this demo include to cleaning up the code (it's a mess right
+now), and adding more gestures (turning, up/down).
