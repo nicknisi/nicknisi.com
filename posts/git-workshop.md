@@ -322,30 +322,30 @@ Otherwise, it has failed. Let's add a git hook to show us info about our reposit
 1. Create a file called `post-checkout` in the `.git/hooks` directory and
    execute permissions
 
-    ```bash
-    touch .git/hooks/post-checkout
-    chmod +x .git/hooks/post-checkout
-    ```
+```bash
+touch .git/hooks/post-checkout
+chmod +x .git/hooks/post-checkout
+```
 
 1. Set the contents of the file
 
-    ```bash
-    #!/bin/bash
+```bash
+#!/bin/bash
 
-    echo ""
-    echo ""
-    echo -e "\033[1m RECENT COMMITS \033[0m"
-    git --no-pager log -n5 --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
-    echo "
-    echo ""]]"
-    ```
+echo ""
+echo ""
+echo -e "\033[1m RECENT COMMITS \033[0m"
+git --no-pager log -n5 --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+echo "
+echo ""]]"
+```
 
 1. Back in the repository, create a new branch and notice that you will get a
    summary of the last 5 commits to the repository.
 
-    ```bash
-    git checkout -b new-branch
-    ```
+```bash
+git checkout -b new-branch
+```
 
 #### Managing git hooks
 
@@ -444,85 +444,85 @@ Let's use our new knowledge of interactive rebase to clean up the bisect branch.
 
 1. Let's branch off of bisect and do this in a new branch
 
-    ```bash
-    git checkout bisect
-    git checkout -b rebase
-    ```
+```bash
+git checkout bisect
+git checkout -b rebase
+```
 
 1. Enter into an interactive rebase, down to the "GOOD STATE" commit
 
-    ```bash
-    git rebase -i 37d0821
-    ```
+```bash
+git rebase -i 37d0821
+```
 
 1. For each of the commits that have a similar message, select the top one to "pick". For the rest, select "squash"
 
-    ```bash
-    pick 2210aca add h2 tag
-    pick de9bb1f add h2 tag contents
-    pick ecf34f6 change border color
-    pick d3d2d4d change box size
-    pick d1ebc8e adjust box size
-    pick 06badcb adjust animation speed
-    pick 00f4ca5 adjust animation speed speed up
-    pick 983eb1f adjust animation speed speed up
-    pick 4e024b6 adjust animation speed speed up
-    pick faa0412 adjust animation speed speed up again
-    pick cc62c6f adjust animation speed slowing down
-    pick 9378fec adjust animation speed slowing down again
-    pick 4f88c8d adjust animation to 302
-    squash 5e4cee6 adjust animation to 303
-    squash 72eb0c2 adjust animation to 304
-    squash e23d9f8 adjust animation to 305
-    squash f7a452d adjust animation to 306
-    squash 448e9e2 adjust animation to 307
-    squash 18ce973 adjust animation to 308
-    squash 2f3c3fc adjust animation to 309
-    squash 89390fa adjust animation to 310
-    squash 76162b0 adjust animation to 311
-    squash 507d90e adjust animation to 312
-    squash 7fd99d5 adjust animation to 313
-    squash 442c007 adjust animation to 314
-    squash 70f7912 adjust animation to 316
-    squash f84b4cd adjust animation to 317
-    squash a5ba9ac adjust animation to 318
-    squash 900b366 adjust animation to 319
-    squash fe321d9 adjust animation to 320
-    ```
+```bash
+pick 2210aca add h2 tag
+pick de9bb1f add h2 tag contents
+pick ecf34f6 change border color
+pick d3d2d4d change box size
+pick d1ebc8e adjust box size
+pick 06badcb adjust animation speed
+pick 00f4ca5 adjust animation speed speed up
+pick 983eb1f adjust animation speed speed up
+pick 4e024b6 adjust animation speed speed up
+pick faa0412 adjust animation speed speed up again
+pick cc62c6f adjust animation speed slowing down
+pick 9378fec adjust animation speed slowing down again
+pick 4f88c8d adjust animation to 302
+squash 5e4cee6 adjust animation to 303
+squash 72eb0c2 adjust animation to 304
+squash e23d9f8 adjust animation to 305
+squash f7a452d adjust animation to 306
+squash 448e9e2 adjust animation to 307
+squash 18ce973 adjust animation to 308
+squash 2f3c3fc adjust animation to 309
+squash 89390fa adjust animation to 310
+squash 76162b0 adjust animation to 311
+squash 507d90e adjust animation to 312
+squash 7fd99d5 adjust animation to 313
+squash 442c007 adjust animation to 314
+squash 70f7912 adjust animation to 316
+squash f84b4cd adjust animation to 317
+squash a5ba9ac adjust animation to 318
+squash 900b366 adjust animation to 319
+squash fe321d9 adjust animation to 320
+```
 
 1. Complete by saving and closing your editor
 1. Look at the new history in the log
 
-    ```bash
-    * db86962 Nick Nisi: adjust animation to 302 -   (HEAD, rebase) (4 seconds ago)
-    * 9378fec Nick Nisi: adjust animation speed slowing down again -   (18 hours ago)
-    * cc62c6f Nick Nisi: adjust animation speed slowing down -   (18 hours ago)
-    * faa0412 Nick Nisi: adjust animation speed speed up again -   (18 hours ago)
-    * 4e024b6 Nick Nisi: adjust animation speed speed up -   (18 hours ago)
-    * 983eb1f Nick Nisi: adjust animation speed speed up -   (18 hours ago)
-    * 00f4ca5 Nick Nisi: adjust animation speed speed up -   (18 hours ago)
-    * 06badcb Nick Nisi: adjust animation speed -   (18 hours ago)
-    * d1ebc8e Nick Nisi: adjust box size -   (18 hours ago)
-    * d3d2d4d Nick Nisi: change box size -   (18 hours ago)
-    * ecf34f6 Nick Nisi: change border color -   (18 hours ago)
-    * de9bb1f Nick Nisi: add h2 tag contents -   (18 hours ago)
-    * 2210aca Nick Nisi: add h2 tag -   (18 hours ago)
-    * 37d0821 Nick Nisi: GOOD STATE -   (18 hours ago)
-    * a36751a Nick Nisi: add border to color box -   (18 hours ago)
-    * c287e19 Nick Nisi: fixing slider values -   (18 hours ago)
-    * 6f4edca Nick Nisi: messing with slider values -   (18 hours ago)
-    * 225c4ef Nick Nisi: adding width style -   (18 hours ago)
-    * 09ac64d Nick Nisi: adding height style -   (18 hours ago)
-    * 6148238 Nick Nisi: removed height/width -   (18 hours ago)
-    * d1e1701 Nick Nisi: removing border -   (18 hours ago)
-    * 2c9df68 Nick Nisi: adding cdn scripts -   (18 hours ago)
-    * 0763e15 Nick Nisi: initial commit of index -   (18 hours ago)
-    * 9f0ec0c Nick Nisi: Add editorconfig -   (20 hours ago)
-    * 39aad97 Nick Nisi: updating hub instructions -   (20 hours ago)
-    * 2922ce8 Nick Nisi: Added README and hub walkthrough -   (21 hours ago)
-    * 5fb2d99 Nick Nisi: Rename LICENSE.md to LICENSE -   (21 hours ago)
-    * 53cb134 Nick Nisi: Create LICENSE.md -   (21 hours ago)
-    ```
+```bash
+* db86962 Nick Nisi: adjust animation to 302 -   (HEAD, rebase) (4 seconds ago)
+* 9378fec Nick Nisi: adjust animation speed slowing down again -   (18 hours ago)
+* cc62c6f Nick Nisi: adjust animation speed slowing down -   (18 hours ago)
+* faa0412 Nick Nisi: adjust animation speed speed up again -   (18 hours ago)
+* 4e024b6 Nick Nisi: adjust animation speed speed up -   (18 hours ago)
+* 983eb1f Nick Nisi: adjust animation speed speed up -   (18 hours ago)
+* 00f4ca5 Nick Nisi: adjust animation speed speed up -   (18 hours ago)
+* 06badcb Nick Nisi: adjust animation speed -   (18 hours ago)
+* d1ebc8e Nick Nisi: adjust box size -   (18 hours ago)
+* d3d2d4d Nick Nisi: change box size -   (18 hours ago)
+* ecf34f6 Nick Nisi: change border color -   (18 hours ago)
+* de9bb1f Nick Nisi: add h2 tag contents -   (18 hours ago)
+* 2210aca Nick Nisi: add h2 tag -   (18 hours ago)
+* 37d0821 Nick Nisi: GOOD STATE -   (18 hours ago)
+* a36751a Nick Nisi: add border to color box -   (18 hours ago)
+* c287e19 Nick Nisi: fixing slider values -   (18 hours ago)
+* 6f4edca Nick Nisi: messing with slider values -   (18 hours ago)
+* 225c4ef Nick Nisi: adding width style -   (18 hours ago)
+* 09ac64d Nick Nisi: adding height style -   (18 hours ago)
+* 6148238 Nick Nisi: removed height/width -   (18 hours ago)
+* d1e1701 Nick Nisi: removing border -   (18 hours ago)
+* 2c9df68 Nick Nisi: adding cdn scripts -   (18 hours ago)
+* 0763e15 Nick Nisi: initial commit of index -   (18 hours ago)
+* 9f0ec0c Nick Nisi: Add editorconfig -   (20 hours ago)
+* 39aad97 Nick Nisi: updating hub instructions -   (20 hours ago)
+* 2922ce8 Nick Nisi: Added README and hub walkthrough -   (21 hours ago)
+* 5fb2d99 Nick Nisi: Rename LICENSE.md to LICENSE -   (21 hours ago)
+* 53cb134 Nick Nisi: Create LICENSE.md -   (21 hours ago)
+```
 
 ### Learning more
 

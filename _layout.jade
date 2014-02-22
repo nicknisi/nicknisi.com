@@ -3,8 +3,8 @@ html(lang="en")
 	head
 		meta(charset="utf-8")
 		title= nicknisi
-		link(rel="stylesheet" href="styles/main.css")
-		meta(name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; minimum-scale=1.0; user-scalable=no;")
+		link(rel="stylesheet" href="/styles/main.css")
+		meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no")
 	body
 		input#navigation-toggle(type="checkbox")
 		nav#navigation-menu
@@ -19,11 +19,12 @@ html(lang="en")
 					a(href="/projects") Projects
 		#wrapper
 			header#header
-				img(src="images/beef_nick.png" height="120")
+				a(href="/")
+					img(src="/images/beef_nick.png" height="120")
 			.container
 				aside#sidebar.grid-2
 					.bio
-						img.biopic(src="images/beef_nick.png" height="90px")
+						img.biopic(src="/images/beef_nick.png" height="90px")
 						h2 Nick Nisi
 						p A software developer with a passion for web technologies
 						ul.social-links
@@ -38,3 +39,4 @@ html(lang="en")
 									i.icon.fa.fa-envelope
 				section#content.grid-8.main
 					!= yield
+		script(src="/components/prism/prism.js")
