@@ -6,9 +6,9 @@ html(lang="en")
 		link(rel="stylesheet" href="styles/main.css")
 		meta(name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; minimum-scale=1.0; user-scalable=no;")
 	body
-		input#toggle-navigation(type="checkbox")
-		nav#menu
-			label#menu-link(for="toggle-navigation")
+		input#navigation-toggle(type="checkbox")
+		nav#navigation-menu
+			label#menu-link(for="navigation-toggle")
 				i.fa.fa-bars
 			ul
 				span
@@ -17,7 +17,7 @@ html(lang="en")
 					a(href="/about") About
 				li
 					a(href="/projects") Projects
-		.content
+		#wrapper
 			header#header
 				img(src="images/beef_nick.png" height="120")
 			.container

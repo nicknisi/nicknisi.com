@@ -20,3 +20,46 @@
 	height: 125px;
 }
 
+#navigation-toggle {
+	display: none;
+
+	&:checked {
+		& ~ #navigation-menu {
+			transform: translate(-13.755em, 0px);
+			-webkit-transform: translate(-13.755em, 0px);
+		} 
+
+		& ~ #wrapper {
+			transform: translate(-13.725em, 0px);
+			-webkit-transform: translate(-13.725em, 0px);
+		}
+	}
+}
+
+#navigation-menu {
+	z-index: 1000;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	width: 13.755em;
+	right: -13.755em;
+	height: 100%;
+	user-select: none;
+	transform: translate(0px, 0px);
+	transition: 0.15s ease;
+	background-color: #1A1A1A
+	color: #fff;
+}
+
+#wrapper {
+	transform: translate(0px, 0px)
+	transition: 0.15s ease;
+}
+
+#menu-link {
+	color: #000;
+	position: relative;
+	top: 15px;
+	left: -50px;
+	z-index: 1000;
+}
