@@ -9,23 +9,20 @@
 	display: none;
 
 	&:checked {
-		& ~ nav {
+		& ~ #menu {
 			transform: translate(-13.755em, 0px);
 			-webkit-transform: translate(-13.755em, 0px);
 		} 
 
-		& ~ .wrapper {
+		& ~ .content {
 			transform: translate(-13.725em, 0px);
 			-webkit-transform: translate(-13.725em, 0px);
 		}
 	}
 }
 
-#main-wrapper {
-	position: relative;
-}
-
 #menu {
+	z-index: 1000;
 	position: fixed;
 	top: 0;
 	bottom: 0;
@@ -35,28 +32,19 @@
 	user-select: none;
 	transform: translate(0px, 0px);
 	transition: 0.15s ease;
+	background-color: #1A1A1A
+	color: #fff;
 }
 
-.wrapper {
+.content {
 	transform: translate(0px, 0px)
 	transition: 0.15s ease;
-	&.active {
-		transform: translate(-13.725em, 0px);
-		-webkit-transform: translate(-13.725em, 0px);
-	}
 }
 
 #menu-link {
-	background-color: rgba(0, 0, 0, 0.7);
-	box-shadow: 1px 2px 5px #000;
-	border-radius: 5px;
-	padding: 3px 5px;
-	color: #fff;
-	font-weight: bold;
-	z-index: 100;
-	user-select: none;
-	position: fixed;
-	cursor: pointer;
+	color: #000;
+	position: relative;
 	top: 15px;
-	right: 30px;
+	left: -50px;
+	z-index: 1000;
 }

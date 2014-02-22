@@ -1,0 +1,40 @@
+doctype html
+html(lang="en")
+	head
+		meta(charset="utf-8")
+		title= nicknisi
+		link(rel="stylesheet" href="styles/main.css")
+		meta(name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; minimum-scale=1.0; user-scalable=no;")
+	body
+		input#toggle-navigation(type="checkbox")
+		nav#menu
+			label#menu-link(for="toggle-navigation")
+				i.fa.fa-bars
+			ul
+				span
+					a(href="#") Nick Nisi
+				li
+					a(href="/about") About
+				li
+					a(href="/projects") Projects
+		.content
+			header#header
+				img(src="images/beef_nick.png" height="120")
+			.container
+				aside#sidebar.grid-2
+					.bio
+						img.biopic(src="images/beef_nick.png" height="90px")
+						h2 Nick Nisi
+						p A software developer with a passion for web technologies
+						ul.social-links
+							li
+								a(href="https://github.com/nicknisi")
+									i.icon.fa.fa-github
+							li
+								a(href="https://twitter.com/nicknisi")
+									i.icon.fa.fa-twitter
+							li
+								a(href="mailto:nick@nisi.org")
+									i.icon.fa.fa-envelope
+				section#content.grid-8.main
+					!= yield
