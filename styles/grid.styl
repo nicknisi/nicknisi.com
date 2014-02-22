@@ -1,0 +1,28 @@
+$fullWidth = 90;
+$columns = 12;
+$gutter = 1;
+
+.container {
+	width: unit($fullWidth, '%');
+	margin: auto;
+	overflow: hidden;
+}
+
+for $col in 1..$columns {
+	.grid-{$col} {
+		width: unit(($col / $columns - $gutter / 100 * 2) * 100, '%');
+		display: inline;
+		float: left;
+		margin-left: unit($gutter, '%');
+		margin-right: unit($gutter, '%');
+	}
+}
+
+@media screen and (max-width: 480px) {
+	[class^="grid-"] {
+		float: none;
+		display: block;
+		width: 100%;
+		margin: 0;
+	}
+}

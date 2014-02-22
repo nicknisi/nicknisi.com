@@ -1,0 +1,62 @@
+.circular($size) {
+	// $radius = $size / 2;
+	width: $size;
+	height: $size;
+	border-radius: $radius;
+}
+
+#toggle-navigation {
+	display: none;
+
+	&:checked {
+		& ~ nav {
+			transform: translate(-13.755em, 0px);
+			-webkit-transform: translate(-13.755em, 0px);
+		} 
+
+		& ~ .wrapper {
+			transform: translate(-13.725em, 0px);
+			-webkit-transform: translate(-13.725em, 0px);
+		}
+	}
+}
+
+#main-wrapper {
+	position: relative;
+}
+
+#menu {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	width: 13.755em;
+	right: -13.755em;
+	height: 100%;
+	user-select: none;
+	transform: translate(0px, 0px);
+	transition: 0.15s ease;
+}
+
+.wrapper {
+	transform: translate(0px, 0px)
+	transition: 0.15s ease;
+	&.active {
+		transform: translate(-13.725em, 0px);
+		-webkit-transform: translate(-13.725em, 0px);
+	}
+}
+
+#menu-link {
+	background-color: rgba(0, 0, 0, 0.7);
+	box-shadow: 1px 2px 5px #000;
+	border-radius: 5px;
+	padding: 3px 5px;
+	color: #fff;
+	font-weight: bold;
+	z-index: 100;
+	user-select: none;
+	position: fixed;
+	cursor: pointer;
+	top: 15px;
+	right: 30px;
+}
