@@ -1,0 +1,56 @@
+// beef theme
+.beef {
+	$light = #F7F7F7;
+	$dark = #262626;
+	$blue1 = #0971B2;
+	$blue2 = #1485CC;
+	$red1 = #FF0000;
+	$red2 = #B21212;
+	$yellow = #D6D415;
+
+	a, a:link, a:visited {
+		color: $blue2;
+	}
+
+	h1, h2, h3, h4, h5 {
+		font-size: 1.1em;
+		font-weight: normal;
+		padding: 2px 5px;
+	}
+
+	background-color: $light;
+	#header {
+		background-color: $blue1;
+	}
+
+	#navigation-menu {
+		background-color: $dark;
+		color: #fff;
+		.title {
+			font-size: 1.8em;
+			a {
+				color: $blue2;
+			}
+		}
+
+		a {
+			color: $light;
+			&:hover {
+				color: $blue2;
+			}
+		}
+
+		.icon {
+			margin-right: 5px;
+		}
+	}
+
+	#menu-link {
+		color: #FFF;
+		text-shadow: 1px 2px 5px #000;
+	}
+
+	#posts {
+		font-size: 18px;
+	}
+}

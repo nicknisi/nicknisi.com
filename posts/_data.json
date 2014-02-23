@@ -1,20 +1,23 @@
 {
-	"leapcopter": {
+	"2014-01-05-leapcopter": {
 		"title": "Leapcopter",
-		"date": "2014-01-05",
+		"date": "January 5, 2014",
 		"comments": true,
-		"tags": [ "git", "workshop", "talk" ]
+		"tags": [ "git", "workshop", "talk" ],
+		"published": true
 	},
-	"git-workshop": {
+	"2013-08-18-git-workshop": {
 		"title": "Git Workshop",
-		"date": "2013-08-18",
+		"date": "August 18, 2013",
 		"comments": true,
-		"tags": [ "git", "workshop", "talk" ]
+		"tags": [ "git", "workshop", "talk" ],
+		"published": true
 	},
-	"lint-javascript-on-commit": {
+	"2012-11-12-lint-javascript-on-commit": {
 		"title": "Lint JavaScript on Commit",
-		"date": "2012-11-12",
+		"date": "November 12, 2012",
 		"comments": true,
-		"categories": [ "JavaScript", "git", "jshint" ]
+		"categories": [ "JavaScript", "git", "jshint" ],
+		"published": true
 	}
 }

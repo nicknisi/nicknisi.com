@@ -5,18 +5,35 @@ html(lang="en")
 		title= nicknisi
 		link(rel="stylesheet" href="/styles/main.css")
 		meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no")
-	body
+	body.beef
 		input#navigation-toggle(type="checkbox")
 		nav#navigation-menu
 			label#menu-link(for="navigation-toggle")
 				i.fa.fa-bars
 			ul
-				span
+				div.title
 					a(href="#") Nick Nisi
 				li
+					i.icon.fa.fa-home
+					a(href="/") Home
+				li
+					i.icon.fa.fa-user
 					a(href="/about") About
 				li
+					i.icon.fa.fa-rocket
 					a(href="/projects") Projects
+				li
+					i.icon.fa.fa-envelope
+					a(href="/contact") Contact
+			h3 Recent Posts
+			ul
+				- var posts = public.posts._data, keys = Object.keys(posts)
+				- for (var i = 0; i < Math.min(5, keys.length); ++i) {
+					- var post = posts[keys[i]];
+					- if (post.published) {
+						li: a(href="#{keys[i]}") #{posts[keys[i]].title}
+					- }
+				- }
 		#wrapper
 			header#header
 				a(href="/")
@@ -39,4 +56,6 @@ html(lang="en")
 									i.icon.fa.fa-envelope
 				section#content.grid-8.main
 					!= yield
+			footer#footer
+				div Nick Nisi
 		script(src="/components/prism/prism.js")

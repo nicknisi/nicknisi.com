@@ -1,0 +1,10 @@
+section#posts
+	ul
+		- for (var slug in public.posts._data) {
+			- var post = public.posts._data[slug]
+			- if (post.published) {
+				li
+					span.date #{post.date}
+					a(href="/posts/#{slug}") #{post.title}
+			- }
+		- }
