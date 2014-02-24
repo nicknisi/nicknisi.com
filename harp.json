@@ -5,9 +5,10 @@
 		"author_name": "Nick Nisi",
 		"author_picture": "/images/profile.jpg",
 		"site_name": "Nick Nisi",
-		"site_description": "",
+		"site_description": "The infrequent ramblings of Nick Nisi",
 		"site_keywords": "",
 		"site_url": "http://nicknisi.com",
+
 		"maxPosts": 1000,
 		"showDate": true,
 
