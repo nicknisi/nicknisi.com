@@ -1,5 +1,5 @@
 // generate a list of blog posts
-ul
+ul.list
 	- var posts = public.posts._data, keys = Object.keys(posts);
 	- for (var i = 0; i < Math.min(maxPosts, keys.length); ++i) {
 		- var post = posts[keys[i]], slug = keys[i];

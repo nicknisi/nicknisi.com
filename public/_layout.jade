@@ -10,21 +10,21 @@ html(lang="en")
 		nav#navigation-menu
 			label#menu-link(for="navigation-toggle")
 				i.fa.fa-bars
-			ul
-				div.title
-					a(href="#") Nick Nisi
+			div.title
+				a(href="/") Nick Nisi
+			ul.list
 				li
 					i.icon.fa.fa-home
 					a(href="/") Home
+				li
+					i.icon.fa.fa-pencil
+					a(href="/posts") Posts
 				li
 					i.icon.fa.fa-user
 					a(href="/about") About
 				li
 					i.icon.fa.fa-rocket
 					a(href="/projects") Projects
-				li
-					i.icon.fa.fa-envelope
-					a(href="/contact") Contact
 			h3 Recent Posts
 			!= partial("_partials/posts", { maxPosts: 5, showDate: false })
 		#wrapper
