@@ -1,15 +1,18 @@
 {
 	"globals": {
 		"site_language": "en",
-		"title": "Nick Nisi",
+		"site_title": "Nick Nisi",
 		"author_name": "Nick Nisi",
 		"author_picture": "/images/beef_nick.png",
 		"site_name": "Nick Nisi",
 		"site_description": "",
 		"site_keywords": "",
 		"site_url": "http://nicknisi.com",
+		"maxPosts": 1000,
+		"showDate": true,
 
 		"twitter": "nicknisi",
-		"github": "nicknisi"
+		"github": "nicknisi",
+		"email": "nick@nisi.org"
 	}
 }

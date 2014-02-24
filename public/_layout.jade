@@ -26,35 +26,31 @@ html(lang="en")
 					i.icon.fa.fa-envelope
 					a(href="/contact") Contact
 			h3 Recent Posts
-			ul
-				- var posts = public.posts._data, keys = Object.keys(posts)
-				- for (var i = 0; i < Math.min(5, keys.length); ++i) {
-					- var post = posts[keys[i]];
-					- if (post.published) {
-						li: a(href="#{keys[i]}") #{posts[keys[i]].title}
-					- }
-				- }
+			!= partial("_partials/posts", { maxPosts: 5, showDate: false })
 		#wrapper
 			header#header
 				a(href="/")
-					img(src="/images/beef_nick.png" height="120")
+					img(src="#{author_picture}" height="120")
 			.container
 				aside#sidebar.grid-2
 					.bio
-						img.biopic(src="/images/beef_nick.png" height="90px")
+						img.biopic(src="#{author_picture}" height="90px")
 						h2 Nick Nisi
 						p A software developer with a passion for web technologies
 						ul.social-links
 							li
-								a(href="https://github.com/nicknisi")
+								a(href="https://github.com/#{github}")
 									i.icon.fa.fa-github
 							li
-								a(href="https://twitter.com/nicknisi")
+								a(href="https://twitter.com/#{twitter}")
 									i.icon.fa.fa-twitter
 							li
-								a(href="mailto:nick@nisi.org")
+								a(href="mailto:#{email}")
 									i.icon.fa.fa-envelope
 				section#content.grid-8.main
+					- if (title) {
+						h1 #{title}
+					- }
 					!= yield
 			footer#footer
 				div Nick Nisi
