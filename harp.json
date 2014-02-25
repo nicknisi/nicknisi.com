@@ -8,6 +8,7 @@
 		"site_description": "The infrequent ramblings of Nick Nisi",
 		"site_keywords": "",
 		"site_url": "http://nicknisi.com",
+		"googleTracking": "UA-48283478-1",
 
 		"maxPosts": 1000,
 		"showDate": true,
