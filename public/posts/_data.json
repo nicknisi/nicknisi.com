@@ -1,4 +1,11 @@
 {
+	"2014-02-24-hello-harp": {
+		"title": "Hello, Harp!",
+		"date": "February 24, 2014",
+		"comments": true,
+		"tags": [ "node", "harp" ],
+		"published": true
+	},
 	"2014-01-05-leapcopter": {
 		"title": "Leapcopter",
 		"date": "January 5, 2014",
