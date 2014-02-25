@@ -15,6 +15,7 @@
   ],
   "dependencies": {
     "font-awesome": "~4.0.3",
-    "prism": "git@github.com:LeaVerou/prism.git#gh-pages"
+    "prism": "git@github.com:LeaVerou/prism.git#gh-pages",
+    "iliveinomaha": "~0.1.4"
   }
 }
