@@ -1,4 +1,4 @@
-![Leapcopter in Action](images/leapcopter.png)
+![Leapcopter in Action](/posts/images/leapcopter.png)
 
 I finally purchased a Parrot AR Drone 2.0 this week after having a blast
 playing with one at JSConf last year! I also recently got a Leap Motion
