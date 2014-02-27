@@ -30,7 +30,8 @@ html(lang="en")
 			!= partial("_partials/posts", { maxPosts: 5, showDate: false })
 		#wrapper
 			header#header
-				img(src="/images/beef_nick.png" height="120")
+				a(href="/")
+					img(src="/images/beef_nick.png" height="120")
 			.container
 				aside#sidebar.grid-2.is-hidden-mobile
 					.bio
@@ -38,15 +39,9 @@ html(lang="en")
 						h2.name Nick Nisi
 						p.slogan A software developer living in Omaha, NE
 						ul.social-links
-							li
-								a(href="https://github.com/#{github}")
-									i.icon.fa.fa-github
-							li
-								a(href="https://twitter.com/#{twitter}")
-									i.icon.fa.fa-twitter
-							li
-								a(href="mailto:#{email}")
-									i.icon.fa.fa-envelope
+							li: a(href="https://github.com/#{github}"): i.icon.fa.fa-github
+							li: a(href="https://twitter.com/#{twitter}"): i.icon.fa.fa-twitter
+							li: a(href="mailto:#{email}"): i.icon.fa.fa-envelope
 				section#content.grid-8.main
 					- if (title) {
 						h1 #{title}
