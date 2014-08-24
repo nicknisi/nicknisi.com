@@ -48,7 +48,7 @@ This works great, except that it always assumes that we only want to update the 
 $> git rev-parse --abbrev-ref HEAD
 ```
 
-![Git find current branch name](/images/git-current-branch.png)
+![Git find current branch name](/posts/images/git-current-branch.png)
 
 Using this within the alias gives us a great shortcut to updating `origin` with the latest from the `upstream` remote.
 
@@ -64,4 +64,4 @@ This condenses the number of steps down to two:
 
 Aliases are a great way to condense complex actions down to simple commands or to reduce the amount of typing required to execute a command. For more awesome git aliases, check out my [`.gitconfig`](https://github.com/nicknisi/dotfiles/blob/master/git/gitconfig.symlink).
 
-![git update usage](/images/git-update.gif)
+![git update usage](/posts/images/git-update.gif)
