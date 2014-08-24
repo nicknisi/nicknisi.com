@@ -1,4 +1,11 @@
 {
+	"2014-08-24-git-update-fork": {
+		"title": "Git: Update a Forked repository",
+		"date": "August 24, 2014",
+		"comments": true,
+		"tags": ["dotfiles", "git"],
+		"published": true
+	},
 	"2014-02-24-hello-harp": {
 		"title": "Hello, Harp!",
 		"date": "February 24, 2014",
