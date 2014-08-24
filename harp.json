@@ -1,7 +1,7 @@
 {
 	"globals": {
 		"site_language": "en",
-		"site_title": "Nick Nisi",
+		"title": "Nick Nisi",
 		"author_name": "Nick Nisi",
 		"author_picture": "/images/profile.jpg",
 		"site_name": "Nick Nisi",
