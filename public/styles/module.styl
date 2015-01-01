@@ -1,51 +1,35 @@
-.social-links {
-	padding: 0;
-	margin: 0 auto;
-	list-style: none;
+nav {
 	text-align: center;
-
-	li {
-		display: inline;
-		font-size: 24px;
-		padding: 0 5px;
-	}
-}
-
-.bio {
-	.biopic {
-		display: block;
+	ul {
+		list-style: none;
+		padding: 0;
 		margin: 0 auto;
-		width: 90px;
-		hieght: 90px;
-		border-radius: 45px;
+		display: inline-block;
 	}
-	.name {
-		padding: 0;
-		margin: 0;
-		text-align: center;
-	}
-	.slogan {
-		padding: 0;
-		margin: 0;
-		font-size: 0.8em;
-		text-align: center;
-	}
-}
-
-.list {
-	padding: 0 0 0 15px;
-	margin: 0;
-
 	li {
-		list-style-type: none;
-		padding: 5px 3px;
-		overflow: hidden;
-		.date {
-			float: right;
+		display: inline-block;
+		padding: 2px 3px;
+		text-transform: uppercase;
+		&.logo {
+			a {
+				position: relative;
+				top: 8px;
+			}
 		}
 	}
 }
 
-.title {
-	font-weight: 100;
+.post-list {
+	list-style: none outside none;
+	padding: 10px;
+	margin: 0;
+	.post {
+		margin: 5px;
+		.date {
+		}
+		.title {
+		}
+		.summary {
+		}
+	}
 }

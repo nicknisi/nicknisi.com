@@ -4,41 +4,47 @@
 		"date": "September 1, 2014",
 		"comments": true,
 		"tags": ["dotfiles", "git"],
-		"published": true
+		"published": true,
+		"type": "post"
 	},
 	"2014-08-24-git-update-fork": {
 		"title": "Git: Update a forked repository",
 		"date": "August 24, 2014",
 		"comments": true,
 		"tags": ["dotfiles", "git"],
-		"published": true
+		"published": true,
+		"type": "post"
 	},
 	"2014-02-24-hello-harp": {
 		"title": "Hello, Harp!",
 		"date": "February 24, 2014",
 		"comments": true,
 		"tags": [ "node", "harp" ],
-		"published": true
+		"published": true,
+		"type": "post"
 	},
 	"2014-01-05-leapcopter": {
 		"title": "Leapcopter",
 		"date": "January 5, 2014",
 		"comments": true,
 		"tags": [ "git", "workshop", "talk" ],
-		"published": true
+		"published": true,
+		"type": "post"
 	},
 	"2013-08-18-git-workshop": {
 		"title": "Git Workshop",
 		"date": "August 18, 2013",
 		"comments": true,
 		"tags": [ "git", "workshop", "talk" ],
-		"published": true
+		"published": true,
+		"type": "post"
 	},
 	"2012-11-12-lint-javascript-on-commit": {
 		"title": "Lint JavaScript on Commit",
 		"date": "November 12, 2012",
 		"comments": true,
 		"categories": [ "JavaScript", "git", "jshint" ],
-		"published": true
+		"published": true,
+		"type": "post"
 	}
 }

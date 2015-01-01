@@ -1,0 +1,54 @@
+doctype html
+html(lang="en")
+	head
+		meta(charset="utf-8")
+		title #{title}
+		link(rel="stylesheet" href="/styles/main.css")
+		link(rel="icon" type="image/png" href="/images/favicon.ico")
+		meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no")
+	body.beef
+		.iliveinomaha.left: a(href="http://iliveinomaha.com") I live in Omaha.
+		input#navigation-toggle(type="checkbox")
+		nav#navigation-menu
+			label#menu-link(for="navigation-toggle")
+				i.fa.fa-bars
+			div.title
+				a(href="/") Nick Nisi
+			ul.list
+				li
+					i.icon.fa.fa-home
+					a(href="/") Home
+				li
+					i.icon.fa.fa-pencil
+					a(href="/posts") Posts
+				li
+					i.icon.fa.fa-user
+					a(href="/about") About
+				li
+					i.icon.fa.fa-rocket
+					a(href="/projects") Projects
+			h3 Recent Posts
+			!= partial("_partials/posts", { maxPosts: 5, showDate: false })
+		#wrapper
+			header#header
+				a(href="/")
+					img(src="/images/beef_nick.png" height="120")
+			.container
+				aside#sidebar.grid-2.is-hidden-mobile
+					.bio
+						img.biopic.circular(src="#{author_picture}" height="90px")
+						h2.name Nick Nisi
+						p.slogan A software developer living in Omaha, NE
+						ul.social-links
+							li: a(href="https://github.com/#{github}"): i.icon.fa.fa-github
+							li: a(href="https://twitter.com/#{twitter}"): i.icon.fa.fa-twitter
+							li: a(href="mailto:#{email}"): i.icon.fa.fa-envelope
+				section#content.grid-8.main
+					- if (title) {
+						h1 #{title}
+					- }
+					!= yield
+			footer#footer
+				div Nick Nisi
+		script(src="/components/prism/prism.js")
+		!= partial("_partials/tracking")

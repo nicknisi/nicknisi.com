@@ -1,0 +1,59 @@
+$base = #F7F7FA;
+$color1 = #EE4477;
+$color2 = #90C500;
+$color3 = #665;
+$color4 = #333;
+$color5 = #111;
+$color6 = #BBB;
+
+body {
+	padding-top: unquote("1vmax");
+	&::before {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		width: 100%;
+		height: unquote("1vmax");
+		background-color: $color1;
+		content: '';
+		z-index: -9999;
+	}
+}
+
+a, a:link, a:visited {
+	color: $color1;
+	&:hover {
+		color: $color2;
+	}
+}
+
+nav {
+	a, a:link, a:visited {
+		color: $color2;
+		&:hover {
+			color: $color1;
+		}
+	}
+}
+
+.mac {
+	background-color: $base;
+	color: $color4;
+	h1, h2, h3, h4, h5, h6 {
+	}
+}
+
+.post-list {
+	.post {
+		.date {
+			color: $color6;
+			font-size: 0.8em;
+		}
+	}
+}
+
+footer {
+	color: $color6;
+	font-size: 1.5em;
+}

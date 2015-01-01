@@ -1,64 +1,7 @@
 #header {
-	width: 100%;
-	height: 125px;
-	margin-bottom: 50px;
-	color: $dark;
-	img {
-		margin: 0 auto;
-		display: block;
+	h1, h2, h3, h4, h5, h6 {
+		padding: 2px 0;
+		margin: 0;
+		display: inline-block;
 	}
-}
-
-#navigation-toggle {
-	display: none;
-
-	&:checked {
-		& ~ #navigation-menu {
-			transform: translate(-13.755em, 0px);
-			-webkit-transform: translate(-13.755em, 0px);
-		}
-
-		& ~ #wrapper {
-			transform: translate(-13.725em, 0px);
-			-webkit-transform: translate(-13.725em, 0px);
-		}
-	}
-}
-
-#navigation-menu {
-	z-index: 1000;
-	position: fixed;
-	top: 0;
-	bottom: 0;
-	width: 13.755em;
-	right: -13.755em;
-	height: 100%;
-	user-select: none;
-	transform: translate(0px, 0px);
-	transition: 0.15s ease;
-	padding: 10px 5px;
-	-webkit-transform: translateZ(0);
-	-moz-transform: translateZ(0);
-	-ms-transform: translateZ(0);
-	-o-transform: translateZ(0);
-	transform: translateZ(0);
-}
-
-#wrapper {
-	transform: translate(0px, 0px)
-	transition: 0.15s ease;
-}
-
-#menu-link {
-	position: relative;
-	top: 15px;
-	left: -50px;
-	z-index: 1000;
-	font-size: 25px;
-	i { cursor: pointer; }
-}
-
-#footer {
-	width: 100%;
-	text-align: center;
 }
