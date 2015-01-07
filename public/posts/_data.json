@@ -1,4 +1,12 @@
 {
+	"2015-01-05-frontend-testing-coffee-code": {
+		"title": "Fronend testing - Omaha Coffee & Code presentation",
+		"date": "December 31, 2014",
+		"comments": true,
+		"tags": ["javascript", "intern", "testing"],
+		"published": true,
+		"type": "post"
+	},
 	"2014-09-01-managing-git-hooks": {
 		"title": "Git: Managing hooks",
 		"date": "September 1, 2014",
