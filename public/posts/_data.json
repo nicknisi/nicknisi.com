@@ -1,11 +1,19 @@
 {
+	"2015-01-18-dojo-nebraskajs-lincoln": {
+		"title": "The Dojo Toolkit - NebraskaJS Lincoln",
+		"date": "January 18, 2015",
+		"comments": true,
+		"tags": ["javascript", "dojo", "talks"],
+		"published": true,
+		"type": "talk"
+	},
 	"2015-01-05-frontend-testing-coffee-code": {
 		"title": "Frontend testing - Omaha Coffee & Code presentation",
-		"date": "December 31, 2014",
+		"date": "January 5, 2015",
 		"comments": true,
-		"tags": ["javascript", "intern", "testing"],
+		"tags": ["javascript", "intern", "testing", "talks"],
 		"published": true,
-		"type": "post"
+		"type": "talk"
 	},
 	"2014-09-01-managing-git-hooks": {
 		"title": "Git: Managing hooks",
