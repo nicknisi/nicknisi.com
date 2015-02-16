@@ -1,4 +1,12 @@
 {
+	"2015-02-16-nejsconf": {
+		"title": "NEJS Conf - We're hosting a conference!",
+		"date": "February 16, 2015",
+		"comments": true,
+		"tags": ["javascript", "nejs"],
+		"published": true,
+		"type": "post"
+	},
 	"2015-01-18-dojo-nebraskajs-lincoln": {
 		"title": "The Dojo Toolkit - NebraskaJS Lincoln",
 		"date": "January 18, 2015",
