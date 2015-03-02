@@ -1,4 +1,12 @@
 {
+	"2015-02-25-vim-tmux": {
+		"title": "vim + tmux - OMG!Code",
+		"date": "February 25, 2015",
+		"comments": true,
+		"tags": ["vim", "tmux"],
+		"published": true,
+		"type": "talk"
+	},
 	"2015-02-16-nejsconf": {
 		"title": "NEJS Conf - We're hosting a conference!",
 		"date": "February 16, 2015",

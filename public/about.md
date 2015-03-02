@@ -4,7 +4,7 @@ Hi! I'm Nick Nisi and I am a Software Developer in Omaha, NE. I am a Senior Soft
 
 I also help out with [NebraskaJS](http://nebraskajs.com) and [Beer && Code Omaha](http://beerandcode.org).
 
-* [Github](https://github.com/#{github})
-* [Twitter](https://twitter.com/#{twitter})
+* [Github](https://github.com/nicknisi)
+* [Twitter](https://twitter.com/nicknisi)
 * [LinkedIn](https://linkedin.com/in/nicknisi)
 * [Facebook](https://facebook.com/nicknisi)
