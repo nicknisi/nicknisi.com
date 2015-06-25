@@ -1,4 +1,9 @@
 {
+	"JavaScript Fundamentals": {
+		"date": "May 2015",
+		"location": "JSConf 2015",
+		"url": "http://2015.jsconf.us/speakers.html#nisi"
+	},
 	"vim  + tmux": {
 		"date": "February 2015",
 		"location": "OMG!Code",
