@@ -9,15 +9,11 @@ html(lang="en")
 	body.mac
 		nav
 			ul
-				li
-					a(href="/about") About
-				li.logo
-					a(href="/")
-						i.logo
-				li
-					a(href="/talks") Talks
-				li
-					a(href="/projects") Projects
+				li: a(href="/about") About
+				li: a(href="/") Posts
+				li.logo: a(href="/"): i.logo
+				li: a(href="/talks") Talks
+				li: a(href="/projects") Projects
 		section#content
 			- if (title) {
 				h1 #{title}
