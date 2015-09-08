@@ -1,0 +1,44 @@
+{
+  "name": "nicknisi.com",
+  "version": "1.0.0",
+  "description": "My home on the internet",
+  "main": "gulpfile.js",
+  "dependencies": {},
+  "devDependencies": {
+    "del": "^2.0.1",
+    "finalhandler": "^0.4.0",
+    "gulp": "^3.9.0",
+    "gulp-front-matter": "^1.2.3",
+    "gulp-jade": "^1.1.0",
+    "gulp-marked": "^1.0.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-rsync": "0.0.5",
+    "gulp-stylus": "^2.0.6",
+    "http": "0.0.0",
+    "jade": "^1.11.0",
+    "marked": "^0.3.5",
+    "serve-static": "^1.10.0",
+    "through2": "^2.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nicknisi/nicknisi.com.git"
+  },
+  "keywords": [
+    "nick",
+    "nisi",
+    "javascript",
+    "vim",
+    "omaha",
+    "programmer"
+  ],
+  "author": "Nick Nisi <nick@nisi.org>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nicknisi/nicknisi.com/issues"
+  },
+  "homepage": "https://github.com/nicknisi/nicknisi.com#readme"
+}

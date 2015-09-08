@@ -1,0 +1,75 @@
+{
+	"title": "NickNisi.com",
+	"url": "http://nicknisi.com",
+	"author": "Nick Nisi",
+	"email": "nick@nisi.org",
+	"maxPosts": 30,
+	"talks": {
+		"JavaScript Fundamentals": {
+			"date": "May 2015",
+			"location": "JSConf 2015",
+			"url": "http://2015.jsconf.us/speakers.html#nisi"
+		},
+		"vim  + tmux": {
+			"date": "February 2015",
+			"location": "OMG!Code",
+			"url": "https://www.youtube.com/watch?v=5r6yzFEXajQ"
+		},
+		"Modern Dojo": {
+			"date": "January 2015",
+			"location": "NebraskaJS Lincoln",
+			"url": "https://www.youtube.com/watch?v=__7Fg1h_N6w"
+		},
+		"Intern in action": {
+			"date": "January 2015",
+			"location": "Omaha Ruby and Open Source Meetup",
+			"url": "https://www.youtube.com/watch?v=oOssM0DusYc"
+		},
+		"Intro to Intern": {
+			"date": "January 2015",
+			"location": "Omaha Coffee and Code",
+			"url": "https://www.youtube.com/watch?v=Fgt_frjlAaQ"
+		},
+		"TypeScript": {
+			"date": "November 2014",
+			"location": "NebraskaJS",
+			"url": "https://www.youtube.com/watch?v=nLCedy68Qf4"
+		},
+		"Building Chrome extensions": {
+			"date": "July 2014",
+			"location": "NebraskaJS",
+			"url": "https://www.youtube.com/watch?v=HzJ9pUWb2rA"
+		},
+		"Contributing to open source": {
+			"date": "May 2014",
+			"location": "NebraskaJS",
+			"url": "https://vimeo.com/99035913"
+		},
+		"Leapcopter": {
+			"date": "January 2014",
+			"location": "NebraskaJS",
+			"url": "https://vimeo.com/83939999"
+		},
+		"Building RESTful services with Node.js": {
+			"date": "January 2013",
+			"location": "NebraskaJS",
+			"url": "https://www.youtube.com/watch?v=APO3fFH7osw"
+		},
+		"Node.js and Express": {
+			"date": "November 2012",
+			"location": "Omaha Dynamic Language Users Group",
+			"url": "https://www.youtube.com/watch?v=h38DDvmVag0"
+		},
+		"I <3 vim": {
+			"date": "September 2012",
+			"location": "Barcamp Omaha",
+			"url": "https://www.youtube.com/watch?v=oHoei-MXYiw"
+		},
+		"AMD and RequireJS": {
+			"date": "August 2012",
+			"location": "Omaha Dynamic Language Users Group",
+			"url": "https://www.youtube.com/watch?v=PhHHlY_gIXE"
+		}
+	}
+}
+

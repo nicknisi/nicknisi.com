@@ -1,0 +1,12 @@
+ul.post-list
+	- var posts = site.posts
+	- for (var i = 0; i < posts.length; ++i) {
+		- var post = posts[i];
+		- if (!post.draft) {
+			li.post
+				div.date #{post.dateString}
+				h3.title
+					i(class="icon icon-#{post.type || 'post'}")
+					a(href="/posts/#{post.slug}") #{post.title}
+		- }
+	- }

@@ -1,0 +1,33 @@
+doctype html
+html(lang="en")
+	head
+		meta(charset="utf8")
+		title #{title || site.title}
+		link(rel="stylesheet" href="/assets/styles/main.css")
+		link(rel="icon" type="image/png" href="/assets/images/favicon.ico")
+		meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no")
+	body.mac
+		nav
+			ul
+				li: a(href="/about") About
+				li: a(href="/") Posts
+				li.logo: a(href="/"): i.logo
+				li: a(href="/talks") Talks
+				li: a(href="/projects") Projects
+		section#content
+			- if (title) {
+				h1 #{title}
+			- }
+			block content
+			footer
+				p Hi! I'm Nick and I'm a Software Engineer in Omaha, NE! Check me out on #[a(href="https://twitter.com/nicknisi") Twitter] and #[a(href="https://github.com/nicknisi") Github]
+			// only load GA tracking in production
+			-if (environment === "production") {
+			script.
+				(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+				})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+				ga('create', '#{googleTracking}', 'nicknisi.com');
+				ga('send', 'pageview');
+			-	}

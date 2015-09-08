@@ -1,4 +1,2 @@
-public/bower_components/
-public/components/
 node_modules/
-www/
+dist/

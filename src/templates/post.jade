@@ -1,0 +1,7 @@
+extends ../layouts/default.jade
+
+block content
+	section
+		article
+			h1 #{page && page.title}
+			!= marked(contents)
