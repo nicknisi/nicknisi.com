@@ -18,7 +18,7 @@ The hooks are contained within the `.git/hooks`. By default, git will provide a 
 
 Removing the `.sample` extension from any of these files will activate them. Then, they can be modified to perform whatever task is necessary. for example, adding a file called `post-checkout` with the following will cause git to display the 5 most recent commits to the branch checked out when running `git checkout`
 
-````bash
+```bash
 #!/bin/bash
 
 echo ""

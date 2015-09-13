@@ -1,0 +1,12 @@
+{
+	"esnext": true,
+	"unused": true,
+	"varstmt": true,
+	"eqeqeq": true,
+	"freeze": true,
+	"futurehostile": true,
+	"latedef": true,
+	"undef": true,
+	"unused": true,
+	"eqeqeq": true
+}

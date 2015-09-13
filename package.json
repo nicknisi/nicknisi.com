@@ -9,6 +9,7 @@
     "finalhandler": "^0.4.0",
     "gulp": "^3.9.0",
     "gulp-front-matter": "^1.2.3",
+    "gulp-if": "^1.2.5",
     "gulp-jade": "^1.1.0",
     "gulp-marked": "^1.0.0",
     "gulp-rename": "^1.2.2",

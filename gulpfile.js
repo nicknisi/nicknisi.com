@@ -1,27 +1,56 @@
 /*jshint node:true*/
-var gulp = require('gulp');
-var frontMatter = require('gulp-front-matter');
-var marked = require('marked');
-var serveStatic = require('serve-static');
-var rename = require('gulp-rename');
-var jade = require('jade');
-var gulpJade = require('gulp-jade');
-var stylus = require('gulp-stylus');
-var rsync = require('gulp-rsync');
-var http = require('http');
-var finalhandler = require('finalhandler');
-var del = require('del');
-var through = require('through2');
-var path = require('path');
+'use strict';
 
-var site = require('./site');
-var postsGlob = 'src/posts/*.md';
+let gulp = require('gulp');
+let gulpIf = require('gulp-if');
+let frontMatter = require('gulp-front-matter');
+let marked = require('marked');
+let serveStatic = require('serve-static');
+let rename = require('gulp-rename');
+let jade = require('jade');
+let gulpJade = require('gulp-jade');
+let stylus = require('gulp-stylus');
+let rsync = require('gulp-rsync');
+let http = require('http');
+let finalhandler = require('finalhandler');
+let del = require('del');
+let through = require('through2');
+let pathUtil = require('path');
+let execSync = require('child_process').execSync;
+
+let site = require('./site');
+let postsGlob = 'src/posts/*.md';
+
+let renderer = new marked.Renderer();
+
+renderer.code = function (code, lexer) {
+	lexer = lexer || 'text';
+	let result = execSync('pygmentize -l ' + lexer + ' -f html', { input: code });
+	return result.toString();
+};
+
+marked.setOptions({ renderer: renderer });
+
+// marked.setOptions({
+// 	highlight: function (code) {
+// 		return require('highlight.js').highlightAuto(code).value;
+// 	}
+// });
+
+function convertDate(date) {
+	let months = [
+		'January', 'February', 'March', 'April', 'May', 'June', 'July',
+		'August', 'September', 'October', 'November', 'December'
+	];
+
+	return months[date.getMonth()] + ' ' + date.getUTCDate() + ', ' + date.getFullYear();
+}
 
 function collectPosts() {
-	var posts = site.posts = [];
+	let posts = site.posts = [];
 	return through.obj(function (file, enc, cb) {
-		var post = file.page;
-		post.slug = path.basename(file.path, '.md');
+		let post = file.page;
+		post.slug = pathUtil.basename(file.path, '.md');
 		post.content = file.contents.toString();
 		post.date = new Date(post.slug.substr(0, 10));
 		post.dateString = convertDate(post.date);
@@ -30,28 +59,14 @@ function collectPosts() {
 		cb();
 	}, function (cb) {
 		// sort the posts by date
-		posts.sort(function (a, b) {
-			var d1 = a.date;
-			var d2 = b.date;
-			return d2 - d1;
-		});
+		posts.sort((a, b) => { return b.date - a.date; });
 		cb();
 	});
 }
 
-function convertDate(date) {
-	var months = [
-		'January', 'February', 'March', 'April', 'May', 'June', 'July',
-		'August', 'September', 'October', 'November', 'December'
-	];
-
-	var dd =  months[date.getMonth()] + ' ' + date.getUTCDate() + ', ' + date.getFullYear();
-	return dd;
-}
-
 function applyTemplate(template) {
 	return through.obj(function (file, enc, cb) {
-		var html = jade.renderFile(template, {
+		let html = jade.renderFile(template, {
 			marked: marked,
 			pretty: true,
 			site: site,
@@ -64,6 +79,30 @@ function applyTemplate(template) {
 	});
 }
 
+function isPost(file) {
+	let info = pathUtil.parse(file.path);
+	return info.ext === '.md' && info.dir.match(/posts/);
+}
+
+function renameIndex(path) {
+	if (path.basename !== 'index') {
+		path.dirname = pathUtil.join(path.dirname, path.basename);
+		path.basename = 'index';
+		path.extname = '.html';
+	}
+}
+
+// FIXME: don't use, this... it's jus experimentation
+gulp.task('compile', function () {
+	return gulp.src([postsGlob, 'src/*.md', 'src/*.jade'], { base: 'src' })
+		.pipe(gulpIf('*.md', frontMatter({ property: 'page', remove: true })))
+		.pipe(gulpIf(isPost, collectPosts()))
+		.pipe(gulpIf('*.md', applyTemplate('src/templates/post.jade')))
+		.pipe(gulpIf('*.jade', gulpJade({ locals: { site: site }})))
+		.pipe(rename(renameIndex))
+		.pipe(gulp.dest('dist'));
+});
+
 gulp.task('posts', function () {
 	return gulp.src(postsGlob)
 		.pipe(frontMatter({
@@ -73,39 +112,30 @@ gulp.task('posts', function () {
 		// .pipe(marked())
 		.pipe(collectPosts())
 		.pipe(applyTemplate('src/templates/post.jade'))
-		.pipe(rename(function (_path) {
-			_path.dirname = path.join(_path.dirname, _path.basename);
-			_path.basename = 'index';
-			_path.extname = '.html';
-		}))
+		.pipe(rename(renameIndex))
 		.pipe(gulp.dest('dist/posts'));
 });
 
-gulp.task('jade', [ 'posts' ], function () {
-	return gulp.src([ 'src/**/*.jade', '!src/templates/*.jade', '!src/layouts/*.jade' ])
+gulp.task('jade', ['posts'], function () {
+	return gulp.src(['src/**/*.jade', '!src/templates/*.jade', '!src/layouts/*.jade'])
 		.pipe(gulpJade({
 			locals: {
 				site: site
 			}
 		}))
-		.pipe(rename(function (_path) {
-			if (_path.basename !== 'index') {
-				_path.dirname = path.join(_path.dirname, _path.basename);
-				_path.basename = 'index';
-				_path.extname = '.html';
-			}
-		}))
+		.pipe(rename(renameIndex))
 		.pipe(gulp.dest('dist'));
 });
 
 gulp.task('markdown', function () {
 	return gulp.src(['src/*.md'])
 		.pipe(applyTemplate('src/templates/post.jade'))
-		.pipe(rename(function (_path) {
-			_path.dirname = path.join(_path.dirname, _path.basename);
-			_path.basename = 'index';
-			_path.extname = '.html';
-		}))
+		.pipe(rename(renameIndex))
+		.pipe(gulp.dest('dist'));
+});
+
+gulp.task('css', function () {
+	return gulp.src('src/assets/styles/**/*.css', { base: 'src' })
 		.pipe(gulp.dest('dist'));
 });
 
@@ -118,13 +148,8 @@ gulp.task('stylus', function () {
 });
 
 gulp.task('images', function () {
-	return gulp.src(['src/assets/images/**/*'])
-		.pipe(gulp.dest('dist/assets/images'));
-});
-
-gulp.task('images:posts', function () {
-	return gulp.src(['src/posts/images/**/*'])
-		.pipe(gulp.dest('dist/posts/images'));
+	return gulp.src(['src/assets/images/**', 'src/posts/images/**'], { base: 'src' })
+		.pipe(gulp.dest('dist'));
 });
 
 gulp.task('clean', function () {
@@ -147,16 +172,18 @@ gulp.task('deploy', ['default'], function () {
 });
 
 gulp.task('watch', ['default'], function () {
-	gulp.watch([ postsGlob ], [ 'posts' ]);
-	gulp.watch([ 'src/**/*.jade' ], [ 'jade' ]);
-	gulp.watch([ 'src/*.md' ], [ 'markdown' ]);
+	gulp.watch([postsGlob ], ['posts']);
+	gulp.watch(['src/**/*.jade'], ['jade']);
+	gulp.watch(['src/*.md'], ['markdown']);
 
-	var serve = serveStatic('dist');
-	var server = http.createServer(function (req, res) {
+	let serve = serveStatic('dist');
+	let server = http.createServer(function (req, res) {
 		serve(req, res, finalhandler(req, res));
 	});
 
 	server.listen(3000);
 });
 
-gulp.task('default', [ 'posts', 'jade', 'stylus', 'images', 'images:posts' ]);
+gulp.task('styles', ['css', 'stylus']);
+
+gulp.task('default', ['posts', 'markdown', 'jade', 'styles', 'images']);
