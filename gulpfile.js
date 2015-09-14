@@ -50,6 +50,15 @@ function toMarkdown() {
 	});
 }
 
+// TODO: implement this method
+// function toJade() {
+// 	return through.obj(function (file, enc, cb) {
+// 		if (file.page && file.page.layout) {
+// 			cb();
+// 		}
+// 	});
+// }
+
 function collectPosts() {
 	let posts = site.posts = [];
 	return through.obj(function (file, enc, cb) {
