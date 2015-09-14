@@ -4,4 +4,4 @@ block content
 	section
 		article
 			h1 #{page && page.title}
-			!= marked(contents)
+			!= passthrough(contents)

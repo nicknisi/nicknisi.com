@@ -16,26 +16,17 @@ let finalhandler = require('finalhandler');
 let del = require('del');
 let through = require('through2');
 let pathUtil = require('path');
-let execSync = require('child_process').execSync;
 
 let site = require('./site');
 let postsGlob = 'src/posts/*.md';
 
-let renderer = new marked.Renderer();
-
-renderer.code = function (code, lexer) {
-	lexer = lexer || 'text';
-	let result = execSync('pygmentize -l ' + lexer + ' -f html', { input: code });
-	return result.toString();
-};
-
-marked.setOptions({ renderer: renderer });
-
-// marked.setOptions({
-// 	highlight: function (code) {
-// 		return require('highlight.js').highlightAuto(code).value;
-// 	}
-// });
+marked.setOptions({
+	highlight: function (code, lang, callback) {
+		require('pygmentize-bundled')({ lang, format: 'html' }, code, (err, result) => {
+			callback(err, result.toString());
+		});
+	}
+});
 
 function convertDate(date) {
 	let months = [
@@ -44,6 +35,19 @@ function convertDate(date) {
 	];
 
 	return months[date.getMonth()] + ' ' + date.getUTCDate() + ', ' + date.getFullYear();
+}
+
+function toMarkdown() {
+	return through.obj(function (file, enc, cb) {
+		marked(file.contents.toString(), (err, content) => {
+			if (err) {
+				throw err;
+			}
+			file.contents = new Buffer(content, 'utf8');
+			this.push(file);
+			cb();
+		});
+	});
 }
 
 function collectPosts() {
@@ -68,6 +72,7 @@ function applyTemplate(template) {
 	return through.obj(function (file, enc, cb) {
 		let html = jade.renderFile(template, {
 			marked: marked,
+			passthrough: (str) => { return str; },
 			pretty: true,
 			site: site,
 			page: file.page || { content: file.contents },
@@ -85,11 +90,14 @@ function isPost(file) {
 }
 
 function renameIndex(path) {
-	if (path.basename !== 'index') {
+	let ext = pathUtil.extname(path.basename);
+	if (!ext && path.basename !== 'index') {
 		path.dirname = pathUtil.join(path.dirname, path.basename);
 		path.basename = 'index';
-		path.extname = '.html';
 	}
+
+	path.basename = pathUtil.basename(path.basename, ext);
+	path.extname = ext || '.html';
 }
 
 // FIXME: don't use, this... it's jus experimentation
@@ -109,7 +117,7 @@ gulp.task('posts', function () {
 			property: 'page',
 			remove: true
 		}))
-		// .pipe(marked())
+		.pipe(toMarkdown())
 		.pipe(collectPosts())
 		.pipe(applyTemplate('src/templates/post.jade'))
 		.pipe(rename(renameIndex))
@@ -118,6 +126,7 @@ gulp.task('posts', function () {
 
 gulp.task('jade', ['posts'], function () {
 	return gulp.src(['src/**/*.jade', '!src/templates/*.jade', '!src/layouts/*.jade'])
+		.pipe(frontMatter({ property: 'page', remove: true }))
 		.pipe(gulpJade({
 			locals: {
 				site: site
@@ -129,7 +138,8 @@ gulp.task('jade', ['posts'], function () {
 
 gulp.task('markdown', function () {
 	return gulp.src(['src/*.md'])
-		.pipe(applyTemplate('src/templates/post.jade'))
+		.pipe(toMarkdown())
+		.pipe(applyTemplate('src/templates/page.jade'))
 		.pipe(rename(renameIndex))
 		.pipe(gulp.dest('dist'));
 });
@@ -171,17 +181,20 @@ gulp.task('deploy', ['default'], function () {
 		}));
 });
 
-gulp.task('watch', ['default'], function () {
+gulp.task('watch', function () {
 	gulp.watch([postsGlob ], ['posts']);
 	gulp.watch(['src/**/*.jade'], ['jade']);
 	gulp.watch(['src/*.md'], ['markdown']);
+	// gulp.watch(['gulpfile.js'], ['default']);
 
 	let serve = serveStatic('dist');
 	let server = http.createServer(function (req, res) {
 		serve(req, res, finalhandler(req, res));
 	});
+	let port = 3000;
 
-	server.listen(3000);
+	console.log(`web server running at http://localhost:${port}/`);
+	server.listen(port);
 });
 
 gulp.task('styles', ['css', 'stylus']);
