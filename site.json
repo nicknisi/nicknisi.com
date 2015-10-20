@@ -6,6 +6,11 @@
 	"email": "nick@nisi.org",
 	"maxPosts": 30,
 	"talks": {
+		"Neovim": {
+			"date": "October 2015",
+			"location": "Omaha Ruby and Open Source Meetup",
+			"url": "https://www.youtube.com/watch?v=LRQGAnPtNdM"
+		},
 		"JavaScript Fundamentals": {
 			"date": "May 2015",
 			"location": "JSConf 2015",
