@@ -2,7 +2,6 @@
 'use strict';
 
 let gulp = require('gulp');
-let gulpIf = require('gulp-if');
 let frontMatter = require('gulp-front-matter');
 let marked = require('marked');
 let serveStatic = require('serve-static');
