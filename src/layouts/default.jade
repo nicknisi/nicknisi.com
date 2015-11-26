@@ -10,7 +10,7 @@ html(lang="en")
 		meta(property="og:type" content="website")
 		meta(property="og:title" content="#{title || site.title}")
 		meta(property="og:description" content="#{site.description}")
-	body.mac
+	body
 		block coverPhoto
 		if (coverPhotoUrl)
 			div.cover-photo(style="background-image:url(#{coverPhotoUrl});")
@@ -25,7 +25,9 @@ html(lang="en")
 			- if (title) {
 				h1 #{title}
 			- }
+			hr.seperator
 			block content
+			hr.seperator
 			footer.footer
 				p Hi! I'm Nick and I'm a Software Engineer in Omaha, NE! Check me out on #[a(href="https://twitter.com/nicknisi") Twitter] and #[a(href="https://github.com/nicknisi") Github]
 			// only load GA tracking in production
