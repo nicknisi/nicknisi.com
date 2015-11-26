@@ -5,13 +5,12 @@
 html, body {
 	height: 100%;
 	font-size: 16px;
-	font-family: 'Open Sans', Helvetica, Arial, Sans-serif;
 	padding: 0;
 	margin: 0 auto;
 }
 
 body {
-	padding: 10px;
+	padding: 10px 0;
 }
 
 a, a:link, a:visited {
@@ -20,8 +19,40 @@ a, a:link, a:visited {
 
 h1, h2, h3, h4, h5, h6 {
 	margin: 0;
+	font-weight: 200;
 }
 
 code, img, iframe {
 	max-width: 100%;
+}
+
+#content {
+	max-width: 40rem;
+	padding: 0 2rem;
+	margin: 0 auto;
+}
+
+.site-nav {
+	text-align: center;
+	ul {
+		list-style: none;
+		padding: 0;
+		margin: 0 auto;
+		display: inline-block;
+	}
+
+	li {
+		display: inline-block;
+		padding: 2px 3px;
+		text-transform: uppercase;
+	}
+}
+
+.posts {
+	list-style: none outside none;
+	padding: 10px;
+	margin: 0;
+	.post {
+		margin: 5px;
+	}
 }

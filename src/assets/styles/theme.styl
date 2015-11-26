@@ -1,0 +1,64 @@
+$base = #F7F7FA;
+
+// pink walrus
+$walrus = #9e1e4c;
+$neonPink = #ff1168;
+$coolRed = #25020f;
+$silver = #8f8f8f;
+$ferrariGray = #ececec;
+
+hmtl, body {
+	font-size: 16px;
+	font-family: 'Open Sans', Helvetica, Arial, Sans-serif;
+}
+
+body {
+	background-color: $ferrariGray;
+	color: $coolRed;
+	&::before {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		width: 100%;
+		height: unquote('1vmax');
+		background-color: $neonPink;
+		content: '';
+		z-index: -9999;
+		padding: 0;
+		margin: 0;
+	}
+}
+
+h1 {
+	font-size: 2em;
+	color: $walrus;
+}
+
+a, a:link, a:visited {
+	color: $neonPink;
+}
+
+.footer {
+	border-top: 2px solid $coolRed;
+	font-size: 1.5em;
+	color: $silver;
+	font-weight: 200;
+}
+
+.posts {
+	.title {
+		font-size: 1.4em;
+	}
+	.date {
+		color: $silver;
+	}
+}
+
+.cover-photo {
+	background-position: top center;
+	background-size: cover;
+	height: 500px;
+	width: 100%;
+	background-color: $neonPink;
+}

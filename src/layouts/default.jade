@@ -4,7 +4,6 @@ html(lang="en")
 		meta(charset="utf8")
 		title #{title || site.title}
 		link(rel="stylesheet" href="/assets/styles/main.css")
-		link(rel="stylesheet" href="/assets/styles/pygments.css")
 		link(rel="icon" type="image/png" href="/assets/images/favicon.ico")
 		meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no")
 		meta(property="og:url" content="#{site.url}")
@@ -12,11 +11,14 @@ html(lang="en")
 		meta(property="og:title" content="#{title || site.title}")
 		meta(property="og:description" content="#{site.description}")
 	body.mac
-		nav
+		block coverPhoto
+		if (coverPhotoUrl)
+			div.cover-photo(style="background-image:url(#{coverPhotoUrl});")
+		nav.site-nav
 			ul
 				li: a(href="/about") About
 				li: a(href="/") Posts
-				li.logo: a(href="/"): i.logo
+				li: a(href="/" title="Nick Nisi Home"): img(src="/assets/images/beef_nick_small.png" title="NickNisi.com" alt="NickNisi.com")
 				li: a(href="/talks") Talks
 				li: a(href="/projects") Projects
 		section#content
@@ -24,7 +26,7 @@ html(lang="en")
 				h1 #{title}
 			- }
 			block content
-			footer
+			footer.footer
 				p Hi! I'm Nick and I'm a Software Engineer in Omaha, NE! Check me out on #[a(href="https://twitter.com/nicknisi") Twitter] and #[a(href="https://github.com/nicknisi") Github]
 			// only load GA tracking in production
 			-if (environment === "production") {
