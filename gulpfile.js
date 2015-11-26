@@ -50,25 +50,18 @@ function toMarkdown() {
 	});
 }
 
-// TODO: implement this method
-// function toJade() {
-// 	return through.obj(function (file, enc, cb) {
-// 		if (file.page && file.page.layout) {
-// 			cb();
-// 		}
-// 	});
-// }
-
 function collectPosts() {
 	let posts = site.posts = [];
 	return through.obj(function (file, enc, cb) {
 		let post = file.page;
-		post.slug = pathUtil.basename(file.path, '.md');
-		post.content = file.contents.toString();
-		post.date = new Date(post.slug.substr(0, 10));
-		post.dateString = convertDate(post.date);
-		posts.push(post);
-		this.push(file);
+		if (post.published) {
+			post.slug = pathUtil.basename(file.path, '.md');
+			post.content = file.contents.toString();
+			post.date = new Date(post.slug.substr(0, 10));
+			post.dateString = convertDate(post.date);
+			posts.push(post);
+			this.push(file);
+		}
 		cb();
 	}, function (cb) {
 		// sort the posts by date
@@ -93,11 +86,6 @@ function applyTemplate(template) {
 	});
 }
 
-function isPost(file) {
-	let info = pathUtil.parse(file.path);
-	return info.ext === '.md' && info.dir.match(/posts/);
-}
-
 function renameIndex(path) {
 	let ext = pathUtil.extname(path.basename);
 	if (!ext && path.basename !== 'index') {
@@ -108,17 +96,6 @@ function renameIndex(path) {
 	path.basename = pathUtil.basename(path.basename, ext);
 	path.extname = ext || '.html';
 }
-
-// FIXME: don't use, this... it's jus experimentation
-gulp.task('compile', function () {
-	return gulp.src([postsGlob, 'src/*.md', 'src/*.jade'], { base: 'src' })
-		.pipe(gulpIf('*.md', frontMatter({ property: 'page', remove: true })))
-		.pipe(gulpIf(isPost, collectPosts()))
-		.pipe(gulpIf('*.md', applyTemplate('src/templates/post.jade')))
-		.pipe(gulpIf('*.jade', gulpJade({ locals: { site: site }})))
-		.pipe(rename(renameIndex))
-		.pipe(gulp.dest('dist'));
-});
 
 gulp.task('posts', function () {
 	return gulp.src(postsGlob)
@@ -194,6 +171,7 @@ gulp.task('watch', function () {
 	gulp.watch([postsGlob ], ['posts']);
 	gulp.watch(['src/**/*.jade'], ['jade']);
 	gulp.watch(['src/*.md'], ['markdown']);
+	gulp.watch(['src/assets/styles/**/*.styl'], ['stylus']);
 	// gulp.watch(['gulpfile.js'], ['default']);
 
 	let serve = serveStatic('dist');
