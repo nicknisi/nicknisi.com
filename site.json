@@ -6,6 +6,11 @@
 	"email": "nick@nisi.org",
 	"maxPosts": 30,
 	"talks": {
+		"JavaScript Metaprogramming": {
+			"date": "March 2016",
+			"location": "NebraskaJS",
+			"url": "https://www.youtube.com/watch?v=nsG_izwv_0U"
+		},
 		"Neovim": {
 			"date": "October 2015",
 			"location": "Omaha Ruby and Open Source Meetup",
