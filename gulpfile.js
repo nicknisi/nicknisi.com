@@ -1,23 +1,23 @@
 /*jshint node:true*/
 'use strict';
 
-let gulp = require('gulp');
-let frontMatter = require('gulp-front-matter');
-let marked = require('marked');
-let serveStatic = require('serve-static');
-let rename = require('gulp-rename');
-let jade = require('jade');
-let gulpJade = require('gulp-jade');
-let stylus = require('gulp-stylus');
-let rsync = require('gulp-rsync');
-let http = require('http');
-let finalhandler = require('finalhandler');
-let del = require('del');
-let through = require('through2');
-let pathUtil = require('path');
+const gulp = require('gulp');
+const frontMatter = require('gulp-front-matter');
+const marked = require('marked');
+const serveStatic = require('serve-static');
+const rename = require('gulp-rename');
+const jade = require('jade');
+const gulpJade = require('gulp-jade');
+const stylus = require('gulp-stylus');
+const rsync = require('gulp-rsync');
+const http = require('http');
+const finalhandler = require('finalhandler');
+const del = require('del');
+const through = require('through2');
+const pathUtil = require('path');
 
-let site = require('./site');
-let postsGlob = 'src/posts/*.md';
+const site = require('./site');
+const postsGlob = 'src/posts/*.md';
 
 marked.setOptions({
 	highlight: function (code, lang, callback) {
@@ -28,7 +28,7 @@ marked.setOptions({
 });
 
 function convertDate(date) {
-	let months = [
+	const months = [
 		'January', 'February', 'March', 'April', 'May', 'June', 'July',
 		'August', 'September', 'October', 'November', 'December'
 	];
@@ -71,11 +71,11 @@ function collectPosts() {
 
 function applyTemplate(template) {
 	return through.obj(function (file, enc, cb) {
-		let html = jade.renderFile(template, {
-			marked: marked,
+		const html = jade.renderFile(template, {
+			marked,
 			passthrough: (str) => { return str; },
 			pretty: true,
-			site: site,
+			site,
 			page: file.page || { content: file.contents },
 			contents: file.contents.toString()
 		});
@@ -86,7 +86,7 @@ function applyTemplate(template) {
 }
 
 function renameIndex(path) {
-	let ext = pathUtil.extname(path.basename);
+	const ext = pathUtil.extname(path.basename);
 	if (!ext && path.basename !== 'index') {
 		path.dirname = pathUtil.join(path.dirname, path.basename);
 		path.basename = 'index';
@@ -112,11 +112,7 @@ gulp.task('posts', function () {
 gulp.task('jade', ['posts'], function () {
 	return gulp.src(['src/**/*.jade', '!src/templates/*.jade', '!src/layouts/*.jade'])
 		.pipe(frontMatter({ property: 'page', remove: true }))
-		.pipe(gulpJade({
-			locals: {
-				site: site
-			}
-		}))
+		.pipe(gulpJade({ locals: { site } }))
 		.pipe(rename(renameIndex))
 		.pipe(gulp.dest('dist'));
 });
@@ -173,11 +169,11 @@ gulp.task('watch', function () {
 	gulp.watch(['src/assets/styles/**/*.styl'], ['stylus']);
 	// gulp.watch(['gulpfile.js'], ['default']);
 
-	let serve = serveStatic('dist');
-	let server = http.createServer(function (req, res) {
+	const serve = serveStatic('dist');
+	const server = http.createServer(function (req, res) {
 		serve(req, res, finalhandler(req, res));
 	});
-	let port = 3000;
+	const port = 3000;
 
 	console.log(`web server running at http://localhost:${port}/`);
 	server.listen(port);
