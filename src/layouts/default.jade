@@ -13,7 +13,7 @@ html(lang="en")
 	body
 		block coverPhoto
 		if (coverPhotoUrl)
-			div.cover-photo(style="background-image:url(#{coverPhotoUrl});")
+			// div.cover-photo(style="background-image:url(#{coverPhotoUrl});")
 		nav.site-nav
 			ul
 				li: a(href="/about") About
@@ -25,9 +25,9 @@ html(lang="en")
 			- if (title) {
 				h1 #{title}
 			- }
-			hr.seperator
+			hr.separator
 			block content
-			hr.seperator
+			hr.separator
 			footer.footer
 				p Hi! I'm Nick and I'm a Software Engineer in Omaha, NE! Check me out on #[a(href="https://twitter.com/nicknisi") Twitter] and #[a(href="https://github.com/nicknisi") Github]
 			// only load GA tracking in production
