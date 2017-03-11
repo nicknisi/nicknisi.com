@@ -6,8 +6,8 @@ const frontMatter = require('gulp-front-matter');
 const marked = require('marked');
 const serveStatic = require('serve-static');
 const rename = require('gulp-rename');
-const jade = require('jade');
-const gulpJade = require('gulp-jade');
+const pug = require('pug');
+const gulpPug = require('gulp-pug');
 const stylus = require('gulp-stylus');
 const rsync = require('gulp-rsync');
 const http = require('http');
@@ -71,7 +71,7 @@ function collectPosts() {
 
 function applyTemplate(template) {
 	return through.obj(function (file, enc, cb) {
-		const html = jade.renderFile(template, {
+		const html = pug.renderFile(template, {
 			marked,
 			passthrough: (str) => { return str; },
 			pretty: true,
@@ -104,25 +104,39 @@ gulp.task('posts', function () {
 		}))
 		.pipe(toMarkdown())
 		.pipe(collectPosts())
-		.pipe(applyTemplate('src/templates/post.jade'))
+		.pipe(applyTemplate('src/templates/post.pug'))
 		.pipe(rename(renameIndex))
 		.pipe(gulp.dest('dist/posts'));
 });
 
-gulp.task('jade', ['posts'], function () {
-	return gulp.src(['src/**/*.jade', '!src/templates/*.jade', '!src/layouts/*.jade'])
+gulp.task('pug', ['posts'], function () {
+	return gulp.src(['src/**/*.pug', '!src/templates/*.pug', '!src/layouts/*.pug'])
 		.pipe(frontMatter({ property: 'page', remove: true }))
-		.pipe(gulpJade({ locals: { site } }))
+		.pipe(gulpPug({ locals: { site } }))
 		.pipe(rename(renameIndex))
 		.pipe(gulp.dest('dist'));
 });
 
 gulp.task('markdown', function () {
-	return gulp.src(['src/*.md'])
+	return gulp.src(['src/*.md', '!src/resume.md'])
 		.pipe(toMarkdown())
-		.pipe(applyTemplate('src/templates/page.jade'))
+		.pipe(applyTemplate('src/templates/page.pug'))
 		.pipe(rename(renameIndex))
 		.pipe(gulp.dest('dist'));
+});
+
+gulp.task('resume', ['resume:css'], function () {
+	return gulp.src('src/resume.md')
+		.pipe(toMarkdown())
+		.pipe(rename(renameIndex))
+		.pipe(applyTemplate('src/layouts/resume.pug'))
+		.pipe(gulp.dest('dist'));
+});
+
+gulp.task('resume:css', function () {
+	return gulp.src('src/assets/styles/resume.styl')
+	.pipe(stylus({ compress: true }))
+	.pipe(gulp.dest('dist/assets/styles'));
 });
 
 gulp.task('css', function () {
@@ -164,7 +178,7 @@ gulp.task('deploy', ['default'], function () {
 
 gulp.task('watch', function () {
 	gulp.watch([postsGlob ], ['posts']);
-	gulp.watch(['src/**/*.jade'], ['jade']);
+	gulp.watch(['src/**/*.pug'], ['pug']);
 	gulp.watch(['src/*.md'], ['markdown']);
 	gulp.watch(['src/assets/styles/**/*.styl'], ['stylus']);
 	// gulp.watch(['gulpfile.js'], ['default']);
@@ -181,4 +195,4 @@ gulp.task('watch', function () {
 
 gulp.task('styles', ['css', 'stylus']);
 
-gulp.task('default', ['posts', 'markdown', 'jade', 'styles', 'images']);
+gulp.task('default', ['pug', 'markdown', 'styles', 'images']);

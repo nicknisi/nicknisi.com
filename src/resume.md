@@ -1,7 +1,3 @@
----
-layout: 'resume'
----
-
 # <img src="/assets/images/beef_nick.png" class="portrait"> Nick Nisi
 
 -----------
