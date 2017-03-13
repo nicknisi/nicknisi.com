@@ -1,15 +1,16 @@
 doctype html
 html(lang="en")
 	head
+		- let title = (page ? page.title : '') + ' - ' + site.title
 		meta(charset="utf8")
-		title #{title || site.title}
+		title #{title}
 		link(rel="stylesheet" href="/assets/styles/main.css")
 		link(rel="icon" type="image/png" href="/assets/images/favicon.ico")
 		meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no")
-		meta(property="og:url" content="#{site.url}")
+		meta(property="og:url" content=site.url)
 		meta(property="og:type" content="website")
-		meta(property="og:title" content="#{title || site.title}")
-		meta(property="og:description" content="#{site.description}")
+		meta(property="og:title" content=title)
+		meta(property="og:description" content=site.description)
 	body
 		block coverPhoto
 		if (coverPhotoUrl)
@@ -22,9 +23,6 @@ html(lang="en")
 				li: a(href="/talks") Talks
 				li: a(href="/projects") Projects
 		section#content
-			- if (title) {
-				h1 #{title}
-			- }
 			hr.separator
 			block content
 			hr.separator
