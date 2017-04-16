@@ -6,7 +6,7 @@ block content
 	ul.talk-list
 		for talk, title in site.talks
 			li
-				span.title: a(href="#{talk.url}") #{title}
+				span.title: a(href=`${talk.url}`) #{title}
 				span &nbsp;
 				span.date #{talk.date}
 				span &nbsp;at&nbsp;

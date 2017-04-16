@@ -111,7 +111,6 @@ gulp.task('posts', function () {
 
 gulp.task('pug', ['posts'], function () {
 	return gulp.src(['src/**/*.pug', '!src/templates/*.pug', '!src/layouts/*.pug'])
-		.pipe(frontMatter({ property: 'page', remove: true }))
 		.pipe(gulpPug({ locals: { site } }))
 		.pipe(rename(renameIndex))
 		.pipe(gulp.dest('dist'));
@@ -119,6 +118,10 @@ gulp.task('pug', ['posts'], function () {
 
 gulp.task('markdown', function () {
 	return gulp.src(['src/*.md', '!src/resume.md'])
+		.pipe(frontMatter({
+			property: 'page',
+			remove: true
+		}))
 		.pipe(toMarkdown())
 		.pipe(applyTemplate('src/templates/page.pug'))
 		.pipe(rename(renameIndex))

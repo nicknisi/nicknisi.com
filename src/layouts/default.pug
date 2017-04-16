@@ -1,7 +1,7 @@
 doctype html
 html(lang="en")
 	head
-		- let title = (page ? page.title : '') + ' - ' + site.title
+		- let title = (page ? page.title + ' - ' : '') + site.title
 		meta(charset="utf8")
 		title #{title}
 		link(rel="stylesheet" href="/assets/styles/main.css")
@@ -14,16 +14,18 @@ html(lang="en")
 	body
 		block coverPhoto
 		if (coverPhotoUrl)
-			// div.cover-photo(style="background-image:url(#{coverPhotoUrl});")
-		nav.site-nav
-			ul
-				li: a(href="/about") About
-				li: a(href="/") Posts
-				li: a(href="/" title="Nick Nisi Home"): img(src="/assets/images/beef_nick_small.png" title="NickNisi.com" alt="NickNisi.com")
-				li: a(href="/talks") Talks
-				li: a(href="/projects") Projects
+			div.cover-photo(style="background-image:url(#{coverPhotoUrl});")
+		header#main-header
+			img.beef-nick(src='/assets/images/beef_nick.png')
+			h1 Nick Nisi
+			h2 Software Engineer
+			nav
+				ul
+					li: a(href="/about") About
+					li: a(href="/") Posts
+					li: a(href="/talks") Talks
+					li: a(href="/projects") Projects
 		section#content
-			hr.separator
 			block content
 			hr.separator
 			footer.footer

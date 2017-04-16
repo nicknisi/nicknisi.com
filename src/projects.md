@@ -1,3 +1,7 @@
+---
+title: Projects
+---
+
 # Projects
 
 For a complete list of up-to-date projects, check me out on [Github](https://github.com/nicknisi).

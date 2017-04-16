@@ -9,10 +9,6 @@ html, body {
 	margin: 0 auto;
 }
 
-body {
-	padding: 10px 0;
-}
-
 a, a:link, a:visited {
 	text-decoration: none;
 }
@@ -26,9 +22,32 @@ code, img, iframe {
 	max-width: 100%;
 }
 
+#main-header {
+	width: 100%;
+	background-color: #00f;
+	color: #fff;
+	padding: 1em;
+	text-align: center;
+	img.beef-nick {
+		width: 128px;
+		height: 128px;
+	}
+	nav {
+		ul {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+		}
+		li {
+			margin: 5px;
+			display: inline-block;
+		}
+	}
+}
+
 #content {
-	max-width: 40rem;
-	padding: 0 2rem;
+	max-width: 940px;
+	padding: 2rem;
 	margin: 0 auto;
 }
 
@@ -54,5 +73,23 @@ code, img, iframe {
 	margin: 0;
 	.post {
 		margin: 5px;
+	}
+}
+
+@media screen and (min-width: 640px) {
+	#main-header {
+		position: fixed;
+		width: 240px;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		text-align: left;
+		nav li {
+			display: block;
+		}
+	}
+
+	#content {
+		margin-left: 240px;
 	}
 }

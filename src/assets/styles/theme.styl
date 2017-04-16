@@ -1,11 +1,11 @@
-$base = #F7F7FA;
-
-// pink walrus
-$walrus = #9e1e4c;
-$neonPink = #ff1168;
-$coolRed = #25020f;
-$silver = #8f8f8f;
-$ferrariGray = #ececec;
+$color0 = #000000;
+$color1 = #FFFFFF;
+$color2 = #388BB2;
+$color3 = #FF8393;
+$color4 = #38BBFF;
+$color5 = #CCC740;
+$color6 = #B2AE41;
+$color7 = #8F8F8F;
 
 hmtl, body {
 	font-size: 16px;
@@ -13,39 +13,61 @@ hmtl, body {
 }
 
 body {
-	background-color: $ferrariGray;
-	color: $coolRed;
+	background-color: $color1;
+	color: $color0;
 	&::before {
-		position: absolute;
+		position: fixed;
 		top: 0;
 		left: 0;
 		right: 0;
 		width: 100%;
 		height: unquote('1vmax');
-		background-color: $neonPink;
+		background-color: $color2;
 		content: '';
-		z-index: -9999;
+		z-index: 9999;
+		padding: 0;
+		margin: 0;
+	}
+	&::after {
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		width: 100%;
+		height: unquote('1vmax');
+		background-color: $color2;
+		content: '';
+		z-index: 9999;
 		padding: 0;
 		margin: 0;
 	}
 }
 
+#main-header {
+	background-color: $color2;
+	color: $color1;
+	h1 { color: $color1; }
+	nav li a { color: $color1; }
+}
+
 h1 {
 	font-size: 2em;
-	color: $walrus;
+	color: $color2;
 }
 
 a, a:link, a:visited {
-	color: $neonPink;
+	color: $color4;
 }
 
+.date { color: $color7; }
+
 .separator {
-	border-color: $neonPink;
+	border-color: $color6;
 }
 
 .footer {
 	font-size: 1.5em;
-	color: $silver;
+	color: $color7;
 	font-weight: 200;
 }
 
@@ -54,7 +76,7 @@ a, a:link, a:visited {
 		font-size: 1.4em;
 	}
 	.date {
-		color: $silver;
+		color: $color7;
 	}
 }
 
@@ -63,5 +85,5 @@ a, a:link, a:visited {
 	background-size: cover;
 	height: 500px;
 	width: 100%;
-	background-color: $neonPink;
+	background-color: $color5;
 }
