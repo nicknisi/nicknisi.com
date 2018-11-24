@@ -6,6 +6,11 @@
 	"email": "nick@nisi.org",
 	"maxPosts": 30,
 	"talks": {
+		"No Time for Types": {
+			"date": "August 2018",
+			"location": "JSConf US",
+			"url": "https://www.youtube.com/watch?v=qGK541P2xII"
+		},
 		"JavaScript Metaprogramming": {
 			"date": "March 2016",
 			"location": "NebraskaJS",
