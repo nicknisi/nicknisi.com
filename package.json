@@ -23,7 +23,9 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "gulp watch"
+    "watch": "gulp watch",
+    "deploy": "gulp deploy",
+    "build": "gulp"
   },
   "repository": {
     "type": "git",
