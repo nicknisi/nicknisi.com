@@ -3,14 +3,14 @@
 -----------
 
 <div id="contact">
-<a href=""><span class="icon fa fa-mobile-phone"></span>402.216.1612</a> | [<span class="icon fa fa-envelope"></span>nick@nisi.org](mailto:nick@nisi.org) | [<span class="icon fa fa-globe"></span>nicknisi.com](http://nicknisi.com) |  [<span class="icon fa fa-github"></span>@nicknisi](https://github.com/nicknisi) | [<span class="icon fa fa-twitter"></span>@nicknisi](https://twitter.com/nicknisi)
+<a href=""><span class="icon fas fa-mobile"></span>402.216.1612</a> | [<span class="icon fas fa-envelope"></span>nick@nisi.org](mailto:nick@nisi.org) | [<span class="icon fab fa-edge"></span>nicknisi.com](http://nicknisi.com) |  [<span class="icon fab fa-github"></span>@nicknisi](https://github.com/nicknisi) | [<span class="icon fab fa-twitter"></span>@nicknisi](https://twitter.com/nicknisi) | [<span class="icon fab fa-linkedin"></span>nicknisi](https://linkedin.com/in/nicknisi)
 </div>
 
 ## <span class="icon fa fa-paw"></span>Summary
 
 -----------
 
-A Software Engineer with a distinct passion for discussing, teaching, and promoting technology. Experience teaching over a dozen JavaScript workshops around the world and organizing the first JavaScript conference in Nebraska.
+A JavaScript and TypeScript developer with 10 years experience in the industry and with a focus on community, teaching, and developer tooling. Organizer of the only JavaScript conference in Nebraska and panelist on two JavaScript-focused podcasts.
 
 <!--
 ## <span class="icon fa fa-code"></span>Skills
@@ -25,16 +25,22 @@ A Software Engineer with a distinct passion for discussing, teaching, and promot
 ## <span class="icon fa fa-briefcase"></span>Experience
 -----------
 
-### SitePen _Remote_
-#### Senior Software Engineer / Instructor _July 2013 - Present_
+### Senior Software Engineer _Remote_
+#### SitePen  _July 2013 - January 2018, April 2018 - Present_
 
-+ Instructor, teaching over a dozen week long workshops around the world on topics including JavaScript, Dojo, and unit/functional testing.
-+ Lead software developer, managing team of up to three developers with responsibilities includinkk
-+ Lead software developer, managing a team of up to three developers on successful customer-facing projects
-+ Lead Support Engineer, providing timely and thorough answers to customer questions including custom development
++ **Open Source Contributor**, ensuring success on many company and community open source initiatives including Dojo, Intern, TypeDoc, and CodeSandbox
++ **Instructor**, teaching 2-5 day workshops online and in-person on topics including TypeScript, JavaScript fundamentals, and Dojo.
++ **Lead Developer**, managing teams of up to three developers on successful customer-facing projects for world-class clients including hotels, government agencies, and banks.
++ **Lead Support Engineer**, providing timely and thorough answers to technical questions from developers about code, bugs, testing, and architecture.
 
-### C2FO _Remote_
-#### Senior Software Engineer _October 2011 – July 2013_
+### Software Engineer _Omaha, NE_
+#### Flywheel _January 2018 - April 2018_
+
++ Developer on the Fly-tools team, delivering tools to internal users to ensure success of a thriving startup and web-hosting company
++ Introduced TypeScript to the company via the development of a small application for linking support tickets
+
+### Senior Software Engineer _Remote_
+#### C2FO  _October 2011 – July 2013_
 
 + Part of core development team delivering results which lead to $9.1 million funding round lead by Union Square Ventures.
 + Designed and developed frontend architecture on c2fo.com with a focus on the responsive design and using Backbone, RequireJS, Handlebars, and Less to create a friendly single page application.
@@ -55,41 +61,42 @@ A Software Engineer with a distinct passion for discussing, teaching, and promot
 + Delivered on time and successfully.
 -->
 
-### Lockheed Martin _Omaha, NE_
-#### Software Engineer / Engineering LDP _January 2009 – October 2011_
+### Software Engineer / Engineering LDP _Omaha, NE_
+#### Lockheed Martin _January 2009 – October 2011_
 
 + Accepted into Engineering Leadership Development Program (ELDP) based on job performance, panel interviews, and essays.
 <!-- + Development lead for maintenance drop focusing on performance enhancement and usability, where duties include leading a team of three engineers, supporting builds and turnovers, and cross functional coordination to facilitate the engineering life cycle. -->
 <!-- + Lead Developer of a system demo application using Flash and driven by XML files which included audio narration, videos, and interactive elements for the customer and met regularly with a customer working group to ensure the demo met their needs. -->
 + Chief Architect and lead developer of a metrics reporting web application written in Groovy/Grails that reads data from another application database and generates reports using JasperReports.
-+ Developed custom SNMP agent for administration of a hardware device written in C.
-+ Developed management console for an embedded hardware device using jQuery, Ruby, and PHP.
+<!-- + Developed custom SNMP agent for administration of a hardware device written in C. -->
+<!-- + Developed management console for an embedded hardware device using jQuery, Ruby, and PHP. -->
 <!-- + Developed a client side network performance testing application using JavaScript. -->
 <!-- + Web application development with Java/Spring/Struts. -->
 <!--+ Set up Hadoop cluster and utilized MapReduce for analysis of large quantities of network traffic data. -->
 <!-- + Implemented the most visible components of web application including custom jQuery/TinyMCE plugins, a custom application navigation system, and the development of a custom inline rich text editor in JavaScript. -->
 
-## <span class="icon fa fa-group"></span>Community
+## <span class="icon fa fa-users"></span>Community
 
 -----------
 
-+ [NEJS Conf 2015](http://nejsconf.com) Co-organizer
++ **Organizer and Emcee** [NEJS Conf](http://nejsconf.com) - An annual community JavaScript conference featuring the best JS talent in the industry
++ **Emcee** [TSConf](https://tsconf.io) - The first TypeScript-exclusive conference, held in Seattle
++ **Panelist** [JS Party](https://changelog.com/jsparty) - A weekly celebration of JavaScript and the web
++ **Panelist** [TalkScript](http://talkscript.fm) - A podcast about JavaScript, TypeScript, and the web
 + [NebraskaJS](http://nebraskajs.com) Co-organizer
-+ [Beer && Code](http://beerandcode.org) Co-organizer
 + Dojo Toolkit committer with contributions to the [dojo](https://github.com/dojo/dojo/pulls?utf8=%E2%9C%93&q=author%3Anicknisi), [dijit](https://github.com/dojo/dijit/pulls?utf8=%E2%9C%93&q=author%3Anicknisi), [dojox](https://github.com/dojo/dojox/pulls?utf8=%E2%9C%93&q=author%3Anicknisi), and [dgrid](https://github.com/sitepen/dgrid/pulls?utf8=%E2%9C%93&q=author%3Anicknisi) projects
-+ CoderDojo [mentor](http://siliconprairienews.com/2014/03/saturday-s-aim-coderdojo-draws-dozens-of-omaha-teens-to-code/)
 
-### Recent Talks
+## <span class="icon fa fa-podium-star"></span>Talks
 
-+ JSConf 2015 - [JavaScript Fundamentals](http://2015.jsconf.us/speakers.html#nisi)
-+ OMG!Code - [vim  + tmux](https://www.youtube.com/watch?v=5r6yzFEXajQ)
-+ NebraskaJS Lincoln - [Modern Dojo](https://www.youtube.com/watch?v=__7Fg1h_N6w)
-+ Omaha Coffee and Code - [Intro to Intern](https://www.youtube.com/watch?v=Fgt_frjlAaQ)
-+ NebraskaJS - [TypeScript](https://www.youtube.com/watch?v=nLCedy68Qf4)
-+ NebraskaJS - [Building Chrome extensions](https://www.youtube.com/watch?v=HzJ9pUWb2rA)
-+ NebraskaJS - [Contributing to open source](https://vimeo.com/99035913)
+-----------
 
-*A complete list of talks is available at [nicknisi.com/talks](http://nicknisi.com/talks)*
++ JSConf US 2018 - [No Time for Types](https://www.youtube.com/watch?v=qGK541P2xII)
++ TSConf 2018 - [TalkScript with the TypeScript Team](https://vimeo.com/265419087)
++ JSConf US 2015 - [JavaScript Fundamentals Workshop](http://2015.jsconf.us/speakers.html#nisi)
++ NebraskaJS - [JavaScript Metaprogramming](https://www.youtube.com/watch?v=nsG_izwv_0U)
++ OMG!Code - [vim + tmux](https://www.youtube.com/watch?v=5r6yzFEXajQ)
+
+*A complete list of talks is available at [nicknisi.com/talks](https://nicknisi.com/talks)*
 
 <!--
 ### Work & Open Source Contributions
@@ -109,7 +116,16 @@ A Software Engineer with a distinct passion for discussing, teaching, and promot
 
 -->
 
+## <span class="icon fa fa-alicorn"></span>Skills
+
+-----------
+
++ **Proficient** TypeScript, JavaScript, ES2015+, Node.js, Dojo, Angular, React, Webpack, CSS, Git Bash, Vim
++ **Familiar** Java, C++, C, Ruby, Groovy
+
 ## <span class="icon fa fa-book"></span>Education
+
+-----------
 
 ### The George Washington University
 #### College of Engineering Management and Systems Engineering _Fall 2009 – Spring 2011_
