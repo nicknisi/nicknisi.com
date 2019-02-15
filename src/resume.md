@@ -98,6 +98,16 @@ A JavaScript and TypeScript developer with 10 years experience in the industry a
 
 *A complete list of talks is available at [nicknisi.com/talks](https://nicknisi.com/talks)*
 
+## <span class="icon fas fa-newspaper"></span>Articles
+
+-----------
+
++ [The Definitive TypeScript Guide](https://www.sitepen.com/blog/update-the-definitive-typescript-guide/)
++ [Advanced TypeScript Concepts: Classes and Types](https://www.sitepen.com/blog/advanced-typescript-concepts-classes-and-types/)
++ [Codemods: Effective, Automated Refactoring](https://www.sitepen.com/blog/codemods-effective-automated-refactoring/)
++ [Wrapping Web Components with React](https://www.sitepen.com/blog/wrapping-web-components-with-react/)
+
+
 <!--
 ### Work & Open Source Contributions
 
