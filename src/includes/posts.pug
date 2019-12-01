@@ -1,9 +1,0 @@
-ul.posts
-	each post in site.posts
-		- if (!post.draft) {
-			li.post
-				div.date #{post.dateString}
-				h3.title
-					i(class=`icon icon-${post.type || 'post'}`)
-					a(href=`/posts/${post.slug}`) #{post.title}
-		-  }

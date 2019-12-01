@@ -1,0 +1,17 @@
+{
+    "title": "NickNisi.com",
+    "url": "https://nicknisi.com",
+    "description": "",
+    "avatar": "/img/beef_nick.png",
+    "feed": {
+        "subtitle": "",
+        "filename": "feed.xml",
+        "path": "/feed/feed.xml",
+        "url": "https://nicknisi.com/feed/feed.xml",
+        "id": "https://nicknisi.com"
+    },
+    "author": {
+        "name": "Nick Nisi",
+        "email": "nick@nisi.org"
+    }
+}

@@ -1,48 +1,47 @@
 {
   "name": "nicknisi.com",
-  "version": "1.0.0",
-  "description": "My home on the internet",
-  "main": "gulpfile.js",
-  "dependencies": {},
-  "devDependencies": {
-    "del": "^2.0.1",
-    "finalhandler": "^0.4.0",
-    "gulp": "^3.9.0",
-    "gulp-front-matter": "^1.2.3",
-    "gulp-marked": "^1.0.0",
-    "gulp-pug": "^3.3.0",
-    "gulp-rename": "^1.2.2",
-    "gulp-rsync": "0.0.5",
-    "gulp-stylus": "^2.0.6",
-    "http": "0.0.0",
-    "marked": "^0.3.5",
-    "pug": "^2.0.0-beta11",
-    "pygmentize-bundled": "^2.3.0",
-    "serve-static": "^1.10.0",
-    "through2": "^2.0.0"
-  },
+  "private": true,
+  "version": "2.0.0",
+  "description": "The home of Nick Nisi on the Internet.",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "gulp watch",
-    "deploy": "gulp deploy",
-    "build": "gulp"
+    "start": "eleventy --serve",
+    "build": "eleventy",
+    "watch:": "eleventy --watch",
+    "serve": "eleventy --serve",
+    "debug": "DEBUG=* eleventy"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nicknisi/nicknisi.com.git"
+    "url": "git://github.com/nicknisi/nicknisi.com"
   },
-  "keywords": [
-    "nick",
-    "nisi",
-    "javascript",
-    "vim",
-    "omaha",
-    "programmer"
-  ],
-  "author": "Nick Nisi <nick@nisi.org>",
-  "license": "MIT",
+  "keywords": [],
+  "author": {
+    "name": "Nick Nisi",
+    "email": "nick@nisi.org",
+    "url": "https://nicknisi.com/"
+  },
   "bugs": {
     "url": "https://github.com/nicknisi/nicknisi.com/issues"
   },
-  "homepage": "https://github.com/nicknisi/nicknisi.com#readme"
+  "homepage": "https://github.com/nicknisi/nicknisi.com",
+  "license": "MIT",
+  "devDependencies": {
+    "@11ty/eleventy": "^0.9.0",
+    "@11ty/eleventy-navigation": "^0.1.2",
+    "@11ty/eleventy-plugin-rss": "^1.0.7",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^2.0.3",
+    "luxon": "^1.21.2",
+    "markdown-it": "^10.0.0",
+    "markdown-it-anchor": "^5.2.5",
+    "prettier": "^1.19.1"
+  },
+  "dependencies": {},
+  "prettier": {
+    "singleQuote": true,
+    "tabWidth": 4,
+    "useTabs": false,
+    "printWidth": 100,
+    "arrowParens": "always"
+  }
 }

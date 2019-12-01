@@ -1,0 +1,11 @@
+---
+layout: layouts/home.njk
+eleventyNavigation:
+    key: Home
+    order: 1
+---
+
+<h1>Latest posts</h1>
+
+{% set postslist = collections.posts %}
+{% include 'postslist.njk' %}
