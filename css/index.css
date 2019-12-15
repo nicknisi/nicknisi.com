@@ -72,6 +72,12 @@ a:hover {
 	font-size: 0.6em;
 }
 
+.external svg {
+	fill: var(--link-color);
+	width: 16px;
+	height: 16px;
+}
+
 /* postlist */
 .postlist {
 	list-style: none;
@@ -83,6 +89,7 @@ a:hover {
 
 .postlist-info {
 	display: flex;
+	align-items: center;
 }
 
 .postlist-link {
@@ -90,7 +97,16 @@ a:hover {
 }
 
 .postlist-date {
+	display: flex;
+	align-items: center;
 	color: #333;
+}
+
+.postlist-date svg {
+	width: 14px;
+	height: 14px;
+	fill: #333;
+	margin-right: 8px;
 }
 
 .postlist-tags {
@@ -98,4 +114,12 @@ a:hover {
 	display: flex;
 	flex-wrap: no-wrap;
 	justify-content: flex-start;
+	align-items: center;
+}
+
+.postlist-tags svg {
+	margin: 0 4px;
+	fill: var(--tag-color);
+	width: 14px;
+	height: 14px;
 }

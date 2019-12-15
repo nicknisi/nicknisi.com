@@ -29,6 +29,8 @@ module.exports = (config) => {
         DateTime.fromJSDate(dateObj, { zone: 'utc' }).toFormat('yyyy-LL-dd')
     );
 
+    config.addFilter('embed', require('./_11ty/embed'));
+
     config.addFilter('tags', (tags) => tags.filter((tag) => tag !== 'posts'));
 
     config.addFilter('head', (array, n) => (n < 0 ? array.slice(n) : array.slice(0, n)));
