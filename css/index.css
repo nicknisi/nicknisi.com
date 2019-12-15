@@ -1,5 +1,5 @@
 :root {
-	--primary-color: #333
+	--primary-color: #333;
 	--secondary-color: #eff0f1;
 	--link-color: #047cc2;
 	--tag-color: #a1a1a1;
@@ -7,6 +7,7 @@
 
 html, body {
 	font-family: sans-serif;
+	font-size: 16px;
 	background-color: var(--secondary-color);
 	color: var(--primary-color);
 }
@@ -99,13 +100,13 @@ a:hover {
 .postlist-date {
 	display: flex;
 	align-items: center;
-	color: #333;
+	color: var(--primary-color);
 }
 
 .postlist-date svg {
 	width: 14px;
 	height: 14px;
-	fill: #333;
+	fill: var(--primary-color);
 	margin-right: 8px;
 }
 
