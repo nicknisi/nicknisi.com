@@ -5,12 +5,18 @@ templateClass: tmpl-post
 
 <article class="article">
 	<header>
-		<h1>{{ title }}</h1>
-		<div class="post-date">{{ page.date | readableDate }}</div>
-		<div class="post-tags">
-			{% for tag in tags | tags %}
-			<a class="tag" href="/tags/{{ tag }}/">{{ tag }}</a>
-			{% endfor %}
+		<h1 class="title">{{ title }}</h1>
+		<div class="post-info">
+			<div class="post-date">
+				{{ '/img/icons/calendar-today.svg' | embed | safe }}
+				{{ page.date | readableDate }}
+			</div>
+			<div class="post-tags">
+				{{ '/img/icons/tag.svg' | embed | safe }}
+				{% for tag in tags | tags %}
+				<a class="tag" href="/tags/{{ tag }}/">{{ tag }}</a>
+				{% endfor %}
+			</div>
 		</div>
 	</header>
 	<section class="article-content">

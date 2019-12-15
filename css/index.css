@@ -16,6 +16,11 @@ html, body {
 	text-align: center;
 }
 
+.title {
+	margin: 0.3em 0;
+	font-size: 2em;
+}
+
 .main-content {
 	margin: 0 auto;
 	max-width: 768px;
@@ -56,11 +61,6 @@ a:hover {
 	margin: 0 2px;
 }
 
-.post-tags, .post-date {
-	display: inline-block;
-	vertical-align: middle;
-}
-
 .tag:hover {
 	color: #fff;
 	background-color: var(--tag-color);
@@ -88,6 +88,7 @@ a:hover {
 	margin-bottom: 16px;
 }
 
+.post-info,
 .postlist-info {
 	display: flex;
 	align-items: center;
@@ -97,12 +98,14 @@ a:hover {
 	font-size: 1.4em;
 }
 
+.post-date,
 .postlist-date {
 	display: flex;
 	align-items: center;
 	color: var(--primary-color);
 }
 
+.post-date svg,
 .postlist-date svg {
 	width: 14px;
 	height: 14px;
@@ -110,6 +113,7 @@ a:hover {
 	margin-right: 8px;
 }
 
+.post-tags,
 .postlist-tags {
 	flex: 1 0;
 	display: flex;
@@ -118,6 +122,7 @@ a:hover {
 	align-items: center;
 }
 
+.post-tags svg,
 .postlist-tags svg {
 	margin: 0 4px;
 	fill: var(--tag-color);
