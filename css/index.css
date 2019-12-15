@@ -1,3 +1,101 @@
+:root {
+	--primary-color: #333
+	--secondary-color: #eff0f1;
+	--link-color: #047cc2;
+	--tag-color: #a1a1a1;
+}
+
 html, body {
 	font-family: sans-serif;
+	background-color: var(--secondary-color);
+	color: var(--primary-color);
+}
+
+.header {
+	text-align: center;
+}
+
+.main-content {
+	margin: 0 auto;
+	max-width: 768px;
+	padding: 0px 1.0875rem 1.45rem;
+	padding-top: 0;
+}
+
+a {
+	color: var(--link-color);
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+	}
+}
+
+.article-content iframe,
+.article-content img {
+	display: block;
+	margin: 0 auto;
+}
+
+.tag {
+	text-decoration: none;
+	border: 1px solid rgba(0,0,0,0.08);
+	padding: 0 4px;
+	vertical-align: middle;
+	display: inline-block;
+	color: var(--tag-color);
+	text-transform: uppercase;
+	font-size: 0.7em;
+	font-weight: 500;
+	margin: 0 2px;
+}
+
+.post-tags, .post-date {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.tag:hover {
+	color: #fff;
+	background-color: var(--tag-color);
+	text-decoration: none;
+}
+
+.direct-link {
+	color: var(--tag-color);
+	text-decoration: none;
+	font-size: 0.6em;
+}
+
+/* postlist */
+.postlist {
+	list-style: none;
+}
+
+.postlist-item {
+	margin-bottom: 16px;
+}
+
+.postlist-info {
+	display: flex;
+}
+
+.postlist-link {
+	font-size: 1.4em;
+}
+
+.postlist-date {
+	color: #333;
+}
+
+.postlist-tags {
+	flex: 1 0;
+	display: flex;
+	flex-wrap: no-wrap;
+	justify-content: flex-start;
 }

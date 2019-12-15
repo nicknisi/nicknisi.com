@@ -3,8 +3,19 @@ layout: layouts/base.njk
 templateClass: tmpl-post
 ---
 
-<h1>{{ title }}</h1>
-
-{{ content | safe }}
-
+<article class="article">
+	<header>
+		<h1>{{ title }}</h1>
+		<div class="post-date">{{ page.date | readableDate }}</div>
+		<div class="post-tags">
+			{% for tag in tags | tags %}
+			<a class="tag" href="/tags/{{ tag }}/">{{ tag }}</a>
+			{% endfor %}
+		</div>
+	</header>
+	<section class="article-content">
+		{{ content | safe }}
+	</section>
+</article>
 <p><a href="{{ '/' | url }}">- Home</a></p>
+
