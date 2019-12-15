@@ -16,6 +16,7 @@ module.exports = (config) => {
     config.addLayoutAlias('post', 'layouts/post.njk');
     config.addLayoutAlias('page', 'layouts/page.njk');
     config.addLayoutAlias('home', 'layouts/home.njk');
+    config.addLayoutAlias('resume', 'layouts/resume.njk');
 
     config.addPassthroughCopy('img');
     config.addPassthroughCopy('css');
