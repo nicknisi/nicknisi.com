@@ -6,6 +6,8 @@ const markdownIt = require('markdown-it');
 const markdownItAnchor = require('markdown-it-anchor');
 
 module.exports = (config) => {
+    const env = process.env.ELEVENTY_ENV || 'dev';
+
     config.addPlugin(pluginRss);
     config.addPlugin(pluginSyntaxHighlight);
     config.addPlugin(pluginNavigation);
@@ -36,6 +38,21 @@ module.exports = (config) => {
     config.addFilter('head', (array, n) => (n < 0 ? array.slice(n) : array.slice(0, n)));
 
     config.addCollection('tagList', require('./_11ty/getTagList'));
+
+    config.addCollection('posts', (collection) => {
+        const posts = collection.getFilteredByTag('posts').map((post, i, posts) => {
+            post.data.prevPost = posts[i - 1];
+            post.data.nextPost = posts[i + 1];
+            return post;
+        });
+
+        // filter out drafts posts in a production build
+        if (env === 'prod') {
+            return posts.filter((post) => !post.data.draft);
+        }
+
+        return posts;
+    });
 
     const markdownLibrary = markdownIt({
         html: true,

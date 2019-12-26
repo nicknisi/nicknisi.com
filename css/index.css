@@ -129,3 +129,17 @@ a:hover {
 	width: 14px;
 	height: 14px;
 }
+
+.postnav {
+}
+
+.postnav ul {
+	list-style: none;
+	display: flex;
+	justify-content: space-between;
+	padding: 0;
+}
+
+.postnav a {
+	font-weight: 600;
+}

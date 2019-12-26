@@ -23,5 +23,12 @@ templateClass: tmpl-post
 		{{ content | safe }}
 	</section>
 </article>
-<p><a href="{{ '/' | url }}">- Home</a></p>
+<nav class="postnav">
+	<ul>
+		<li><a href="{{ '/' | url }}">Home</a></li>
+		{% if nextPost and not 'external' in nextPost.data.tags %}
+			<li>Next up: <a href="{{ nextPost.url | url }}">{{ nextPost.data.title}}</a></li>
+		{% endif %}
+	</ul>
+</nav>
 
