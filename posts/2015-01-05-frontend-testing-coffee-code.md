@@ -3,7 +3,6 @@ title: "Frontend testing - Omaha Coffee & Code presentation"
 permalink: "/posts/2015-01-05-frontend-testing-coffee-code/"
 tags:
   - javascript
-  - intern
   - testing
   - talks
 ---
