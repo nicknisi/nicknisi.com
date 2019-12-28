@@ -28,4 +28,8 @@
         </main>
         <footer></footer>
     </body>
+
+    {% if app.environment == 'production' %}
+    {% include 'ga.njk' %}
+    {% endif %}
 </html>
