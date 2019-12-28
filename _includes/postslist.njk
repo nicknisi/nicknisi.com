@@ -23,10 +23,10 @@
             <div class="postlist-tags">
                 {{ '/img/icons/tag.svg' | embed | safe }}
                 {% for tag in post.data.tags %}
-                    {%- if tag != 'posts' and tag != 'external' -%}
-                    {% set tagUrl %}/tags/{{ tag }}/{% endset %}
-                    <a href="{{ tagUrl | url }}" class="tag">{{ tag }}</a>
-                    {%- endif -%}
+                {%- if tag != 'posts' and tag != 'external' -%}
+                {% set tagUrl %}/tags/{{ tag }}/{% endset %}
+                <a href="{{ tagUrl | url }}" class="tag">{{ tag }}</a>
+                {%- endif -%}
                 {% endfor %}
             </div>
         </div>

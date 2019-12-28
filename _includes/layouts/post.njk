@@ -4,31 +4,31 @@ templateClass: tmpl-post
 ---
 
 <article class="article">
-	<header>
-		<h1 class="title">{{ title }}</h1>
-		<div class="post-info">
-			<div class="post-date">
-				{{ '/img/icons/calendar-today.svg' | embed | safe }}
-				{{ page.date | readableDate }}
-			</div>
-			<div class="post-tags">
-				{{ '/img/icons/tag.svg' | embed | safe }}
-				{% for tag in tags | tags %}
-				<a class="tag" href="/tags/{{ tag }}/">{{ tag }}</a>
-				{% endfor %}
-			</div>
-		</div>
-	</header>
-	<section class="article-content">
-		{{ content | safe }}
-	</section>
+    <header>
+        <h1 class="title">{{ title }}</h1>
+        <div class="post-info">
+            <div class="post-date">
+                {{ '/img/icons/calendar-today.svg' | embed | safe }}
+                {{ page.date | readableDate }}
+            </div>
+            <div class="post-tags">
+                {{ '/img/icons/tag.svg' | embed | safe }}
+                {% for tag in tags | tags %}
+                <a class="tag" href="/tags/{{ tag }}/">{{ tag }}</a>
+                {% endfor %}
+            </div>
+        </div>
+    </header>
+    <section class="article-content">
+        {{ content | safe }}
+    </section>
 </article>
 <nav class="postnav">
-	<ul>
-		<li><a href="{{ '/' | url }}">Home</a></li>
-		{% if nextPost and not 'external' in nextPost.data.tags %}
-			<li>Next up: <a href="{{ nextPost.url | url }}">{{ nextPost.data.title}}</a></li>
-		{% endif %}
-	</ul>
+    <ul>
+        <li><a href="{{ '/' | url }}">Home</a></li>
+        {% if nextPost and not 'external' in nextPost.data.tags %}
+        <li>Next up: <a href="{{ nextPost.url | url }}">{{ nextPost.data.title}}</a></li>
+        {% endif %}
+    </ul>
 </nav>
 
