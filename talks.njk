@@ -1,0 +1,19 @@
+---
+layout: base
+---
+
+<h2>Talks</h2>
+
+<ul class="talk-list">
+    {% for title, talk in talks %}
+    <li>
+        <div class="title">
+            <a href="{{ talk.url }}">{{ title }}</a>
+        </div>
+        <div class="info">
+            <span class="date">{{ talk.date }}</span>
+            <span class="location">{{ talk.location }}</span>
+        </div>
+    </li>
+    {% endfor %}
+</ul>

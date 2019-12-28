@@ -3,6 +3,7 @@
     --secondary-color: #eff0f1;
     --link-color: #047cc2;
     --tag-color: #a1a1a1;
+    --grid-size: 8px;
 }
 
 html, body {
@@ -145,4 +146,31 @@ a:hover {
 
 .postnav a {
     font-weight: 600;
+}
+
+/* talks */
+.talk-list {
+    padding: 0;
+    list-style: none;
+}
+
+.talk-list li {
+    display: flex;
+    flex-direction: column;
+}
+
+.talk-list .info {
+    display: flex;
+}
+
+.talk-list .date {
+    flex-shrink: 0;
+    font-weight: 700;
+    margin-right: var(--grid-size);
+}
+
+.talk-list .location {
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    color: var(--tag-color);
 }
