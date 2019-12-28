@@ -82,6 +82,7 @@ a:hover {
 /* postlist */
 .postlist {
 	list-style: none;
+	padding: 0;
 }
 
 .postlist-item {
@@ -92,6 +93,7 @@ a:hover {
 .postlist-info {
 	display: flex;
 	align-items: center;
+	flex-wrap: wrap;
 }
 
 .postlist-link {
@@ -103,6 +105,7 @@ a:hover {
 	display: flex;
 	align-items: center;
 	color: var(--primary-color);
+	flex-shrink: 0;
 }
 
 .post-date svg,
