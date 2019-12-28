@@ -17,7 +17,6 @@
         <link rel="me" href="mailto:nick@nisi.org">
         <link rel="me" href="https://twitter.com/nicknisi">
         <link rel="me" href="https://github.com/nicknisi">
-
     </head>
     <body>
         <header class="header">
@@ -27,9 +26,8 @@
             {{ content | safe }}
         </main>
         <footer></footer>
+        {% if app.environment == 'production' %}
+        {% include 'ga.njk' %}
+        {% endif %}
     </body>
-
-    {% if app.environment == 'production' %}
-    {% include 'ga.njk' %}
-    {% endif %}
 </html>
