@@ -25,10 +25,10 @@ templateClass: tmpl-post
 </article>
 <nav class="postnav">
     <ul>
-        <li><a href="{{ '/' | url }}">Home</a></li>
-        {% if nextPost and not 'external' in nextPost.data.tags %}
-        <li>Next up: <a href="{{ nextPost.url | url }}">{{ nextPost.data.title}}</a></li>
+        {% if prevPost and not 'external' in prevPost.data.tags %}
+        <li>⭠ <a href="{{ prevPost.url | url }}">{{ prevPost.data.title}}</a></li>
         {% endif %}
+        <li><a href="{{ '/' | url }}">Home</a></li>
     </ul>
 </nav>
 
