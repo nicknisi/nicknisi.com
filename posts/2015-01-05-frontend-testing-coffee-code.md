@@ -11,7 +11,7 @@ This is a talk on frontend unit and functional tests, using the [Intern](http://
 
 ## Video
 
-<iframe width="560" height="315" src="//www.youtube.com/embed/Fgt_frjlAaQ" frameborder="0" allowfullscreen></iframe>
+{% youtube 'Fgt_frjlAaQ' %}
 
 ## References
 
@@ -24,4 +24,4 @@ This is a talk on frontend unit and functional tests, using the [Intern](http://
 
 I also gave a short lightning talk at the [Omaha Ruby & Open Source Meetup](http://www.meetup.com/Omaha-Ruby-Meetup/events/196497252/), showing more examples of Intern usage.
 
-<iframe width="560" height="315" src="//www.youtube.com/embed/oOssM0DusYc" frameborder="0" allowfullscreen></iframe>
+{% youtube 'oOssM0DusYc' %}

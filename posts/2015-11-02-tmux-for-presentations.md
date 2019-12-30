@@ -6,7 +6,7 @@ tags:
   - vim
 ---
 
-<iframe width="560" height="315" src="//www.youtube.com/embed/gVn1PmkcYH0" frameborder="0" allowfullscreen></iframe>
+{% youtube 'gVn1PmkcYH0' %}
 
 Live coding is stressful. You're often worried about making a mistake while doing it, and it seems you're set up for failure if you're trying to focus on what is being displayed on the projector while doing so. Fortunately, tmux makes it incredibly simple to attach to the same session and display one on the projector while keeping one on your local display to work around this awkwardness!
 

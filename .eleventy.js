@@ -54,6 +54,12 @@ module.exports = (config) => {
         return posts;
     });
 
+    config.addShortcode(
+        'youtube',
+        (videoId) =>
+            `<div class="video-wrapper"><iframe width="420" height="315" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe></div>`
+    );
+
     const markdownLibrary = markdownIt({
         html: true,
         breaks: true,

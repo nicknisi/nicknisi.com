@@ -174,3 +174,20 @@ a:hover {
     flex-shrink: 0;
     color: var(--tag-color);
 }
+
+.video-wrapper {
+    width: 100%;
+    position: relative;
+    padding: 0;
+    padding-top: 56.25%;
+}
+
+.video-wrapper iframe,
+.video-wrapper object,
+.video-wrapper embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}

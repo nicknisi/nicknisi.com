@@ -12,8 +12,7 @@ I finally purchased a Parrot AR Drone 2.0 this week after having a blast
 playing with one at JSConf last year! I also recently got a Leap Motion
 controller, and I thought it would be fun to get them to play together!
 
-<iframe width="560" height="315" src="//www.youtube.com/embed/wRECaiWOaIA" frameborder="0"
-allowfullscreen></iframe>
+{% youtube 'wRECaiWOaIA' %}
 
 > Source available on [Github](https://github.com/nicknisi/leapcopter).
 
