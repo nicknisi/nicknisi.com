@@ -1,13 +1,13 @@
-<ul reversed class="postlist" style="counter-reset: start-from {{ postslist.length + 1 }}">
+<ul reversed class="list-none">
     {% for post in postslist | reverse %}
-    <li class="postlist-item{% if post.url == url %} postlist-item-active{% endif %}">
+    <li class="mb-3">
         {%- if post.data.tags and 'external' in post.data.tags %}
-        <a href="{{post.data.external_url}}" class="postlist-link external">
-            {{post.data.title}}
-            {{ '/img/icons/open-in-new.svg' | embed | safe }}
+        <a href="{{post.data.external_url}}" class="flex items-start text-lg font-medium">
+        <span>{{post.data.title}}</span>
+        <span class="w-1 h-1 mx-1">{{ '/img/icons/open-in-new.svg' | embed | safe }}</span>
         </a>
         {% else %}
-        <a href="{{ post.url | url }}" class="postlist-link">
+        <a href="{{ post.url | url }}" class="text-lg font-medium">
             {%if post.data.title %}
             {{ post.data.title }}
             {% else %}
@@ -15,13 +15,13 @@
             {% endif %}
         </a>
         {%- endif %}
-        <div class="postlist-info">
-            <time class="postlist-date" datetime="{{ post.date | htmlDateString }}">
-                {{ '/img/icons/calendar-today.svg' | embed | safe }}
+        <div class="flex flex-no-wrap items-center">
+            <time class="flex items-center flex-shrink-0 text-sm text-gray-700" datetime="{{ post.date | htmlDateString }}">
+                <span class="mx-1 fill-current">{{ '/img/icons/calendar-today.svg' | embed | safe }}</span>
                 {{ post.date | readableDate }}
             </time>
-            <div class="postlist-tags">
-                {{ '/img/icons/tag.svg' | embed | safe }}
+            <div class="flex flex-no-wrap items-center justify-start flex-initial text-gray-600">
+                <span class="mx-1 fill-current">{{ '/img/icons/tag.svg' | embed | safe }}</span>
                 {% for tag in post.data.tags %}
                 {%- if tag != 'posts' and tag != 'external' -%}
                 {% set tagUrl %}/tags/{{ tag }}/{% endset %}

@@ -3,16 +3,16 @@ layout: layouts/base.njk
 templateClass: tmpl-post
 ---
 
-<article class="article">
-    <header>
-        <h1 class="title">{{ title }}</h1>
-        <div class="post-info">
-            <div class="post-date">
-                {{ '/img/icons/calendar-today.svg' | embed | safe }}
+<article class="max-w-4xl mx-auto">
+    <header class="mb-12">
+        <h1 class="text-4xl text-left">{{ title }}</h1>
+        <div class="flex text-sm text-gray-700">
+            <div class="flex">
+            <span class="fill-current">{{ '/img/icons/calendar-today.svg' | embed | safe }}</span>
                 {{ page.date | readableDate }}
             </div>
-            <div class="post-tags">
-                {{ '/img/icons/tag.svg' | embed | safe }}
+            <div class="flex pl-4">
+                <span class="fill-current">{{ '/img/icons/tag.svg' | embed | safe }}</span>
                 {% for tag in tags | tags %}
                 <a class="tag" href="/tags/{{ tag }}/">{{ tag }}</a>
                 {% endfor %}
@@ -23,10 +23,10 @@ templateClass: tmpl-post
         {{ content | safe }}
     </section>
 </article>
-<nav class="postnav">
-    <ul>
+<nav>
+    <ul class="flex flex-no-wrap justify-between list-none">
         {% if prevPost and not 'external' in prevPost.data.tags %}
-        <li>⭠ <a href="{{ prevPost.url | url }}">{{ prevPost.data.title}}</a></li>
+        <li>⭠ <a class="font-medium" href="{{ prevPost.url | url }}">{{ prevPost.data.title}}</a></li>
         {% endif %}
         <li><a href="{{ '/' | url }}">Home</a></li>
     </ul>

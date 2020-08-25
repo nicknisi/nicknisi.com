@@ -4,6 +4,7 @@ const pluginNavigation = require('@11ty/eleventy-navigation');
 const { DateTime } = require('luxon');
 const markdownIt = require('markdown-it');
 const markdownItAnchor = require('markdown-it-anchor');
+const pluginTailwind = require('eleventy-plugin-tailwindcss');
 
 module.exports = (config) => {
     const env = process.env.ELEVENTY_ENV || 'dev';
@@ -11,6 +12,9 @@ module.exports = (config) => {
     config.addPlugin(pluginRss);
     config.addPlugin(pluginSyntaxHighlight);
     config.addPlugin(pluginNavigation);
+    config.addPlugin(pluginTailwind, {
+        src: 'css/*',
+    });
 
     config.setDataDeepMerge(true);
 
@@ -21,7 +25,7 @@ module.exports = (config) => {
     config.addLayoutAlias('resume', 'layouts/resume.njk');
 
     config.addPassthroughCopy('img');
-    config.addPassthroughCopy('css');
+    // config.addPassthroughCopy('css');
 
     config.addFilter('readableDate', (dateObj) =>
         DateTime.fromJSDate(dateObj, { zone: 'utc' }).toFormat('dd LLL yyyy')
@@ -63,11 +67,11 @@ module.exports = (config) => {
     const markdownLibrary = markdownIt({
         html: true,
         breaks: true,
-        linkify: true
+        linkify: true,
     }).use(markdownItAnchor, {
         permalink: true,
         permalinkClass: 'direct-link',
-        permalinkSymbol: '#'
+        permalinkSymbol: '#',
     });
     config.setLibrary('md', markdownLibrary);
 
@@ -75,6 +79,6 @@ module.exports = (config) => {
         markdownTemplateEngine: 'liquid',
         htmlTemplateEngine: 'njk',
         dataTemplateEngine: 'njk',
-        templateFormats: ['md', 'njk', 'html', 'liquid']
+        templateFormats: ['md', 'njk', 'html', 'liquid'],
     };
 };

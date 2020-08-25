@@ -19,15 +19,12 @@
         <link rel="me" href="https://github.com/nicknisi">
     </head>
     <body>
-        <header class="header">
-            <h1 class="home"><a href="{{ '/' | url }}">{{ metadata.title }}</a></h1>
+        <header class="container px-4 mx-auto">
+            <h1 class="text-5xl text-left"><a href="{{ '/' | url }}">{{ metadata.title }}</a></h1>
         </header>
-        <main{% if templateClass %} class="main-content {{ templateClass }}"{% endif %}>
+        <main class="container mx-auto px-4 {{ templateClass }}">
             {{ content | safe }}
         </main>
         <footer></footer>
-        {% if app.environment == 'production' %}
-        {% include 'ga.njk' %}
-        {% endif %}
     </body>
 </html>

@@ -2,17 +2,15 @@
 layout: base
 ---
 
-<h2>Talks</h2>
+<h2 class="text-5xl">Talks</h2>
 
-<ul class="talk-list">
+<ul class="list-none">
     {% for title, talk in talks %}
-    <li>
-        <div class="title">
-            <a href="{{ talk.url }}">{{ title }}</a>
-        </div>
-        <div class="info">
-            <span class="date">{{ talk.date }}</span>
-            <span class="location">{{ talk.location }}</span>
+    <li class="flex items-baseline">
+        <a class="text-xl" href="{{ talk.url }}">{{ title }}</a>
+        <div class="flex mx-2">
+            <span class="flex-shrink-0 mr-2 font-medium text-gray-600">{{ talk.date }}</span>
+            <span class="flex-shrink-0 text-gray-600">{{ talk.location }}</span>
         </div>
     </li>
     {% endfor %}
