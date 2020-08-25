@@ -6,12 +6,12 @@ templateClass: tmpl-post
 <article class="max-w-4xl mx-auto">
     <header class="mb-12">
         <h1 class="text-4xl text-left">{{ title }}</h1>
-        <div class="flex text-sm text-gray-700">
-            <div class="flex">
-            <span class="fill-current">{{ '/img/icons/calendar-today.svg' | embed | safe }}</span>
-                {{ page.date | readableDate }}
+        <div class="flex text-sm text-gray-700 space-x-4">
+            <div class="flex space-x-2">
+                <span class="fill-current">{{ '/img/icons/calendar-today.svg' | embed | safe }}</span>
+                <span>{{ page.date | readableDate }}</span>
             </div>
-            <div class="flex pl-4">
+            <div class="flex space-x-2">
                 <span class="fill-current">{{ '/img/icons/tag.svg' | embed | safe }}</span>
                 {% for tag in tags | tags %}
                 <a class="tag" href="/tags/{{ tag }}/">{{ tag }}</a>

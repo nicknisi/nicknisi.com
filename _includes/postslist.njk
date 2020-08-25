@@ -15,13 +15,13 @@
             {% endif %}
         </a>
         {%- endif %}
-        <div class="flex flex-no-wrap items-center">
-            <time class="flex items-center flex-shrink-0 text-sm text-gray-700" datetime="{{ post.date | htmlDateString }}">
+        <div class="flex flex-no-wrap items-center space-x-4">
+            <time class="flex items-center flex-shrink-0 text-sm text-gray-700 space-x-2" datetime="{{ post.date | htmlDateString }}">
                 <span class="mx-1 fill-current">{{ '/img/icons/calendar-today.svg' | embed | safe }}</span>
-                {{ post.date | readableDate }}
+                <span>{{ post.date | readableDate }}</span>
             </time>
-            <div class="flex flex-no-wrap items-center justify-start flex-initial text-gray-600">
-                <span class="mx-1 fill-current">{{ '/img/icons/tag.svg' | embed | safe }}</span>
+            <div class="flex flex-no-wrap items-center justify-start flex-initial text-gray-600 space-x-2">
+                <span class="fill-current">{{ '/img/icons/tag.svg' | embed | safe }}</span>
                 {% for tag in post.data.tags %}
                 {%- if tag != 'posts' and tag != 'external' -%}
                 {% set tagUrl %}/tags/{{ tag }}/{% endset %}
