@@ -1,8 +1,10 @@
 const { readFileSync } = require('fs');
 const cheerio = require('cheerio');
 
-module.exports = (filePath, classes) => {
-    const data = readFileSync(`.${filePath}`, (error, data) => {
+const HEROICONS_PATH = './node_modules/heroicons/outline';
+
+module.exports = (icon, classes) => {
+    const data = readFileSync(`${HEROICONS_PATH}/${icon}.svg`, (error, data) => {
         if (error) {
             throw new Error(error);
         }
@@ -16,5 +18,5 @@ module.exports = (filePath, classes) => {
         $('svg').addClass(classes);
     }
 
-    return $.html('svg');
+    return `<span class="icon">${$.html('svg')}</icon>`;
 };

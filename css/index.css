@@ -56,6 +56,13 @@ p {
     padding-top: 56.25%;
 }
 
+.icon {
+    display: inline-block;
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+}
+
 .video-wrapper iframe,
 .video-wrapper object,
 .video-wrapper embed {

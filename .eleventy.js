@@ -5,6 +5,7 @@ const { DateTime } = require('luxon');
 const markdownIt = require('markdown-it');
 const markdownItAnchor = require('markdown-it-anchor');
 const pluginTailwind = require('eleventy-plugin-tailwindcss');
+const icon = require('./_11ty/icon');
 
 module.exports = (config) => {
     const env = process.env.ELEVENTY_ENV || 'dev';
@@ -35,8 +36,6 @@ module.exports = (config) => {
         DateTime.fromJSDate(dateObj, { zone: 'utc' }).toFormat('yyyy-LL-dd')
     );
 
-    config.addFilter('embed', require('./_11ty/embed'));
-
     config.addFilter('tags', (tags) => tags.filter((tag) => tag !== 'posts'));
 
     config.addFilter('head', (array, n) => (n < 0 ? array.slice(n) : array.slice(0, n)));
@@ -56,6 +55,10 @@ module.exports = (config) => {
         }
 
         return posts;
+    });
+
+    config.addShortcode('icon', (path, classes) => {
+        return icon(path, classes);
     });
 
     config.addShortcode(

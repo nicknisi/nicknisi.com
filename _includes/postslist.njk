@@ -4,7 +4,7 @@
         {%- if post.data.tags and 'external' in post.data.tags %}
         <a href="{{post.data.external_url}}" class="flex items-start text-lg font-medium">
         <span>{{post.data.title}}</span>
-        <span class="w-1 h-1 mx-1">{{ '/img/icons/open-in-new.svg' | embed | safe }}</span>
+        <span class="w-1 h-1 mx-1">{% icon 'external-link' %}</span>
         </a>
         {% else %}
         <a href="{{ post.url | url }}" class="text-lg font-medium">
@@ -17,11 +17,11 @@
         {%- endif %}
         <div class="flex flex-no-wrap items-center space-x-4">
             <time class="flex items-center flex-shrink-0 text-sm text-gray-700 space-x-2" datetime="{{ post.date | htmlDateString }}">
-                <span class="mx-1 fill-current">{{ '/img/icons/calendar-today.svg' | embed | safe }}</span>
+                <span class="mx-1 fill-current">{% icon 'calendar' %}</span>
                 <span>{{ post.date | readableDate }}</span>
             </time>
             <div class="flex flex-no-wrap items-center justify-start flex-initial text-gray-600 space-x-2">
-                <span class="fill-current">{{ '/img/icons/tag.svg' | embed | safe }}</span>
+                <span>{% icon 'tag' %}</span>
                 {% for tag in post.data.tags %}
                 {%- if tag != 'posts' and tag != 'external' -%}
                 {% set tagUrl %}/tags/{{ tag }}/{% endset %}
