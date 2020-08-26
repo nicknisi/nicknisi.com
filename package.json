@@ -31,6 +31,7 @@
     "@11ty/eleventy-navigation": "^0.1.6",
     "@11ty/eleventy-plugin-rss": "^1.0.9",
     "@11ty/eleventy-plugin-syntaxhighlight": "^3.0.1",
+    "cheerio": "^1.0.0-rc.3",
     "eleventy-plugin-tailwindcss": "^0.2.3",
     "luxon": "^1.25.0",
     "markdown-it": "^11.0.0",
