@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 :root {
+    --icon-size: 20px;
     --primary-color: #333;
     --secondary-color: #eff0f1;
     --link-color: #047cc2;
@@ -44,7 +45,7 @@ p {
 }
 
 .tag {
-    @apply px-1 text-xs font-medium text-gray-700 uppercase bg-gray-400 border border-gray-500 border-solid;
+    @apply px-1 text-xs font-medium text-gray-700 uppercase border border-gray-500 border-solid;
 }
 
 .tag:hover {
@@ -57,10 +58,9 @@ p {
 }
 
 .icon {
+    width: var(--icon-size);
+    height: var(--icon-size);
     display: inline-block;
-    vertical-align: middle;
-    width: 20px;
-    height: 20px;
 }
 
 .video-wrapper iframe,

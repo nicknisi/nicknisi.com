@@ -19,9 +19,12 @@
         <link rel="me" href="https://github.com/nicknisi">
     </head>
     <body>
-        <header class="flex flex-col items-center content-end px-4 mx-auto space-between">
-            <h1 class="text-5xl text-left"><a href="{{ '/' | url }}">{{ metadata.title }}</a></h1>
-            <nav>
+        <header class="flex flex-col items-baseline justify-between px-4 py-1 border-b-2 md:flex-row">
+            <h1 class="flex items-center justify-between m-0 mx-auto text-xl text-left space-x-2 md:mx-0">
+                <img width="20px" height="20px" src="/img/beef_nick_small@2x.png">
+                <a href="{{ '/' | url }}">{{ metadata.title }}</a>
+            </h1>
+            <nav class="mx-auto md:mx-0">
                 <ul class="flex list-none space-x-2">
                     <li><a href="{{ '/about' | url }}">About</a></li>
                     <li><a href="{{ '/talks' | url }}">Talks</a></li>
@@ -33,6 +36,12 @@
         <main class="container mx-auto px-4 {{ templateClass }}">
             {{ content | safe }}
         </main>
-        <footer></footer>
+        <footer class="container mx-auto mt-8">
+            <ul class="flex justify-center list-none space-x-4 md:space-x-8">
+                {% for social in metadata.social %}
+                    <li><a href="{{ social.url }}">{{ social.name }}</a></li>
+                {% endfor %}
+            </ul>
+        </footer>
     </body>
 </html>

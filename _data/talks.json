@@ -6,7 +6,7 @@
     },
     "No Time for Types": {
         "date": "August 2018",
-        "location": "JSConf US",
+        "location": "JSConf US 2018",
         "url": "https://www.youtube.com/watch?v=qGK541P2xII"
     },
     "JavaScript Metaprogramming": {
@@ -34,7 +34,7 @@
         "location": "NebraskaJS Lincoln",
         "url": "https://www.youtube.com/watch?v=__7Fg1h_N6w"
     },
-    "Intern in action": {
+    "Intern in Action": {
         "date": "January 2015",
         "location": "Omaha Ruby and Open Source Meetup",
         "url": "https://www.youtube.com/watch?v=oOssM0DusYc"
@@ -49,12 +49,12 @@
         "location": "NebraskaJS",
         "url": "https://www.youtube.com/watch?v=nLCedy68Qf4"
     },
-    "Building Chrome extensions": {
+    "Building Chrome Extensions": {
         "date": "July 2014",
         "location": "NebraskaJS",
         "url": "https://www.youtube.com/watch?v=HzJ9pUWb2rA"
     },
-    "Contributing to open source": {
+    "Contributing to Open Source": {
         "date": "May 2014",
         "location": "NebraskaJS",
         "url": "https://vimeo.com/99035913"
@@ -64,7 +64,7 @@
         "location": "NebraskaJS",
         "url": "https://vimeo.com/83939999"
     },
-    "Building RESTful services with Node.js": {
+    "Building RESTful Services with Node.js": {
         "date": "January 2013",
         "location": "NebraskaJS",
         "url": "https://www.youtube.com/watch?v=APO3fFH7osw"

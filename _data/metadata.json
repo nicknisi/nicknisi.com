@@ -13,5 +13,12 @@
     "author": {
         "name": "Nick Nisi",
         "email": "nick@nisi.org"
-    }
+    },
+    "social": [
+        { "name": "Twitter", "url": "https://twitter.com/nicknisi" },
+        { "name": "GitHub", "url": "https://github.com/nicknisi" },
+        { "name": "YouTube", "url": "https://www.youtube.com/nicknisi" },
+        { "name": "Instagram", "url": "https://www.instagram.com/nicknisi/" },
+        { "name": "LinkedIn", "url": "https://linkedin.com/in/nicknisi" }
+    ]
 }
