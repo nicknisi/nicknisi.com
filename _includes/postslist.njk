@@ -1,34 +1,23 @@
 <ul reversed class="list-none">
-    {% for post in postslist | reverse %}
-        <li class="mb-3">
-            {%- if post.data.external %}
-            <span class="flex items-start text-lg font-medium">
-                <a href="{{post.data.external_url}}">
+    {% for post in posts | reverse %}
+        <li class="flex mb-6">
+            <time class="flex flex-col items-center justify-center" datetime="{{ post.date | htmlDateString }}">
+                {% date post.date %}
+            </time>
+            <div class="pl-2 ml-2 text-lg font-medium border-l">
+                <a class="inline-block align-center" href="{{post.data.external_url or post.url }}">
                     {{post.data.title}}
-                    {% icon 'external-link' %}
+                {%- if post.data.external %}{% icon 'external-link' %}{% endif %}
                 </a>
-            </span>
-        {% else %}
-            <a href="{{ post.url | url }}" class="text-lg font-medium">
-                {%if post.data.title %}
-                    {{ post.data.title }}
-                {% else %}
-                    <code>{{ post.url }}</code>
-                {% endif %}
-            </a>
-            {%- endif %}
-            <div class="flex flex-no-wrap items-center space-x-4">
-                <time class="flex items-center flex-shrink-0 space-x-2" datetime="{{ post.date | htmlDateString }}">
-                    <span class="mx-1 fill-current">{% icon 'calendar' %}</span>
-                    <span>{{ post.date | readableDate }}</span>
-                </time>
                 <div class="flex flex-wrap items-center justify-start flex-initial space-x-2">
                     <span>{% icon 'tag' %}</span>
                     {% set tags = post.data.tags %}
                     {%- for tag in tags %}
+                    {%- if tag != 'posts' %}
                     {% set tagUrl %}/tags/{{ tag }}/{% endset %}
                     <a href="{{ tagUrl | url }}" class="tag">{{ tag }}</a>
-                {% endfor %}
+                {% endif %}
+            {% endfor %}
                 </div>
             </div>
         </li>

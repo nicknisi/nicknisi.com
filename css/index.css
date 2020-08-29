@@ -64,3 +64,11 @@ p {
 .video-wrapper embed {
     @apply absolute top-0 left-0 w-full h-full;
 }
+
+.month, .year {
+    @apply text-xs uppercase;
+}
+
+.day {
+    @apply text-xl;
+}

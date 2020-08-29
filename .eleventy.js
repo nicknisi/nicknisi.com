@@ -57,6 +57,22 @@ module.exports = (config) => {
         return posts;
     });
 
+    config.addShortcode('date', (date) => {
+        if (!date) {
+            return;
+        }
+
+        const month = date.toLocaleString('default', { month: 'short' });
+        const day = `${date.getDate()}`.padStart(2, '0');
+        const year = date.getFullYear();
+
+        return `
+        <div class="month">${month}</div>
+        <div class="day">${day}</div>
+        <div class="year">${year}</div>
+        `;
+    });
+
     config.addShortcode('icon', (path, classes) => {
         return icon(path, classes);
     });
