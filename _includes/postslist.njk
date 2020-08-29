@@ -2,12 +2,12 @@
     {% for post in postslist | reverse %}
         <li class="mb-3">
             {%- if post.data.external %}
-            <a href="{{post.data.external_url}}" class="flex items-start text-lg font-medium">
-                <span>
+            <span class="flex items-start text-lg font-medium">
+                <a href="{{post.data.external_url}}">
                     {{post.data.title}}
                     {% icon 'external-link' %}
-                </span>
-            </a>
+                </a>
+            </span>
         {% else %}
             <a href="{{ post.url | url }}" class="text-lg font-medium">
                 {%if post.data.title %}
@@ -18,17 +18,17 @@
             </a>
             {%- endif %}
             <div class="flex flex-no-wrap items-center space-x-4">
-                <time class="flex items-center flex-shrink-0 text-sm text-gray-700 space-x-2" datetime="{{ post.date | htmlDateString }}">
+                <time class="flex items-center flex-shrink-0 space-x-2" datetime="{{ post.date | htmlDateString }}">
                     <span class="mx-1 fill-current">{% icon 'calendar' %}</span>
                     <span>{{ post.date | readableDate }}</span>
                 </time>
-                <div class="flex flex-wrap items-center justify-start flex-initial text-gray-600 space-x-2">
+                <div class="flex flex-wrap items-center justify-start flex-initial space-x-2">
                     <span>{% icon 'tag' %}</span>
                     {% set tags = post.data.tags %}
                     {%- for tag in tags %}
-                        {% set tagUrl %}/tags/{{ tag }}/{% endset %}
-                        <a href="{{ tagUrl | url }}" class="tag">{{ tag }}</a>
-                    {% endfor %}
+                    {% set tagUrl %}/tags/{{ tag }}/{% endset %}
+                    <a href="{{ tagUrl | url }}" class="tag">{{ tag }}</a>
+                {% endfor %}
                 </div>
             </div>
         </li>

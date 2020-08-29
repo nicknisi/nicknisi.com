@@ -4,15 +4,11 @@
 
 :root {
     --icon-size: 20px;
-    --primary-color: #333;
-    --secondary-color: #eff0f1;
-    --link-color: #047cc2;
-    --tag-color: #a1a1a1;
-    --grid-size: 8px;
 }
 
-body {
-    font-family: Inter,system-ui,-apple-system,BlinkMacSystemFont,helvetica,Arial,sans-serif;
+@media (prefers-color-scheme: dark) {
+    :root {
+    }
 }
 
 h1 {
@@ -41,15 +37,15 @@ p {
 
 
 .direct-link {
-    @apply text-base text-gray-400 no-underline align-middle;
+    @apply text-base no-underline align-middle;
 }
 
 .tag {
-    @apply px-1 text-xs font-medium text-gray-700 uppercase border border-gray-500 border-solid;
+    @apply px-1 text-xs uppercase border border-solid;
 }
 
 .tag:hover {
-    @apply text-white no-underline bg-gray-700;
+    @apply no-underline;
 }
 
 .video-wrapper {

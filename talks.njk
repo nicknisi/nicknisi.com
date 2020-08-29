@@ -9,8 +9,8 @@ layout: base
     <li class="flex items-baseline">
         <a class="text-xl" href="{{ talk.url }}">{{ title }}</a>
         <div class="flex mx-2">
-            <span class="flex-shrink-0 mr-2 font-medium text-gray-600">{{ talk.date }}</span>
-            <span class="flex-shrink-0 text-gray-600">{{ talk.location }}</span>
+            <span class="flex-shrink-0 mr-2 font-medium">{{ talk.date }}</span>
+            <span class="flex-shrink-0">{{ talk.location }}</span>
         </div>
     </li>
     {% endfor %}
