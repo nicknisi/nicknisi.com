@@ -19,10 +19,12 @@
         <link rel="me" href="https://github.com/nicknisi">
     </head>
     <body>
-        <header class="flex flex-col items-baseline justify-between px-4 py-1 md:flex-row">
+        <header class="flex flex-col items-baseline justify-between px-4 py-1 md:px-8 md:flex-row">
             <span class="flex items-center justify-between m-0 mx-auto text-xl text-left space-x-1 md:mx-0">
-                <img width="20px" height="20px" src="{{ metadata.avatar }}">
-                <a href="{{ '/' | url }}">{{ metadata.title }}</a>
+                <a class="flex items-center justify-between m-0 mx-auto text-xl text-left space-x-1 md:mx-0" href="{{ '/' | url }}">
+                    <img width="20px" height="20px" src="{{ metadata.avatar }}">
+                    <span class="hidden md:inline-block">{{ metadata.title }}</span>
+                </a>
             </span>
             <nav class="mx-auto md:mx-0">
                 <ul class="flex list-none space-x-2">
@@ -33,7 +35,7 @@
                 </ul>
             </nav>
         </header>
-        <main class="container mx-auto px-4 {{ templateClass }}">
+        <main class="container mx-auto px-8 {{ templateClass }}">
             {{ content | safe }}
         </main>
         <footer class="container mx-auto mt-8">
@@ -42,6 +44,7 @@
                     <li><a href="{{ social.url }}">{{ social.name }}</a></li>
                 {% endfor %}
             </ul>
+            <p class="text-center">&copy;2020 Nick Nisi. All rights reserved.</p>
         </footer>
     </body>
 </html>

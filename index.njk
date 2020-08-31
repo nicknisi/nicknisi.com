@@ -5,7 +5,9 @@ eleventyNavigation:
     order: 1
 ---
 
-<h1>Latest posts</h1>
+<h1>{{ metadata.description }}</h1>
+
+<h2>Latest posts</h2>
 
 {% set posts = collections.posts %}
 {% include 'postslist.njk' %}

@@ -5,9 +5,9 @@ templateClass: tmpl-post
 
 <article class="max-w-4xl mx-auto mt-8">
     <header class="mb-8">
-        <h1 class="text-4xl text-left">{{ title }}</h1>
+        <h1>{{ title }}</h1>
         <div class="flex text-sm space-x-4">
-            <div class="flex space-x-2">
+            <div class="flex items-center space-x-2">
                 <span class="fill-current">{% icon 'calendar' %}</span>
                 <span>{{ page.date | readableDate }}</span>
             </div>
@@ -19,7 +19,7 @@ templateClass: tmpl-post
             </div>
         </div>
     </header>
-    <section class="article-content">
+    <section>
         {{ content | safe }}
     </section>
 </article>

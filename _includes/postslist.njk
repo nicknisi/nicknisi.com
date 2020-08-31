@@ -12,11 +12,9 @@
                 <div class="flex flex-wrap items-center justify-start flex-initial space-x-2">
                     <span>{% icon 'tag' %}</span>
                     {% set tags = post.data.tags %}
-                    {%- for tag in tags %}
-                    {%- if tag != 'posts' %}
+                    {%- for tag in tags | tags %}
                     {% set tagUrl %}/tags/{{ tag }}/{% endset %}
                     <a href="{{ tagUrl | url }}" class="tag">{{ tag }}</a>
-                {% endif %}
             {% endfor %}
                 </div>
             </div>
