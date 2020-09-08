@@ -3,6 +3,9 @@ layout: layouts/base.njk
 templateClass: tmpl-post
 ---
 
+{% set words = content | striptags | wordcount %}
+{% set wc = words / 240 %}
+
 <article class="max-w-4xl mx-auto mt-8">
     <header class="mb-8">
         <h1>{{ title }}</h1>
@@ -13,6 +16,7 @@ templateClass: tmpl-post
             </div>
             {% include 'tags.njk' %}
         </div>
+        <aside>{{wc | round}} minute read.</aside>
     </header>
     <section>
         {{ content | safe }}
