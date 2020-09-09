@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -11,7 +13,12 @@
     }
 }
 
+body {
+    @apply font-normal bg-gray-100;
+}
+
 h1,h2,h3,h4,h5 {
+    @apply font-bold text-cool-gray-900;
 }
 
 h1 {
@@ -38,6 +45,15 @@ p {
     @apply my-4;
 }
 
+.tmpl-uses ul {
+    @apply list-disc;
+}
+
+.tmpl-uses a,
+.tmpl-uses a:link,
+.tmpl-uses a:visited {
+    @apply text-purple-700;
+}
 
 .direct-link {
     @apply text-base no-underline align-middle;
