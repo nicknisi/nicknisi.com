@@ -6,6 +6,7 @@ const markdownIt = require('markdown-it');
 const markdownItAnchor = require('markdown-it-anchor');
 const pluginTailwind = require('eleventy-plugin-tailwindcss');
 const icon = require('./_11ty/icon');
+const svg = require('./_11ty/svg');
 
 module.exports = (config) => {
     const env = process.env.ELEVENTY_ENV || 'dev';
@@ -76,6 +77,8 @@ module.exports = (config) => {
     config.addShortcode('icon', (path, classes) => {
         return icon(path, classes);
     });
+
+    config.addShortcode('svg', (path, classes, tag) => svg(path, classes, tag));
 
     config.addShortcode(
         'youtube',
