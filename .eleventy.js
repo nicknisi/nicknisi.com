@@ -63,13 +63,14 @@ module.exports = (config) => {
             return;
         }
 
-        const month = date.toLocaleString('default', { month: 'short' });
-        const day = `${date.getDate()}`.padStart(2, '0');
-        const year = date.getFullYear();
+        const luxonDate = DateTime.fromJSDate(date, { zone: 'utc' });
+
+        const month = luxonDate.toLocaleString({ month: 'short' });
+        const { day, year } = luxonDate;
 
         return `
         <div class="month">${month}</div>
-        <div class="day">${day}</div>
+        <div class="day">${`${day}`.padStart(2, '0')}</div>
         <div class="year">${year}</div>
         `;
     });
