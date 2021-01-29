@@ -1,4 +1,14 @@
 {
+    "Keynote: 2020 Tech Trends Predictions": {
+        "date": "December 2019",
+        "location": "Node+JS Interactive 2019",
+        "url": "https://www.youtube.com/watch?v=By1-aNeGQ9U&list"
+    },
+    "TalkScript with the TypeScript Team": {
+        "date": "October 2019",
+        "location": "TSConf 2019",
+        "url": "https://www.youtube.com/watch?v=obvOZn639ms"
+    },
     "Rules to Git By": {
         "date": "October 2019",
         "location": "NebraskaJS",
