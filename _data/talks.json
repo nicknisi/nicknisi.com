@@ -1,10 +1,10 @@
 {
-    "Keynote: 2020 Tech Trends Predictions": {
+    "Panel: 2020 Tech Trends Predictions": {
         "date": "December 2019",
         "location": "Node+JS Interactive 2019",
         "url": "https://www.youtube.com/watch?v=By1-aNeGQ9U&list"
     },
-    "TalkScript with the TypeScript Team": {
+    "Panel: TalkScript with the TypeScript Team at TSConf 2019": {
         "date": "October 2019",
         "location": "TSConf 2019",
         "url": "https://www.youtube.com/watch?v=obvOZn639ms"
@@ -18,6 +18,11 @@
         "date": "August 2018",
         "location": "JSConf US 2018",
         "url": "https://www.youtube.com/watch?v=qGK541P2xII"
+    },
+    "Panel: TalkScript with the TypeScript Team at TSConf 2018": {
+        "date": "March 2018",
+        "location": "TSConf 2018",
+        "url": "https://www.youtube.com/watch?v=MxB0ldQfvT4"
     },
     "JavaScript Metaprogramming": {
         "date": "March 2016",
