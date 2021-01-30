@@ -72,6 +72,10 @@ p {
     padding-top: 56.25%;
 }
 
+code {
+    @apply text-purple-700 bg-gray-200;
+}
+
 .icon {
     width: var(--icon-size);
     height: var(--icon-size);

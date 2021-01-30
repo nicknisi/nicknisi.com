@@ -9,14 +9,14 @@ templateClass: tmpl-post
 <article class="max-w-4xl mx-auto mt-8">
     <header class="mb-8">
         <h1>{{ title }}</h1>
-        <div class="flex text-sm space-x-4">
+        <div class="flex text-sm space-x-4 items-center">
             <div class="flex items-center space-x-2">
                 <span class="fill-current">{% icon 'calendar' %}</span>
                 <span>{{ page.date | readableDate }}</span>
             </div>
-            {% include 'tags.njk' %}
         </div>
-        <aside>{{wc | round}} minute read.</aside>
+        <div>{% include 'tags.njk' %}</div>
+        <aside class="text-sm text-gray-900">{{wc | round}} minute read</aside>
     </header>
     <section>
         {{ content | safe }}

@@ -14,13 +14,22 @@
         <link rel="og:description" content="{{ renderData.description or description or metadata.description }}">
         <meta property="og:image" content="{{ renderData.headerImage or headerImage or metadata.avatar}}">
 
+        <!-- Twitter Card -->
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:site" content="@nicknisi">
+        <meta name="twitter:title" content="{{renderData.title or title or metadata.title}}">
+        <meta name="twitter:title" content="{{renderData.title or title or metadata.title}}">
+        <meta name="twitter:description" content="{{renderData.description or description or metadata.description}}">
+        <meta name="twitter:image" content="https://nicknisi.com/{{metadata.avatar}}">
+        <meta name="twitter:image:alt" content="Nick Nisi">
+
         <link rel="me" href="mailto:nick@nisi.org">
         <link rel="me" href="https://twitter.com/nicknisi">
         <link rel="me" href="https://github.com/nicknisi">
     </head>
     <body>
         {%- if draft %}
-        <div class="w-full font-bold text-center text-white bg-orange-600 select-none">DRAFT</div>
+        <div class="w-full font-bold text-center text-white bg-yellow-500 select-none">DRAFT</div>
         {% endif %}
         <header class="flex flex-col items-baseline justify-between px-4 py-1 pt-4 md:px-8 md:flex-row">
             <span class="flex items-center justify-between m-0 mx-auto text-xl text-left space-x-1 md:mx-0">
