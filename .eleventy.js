@@ -41,6 +41,8 @@ module.exports = (config) => {
 
     config.addFilter('head', (array, n) => (n < 0 ? array.slice(n) : array.slice(0, n)));
 
+    config.addFilter('uppercase', (value) => value.toUpperCase());
+
     config.addCollection('tagList', require('./_11ty/getTagList'));
 
     config.addCollection('posts', (collection) => {

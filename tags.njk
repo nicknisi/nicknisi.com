@@ -16,7 +16,7 @@ renderData:
 permalink: /tags/{{ tag }}/
 ---
 
-<h1>Tagged "{{ tag }}"</h1>
+<h1>Posts about {{ tag | uppercase }}</h1>
 
 {% set posts = collections[tag] %}
 {% include "postslist.njk" %}
