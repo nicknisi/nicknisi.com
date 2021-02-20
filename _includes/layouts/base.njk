@@ -14,14 +14,7 @@
         <link rel="og:description" content="{{ renderData.description or description or metadata.description }}">
         <meta property="og:image" content="{{ renderData.headerImage or headerImage or metadata.avatar}}">
 
-        <!-- Twitter Card -->
-        <meta name="twitter:card" content="summary">
-        <meta name="twitter:site" content="@nicknisi">
-        <meta name="twitter:title" content="{{renderData.title or title or metadata.title}}">
-        <meta name="twitter:title" content="{{renderData.title or title or metadata.title}}">
-        <meta name="twitter:description" content="{{renderData.description or description or metadata.description}}">
-        <meta name="twitter:image" content="https://nicknisi.com/{{metadata.avatar}}">
-        <meta name="twitter:image:alt" content="Nick Nisi">
+        {% include 'social.njk' %}
 
         <link rel="me" href="mailto:nick@nisi.org">
         <link rel="me" href="https://twitter.com/nicknisi">
