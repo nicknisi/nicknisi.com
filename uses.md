@@ -120,4 +120,5 @@ These are the main apps I try to keep on my machine and ones that I use every da
 - [Elgato Stream Deck](https://www.amazon.com/Elgato-Stream-Deck-Controller-customizable/dp/B06XKNZT1P/)
 - 2x [Elgato Key Light](https://www.amazon.com/Elgato-Key-Light-Professional-App-Enabled/dp/B07L755X9G/)
 - [Eve Light Strip](https://www.amazon.com/gp/product/B07MTX8MR4/)
+- [Emart Collapsible Green Screen](https://www.amazon.com/gp/product/B07DWTGLPM/)
 
