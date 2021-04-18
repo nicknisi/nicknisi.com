@@ -93,25 +93,31 @@ These are the main apps I try to keep on my machine and ones that I use every da
 
 ## Office setup
 
+- [2020 Apple Mac Mini (M1)](https://www.apple.com/mac-mini/) 16GB Unified Memory and 1TB SSD
 - [2019 Apple MacBook pro 16"](https://www.apple.com/macbook-pro-16/) (I run in clamshell mode when at home)
-- 2 x [ASUS VG289Q 28" 4K Gaming Monitor](https://www.amazon.com/ASUS-VG289Q-Monitor-FreeSync-DisplayPort/dp/B0845NXCXF/)
-- [Eveo Dual Monitor Desk Arms](https://www.amazon.com/gp/product/B07V1J81FB/)
+- [LG 38WK95C-W UltraWide Monitor](https://www.amazon.com/gp/product/B079L4WR4T/)
+- [AmazonBasics Premium Single Monitor Stand](https://www.amazon.com/gp/product/B00MIBN16O/)
 - [CalDigit TS3+](https://www.amazon.com/CalDigit-TS3-Plus-Thunderbolt-Dock/dp/B07CZPV8DF/)
 - [Apple Magic Keyboard](https://www.amazon.com/Apple-Keyboard-Wireless-Rechargable-English/dp/B016QO64FI/)
 - [Apple Magic Mouse](https://www.amazon.com/Apple-Magic-Mouse-Wireless-Rechargable/dp/B016QO5YNG/)
 - [Apple Magic Trackpad](https://www.amazon.com/Apple-Magic-Trackpad-Wireless-Rechargable/dp/B016QO5YWC/)
 - [TwelveSouth Bookarc Mac stand](https://www.amazon.com/Twelve-South-Space-Saving-Vertical-notebooks/dp/B086RRJ82R/)
+- [Xboard Magnetic Mobile whiteboard 48x36, Double-Sided](https://www.amazon.com/gp/product/B075FT75C3/)
 
 **Desk and Chair**
 - [GeekDesk Max Adjustable desk](https://www.geekdesk.com/standing-desk-frame)
 - [SteelCase Think Chair](https://www.steelcase.com/products/office-chairs/think/)
 
 **Audio/Video Equipment**
-- [Logitech C920S Camera](https://www.amazon.com/gp/product/B07K95WFWM/)
+- [Logitech Brio Ultra HD Webcam](https://www.amazon.com/gp/product/B01N5UOYC4/)
 - [Shure SM7B Microphone](https://www.amazon.com/Shure-SM7B-Cardioid-Dynamic-Microphone/dp/B0002E4Z8M)
 - [Heil Sound Microphone Boom](https://www.amazon.com/dp/B004PJ414I/)
 - [Rolls Mic Switch](https://www.amazon.com/rolls-Mic-Switch-Off-MS111/dp/B001GMXFW6)
 - [Triton FetHead Microphone Preamp](https://www.amazon.com/TRITON-AUDIO-FetHead-Microphone-Preamp/dp/B06XDPTDN5/)
 - [PreSons AudioBox USB Audio Interface](https://www.amazon.com/PreSonus-AudioBox-USB-Recording-System/dp/B071W6YVDR)
 - [Sony MDR7506 Headphones](https://www.amazon.com/dp/B000AJIF4E)
+- [Bose QuietComfort 35 II Wireless Bluetooth Headohones](https://www.amazon.com/Bose-QuietComfort-Wireless-Headphones-Cancelling/dp/B0756CYWWD/)
+- [Elgato Stream Deck](https://www.amazon.com/Elgato-Stream-Deck-Controller-customizable/dp/B06XKNZT1P/)
+- 2x [Elgato Key Light](https://www.amazon.com/Elgato-Key-Light-Professional-App-Enabled/dp/B07L755X9G/)
+- [Eve Light Strip](https://www.amazon.com/gp/product/B07MTX8MR4/)
 
