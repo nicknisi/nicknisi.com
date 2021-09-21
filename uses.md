@@ -14,7 +14,7 @@ I work almost exclusively in the terminal, from editing to git commands. For the
 - [Neovim](https://neovim.io) (I alias `nvim` to `vim` because muscle memory 🦾)
 - [Kitty](https://sw.kovidgoyal.net/kitty/) terminal emulator
 - [Base16](http://chriskempson.com/projects/base16/) color scheme
-- [Cascadia Code](https://github.com/microsoft/cascadia-code) font
+- [MonoLisa](https://www.monolisa.dev/) font
 
 #### Neovim as an IDE
 
@@ -23,18 +23,6 @@ Check out my [dotfiles](https://github.com/nicknisi/dotfiles) repo for the most 
 - [vim-plug](https://github.com/junegunn/vim-plug) is a simple plugin manager that manages the 50+ vim plugins I have installed
 - [fugitive](https://github.com/tpope/vim-fugitive) is a wonderful way to work with Git from within GitHub.
 - [fzf](https://github.com/junegunn/fzf.vim) makes fuzzy finding anything in vim super easy
-- [coc.nvim](https://github.com/neoclide/coc.nvim) is the conqueror of completion. This is the main interface with language servers, such as tsserver.
-
-##### coc.nvim plugins
-
-coc.nvim provides its own plugin system. Here are some of the important plugins I use.
-
-- [coc-tsserver](https://github.com/neoclide/coc-tsserver) provides access to TS/JS warnings and errors
-- [coc-git](https://github.com/neoclide/coc-git) visually indicates changes lines and complements Fugitive for working with Git inside of vim
-- [coc-prettier](https://github.com/neoclide/coc-prettier) makes my code look good and compliant on save
-- [coc-ultisnips](https://www.npmjs.com/package/coc-ultisnips) Lets me define my own snippets which can be completed and run within vim, saving me time
-- [coc-explorer](https://github.com/weirongxu/coc-explorer) is a powerful file explorer, similar to NERDTree
-
 
 ### Terminal
 
@@ -64,13 +52,11 @@ These are the main apps I try to keep on my machine and ones that I use every da
 
 **Productivity apps**
 
+- [Obsidian](https://obsidian.md) is where my second brain lives
 - [OmniFocus](http://omnifocus.com) is my task manager of choice
-- [MindNode](https://mindnode.com) mind mapping tool
-- [Drafts](https://getdrafts.com)
-- [Notion](https://notion.so)
-- [Bear](https://bear.app)
-- [Airmail](https://airmailapp.com)
-- [Fantastical](https://flexibits.com/fantastical)
+- [Drafts](https://getdrafts.com) is an inbox for text on all my devices
+- [Airmail](https://airmailapp.com) is my mail app of choice because of its sharing / automation options
+- [Fantastical](https://flexibits.com/fantastical) is my calendar
 
 **Utilities**
 
@@ -84,12 +70,12 @@ These are the main apps I try to keep on my machine and ones that I use every da
 
 **Audio/Video**
 
-- [SoundSoure](https://rogueamoeba.com/soundsource/)
-- [Loopback](https://rogueamoeba.com/loopback/)
-- [Audio Hijack](https://rogueamoeba.com/audiohijack/)
-- [Logic Pro X](https://www.apple.com/logic-pro/)
-- [Final Cut Pro X](https://www.apple.com/final-cut-pro/)
-- [Screenflow](https://www.telestream.net/screenflow/overview.htm)
+- [SoundSoure](https://rogueamoeba.com/soundsource/) to control sound globally on my Mac
+- [Loopback](https://rogueamoeba.com/loopback/) To route sound through virtual devices
+- [Audio Hijack](https://rogueamoeba.com/audiohijack/) for recording podcasts and audio from any app
+- [Logic Pro X](https://www.apple.com/logic-pro/) to edit and produce podcasts
+- [Final Cut Pro X](https://www.apple.com/final-cut-pro/) to edit and produce videos
+- [Screenflow](https://www.telestream.net/screenflow/overview.htm) to record and edit screencasts
 
 ## Office setup
 
