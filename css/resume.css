@@ -19,8 +19,8 @@
     display: none;
 }
 
-#resume {
-    font-family: Fira Sans, sans-serif;
+#resume-container {
+    font-family: 'Fira Sans', sans-serif;
     font-size: 14px;
     padding: 15px;
     color: var(--dark);

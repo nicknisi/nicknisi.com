@@ -1,7 +1,7 @@
 ---
 layout: resume
 ---
-# <img src="/img/beef_nick.png" class="portrait"> Nick Nisi
+# <img src="/img/beef_nick.png" class="portrait"> Nicholas Nisi
 
 -----------
 
@@ -13,7 +13,7 @@ layout: resume
 
 -----------
 
-A JavaScript and TypeScript developer with 10 years experience in the industry and with a focus on community, teaching, and developer tooling. Organizer of the only JavaScript conference in Nebraska and panelist on two JavaScript-focused podcasts.
+A JavaScript and TypeScript developer with 12 years experience in the industry and with a focus on community, teaching, and developer tooling. Organizer of the only JavaScript conference in Nebraska and panelist on two JavaScript-focused podcasts.
 
 <!--
 ## <span class="icon fa fa-code"></span>Skills
@@ -28,19 +28,29 @@ A JavaScript and TypeScript developer with 10 years experience in the industry a
 ## <span class="icon fa fa-briefcase"></span>Experience
 -----------
 
+### Senior Software Engineer II _Remote_
+#### C2FO _May 2020 - Present_
+
++ Oversaw and implemented the upgrade of React and TypeScript in a monorepo with more than 70 apps without introducing regressions
++ Implemented tooling that used AST walking to identify areas of application that were missing internationalization
++ Maintainer of React component library for internal design system
++ Full-stack development with TypeScript, implementing GraphQL APIs with NestJS, and consuming them in a React front end
+
 ### Senior Software Engineer _Remote_
-#### SitePen  _July 2013 - Present_
+#### SitePen  _July 2013 - May 2020_
 
 + **Open Source Contributor**, ensuring success on many company and community open source initiatives including Dojo, Intern, TypeDoc, and CodeSandbox
 + **Instructor**, teaching 2-5 day workshops online and in-person on topics including TypeScript, JavaScript fundamentals, and Dojo.
 + **Lead Developer**, managing teams of up to three developers on successful customer-facing projects for world-class clients including hotels, government agencies, and banks.
 + **Lead Support Engineer**, providing timely and thorough answers to technical questions from developers about code, bugs, testing, and architecture.
 
+<!--
 ### Software Engineer _Omaha, NE_
 #### Flywheel _January 2018 - April 2018_
 
 + Developer on the Fly-tools team, delivering tools to internal users to ensure success of a thriving startup and web-hosting company
 + Introduced TypeScript to the company via the development of a small application for linking support tickets
+-->
 
 ### Senior Software Engineer _Remote_
 #### C2FO  _October 2011 – July 2013_
@@ -64,10 +74,10 @@ A JavaScript and TypeScript developer with 10 years experience in the industry a
 + Delivered on time and successfully.
 -->
 
-### Software Engineer / Engineering LDP _Omaha, NE_
+### Software Engineer / Engineering Leadership Development Program _Omaha, NE_
 #### Lockheed Martin _January 2009 – October 2011_
 
-+ Accepted into Engineering Leadership Development Program (ELDP) based on job performance, panel interviews, and essays.
+<!-- + Accepted into Engineering Leadership Development Program (ELDP) based on job performance, panel interviews, and essays. -->
 <!-- + Development lead for maintenance drop focusing on performance enhancement and usability, where duties include leading a team of three engineers, supporting builds and turnovers, and cross functional coordination to facilitate the engineering life cycle. -->
 <!-- + Lead Developer of a system demo application using Flash and driven by XML files which included audio narration, videos, and interactive elements for the customer and met regularly with a customer working group to ensure the demo met their needs. -->
 + Chief Architect and lead developer of a metrics reporting web application written in Groovy/Grails that reads data from another application database and generates reports using JasperReports.
@@ -82,17 +92,20 @@ A JavaScript and TypeScript developer with 10 years experience in the industry a
 
 -----------
 
-+ **Organizer and Emcee** [NEJS Conf](http://nejsconf.com) - An annual community JavaScript conference featuring the best JS talent in the industry
-+ **Emcee** [TSConf](https://tsconf.io) - The first TypeScript-exclusive conference, held in Seattle
-+ **Panelist** [JS Party](https://changelog.com/jsparty) - A weekly celebration of JavaScript and the web
-+ **Panelist** [TalkScript](http://talkscript.fm) - A podcast about JavaScript, TypeScript, and the web
-+ [NebraskaJS](http://nebraskajs.com) Co-organizer
++ **Emcee** [TypeScript Conf US](https://tsconf.io) (2018 - Present) - An annual celebration of TypeScript, with the people that make it and the community that loves it
++ **Organizer and Emcee** [NEJS Conf](http://nejsconf.com) (2015 - 2019) - An annual community JavaScript conference featuring the best JS talent in the industry
++ **Panelist** [JS Party](https://changelog.com/jsparty) (2018 - Present) - A weekly podcast covering JavaScript and the web
++ **Panelist** [TalkScript](http://talkscript.fm) (2015 - Present) - A podcast about JavaScript, TypeScript, and the web
++ [NebraskaJS](http://nebraskajs.com) Organizer (2013 - Present)
 + Dojo Toolkit committer with contributions to the [dojo](https://github.com/dojo/dojo/pulls?utf8=%E2%9C%93&q=author%3Anicknisi), [dijit](https://github.com/dojo/dijit/pulls?utf8=%E2%9C%93&q=author%3Anicknisi), [dojox](https://github.com/dojo/dojox/pulls?utf8=%E2%9C%93&q=author%3Anicknisi), and [dgrid](https://github.com/sitepen/dgrid/pulls?utf8=%E2%9C%93&q=author%3Anicknisi) projects
 
 ## <span class="icon fa fa-podium-star"></span>Talks
 
 -----------
 
++ Changelog - [Vim With Me: Nick Nisi](https://www.youtube.com/watch?v=W9Bd0FmKgMI)
++ TJ DeVries Twitch - [Neovim Builtin LSP Tutorial: Customizing Renames](https://www.youtube.com/watch?v=tAVxxdFFYMU)
++ NebraskaJS - [Rules to Git By](https://www.youtube.com/watch?v=yI0BtEzdGtw&t=2923s)
 + JSConf US 2018 - [No Time for Types](https://www.youtube.com/watch?v=qGK541P2xII)
 + TSConf 2018 - [TalkScript with the TypeScript Team](https://vimeo.com/265419087)
 + JSConf US 2015 - [JavaScript Fundamentals Workshop](http://2015.jsconf.us/speakers.html#nisi)
@@ -105,6 +118,7 @@ A JavaScript and TypeScript developer with 10 years experience in the industry a
 
 -----------
 
++ [Git Your Way: includeIf](https://nicknisi.com/posts/git-includeif/)
 + [The Definitive TypeScript Guide](https://www.sitepen.com/blog/update-the-definitive-typescript-guide/)
 + [Advanced TypeScript Concepts: Classes and Types](https://www.sitepen.com/blog/advanced-typescript-concepts-classes-and-types/)
 + [Codemods: Effective, Automated Refactoring](https://www.sitepen.com/blog/codemods-effective-automated-refactoring/)
@@ -133,17 +147,18 @@ A JavaScript and TypeScript developer with 10 years experience in the industry a
 
 -----------
 
-+ **Proficient** TypeScript, JavaScript, ES2015+, Node.js, Dojo, Angular, React, Webpack, CSS, Git Bash, Vim
-+ **Familiar** Java, C++, C, Ruby, Groovy
++ **Proficient** TypeScript, JavaScript, Node.js, React, Angular, Dojo, CSS, Git Bash, Vim, Postgres
++ **Familiar** Java, C++, C, Ruby, Groovy, Kotlin
 
 ## <span class="icon fa fa-book"></span>Education
 
 -----------
 
+<!--
 ### The George Washington University
 #### College of Engineering Management and Systems Engineering _Fall 2009 – Spring 2011_
 
-+ Pursued M.S. in Systems Engineering
++ Pursued M.S. in Systems Engineering -->
 
 ### University of Nebraska at Omaha
 #### College of Information Science & Technology _Summer 2005 – Fall 2008_
