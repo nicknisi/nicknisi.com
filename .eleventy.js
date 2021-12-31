@@ -33,6 +33,10 @@ module.exports = (config) => {
         DateTime.fromJSDate(dateObj, { zone: 'utc' }).toFormat('dd LLL yyyy')
     );
 
+    config.addFilter('jsonTitle', (title) =>
+        title.replace(/((.*)\s(.*)\s(.*))$/g, '$2&nbsp;$3nbsp;$4').replace(/"(.*)"/g, '\\"$1\\"')
+    );
+
     config.addFilter('htmlDateString', (dateObj) =>
         DateTime.fromJSDate(dateObj, { zone: 'utc' }).toFormat('yyyy-LL-dd')
     );

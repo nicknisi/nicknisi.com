@@ -1,18 +1,21 @@
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://nicknisi.com">
+<meta property="og:type" content="webapp">
+<meta property="og:url" content="{{app.url}}">
 <meta property="og:title" content="{{renderData.title or title or metadata.title}}">
-<meta property="og:description" content="{{rederData.description or description or metadata.description}}">
-<meta name="og:image" content="https://nicknisi.com/{{metadata.avatar}}">
+<meta property="og:description" content="{{renderData.description or description or metadata.description}}">
+<meta name="og:image" content="{{app.url}}/img/social/{{(renderData.title or title or metadata.title) | slug}}.png">
 
 <!-- twitter card tags additive with the og: tags -->
 <!-- <meta name="twitter:card" content="summary_large_image"> -->
 <meta name="twitter:domain" content="{{metadata.url}}">
-<meta name="twitter:title" value="nicknisi">
-<meta name="twitter:description" value="{{readderData.description or description or metadata.description}}">
-<meta name="twitter:image" content="https://nicknisi.com/{{metadata.avatar}}">
+<meta name="twitter:title" value="{{renderData.title or title or metadata.title}}">
+<meta name="twitter:description" value="{{renderData.description or description or metadata.description}}">
+<meta name="twitter:image" content="{{app.url}}/img/{{(renderData.title or title or metadata.title) | slug}}.png">
+<meta name="twitter:card" value="{{app.url or 'http://localhost:8080'}}/img/social/{{(renderData.title or title or metadata.title) | slug}}.png">
 <meta name="twitter:url" value="{{metadata.url}}">
 
 <meta name="twitter:label1" value="Opens in Theaters">
 <meta name="twitter:data1" value="December 1, 2015">
 <meta name="twitter:label2" value="Or on demand">
 <meta name="twitter:data2" value="At Hulu.com">
+
+<h1>URL: {{app.url}}</h1>

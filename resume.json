@@ -1,0 +1,377 @@
+{
+    "basics": {
+        "name": "Nick Nisi",
+        "label": "Software Engineer",
+        "picture": null,
+        "email": "nick@nisi.org",
+        "phone": "(402) 216-1612",
+        "website": "https://nicknisi.com",
+        "summary": null,
+        "location": {
+            "address": "4408 Mark St.",
+            "postalCode": "NE 68123",
+            "city": "Bellevue",
+            "countryCode": "US",
+            "region": "Nebraska"
+        },
+        "profiles": [
+            {
+                "network": "Twitter",
+                "username": "nicknisi",
+                "url": "https://twitter.com/nicknisi"
+            },
+            {
+                "network": "GitHub",
+                "username": "nicknisi",
+                "url": "https://github.com/nicknisi"
+            },
+            {
+                "network": "LinkedIn",
+                "username": "nicknisi",
+                "url": "https://linkedin.com/in/nicknisi"
+            }
+        ]
+    },
+    "work": [
+        {
+            "company": "C2FO",
+            "position": "Senior Software Engineer II",
+            "website": "https://c2fo.com",
+            "startDate": "May 2020",
+            "endDate": null,
+            "summary": null,
+            "highlights": [],
+            "remote": true
+        },
+        {
+            "company": "SitePen",
+            "position": "Senior Software Engineer",
+            "website": "https://sitepen.com",
+            "startDate": "July 2013",
+            "endDate": "May 2020",
+            "summary": null,
+            "highlights": [
+                "Open Source Contributor, ensuring success on many company and community open source initiatives including Dojo, Intern, TypeDoc, and CodeSandbox.",
+                "Instructor - Teaching 2-5 day workshops online and in-person on topics including TypeScript, Git, JavaScript Fundamentals, and Dojo.",
+                "Lead Developer - Managing teams of up to three developers on successful customer-facing projects for world-class clients including hotels, banks, and government agencies.",
+                "Lead Support Engineer - Providing timely and thorough answers to technical questions from developers about code, bgs, testing, and architecture."
+            ],
+            "remote": true
+        },
+        {
+            "company": "Flywheel",
+            "position": "Software Engineer",
+            "website": null,
+            "startDate": "January 2018",
+            "endDate": "April 2018",
+            "summary": null,
+            "highlights": [],
+            "remote": false
+        },
+        {
+            "company": "C2FO",
+            "position": "Software Developer",
+            "website": "https://c2fo.com",
+            "startDate": "October 2011",
+            "endDate": "July 2013",
+            "summary": null,
+            "highlights": [
+                "Part of core development team delivering results which lead to $9.1 million funding round lead by Union Square Ventures.",
+                "Designed and developed frontend architecture on c2fo.com with a focus on the responsive design and using Backbone, RequireJS, Handlebars, and Less to create a friendly single page application.",
+                "Upgraded application from Dojo 1.4 to Dojo 1.7 which included the transition from the old module system to the new Asynchronous Module Definition (AMD) style.",
+                "Backend development with both Node.js and Ruby.",
+                "Contributed core content to QuickPay, the Pollenware enterprise application, involving work with Dojo, Ruby/Sinatra, and HTML/CSS.",
+                "Utilized an expert knowledge of JavaScript, HTML, DOM, and CSS to deliver advanced interface and controls."
+            ],
+            "remote": true
+        },
+        {
+            "company": "Freelance",
+            "position": "Freelance Developer",
+            "website": "https://nicknisi.com",
+            "startDate": "April 2012",
+            "endDate": "June 2012",
+            "summary": null,
+            "highlights": [
+                "Architected and implemented a proof of concept application for a client utilizing advanced HTML5 and canvas technologies.",
+                "Demonstrated the feasibility of using these technologies to make a custom, drag and drop interface that is functional on desktop and iPad/tablet devices.",
+                "Utilized Backbone Models and Views to manage rendering and state of shapes and images drawn to a canvas.",
+                "Connected to simple REST interface written in Ruby on Rails to save and load state.",
+                "Delivered on time and successfully."
+            ],
+            "remote": true
+        },
+        {
+            "company": "Lockheed Martin",
+            "position": "Software Engineer / Engineering LDP",
+            "website": "https://lockheedmartin.com",
+            "startDate": "January 2009",
+            "endDate": "October 2011",
+            "summary": null,
+            "highlights": [
+                "Development lead for maintenance drop focusing on performance enhancement and usability, where duties include leading a team of three engineers, supporting builds and turnovers, and cross functional coordination to facilitate the engineering life cycle.",
+                "Lead Developer of a system demo application using Flash and driven by XML files which included audio narration, videos, and interactive elements for the customer and met regularly with a customer working group to ensure the demo met their needs.",
+                "Chief Architect and lead developer of a metrics reporting web application written in Groovy/Grails that reads data from another application database and generates reports using JasperReports",
+                "Developed custom SNMP agent for administration of a hardware device written in C.",
+                "Developed management console for an embedded hardware device using jQuery, Ruby, and PHP.",
+                "Developed a client side network performance testing application using JavaScript.",
+                "Web application development with Java/Spring/Struts.",
+                "Set up Hadoop cluster and utilized MapReduce for analysis of large quantities of network traffic data.",
+                "Implemented the most visible components of web application including custom jQuery/TinyMCE plugins, a custom application navigation system, and the development of a custom inline rich text editor in JavaScript."
+            ],
+            "remote": false
+        }
+    ],
+    "community": [
+        {
+            "organization": "The Nebraska JavaScript Conference (NEJS CONF)",
+            "position": "Organizer and Emcee",
+            "website": "https://nejsconf.com",
+            "twitter": "nejsconf",
+            "startDate": "2015",
+            "endDate": "2019",
+            "summary": null,
+            "highlights": []
+        },
+        {
+            "organization": "TypeScript Conf",
+            "position": "Emcee",
+            "website": "https://tsconf.io",
+            "twitter": "TypeScriptConf",
+            "startDate": "2018",
+            "endDate": null,
+            "summary": null,
+            "highlights": []
+        },
+        {
+            "organization": "JS Party",
+            "position": "Panelist",
+            "website": "https://changelog.com/jsparty",
+            "twitter": "jspartyfm",
+            "startDate": "April 2018",
+            "endDate": null,
+            "summary": null,
+            "highlights": []
+        },
+        {
+            "organization": "NebraskaJS",
+            "position": "Organizer",
+            "website": "https://nebraskajs.com",
+            "twitter": "nebraskajs",
+            "startDate": "April 2018",
+            "endDate": null,
+            "summary": null,
+            "highlights": []
+        }
+    ],
+    "talks": [
+        {
+            "title": "Panel: 2020 Tech Trends Predictions",
+            "date": "December 2019",
+            "event": "Node+JS Interactive 2019",
+            "url": "https://www.youtube.com/watch?v=By1-aNeGQ9U&list",
+            "summary": null,
+            "highlights": []
+        },
+        {
+            "title": "Panel: TalkScript with the TypeScript Team at TSConf 2019",
+            "date": "October 2019",
+            "event": "TSConf 2019",
+            "url": "https://www.youtube.com/watch?v=obvOZn639ms",
+            "summary": null,
+            "highlights": []
+        },
+        {
+            "title": "Rules to Git By",
+            "date": "October 2019",
+            "event": "NebraskaJS",
+            "url": "https://www.youtube.com/watch?v=yI0BtEzdGtw",
+            "summary": null,
+            "highlights": []
+        },
+        {
+            "title": "No Time for Types",
+            "date": "August 2018",
+            "event": "JSConf US 2018",
+            "url": "https://www.youtube.com/watch?v=qGK541P2xII",
+            "summary": null,
+            "highlights": []
+        },
+        {
+            "title": "Panel: TalkScript with the TypeScript Team at TSConf 2018",
+            "date": "March 2018",
+            "event": "TSConf 2018",
+            "url": "https://www.youtube.com/watch?v=MxB0ldQfvT4",
+            "summary": null,
+            "highlights": []
+        },
+        {
+            "title": "JavaScript Metaprogramming",
+            "date": "March 2016",
+            "event": "NebraskaJS",
+            "url": "https://www.youtube.com/watch?v=nsG_izwv_0U",
+            "summary": null,
+            "highlights": []
+        },
+        {
+            "title": "Neovim",
+            "date": "October 2015",
+            "event": "Omaha Ruby and Open Source Meetup",
+            "url": "https://www.youtube.com/watch?v=LRQGAnPtNdM",
+            "summary": null,
+            "highlights": []
+        },
+        {
+            "title": "JavaScript Fundamentals",
+            "date": "May 2015",
+            "event": "JSConf 2015",
+            "url": "http://2015.jsconf.us/speakers.html#nisi",
+            "summary": null,
+            "highlights": []
+        },
+        {
+            "title": "vim  + tmux",
+            "date": "February 2015",
+            "event": "OMG!Code",
+            "url": "https://www.youtube.com/watch?v=5r6yzFEXajQ",
+            "summary": null,
+            "highlights": []
+        },
+        {
+            "title": "Modern Dojo",
+            "date": "January 2015",
+            "event": "NebraskaJS Lincoln",
+            "url": "https://www.youtube.com/watch?v=__7Fg1h_N6w",
+            "summary": null,
+            "highlights": []
+        },
+        {
+            "title": "Intern in Action",
+            "date": "January 2015",
+            "event": "Omaha Ruby and Open Source Meetup",
+            "url": "https://www.youtube.com/watch?v=oOssM0DusYc",
+            "summary": null,
+            "highlights": []
+        },
+        {
+            "title": "Intro to Intern",
+            "date": "January 2015",
+            "event": "Omaha Coffee and Code",
+            "url": "https://www.youtube.com/watch?v=Fgt_frjlAaQ",
+            "summary": null,
+            "highlights": []
+        },
+        {
+            "title": "TypeScript",
+            "date": "November 2014",
+            "event": "NebraskaJS",
+            "url": "https://www.youtube.com/watch?v=nLCedy68Qf4",
+            "summary": null,
+            "highlights": []
+        },
+        {
+            "title": "Building Chrome Extensions",
+            "date": "July 2014",
+            "event": "NebraskaJS",
+            "url": "https://www.youtube.com/watch?v=HzJ9pUWb2rA",
+            "summary": null,
+            "highlights": []
+        },
+        {
+            "title": "Contributing to Open Source",
+            "date": "May 2014",
+            "event": "NebraskaJS",
+            "url": "https://vimeo.com/99035913",
+            "summary": null,
+            "highlights": []
+        },
+        {
+            "title": "Leapcopter",
+            "date": "January 2014",
+            "event": "NebraskaJS",
+            "url": "https://vimeo.com/83939999",
+            "summary": null,
+            "highlights": []
+        },
+        {
+            "title": "Building RESTful Services with Node.js",
+            "date": "January 2013",
+            "event": "NebraskaJS",
+            "url": "https://www.youtube.com/watch?v=APO3fFH7osw",
+            "summary": null,
+            "highlights": []
+        },
+        {
+            "title": "Node.js and Express",
+            "date": "November 2012",
+            "event": "Omaha Dynamic Language Users Group",
+            "url": "https://www.youtube.com/watch?v=h38DDvmVag0",
+            "summary": null,
+            "highlights": []
+        },
+        {
+            "title": "I <3 vim",
+            "date": "September 2012",
+            "event": "Barcamp Omaha",
+            "url": "https://www.youtube.com/watch?v=oHoei-MXYiw",
+            "summary": null,
+            "highlights": []
+        },
+        {
+            "title": "AMD and RequireJS",
+            "date": "August 2012",
+            "event": "Omaha Dynamic Language Users Group",
+            "url": "https://www.youtube.com/watch?v=PhHHlY_gIXE",
+            "summary": null,
+            "highlights": []
+        }
+    ],
+    "education": [
+        {
+            "institution": "The George Washington Univerisity",
+            "area": "Systems Engineering",
+            "studyType": "Masters",
+            "startDate": "Fall 2009",
+            "endDate": "Spring 2011",
+            "gpa": null,
+            "summary": "Pursued but did not finish a Masters in Systems Engineering",
+            "courses": []
+        },
+        {
+            "institution": "The Univerisity of Nebraska at Omaha",
+            "area": "Computer Science",
+            "studyType": "Bachelors",
+            "startDate": "May 2005",
+            "endDate": "December 2008",
+            "gpa": null,
+            "summary": null,
+            "courses": []
+        }
+    ],
+    "skills": [
+        {
+            "name": "Web Development",
+            "level": "Master",
+            "keywords": []
+        }
+    ],
+    "interests": [
+        {
+            "name": null,
+            "keywords": []
+        }
+    ],
+    "references": [
+        {
+            "name": null,
+            "reference": null
+        }
+    ],
+    "badges": [
+        {
+            "alt": "",
+            "url": "",
+            "image": ""
+        }
+    ]
+}

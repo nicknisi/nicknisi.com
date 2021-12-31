@@ -1,2 +1,4 @@
 node_modules/
 _site/
+functions/template.html
+functions/posts.json

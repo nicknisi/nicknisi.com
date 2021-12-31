@@ -1,4 +1,10 @@
 {
+    "Panel: Tech Trends Revisited": {
+        "date": "March 2021",
+        "location": "OpenJS Foundation",
+        "description": "Panel discussion on the latest trends in the JavaScript ecosystem. Topics include: React, Vue, Angular, and more.",
+        "url": "https://www.youtube.com/watch?v=mYIydmcdRDA"
+    },
     "Panel: 2020 Tech Trends Predictions": {
         "date": "December 2019",
         "location": "Node+JS Interactive 2019",

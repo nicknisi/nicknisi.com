@@ -1,0 +1,23 @@
+---
+permalink: functions/template.html
+permalinkBypassOutputDir: true
+---
+<!doctype html> 
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500&family=Kanit:ital,wght@0,800;1,600&display=swap" rel="stylesheet">
+    {% set css %}
+      {% include "css/index.css" %}
+    {% endset %}
+    <style>
+      {{ css | safe }}
+    </style>
+</head>
+<body>
+  <header>
+    <h1></h1>
+    <p>MySite.com | Tagline</p>
+  </header>
+</body> 
