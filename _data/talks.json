@@ -1,4 +1,19 @@
 {
+    "Componentizing Application State": {
+        "date": "April 2022",
+        "location": "React Global Online Summit 2022",
+        "url": "https://www.youtube.com/watch?v=B5BmHj0WCiA"
+    },
+    "TalkScript with the TypeScript Team at TSConf 2021": {
+        "date": "October 2021",
+        "location": "TSConf 2021",
+        "url": "https://www.youtube.com/watch?v=gfn-aKykyAM"
+    }
+    "JavaScript Trends Revisited": {
+        "date": "March 2021",
+        "location": "OpenJS Foundation",
+        "url": "https://www.youtube.com/watch?v=mYIydmcdRDA"
+    },
     "Panel: 2020 Tech Trends Predictions": {
         "date": "December 2019",
         "location": "Node+JS Interactive 2019",
