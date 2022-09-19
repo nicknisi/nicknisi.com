@@ -1,24 +1,25 @@
 {
-    "title": "nicknisi",
-    "url": "https://nicknisi.com",
-    "description": "👋 Hi, I'm Nick. I write and talk about JavaScript and the web.",
-    "avatar": "/img/beef_nick.png",
-    "feed": {
-        "subtitle": "",
-        "filename": "feed.xml",
-        "path": "/feed/feed.xml",
-        "url": "https://nicknisi.com/feed/feed.xml",
-        "id": "https://nicknisi.com"
-    },
-    "author": {
-        "name": "Nick Nisi",
-        "email": "nick@nisi.org"
-    },
-    "social": [
-        { "name": "Twitter", "url": "https://twitter.com/nicknisi" },
-        { "name": "GitHub", "url": "https://github.com/nicknisi" },
-        { "name": "YouTube", "url": "https://www.youtube.com/nicknisi" },
-        { "name": "Instagram", "url": "https://www.instagram.com/nicknisi/" },
-        { "name": "LinkedIn", "url": "https://linkedin.com/in/nicknisi" }
-    ]
+  "title": "nicknisi",
+  "url": "https://nicknisi.com",
+  "description": "👋 Hi, I'm Nick. I write and talk about JavaScript and the web.",
+  "avatar": "/img/beef_nick.png",
+  "profile": "/img/profile.jpg",
+  "feed": {
+    "subtitle": "",
+    "filename": "feed.xml",
+    "path": "/feed/feed.xml",
+    "url": "https://nicknisi.com/feed/feed.xml",
+    "id": "https://nicknisi.com"
+  },
+  "author": {
+    "name": "Nick Nisi",
+    "email": "nick@nisi.org"
+  },
+  "social": {
+    "Twitter": { "username": "nicknisi", "url": "https://twitter.com/nicknisi" },
+    "GitHub": { "username": "nicknisi", "url": "https://github.com/nicknisi" },
+    "YouTube": { "username": "nicknisi", "url": "https://www.youtube.com/nicknisi" },
+    "Instagram": { "username": "nicknisi", "url": "https://www.instagram.com/nicknisi/" },
+    "LinkedIn": { "username": "nicknisi", "url": "https://linkedin.com/in/nicknisi" }
+  }
 }

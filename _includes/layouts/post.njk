@@ -6,21 +6,41 @@ templateClass: tmpl-post
 {% set words = content | striptags | wordcount %}
 {% set wc = words / 240 %}
 
-<article class="max-w-4xl mx-auto mt-8">
+<article class="py-10">
     <header class="mb-8">
-        <h1>{{ title }}</h1>
-        <div class="flex text-sm space-x-4 items-center">
-            <div class="flex items-center space-x-2">
-                <span class="fill-current">{% icon 'calendar' %}</span>
-                <span>{{ page.date | readableDate }}</span>
-            </div>
+        <h1 class="font-bold text-3xl md:text-5xl mb-4 tracking-tight">{{ title }}</h1>
+        <div class="text-gray-400 text-sm uppercase py-1 font-light">
+          <span>{{ page.date | readableDate }}</span>
+          <span>•</span>
+          <span>{{ wc | round }} minute read</span>
+          <span>•</span>
+          <span>
+            {%- for tag in tags | tags %}
+                    {% set tagUrl %}/tags/{{ tag }}/{% endset %}
+                    <a href="{{ tagUrl | url }}" class="tag">{{ tag }}</a>
+            {% endfor %}
+          </span>
         </div>
-        <div>{% include 'tags.njk' %}</div>
-        <aside class="text-sm text-gray-900">{{wc | round}} minute read</aside>
     </header>
-    <section>
+    <section class="prose pt-6 pb-10">
         {{ content | safe }}
     </section>
+    <div class="text-center py-10 sm:py-20">
+      {% icon 'star' %}
+      {% icon 'star' %}
+      {% icon 'star' %}
+    </div>
+    <div class="flex items-center mx-auto sm:flex-row flex-col">
+      <div class="sm:w-32 sm:h-32 h-32 w-32 sm:mr-10 inline-flex items-center justify-center rounded-full text-blue-500
+      flex-shrink-0">
+      <img src="{{ metadata.profile }}" alt="author" class="rounded-full w-32 h-32">
+        </div>
+        <div class="flex-grow sm:text-left text-center mt-6 sm:mt-0">
+        <h2 class="text-gray-900 text-lg title-font font-medium mb-2">{{ metadata.author.name }}</h2>
+          <p class="leading-relaxed text-base">{{ metadata.description}}</p>
+          <p class="leading-relaxed text-base">Follow me on <a href="{{metadata.social.Twitter.url | url}}">Twitter</a>.</p>
+        </div>
+    </div>
 </article>
 {% if prevPost and not prevPost.data.external %}
     <div class="flex justify-center mt-8">

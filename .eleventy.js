@@ -108,6 +108,8 @@ module.exports = (config) => {
         `;
   });
 
+  config.addShortcode('year', () => String(DateTime.local().year));
+
   config.addShortcode('icon', (path, classes) => {
     return icon(path, classes);
   });
