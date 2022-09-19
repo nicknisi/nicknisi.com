@@ -2,20 +2,22 @@
 layout: base
 ---
 
-<h2>Talks</h2>
+<div class="py-8">
+  <h2 class="text-3xl">Talks</h2>
 
-<p>
-    Here is a collection of talks and videos I have given at various meetups and conferences.
-</p>
+  <p class="prose">
+      Here is a collection of talks and videos I have given at various meetups and conferences.
+  </p>
 
-<ul class="list-none space-y-4">
-    {% for title, talk in talks %}
-    <li class="flex flex-col items-baseline">
-        <a class="text-xl" href="{{ talk.url }}">{{ title }}</a>
-        <div class="flex items-baseline">
-            <span class="text-gray-700 text-sm flex-shrink-0 mr-2 font-medium">{{ talk.date }}</span>
-            <span class="text-gray-700 text-xs">{{ talk.location }}</span>
-        </div>
-    </li>
-    {% endfor %}
-</ul>
+  <ul class="list-none space-y-4">
+      {% for title, talk in talks %}
+      <li class="flex flex-col items-baseline">
+          <a class="text-xl" href="{{ talk.url }}">{{ title }}</a>
+          <div class="flex items-baseline">
+              <span class="text-gray-700 text-sm flex-shrink-0 mr-2 font-medium">{{ talk.date }}</span>
+              <span class="text-gray-700 text-xs">{{ talk.location }}</span>
+          </div>
+      </li>
+      {% endfor %}
+  </ul>
+</div>
