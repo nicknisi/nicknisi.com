@@ -1,9 +1,6 @@
 {
   "author": "Nick Nisi",
-  "layout": "layouts/post.njk",
+  "layout": "post",
   "permalink": "/posts/{{ page.fileSlug }}/",
-  "tags": [
-    "posts"
-  ]
+  "tags": ["posts"]
 }
-
