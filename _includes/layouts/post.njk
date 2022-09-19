@@ -33,13 +33,13 @@ templateClass: tmpl-post
     <div class="flex items-center mx-auto sm:flex-row flex-col">
       <div class="sm:w-32 sm:h-32 h-32 w-32 sm:mr-10 inline-flex items-center justify-center rounded-full text-blue-500
       flex-shrink-0">
-      <img src="{{ metadata.profile }}" alt="author" class="rounded-full w-32 h-32">
-        </div>
-        <div class="flex-grow sm:text-left text-center mt-6 sm:mt-0">
+        <img src="{{ metadata.profile }}" alt="author" class="rounded-full w-32 h-32">
+      </div>
+      <div class="flex-grow sm:text-left text-center mt-6 sm:mt-0">
         <h2 class="text-gray-900 text-lg title-font font-medium mb-2">{{ metadata.author.name }}</h2>
           <p class="leading-relaxed text-base">{{ metadata.description}}</p>
           <p class="leading-relaxed text-base">Follow me on <a href="{{metadata.social.twitter.url | url}}">Twitter</a>.</p>
-        </div>
+      </div>
     </div>
 </article>
 {% if prevPost and not prevPost.data.external %}
