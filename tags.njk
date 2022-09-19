@@ -16,9 +16,11 @@ renderData:
 permalink: /tags/{{ tag }}/
 ---
 
-<h1>Posts about {{ tag | uppercase }}</h1>
+<div class="py-8">
+  <h1 class="my-8 text-3xl">Posts about {{ tag | uppercase }}</h1>
 
-{% set posts = collections[tag] %}
-{% include "postslist.njk" %}
+  {% set posts = collections[tag] %}
+  {% include "postslist.njk" %}
 
-<p>See <a href="{{ '/tags/' | url }}">all tags</a>.</p>
+  <p class="prose">See <a href="{{ '/tags/' | url }}">all tags</a>.</p>
+</div>
