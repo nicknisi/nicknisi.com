@@ -1,62 +1,14 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width,initial-scale=1">
-        <title>{{ renderData.title or title or metadata.title }}</title>
-
-        <link rel="shortcut icon" href="/img/favicon.ico">
-        <link rel="stylesheet" href="{{ '/css/index.css' | url }}">
-        <link rel="stylesheet" href="{{ '/css/prism.css' | url }}">
-        <link rel="alternate" href="{{ metadata.feed.path | url }}" type="application/atom+xml" title="{{ metadata.title }}">
-
-        <link rel="description" content="{{ renderData.description or description or metadata.description }}">
-        <link rel="og:description" content="{{ renderData.description or description or metadata.description }}">
-        <meta property="og:image" content="{{ renderData.headerImage or headerImage or metadata.avatar}}">
-
-        <!-- Twitter Card -->
-        <meta name="twitter:card" content="summary">
-        <meta name="twitter:site" content="@nicknisi">
-        <meta name="twitter:title" content="{{renderData.title or title or metadata.title}}">
-        <meta name="twitter:title" content="{{renderData.title or title or metadata.title}}">
-        <meta name="twitter:description" content="{{renderData.description or description or metadata.description}}">
-        <meta name="twitter:image" content="https://nicknisi.com/{{metadata.avatar}}">
-        <meta name="twitter:image:alt" content="Nick Nisi">
-
-        <link rel="me" href="mailto:nick@nisi.org">
-        <link rel="me" href="https://twitter.com/nicknisi">
-        <link rel="me" href="https://github.com/nicknisi">
-    </head>
+    {% include "head.njk" %}
     <body>
         {%- if draft %}
         <div class="w-full font-bold text-center text-white bg-yellow-500 select-none">DRAFT</div>
         {% endif %}
-        <header class="flex flex-col items-baseline justify-between px-4 py-1 pt-4 md:px-8 md:flex-row">
-            <span class="flex items-center justify-between m-0 mx-auto text-xl text-left space-x-1 md:mx-0">
-                <a class="flex items-center justify-between m-0 mx-auto text-xl text-left space-x-1 md:mx-0" href="{{ '/' | url }}">
-                    <img width="20px" height="20px" src="{{ metadata.avatar }}">
-                    <span class="hidden md:inline-block">{{ metadata.title }}</span>
-                </a>
-            </span>
-            <nav class="mx-auto md:mx-0">
-                <ul class="flex list-none space-x-4 md:space-x-8">
-                    <li><a href="{{ '/about' | url }}">About</a></li>
-                    <li><a href="{{ '/talks' | url }}">Talks</a></li>
-                    <li><a href="{{ '/posts' | url }}">Posts</a></li>
-                    <li><a href="{{ '/uses' | url }}">Uses</a></li>
-                </ul>
-            </nav>
-        </header>
+        {% include "header.njk" %}
         <main class="container mx-auto px-8 space-y-8 {{ templateClass }}">
             {{ content | safe }}
         </main>
-        <footer class="container mx-auto mt-8">
-            <ul class="flex justify-center list-none space-x-2 md:space-x-8">
-                {% for social in metadata.social %}
-                    <li><a href="{{ social.url }}">{{ social.name }}</a></li>
-                {% endfor %}
-            </ul>
-            <p class="text-center">&copy;2022 Nick Nisi. All rights reserved.</p>
-        </footer>
+        {% include "footer.njk" %}
     </body>
 </html>

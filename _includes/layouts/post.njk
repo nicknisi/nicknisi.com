@@ -25,7 +25,7 @@ templateClass: tmpl-post
 {% if prevPost and not prevPost.data.external %}
     <div class="flex justify-center mt-8">
         <a class="flex items-center font-medium space-x-4" href="{{ prevPost.url | url }}">
-            {% icon 'arrow-narrow-left' %}
+            {% icon 'arrow-long-left' %}
             <span>{{ prevPost.data.title}}</span>
         </a>
     </div>

@@ -1,8 +1,0 @@
-{
-	"disallowEmptyBlocks": true,
-	"disallowMultipleLineBreaks": true,
-	"disallowMultipleSpaces": true,
-	"disallowSpaceAfterObjectKeys": true,
-	"disallowTrailingComma": true,
-	"disallowTrailingWhitespace": true
-}

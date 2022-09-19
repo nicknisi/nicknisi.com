@@ -1,0 +1,8 @@
+<footer class="container mx-auto mt-8">
+    <ul class="flex justify-center list-none space-x-2 md:space-x-8">
+        {% for social in metadata.social %}
+            <li><a href="{{ social.url }}">{{ social.name }}</a></li>
+        {% endfor %}
+    </ul>
+    <p class="text-center">&copy;2022 Nick Nisi. All rights reserved.</p>
+</footer>
