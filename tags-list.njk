@@ -6,6 +6,5 @@ layout: home
 <h1>Tags</h1>
 
 {% for tag in collections.tagList %}
-{% set tagUrl %}/tags/{{ tag }}/{% endset %}
-<a href="{{ tagUrl | url }}" class="tag">{{ tag }}</a>
+  {% include 'tag.njk' %}
 {% endfor %}

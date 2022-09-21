@@ -1,6 +1,5 @@
 <div class="flex flex-wrap items-center justify-start flex-initial space-x-2">
     {%- for tag in tags | tags %}
-            {% set tagUrl %}/tags/{{ tag }}/{% endset %}
-            <a href="{{ tagUrl | url }}" class="tag">{{ tag }}</a>
+      {% include "tag.njk" %}
     {% endfor %}
 </div>

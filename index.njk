@@ -19,8 +19,7 @@ eleventyNavigation:
 
   <h3 class="mt-8 text-2xl">Tags</h3>
   {% for tag in collections.tagList %}
-  {% set tagUrl %}/tags/{{ tag }}/{% endset %}
-    <a href="{{ tagUrl | url }}" class="tag">{{ tag }}</a>
+    {% include 'tag.njk' %}
   {% endfor %}
 
   <h3 class="mt-8 text-2xl">Latest posts</h3>

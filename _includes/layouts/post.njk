@@ -9,15 +9,14 @@ templateClass: tmpl-post
 <article class="py-10">
     <header class="mb-8">
         <h1 class="font-bold text-3xl md:text-5xl mb-4 tracking-tight">{{ title }}</h1>
-        <div class="text-gray-400 text-sm uppercase py-1 font-light">
-          <span>{{ page.date | readableDate }}</span>
+        <div class="text-gray-600 text-sm py-1 font-light">
+          <span class="uppercase">{{ page.date | readableDate }}</span>
           <span>•</span>
-          <span>{{ wc | round }} minute read</span>
+          <span class="uppercase">{{ wc | round }} minute read</span>
           <span>•</span>
           <span>
             {%- for tag in tags | tags %}
-                    {% set tagUrl %}/tags/{{ tag }}/{% endset %}
-                    <a href="{{ tagUrl | url }}" class="tag">{{ tag }}</a>
+              {% include 'tag.njk' %}
             {% endfor %}
           </span>
         </div>
