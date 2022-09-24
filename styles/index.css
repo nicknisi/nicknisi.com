@@ -13,46 +13,14 @@
     }
 }
 
-body {
-    @apply font-normal bg-gray-100;
-}
-
-h1,h2,h3,h4,h5 {
-    @apply font-bold text-cool-gray-900;
-}
-
-h1 {
-    @apply mb-3 text-4xl;
-}
-
-h2 {
-    @apply mb-3 text-3xl;
-}
-
-h3 {
-    @apply mb-3 text-2xl;
-}
-
-h4 {
-    @apply mb-3 text-xl;
-}
-
-h5 {
-    @apply mb-3 text-xl;
-}
-
-p {
-    @apply my-4;
-}
-
 .tmpl-uses ul {
-    @apply list-disc;
+    @apply list-disc pl-4;
 }
 
 .tmpl-uses a,
 .tmpl-uses a:link,
 .tmpl-uses a:visited {
-    @apply text-purple-700;
+    @apply text-blue-gray-700;
 }
 
 .direct-link {
@@ -72,10 +40,6 @@ p {
     padding-top: 56.25%;
 }
 
-code {
-    @apply text-purple-700 bg-gray-200;
-}
-
 .icon {
     width: var(--icon-size);
     height: var(--icon-size);
@@ -89,9 +53,9 @@ code {
 }
 
 .month, .year {
-    @apply text-xs tracking-wider uppercase;
+    @apply text-xs tracking-wider uppercase text-blue-gray-700;
 }
 
 .day {
-    @apply text-xl font-bold;
+    @apply text-xl font-bold text-blue-gray-700;
 }

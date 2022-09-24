@@ -1,12 +1,12 @@
 <!doctype html>
 <html lang="en">
     {% include "head.njk" %}
-    <body>
+    <body class="font-normal text-blue-gray-900 bg-blue-gray-50">
         {%- if draft %}
-        <div class="w-full font-bold text-center text-white bg-yellow-500 select-none">DRAFT</div>
+        <div class="w-full font-bold text-center text-blue-gray-50 bg-yellow-700 select-none">DRAFT</div>
         {% endif %}
         {% include "header.njk" %}
-        <main class="px-6 mb-auto">
+        <main class="{{templateClass}} px-6 mb-auto">
           <div class="max-w-2xl mx-auto">
             {{ content | safe }}
           </div>

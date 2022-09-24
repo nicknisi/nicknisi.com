@@ -21,18 +21,19 @@ templateClass: tmpl-post
           </span>
         </div>
     </header>
-    <section class="prose pt-6 pb-10">
+    <section class="prose lg:prose-xl prose-code:before:content-[''] prose-code:after:content-['']
+    prose-code:font-medium prose-code:text-purple-800 prose-headings:my-3 prose-headings:text-blue-gray-900 pt-6 pb-10">
         {{ content | safe }}
     </section>
     <div class="text-center py-10 sm:py-20">
-      {% icon 'star' %}
-      {% icon 'star' %}
-      {% icon 'star' %}
+    {% icon 'star', { classes: 'font-bold text-purple-600'} %}
+    {% icon 'star', { classes: 'font-bold text-purple-600'} %}
+    {% icon 'star', { classes: 'font-bold text-purple-600'} %}
     </div>
     <div class="flex items-center mx-auto sm:flex-row flex-col">
       <div class="sm:w-32 sm:h-32 h-32 w-32 sm:mr-10 inline-flex items-center justify-center rounded-full text-blue-500
       flex-shrink-0">
-        <img src="{{ metadata.profile }}" alt="author" class="rounded-full w-32 h-32">
+        <img src="{{ metadata.profile }}" alt="author" class="drop-shadow-md rounded-full w-32 h-32">
       </div>
       <div class="flex-grow sm:text-left text-center mt-6 sm:mt-0">
         <h2 class="text-gray-900 text-lg title-font font-medium mb-2">{{ metadata.author.name }}</h2>

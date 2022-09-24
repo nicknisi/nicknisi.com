@@ -1,16 +1,19 @@
-<header class="max-w-2xl mx-auto flex flex-col items-baseline justify-between py-1 pt-4 md:flex-row">
+
+<header class="bg-purple-700 pb-2 sticky top-0">
+  <div class="max-w-2xl mx-auto flex flex-col items-baseline justify-between py-1 pt-4 md:flex-row">
     <span class="flex items-center justify-between m-0 mx-auto text-xl text-left space-x-1 md:mx-0">
         <a class="flex items-center justify-between m-0 mx-auto text-xl text-left space-x-1 md:mx-0" href="{{ '/' | url }}">
             <img width="20px" height="20px" src="{{ metadata.avatar }}">
-            <span class="hidden md:inline-block">{{ metadata.title }}</span>
+            <span class="hidden md:inline-block text-purple-50 font-medium">{{ metadata.title }}</span>
         </a>
     </span>
     <nav class="mx-auto md:mx-0">
         <ul class="flex list-none space-x-4 md:space-x-8">
-            <li><a href="{{ '/about' | url }}">About</a></li>
-            <li><a href="{{ '/talks' | url }}">Talks</a></li>
-            <li><a href="{{ '/posts' | url }}">Posts</a></li>
-            <li><a href="{{ '/uses' | url }}">Uses</a></li>
+            <li><a class="text-purple-50 font-medium" href="{{ '/about' | url }}">About</a></li>
+            <li><a class="text-purple-50 font-medium" href="{{ '/talks' | url }}">Talks</a></li>
+            <li><a class="text-purple-50 font-medium" href="{{ '/posts' | url }}">Posts</a></li>
+            <li><a class="text-purple-50 font-medium" href="{{ '/uses' | url }}">Uses</a></li>
         </ul>
     </nav>
+    </div>
 </header>
