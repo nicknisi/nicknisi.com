@@ -1,5 +1,5 @@
 ---
-layout: base
+layout: layouts/prose.njk
 templateClass: tmpl-uses
 ---
 
