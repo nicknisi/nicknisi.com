@@ -59,3 +59,7 @@
 .day {
     @apply text-xl font-bold text-blue-gray-700;
 }
+
+.callout {
+  @apply text-xl text-teal-800 font-semibold bg-teal-100/60 py-2 px-4 rounded-tl-lg text-center rounded-br-lg;
+}

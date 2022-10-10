@@ -1,0 +1,150 @@
+---
+title: "How I use git worktrees"
+date: 2022-10-10
+description: "simultanous branches for truly scattered development"
+tags:
+  - git
+---
+
+Git [worktrees](https://git-scm.com/docs/git-worktree) are extremely powerful. In short, they allow you to checkout a
+branch into a specific directory. Then, you can checkout another branch into another directory. From here, switching
+branches is as simple as switching directories! This is essential for developers who might be working on several things
+at once or who are regularly interrupted and need to switch to a bug fix or even just need to review some code.
+
+The most basic use of a git worktree is to simply checkout a branch using the following command.
+
+```bash
+git worktree add -b feature-branch origin/main ../feature-branch
+```
+
+This will create a new direcotry as a sibling to your normal working directory, create a branch called
+`feature-branch`, and set the inital state of the branch to be that of `origin/main`. Inside this new diectory will be
+the exact project checked out where you can run all of the normal git commands and set up the project as normal.
+
+::: callout
+You'll need to `npm install` or do whatever to set up your project as you normally would, as if this were a new clone.
+:::
+
+One thing I don't like about this setup is the "scatteredness" of my repo with one seemingly _blessed_ worktree and
+then a bunch of siblings that are outside of that worktree. Instead, I like to use a [bare
+repo](https://git-scm.com/book/en/v2/Git-on-the-Server-Getting-Git-on-a-Server#_bare_repo) setup. In this, the project
+is checked out without a working tree, similar to how it would be on GitHub and elsewhere.
+
+```bash
+▷ git clone --bare git@github.com:nicknisi/dotfiles.git dotfiles
+Cloning into bare repository 'dotfiles'...
+remote: Enumerating objects: 6464, done.
+remote: Counting objects: 100% (1418/1418), done.
+remote: Compressing objects: 100% (603/603), done.
+remote: Total 6464 (delta 913), reused 1154 (delta 796), pack-reused 5046
+Receiving objects: 100% (6464/6464), 3.44 MiB | 10.71 MiB/s, done.
+Resolving deltas: 100% (3715/3715), done.
+
+~/Developer/test 
+▷ cd dotfiles
+
+~/Developer/test/dotfiles 
+▷ ll
+.rw-r--r-- 173 nicknisi  7 Oct 10:36  config
+.rw-r--r--  73 nicknisi  7 Oct 10:36  description
+.rw-r--r--  21 nicknisi  7 Oct 10:36  HEAD
+drwxr-xr-x   - nicknisi  7 Oct 10:36  hooks
+drwxr-xr-x   - nicknisi  7 Oct 10:36  info
+drwxr-xr-x   - nicknisi  7 Oct 10:36  objects
+.rw-r--r-- 287 nicknisi  7 Oct 10:36  packed-refs
+drwxr-xr-x   - nicknisi  7 Oct 10:36  refs
+```
+
+As you can see in here, we now have the files that would normally appear in the `.git/` directory directly inside the
+directory we made when cloning the repository. So far that doesn't seem better! From here, we could create a new
+worktree with the command above and it would appear inline with all of these important-looking git files, which adds a
+lot of confusion. Instead, we can hide the `.git` files inside of another directory when we bare clone the repository.
+I like to call this directory `.bare`.
+
+```bash
+▷ mkdir -p ~/Developer/dotfiles
+▷ git clone --bare git@github.com:nicknisi/dotfiles.git .bare
+```
+
+```shell
+# create a new directory for the repository
+▷ mkdir project && cd project
+# glone the repository (bare) and hide it in a hidden direcotry
+▷ git clone --bare git@github.com:user/project.git .bare
+# create a `.git` file that points to the bare repo
+▷ echo "gitdir: ./.bare" > .git
+```
+
+The benefit of this setup is that the bare repo contents are  hidden away in `.bare`, and then the directory containing
+that effectively becomes a place to create worktrees associated with that bare repo, thanks to the `.git` file, which
+is a pointer to where the git database is located.
+
+From here, new worktrees can be created and maintained like normal. However, there are a few small issues because when
+a bare repo is cloned remote-tracking branches are not created. So, when trying to `git fetch`, no remote branches are
+fetched. This can be fixed with a few commands to update what happens on fetch and to associate local branches with the
+their remote.
+
+
+```shell
+▷ git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
+▷ git fetch
+▷ git for-each-ref --format='%(refname:short)' refs/heads | xargs -n1 -I{} git branch --set-upstream-to=origin/{}
+```
+
+::: callout
+I created a [script](https://github.com/nicknisi/dotfiles/blob/main/bin/git-bare-clone) to help make this setup easier.
+:::
+
+## The downsides
+
+While I think this setup is fantastic and I don't see myself going back to the old, single woking directory lifestyle,
+there are a few downsides that you should be aware of.
+
+### Each worktree is effectively its own project
+
+Each worktree exists independently of the other. This is obviously a good thing because it means you can run them
+independently and simultanously, it also means that you need to `npm install` (or your equivelant) on every one of
+them. This means that the creation and setup of each worktree can be an ordeal. For my main work project, `npm install`
+takes about 5 minutes 😱.
+
+### The output of `git branch` is pretty useless
+
+Looking to see what branches you have created locally becomes more of an ordeal because the `git branch` command will
+list every branch that exists in the bare clone.
+
+```shell
+▷ git --no-pager branch | wc -l
+    1520
+```
+
+## How I use worktrees to get things done
+
+I will use my `git bare-clone` script to set up a new, bare repository ready-to-go for creating multiple worktrees. In
+the way I work, I will crate a new worktree for each feature that I am working on, meaning I will have several
+worktrees that I regularly prune with `git worktree remove`. However, there are a few stable worktrees that I will
+perpetually keep around in a project.
+
+- `main` - The main worktree simply contains the `main` branch checked out. It's the easiest way to run the current
+  _known good_ state. I can run this side-by-side with my feature branch worktree to compare and contrast functionality
+  on the fly.
+- `review` - This is a worktree that I'll use to check out a pull request I am reviewing so that I can test it, run
+  it, run its tests, etc. I'll use the fantastic `gh pr checkout 1234` command from the [GitHub
+  CLI](https://cli.github.com) to check out PRs easily into this
+  worktree.
+- `hotfix` - this worktree is reserved for quickly creating hotfix PRs in. I keep this around because I want to quickly
+  jump in and start working rather than creating a new feature-branch worktree and then waiting for the long, long `npm
+  install` to finish.
+
+### Quickly creating new worktrees
+
+To save time, I made a [helper script](https://gist.github.com/nicknisi/a26f148611517e3d998eb456ac57efff) that I use to
+create new worktrees for each feature branch. This is mostly straightforward, and the main benefit this gives me is to
+automatically create and push a remote feature branch, kick off `npm install`, and kick off a build of my project. It
+can take several minutes to complete, but it's set and forget and then I can come back to a fully up-and-running
+worktree, ready to be worked!
+
+## Conclusion
+
+Using git worktrees are a big change to how I approach development on large projects where I'm involved in lots of
+different ways including feature work, reviews, and hotfixes. There's good and bad to them, but for me, the good
+outweighs the bad and I don't see myself ever going back!
