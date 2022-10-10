@@ -1,5 +1,6 @@
 const markdownIt = require('markdown-it');
 const markdownItAnchor = require('markdown-it-anchor');
+const markdownContainer = require('markdown-it-container');
 const pluginRss = require('@11ty/eleventy-plugin-rss');
 const pluginSyntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight');
 const pluginNavigation = require('@11ty/eleventy-navigation');
@@ -122,18 +123,25 @@ module.exports = (config) => {
       `<div class="video-wrapper"><iframe src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe></div>`
   );
 
-  const markdownLibrary = markdownIt({
-    html: true,
-    linkify: true,
-  }).use(markdownItAnchor, {
-    permalink: markdownItAnchor.permalink.ariaHidden({
-      placement: 'after',
-      class: 'direct-link',
-      symbol: '#',
-    }),
-    level: [1, 2, 3, 4],
-    slugify: config.getFilter('slugify'),
-  });
+  config.setLibrary(
+    'md',
+    markdownIt({
+      html: true,
+      linkify: true,
+    })
+      .use(markdownContainer, 'callout')
+      .use(markdownContainer, 'lead')
+      .use(markdownContainer, 'warning')
+      .use(markdownItAnchor, {
+        permalink: markdownItAnchor.permalink.ariaHidden({
+          placement: 'after',
+          class: 'direct-link',
+          symbol: '#',
+        }),
+        level: [1, 2, 3, 4],
+        slugify: config.getFilter('slugify'),
+      })
+  );
 
   return {
     templateFormats: ['md', 'njk', 'html', 'liquid'],
