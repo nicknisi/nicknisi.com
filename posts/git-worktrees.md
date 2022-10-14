@@ -120,7 +120,7 @@ list every branch that exists in the bare clone.
 ## How I use worktrees to get things done
 
 I will use my `git bare-clone` script to set up a new, bare repository ready-to-go for creating multiple worktrees. In
-the way I work, I will crate a new worktree for each feature that I am working on, meaning I will have several
+the way I work, I will create a new worktree for each feature that I am working on, meaning I will have several
 worktrees that I regularly prune with `git worktree remove`. However, there are a few stable worktrees that I will
 perpetually keep around in a project.
 
