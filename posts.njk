@@ -2,10 +2,12 @@
 layout: base
 ---
 
-<h2>Posts</h2>
+<div class="py-10">
+  <h2>Posts</h2>
 
-{% set posts = collections.posts %}
-{% include 'postslist.njk' %}
+  {% set posts = collections.posts %}
+  {% include 'postslist.njk' %}
 
-{% set posts = collections.posts %}
-{% include 'postslist.njk' %}
+  {% set posts = collections.posts %}
+  {% include 'postslist.njk' %}
+</div>
