@@ -13,7 +13,7 @@ layout: resume
 
 -----------
 
-A JavaScript and TypeScript developer with 12 years experience in the industry and with a focus on community, teaching, and developer tooling. Organizer of the only JavaScript conference in Nebraska and panelist on two JavaScript-focused podcasts.
+A JavaScript and TypeScript personality with 12 years experience in the industry and with a focus on community, teaching, and developer tooling. Organizer of the only JavaScript conference in Nebraska and panelist on two JavaScript-focused podcasts.
 
 <!--
 ## <span class="icon fa fa-code"></span>Skills
@@ -28,16 +28,25 @@ A JavaScript and TypeScript developer with 12 years experience in the industry a
 ## <span class="icon fa fa-briefcase"></span>Experience
 -----------
 
-### Senior Software Engineer II _Remote_
-#### C2FO _May 2020 - Present_
+### C2FO _May 2020 - Present_
+
+##### Staff Engineer _Remote_
+
++ Part of the Developer Experience team
++ Maintainer of design system and react component library using MUI and Storybook
++ Lead front end chapter meetings to discuss new paradigms and best practices
++ Lead on project building a complex builder application using multiple state machines
++ oversaw conversion from react-scripts to vite in the frontend monorepo
+
+##### Senior Software Engineer II _Remote_
 
 + Oversaw and implemented the upgrade of React and TypeScript in a monorepo with more than 70 apps without introducing regressions
 + Implemented tooling that used AST walking to identify areas of application that were missing internationalization
 + Maintainer of React component library for internal design system
 + Full-stack development with TypeScript, implementing GraphQL APIs with NestJS, and consuming them in a React front end
 
-### Senior Software Engineer _Remote_
-#### SitePen  _July 2013 - May 2020_
+### SitePen  _July 2013 - May 2020_
+##### Senior Software Engineer _Remote_
 
 + **Open Source Contributor**, ensuring success on many company and community open source initiatives including Dojo, Intern, TypeDoc, and CodeSandbox
 + **Instructor**, teaching 2-5 day workshops online and in-person on topics including TypeScript, JavaScript fundamentals, and Dojo.
@@ -49,20 +58,21 @@ A JavaScript and TypeScript developer with 12 years experience in the industry a
 #### Flywheel _January 2018 - April 2018_
 
 + Developer on the Fly-tools team, delivering tools to internal users to ensure success of a thriving startup and web-hosting company
-+ Introduced TypeScript to the company via the development of a small application for linking support tickets
--->
++ Introduced TypeScript to the company via the development of a small application for linking support tickets -->
 
-### Senior Software Engineer _Remote_
-#### C2FO  _October 2011 – July 2013_
+<!--
+### C2FO  _October 2011 – July 2013_
+##### Senior Software Engineer _Remote_
 
 + Part of core development team delivering results which lead to $9.1 million funding round lead by Union Square Ventures.
 + Designed and developed frontend architecture on c2fo.com with a focus on the responsive design and using Backbone, RequireJS, Handlebars, and Less to create a friendly single page application.
+-->
 <!--+ Upgraded application from Dojo 1.4 to Dojo 1.7 which included the transition from the old module system to the new Asynchronous Module Definition (AMD) style. -->
-+ Backend development with both Node.js and Ruby.
+<!-- + Backend development with both Node.js and Ruby. -->
 <!-- + Contributed core content to QuickPay, the Pollenware enterprise application, involving work with Dojo, Ruby/Sinatra, and HTML/CSS. -->
 <!-- + Utilized an expert knowledge of JavaScript, HTML, DOM, and CSS to deliver advanced interface and controls. -->
 
-<!-- <span class="page-break"></span> -->
+<!-- <span class="page-break"></span>
 <!--
 ### Freelance _Omaha, NE_
 #### Sub-Contracting _April 2012 – June 2012_
@@ -74,13 +84,15 @@ A JavaScript and TypeScript developer with 12 years experience in the industry a
 + Delivered on time and successfully.
 -->
 
-### Software Engineer / Engineering Leadership Development Program _Omaha, NE_
-#### Lockheed Martin _January 2009 – October 2011_
+<!--
+### Lockheed Martin _January 2009 – October 2011_
+##### Software Engineer / Engineering Leadership Development Program _Omaha, NE_
+-->
 
 <!-- + Accepted into Engineering Leadership Development Program (ELDP) based on job performance, panel interviews, and essays. -->
 <!-- + Development lead for maintenance drop focusing on performance enhancement and usability, where duties include leading a team of three engineers, supporting builds and turnovers, and cross functional coordination to facilitate the engineering life cycle. -->
 <!-- + Lead Developer of a system demo application using Flash and driven by XML files which included audio narration, videos, and interactive elements for the customer and met regularly with a customer working group to ensure the demo met their needs. -->
-+ Chief Architect and lead developer of a metrics reporting web application written in Groovy/Grails that reads data from another application database and generates reports using JasperReports.
+<!-- + Chief Architect and lead developer of a metrics reporting web application written in Groovy/Grails that reads data from another application database and generates reports using JasperReports. -->
 <!-- + Developed custom SNMP agent for administration of a hardware device written in C. -->
 <!-- + Developed management console for an embedded hardware device using jQuery, Ruby, and PHP. -->
 <!-- + Developed a client side network performance testing application using JavaScript. -->
@@ -88,10 +100,14 @@ A JavaScript and TypeScript developer with 12 years experience in the industry a
 <!--+ Set up Hadoop cluster and utilized MapReduce for analysis of large quantities of network traffic data. -->
 <!-- + Implemented the most visible components of web application including custom jQuery/TinyMCE plugins, a custom application navigation system, and the development of a custom inline rich text editor in JavaScript. -->
 
+<span class="page-break"></span>
+
 ## <span class="icon fa fa-users"></span>Community
 
 -----------
 
++ **Emcee of online introductions** [React Summit & JS Nation](https://changelog.com/jsparty/231) (2022) - I introduced the in-person conferences to thehttps://changelog.com/jsparty/231
+online audience in Amsterdam
 + **Emcee** [TypeScript Conf US](https://tsconf.io) (2018 - Present) - An annual celebration of TypeScript, with the people that make it and the community that loves it
 + **Organizer and Emcee** [NEJS Conf](http://nejsconf.com) (2015 - 2019) - An annual community JavaScript conference featuring the best JS talent in the industry
 + **Panelist** [JS Party](https://changelog.com/jsparty) (2018 - Present) - A weekly podcast covering JavaScript and the web
@@ -103,6 +119,7 @@ A JavaScript and TypeScript developer with 12 years experience in the industry a
 
 -----------
 
++ React Global Online Summit 2022 - [Componentizing Application State](https://www.youtube.com/watch?v=B5BmHj0WCiA)
 + Changelog - [Vim With Me: Nick Nisi](https://www.youtube.com/watch?v=W9Bd0FmKgMI)
 + TJ DeVries Twitch - [Neovim Builtin LSP Tutorial: Customizing Renames](https://www.youtube.com/watch?v=tAVxxdFFYMU)
 + NebraskaJS - [Rules to Git By](https://www.youtube.com/watch?v=yI0BtEzdGtw&t=2923s)
@@ -118,11 +135,12 @@ A JavaScript and TypeScript developer with 12 years experience in the industry a
 
 -----------
 
++ [How I use Git Worktrees](https://nicknisi.com/posts/git-worktrees/)
 + [Git Your Way: includeIf](https://nicknisi.com/posts/git-includeif/)
-+ [The Definitive TypeScript Guide](https://www.sitepen.com/blog/update-the-definitive-typescript-guide/)
-+ [Advanced TypeScript Concepts: Classes and Types](https://www.sitepen.com/blog/advanced-typescript-concepts-classes-and-types/)
 + [Codemods: Effective, Automated Refactoring](https://www.sitepen.com/blog/codemods-effective-automated-refactoring/)
 + [Wrapping Web Components with React](https://www.sitepen.com/blog/wrapping-web-components-with-react/)
+
+*A complete list of articles is available at [nicknisi.com](https://nicknisi.com)*
 
 
 <!--
@@ -143,7 +161,7 @@ A JavaScript and TypeScript developer with 12 years experience in the industry a
 
 -->
 
-## <span class="icon fa fa-alicorn"></span>Skills
+<!-- ## <span class="icon fa fa-alicorn"></span>Skills
 
 -----------
 
@@ -153,6 +171,7 @@ A JavaScript and TypeScript developer with 12 years experience in the industry a
 ## <span class="icon fa fa-book"></span>Education
 
 -----------
+-->
 
 <!--
 ### The George Washington University

@@ -76,11 +76,21 @@ h3 {
 }
 
 h4 {
-    padding-left: 50px;
+  /* padding-left: 50px; */
+  font-size: 1.1em;
 }
 
 h4 em {
     float: right;
+}
+
+h5 {
+  padding-left: 50px;
+  font-size: 1.1em;
+}
+
+h5 em {
+  float: right;
 }
 
 blockquote {
