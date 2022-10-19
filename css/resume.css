@@ -2,10 +2,11 @@
 @import 'grid';
 
 :root {
-    --blue: #2E88A3;
+    --blue: #035388;
     --black: #000000;
     --white: #FFFFFF;
     --orange: #E18728;
+    --purple: #23012C;
 
     --white: #FFFFFF;
     --black: #000000;
@@ -41,7 +42,7 @@ h1, h2, h3, h4, h5 {
 }
 
 em {
-    color: var(--lightText);
+    color: var(--darkText);
     font-weight: normal;
     font-size: 0.8em;
     text-align: right;
