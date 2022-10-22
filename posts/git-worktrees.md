@@ -17,8 +17,8 @@ The most basic use of a git worktree is to simply checkout a branch using the fo
 git worktree add -b feature-branch origin/main ../feature-branch
 ```
 
-This will create a new direcotry as a sibling to your normal working directory, create a branch called
-`feature-branch`, and set the inital state of the branch to be that of `origin/main`. Inside this new diectory will be
+This will create a new directory as a sibling to your normal working directory, create a branch called
+`feature-branch`, and set the inital state of the branch to be that of `origin/main`. Inside this new directory will be
 the exact project checked out where you can run all of the normal git commands and set up the project as normal.
 
 ::: callout
