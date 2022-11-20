@@ -16,6 +16,10 @@
     "email": "nick@nisi.org"
   },
   "social": {
+    "mastodon": {
+      "username": "@nicknisi@mastodon.social",
+      "url": "https://mastodon.social/@nicknisi"
+    },
     "twitter": { "username": "nicknisi", "url": "https://twitter.com/nicknisi" },
     "github": { "username": "nicknisi", "url": "https://github.com/nicknisi" },
     "youtube": { "username": "nicknisi", "url": "https://www.youtube.com/nicknisi" },
