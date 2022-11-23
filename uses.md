@@ -7,13 +7,18 @@ templateClass: tmpl-uses
 
 ## Development Environment
 
-I work almost exclusively in the terminal, from editing to git commands. For the most up-to-date setup, check out my [dotfiles](https://github.com/nicknisi/dotfiles).
+::: callout
+I work almost exclusively in the terminal, from editing to git commands. For the most up-to-date setup, check out my [dotfiles](https://github.com/nicknisi/dotfiles)!
+:::
+
+![](/img/desk.jpg)
+
 
 ### Editor
 
 - [Neovim](https://neovim.io) (I alias `nvim` to `vim` because muscle memory 🦾)
 - [Kitty](https://sw.kovidgoyal.net/kitty/) terminal emulator
-- [Base16](http://chriskempson.com/projects/base16/) color scheme
+- [Catppuccin](https://github.com/catppuccin) color scheme
 - [MonoLisa](https://www.monolisa.dev/) font
 
 #### Neovim as an IDE
@@ -35,7 +40,6 @@ Check out my [dotfiles](https://github.com/nicknisi/dotfiles) repo for the most 
 - [LazyDocker](https://github.com/jesseduffield/lazydocker) because I don't know what I'm doing with Docker
 - [ripgrep](https://github.com/BurntSushi/ripgrep) is a fast alternative to grep/ack/ag
 - [gh](https://github.com/cli/cli) official GitHub CLI
-- [hub](https://github.com/github/hub) Git wrapper adds GitHub-specific commands
 
 ## Browser extensions
 
@@ -44,7 +48,7 @@ I use Safari as my daily driver. I just do my part to stave off the coming Chrom
 - [1Password](https://1password.com) password manager. Everything sacred to me is in here
 - [1Blocker](https://1blocker.com) content blocker (I use it on iOS, too)
 - [Dark Reader](https://darkreader.org) gives everything I want a dark mode
-- [Octotree](https://www.octotree.io) adds a file drawer and dark mode to GitHub. it's so handy!
+- [Octotree](https://www.octotree.io) adds a file drawer to GitHub. it's so handy!
 
 ## Desktop apps
 
@@ -79,9 +83,11 @@ These are the main apps I try to keep on my machine and ones that I use every da
 
 ## Office setup
 
-- [2020 Apple Mac Mini (M1)](https://www.apple.com/mac-mini/) 16GB Unified Memory and 1TB SSD
+- ~~[2020 Apple Mac Mini (M1)](https://www.apple.com/mac-mini/) 16GB Unified Memory and 1TB SSD~~
+- [2022 Apple Mac Studio (M1 Ultra)](https://www.apple.com/mac-studio/) 128GB Unified Memory and 2TB SSD
 - [2019 Apple MacBook pro 16"](https://www.apple.com/macbook-pro-16/) (I run in clamshell mode when at home)
 - [LG 38WK95C-W UltraWide Monitor](https://www.amazon.com/gp/product/B079L4WR4T/)
+- 2x [Asus 4K Gaming Monitor](https://www.amazon.com/ASUS-VG289Q-Monitor-FreeSync-DisplayPort/dp/B0845NXCXF)
 - [AmazonBasics Premium Single Monitor Stand](https://www.amazon.com/gp/product/B00MIBN16O/)
 - [CalDigit TS3+](https://www.amazon.com/CalDigit-TS3-Plus-Thunderbolt-Dock/dp/B07CZPV8DF/)
 - [Apple Magic Keyboard](https://www.amazon.com/Apple-Keyboard-Wireless-Rechargable-English/dp/B016QO64FI/)
@@ -95,12 +101,17 @@ These are the main apps I try to keep on my machine and ones that I use every da
 - [SteelCase Think Chair](https://www.steelcase.com/products/office-chairs/think/)
 
 **Audio/Video Equipment**
-- [Logitech Brio Ultra HD Webcam](https://www.amazon.com/gp/product/B01N5UOYC4/)
+- ~~[Logitech Brio Ultra HD Webcam](https://www.amazon.com/gp/product/B01N5UOYC4/)~~
+- [Sony a6000 Mirrorless Camera](https://www.amazon.com/Sony-Mirrorless-Digitial-3-0-Inch-16-50mm/dp/B00I8BICB2)
+- [Elgato Cam Link 4K](https://www.amazon.com/Elgato-Cam-Link-Broadcast-Camcorder/dp/B07K3FN5MR)
 - [Shure SM7B Microphone](https://www.amazon.com/Shure-SM7B-Cardioid-Dynamic-Microphone/dp/B0002E4Z8M)
-- [Heil Sound Microphone Boom](https://www.amazon.com/dp/B004PJ414I/)
+- ~~[Heil Sound Microphone Boom](https://www.amazon.com/dp/B004PJ414I/)~~
+- [Elgato Wave Low Profile Mic Arm](https://www.amazon.com/Elgato-Wave-Mic-Arm-Microphone/dp/B097376LKF)
 - [Rolls Mic Switch](https://www.amazon.com/rolls-Mic-Switch-Off-MS111/dp/B001GMXFW6)
 - [Triton FetHead Microphone Preamp](https://www.amazon.com/TRITON-AUDIO-FetHead-Microphone-Preamp/dp/B06XDPTDN5/)
-- [PreSons AudioBox USB Audio Interface](https://www.amazon.com/PreSonus-AudioBox-USB-Recording-System/dp/B071W6YVDR)
+- ~~[PreSonus AudioBox USB Audio
+Interface](https://www.amazon.com/PreSonus-AudioBox-USB-Recording-System/dp/B071W6YVDR)~~
+- [Volt 1 USB Audio Interface](https://www.amazon.com/Universal-Audio-Volt-USB-Interface/dp/B09J1V6R6N)
 - [Sony MDR7506 Headphones](https://www.amazon.com/dp/B000AJIF4E)
 - [Bose QuietComfort 35 II Wireless Bluetooth Headohones](https://www.amazon.com/Bose-QuietComfort-Wireless-Headphones-Cancelling/dp/B0756CYWWD/)
 - [Elgato Stream Deck](https://www.amazon.com/Elgato-Stream-Deck-Controller-customizable/dp/B06XKNZT1P/)
