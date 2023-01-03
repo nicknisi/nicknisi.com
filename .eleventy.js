@@ -26,6 +26,7 @@ module.exports = (config) => {
   config.addPlugin(pluginNavigation);
 
   config.addLayoutAlias('base', 'layouts/base.njk');
+  config.addLayoutAlias('prose', 'layouts/prose.njk');
   config.addLayoutAlias('post', 'layouts/post.njk');
   config.addLayoutAlias('page', 'layouts/page.njk');
   config.addLayoutAlias('home', 'layouts/home.njk');
