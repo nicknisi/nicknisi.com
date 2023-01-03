@@ -38,7 +38,11 @@ templateClass: tmpl-post
       <div class="flex-grow sm:text-left text-center mt-6 sm:mt-0">
         <h2 class="text-gray-900 text-lg title-font font-medium mb-2">{{ metadata.author.name }}</h2>
           <p class="leading-relaxed text-base">{{ metadata.description}}</p>
-          <p class="leading-relaxed text-base">Follow me on <a href="{{metadata.social.twitter.url | url}}">Twitter</a>.</p>
+          <p class="leading-relaxed text-base">
+            Follow me on
+            <a class="primary-link" href="{{metadata.social.mastodon.url | url}}">Mastodon</a>
+            or <a class="primary-link" href="{{metadata.social.twitter.url | url}}">Twitter</a>.
+          </p>
       </div>
     </div>
 </article>
