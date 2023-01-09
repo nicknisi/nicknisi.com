@@ -35,7 +35,7 @@
     "cheerio": "^1.0.0-rc.12",
     "heroicons": "^2.0.11",
     "html-minifier": "^4.0.0",
-    "luxon": "^3.0.3",
+    "luxon": "^3.2.1",
     "markdown-it": "^13.0.1",
     "markdown-it-anchor": "^8.6.5",
     "markdown-it-container": "^3.0.0",
