@@ -9,11 +9,41 @@ layout: prose
   </div>
 </section>
 
-I'm a Staff Software Engineer, coding professionally since 2009 and focused primarily on the front end and JavaScript/TypeScript. I am a big fan of community involvement, and have been involved in local meetups since the start. I have also been involved in the behind the scenes organization of several conferences, and helmed a couple, including TypeScript Conf US and the Nebraska JavaScript conference.
+I'm a Staff Software Engineer, coding professionally since 2009 and focused primarily on the front end and
+JavaScript/TypeScript. I am a big fan of community involvement, and have been involved in local meetups since the start.
+I have also been involved in the behind the scenes organization of several conferences, and helmed a couple, including
+TypeScript Conf US and the Nebraska JavaScript conference.
 
-Outside of tech, I am a dad to two amazing kids! I'm also an avid karaoke enthusiast. My go-to songs include _Kiss_ by Prince and _How am I Supposed to Live Without You_ by Michael Bolton. I am also an ordained Jedi Knight who has presided over nine weddings.
+Outside of tech, I am a dad to two amazing kids. I'm also an avid karaoke enthusiast. My go-to songs include _Kiss_ by
+Prince and _How am I Supposed to Live Without You_ by Michael Bolton. I am also an ordained Jedi Knight who has
+presided over nine weddings.
 
-## Community projects
+## Talks
+
+Nick is an occasional conference speaker and has spoken at conferences all over the world.
+
+<div class="flex place-content-evenly">
+  {%- for talk in talks %}
+    {%- if talk.promote %}
+      <div class="flex-1 rounded-lg shadow-lg shadow-blue-gray-300 bg-cool-gray-50 p-2 space-x-2 space-y-2 m-2 w-89">
+        <a href="{{talk.url | url}}" target="_blank" class="no-underline">
+          <div class="flex flex-col items-center justify-items-center p-4">
+            <h5 class="text-grey-900 text-xl leading-tight font-bold h-8">{{talk.title}}</h5>
+            <img class="rounded w-48 mx-2" src="https://img.youtube.com/vi/{{talk.video_id}}/hqdefault.jpg" alt="{{talk.title}}">
+            <div class="flex flex-col align-content-center justify-content-center">
+              <div class="text-grey-600">{{talk.date}}</div>
+              <div class="text-grey-600 text-l leading-tight font-medium">{{talk.location}}</div>
+            </div>
+          </div>
+        </a>
+      </div>
+    {%- endif %}
+  {%- endfor %}
+</div>
+
+Continue to [here](/talks) for a full list of talks.
+
+## Projects
 
 <div class="flex place-content-evenly flex-wrap">
 {%- for project in metadata.projects %}
