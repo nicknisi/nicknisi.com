@@ -11,8 +11,7 @@ templateClass: tmpl-uses
 I work almost exclusively in the terminal, from editing to git commands. For the most up-to-date setup, check out my [dotfiles](https://github.com/nicknisi/dotfiles)!
 :::
 
-![](/img/desk.jpg)
-
+<img alt="My desktop" src="/img/desktop.png" class="image">
 
 ### Editor
 
@@ -43,12 +42,14 @@ Check out my [dotfiles](https://github.com/nicknisi/dotfiles) repo for the most 
 
 ## Browser extensions
 
-I use Safari as my daily driver. I just do my part to stave off the coming Chromium-acolypse.
+I use Safari as my daily driver.
 
 - [1Password](https://1password.com) password manager. Everything sacred to me is in here
 - [1Blocker](https://1blocker.com) content blocker (I use it on iOS, too)
 - [Dark Reader](https://darkreader.org) gives everything I want a dark mode
 - [Octotree](https://www.octotree.io) adds a file drawer to GitHub. it's so handy!
+
+I am also experimenting with [Arc](https://arc.net/) as a daily driver browser.
 
 ## Desktop apps
 
@@ -83,24 +84,28 @@ These are the main apps I try to keep on my machine and ones that I use every da
 
 ## Office setup
 
+<img alt="My desk" src="/img/desk.jpg" class="image">
+
 - ~~[2020 Apple Mac Mini (M1)](https://www.apple.com/mac-mini/) 16GB Unified Memory and 1TB SSD~~
 - [2022 Apple Mac Studio (M1 Ultra)](https://www.apple.com/mac-studio/) 128GB Unified Memory and 2TB SSD
 - [2019 Apple MacBook pro 16"](https://www.apple.com/macbook-pro-16/) (I run in clamshell mode when at home)
 - [LG 38WK95C-W UltraWide Monitor](https://www.amazon.com/gp/product/B079L4WR4T/)
-- 2x [Asus 4K Gaming Monitor](https://www.amazon.com/ASUS-VG289Q-Monitor-FreeSync-DisplayPort/dp/B0845NXCXF)
+- 2× [Asus 4K Gaming Monitor](https://www.amazon.com/ASUS-VG289Q-Monitor-FreeSync-DisplayPort/dp/B0845NXCXF)
 - [AmazonBasics Premium Single Monitor Stand](https://www.amazon.com/gp/product/B00MIBN16O/)
 - [CalDigit TS3+](https://www.amazon.com/CalDigit-TS3-Plus-Thunderbolt-Dock/dp/B07CZPV8DF/)
 - [Apple Magic Keyboard](https://www.amazon.com/Apple-Keyboard-Wireless-Rechargable-English/dp/B016QO64FI/)
 - [Apple Magic Mouse](https://www.amazon.com/Apple-Magic-Mouse-Wireless-Rechargable/dp/B016QO5YNG/)
 - [Apple Magic Trackpad](https://www.amazon.com/Apple-Magic-Trackpad-Wireless-Rechargable/dp/B016QO5YWC/)
 - [TwelveSouth Bookarc Mac stand](https://www.amazon.com/Twelve-South-Space-Saving-Vertical-notebooks/dp/B086RRJ82R/)
-- [Xboard Magnetic Mobile whiteboard 48x36, Double-Sided](https://www.amazon.com/gp/product/B075FT75C3/)
+- [Xboard Magnetic Mobile whiteboard 48×36, Double-Sided](https://www.amazon.com/gp/product/B075FT75C3/)
 
 **Desk and Chair**
+
 - [GeekDesk Max Adjustable desk](https://www.geekdesk.com/standing-desk-frame)
 - [SteelCase Think Chair](https://www.steelcase.com/products/office-chairs/think/)
 
 **Audio/Video Equipment**
+
 - ~~[Logitech Brio Ultra HD Webcam](https://www.amazon.com/gp/product/B01N5UOYC4/)~~
 - [Sony a6000 Mirrorless Camera](https://www.amazon.com/Sony-Mirrorless-Digitial-3-0-Inch-16-50mm/dp/B00I8BICB2)
 - [Elgato Cam Link 4K](https://www.amazon.com/Elgato-Cam-Link-Broadcast-Camcorder/dp/B07K3FN5MR)
@@ -110,12 +115,11 @@ These are the main apps I try to keep on my machine and ones that I use every da
 - [Rolls Mic Switch](https://www.amazon.com/rolls-Mic-Switch-Off-MS111/dp/B001GMXFW6)
 - [Triton FetHead Microphone Preamp](https://www.amazon.com/TRITON-AUDIO-FetHead-Microphone-Preamp/dp/B06XDPTDN5/)
 - ~~[PreSonus AudioBox USB Audio
-Interface](https://www.amazon.com/PreSonus-AudioBox-USB-Recording-System/dp/B071W6YVDR)~~
+  Interface](https://www.amazon.com/PreSonus-AudioBox-USB-Recording-System/dp/B071W6YVDR)~~
 - [Volt 1 USB Audio Interface](https://www.amazon.com/Universal-Audio-Volt-USB-Interface/dp/B09J1V6R6N)
 - [Sony MDR7506 Headphones](https://www.amazon.com/dp/B000AJIF4E)
 - [Bose QuietComfort 35 II Wireless Bluetooth Headohones](https://www.amazon.com/Bose-QuietComfort-Wireless-Headphones-Cancelling/dp/B0756CYWWD/)
 - [Elgato Stream Deck](https://www.amazon.com/Elgato-Stream-Deck-Controller-customizable/dp/B06XKNZT1P/)
-- 2x [Elgato Key Light](https://www.amazon.com/Elgato-Key-Light-Professional-App-Enabled/dp/B07L755X9G/)
+- 2× [Elgato Key Light](https://www.amazon.com/Elgato-Key-Light-Professional-App-Enabled/dp/B07L755X9G/)
 - [Eve Light Strip](https://www.amazon.com/gp/product/B07MTX8MR4/)
 - [Emart Collapsible Green Screen](https://www.amazon.com/gp/product/B07DWTGLPM/)
-
