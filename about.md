@@ -22,10 +22,10 @@ presided over nine weddings.
 
 Nick is an occasional conference speaker and has spoken at conferences all over the world.
 
-<div class="flex place-content-evenly">
+<div class="flex flex-wrap place-content-evenly">
   {%- for talk in talks %}
     {%- if talk.promote %}
-      <div class="flex-1 rounded-lg shadow-lg shadow-blue-gray-300 bg-cool-gray-50 p-2 space-x-2 space-y-2 m-2 w-89">
+      <div class="md:flex-1 xs:flex-grow rounded-lg shadow-lg shadow-blue-gray-300 bg-cool-gray-50 p-2 space-x-2 space-y-2 m-2 w-89">
         <a href="{{talk.url | url}}" target="_blank" class="no-underline">
           <div class="flex flex-col items-center justify-items-center p-4">
             <h5 class="text-grey-900 text-xl leading-tight font-bold h-8">{{talk.title}}</h5>
@@ -41,7 +41,7 @@ Nick is an occasional conference speaker and has spoken at conferences all over 
   {%- endfor %}
 </div>
 
-Continue to [here](/talks) for a full list of talks.
+**[Full List of talks](/talks)**
 
 ## Projects
 
