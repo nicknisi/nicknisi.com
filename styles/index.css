@@ -5,59 +5,60 @@
 @tailwind utilities;
 
 :root {
-    --icon-size: 20px;
+  --icon-size: 20px;
 }
 
 @media (prefers-color-scheme: dark) {
-    :root {
-    }
+  :root {
+  }
 }
 
 .tmpl-uses ul {
-    @apply list-disc pl-4;
+  @apply list-disc pl-4;
 }
 
 .tmpl-uses a,
 .tmpl-uses a:link,
 .tmpl-uses a:visited {
-    @apply text-blue-gray-700;
+  @apply text-blue-gray-700;
 }
 
 .direct-link {
-    @apply text-base no-underline align-middle;
+  @apply text-base no-underline align-middle;
 }
 
 .tag {
-    @apply px-1 text-xs tracking-wider uppercase border border-solid;
+  @apply px-1 text-xs tracking-wider uppercase border border-solid;
 }
 
 .tag:hover {
-    @apply no-underline;
+  @apply no-underline;
 }
 
 .video-wrapper {
-    @apply relative w-full;
-    padding-top: 56.25%;
+  @apply relative w-full;
+  padding-top: 56.25%;
 }
 
 .icon {
-    width: var(--icon-size);
-    height: var(--icon-size);
-    display: inline-block;
+  width: var(--icon-size);
+  height: var(--icon-size);
+  display: inline-block;
 }
 
 .video-wrapper iframe,
 .video-wrapper object,
 .video-wrapper embed {
-    @apply absolute top-0 left-0 w-full h-full;
+  @apply absolute top-0 left-0 w-full h-full;
 }
 
-.month, .year {
-    @apply text-xs tracking-wider uppercase text-blue-gray-700;
+.month,
+.year {
+  @apply text-xs tracking-wider uppercase text-blue-gray-700;
 }
 
 .day {
-    @apply text-xl font-bold text-blue-gray-700;
+  @apply text-xl font-bold text-blue-gray-700;
 }
 
 .callout {
@@ -66,4 +67,8 @@
 
 .primary-link {
   @apply font-semibold text-blue-gray-700;
+}
+
+.image {
+  @apply rounded-lg shadow-lg;
 }

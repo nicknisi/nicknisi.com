@@ -10,7 +10,7 @@ layout: base
   </p>
 
   <ul class="list-none space-y-6">
-      {% for title, talk in talks %}
+      {% for talk in talks %}
       <li class="flex gap-x-4 items-center">
         {% set description = "Remote Talk" if talk.remote else "In-Person Talk" %}
         <div class="" title="{{description}}">
@@ -18,7 +18,7 @@ layout: base
           {% icon 'computer-desktop' if talk.remote else 'user' %}
         </div>
         <div class="flex flex-col items-baseline">
-          <a class="text-xl font-medium text-gray-900" href="{{ talk.url }}">{{ title }}</a>
+          <a class="text-xl font-medium text-gray-900" href="{{ talk.url }}">{{ talk.title }}</a>
           <div class="flex gap-x-2 items-baseline">
             <span class="text-gray-700 text-sm">{{ talk.location }}</span>
             <span class="text-gray-500 text-xs flex-shrink-0 mr-2">{{ talk.date }}</span>

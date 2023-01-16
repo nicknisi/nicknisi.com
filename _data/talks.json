@@ -1,140 +1,210 @@
-{
-  "Componentizing Application State": {
-    "date": "April 2022",
-    "location": "React Global Online Summit 2022",
-    "url": "https://www.youtube.com/watch?v=B5BmHj0WCiA",
-    "remote": true
-  },
-  "TalkScript with the TypeScript Team at TSConf 2021": {
-    "date": "October 2021",
-    "location": "TSConf 2021",
-    "url": "https://www.youtube.com/watch?v=gfn-aKykyAM",
-    "remote": true
-  },
-  "JavaScript Trends Revisited": {
-    "date": "March 2021",
-    "location": "OpenJS Foundation",
-    "url": "https://www.youtube.com/watch?v=mYIydmcdRDA",
-    "remote": true
-  },
-  "Panel: 2020 Tech Trends Predictions": {
-    "date": "December 2019",
-    "location": "Node+JS Interactive 2019",
-    "url": "https://www.youtube.com/watch?v=By1-aNeGQ9U&list",
-    "remote": false
-  },
-  "Panel: TalkScript with the TypeScript Team at TSConf 2019": {
-    "date": "October 2019",
-    "location": "TSConf 2019",
-    "url": "https://www.youtube.com/watch?v=obvOZn639ms",
-    "remote": false
-  },
-  "Rules to Git By": {
-    "date": "October 2019",
-    "location": "NebraskaJS",
-    "url": "https://www.youtube.com/watch?v=yI0BtEzdGtw",
-    "remote": false
-  },
-  "No Time for Types": {
-    "date": "August 2018",
-    "location": "JSConf US 2018",
-    "url": "https://www.youtube.com/watch?v=qGK541P2xII",
-    "remote": false
-  },
-  "Panel: TalkScript with the TypeScript Team at TSConf 2018": {
-    "date": "March 2018",
-    "location": "TSConf 2018",
-    "url": "https://www.youtube.com/watch?v=MxB0ldQfvT4",
-    "remote": false
-  },
-  "JavaScript Metaprogramming": {
-    "date": "March 2016",
-    "location": "NebraskaJS",
-    "url": "https://www.youtube.com/watch?v=nsG_izwv_0U",
-    "remote": false
-  },
-  "Neovim": {
-    "date": "October 2015",
-    "location": "Omaha Ruby and Open Source Meetup",
-    "url": "https://www.youtube.com/watch?v=LRQGAnPtNdM",
-    "remote": false
-  },
-  "JavaScript Fundamentals": {
-    "date": "May 2015",
-    "location": "JSConf 2015",
-    "url": "http://2015.jsconf.us/speakers.html#nisi",
-    "remote": false
-  },
-  "vim  + tmux": {
-    "date": "February 2015",
-    "location": "OMG!Code",
-    "url": "https://www.youtube.com/watch?v=5r6yzFEXajQ",
-    "remote": false
-  },
-  "Modern Dojo": {
-    "date": "January 2015",
-    "location": "NebraskaJS Lincoln",
-    "url": "https://www.youtube.com/watch?v=__7Fg1h_N6w",
-    "remote": false
-  },
-  "Intern in Action": {
-    "date": "January 2015",
-    "location": "Omaha Ruby and Open Source Meetup",
-    "url": "https://www.youtube.com/watch?v=oOssM0DusYc",
-    "remote": false
-  },
-  "Intro to Intern": {
-    "date": "January 2015",
-    "location": "Omaha Coffee and Code",
-    "url": "https://www.youtube.com/watch?v=Fgt_frjlAaQ",
-    "remote": false
-  },
-  "TypeScript": {
-    "date": "November 2014",
-    "location": "NebraskaJS",
-    "url": "https://www.youtube.com/watch?v=nLCedy68Qf4",
-    "remote": false
-  },
-  "Building Chrome Extensions": {
-    "date": "July 2014",
-    "location": "NebraskaJS",
-    "url": "https://www.youtube.com/watch?v=HzJ9pUWb2rA",
-    "remote": false
-  },
-  "Contributing to Open Source": {
-    "date": "May 2014",
-    "location": "NebraskaJS",
-    "url": "https://vimeo.com/99035913",
-    "remote": false
-  },
-  "Leapcopter": {
-    "date": "January 2014",
-    "location": "NebraskaJS",
-    "url": "https://vimeo.com/83939999",
-    "remote": false
-  },
-  "Building RESTful Services with Node.js": {
-    "date": "January 2013",
-    "location": "NebraskaJS",
-    "url": "https://www.youtube.com/watch?v=APO3fFH7osw",
-    "remote": false
-  },
-  "Node.js and Express": {
-    "date": "November 2012",
-    "location": "Omaha Dynamic Language Users Group",
-    "url": "https://www.youtube.com/watch?v=h38DDvmVag0",
-    "remote": false
-  },
-  "I <3 vim": {
-    "date": "September 2012",
-    "location": "Barcamp Omaha",
-    "url": "https://www.youtube.com/watch?v=oHoei-MXYiw",
-    "remote": false
-  },
-  "AMD and RequireJS": {
-    "date": "August 2012",
-    "location": "Omaha Dynamic Language Users Group",
-    "url": "https://www.youtube.com/watch?v=PhHHlY_gIXE",
-    "remote": false
-  }
-}
+[
+    {
+      "title": "Componentizing Application State",
+      "date": "April 2022",
+      "location": "React Global Online Summit 2022",
+      "url": "https://www.youtube.com/watch?v=B5BmHj0WCiA",
+      "video_id": "B5BmHj0WCiA",
+      "promote": true,
+      "source": "youtube",
+      "remote": true
+    },
+    {
+      "title": "TalkScript with the TypeScript Team at TSConf 2021",
+      "date": "October 2021",
+      "location": "TSConf 2021",
+      "url": "https://www.youtube.com/watch?v=gfn-aKykyAM",
+      "video_id": "gfn-aKykyAM",
+      "source": "youtube",
+      "remote": true
+    },
+    {
+      "title": "JavaScript Trends Revisited",
+      "date": "March 2021",
+      "location": "OpenJS Foundation",
+      "url": "https://www.youtube.com/watch?v=mYIydmcdRDA",
+      "video_id": "mYIydmcdRDA",
+      "source": "youtube",
+      "promote": true,
+      "remote": true
+    },
+    {
+      "title": "Panel: 2020 Tech Trends Predictions",
+      "date": "December 2019",
+      "location": "Node+JS Interactive 2019",
+      "url": "https://www.youtube.com/watch?v=By1-aNeGQ9U&list",
+      "video_id": "By1-aNeGQ9U",
+      "source": "youtube",
+      "remote": false
+    },
+    {
+      "title": "Panel: TalkScript with the TypeScript Team at TSConf 2019",
+      "date": "October 2019",
+      "location": "TSConf 2019",
+      "url": "https://www.youtube.com/watch?v=obvOZn639ms",
+      "video_id": "obvOZn639ms",
+      "source": "youtube",
+      "remote": false
+    },
+    {
+      "title": "Rules to Git By",
+      "date": "October 2019",
+      "location": "NebraskaJS",
+      "url": "https://www.youtube.com/watch?v=yI0BtEzdGtw",
+      "video_id": "yI0BtEzdGtw",
+      "source": "youtube",
+      "promote": true,
+      "remote": false
+    },
+    {
+      "title": "No Time for Types",
+      "date": "August 2018",
+      "location": "JSConf US 2018",
+      "url": "https://www.youtube.com/watch?v=qGK541P2xII",
+      "video_id": "qGK541P2xII",
+      "source": "youtube",
+      "remote": false
+    },
+    {
+      "title": "Panel: TalkScript with the TypeScript Team at TSConf 2018",
+      "date": "March 2018",
+      "location": "TSConf 2018",
+      "url": "https://www.youtube.com/watch?v=MxB0ldQfvT4",
+      "video_id": "MxB0ldQfvT4",
+      "source": "youtube",
+      "remote": false
+    },
+    {
+      "title": "JavaScript Metaprogramming",
+      "date": "March 2016",
+      "location": "NebraskaJS",
+      "url": "https://www.youtube.com/watch?v=nsG_izwv_0U",
+      "video_id": "nsG_izwv_0U",
+      "source": "youtube",
+      "remote": false
+    },
+    {
+      "title": "Neovim",
+      "date": "October 2015",
+      "location": "Omaha Ruby and Open Source Meetup",
+      "url": "https://www.youtube.com/watch?v=LRQGAnPtNdM",
+      "video_id": "LRQGAnPtNdM",
+      "source": "youtube",
+      "remote": false
+    },
+    {
+      "title": "JavaScript Fundamentals",
+      "date": "May 2015",
+      "location": "JSConf 2015",
+      "url": "http://2015.jsconf.us/speakers.html#nisi",
+      "video_id": "nisi",
+      "source": "youtube",
+      "remote": false
+    },
+    {
+      "title": "vim  + tmux",
+      "date": "February 2015",
+      "location": "OMG!Code",
+      "url": "https://www.youtube.com/watch?v=5r6yzFEXajQ",
+      "video_id": "5r6yzFEXajQ",
+      "source": "youtube",
+      "remote": false
+    },
+    {
+      "title": "Modern Dojo",
+      "date": "January 2015",
+      "location": "NebraskaJS Lincoln",
+      "url": "https://www.youtube.com/watch?v=__7Fg1h_N6w",
+      "video_id": "__7Fg1h_N6w",
+      "source": "youtube",
+      "remote": false
+    },
+    {
+      "title": "Intern in Action",
+      "date": "January 2015",
+      "location": "Omaha Ruby and Open Source Meetup",
+      "url": "https://www.youtube.com/watch?v=oOssM0DusYc",
+      "video_id": "oOssM0DusYc",
+      "source": "youtube",
+      "remote": false
+    },
+    {
+      "title": "Intro to Intern",
+      "date": "January 2015",
+      "location": "Omaha Coffee and Code",
+      "url": "https://www.youtube.com/watch?v=Fgt_frjlAaQ",
+      "video_id": "Fgt_frjlAaQ",
+      "source": "youtube",
+      "remote": false
+    },
+    {
+      "title": "TypeScript",
+      "date": "November 2014",
+      "location": "NebraskaJS",
+      "url": "https://www.youtube.com/watch?v=nLCedy68Qf4",
+      "video_id": "nLCedy68Qf4",
+      "source": "youtube",
+      "remote": false
+    },
+    {
+      "title": "Building Chrome Extensions",
+      "date": "July 2014",
+      "location": "NebraskaJS",
+      "url": "https://www.youtube.com/watch?v=HzJ9pUWb2rA",
+      "video_id": "HzJ9pUWb2rA",
+      "source": "youtube",
+      "remote": false
+    },
+    {
+      "title": "Contributing to Open Source",
+      "date": "May 2014",
+      "location": "NebraskaJS",
+      "url": "https://vimeo.com/99035913",
+      "source": "vimeo",
+      "remote": false
+    },
+    {
+      "title": "Leapcopter",
+      "date": "January 2014",
+      "location": "NebraskaJS",
+      "url": "https://vimeo.com/83939999",
+      "source": "vimeo",
+      "remote": false
+    },
+    {
+      "title": "Building RESTful Services with Node.js",
+      "date": "January 2013",
+      "location": "NebraskaJS",
+      "url": "https://www.youtube.com/watch?v=APO3fFH7osw",
+      "source": "youtube",
+      "video_id": "APO3fFH7osw",
+      "remote": false
+    },
+    {
+      "title": "Node.js and Express",
+      "date": "November 2012",
+      "location": "Omaha Dynamic Language Users Group",
+      "url": "https://www.youtube.com/watch?v=h38DDvmVag0",
+      "source": "youtube",
+      "video_id": "h38DDvmVag0",
+      "remote": false
+    },
+    {
+      "title": "I <3 vim",
+      "date": "September 2012",
+      "location": "Barcamp Omaha",
+      "url": "https://www.youtube.com/watch?v=oHoei-MXYiw",
+      "source": "youtube",
+      "video_id": "oHoei-MXYiw",
+      "remote": false
+    },
+    {
+      "title": "AMD and RequireJS",
+      "date": "August 2012",
+      "location": "Omaha Dynamic Language Users Group",
+      "url": "https://www.youtube.com/watch?v=PhHHlY_gIXE",
+      "source": "youtube",
+      "video_id": "PhHHlY_gIXE",
+      "remote": false
+    }
+  ]
