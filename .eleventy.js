@@ -19,6 +19,7 @@ module.exports = (config) => {
 
   config.addPassthroughCopy('./_tmp/styles.css', './style.css');
   config.addPassthroughCopy('img');
+  config.addPassthroughCopy('_redirects');
   config.addPassthroughCopy('css');
 
   config.addPlugin(pluginRss);

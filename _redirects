@@ -1,0 +1,5 @@
+# mastodon redirects
+/@nicknisi https://fediverse.nicknisi.com/@nicknisi 301
+/.well-known/host-meta* https://fediverse.nicknisi.com/.well-known/host-meta:splat 301
+/.well-known/webfinger* https://fediverse.nicknisi.com/.well-known/webfinger:splat 301
+/.well-known/node-info* https://fediverse.nicknisi.com/.well-known/node-info:splat 301
