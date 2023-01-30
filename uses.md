@@ -75,7 +75,7 @@ These are the main apps I try to keep on my machine and ones that I use every da
 
 **Audio/Video**
 
-- [SoundSoure](https://rogueamoeba.com/soundsource/) to control sound globally on my Mac
+- [SoundSource](https://rogueamoeba.com/soundsource/) to control sound globally on my Mac
 - [Loopback](https://rogueamoeba.com/loopback/) To route sound through virtual devices
 - [Audio Hijack](https://rogueamoeba.com/audiohijack/) for recording podcasts and audio from any app
 - [Logic Pro X](https://www.apple.com/logic-pro/) to edit and produce podcasts
