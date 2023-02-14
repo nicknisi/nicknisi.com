@@ -1,16 +1,27 @@
 {
   "name": "nicknisi.com",
+  "private": true,
   "version": "3.0.0",
-  "description": "The personal website of Nick Nisi",
-  "main": "index.js",
+  "description": "The home of Nick Nisi on the Internet.",
+  "engines": {
+    "node": ">=16.0.0"
+  },
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview"
   },
-  "author": "Nick Nisi",
-  "license": "ISC",
+  "author": {
+    "name": "Nick Nisi",
+    "email": "nick@nisi.org",
+    "url": "https://nicknisi.com/"
+  },
+  "bugs": {
+    "url": "https://github.com/nicknisi/nicknisi.com/issues"
+  },
+  "homepage": "https://github.com/nicknisi/nicknisi.com",
+  "license": "MIT",
   "dependencies": {
     "@astrojs/mdx": "^0.16.0",
     "@astrojs/react": "^2.0.2",
