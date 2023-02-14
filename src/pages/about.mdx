@@ -1,0 +1,46 @@
+---
+layout: "@layouts/Prose.astro"
+---
+
+import Talk from '@components/cards/Talk.astro';
+import metadata from '../data/metadata.json';
+import talks from '../data/talks.json';
+import Project from '@components/cards/Project.astro';
+
+<section>
+  <div class="flex items-center flex-col">
+    <img alt="Nick Nisi" class="rounded-full w-64 h-64" src="/img/profile.jpg" />
+    <h1>Nick Nisi</h1>
+  </div>
+</section>
+
+I'm a Staff Software Engineer, coding professionally since 2009 and focused primarily on the front end and
+JavaScript/TypeScript. I am a big fan of community involvement, and have been involved in local meetups since the start.
+I have also been involved in the behind the scenes organization of several conferences, and helmed a couple, including
+TypeScript Conf US and the Nebraska JavaScript conference.
+
+Outside of tech, I am a dad to two amazing kids. I'm also an avid karaoke enthusiast. My go-to songs include _Kiss_ by
+Prince and _How am I Supposed to Live Without You_ by Michael Bolton. I am also an ordained Jedi Knight who has
+presided over nine weddings.
+
+## Talks
+
+Nick is an occasional conference speaker and has spoken at conferences all over the world.
+
+<div class="md:grid grid-cols-3 md:auto-rows-auto">
+  {talks.filter(talk => talk.promote).map(talk => (
+  <Talk {...talk} />
+  ))}
+</div>
+
+**[Full List of talks](/talks)**
+
+## Projects
+
+<div class="flex place-content-evenly flex-wrap">
+  {metadata.projects.map(project => <Project {...project} />)}
+</div>
+
+## Bio
+
+> Nick Nisi is a software developer specializing in JavaSript, TypeScript, and the web. He has contributed to multiple open source projects, including [dojo](https://dojo.io), [intern](https://intern.io), and [TypeDoc](http://typedoc.org). He is also a panelist on [JS Party](https://changelog.com/jsparty) and formerly on [TalkScript](https://talkscript.fm). He is also an organizer and Emcee of the [Nebraska JavaScript Conference](https://nejsconf.com) and [TypeScript Conf](https://tsconf.io).

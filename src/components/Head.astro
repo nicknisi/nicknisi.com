@@ -1,0 +1,35 @@
+---
+import metadata from '../data/metadata.json';
+const { title, description, headerImage } = Astro.props;
+---
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>{title ?? metadata.title}</title>
+
+  <meta name="theme-color" content="#421987">
+
+  <!-- <link rel="shortcut icon" href="/img/favicon.ico"> -->
+  <!-- <link rel="stylesheet" href="{{ '/css/index.css' | url }}"> -->
+  <!-- <link rel="stylesheet" href="{{ '/css/prism.css' | url }}"> -->
+  <link rel="alternate" href={metadata.feed.path} type="application/atom+xml" title={metadata.title}>
+
+  <meta property="description" content={description ?? metadata.description}>
+  <meta property="og:description" content={description ?? metadata.description}>
+  <meta property="og:image" content={headerImage ?? metadata.avatar}>
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@nicknisi">
+  <meta name="twitter:title" content="{{renderData.title or title or metadata.title}}">
+  <meta name="twitter:title" content="{{renderData.title or title or metadata.title}}">
+  <meta name="twitter:description" content="{{renderData.description or description or metadata.description}}">
+  <meta name="twitter:image" content="https://nicknisi.com/{{metadata.avatar}}">
+  <meta name="twitter:image:alt" content="Nick Nisi">
+
+  <link rel="me" href={metadata.author.email}>
+  <link rel="me" href={metadata.social.twitter.url}>
+  <link rel="me" href={metadata.social.github.url}>
+  <link rel="me" href={metadata.social.mastodon.url}>
+</head>

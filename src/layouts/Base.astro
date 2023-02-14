@@ -1,0 +1,55 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  headerImage?: string;
+}
+
+import metadata from '@data/metadata.json';
+import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
+const { url } = Astro;
+const { title, description, headerImage } = Astro.props;
+---
+
+<style is:global>
+.base-colors {
+  @apply bg-blue-gray-50 dark:bg-grey-900 text-blue-gray-800 dark:text-grey-50;
+}
+</style>
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>{title ?? metadata.title}</title>
+
+    <meta name="theme-color" content="#421987">
+
+    <link rel="alternate" href={metadata.feed.path} type="application/atom+xml" title={metadata.title}>
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content={metadata.social.twitter.username}/>
+    <meta name="twitter:creator" content={metadata.social.twitter.username}/>
+    <meta property="og:url" content={url}/>
+    <meta property="og:title" content={metadata.title}/>
+    <meta property="og:description" content={description ?? metadata.description}/>
+    <meta property="og:image" content={headerImage ?? '/profile.jpg'}/>
+
+    <link rel="me" href={metadata.author.email}>
+    <link rel="me" href={metadata.social.twitter.url}>
+    <link rel="me" href={metadata.social.github.url}>
+    <link rel="me" href={metadata.social.mastodon.url}>
+  </head>
+  <body class="font-normal base-colors">
+    <Header />
+    <main class="px-6 mb-auto z-30">
+      <div class="max-w-3xl mx-auto">
+        <slot />
+      </div>
+    </main>
+    <Footer />
+  </body>
+</html>

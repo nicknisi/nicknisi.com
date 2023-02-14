@@ -1,53 +1,34 @@
 {
   "name": "nicknisi.com",
-  "private": true,
   "version": "3.0.0",
-  "description": "The home of Nick Nisi on the Internet.",
-  "engines": {
-    "node": ">=16.0.0"
-  },
+  "description": "The personal website of Nick Nisi",
+  "main": "index.js",
   "scripts": {
-    "build": "ELEVENTY_PRODUCTION=true eleventy && NODE_ENV=production npx tailwindcss -i styles/index.css -o _site/css/index.css --minify",
-    "watch": "npx @11ty/eleventy --watch",
-    "serve": "npx @11ty/eleventy --serve",
-    "start": "eleventy --serve & npx tailwindcss -i styles/index.css -o _site/css/index.css --watch"
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
   },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/nicknisi/nicknisi.com"
+  "author": "Nick Nisi",
+  "license": "ISC",
+  "dependencies": {
+    "@astrojs/mdx": "^0.16.0",
+    "@astrojs/react": "^2.0.2",
+    "@astrojs/tailwind": "^3.0.1",
+    "@tailwindcss/typography": "^0.5.9",
+    "@types/cheerio": "^0.22.31",
+    "@types/react": "^18.0.27",
+    "@types/react-dom": "^18.0.10",
+    "astro": "^2.0.6",
+    "astro-icon": "^0.8.0",
+    "luxon": "^3.2.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tailwindcss": "^3.2.4"
   },
-  "author": {
-    "name": "Nick Nisi",
-    "email": "nick@nisi.org",
-    "url": "https://nicknisi.com/"
-  },
-  "bugs": {
-    "url": "https://github.com/nicknisi/nicknisi.com/issues"
-  },
-  "homepage": "https://github.com/nicknisi/nicknisi.com",
-  "license": "MIT",
   "devDependencies": {
-    "@11ty/eleventy": "^1.0.2",
-    "@11ty/eleventy-navigation": "^0.3.5",
-    "@11ty/eleventy-plugin-rss": "^1.2.0",
-    "@11ty/eleventy-plugin-syntaxhighlight": "^4.1.0",
-    "@tailwindcss/typography": "^0.5.7",
-    "cheerio": "^1.0.0-rc.12",
-    "heroicons": "^2.0.11",
-    "html-minifier": "^4.0.0",
-    "luxon": "^3.0.3",
-    "markdown-it": "^13.0.1",
-    "markdown-it-anchor": "^8.6.5",
-    "markdown-it-container": "^3.0.0",
-    "prettier": "^2.7.1",
-    "simple-icons": "^7.12.0",
-    "tailwindcss": "^3.1.8"
-  },
-  "prettier": {
-    "singleQuote": true,
-    "tabWidth": 2,
-    "useTabs": false,
-    "printWidth": 100,
-    "arrowParens": "always"
+    "@types/luxon": "^3.2.0",
+    "prettier": "^2.8.3",
+    "prettier-plugin-astro": "^0.8.0"
   }
 }

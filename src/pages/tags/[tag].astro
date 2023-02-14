@@ -1,0 +1,35 @@
+---
+import Posts from '@components/Posts.astro';
+import Tag from '@components/Tag.astro';
+import BaseLayout from '@layouts/Base.astro';
+import { CollectionEntry, getCollection } from 'astro:content';
+
+interface Props {
+  posts: CollectionEntry<'posts'>[];
+  tag: string;
+}
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection('posts');
+  const tags: string[] = [...new Set(allPosts.map((post) => post.data.tags).flat())];
+  return tags.map(tag => ({ params: { tag }, props: { posts: allPosts, tag } }));
+}
+
+const { posts = [], tag } = Astro.props;
+
+console.log('POST', posts[0]);
+
+const tagPosts = posts.filter(post => post.data?.tags.includes(tag));
+---
+
+<BaseLayout>
+  <div class="my-8 mb-8">
+    <h2 class="text-3xl">Posts tagged with <Tag name={tag} /></h2>
+    <p class="prose py-3">
+        Here is a collection of talks and videos I have given at various meetups and conferences.
+    </p>
+    <div class="grid grid-cols-3 gap-1 auto-rows-auto">
+      <Posts posts={tagPosts} />
+    </div>
+  </div>
+</BaseLayout>

@@ -1,0 +1,75 @@
+---
+import { CollectionEntry, getCollection } from 'astro:content';
+import ProseLayout from '@layouts/Prose.astro';
+import { Icon } from 'astro-icon';
+import { readableDate, getWordCount } from '../../util';
+import metadata from '@data/metadata.json';
+import Tag from '@components/Tag.astro';
+
+interface Props {
+  post: CollectionEntry<'posts'>;
+  prevPost: CollectionEntry<'posts'> | null;
+}
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  return posts.map((post, i) => ({
+    params: { slug: post.slug },
+    props: { post, prevPost: i > 0 ? posts[i - 1] : null } 
+  }));
+}
+
+const { post, prevPost } = Astro.props;
+const { data: { title, pubDate, tags = [] } } = post;
+const { Content } = await post.render();
+const date = readableDate(pubDate);
+const wordCount = getWordCount(post?.body);
+---
+
+<ProseLayout>
+  <article class="pt-10">
+    <header class="mb-8">
+      <h1 class="font-bold text-3xl md:text-5xl mb-4 tracking-tight">{title}</h1>
+      <div class="text-gray-600 text-sm py-1 font-light">
+        <span class="uppercase">{date}</span>
+        <span>•</span>
+        <span class="uppercase">{wordCount} minute read</span>
+        <span>•</span>
+        <span>
+          {tags.map((tag: string) => <Tag name={tag} />)}
+        </span>
+      </div>
+    </header>
+    <section>
+      <Content />
+    </section>
+    <div class="flex justify-center text-center py-5 sm:py-5">
+      <Icon name="mdi:star-outline" class="font-bold text-purple-600 dark:text-purple-200 w-12 h-12" />
+      <Icon name="mdi:star-outline" class="font-bold text-purple-600 dark:text-purple-200 w-12 h-12" />
+      <Icon name="mdi:star-outline" class="font-bold text-purple-600 dark:text-purple-200 w-12 h-12" />
+    </div>
+    {prevPost && (
+      <div class="flex justify-start mt-8 mb-4">
+        <a class="flex items-center font-medium space-x-4" href="{{ prevPost.url | url }}">
+          <Icon name="mdi:arrow-left-bold" class="w-6 h-6" />
+          <span>{prevPost.data.title}</span>
+        </a>
+      </div>
+    )}
+    <div class="flex items-center mx-auto sm:flex-row flex-col">
+      <div class="sm:w-32 sm:h-32 h-32 w-32 sm:mr-10 inline-flex items-center justify-center rounded-full text-blue-500
+        flex-shrink-0">
+        <img src={metadata.profile} alt="author" class="drop-shadow-lg rounded-full w-32 h-32">
+      </div>
+      <div class="flex-grow sm:text-left text-center mt-6 sm:mt-0">
+        <h2 class="text-gray-900 text-lg title-font font-medium mb-2">{metadata.author.name}</h2>
+        <p class="leading-relaxed text-base">{metadata.description}</p>
+        <p class="leading-relaxed text-base">
+          Follow me on
+          <a class="primary-link" href={metadata.social.mastodon.url}>Mastodon</a>
+          or <a class="primary-link" href={metadata.social.twitter.url}>Twitter</a>.
+        </p>
+      </div>
+    </div>
+  </article>
+</ProseLayout>

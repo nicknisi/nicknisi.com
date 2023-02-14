@@ -1,0 +1,30 @@
+---
+interface Props {
+  title?: string;
+  type: 'info' | 'success' | 'warning' | 'error';
+}
+
+const {title, type} = Astro.props;
+console.log(title, type);
+const titleMap = {
+  info: 'bg-vivid-light-blue-500',
+  success: 'bg-teal-500',
+  warning: 'bg-vivid-yellow-500',
+  error: 'bg-red-500',
+} as const;
+const bodyMap = {
+  info: 'border-vivid-light-blue-400 bg-vivid-light-blue-100 text-vivid-light-blue-700',
+  success: 'border-teal-blue-400 bg-teal-100 text-teal-700',
+  warning: 'border-vivid-yellow-blue-400 bg-vivid-yellow-100 text-vivid-yellow-700',
+  error: 'border-red-blue-400 bg-red-100 text-red-700',
+} as const;
+const titleStyle = (type: keyof typeof titleMap) => `${titleMap[type]} text-white font-bold rounded-t px-4 py-2`;
+const bodyStyle = (type: keyof typeof bodyMap, title?: string) => `${bodyMap[type]} border ${title ? 'border-t-0 rounded-t-none' : 'rounded-t'} rounded-b px-4 py-3`;
+---
+
+<div role="alert" class="prose lg:prose-xl">
+  {title && <div class={titleStyle(type)}>{title}</div>}
+  <div class={bodyStyle(type, title)}>
+    <slot />
+  </div>
+</div>

@@ -1,0 +1,33 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { Icon } from 'astro-icon';
+import Tag from './Tag.astro';
+import PostDate from './PostDate.astro';
+
+interface Props {
+  posts: CollectionEntry<'posts'>[];
+}
+
+const { posts } = Astro.props;
+---
+
+<ul class="list-none">
+  {posts.map(post => (
+    <li class="flex mb-6">
+      <time class="flex flex-col items-center justify-center" datetime={post.data.pubDate?.toISOString()}>
+        <PostDate date={post.data.pubDate} />
+      </time>
+      <div class="pl-2 ml-2 text-lg border-l">
+        <a class="flex align-center" href={post.data.external ?? `/posts/${post.slug}` }>
+          {post.data.title}
+          {post.data.external && <Icon name="mdi:open-in-new" class="w-4 h-4" />}
+        </a>
+        <div class="flex flex-wrap items-center justify-start flex-initial space-x-2">
+          {post.data.tags.map(tag => (
+            <Tag name={tag} />
+          ))}
+        </div>
+      </div>
+    </li>
+  ))}
+</ul>
