@@ -6,7 +6,7 @@ layout: resume
 -----------
 
 <div id="contact">
-<a href=""><span class="icon fas fa-mobile"></span>402.216.1612</a> | <a href="mailto:nick@nisi.org"><span class="icon fas fa-envelope"></span>nick@nisi.org</a> | <a href="https://nicknisi.com"><span class="icon fab fa-edge"></span>nicknisi.com</a> | <a href="https://github.com/nicknisi"><span class="icon fab fa-github"></span>@nicknisi</a> | <a href="https://twitter.com/nicknisi"><span class="icon fab fa-twitter"></span>@nicknisi</a> | <a href="https://linkedin.com/in/nicknisi"><span class="icon fab fa-linkedin"></span>nicknisi</a>
+<a href=""><span class="icon fas fa-mobile"></span>402.216.1612</a> | <a href="mailto:nick@nisi.org"><span class="icon fas fa-envelope"></span>nick@nisi.org</a> | <a href="https://nicknisi.com"><span class="icon fab fa-edge"></span>nicknisi.com</a> | <a href="https://github.com/nicknisi"><span class="icon fab fa-github"></span>@nicknisi</a> | <a href="https://twitter.com/nicknisi"><span class="icon fab fa-twitter"></span>@nicknisi</a> | <a href="https://linkedin.com/in/nicknisi"><span class="icon fab fa-linkedin"></span>nicknisi</a> | <a href="https://mastodon.social/@nicknisi"><span class="icon fab fa-mastodon"></span>@nicknisi@mastodon.social</a>
 </div>
 
 ## <span class="icon fa fa-paw"></span>Summary
