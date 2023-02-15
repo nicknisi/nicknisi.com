@@ -262,6 +262,27 @@
       ],
       "type": "conference",
       "entity": "SitePen"
+    },
+    {
+      "name": "JS Party",
+      "description": "A weekly celebration of JavaScript and the web.",
+      "highlights": [
+        "Panelist from 2018 through present"
+      ],
+      "keywords": [
+        "JavaScript",
+        "TypeScript",
+        "Community",
+        "Conference"
+      ],
+      // "startDate": "2016-07-08",
+      // "endDate": "2020-05-26",
+      "url": "https://jsparty.fm",
+      "roles": [
+        "Panelist"
+      ],
+      "type": "podcast",
+      "entity": "Changelog"
     }
   ],
   "certificates": []
