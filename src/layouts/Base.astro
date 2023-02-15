@@ -3,13 +3,15 @@ interface Props {
   title?: string;
   description?: string;
   headerImage?: string;
+  hideHeader?: boolean;
+  hideFooter?: boolean;
 }
 
 import metadata from '@data/metadata.json';
 import Header from '@components/Header.astro';
 import Footer from '@components/Footer.astro';
 const { url } = Astro;
-const { title, description, headerImage } = Astro.props;
+const { title, description, headerImage, hideHeader, hideFooter } = Astro.props;
 ---
 
 <style is:global>
@@ -44,12 +46,12 @@ const { title, description, headerImage } = Astro.props;
     <link rel="me" href={metadata.social.mastodon.url}>
   </head>
   <body class="font-normal base-colors">
-    <Header />
+    {!hideHeader && <Header />}
     <main class="px-6 mb-auto z-30">
       <div class="max-w-3xl mx-auto">
         <slot />
       </div>
     </main>
-    <Footer />
+    {!hideFooter && <Footer />}
   </body>
 </html>
