@@ -29,12 +29,12 @@ const { title, url, role, description, avatar, status } = Astro.props;
       </div>
     </div>
     <div class="flex place-content-baseline">
-      <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full uppercase
+      <span class="text-xs font-semibold inline-block py-1 px-2 rounded-full uppercase
         last text-teal-700 bg-teal-200 last:mr-0 mr-1">
         {role}
       </span>
       {status === 'inactive' && (
-        <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full uppercase
+        <span class="text-xs font-semibold inline-block py-1 px-2 rounded-full uppercase
           last text-red-700 bg-red-200 last:mr-0 mr-1">
           {status}
         </span>

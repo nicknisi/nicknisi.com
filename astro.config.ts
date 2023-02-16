@@ -15,7 +15,7 @@ export default defineConfig({
     port: 8080,
   },
   integrations: [react(), mdx(), tailwind(), sitemap({
-    filter: (page) => page!== 'https://nicknisi.com/resume',
+    filter: (page) => page !== 'https://nicknisi.com/resume',
   })],
   markdown: {
     shikiConfig: {
