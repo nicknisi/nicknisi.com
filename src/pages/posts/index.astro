@@ -1,9 +1,9 @@
 ---
 import Posts from '@components/Posts.astro';
 import PageLayout from '@layouts/Page.astro';
-import { getCollection } from 'astro:content';
+import { getPosts } from '../../util';
 
-const posts = (await getCollection('posts')).reverse();
+const posts = await getPosts();
 ---
 
 <PageLayout title="Posts">
