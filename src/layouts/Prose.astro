@@ -1,8 +1,10 @@
 ---
 import Base from './Base.astro';
+const { frontmatter } = Astro.props;
+const { title = '' } = frontmatter;
 ---
 
-<Base>
+<Base title={title}>
   <div class="prose prose-slate dark:prose-invert lg:prose-xl
     prose-code:before:content-[''] prose-code:after:content-[''] prose-code:font-medium
     prose-headings:my-3 
