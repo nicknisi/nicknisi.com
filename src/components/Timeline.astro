@@ -1,14 +1,16 @@
 ---
+import Video from '@components/Video.astro';
+
 interface TimelineEvent {
   time: string;
   text: string;
-  video?: string;
   image?: string;
-  color?: string;
+  video?: string;
+  link?: string;
 }
 
 interface Props {
-  events: TimelineEvent[];
+  events: Array<TimelineEvent>;
   reverse?: boolean;
 }
 const { events, reverse } = Astro.props;
@@ -23,7 +25,7 @@ if (reverse) {
 }
 
 .in-view {
-  @apply after:bg-purple-300 ;
+  @apply dark:after:bg-purple-300 after:bg-purple-700;
 }
 
 .in-view div {
@@ -32,59 +34,59 @@ if (reverse) {
 </style>
 
 <script>
-(function () {
-  "use strict";
+(() => {
+  const items = document.querySelectorAll(".timeline li");
 
-  // define variables
-  var items = document.querySelectorAll(".timeline li");
-
-  // check if an element is in viewport
-  // http://stackoverflow.com/questions/123999/how-to-tell-if-a-dom-element-is-visible-in-the-current-viewport
-  function isElementInViewport(el) {
+  function isElementInViewport(el: Element) {
     var rect = el.getBoundingClientRect();
     return (
       rect.top >= 0 &&
         rect.left >= 0 &&
         rect.bottom <=
-          (window.innerHeight || document.documentElement.clientHeight) &&
-        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+          (globalThis.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (globalThis.innerWidth || document.documentElement.clientWidth)
     );
   }
 
-  function callbackFunc() {
-    for (var i = 0; i < items.length; i++) {
-      if (isElementInViewport(items[i])) {
-        items[i].classList.add("in-view");
+  function eventCallback() {
+    for (const item of items) {
+      if (isElementInViewport(item)) {
+        item.classList.add("in-view");
       }
     }
   }
 
   // listen for events
-  window.addEventListener("load", callbackFunc);
-  window.addEventListener("resize", callbackFunc);
-  window.addEventListener("scroll", callbackFunc);
+  globalThis.addEventListener("load", eventCallback);
+  globalThis.addEventListener("resize", eventCallback);
+  globalThis.addEventListener("scroll", eventCallback);
 })();
 </script>
 
-<section class="timeline">
+<section class="timeline not-prose text-purple-50">
   <ul class="py-12 px-0">
     {events.map((event, i) => (
       <li class="
-        ml-5 bg-white pt-12 my-0 md:mx-auto w-[6px] relative list-none
+        ml-5 dark:bg-white bg-grey-800 pt-12 my-0 md:mx-auto w-[6px] relative list-none
         after:content:[''] after:-translate-x-1/2 after:absolute after:left-1/2 after:bottom-0 after:rounded-full
         after:z-10 after:w-8 after:h-8
-        after:ease-in-out after:duration-500 after:transition
+        after:ease-in-out after:duration-500 after:transition shadow-lg
       ">
       <div class=`
-      w-64 md:w-96 relative bottom-0 p-4 bg-purple-300
+      w-64 md:w-96 relative bottom-0 p-4 dark:bg-purple-300 bg-purple-700 rounded-lg shadow-lg
       before:content:[''] before:absolute before:bottom-2 before:w-0 before:h-0 before:border-solid
 invisible opacity-0 transition-all duration-500 ease-in-out transform-gpu
       ${(i + 1) % 2 === 0 ?
-        'md:-left-[439px] left-12 before:border-transparent before:border-y-8 before:-left-4 before:border-r-[16px] before:border-r-purple-300 before:md:left-auto before:md:-right-4 before:md:border-l-[16px] before:md:border-r-0 before:md:border-l-purple-300 translate-x-[-200px]' :
-        'left-11 before:border-transparent before:outline-none before:-left-4 before:border-r-[16px] before:border-y-[8px] before:border-r-purple-300 translate-x-[200px]'
+        'md:-left-[439px] left-12 before:border-transparent before:border-y-8 before:-left-4 before:border-r-[16px] dark:before:border-r-purple-300 before:border-r-purple-700 before:md:left-auto before:md:-right-4 before:md:border-l-[16px] before:md:border-r-0 dark:before:md:border-l-purple-300 before:md:border-l-purple-700 translate-x-[-200px]' :
+        'left-11 before:border-transparent before:outline-none before:-left-4 before:border-r-[16px] before:border-y-[8px] dark:before:border-r-purple-300 before:border-r-purple-700 translate-x-[200px]'
       }`>
           <time class="block text-lg font-bold mb-2">{event.time}</time>
-          <p>{event.text}</p>
+          {event.text && <p>{event.text}</p>}
+          {event.image && <div class="flex items-center justify-center"><img src={event.image} alt={event.text} class="max-h-36 rounded-lg" /></div>}
+          {event.link && <div class="">
+          <a href="{event.link}" class="font-bold text-purple-50 hover:text-purple-50">Link</a>
+        </div>}
+{event.video && <Video videoId={event.video} />}
         </div>
       </li>
     ))}
