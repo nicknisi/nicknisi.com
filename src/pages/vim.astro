@@ -1,0 +1,23 @@
+---
+import Timeline from '@components/Timeline.astro';
+import BaseLayout from '@layouts/Base.astro';
+---
+
+<BaseLayout>
+  <h1>A brief Vim timeline</h1>
+  <Timeline reverse events={[
+    {
+      time: '2013',
+      text: 'Started using Vim, full-time'
+    },
+    {
+      time: '2015',
+      text: 'Started using Neovim'
+    },
+    {
+      time: '2023',
+      text: 'Still usin that sweet, sweet Vim'
+    }
+  ]}/>
+</BaseLayout>
+
