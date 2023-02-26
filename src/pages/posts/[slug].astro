@@ -21,13 +21,24 @@ export async function getStaticPaths() {
 
 const { post, prevPost } = Astro.props;
 const {
-  data: { title, description, pubDate, tags = [] },
+  data: { title, description, pubDate, tags = [], draft },
 } = post;
 const { Content } = await post.render();
 const date = readableDate(pubDate);
 const wordCount = getWordCount(post?.body);
 ---
 
+{
+  draft && (
+    <div class="bg-red-800 text-white font-bold w-full text-lg sticky top-0 z-40">
+      <div class="container mx-auto py-2">
+        <p class="text-center">
+          This post is a draft. It may contain errors or be incomplete.
+        </p>
+      </div>
+    </div>
+  )
+}
 <BaseLayout title={title} description={description}>
   <div
     class="prose prose-slate dark:prose-invert lg:prose-xl prose-code:before:content-[''] prose-code:after:content-[''] prose-code:font-medium prose-headings:my-3 dark:prose-a:text-teal-400 prose-a:text-teal-600 prose-code:text-purple-800 dark:prose-code:text-purple-100 prose-headings:text-blue-gray-900 prose-headings:dark:text-grey-200 pt-6 pb-10"
