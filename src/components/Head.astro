@@ -1,32 +1,39 @@
 ---
 import metadata from '../data/metadata.json';
-const { title, description, headerImage } = Astro.props;
+
+interface Props {
+  title?: string | undefined;
+  description?: string | undefined;
+  headerImage?: string;
+
+}
+
+const props = Astro.props;
+const { site: url } = Astro;
+const title = props.title ? `${props.title} | ${metadata.title}` : metadata.title;
+const description = props.description ?? metadata.description;
+const headerImage = props.headerImage ?? metadata.avatar;
 ---
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>{title ?? metadata.title}</title>
+  <title>{title}</title>
 
   <meta name="theme-color" content="#421987">
 
-  <!-- <link rel="shortcut icon" href="/img/favicon.ico"> -->
-  <!-- <link rel="stylesheet" href="{{ '/css/index.css' | url }}"> -->
-  <!-- <link rel="stylesheet" href="{{ '/css/prism.css' | url }}"> -->
   <link rel="alternate" href={metadata.feed.path} type="application/atom+xml" title={metadata.title}>
-
-  <meta property="description" content={description ?? metadata.description}>
-  <meta property="og:description" content={description ?? metadata.description}>
-  <meta property="og:image" content={headerImage ?? metadata.avatar}>
+  <link rel="webmention" href="https://webmention.io/nicknisi.com/webmention" />
+  <link rel="pingback" href="https://webmention.io/nicknisi.com/xmlrpc" />
 
   <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:site" content="@nicknisi">
-  <meta name="twitter:title" content="{{renderData.title or title or metadata.title}}">
-  <meta name="twitter:title" content="{{renderData.title or title or metadata.title}}">
-  <meta name="twitter:description" content="{{renderData.description or description or metadata.description}}">
-  <meta name="twitter:image" content="https://nicknisi.com/{{metadata.avatar}}">
-  <meta name="twitter:image:alt" content="Nick Nisi">
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content={metadata.social.twitter.username}/>
+  <meta name="twitter:creator" content={metadata.social.twitter.username}/>
+  <meta property="og:url" content={url}/>
+  <meta property="og:title" content={title}/>
+  <meta property="og:description" content={description ?? metadata.description}/>
+  <meta property="og:image" content={headerImage ?? '/profile.jpg'}/>
 
   <link rel="me" href={metadata.author.email}>
   <link rel="me" href={metadata.social.twitter.url}>

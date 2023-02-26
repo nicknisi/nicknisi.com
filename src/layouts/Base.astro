@@ -1,17 +1,17 @@
 ---
+import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
+import Head from '@components/Head.astro';
+
 interface Props {
-  title?: string;
-  description?: string;
-  headerImage?: string;
+  title?: string | undefined;
+  description?: string | undefined;
+  headerImage?: string | undefined;
   hideHeader?: boolean;
   hideFooter?: boolean;
 }
 
-import metadata from '@data/metadata.json';
-import Header from '@components/Header.astro';
-import Footer from '@components/Footer.astro';
-const { url } = Astro;
-const { title, description, headerImage, hideHeader, hideFooter } = Astro.props;
+const { title, description, hideHeader, hideFooter } = Astro.props;
 ---
 
 <style is:global>
@@ -22,31 +22,7 @@ const { title, description, headerImage, hideHeader, hideFooter } = Astro.props;
 
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>{title ? `${title} - ${metadata.title}` : metadata.title}</title>
-
-    <meta name="theme-color" content="#421987">
-
-    <link rel="alternate" href={metadata.feed.path} type="application/atom+xml" title={metadata.title}>
-    <link rel="webmention" href="https://webmention.io/nicknisi.com/webmention" />
-    <link rel="pingback" href="https://webmention.io/nicknisi.com/xmlrpc" />
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content={metadata.social.twitter.username}/>
-    <meta name="twitter:creator" content={metadata.social.twitter.username}/>
-    <meta property="og:url" content={url}/>
-    <meta property="og:title" content={metadata.title}/>
-    <meta property="og:description" content={description ?? metadata.description}/>
-    <meta property="og:image" content={headerImage ?? '/profile.jpg'}/>
-
-    <link rel="me" href={metadata.author.email}>
-    <link rel="me" href={metadata.social.twitter.url}>
-    <link rel="me" href={metadata.social.github.url}>
-    <link rel="me" href={metadata.social.mastodon.url}>
-  </head>
+  <Head title={title} description={description} />
   <body class="font-normal base-colors">
     {!hideHeader && <Header />}
     <main class="px-6 mb-auto z-30">

@@ -4,15 +4,17 @@ import type { MarkdownLayoutProps } from 'astro';
 
 interface Props extends Partial<MarkdownLayoutProps<{
   title?: string;
+  description?: string;
+  headerImage?: string;
 }>> {
-    title?: string;
 }
 
-const { frontmatter, title: titleProp } = Astro.props;
-const title = frontmatter?.title ?? titleProp ?? '';
+const { frontmatter } = Astro.props;
+const title = frontmatter?.title;
+const description = frontmatter?.description;
 ---
 
-<Base title={title}>
+<Base title={title} description={description}>
   <div class="prose prose-slate dark:prose-invert lg:prose-xl
     prose-code:before:content-[''] prose-code:after:content-[''] prose-code:font-medium
     prose-headings:my-3 
