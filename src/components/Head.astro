@@ -8,12 +8,13 @@ interface Props {
 }
 
 const props = Astro.props;
-const { site: url } = Astro;
+const { site, url } = Astro;
 const title = props.title
   ? `${props.title} | ${metadata.title}`
   : metadata.title;
 const description = props.description ?? metadata.description;
-const headerImage = props.headerImage ?? metadata.avatar;
+const headerImage =
+  (url?.origin ?? metadata.url) + (props.headerImage ?? metadata.ogImage);
 ---
 
 <head>
@@ -33,16 +34,19 @@ const headerImage = props.headerImage ?? metadata.avatar;
   <link rel="pingback" href="https://webmention.io/nicknisi.com/xmlrpc" />
 
   <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:site" content={metadata.social.twitter.username} />
-  <meta name="twitter:creator" content={metadata.social.twitter.username} />
-  <meta property="og:url" content={url} />
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:site" content={metadata.social.twitter.username} />
+  <meta property="twitter:creator" content={metadata.social.twitter.username} />
+  <meta property="twitter:image" content={headerImage} />
+  <meta property="og:url" content={site?.origin ?? metadata.url} />
   <meta property="og:title" content={title} />
   <meta
     property="og:description"
     content={description ?? metadata.description}
   />
   <meta property="og:image" content={headerImage ?? '/profile.jpg'} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
 
   <link rel="me" href={metadata.author.email} />
   <link rel="me" href={metadata.social.twitter.url} />

@@ -4,6 +4,7 @@
   "description": "👋 Hi, I'm Nick. I write and talk about JavaScript and the web.",
   "avatar": "/img/beef_nick.png",
   "profile": "/img/profile.jpg",
+  "ogImage": "/og/colorful.png",
   "feed": {
     "subtitle": "",
     "filename": "feed.xml",
@@ -24,7 +25,10 @@
       "username": "nicknisi",
       "url": "https://twitter.com/nicknisi"
     },
-    "github": { "username": "nicknisi", "url": "https://github.com/nicknisi" },
+    "github": {
+      "username": "nicknisi",
+      "url": "https://github.com/nicknisi"
+    },
     "youtube": {
       "username": "nicknisi",
       "url": "https://www.youtube.com/nicknisi"
