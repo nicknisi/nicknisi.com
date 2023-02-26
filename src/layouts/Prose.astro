@@ -1,7 +1,15 @@
 ---
 import Base from './Base.astro';
-const { frontmatter } = Astro.props;
-const { title = '' } = frontmatter;
+import { MarkdownLayoutProps } from 'astro';
+
+interface Props extends MarkdownLayoutProps<{
+  title?: string;
+}> {
+    title?: string;
+}
+
+const { frontmatter, title: titleProp } = Astro.props;
+const title = frontmatter?.title ?? titleProp ?? '';
 ---
 
 <Base title={title}>
