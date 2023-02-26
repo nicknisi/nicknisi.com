@@ -36,30 +36,23 @@ if (reverse) {
   (() => {
     const items = document.querySelectorAll('.timeline li');
 
-    function isElementInViewport(el: Element) {
-      var rect = el.getBoundingClientRect();
-      return (
-        rect.top >= 0 &&
-        rect.left >= 0 &&
-        rect.bottom <=
-          (globalThis.innerHeight || document.documentElement.clientHeight) &&
-        rect.right <=
-          (globalThis.innerWidth || document.documentElement.clientWidth)
-      );
-    }
-
-    function eventCallback() {
-      for (const item of items) {
-        if (isElementInViewport(item)) {
-          item.classList.add('in-view');
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+          }
         }
+      },
+      {
+        root: null,
+        threshold: 0.5,
       }
-    }
+    );
 
-    // listen for events
-    globalThis.addEventListener('load', eventCallback);
-    globalThis.addEventListener('resize', eventCallback);
-    globalThis.addEventListener('scroll', eventCallback);
+    for (const item of items) {
+      observer.observe(item);
+    }
   })();
 </script>
 
