@@ -83,8 +83,8 @@ invisible opacity-0 transition-all duration-500 ease-in-out transform-gpu
           <time class="block text-lg font-bold mb-2">{event.time}</time>
           {event.text && <p>{event.text}</p>}
           {event.image && <div class="flex items-center justify-center"><img src={event.image} alt={event.text} class="max-h-36 rounded-lg" /></div>}
-          {event.link && <div class="">
-          <a href="{event.link}" class="font-bold text-purple-50 hover:text-purple-50">Link</a>
+          {event.link && <div class="flex items-center justify-center">
+          <a href={event.link} class="font-bold text-purple-50 hover:text-purple-50">Link</a>
         </div>}
 {event.video && <Video videoId={event.video} />}
         </div>

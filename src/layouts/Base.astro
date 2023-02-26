@@ -25,7 +25,7 @@ const { title, description, headerImage, hideHeader, hideFooter } = Astro.props;
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>{title ?? metadata.title}</title>
+    <title>{title ? `${title} - ${metadata.title}` : metadata.title}</title>
 
     <meta name="theme-color" content="#421987">
 

@@ -2,9 +2,9 @@
 import Base from './Base.astro';
 import type { MarkdownLayoutProps } from 'astro';
 
-interface Props extends MarkdownLayoutProps<{
+interface Props extends Partial<MarkdownLayoutProps<{
   title?: string;
-}> {
+}>> {
     title?: string;
 }
 
