@@ -1,7 +1,7 @@
 ---
-title: "Git Your Way: includeIf"
+title: 'Git Your Way: includeIf'
 pubDate: 2021-01-30
-description: "Implement finer control of your Git configuration."
+description: 'Implement finer control of your Git configuration.'
 tags:
   - dotfiles
   - git
@@ -9,9 +9,9 @@ tags:
 
 ## The Problem
 
-As a developer who works on many projects, including client and open source projects, I often need to be mindful of how I commit to each project. That is, company/client projects should always use my work email address when committing, and for open source I would prefer to use my personal email address. 
+As a developer who works on many projects, including client and open source projects, I often need to be mindful of how I commit to each project. That is, company/client projects should always use my work email address when committing, and for open source I would prefer to use my personal email address.
 
-This can be set up on a per-project basis by simply running `git config user.email <EMAIL>` from within each project once and it will be set . The problem with this is that I actually have to remember to run this command from each project or risk accidentally committing with the wrong email address. Fortunately, git has a built-in method of helping with this. 
+This can be set up on a per-project basis by simply running `git config user.email <EMAIL>` from within each project once and it will be set . The problem with this is that I actually have to remember to run this command from each project or risk accidentally committing with the wrong email address. Fortunately, git has a built-in method of helping with this.
 
 ## The Solution
 

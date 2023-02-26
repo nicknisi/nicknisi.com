@@ -9,26 +9,47 @@ interface Props {
 }
 
 const { url, title, location, date, videoId, type } = Astro.props;
-const thumbnail = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`
+const thumbnail = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
 ---
 
-<div class="md:flex-1 xs:flex-grow rounded-lg shadow-lg dark:bg-cool-gray-900
-  bg-cool-gray-50 p-2 space-x-2 space-y-2 m-2 pb-6 w-89 not-prose">
+<div
+  class="md:flex-1 xs:flex-grow rounded-lg shadow-lg dark:bg-cool-gray-900 bg-cool-gray-50 p-2 space-x-2 space-y-2 m-2 pb-6 w-89 not-prose"
+>
   <a href={url} target="_blank" class="no-underline">
     <div class="flex flex-col px-2 pt-1 pb-4 text-center items-center">
-      <img class="not-prose rounded w-48 mx-1 pb-1" src={thumbnail} alt={title}/>
-      <h5 class="text-grey-900 dark:text-grey-100 text-l leading-tight font-bold text-center h-12">{title}</h5>
+      <img
+        class="not-prose rounded w-48 mx-1 pb-1"
+        src={thumbnail}
+        alt={title}
+      />
+      <h5
+        class="text-grey-900 dark:text-grey-100 text-l leading-tight font-bold text-center h-12"
+      >
+        {title}
+      </h5>
       <div class="flex flex-col align-content-center justify-content-center">
-        <div class="text-blue-grey-600 dark:text-blue-gray-200 text-xs font-bold">{date}</div>
-        <div class="text-grey-600 dark:text-grey-200 text-m leading-tight font-medium h-8">{location}</div>
-        {type === 'panel' && (
-          <div class="pt-4 self-end">
-            <span class="text-xs font-semibold inline-block py-1 px-2 rounded-full uppercase
-              last text-purple-700 bg-purple-100 last:mr-0 mr-1">
-              Panel
-            </span>
-          </div>
-        )}
+        <div
+          class="text-blue-grey-600 dark:text-blue-gray-200 text-xs font-bold"
+        >
+          {date}
+        </div>
+        <div
+          class="text-grey-600 dark:text-grey-200 text-m leading-tight font-medium h-8"
+        >
+          {location}
+        </div>
+        {
+          type === 'panel' && (
+            <div class="pt-4 self-end">
+              <span
+                class="text-xs font-semibold inline-block py-1 px-2 rounded-full uppercase
+              last text-purple-700 bg-purple-100 last:mr-0 mr-1"
+              >
+                Panel
+              </span>
+            </div>
+          )
+        }
       </div>
     </div>
   </a>

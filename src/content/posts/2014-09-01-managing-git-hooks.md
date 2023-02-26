@@ -1,5 +1,5 @@
 ---
-title: "Git: Managing hooks"
+title: 'Git: Managing hooks'
 slug: 2014-09-01-managing-git-hooks
 pubDate: 2014-09-01
 tags:

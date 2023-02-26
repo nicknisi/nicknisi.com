@@ -6,27 +6,43 @@ import Tag from '@components/Tag.astro';
 import { getPosts } from '../util';
 
 const allPosts = await getPosts();
-const tags: string[] = [...new Set(allPosts.map(post => post.data.tags).flat())];
+const tags: string[] = [
+  ...new Set(allPosts.map((post) => post.data.tags).flat()),
+];
 const posts = allPosts.slice(0, 10);
 ---
 
 <BaseLayout>
   <div class="py-10">
     <div class="flex items-center md:flex-row flex-col">
-      <div class="sm:w-32 sm:h-32 h-32 w-32 sm:mr-10 inline-flex items-center justify-center rounded-full text-blue-500 flex-shrink-0">
-        <img src={metadata.profile} alt="author" class="drop-shadow-md rounded-full w-32 h-32">
+      <div
+        class="sm:w-32 sm:h-32 h-32 w-32 sm:mr-10 inline-flex items-center justify-center rounded-full text-blue-500 flex-shrink-0"
+      >
+        <img
+          src={metadata.profile}
+          alt="author"
+          class="drop-shadow-md rounded-full w-32 h-32"
+        />
       </div>
       <div class="mt-8 text-3xl font-black">{metadata.description}</div>
     </div>
     <p class="mt-2 leading-8">
-      I work as a Front End Staff Engineer, focused on delivering the best developer experience through tooling with TypeScript. I am also a panelist on the <a target="_blank" href="https://jsparty.fm">JS Party</a> podcast, Emcee <a target="_blank" href="https://tsconf.io">TypeScript Conf</a>, and organizer of the <a target="_blank" href="https://nebraskajs.com">NebraskaJS</a> meetup.
+      I work as a Front End Staff Engineer, focused on delivering the best
+      developer experience through tooling with TypeScript. I am also a panelist
+      on the <a target="_blank" href="https://jsparty.fm">JS Party</a> podcast, Emcee
+      <a target="_blank" href="https://tsconf.io">TypeScript Conf</a>, and
+      organizer of the <a target="_blank" href="https://nebraskajs.com"
+        >NebraskaJS</a
+      > meetup.
     </p>
 
     <h3 class="mt-8 text-2xl my-4">Latest posts</h3>
     <Posts posts={posts} />
 
     <h3 class="mt-8 text-2xl my-4">Tags</h3>
-    <div class="flex flex-wrap items-center justify-start flex-initial space-x-2">
+    <div
+      class="flex flex-wrap items-center justify-start flex-initial space-x-2"
+    >
       {tags.map((tag) => <Tag name={tag} />)}
     </div>
   </div>

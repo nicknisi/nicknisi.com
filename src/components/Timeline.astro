@@ -20,74 +20,97 @@ if (reverse) {
 ---
 
 <style>
+  .time {
+  }
 
-.time {
-}
+  .in-view {
+    @apply dark:after:bg-purple-300 after:bg-purple-700;
+  }
 
-.in-view {
-  @apply dark:after:bg-purple-300 after:bg-purple-700;
-}
-
-.in-view div {
-  @apply visible transform-none opacity-100;
-}
+  .in-view div {
+    @apply visible transform-none opacity-100;
+  }
 </style>
 
 <script>
-(() => {
-  const items = document.querySelectorAll(".timeline li");
+  (() => {
+    const items = document.querySelectorAll('.timeline li');
 
-  function isElementInViewport(el: Element) {
-    var rect = el.getBoundingClientRect();
-    return (
-      rect.top >= 0 &&
+    function isElementInViewport(el: Element) {
+      var rect = el.getBoundingClientRect();
+      return (
+        rect.top >= 0 &&
         rect.left >= 0 &&
         rect.bottom <=
           (globalThis.innerHeight || document.documentElement.clientHeight) &&
-        rect.right <= (globalThis.innerWidth || document.documentElement.clientWidth)
-    );
-  }
+        rect.right <=
+          (globalThis.innerWidth || document.documentElement.clientWidth)
+      );
+    }
 
-  function eventCallback() {
-    for (const item of items) {
-      if (isElementInViewport(item)) {
-        item.classList.add("in-view");
+    function eventCallback() {
+      for (const item of items) {
+        if (isElementInViewport(item)) {
+          item.classList.add('in-view');
+        }
       }
     }
-  }
 
-  // listen for events
-  globalThis.addEventListener("load", eventCallback);
-  globalThis.addEventListener("resize", eventCallback);
-  globalThis.addEventListener("scroll", eventCallback);
-})();
+    // listen for events
+    globalThis.addEventListener('load', eventCallback);
+    globalThis.addEventListener('resize', eventCallback);
+    globalThis.addEventListener('scroll', eventCallback);
+  })();
 </script>
 
 <section class="timeline not-prose text-purple-50">
   <ul class="py-12 px-0">
-    {events.map((event, i) => (
-      <li class="
+    {
+      events.map((event, i) => (
+        <li
+          class="
         ml-5 dark:bg-white bg-grey-800 pt-12 my-0 md:mx-auto w-[6px] relative list-none
         after:content:[''] after:-translate-x-1/2 after:absolute after:left-1/2 after:bottom-0 after:rounded-full
         after:z-10 after:w-8 after:h-8
         after:ease-in-out after:duration-500 after:transition shadow-lg
-      ">
-      <div class=`
+      "
+        >
+          <div
+            class={`
       w-64 md:w-96 relative bottom-0 p-4 dark:bg-purple-300 bg-purple-700 rounded-lg shadow-lg
       before:content:[''] before:absolute before:bottom-2 before:w-0 before:h-0 before:border-solid
 invisible opacity-0 transition-all duration-500 ease-in-out transform-gpu
-      ${(i + 1) % 2 === 0 ?
-        'md:-left-[439px] left-12 before:border-transparent before:border-y-8 before:-left-4 before:border-r-[16px] dark:before:border-r-purple-300 before:border-r-purple-700 before:md:left-auto before:md:-right-4 before:md:border-l-[16px] before:md:border-r-0 dark:before:md:border-l-purple-300 before:md:border-l-purple-700 translate-x-[-200px]' :
-        'left-11 before:border-transparent before:outline-none before:-left-4 before:border-r-[16px] before:border-y-[8px] dark:before:border-r-purple-300 before:border-r-purple-700 translate-x-[200px]'
-      }`>
-          <time class="block text-lg font-bold mb-2">{event.time}</time>
-          {event.text && <p>{event.text}</p>}
-          {event.image && <div class="flex items-center justify-center"><img src={event.image} alt={event.text} class="max-h-36 rounded-lg" /></div>}
-          {event.link && <div class="flex items-center justify-center">
-          <a href={event.link} class="font-bold text-purple-50 hover:text-purple-50">Link</a>
-        </div>}
-{event.video && <Video videoId={event.video} />}
-        </div>
-      </li>
-    ))}
+      ${
+        (i + 1) % 2 === 0
+          ? 'md:-left-[439px] left-12 before:border-transparent before:border-y-8 before:-left-4 before:border-r-[16px] dark:before:border-r-purple-300 before:border-r-purple-700 before:md:left-auto before:md:-right-4 before:md:border-l-[16px] before:md:border-r-0 dark:before:md:border-l-purple-300 before:md:border-l-purple-700 translate-x-[-200px]'
+          : 'left-11 before:border-transparent before:outline-none before:-left-4 before:border-r-[16px] before:border-y-[8px] dark:before:border-r-purple-300 before:border-r-purple-700 translate-x-[200px]'
+      }`}
+          >
+            <time class="block text-lg font-bold mb-2">{event.time}</time>
+            {event.text && <p>{event.text}</p>}
+            {event.image && (
+              <div class="flex items-center justify-center">
+                <img
+                  src={event.image}
+                  alt={event.text}
+                  class="max-h-36 rounded-lg"
+                />
+              </div>
+            )}
+            {event.link && (
+              <div class="flex items-center justify-center">
+                <a
+                  href={event.link}
+                  class="font-bold text-purple-50 hover:text-purple-50"
+                >
+                  Link
+                </a>
+              </div>
+            )}
+            {event.video && <Video videoId={event.video} />}
+          </div>
+        </li>
+      ))
+    }
+  </ul>
 </section>

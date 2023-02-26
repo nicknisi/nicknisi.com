@@ -9,7 +9,7 @@ const postsCollection = defineCollection({
     pubDate: z.date(),
     external: z.optional(z.string()),
     draft: z.optional(z.boolean()),
-  })
+  }),
 });
 
 export const collections = {

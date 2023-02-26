@@ -179,9 +179,7 @@
       "startDate": "2013-07-08",
       "endDate": "2020-05-26",
       "url": "https://dojo.io",
-      "roles": [
-        "Contributor"
-      ],
+      "roles": ["Contributor"],
       "type": "open source",
       "entity": "Open Source"
     },
@@ -193,30 +191,19 @@
       // "startDate": "2016-07-08",
       // "endDate": "2020-05-26",
       "url": "https://typedoc.io",
-      "roles": [
-        "Contributor"
-      ],
+      "roles": ["Contributor"],
       "type": "open source",
       "entity": "Open Source"
     },
     {
       "name": "NebraskaJS",
       "description": "A community of JavaScript developers in Nebraska.",
-      "highlights": [
-        "Organized a conference from 2015 through 2019"
-      ],
-      "keywords": [
-        "JavaScript",
-        "Community",
-        "Meetup"
-      ],
+      "highlights": ["Organized a conference from 2015 through 2019"],
+      "keywords": ["JavaScript", "Community", "Meetup"],
       // "startDate": "2016-07-08",
       // "endDate": "2020-05-26",
       "url": "https://nebraskajs.com",
-      "roles": [
-        "Organizer",
-        "Speaker"
-      ],
+      "roles": ["Organizer", "Speaker"],
       "type": "meetup",
       "entity": "NebraskaJS"
     },
@@ -227,60 +214,35 @@
         "Organized a conference from 2015 through 2019",
         "Speakers from all over the world"
       ],
-      "keywords": [
-        "JavaScript",
-        "Community",
-        "Conference"
-      ],
+      "keywords": ["JavaScript", "Community", "Conference"],
       // "startDate": "2016-07-08",
       // "endDate": "2020-05-26",
       "url": "https://nejsconf.com",
-      "roles": [
-        "Organizer",
-        "Emcee"
-      ],
+      "roles": ["Organizer", "Emcee"],
       "type": "conference",
       "entity": "NebraskaJS"
     },
     {
       "name": "TypeScript Conf",
       "description": "A single day, single track conference highlighting TypeScript and the TypeScript community.",
-      "highlights": [
-        "Emcee from 2018 through present"
-      ],
-      "keywords": [
-        "JavaScript",
-        "TypeScript",
-        "Community",
-        "Conference"
-      ],
+      "highlights": ["Emcee from 2018 through present"],
+      "keywords": ["JavaScript", "TypeScript", "Community", "Conference"],
       // "startDate": "2016-07-08",
       // "endDate": "2020-05-26",
       "url": "https://tsconf.io",
-      "roles": [
-        "Emcee"
-      ],
+      "roles": ["Emcee"],
       "type": "conference",
       "entity": "SitePen"
     },
     {
       "name": "JS Party",
       "description": "A weekly celebration of JavaScript and the web.",
-      "highlights": [
-        "Panelist from 2018 through present"
-      ],
-      "keywords": [
-        "JavaScript",
-        "TypeScript",
-        "Community",
-        "Conference"
-      ],
+      "highlights": ["Panelist from 2018 through present"],
+      "keywords": ["JavaScript", "TypeScript", "Community", "Conference"],
       // "startDate": "2016-07-08",
       // "endDate": "2020-05-26",
       "url": "https://jsparty.fm",
-      "roles": [
-        "Panelist"
-      ],
+      "roles": ["Panelist"],
       "type": "podcast",
       "entity": "Changelog"
     }

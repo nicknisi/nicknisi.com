@@ -15,12 +15,11 @@ const { title, description, hideHeader, hideFooter } = Astro.props;
 ---
 
 <style is:global>
-.base-colors {
-  @apply bg-blue-gray-50 dark:bg-grey-900 text-blue-gray-800 dark:text-grey-50;
-}
+  .base-colors {
+    @apply bg-blue-gray-50 dark:bg-grey-900 text-blue-gray-800 dark:text-grey-50;
+  }
 </style>
 
-<!doctype html>
 <html lang="en">
   <Head title={title} description={description} />
   <body class="font-normal base-colors">

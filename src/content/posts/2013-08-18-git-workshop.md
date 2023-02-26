@@ -26,20 +26,20 @@ also have a free account on [Github](https://github.com) and be sure you can pus
 either by [generating an SSH key](https://help.github.com/articles/generating-ssh-keys)
 or by using the [https method](https://help.github.com/articles/set-up-git).
 
-> Do not clone or fork this repository yet. We will get to that in the *Introducing hub*
+> Do not clone or fork this repository yet. We will get to that in the _Introducing hub_
 > section
 
 ## Overview
 
 The following topics are going to be covered in this workshop:
 
-+ [Git Branching Overview](http://pcottle.github.io/learnGitBranching/?NODEMO)
-+ Teaching git about Github with hub
-+ Finding bugs with bisect
-+ Configuring git
-+ Interactive rebase
+- [Git Branching Overview](http://pcottle.github.io/learnGitBranching/?NODEMO)
+- Teaching git about Github with hub
+- Finding bugs with bisect
+- Configuring git
+- Interactive rebase
 
--------
+---
 
 ### Introducing hub
 
@@ -77,11 +77,11 @@ makes working with github URLs a lot easier, but it does a lot more than that.
 
 #### hub Commands
 
-+ `git fork` - Create a fork of the repository on your Github account
-+ `git pull-request` - Issue a pull request on Github without ever leaving your terminal
-+ `git browse` - Open a web browser straight to the repository page on Github
-+ `git create` - Create a repository out on Github from your terminal
-+ ... and many more!
+- `git fork` - Create a fork of the repository on your Github account
+- `git pull-request` - Issue a pull request on Github without ever leaving your terminal
+- `git browse` - Open a web browser straight to the repository page on Github
+- `git create` - Create a repository out on Github from your terminal
+- ... and many more!
 
 #### Activity: Using hub
 
@@ -90,40 +90,40 @@ the CONTRIBUTERS.md file, and issue a pull request without ever leaving your ter
 
 1. Clone this repository
 
-    ```bash
-    git clone nicknisi/git-workshop
-    ```
+   ```bash
+   git clone nicknisi/git-workshop
+   ```
 
 1. Fork this repository to your Github account: `git fork`
 
-    ```bash
-    # This will automatically set up a new remote named `USERNAME`
-    # where USERNAME is your Github username
-    git fork
-    ```
+   ```bash
+   # This will automatically set up a new remote named `USERNAME`
+   # where USERNAME is your Github username
+   git fork
+   ```
 
 1. Open up the CONTRIBUTERS.md file in your favorite editor (hopefully vim) and add your name to the list
 1. Commit and push up the change to your fork
 
-    ```bash
-    # USERNAME is your Github username
-    git commit -a -m "added NAME to the list"`
-    git push -u USERNAME master
-    ```
+   ```bash
+   # USERNAME is your Github username
+   git commit -a -m "added NAME to the list"`
+   git push -u USERNAME master
+   ```
 
 1. Issue a pull request from the command line back to this repo
 
-    ```bash
-    # USERNAME is your Github username
-    git pull-request -b nicknisi:master -h USERNAME:master
-    ```
+   ```bash
+   # USERNAME is your Github username
+   git pull-request -b nicknisi:master -h USERNAME:master
+   ```
 
 1. Open up your repo in Github to confirm your commit has been pushed up and a pull
    request has been opened
 
-    ```bash
-    git browse
-    ```
+   ```bash
+   git browse
+   ```
 
 ### Finding bugs with `git bisect`
 
@@ -170,61 +170,61 @@ We know that the code is working as intended at [37d0821](https://github.com/nic
 
 1. Checkout the [bisect](https://github.com/nicknisi/git-workshop/tree/bisect) branch
 
-    ```bash
-    git checkout bisect
-    ```
+   ```bash
+   git checkout bisect
+   ```
 
-1. Look at the *index.html* file in a browser and test the file to how it is failing
+1. Look at the _index.html_ file in a browser and test the file to how it is failing
 1. Look through the log to determine where the last known good state of the application is (I have marked this commit with
    the commit message "GOOD STATE")
 
-    ```bash
-    git log --graph --pretty=oneline --abbrev-commit --decorate
-    ```
+   ```bash
+   git log --graph --pretty=oneline --abbrev-commit --decorate
+   ```
 
 1. Start up bisect
 
-    ```bash
-    git bisect start
-    ```
+   ```bash
+   git bisect start
+   ```
 
 1. Alert bisect of the bad commit
 
-    ```bash
-    git bisect bad HEAD
-    ```
+   ```bash
+   git bisect bad HEAD
+   ```
 
 1. Alert bisect of the good commit
 
-    ```bash
-    git bisect good 37d0821
-    ```
+   ```bash
+   git bisect good 37d0821
+   ```
 
 1. git will now pick a commit between the two and check it out. Reload the page in the browser and determine if the slider
    is working properly (showing up).
-    + If it is showing up, `git bisect good`
-    + If it is not showing up, `git bisect bad`
+   - If it is showing up, `git bisect good`
+   - If it is not showing up, `git bisect bad`
 1. After each command, git will checkout a new commit until it has determined the exact commit that introduced the bug
 1. Once you have determined the bad commit, you should be presented with a message like this:
 
-    ```bash
-    ❯ git bisect bad                                                                                                       ✔
-    9378fec...|bisect
-    9378fec280242b4a02b6972c3ca9b61cdf14cad5 is the first bad commit
-    commit 9378fec280242b4a02b6972c3ca9b61cdf14cad5
-    Author: Nick Nisi <nick@nisi.org>
-    Date:   Tue Aug 13 00:05:23 2013 -0500
+   ```bash
+   ❯ git bisect bad                                                                                                       ✔
+   9378fec...|bisect
+   9378fec280242b4a02b6972c3ca9b61cdf14cad5 is the first bad commit
+   commit 9378fec280242b4a02b6972c3ca9b61cdf14cad5
+   Author: Nick Nisi <nick@nisi.org>
+   Date:   Tue Aug 13 00:05:23 2013 -0500
 
-        adjust animation speed slowing down again
+       adjust animation speed slowing down again
 
-        :100644 100644 2bf5ba28648e5c388556b37701addac90d9daf20 63ec399ce0f457bd17e5e6933a0a140c1435223d M      index.html
-    ```
+       :100644 100644 2bf5ba28648e5c388556b37701addac90d9daf20 63ec399ce0f457bd17e5e6933a0a140c1435223d M      index.html
+   ```
 
 1. To end bisect at any time reset it
 
-    ```bash
-    git bisect reset
-    ```
+   ```bash
+   git bisect reset
+   ```
 
 Following these steps, we are able to quickly determine which is the [bad
 commit](https://github.com/nicknisi/git-workshop/commit/9378fec280242b4a02b6972c3ca9b61cdf14cad5).
@@ -299,9 +299,9 @@ If you have a long-running branch, git can remember how you resolved merge confl
 
 Git hooks allow you to run scripts before or after events in git such as commit, push, and receive. Hooks are configured per repository and are located in the `.git/hooks` directory. Because they live in the git database directory, they are not part of your repository and can be set up independently. Here are just a few of the available commit hooks:
 
-+ pre-commit - run before a commit to the repository
-+ post-checkout - after a checkout which includes, cloning, switching branches, or resetting files
-+ commit-msg - run after a commit message is entered
+- pre-commit - run before a commit to the repository
+- post-checkout - after a checkout which includes, cloning, switching branches, or resetting files
+- commit-msg - run after a commit message is entered
 
 There are also server-side commit hooks. These can be utilized to kick off builds, run deployments, run
 continuous integration, and many other things. Github has integration with third party services when
@@ -365,7 +365,7 @@ else. However, that means that it is typically a manual process of storing the
 commit hook in a safe place and then manually copying it over into the newly
 created or cloned repo.
 
-As previously pointed out, git copies a number of *sample* commit hooks into
+As previously pointed out, git copies a number of _sample_ commit hooks into
 each repository, and we can hijack this to add our own commit hooks! These
 sample files live at `/usr/share/git-core/templates` in the `hooks` directory.
 We can configure git to change where this directory exists and override it
@@ -436,15 +436,14 @@ When you run an interactive rebase, you are changing your git history. Commits w
 assigned new SHAs. If you have already pushed up and someone else has pulled down the changes, it will mess up their repository if you change the history out from under them.
 
 Running `git rebase -i HEAD 4f88c8d will pop us into our editor and list all of the commits within the provided range.
-Each commit will have the word *pick* next to it, meaning that we are picking this commit (leaving it as it is).
+Each commit will have the word _pick_ next to it, meaning that we are picking this commit (leaving it as it is).
 The other options are
 
-+ reword - use commit but edit the commit message
-+ edit - use commit, but stop for amending
-+ squash - use commit, but meld into previous commit
-+ fixup - like "squash", but discard this commit's log message
-+ exec - run command
-
+- reword - use commit but edit the commit message
+- edit - use commit, but stop for amending
+- squash - use commit, but meld into previous commit
+- fixup - like "squash", but discard this commit's log message
+- exec - run command
 
 We can use the squash, pick, and fixup commands to simplify the repository.
 
@@ -538,8 +537,8 @@ squash fe321d9 adjust animation to 320
 
 We've only briefly covered a few of the really cool tricks you can do with git. Want to learn more? Check out these great resources!
 
-+ [GitMinutes](http://www.gitminutes.com/) - A podcast for proficient git users
-+ [Git and Github Secrets](http://zachholman.com/talk/git-github-secrets/) - A talk by Zach Holman of Github
-+ [More Git and Github Secrets](http://zachholman.com/talk/more-git-and-github-secrets/) - More!
-+ [GitReady](http://gitready.com/)
-+ Peruse [dotfiles](https://github.com/nicknisi/dotfiles)!
+- [GitMinutes](http://www.gitminutes.com/) - A podcast for proficient git users
+- [Git and Github Secrets](http://zachholman.com/talk/git-github-secrets/) - A talk by Zach Holman of Github
+- [More Git and Github Secrets](http://zachholman.com/talk/more-git-and-github-secrets/) - More!
+- [GitReady](http://gitready.com/)
+- Peruse [dotfiles](https://github.com/nicknisi/dotfiles)!

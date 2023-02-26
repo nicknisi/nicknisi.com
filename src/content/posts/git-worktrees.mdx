@@ -1,7 +1,7 @@
 ---
-title: "How I use git worktrees"
+title: 'How I use git worktrees'
 pubDate: 2022-10-10
-description: "simultanous branches for truly scattered development"
+description: 'simultanous branches for truly scattered development'
 tags:
   - git
 ---
@@ -24,7 +24,8 @@ This will create a new directory as a sibling to your normal working directory, 
 the exact project checked out where you can run all of the normal git commands and set up the project as normal.
 
 <Callout type="info">
-You'll need to `npm install` or do whatever to set up your project as you normally would, as if this were a new clone.
+  You'll need to `npm install` or do whatever to set up your project as you
+  normally would, as if this were a new clone.
 </Callout>
 
 One thing I don't like about this setup is the "scatteredness" of my repo with one seemingly _blessed_ worktree and
@@ -42,10 +43,10 @@ remote: Total 6464 (delta 913), reused 1154 (delta 796), pack-reused 5046
 Receiving objects: 100% (6464/6464), 3.44 MiB | 10.71 MiB/s, done.
 Resolving deltas: 100% (3715/3715), done.
 
-~/Developer/test 
+~/Developer/test
 ▷ cd dotfiles
 
-~/Developer/test/dotfiles 
+~/Developer/test/dotfiles
 ▷ ll
 .rw-r--r-- 173 nicknisi  7 Oct 10:36  config
 .rw-r--r--  73 nicknisi  7 Oct 10:36  description
@@ -77,7 +78,7 @@ I like to call this directory `.bare`.
 ▷ echo "gitdir: ./.bare" > .git
 ```
 
-The benefit of this setup is that the bare repo contents are  hidden away in `.bare`, and then the directory containing
+The benefit of this setup is that the bare repo contents are hidden away in `.bare`, and then the directory containing
 that effectively becomes a place to create worktrees associated with that bare repo, thanks to the `.git` file, which
 is a pointer to where the git database is located.
 
@@ -86,7 +87,6 @@ a bare repo is cloned remote-tracking branches are not created. So, when trying 
 fetched. This can be fixed with a few commands to update what happens on fetch and to associate local branches with the
 their remote.
 
-
 ```shell
 ▷ git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
 ▷ git fetch
@@ -94,7 +94,9 @@ their remote.
 ```
 
 <Callout type="info">
-I created a [script](https://github.com/nicknisi/dotfiles/blob/main/bin/git-bare-clone) to help make this setup easier.
+  I created a
+  [script](https://github.com/nicknisi/dotfiles/blob/main/bin/git-bare-clone) to
+  help make this setup easier.
 </Callout>
 
 ## The downsides
@@ -135,7 +137,7 @@ perpetually keep around in a project.
   worktree.
 - `hotfix` - this worktree is reserved for quickly creating hotfix PRs in. I keep this around because I want to quickly
   jump in and start working rather than creating a new feature-branch worktree and then waiting for the long, long `npm
-  install` to finish.
+install` to finish.
 
 ### Quickly creating new worktrees
 

@@ -1,5 +1,5 @@
 ---
-title: "How I take notes in Obsidian"
+title: 'How I take notes in Obsidian'
 draft: true
 pubDate: 2022-10-16
 description: "It's totally not a cult!"
@@ -29,7 +29,6 @@ omnifocus: omnifocus:///task/iv8m4fX4q0y
 I’ll keep track of these in YAML front matter so that I can display and filter/query based on this metadata using the [dataview plugin]().
 
 ## Zettelkasten
-
 
 These notes typically come from articles, books, or videos I'm consuming. For articles and books, I use the
 [Readwise](https://readwise.io) service to allow me to use the Kindle/Matter highlight feature, and then those

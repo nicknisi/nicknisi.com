@@ -1,5 +1,5 @@
 ---
-title: "Git: Update a forked repository"
+title: 'Git: Update a forked repository'
 slug: 2014-08-24-git-update-fork
 pubDate: 2014-08-24
 tags:
@@ -41,8 +41,8 @@ That's it! We have now successfully updated our fork of a project without having
 
 It can be difficult to remember all of the commands needed for git actions. Luckily, git gives us a way to configure aliases to common or complex actions. Using this and a little convention, we can make a nice alias to reduce the steps above to a single step. Git makes it easy to set up as many remotes as we need, so we can easily pull from an `upstream` remote and then update our `origin` remote.To make a command that can work in any repository, we need to follow a few conventions when it comes to naming our remotes.
 
-* `origin` - The main repository to push to (our fork)
-* `upstream` The main project repository
+- `origin` - The main repository to push to (our fork)
+- `upstream` The main project repository
 
 This way, the alias knows which remote to fetch, and which remote to push to. With this convention in place, we can create an alias in our `~/.gitonfig`:
 

@@ -10,7 +10,11 @@ import Project from '@components/cards/Project.astro';
 
 <section>
   <div class="flex items-center flex-col">
-    <img alt="Nick Nisi" class="rounded-full w-64 h-64" src="/img/profile.jpg" />
+    <img
+      alt="Nick Nisi"
+      class="rounded-full w-64 h-64"
+      src="/img/profile.jpg"
+    />
     <h1>Nick Nisi</h1>
   </div>
 </section>
@@ -29,9 +33,11 @@ presided over nine weddings.
 Nick is an occasional conference speaker and has spoken at conferences all over the world.
 
 <div class="md:grid grid-cols-3 md:auto-rows-auto">
-  {talks.filter(talk => talk.promote).map(talk => (
-  <Talk {...talk} />
-  ))}
+  {talks
+    .filter((talk) => talk.promote)
+    .map((talk) => (
+      <Talk {...talk} />
+    ))}
 </div>
 
 **[Full List of talks](/talks)**
@@ -39,7 +45,9 @@ Nick is an occasional conference speaker and has spoken at conferences all over 
 ## Projects
 
 <div class="flex place-content-evenly flex-wrap">
-  {metadata.projects.map(project => <Project {...project} />)}
+  {metadata.projects.map((project) => (
+    <Project {...project} />
+  ))}
 </div>
 
 ## Bio

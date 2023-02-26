@@ -3,20 +3,27 @@ import metadata from '../data/metadata.json';
 ---
 
 <header class="pb-2 sticky top-0 z-40 base-colors">
-  <div class="max-w-2xl mx-auto flex flex-col items-baseline justify-between py-1 pt-4 md:flex-row">
-    <span class="flex items-center justify-between m-0 mx-auto text-xl text-left space-x-1 md:mx-0">
-      <a class="flex items-center justify-between m-0 mx-auto text-xl text-left space-x-1 md:mx-0" href="/">
-            <img width="20px" height="20px" src={metadata.avatar}>
-            <span class="hidden md:inline-block font-medium">{metadata.title}</span>
-        </a>
+  <div
+    class="max-w-2xl mx-auto flex flex-col items-baseline justify-between py-1 pt-4 md:flex-row"
+  >
+    <span
+      class="flex items-center justify-between m-0 mx-auto text-xl text-left space-x-1 md:mx-0"
+    >
+      <a
+        class="flex items-center justify-between m-0 mx-auto text-xl text-left space-x-1 md:mx-0"
+        href="/"
+      >
+        <img width="20px" height="20px" src={metadata.avatar} />
+        <span class="hidden md:inline-block font-medium">{metadata.title}</span>
+      </a>
     </span>
     <nav class="mx-auto md:mx-0">
-        <ul class="flex list-none space-x-4 md:space-x-8">
-            <li><a class="font-medium" href="/about">About</a></li>
-            <li><a class="font-medium" href="/talks">Talks</a></li>
-            <li><a class="font-medium" href="/posts">Posts</a></li>
-            <li><a class="font-medium" href="/uses">Uses</a></li>
-        </ul>
+      <ul class="flex list-none space-x-4 md:space-x-8">
+        <li><a class="font-medium" href="/about">About</a></li>
+        <li><a class="font-medium" href="/talks">Talks</a></li>
+        <li><a class="font-medium" href="/posts">Posts</a></li>
+        <li><a class="font-medium" href="/uses">Uses</a></li>
+      </ul>
     </nav>
-    </div>
+  </div>
 </header>

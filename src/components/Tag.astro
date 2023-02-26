@@ -5,7 +5,9 @@ interface Props {
 const { name } = Astro.props;
 ---
 
-<div class="not-prose tracking-wide text-grey-600 dark:text-grey-400 inline-flex items-center justify-start flex-initial text-sm px-1">
+<div
+  class="not-prose tracking-wide text-grey-600 dark:text-grey-400 inline-flex items-center justify-start flex-initial text-sm px-1"
+>
   <div class="font-bold">#</div>
   <a href={`/tags/${name}`}>{name.toLowerCase()}</a>
 </div>

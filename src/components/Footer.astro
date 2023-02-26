@@ -5,43 +5,73 @@ import { Icon } from 'astro-icon';
 const year = DateTime.local().year;
 ---
 
-
 <footer class="px-6">
   <div class="max-w-2xl mx-auto">
     <div class="py-12 border-t broder-gray-200 grid grid-cols-1 sm:grid-cols-3">
       <div class="sm:pb-8">
-        <div class="pb-3 font-medium"><Icon name="ic:baseline-email" class="w-4 h-4 inline-block" /> Drop me an email!</div>
-        <a target="_blank" href="mailto:{data.author.email}" class="text-gray-500 hover:text-gray-600 no-underline
-        hover:underline">{metadata.author.email}</a>
+        <div class="pb-3 font-medium">
+          <Icon name="ic:baseline-email" class="w-4 h-4 inline-block" /> Drop me
+          an email!
+        </div>
+        <a
+          target="_blank"
+          href="mailto:{data.author.email}"
+          class="text-gray-500 hover:text-gray-600 no-underline hover:underline"
+          >{metadata.author.email}</a
+        >
         <div class="py-3">© {metadata.author.name} {year}</div>
       </div>
       <div class="">
         <div class="pb-3">
-          <a class="text-gray-500 hover:text-gray-600 no-underline hover:underline" href="/">Home</a>
+          <a
+            class="text-gray-500 hover:text-gray-600 no-underline hover:underline"
+            href="/">Home</a
+          >
         </div>
         <div class="pb-3">
-          <a class="text-gray-500 hover:text-gray-600 no-underline hover:underline" href="/about">About</a>
+          <a
+            class="text-gray-500 hover:text-gray-600 no-underline hover:underline"
+            href="/about">About</a
+          >
         </div>
         <div class="pb-3">
-          <a class="text-gray-500 hover:text-gray-600 no-underline hover:underline" href="/posts">Posts</a>
+          <a
+            class="text-gray-500 hover:text-gray-600 no-underline hover:underline"
+            href="/posts">Posts</a
+          >
         </div>
       </div>
       <div>
         <div class="pb-3">
-          <a class="text-gray-500 hover:text-gray-600 no-underline hover:underline" href="/talks">Talks</a>
+          <a
+            class="text-gray-500 hover:text-gray-600 no-underline hover:underline"
+            href="/talks">Talks</a
+          >
         </div>
         <div class="pb-3">
-          <a class="text-gray-500 hover:text-gray-600 no-underline hover:underline" href="/uses">Uses</a>
+          <a
+            class="text-gray-500 hover:text-gray-600 no-underline hover:underline"
+            href="/uses">Uses</a
+          >
         </div>
         <div class="flex pt-2">
           <div class="flex">
-            {Object.entries(metadata.social).map(([name, {url}]) => (
-              <div class="px-1">
-                <a target="_blank" href={url} class="text-gray-500 hover:text-gray-600 no-underline">
-                  <Icon name={`simple-icons:${name}`} class="h-4 w-4 inline-block text-gray-500 hover:text-gray-600" />
-                </a>
-              </div>
-            ))}
+            {
+              Object.entries(metadata.social).map(([name, { url }]) => (
+                <div class="px-1">
+                  <a
+                    target="_blank"
+                    href={url}
+                    class="text-gray-500 hover:text-gray-600 no-underline"
+                  >
+                    <Icon
+                      name={`simple-icons:${name}`}
+                      class="h-4 w-4 inline-block text-gray-500 hover:text-gray-600"
+                    />
+                  </a>
+                </div>
+              ))
+            }
           </div>
         </div>
       </div>
