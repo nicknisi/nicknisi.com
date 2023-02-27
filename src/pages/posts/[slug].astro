@@ -12,7 +12,9 @@ interface Props {
 }
 
 export async function getStaticPaths() {
-  const posts = await getCollection('posts');
+  const posts = (await getCollection('posts')).filter(
+    (post) => !post.data.draft
+  );
   return posts.map((post, i) => ({
     params: { slug: post.slug },
     props: { post, prevPost: i > 0 ? posts[i - 1] : null },
