@@ -31,7 +31,9 @@ export async function getPosts(max?: number) {
       }
       return true;
     })
-  ).reverse();
+  ).sort((a, b) => {
+    return new Date(a.data.pubDate) > new Date(b.data.pubDate) ? -1 : 1;
+  });
 
   if (max) {
     return posts.slice(0, max);
