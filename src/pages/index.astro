@@ -4,6 +4,7 @@ import BaseLayout from '../layouts/Base.astro';
 import Posts from '@components/Posts.astro';
 import Tag from '@components/Tag.astro';
 import { getPosts } from '../util';
+import { Icon } from 'astro-icon';
 
 const allPosts = await getPosts();
 const tags: string[] = [
@@ -14,27 +15,43 @@ const posts = allPosts.slice(0, 10);
 
 <BaseLayout>
   <div class="py-10">
-    <div class="flex items-center md:flex-row flex-col">
-      <div
-        class="sm:w-32 sm:h-32 h-32 w-32 sm:mr-10 inline-flex items-center justify-center rounded-full text-blue-500 flex-shrink-0"
-      >
-        <img
-          src={metadata.profile}
-          alt="author"
-          class="drop-shadow-md rounded-full w-32 h-32"
-        />
+    <div class="flex items-center flex-col">
+      <div class="flex flex-col md:flex-row justify-center items-center">
+        <div class="text-2xl sm:text-3xl lg:text-4xl font-bold">
+          {metadata.description}
+        </div>
+        <div
+          class="md:w-64 md:h-64 h-32 w-32 sm:mr-10 inline-flex items-center justify-center rounded-full text-blue-500 flex-shrink-0"
+        >
+          <img
+            src={metadata.profile}
+            alt="author"
+            class="drop-shadow-md rounded-full w-32 h-32 md:w-64 md:h-64 shadow-lg object-cover mx-auto"
+          />
+        </div>
       </div>
-      <div class="mt-8 text-3xl font-black">{metadata.description}</div>
+      <div class="flex dark:text-grey-700 text-grey-200 md:justify-start justify-center items-center md:items-end w-full
+        pt-2 md:pt-0">
+        {[
+          'raphael:vim',
+          'mdi:language-typescript',
+          'mdi:react',
+          'mdi:nodejs',
+          'mdi:language-javascript',
+        ].map(name => <Icon name={name} class="w-8 h-8" />)}
+      </div>
+      <p class="mt-2 leading-8">
+        A Front End Staff Engineer who specializes in JavaScript and web
+        development. An expert in TypeScript and is dedicated to delivering
+        the best developer experience. Frequent speaker at meetups and
+        conferences, conference organizer and emcee, panelist on the <a href="https://jsparty.fm"
+          >JS Party podcast</a
+        >, and an organizer of the <a href="https://nebraskajs.com"
+          >NebraskaJS</a
+        >
+        meetup.
+      </p>
     </div>
-    <p class="mt-2 leading-8">
-      I work as a Front End Staff Engineer, focused on delivering the best
-      developer experience through tooling with TypeScript. I am also a panelist
-      on the <a target="_blank" href="https://jsparty.fm">JS Party</a> podcast, Emcee
-      <a target="_blank" href="https://tsconf.io">TypeScript Conf</a>, and
-      organizer of the <a target="_blank" href="https://nebraskajs.com"
-        >NebraskaJS</a
-      > meetup.
-    </p>
 
     <h3 class="mt-8 text-2xl my-4">Latest posts</h3>
     <Posts posts={posts} />

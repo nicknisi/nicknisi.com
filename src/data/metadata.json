@@ -1,7 +1,8 @@
 {
   "title": "nicknisi",
   "url": "https://nicknisi.com",
-  "description": "👋 Hi, I'm Nick. I write and talk about JavaScript and the web.",
+  "_description": "👋 Hi, I'm Nick. I write and talk about JavaScript and the web.",
+  "description": "Developer and podcaster based in Nebraska. TypeScript enthusiast, transpiling dreams into reality.",
   "avatar": "/img/beef_nick.png",
   "profile": "/img/profile.jpg",
   "ogImage": "/og/colorful.png",
