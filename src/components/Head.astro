@@ -15,6 +15,7 @@ const title = props.title
 const description = props.description ?? metadata.description;
 const headerImage =
   (url?.origin ?? metadata.url) + (props.headerImage ?? metadata.ogImage);
+const mode = import.meta.env.MODE;
 ---
 
 <head>
@@ -52,6 +53,13 @@ const headerImage =
   <link rel="me" href={metadata.social.twitter.url} />
   <link rel="me" href={metadata.social.github.url} />
   <link rel="me" href={metadata.social.mastodon.url} />
-  <script src="https://cdn.usefathom.com/script.js" data-site="XRVBPHZM" defer
-  ></script>
+  {
+    mode === 'production' && (
+      <script
+        src="https://cdn.usefathom.com/script.js"
+        data-site="XRVBPHZM"
+        defer
+      />
+    )
+  }
 </head>
