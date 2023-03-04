@@ -30,37 +30,40 @@ const posts = allPosts.slice(0, 10);
           />
         </div>
       </div>
-      <div class="flex dark:text-grey-700 text-grey-200 md:justify-start justify-center items-center md:items-end w-full
-        pt-2 md:pt-0">
-        {[
-          'raphael:vim',
-          'mdi:language-typescript',
-          'mdi:react',
-          'mdi:nodejs',
-          'mdi:language-javascript',
-        ].map(name => <Icon name={name} class="w-8 h-8" />)}
+      <div
+        class="flex dark:text-grey-700 text-grey-200 md:justify-start justify-center items-center md:items-end w-full pt-2 md:pt-0"
+      >
+        {
+          [
+            'raphael:vim',
+            'mdi:language-typescript',
+            'mdi:react',
+            'mdi:nodejs',
+            'mdi:language-javascript',
+          ].map((name) => <Icon name={name} class="w-8 h-8" />)
+        }
       </div>
       <p class="mt-2 leading-8">
         A Front End Staff Engineer who specializes in JavaScript and web
-        development. An expert in TypeScript and is dedicated to delivering
-        the best developer experience. Frequent speaker at meetups and
-        conferences, conference organizer and emcee, panelist on the <a href="https://jsparty.fm"
-          >JS Party podcast</a
+        development. An expert in TypeScript and is dedicated to delivering the
+        best developer experience. Frequent speaker at meetups and conferences,
+        conference organizer and emcee, panelist on the <a
+          href="https://jsparty.fm">JS Party podcast</a
         >, and an organizer of the <a href="https://nebraskajs.com"
           >NebraskaJS</a
         >
         meetup.
       </p>
-    </div>
 
-    <h3 class="mt-8 text-2xl my-4">Latest posts</h3>
-    <Posts posts={posts} />
+      <h3 class="mt-8 text-2xl my-4">Latest posts</h3>
+      <Posts posts={posts} />
 
-    <h3 class="mt-8 text-2xl my-4">Tags</h3>
-    <div
-      class="flex flex-wrap items-center justify-start flex-initial space-x-2"
-    >
-      {tags.map((tag) => <Tag name={tag} />)}
+      <h3 class="mt-8 text-2xl my-4">Tags</h3>
+      <div
+        class="flex flex-wrap items-center justify-start flex-initial space-x-2"
+      >
+        {tags.map((tag) => <Tag name={tag} />)}
+      </div>
     </div>
   </div>
 </BaseLayout>

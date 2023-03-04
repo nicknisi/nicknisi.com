@@ -28,13 +28,9 @@ const tagPosts = posts.filter((post) => post.data?.tags.includes(tag));
 ---
 
 <BaseLayout>
-  <div class="my-8 mb-8">
+  <div class="my-8">
     <h2 class="text-3xl">Posts tagged with <Tag name={tag} /></h2>
-    <p class="prose py-3">
-      Here is a collection of talks and videos I have given at various meetups
-      and conferences.
-    </p>
-    <div class="grid grid-cols-3 gap-1 auto-rows-auto">
+    <div class="grid grid-cols-3 gap-1 auto-rows-auto py-8">
       <Posts posts={tagPosts} />
     </div>
   </div>
