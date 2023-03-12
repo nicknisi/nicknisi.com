@@ -1,0 +1,219 @@
+---
+title: 'A simple introduction to codemods'
+pubDate: 2023-03-10
+description: 'Refactoring with effortless consistency.'
+tags:
+  - typescript
+---
+
+I gave a quick talk at Idea Storm Q1 2023 in Grand Island, NE where I spoke about something I've been pretty excited about recently... codemods! Codemods are a powerful tool for developers to automate repetitive and time-consuming tasks. These small scripts can analyze and modify source code, allowing developers to easily make sweeping changes across their entire codebase without having to manually search and replace code. More importantly, they allow for consistency when making changes, as specific _types_ of code can be targeted, ensuring the changes are exactly what's expected while handling any edge cases.
+
+## The setup
+
+The library we'll use is [jscodeshift](https://github.com/facebook/jscodeshift). It's a toolkit for creating codemods and generating code that tries to match your existing code style. Let's make this really simple. Say we have a file that contains just a single import statement.
+
+```ts
+import { render } from 'some-library';
+````
+
+In this example, we want to make a change to every file that imports this. Now, this make look like a simple-enough change that we could just use our editor's find and replace feature, but this can be deceiving. Not all imports may look the same.
+
+```ts
+// classic import
+import { render } from 'some-library';
+
+// importing other things, too
+import { render, screen } from 'some-library';
+
+// import and rename
+import {render as r } from 'some-library';
+```
+
+…and several combinations in-between.
+
+## Constructing a new codemod
+
+With a codemod targeted at replacing this import properly, we can be assured that all of these examples are accounted for and handled properly, giving us the confidence we need that our changes are consistent and accurate. When making these changes using a codemod, we're not doing anything like a find/replace. Instead, a codemod works by transforming our source file into an [Abstract Syntax Tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree), the secret sauce to achieve consistency. By looking at the source as a tree of nodes, we can specifically target and manipulate the tree as needed. Let's take a look at the original input file again and what its AST representation looks like.
+
+```ts
+import { render } from 'some-library';
+```
+
+<img src="/img/posts/codemods-ast.png" class="image" alt="an AST representation of our import statement" />
+
+Looking at the AST, it's made up of a top-level source that contains a single `ImportDeclration` node. This node
+contains an `ImportClause` and a `StringLiteral`. The `StringLiteral` is what we want to change, but we need to assess
+the `ImportClause` first and identify that it's actually importing `render` in some way.
+
+To get started with a new codemod, we simply need to start a file that exports a default `transform` function. This
+function will receive a source file and the jscodeshift API to work with. From there, we can modify and return changes
+to the source file. jscodeshift actually has great TypeScript support, so we'll write the codemod using that.
+
+The first thing we need to do is to import some types from jscodeshift and set up our `transform` function.
+
+```ts
+import { API, FileInfo } from 'jscodeshift';
+
+export default function transform(file: FileInfo, { jscodeshift: j }: API) {
+  // codemod goes here.
+}
+```
+
+### Setting up the codemod
+
+The `file` will contain all of the information about the file including the path and the contents as a string. To turn
+it into an AST, we'll use the `j` function provided by the jscodeshift API. We'll also define the `REPLACEMENT` import
+location that we'll use to update the import statements.
+
+```ts
+const root = j(file.source);
+const REPLACEMENT = 'custom-render-package';
+```
+
+### Find the right imports
+
+We want to use the `find` method to locate every import statement in the file(s) that specifically imports the
+code we want to change. This will return an array that typically will have either `0` or `1` value in this case.
+Additionally, we want to only find the ones where `render` is also being imported from `some-library`. This will exclude
+other cases, where potentially only `screen` or other imports we don't care about are being imported.
+
+```ts
+const importDeclaration = root.find(j.ImportDeclaration, {
+  source: {
+    value: 'some-library',
+  },
+});
+const importRender = importDeclaration.find(j.ImportSpecifier, { imported: { name: 'render' } });
+```
+
+### Make the changes
+
+If the import was found, we can remove the imported `render` and construct a new import statement to point to our
+new location. We also want to take note of whether `render` was renamed to something else locally (using the `render as
+r` syntax, for example).
+
+```ts
+if (importRender.size()) {
+  // at least one import was found that matches
+
+  // get the local name (the `as r`) part, if it exists.
+  const renderLocalName = importRender.get().value.local.name;
+
+  // remove `render` from the import statement
+  importRender.remove();
+
+  // construct a whole new ImportDeclaration pointint to REPLACEMENT
+  // taking care to set the local value to the captured name above
+  const newImport = j.importDeclaration(
+    [
+      j.importSpecifier(j.identifier('render'),
+      j.identifier(renderLocalName))
+    ],
+    j.literal(REPLACEMENT),
+  );
+```
+
+### Replace the imports
+
+We'll want to determine if `render` was the only thing imported originally. If it was, we'll completely replace
+the old import with our new one. Otherwise, such as in the case where `screen` was also imported, we'll simply leave
+that import alone and add our new one after it.
+
+```ts
+if (importDeclaration.find(j.ImportSpecifier).size() === 0) {
+  // render was the only import so replace the old ImportDeclaration
+  // with our new one
+  importDeclaration.replaceWith(newImport);
+} else {
+  // Something else was imported, so leave the rest alone and add ours
+  // as a new import immediately following
+  importDeclaration.insertAfter(newImport);
+}
+```
+
+Finally, we'll want to return from our transform, turning our AST back into source code. jscodeshift will try and match
+the styles that are already there, but you can also provide it with some hints.
+
+```ts
+return root.toSource({
+  quote: 'single',
+});
+```
+
+## Running the codeomod
+
+To run the codemod, we use the following
+command. This will run the `transform` on every file that matches the provided [glob](https://en.wikipedia.org/wiki/Glob_(programming)).
+
+```shell
+npx jscodeshift --parser tsx -t ./swap-render.ts src/**/*.spec.tsx
+```
+
+Each or our variations now looks like this:
+
+```ts
+// classic import
+import { render } from 'custom-render-package';
+
+// importing other things, too
+import { screen } from 'some-library';
+import { render } from 'custom-render-package';
+
+// import and rename
+import {render as r } from 'custom-render-package';
+```
+
+And, here's the full source code.
+
+```ts
+import { API, FileInfo } from 'jscodeshift';
+
+export default function transform(
+  file: FileInfo,
+  { jscodeshift: j }: API,
+) {
+  const REPLACEMENT = 'custom-render-package';
+  const root = j(file.source);
+
+  const importDeclaration = root.find(j.ImportDeclaration, {
+    source: {
+      value: 'some-library',
+    },
+  });
+  const importRender = importDeclaration.find(j.ImportSpecifier, { imported: { name: 'render' } });
+
+  if (importRender.size() > 0) {
+    // get the render's local name
+    const renderLocalName = importRender.get().value.local.name;
+    importRender.remove();
+    const newImport = j.importDeclaration(
+      [j.importSpecifier(j.identifier('render'), j.identifier(renderLocalName))],
+      j.literal(REPLACEMENT),
+    );
+
+    if (importDeclaration.find(j.ImportSpecifier).size() === 0) {
+      importDeclaration.replaceWith(newImport);
+    } else {
+      importDeclaration.insertAfter(newImport);
+    }
+    return root.toSource({
+      quote: 'single',
+    });
+  }
+}
+```
+
+## Some pitfalls
+
+While codemods can be incredibly powerful tools, there are some potential pitfalls to be aware of.
+
+Codemods are not always straightforward to write. Depending on the complexity of the changes you want to make, you may need to invest significant time and effort in creating a reliable and effective codemod. This can be especially challenging if you're not experienced with the particular programming language or library you're working with.
+
+Additionally, because codemods operate at a very high level, they can sometimes make unexpected or unwanted changes to your code. This is especially true if your codebase is not well-structured or contains subtle differences in the way different parts of the code are written. For this reason, it's important to test codemods on a small subset of files and possibly consider batching them for easeier and more thorough code reviews. We all know how thoroughly large pull reqeusts get reviewed. 😉 Keep them small.
+
+Finally, codemods may not always match your code style perfectly. For this reason, it's recommended to follow up on each
+file that a codemod changed with a call to [prettier](https://prettier.io) or similar code formatting tool.
+
+## Wrapping up
+
+codemods can be incredibly useful tools for streamlining the process of making changes to large codebases. They allow developers to automate tedious and repetitive tasks, significantly reducing the time and effort required to make these changes, as well as ensure consistency and accuracy throughout the codebase. Also, because codemods are written in code, they can be easily shared and reused within teams or across projects. It's definitely worth considering whether a codemod could help simplify and speed up your development process.
