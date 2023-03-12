@@ -39,7 +39,7 @@ const mode = import.meta.env.MODE;
   <meta property="twitter:site" content={metadata.social.twitter.username} />
   <meta property="twitter:creator" content={metadata.social.twitter.username} />
   <meta property="twitter:image" content={headerImage} />
-  <meta property="og:url" content={site?.origin ?? metadata.url} />
+  <meta property="og:url" content={url ?? site?.origin ?? metadata.url} />
   <meta property="og:title" content={title} />
   <meta
     property="og:description"
