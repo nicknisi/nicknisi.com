@@ -64,10 +64,10 @@ const year = DateTime.local().year;
                     href={url}
                     class="text-gray-500 hover:text-gray-600 no-underline"
                   >
-                    <Icon
+                    {name !== 'bluesky' ? <Icon
                       name={`simple-icons:${name}`}
                       class="h-4 w-4 inline-block text-gray-500 hover:text-gray-600"
-                    />
+                    /> : <div class="w-4 h-4 bg-vivid-light-blue-700 align-baseline mt-1.5"></div>}
                   </a>
                 </div>
               ))
