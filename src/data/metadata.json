@@ -22,9 +22,9 @@
       "username": "@nicknisi@nicknisi.com",
       "url": "https://fediverse.nicknisi.com/@nicknisi"
     },
-    "twitter": {
+    "linkedin": {
       "username": "nicknisi",
-      "url": "https://twitter.com/nicknisi"
+      "url": "https://linkedin.com/in/nicknisi"
     },
     "github": {
       "username": "nicknisi",
@@ -38,13 +38,13 @@
       "username": "nicknisi",
       "url": "https://www.instagram.com/nicknisi/"
     },
-    "linkedin": {
-      "username": "nicknisi",
-      "url": "https://linkedin.com/in/nicknisi"
-    },
     "bluesky": {
       "username": "@nicknisi.com",
       "url": "https://bsky.app/profile/nicknisi.com"
+    },
+    "twitter": {
+      "username": "nicknisi",
+      "url": "https://twitter.com/nicknisi"
     }
   },
   "projects": [
@@ -53,26 +53,8 @@
       "role": "Panelist",
       "type": "podcast",
       "url": "https://changelog.com/jsparty",
-      "description": "A weekly podcast about JavaScript and the web. I'm part of a regular cast of panelists/hosts.",
+      "description": "A weekly celebration of JavaScript and the web.",
       "avatar": "/img/jsparty.png",
-      "status": "active"
-    },
-    {
-      "title": "TalkScript",
-      "role": "Panelist",
-      "type": "podcast",
-      "url": "https://talkscript.fm",
-      "description": "A podcast focusing on TypeScript and the people that use it. It's the official podcast of TSConf!",
-      "avatar": "/img/talkscript.png",
-      "status": "active"
-    },
-    {
-      "title": "TypeScript Conf US",
-      "role": "Emcee",
-      "type": "conference",
-      "url": "https://tsconf.io",
-      "description": "A conference about TypeScript featuring the people that work with and on TypeScript.",
-      "avatar": "/img/tsconf.png",
       "status": "active"
     },
     {
@@ -83,6 +65,24 @@
       "description": "A monthly meetup for JavaScript developers in Nebraska with over 1500 members.",
       "avatar": "/img/nebraskajs.png",
       "status": "active"
+    },
+    {
+      "title": "TalkScript",
+      "role": "Panelist",
+      "type": "podcast",
+      "url": "https://talkscript.fm",
+      "description": "A podcast focusing on TypeScript and the people that use it. It's the official podcast of TSConf!",
+      "avatar": "/img/talkscript.png",
+      "status": "inactive"
+    },
+    {
+      "title": "TypeScript Conf US",
+      "role": "Emcee",
+      "type": "conference",
+      "url": "https://tsconf.io",
+      "description": "A conference about TypeScript featuring the people that work with and on TypeScript.",
+      "avatar": "/img/tsconf.png",
+      "status": "inactive"
     },
     {
       "title": "NebraskaJS Conference",
