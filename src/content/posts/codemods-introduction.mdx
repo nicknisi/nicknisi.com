@@ -14,7 +14,7 @@ The library we'll use is [jscodeshift](https://github.com/facebook/jscodeshift).
 
 ```ts
 import { render } from 'some-library';
-````
+```
 
 In this example, we want to make a change to every file that imports this. Now, this make look like a simple-enough change that we could just use our editor's find and replace feature, but this can be deceiving. Not all imports may look the same.
 
@@ -26,7 +26,7 @@ import { render } from 'some-library';
 import { render, screen } from 'some-library';
 
 // import and rename
-import {render as r } from 'some-library';
+import { render as r } from 'some-library';
 ```
 
 …and several combinations in-between.
@@ -39,7 +39,11 @@ With a codemod targeted at replacing this import properly, we can be assured tha
 import { render } from 'some-library';
 ```
 
-<img src="/img/posts/codemods-ast.png" class="image" alt="an AST representation of our import statement" />
+<img
+  src="/img/posts/codemods-ast.png"
+  class="image"
+  alt="an AST representation of our import statement"
+/>
 
 Looking at the AST, it's made up of a top-level source that contains a single `ImportDeclration` node. This node
 contains an `ImportClause` and a `StringLiteral`. The `StringLiteral` is what we want to change, but we need to assess
@@ -83,7 +87,9 @@ const importDeclaration = root.find(j.ImportDeclaration, {
     value: 'some-library',
   },
 });
-const importRender = importDeclaration.find(j.ImportSpecifier, { imported: { name: 'render' } });
+const importRender = importDeclaration.find(j.ImportSpecifier, {
+  imported: { name: 'render' },
+});
 ```
 
 ### Make the changes
@@ -143,7 +149,7 @@ return root.toSource({
 ## Running the codeomod
 
 To run the codemod, we use the following
-command. This will run the `transform` on every file that matches the provided [glob](https://en.wikipedia.org/wiki/Glob_(programming)).
+command. This will run the `transform` on every file that matches the provided [glob](<https://en.wikipedia.org/wiki/Glob_(programming)>).
 
 ```shell
 npx jscodeshift --parser tsx -t ./swap-render.ts src/**/*.spec.tsx
@@ -160,7 +166,7 @@ import { screen } from 'some-library';
 import { render } from 'custom-render-package';
 
 // import and rename
-import {render as r } from 'custom-render-package';
+import { render as r } from 'custom-render-package';
 ```
 
 And, here's the full source code.
@@ -168,10 +174,7 @@ And, here's the full source code.
 ```ts
 import { API, FileInfo } from 'jscodeshift';
 
-export default function transform(
-  file: FileInfo,
-  { jscodeshift: j }: API,
-) {
+export default function transform(file: FileInfo, { jscodeshift: j }: API) {
   const REPLACEMENT = 'custom-render-package';
   const root = j(file.source);
 
@@ -180,15 +183,22 @@ export default function transform(
       value: 'some-library',
     },
   });
-  const importRender = importDeclaration.find(j.ImportSpecifier, { imported: { name: 'render' } });
+  const importRender = importDeclaration.find(j.ImportSpecifier, {
+    imported: { name: 'render' },
+  });
 
   if (importRender.size() > 0) {
     // get the render's local name
     const renderLocalName = importRender.get().value.local.name;
     importRender.remove();
     const newImport = j.importDeclaration(
-      [j.importSpecifier(j.identifier('render'), j.identifier(renderLocalName))],
-      j.literal(REPLACEMENT),
+      [
+        j.importSpecifier(
+          j.identifier('render'),
+          j.identifier(renderLocalName)
+        ),
+      ],
+      j.literal(REPLACEMENT)
     );
 
     if (importDeclaration.find(j.ImportSpecifier).size() === 0) {

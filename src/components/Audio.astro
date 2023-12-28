@@ -6,11 +6,7 @@ interface Props {
   episode: number;
 }
 
-const {
-  controls = true,
-  theme = 'night',
-  episode,
-} = Astro.props;
+const { controls = true, theme = 'night', episode } = Astro.props;
 
 const embedSrc = `https://changelog.com/jsparty/${episode}/embed`;
 
@@ -23,6 +19,5 @@ const srcUrl = `https://op3.dev/e/https://cdn.changelog.com/uploads/jsparty/${ep
   src={srcUrl}
   preload="none"
   class="changelog-episode"
-  controls={controls}
-/>
-<script is:inline async src="//cdn.changelog.com/embed.js"/>
+  controls={controls}></audio>
+<script is:inline async src="//cdn.changelog.com/embed.js"></script>

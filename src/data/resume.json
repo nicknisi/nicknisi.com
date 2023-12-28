@@ -1,5 +1,10 @@
 {
   "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/master/schema.json",
+  "meta": {
+    "version": "8.0.0",
+    "canonical": "https://nicknisi.com/resume.json",
+    "lastModified": "2023-12-28"
+  },
   "basics": {
     "name": "Nick Nisi",
     "label": "Staff Software Engineer",
@@ -22,6 +27,11 @@
         "url": "https://github.com/nicknisi"
       },
       {
+        "network": "LinkedIn",
+        "username": "nicknisi",
+        "url": "https://linkedin.com/in/nicknisi"
+      },
+      {
         "network": "Mastodon",
         "username": "@nicknisi@nicknisi.com",
         "url": "https://nicknisi.com/@nicknisi"
@@ -32,13 +42,21 @@
         "url": "https://twitter.com/nicknisi"
       },
       {
-        "network": "LinkedIn",
+        "network": "Threads",
         "username": "nicknisi",
-        "url": "https://linkedin.com/in/nicknisi"
+        "url": "https://threads.net/nicknisi"
       }
     ]
   },
   "work": [
+    {
+      "name": "Meta",
+      "remote": true,
+      "location": "Menlo Park, CA",
+      "position": "Software Engineer",
+      "url": "https://meta.com",
+      "startDate": "2024-02-05"
+    },
     {
       "name": "C2FO",
       "remote": true,
@@ -46,6 +64,7 @@
       "position": "Staff Software Engineer",
       "url": "https://c2fo.com",
       "startDate": "2021-12-09",
+      "endDate": "2024-01-12",
       "summary": "A tinkering archetype focused on the developer experience and front end tooling.",
       "highlights": [
         "Part of the Developer Experience team",
@@ -61,7 +80,7 @@
       "location": "Kansas City, KS",
       "position": "Senior Software Engineer II",
       "url": "https://c2fo.com",
-      "startDate": "2020-06-26",
+      "startDate": "2020-05-26",
       "endDate": "2021-12-09",
       "summary": "Focus on the front end of the money-making product.",
       "highlights": [
@@ -172,6 +191,26 @@
   "references": [],
   "projects": [
     {
+      "name": "JS Party",
+      "description": "A weekly celebration of JavaScript and the web.",
+      "highlights": ["Panelist from 2018 through present"],
+      "keywords": ["JavaScript", "TypeScript", "Community", "Conference"],
+      "url": "https://jsparty.fm",
+      "roles": ["Panelist"],
+      "type": "podcast",
+      "entity": "Changelog"
+    },
+    {
+      "name": "NebraskaJS",
+      "description": "A community of JavaScript developers in Nebraska.",
+      "highlights": ["Organized a conference from 2015 through 2019"],
+      "keywords": ["JavaScript", "Community", "Meetup"],
+      "url": "https://nebraskajs.com",
+      "roles": ["Organizer", "Speaker"],
+      "type": "meetup",
+      "entity": "NebraskaJS"
+    },
+    {
       "name": "Dojo",
       "description": "A modern, reactive framework for building efficient and scalable web applications.",
       "highlights": [],
@@ -188,24 +227,10 @@
       "description": "A documentation generator for TypeScript projects.",
       "highlights": [],
       "keywords": [],
-      // "startDate": "2016-07-08",
-      // "endDate": "2020-05-26",
       "url": "https://typedoc.io",
       "roles": ["Contributor"],
       "type": "open source",
       "entity": "Open Source"
-    },
-    {
-      "name": "NebraskaJS",
-      "description": "A community of JavaScript developers in Nebraska.",
-      "highlights": ["Organized a conference from 2015 through 2019"],
-      "keywords": ["JavaScript", "Community", "Meetup"],
-      // "startDate": "2016-07-08",
-      // "endDate": "2020-05-26",
-      "url": "https://nebraskajs.com",
-      "roles": ["Organizer", "Speaker"],
-      "type": "meetup",
-      "entity": "NebraskaJS"
     },
     {
       "name": "NEJS Conf",
@@ -215,8 +240,6 @@
         "Speakers from all over the world"
       ],
       "keywords": ["JavaScript", "Community", "Conference"],
-      // "startDate": "2016-07-08",
-      // "endDate": "2020-05-26",
       "url": "https://nejsconf.com",
       "roles": ["Organizer", "Emcee"],
       "type": "conference",
@@ -227,24 +250,10 @@
       "description": "A single day, single track conference highlighting TypeScript and the TypeScript community.",
       "highlights": ["Emcee from 2018 through present"],
       "keywords": ["JavaScript", "TypeScript", "Community", "Conference"],
-      // "startDate": "2016-07-08",
-      // "endDate": "2020-05-26",
       "url": "https://tsconf.io",
       "roles": ["Emcee"],
       "type": "conference",
       "entity": "SitePen"
-    },
-    {
-      "name": "JS Party",
-      "description": "A weekly celebration of JavaScript and the web.",
-      "highlights": ["Panelist from 2018 through present"],
-      "keywords": ["JavaScript", "TypeScript", "Community", "Conference"],
-      // "startDate": "2016-07-08",
-      // "endDate": "2020-05-26",
-      "url": "https://jsparty.fm",
-      "roles": ["Panelist"],
-      "type": "podcast",
-      "entity": "Changelog"
     }
   ],
   "certificates": []
