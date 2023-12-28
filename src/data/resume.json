@@ -8,11 +8,11 @@
   "basics": {
     "name": "Nick Nisi",
     "label": "Staff Software Engineer",
-    "image": "",
+    "image": "/img/profile.jpg",
     "email": "nick@nisi.org",
-    "phone": "402.216.1612",
+    "phone": "+14022161612",
     "url": "https://nicknisi.com",
-    "summary": "A JavaScript and TypeScript personality with 12 years experience in the industry and with a focus on community, teaching, and developer tooling. Organizer of the only JavaScript conference in Nebraska and panelist on two JavaScript-focused podcasts.",
+    "summary": "With 12 years in the industry as a dedicated JavaScript and TypeScript specialist, I actively advocate for community through teaching and enhancing developer tooling. I'm a panelist on the JS Party podcast and I proudly organized Nebraska's sole JavaScript conference.",
     "location": {
       "address": "",
       "postalCode": "",
@@ -45,6 +45,11 @@
         "network": "Threads",
         "username": "nicknisi",
         "url": "https://threads.net/nicknisi"
+      },
+      {
+        "network": "BlueSky",
+        "username": "@nicknisi.com",
+        "url": "https://bsky.app/profile/nicknisi.com"
       }
     ]
   },
