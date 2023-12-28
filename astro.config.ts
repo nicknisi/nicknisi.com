@@ -1,6 +1,7 @@
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
+import icon from 'astro-icon';
 
 // https://astro.build/config
 import mdx from '@astrojs/mdx';
@@ -15,6 +16,7 @@ export default defineConfig({
     port: 8080,
   },
   integrations: [
+    icon(),
     react(),
     mdx(),
     tailwind(),

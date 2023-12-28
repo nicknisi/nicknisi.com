@@ -4,7 +4,7 @@ import BaseLayout from '../layouts/Base.astro';
 import Posts from '@components/Posts.astro';
 import Tag from '@components/Tag.astro';
 import { getPosts } from '../util';
-import { Icon } from 'astro-icon';
+import { Icon } from 'astro-icon/components';
 
 const allPosts = await getPosts();
 const tags: string[] = [
