@@ -13,37 +13,37 @@ const thumbnail = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
 ---
 
 <div
-  class="md:flex-1 xs:flex-grow rounded-lg shadow-lg dark:bg-cool-gray-900 bg-cool-gray-50 p-2 space-x-2 space-y-2 m-2 pb-6 w-89 not-prose"
+  class="xs:flex-grow w-89 not-prose m-2 space-x-2 space-y-2 rounded-lg bg-cool-gray-50 p-2 pb-6 shadow-lg md:flex-1 dark:bg-cool-gray-900"
 >
   <a href={url} target="_blank" class="no-underline">
-    <div class="flex flex-col px-2 pt-1 pb-4 text-center items-center">
+    <div class="flex flex-col items-center px-2 pb-4 pt-1 text-center">
       <img
-        class="not-prose rounded w-48 mx-1 pb-1"
+        class="not-prose mx-1 w-48 rounded pb-1"
         src={thumbnail}
         alt={title}
       />
       <h5
-        class="text-grey-900 dark:text-grey-100 text-l leading-tight font-bold text-center h-12"
+        class="text-l h-12 text-center font-bold leading-tight text-grey-900 dark:text-grey-100"
       >
         {title}
       </h5>
-      <div class="flex flex-col align-content-center justify-content-center">
+      <div class="align-content-center justify-content-center flex flex-col">
         <div
-          class="text-blue-grey-600 dark:text-blue-gray-200 text-xs font-bold"
+          class="text-blue-grey-600 text-xs font-bold dark:text-blue-gray-200"
         >
           {date}
         </div>
         <div
-          class="text-grey-600 dark:text-grey-200 text-m leading-tight font-medium h-8"
+          class="text-m h-8 font-medium leading-tight text-grey-600 dark:text-grey-200"
         >
           {location}
         </div>
         {
           type === 'panel' && (
-            <div class="pt-4 self-end">
+            <div class="self-end pt-4">
               <span
-                class="text-xs font-semibold inline-block py-1 px-2 rounded-full uppercase
-              last text-purple-700 bg-purple-100 last:mr-0 mr-1"
+                class="last mr-1 inline-block rounded-full bg-purple-100 px-2 py-1
+              text-xs font-semibold uppercase text-purple-700 last:mr-0"
               >
                 Panel
               </span>

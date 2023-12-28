@@ -24,7 +24,7 @@ if (reverse) {
   }
 
   .in-view {
-    @apply dark:after:bg-purple-300 after:bg-purple-700;
+    @apply after:bg-purple-700 dark:after:bg-purple-300;
   }
 
   .in-view div {
@@ -57,29 +57,29 @@ if (reverse) {
 </script>
 
 <section class="timeline not-prose text-purple-50">
-  <ul class="py-12 px-0">
+  <ul class="px-0 py-12">
     {
       events.map((event, i) => (
         <li
           class="
-        ml-5 dark:bg-white bg-grey-800 pt-12 my-0 md:mx-auto w-[6px] relative list-none
-        after:content:[''] after:-translate-x-1/2 after:absolute after:left-1/2 after:bottom-0 after:rounded-full
-        after:z-10 after:w-8 after:h-8
-        after:ease-in-out after:duration-500 after:transition shadow-lg
+        after:content:[''] relative my-0 ml-5 w-[6px] list-none bg-grey-800 pt-12 shadow-lg
+        after:absolute after:bottom-0 after:left-1/2 after:z-10 after:h-8 after:w-8
+        after:-translate-x-1/2 after:rounded-full after:transition
+        after:duration-500 after:ease-in-out md:mx-auto dark:bg-white
       "
         >
           <div
             class={`
-      w-64 md:w-96 relative bottom-0 p-4 dark:bg-purple-300 bg-purple-700 rounded-lg shadow-lg
-      before:content:[''] before:absolute before:bottom-2 before:w-0 before:h-0 before:border-solid
-invisible opacity-0 transition-all duration-500 ease-in-out transform-gpu
+      before:content:[''] invisible relative bottom-0 w-64 transform-gpu rounded-lg bg-purple-700 p-4
+      opacity-0 shadow-lg transition-all duration-500 ease-in-out before:absolute
+before:bottom-2 before:h-0 before:w-0 before:border-solid md:w-96 dark:bg-purple-300
       ${
         (i + 1) % 2 === 0
-          ? 'md:-left-[439px] left-12 before:border-transparent before:border-y-8 before:-left-4 before:border-r-[16px] dark:before:border-r-purple-300 before:border-r-purple-700 before:md:left-auto before:md:-right-4 before:md:border-l-[16px] before:md:border-r-0 dark:before:md:border-l-purple-300 before:md:border-l-purple-700 translate-x-[-200px]'
-          : 'left-11 before:border-transparent before:outline-none before:-left-4 before:border-r-[16px] before:border-y-[8px] dark:before:border-r-purple-300 before:border-r-purple-700 translate-x-[200px]'
+          ? 'left-12 translate-x-[-200px] before:-left-4 before:border-y-8 before:border-r-[16px] before:border-transparent before:border-r-purple-700 md:-left-[439px] before:md:-right-4 before:md:left-auto before:md:border-l-[16px] before:md:border-r-0 before:md:border-l-purple-700 dark:before:border-r-purple-300 dark:before:md:border-l-purple-300'
+          : 'left-11 translate-x-[200px] before:-left-4 before:border-y-[8px] before:border-r-[16px] before:border-transparent before:border-r-purple-700 before:outline-none dark:before:border-r-purple-300'
       }`}
           >
-            <time class="block text-lg font-bold mb-2">{event.time}</time>
+            <time class="mb-2 block text-lg font-bold">{event.time}</time>
             {event.text && <p>{event.text}</p>}
             {event.image && (
               <div class="flex items-center justify-center">

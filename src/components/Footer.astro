@@ -6,11 +6,11 @@ const year = DateTime.local().year;
 ---
 
 <footer class="px-6">
-  <div class="max-w-2xl mx-auto">
-    <div class="py-12 border-t broder-gray-200 grid grid-cols-1 sm:grid-cols-3">
+  <div class="mx-auto max-w-2xl">
+    <div class="broder-gray-200 grid grid-cols-1 border-t py-12 sm:grid-cols-3">
       <div class="sm:pb-8">
         <div class="pb-3 font-medium">
-          <Icon name="ic:baseline-email" class="w-4 h-4 inline-block" /> Drop me
+          <Icon name="ic:baseline-email" class="inline-block h-4 w-4" /> Drop me
           an email!
         </div>
         <a
@@ -67,10 +67,10 @@ const year = DateTime.local().year;
                     {name !== 'bluesky' ? (
                       <Icon
                         name={`simple-icons:${name}`}
-                        class="h-4 w-4 inline-block text-gray-500 hover:text-gray-600"
+                        class="text-gray-500 hover:text-gray-600 inline-block h-4 w-4"
                       />
                     ) : (
-                      <div class="w-4 h-4 bg-vivid-light-blue-700 align-baseline mt-1.5" />
+                      <div class="mt-1.5 h-4 w-4 bg-vivid-light-blue-700 align-baseline" />
                     )}
                   </a>
                 </div>

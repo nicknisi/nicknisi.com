@@ -9,10 +9,10 @@ import talks from '../data/talks.json';
 import Project from '@components/cards/Project.astro';
 
 <section>
-  <div class="flex items-center flex-col">
+  <div class="flex flex-col items-center">
     <img
       alt="Nick Nisi"
-      class="rounded-full w-64 h-64"
+      class="h-64 w-64 rounded-full"
       src="/img/profile.jpg"
     />
     <h1>Nick Nisi</h1>
@@ -32,7 +32,7 @@ presided over nine weddings.
 
 Nick is an occasional conference speaker and has spoken at conferences all over the world.
 
-<div class="md:grid grid-cols-3 md:auto-rows-auto">
+<div class="grid-cols-3 md:grid md:auto-rows-auto">
   {talks
     .filter((talk) => talk.promote)
     .map((talk) => (
@@ -44,7 +44,7 @@ Nick is an occasional conference speaker and has spoken at conferences all over 
 
 ## Projects
 
-<div class="flex place-content-evenly flex-wrap">
+<div class="flex flex-wrap place-content-evenly">
   {metadata.projects.map((project) => (
     <Project {...project} />
   ))}

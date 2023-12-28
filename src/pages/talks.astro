@@ -10,7 +10,7 @@ const youtubeTalks = talks.filter((talk) => talk.source === 'youtube');
     Here is a collection of talks and videos I have given at various meetups and
     conferences.
   </p>
-  <div class="md:grid md:grid-cols-3 md:gap-1 md:auto-rows-auto">
+  <div class="md:grid md:auto-rows-auto md:grid-cols-3 md:gap-1">
     {youtubeTalks.map((talk) => <Talk {...talk} />)}
   </div>
 </PageLayout>

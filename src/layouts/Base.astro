@@ -16,16 +16,16 @@ const { title, description, hideHeader, hideFooter } = Astro.props;
 
 <style is:global>
   .base-colors {
-    @apply bg-blue-gray-50 dark:bg-grey-900 text-blue-gray-800 dark:text-grey-50;
+    @apply bg-blue-gray-50 text-blue-gray-800 dark:bg-grey-900 dark:text-grey-50;
   }
 </style>
 
 <html lang="en">
   <Head title={title} description={description} />
-  <body class="font-normal base-colors">
+  <body class="base-colors font-normal">
     {!hideHeader && <Header />}
-    <main class="px-6 mb-auto z-30">
-      <div class="max-w-3xl mx-auto">
+    <main class="z-30 mb-auto px-6">
+      <div class="mx-auto max-w-3xl">
         <slot />
       </div>
     </main>

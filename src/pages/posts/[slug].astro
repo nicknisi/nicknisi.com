@@ -33,7 +33,7 @@ console.log('PREV', prevPost);
 
 {
   draft && (
-    <div class="bg-red-800 text-white font-bold w-full text-lg sticky top-0 z-40">
+    <div class="sticky top-0 z-40 w-full bg-red-800 text-lg font-bold text-white">
       <div class="container mx-auto py-2">
         <p class="text-center">
           This post is a draft. It may contain errors or be incomplete.
@@ -44,14 +44,14 @@ console.log('PREV', prevPost);
 }
 <BaseLayout title={title} description={description}>
   <div
-    class="prose prose-slate dark:prose-invert lg:prose-xl prose-code:before:content-[''] prose-code:after:content-[''] prose-code:font-medium prose-headings:my-3 dark:prose-a:text-teal-400 prose-a:text-teal-600 prose-code:text-purple-800 dark:prose-code:text-purple-100 prose-headings:text-blue-gray-900 prose-headings:dark:text-grey-200 pt-6 pb-10"
+    class="prose prose-slate pb-10 pt-6 lg:prose-xl dark:prose-invert prose-headings:my-3 prose-headings:text-blue-gray-900 prose-a:text-teal-600 prose-code:font-medium prose-code:text-purple-800 prose-code:before:content-[''] prose-code:after:content-[''] prose-headings:dark:text-grey-200 dark:prose-a:text-teal-400 dark:prose-code:text-purple-100"
   >
     <article class="pt-10">
       <header class="mb-8">
-        <h1 class="font-bold text-3xl md:text-5xl mb-4 tracking-tight">
+        <h1 class="mb-4 text-3xl font-bold tracking-tight md:text-5xl">
           {title}
         </h1>
-        <div class="text-gray-600 text-sm py-1 font-light">
+        <div class="text-gray-600 py-1 text-sm font-light">
           <span class="uppercase">{date}</span>
           <span>•</span>
           <span class="uppercase">{wordCount} minute read</span>
@@ -64,49 +64,49 @@ console.log('PREV', prevPost);
       <section>
         <Content />
       </section>
-      <div class="flex justify-center text-center py-5 sm:py-5">
+      <div class="flex justify-center py-5 text-center sm:py-5">
         <Icon
           name="mdi:star-outline"
-          class="font-bold text-purple-600 dark:text-purple-200 w-12 h-12"
+          class="h-12 w-12 font-bold text-purple-600 dark:text-purple-200"
         />
         <Icon
           name="mdi:star-outline"
-          class="font-bold text-purple-600 dark:text-purple-200 w-12 h-12"
+          class="h-12 w-12 font-bold text-purple-600 dark:text-purple-200"
         />
         <Icon
           name="mdi:star-outline"
-          class="font-bold text-purple-600 dark:text-purple-200 w-12 h-12"
+          class="h-12 w-12 font-bold text-purple-600 dark:text-purple-200"
         />
       </div>
       {
         prevPost && (
-          <div class="flex justify-start mt-8 mb-4">
+          <div class="mb-4 mt-8 flex justify-start">
             <a
               href={prevPost.slug}
-              class="flex items-center font-medium space-x-4"
+              class="flex items-center space-x-4 font-medium"
             >
-              <Icon name="mdi:arrow-left-bold" class="w-6 h-6" />
+              <Icon name="mdi:arrow-left-bold" class="h-6 w-6" />
               <span>{prevPost.data.title}</span>
             </a>
           </div>
         )
       }
-      <div class="flex items-center mx-auto sm:flex-row flex-col">
+      <div class="mx-auto flex flex-col items-center sm:flex-row">
         <div
-          class="sm:w-32 sm:h-32 h-32 w-32 sm:mr-10 inline-flex items-center justify-center rounded-full text-blue-500 flex-shrink-0"
+          class="text-blue-500 inline-flex h-32 w-32 flex-shrink-0 items-center justify-center rounded-full sm:mr-10 sm:h-32 sm:w-32"
         >
           <img
             src={metadata.profile}
             alt="author"
-            class="drop-shadow-lg rounded-full w-32 h-32"
+            class="h-32 w-32 rounded-full drop-shadow-lg"
           />
         </div>
-        <div class="flex-grow sm:text-left text-center mt-6 sm:mt-0">
-          <h2 class="text-gray-900 text-lg title-font font-medium mb-2">
+        <div class="mt-6 flex-grow text-center sm:mt-0 sm:text-left">
+          <h2 class="text-gray-900 title-font mb-2 text-lg font-medium">
             {metadata.author.name}
           </h2>
-          <p class="leading-relaxed text-base">{metadata.description}</p>
-          <p class="leading-relaxed text-base">
+          <p class="text-base leading-relaxed">{metadata.description}</p>
+          <p class="text-base leading-relaxed">
             Follow me on
             <a class="primary-link" href={metadata.social.mastodon.url}
               >Mastodon</a

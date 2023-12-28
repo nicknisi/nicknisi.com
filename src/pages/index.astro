@@ -15,23 +15,23 @@ const posts = allPosts.slice(0, 10);
 
 <BaseLayout>
   <div class="py-10">
-    <div class="flex items-center flex-col">
-      <div class="flex flex-col md:flex-row justify-center items-center">
-        <div class="text-2xl sm:text-3xl lg:text-4xl font-bold">
+    <div class="flex flex-col items-center">
+      <div class="flex flex-col items-center justify-center md:flex-row">
+        <div class="text-2xl font-bold sm:text-3xl lg:text-4xl">
           {metadata.description}
         </div>
         <div
-          class="md:w-64 md:h-64 h-32 w-32 sm:mr-10 inline-flex items-center justify-center rounded-full text-blue-500 flex-shrink-0"
+          class="text-blue-500 inline-flex h-32 w-32 flex-shrink-0 items-center justify-center rounded-full sm:mr-10 md:h-64 md:w-64"
         >
           <img
             src={metadata.profile}
             alt="author"
-            class="drop-shadow-md rounded-full w-32 h-32 md:w-64 md:h-64 shadow-lg object-cover mx-auto"
+            class="mx-auto h-32 w-32 rounded-full object-cover shadow-lg drop-shadow-md md:h-64 md:w-64"
           />
         </div>
       </div>
       <div
-        class="flex dark:text-grey-700 text-grey-200 md:justify-start justify-center items-center md:items-end w-full pt-2 md:pt-0"
+        class="flex w-full items-center justify-center pt-2 text-grey-200 md:items-end md:justify-start md:pt-0 dark:text-grey-700"
       >
         {
           [
@@ -40,7 +40,7 @@ const posts = allPosts.slice(0, 10);
             'mdi:react',
             'mdi:nodejs',
             'mdi:language-javascript',
-          ].map((name) => <Icon name={name} class="w-8 h-8" />)
+          ].map((name) => <Icon name={name} class="h-8 w-8" />)
         }
       </div>
       <p class="mt-2 leading-8">
@@ -55,12 +55,12 @@ const posts = allPosts.slice(0, 10);
         meetup.
       </p>
 
-      <h3 class="mt-8 text-2xl my-4">Latest posts</h3>
+      <h3 class="my-4 mt-8 text-2xl">Latest posts</h3>
       <Posts posts={posts} />
 
-      <h3 class="mt-8 text-2xl my-4">Tags</h3>
+      <h3 class="my-4 mt-8 text-2xl">Tags</h3>
       <div
-        class="flex flex-wrap items-center justify-start flex-initial space-x-2"
+        class="flex flex-initial flex-wrap items-center justify-start space-x-2"
       >
         {tags.map((tag) => <Tag name={tag} />)}
       </div>
