@@ -225,6 +225,16 @@
       "entity": "Changelog"
     },
     {
+      "name": "NebraskaJS",
+      "description": "A community of JavaScript developers in Nebraska.",
+      "highlights": ["Organized a conference from 2015 through 2019"],
+      "keywords": ["JavaScript", "Community", "Meetup"],
+      "url": "https://nebraskajs.com",
+      "roles": ["Organizer", "Speaker"],
+      "type": "meetup",
+      "entity": "NebraskaJS"
+    },
+    {
       "name": "TalkScript",
       "startDate": "2015-05-01",
       "endDate": "2022-12-14",
@@ -241,16 +251,6 @@
       "roles": ["Panelist"],
       "type": "podcast",
       "entity": "Changelog"
-    },
-    {
-      "name": "NebraskaJS",
-      "description": "A community of JavaScript developers in Nebraska.",
-      "highlights": ["Organized a conference from 2015 through 2019"],
-      "keywords": ["JavaScript", "Community", "Meetup"],
-      "url": "https://nebraskajs.com",
-      "roles": ["Organizer", "Speaker"],
-      "type": "meetup",
-      "entity": "NebraskaJS"
     },
     {
       "name": "Dojo",
@@ -272,7 +272,39 @@
       "name": "TypeDoc",
       "description": "A documentation generator for TypeScript projects.",
       "highlights": [],
-      "keywords": [],
+      "keywords": ["JavaScript", "TypeScript", "Open Source"],
+      "url": "https://typedoc.io",
+      "roles": ["Contributor"],
+      "type": "open source",
+      "entity": "Open Source"
+    },
+    {
+      "name": "CodeSandbox",
+      "description": "An online editor for rapid prototyping and sharing of web applications.",
+      "highlights": [
+        "First outside contributor of new framework support (Dojo)."
+      ],
+      "keywords": ["JavaScript", "TypeScript", "Open Source"],
+      "url": "https://typedoc.io",
+      "roles": ["Contributor"],
+      "type": "open source",
+      "entity": "Open Source"
+    },
+    {
+      "name": "nicknisi dotfiles",
+      "description": "A collection of configuration files for my development environment.",
+      "highlights": [
+        "Maintainer of a popular dotfiles repository with more than 3,000 stars on GitHub"
+      ],
+      "keywords": [
+        "Vim",
+        "Neovim",
+        "tmux",
+        "Zsh",
+        "Bash",
+        "Lua",
+        "Open Source"
+      ],
       "url": "https://typedoc.io",
       "roles": ["Contributor"],
       "type": "open source",

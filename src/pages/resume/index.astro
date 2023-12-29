@@ -2,6 +2,10 @@
 import Head from '@components/Head.astro';
 import data from './data.json';
 import { Icon } from 'astro-icon/components';
+
+function dateToYear(date: string) {
+  return new Date(date).getFullYear();
+}
 ---
 
 <html lang="en">
@@ -128,9 +132,11 @@ import { Icon } from 'astro-icon/components';
                           </div>
                         </div>
                         <div class="flex items-center font-mono text-xs">
-                          <div>{job.startDate}</div>
+                          <div>{dateToYear(job.startDate)}</div>
                           <div>&nbsp;-&nbsp;</div>
-                          <div>{job.endDate ? job.endDate : 'Present'}</div>
+                          <div>
+                            {job.endDate ? dateToYear(job.endDate) : 'Present'}
+                          </div>
                         </div>
                       </div>
                       <div class="font-mono">{job.position}</div>
@@ -150,6 +156,34 @@ import { Icon } from 'astro-icon/components';
         </div>
         <div class="mt-2 space-y-8">
           <h2 class="text-2xl font-bold">Projects</h2>
+          <div class="flex flex-1 flex-col flex-wrap gap-4 sm:flex-row">
+            {
+              data.projects.map((project) => (
+                <div class="basis-52 space-y-2 border border-grey-100 p-4">
+                  <h3 class="font-semibold">
+                    <a
+                      href={project.url}
+                      class="cursor-pointer"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {project.name}
+                    </a>
+                  </h3>
+                  <p class="text-sm text-grey-500">{project.description}</p>
+                  {project.highlights && (
+                    <div class="flex flex-wrap gap-2">
+                      {project.keywords.map((keyword) => (
+                        <div class="inline-block rounded-md bg-blue-gray-50 p-1 font-mono text-xs font-semibold">
+                          {keyword}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))
+            }
+          </div>
         </div>
         <div class="mt-2 space-y-8">
           <h2 class="text-2xl font-bold">Skills</h2>
@@ -164,6 +198,34 @@ import { Icon } from 'astro-icon/components';
           </div>
           <div class="mt-2 space-y-8">
             <h2 class="text-2xl font-bold">Education</h2>
+            {
+              data.education.map((school) => (
+                <div class="space-y-2">
+                  <div>
+                    <div class="flex justify-between">
+                      <div class="flex flex-col items-baseline gap-2 sm:flex-row">
+                        <div class="flex items-baseline p-0 text-lg font-medium">
+                          {school.institution}
+                        </div>
+                      </div>
+                      <div class="flex items-center font-mono text-xs">
+                        <div>{dateToYear(school.startDate)}</div>
+                        <div>&nbsp;-&nbsp;</div>
+                        <div>
+                          {school.endDate
+                            ? dateToYear(school.endDate)
+                            : 'Present'}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="font-mono">
+                      {school.studyType}, {school.area}
+                    </div>
+                  </div>
+                  <div class="border-b border-grey-200 sm:hidden" />
+                </div>
+              ))
+            }
           </div>
         </div>
       </section>
