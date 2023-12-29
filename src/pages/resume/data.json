@@ -56,7 +56,6 @@
   "work": [
     {
       "name": "Meta",
-      "hidden": true,
       "image": "/resume/meta.svg",
       "remote": true,
       "description": "Global technology company focusing on social networking services and virtual reality.",
@@ -195,7 +194,37 @@
   ],
   "volunteer": [],
   "awards": [],
-  "publications": [],
+  "publications": [
+    {
+      "name": "Componentizing Application State",
+      "publisher": "React Global Online Summit",
+      "releaseDate": "2022-04-20",
+      "url": "https://www.youtube.com/watch?v=B5BmHj0WCiA",
+      "summary": "A talk about treating your application state as a component using React and XState."
+    },
+    {
+      "name": "TalkScript with the TypeScript Team",
+      "publisher": "TypeScript Conf",
+      "releaseDate": "2021-09-10",
+      "url": "https://www.youtube.com/watch?v=gfn-aKykyAM",
+      "summary": "A live show with the TypeScript team at Microsoft discussing the future of TypeScript."
+    },
+    {
+      "name": "Rules to Git By",
+      "publisher": "NebraskaJS",
+      "releaseDate": "2021-10-21",
+      "url": "https://www.youtube.com/watch?v=aHKn59spc6M",
+      "summary": "An advanced dive into Git and how to use it effectively.",
+      "hidden": true
+    },
+    {
+      "name": "No Time for Types",
+      "publisher": "JSConf US",
+      "releaseDate": "2018-08-21",
+      "url": "https://www.youtube.com/watch?v=qGK541P2xII",
+      "summary": "A talk about incrementally adding TypeScript to your JavaScript project."
+    }
+  ],
   "skills": [
     { "name": "TypeScript", "level": "expert" },
     { "name": "JavaScript", "level": "expert" },

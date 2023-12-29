@@ -6,6 +6,14 @@ import { Icon } from 'astro-icon/components';
 function dateToYear(date: string) {
   return new Date(date).getFullYear();
 }
+
+function getVideoId(url: string) {
+  return url.split('?v=')[1];
+}
+
+function getVideoThumbnail(url: string) {
+  return `https://img.youtube.com/vi/${getVideoId(url)}/hqdefault.jpg`;
+}
 ---
 
 <html lang="en">
@@ -185,6 +193,54 @@ function dateToYear(date: string) {
             }
           </div>
         </div>
+        {
+          data.publications && (
+            <div class="mt-2 space-y-8">
+              <h2 class="text-2xl font-bold">Publications</h2>
+              <div class="flex flex-1 flex-col flex-wrap gap-4 sm:flex-row">
+                {data.publications
+                  .filter((p) => !p.hidden)
+                  .map((publication) => (
+                    <div class="basis-44 rounded-lg border border-grey-100 p-4">
+                      <a
+                        href={publication.url}
+                        target="_blank"
+                        class="no-underline"
+                      >
+                        <div class="flex flex-col items-center space-y-2 px-2 pb-4 pt-1 text-center">
+                          <h3 class="text-center text-xs font-bold leading-tight text-grey-900">
+                            {publication.name}
+                          </h3>
+                          <img
+                            class="not-prose mx-1 w-48 rounded pb-1"
+                            src={getVideoThumbnail(publication.url)}
+                            alt={publication.name}
+                          />
+                          <div class="align-content-center justify-content-center flex flex-col">
+                            <div class="sticky font-mono text-xs font-bold leading-tight text-grey-500">
+                              {publication.publisher}
+                            </div>
+                            <div class="font-mono text-xs text-grey-500">
+                              {dateToYear(publication.releaseDate)}
+                            </div>
+                            <a
+                              href={`https://youtu.be/${getVideoId(
+                                publication.url
+                              )}`}
+                              class="hidden font-mono text-xs text-grey-500 print:block"
+                            >
+                              {`youtu.be/${getVideoId(publication.url)}`}
+                            </a>
+                          </div>
+                          <p class="font-sans text-xs">{publication.summary}</p>
+                        </div>
+                      </a>
+                    </div>
+                  ))}
+              </div>
+            </div>
+          )
+        }
         <div class="mt-2 space-y-8">
           <h2 class="text-2xl font-bold">Skills</h2>
           <div class="flex gap-4">
