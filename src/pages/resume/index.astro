@@ -1,0 +1,154 @@
+---
+import Head from '@components/Head.astro';
+import data from './data.json';
+import { Icon } from 'astro-icon/components';
+---
+
+<html lang="en">
+  <Head title="Resume - Nicholas Nisi" description="Nick Nisi's Resume" />
+  <body>
+    <main
+      class="container relative mx-auto scroll-my-12 overflow-auto p-4 print:p-12 md:p-16"
+    >
+      <section
+        class="print:spacey-y-6 mx-auto max-w-2xl space-y-8 bg-white font-sans"
+      >
+        <div
+          class="flex flex-col-reverse items-center justify-between sm:flex-row"
+        >
+          <div class="flex-1 space-y-1.5">
+            <h1 class="text-2xl font-bold">{data.basics.name}</h1>
+            <p class="max-w-md text-pretty font-mono text-sm text-grey-500">
+              {data.basics.summary}
+            </p>
+            <p class="text-xs text-grey-400">
+              {data.basics.location.city}, {data.basics.location.region}
+            </p>
+            <div
+              class="hidden items-baseline gap-2 text-sm text-grey-500 print:flex"
+            >
+              <div>
+                <Icon
+                  name="mdi:envelope-outline"
+                  class="mr-1 inline-block size-4"
+                />
+                <a href={'mailto:' + data.basics.email}>{data.basics.email}</a>
+              </div>
+              <div>
+                <Icon
+                  name="ic:round-phone-iphone"
+                  class="mr-1 inline-block size-4"
+                />
+                <a href={'tel:' + data.basics.phone}>{data.basics.phone}</a>
+              </div>
+            </div>
+            <div class="flex pt-2 print:hidden">
+              <>
+                <a
+                  class="border-1 mr-2 inline-block border-grey-300 text-xs text-grey-400 hover:text-grey-600"
+                  href={'mailto:' + data.basics.email}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Icon
+                    name="mdi:envelope-outline"
+                    class="mr-1 inline-block size-4"
+                  />
+                </a>
+                <a
+                  class="border-1 mr-2 inline-block border-grey-300 text-xs text-grey-400 hover:text-grey-600"
+                  href={'tel:' + data.basics.phone}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Icon
+                    name="ic:round-phone-iphone"
+                    class="mr-1 inline-block size-4"
+                  />
+                </a>
+              </>
+              <>
+                {
+                  data.basics.profiles.map((profile) => (
+                    <a
+                      class="border-1 mr-2 inline-block border-grey-300 text-xs text-grey-400 hover:text-grey-600"
+                      href={profile.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Icon
+                        name={`simple-icons:` + profile.network.toLowerCase()}
+                        class="mr-1 inline-block size-4"
+                      />
+                    </a>
+                  ))
+                }
+              </>
+            </div>
+          </div>
+          <img
+            class="mb-8 size-32 rounded-md object-cover object-top sm:mb-0"
+            src={data.basics.image}
+            alt={data.basics.name}
+          />
+        </div>
+        <div class="mt-2 space-y-8">
+          <h2 class="text-2xl font-bold">Work Experience</h2>
+          <div class="space-y-8 print:space-y-4">
+            {
+              data.work
+                .filter((job) => !job.hidden)
+                .map((job) => (
+                  <div class="space-y-2">
+                    <div>
+                      <div class="flex justify-between">
+                        <div class="flex flex-col items-baseline gap-2 sm:flex-row">
+                          <div class="flex items-baseline p-0 text-lg font-medium">
+                            <a
+                              class="flex cursor-pointer items-baseline"
+                              href={job.url}
+                            >
+                              {job.image && (
+                                <img
+                                  src={job.image}
+                                  alt={job.name}
+                                  class="mr-2 inline-block size-4 rounded-md"
+                                />
+                              )}
+                              {job.name}
+                            </a>
+                          </div>
+                          <div class="flex items-center">
+                            <div class="font-mono text-xs">{job.location}</div>
+                            {job.remote && (
+                              <span class="ml-2 inline-block rounded-md bg-blue-gray-50 p-1 font-mono text-xs font-semibold">
+                                Remote
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                        <div class="flex items-center font-mono text-xs">
+                          <div>{job.startDate}</div>
+                          <div>&nbsp;-&nbsp;</div>
+                          <div>{job.endDate ? job.endDate : 'Present'}</div>
+                        </div>
+                      </div>
+                      <div class="font-mono">{job.position}</div>
+                    </div>
+                    <div class="border-b border-grey-200 sm:hidden" />
+                    <div class="font-mono text-sm">
+                      <ul class="list-disc gap-2 space-y-1">
+                        {job.highlights?.map((highlight) => (
+                          <li>{highlight}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                ))
+            }
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

@@ -1,5 +1,5 @@
 {
-  "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/master/schema.json",
+  "$schema": "http://localhost:8080/resume.schema.json",
   "meta": {
     "version": "8.0.0",
     "canonical": "https://nicknisi.com/resume.json",
@@ -8,7 +8,7 @@
   "basics": {
     "name": "Nick Nisi",
     "label": "Staff Software Engineer",
-    "image": "/img/profile.jpg",
+    "image": "/resume/nicknisi.jpg",
     "email": "nick@nisi.org",
     "phone": "+14022161612",
     "url": "https://nicknisi.com",
@@ -56,7 +56,10 @@
   "work": [
     {
       "name": "Meta",
+      "hidden": true,
+      "image": "/resume/meta.svg",
       "remote": true,
+      "description": "Global technology company focusing on social networking services and virtual reality.",
       "location": "Menlo Park, CA",
       "position": "Software Engineer",
       "url": "https://meta.com",
@@ -64,12 +67,13 @@
     },
     {
       "name": "C2FO",
+      "image": "/resume/c2fo.svg",
+      "description": "A financial technology company that provides working capital solutions to businesses.",
       "remote": true,
       "location": "Kansas City, KS",
       "position": "Staff Software Engineer",
       "url": "https://c2fo.com",
       "startDate": "2021-12-09",
-      "endDate": "2024-01-12",
       "summary": "A tinkering archetype focused on the developer experience and front end tooling.",
       "highlights": [
         "Part of the Developer Experience team",
@@ -81,6 +85,8 @@
     },
     {
       "name": "C2FO",
+      "image": "/resume/c2fo.svg",
+      "description": "A financial technology company that provides working capital solutions to businesses.",
       "remote": true,
       "location": "Kansas City, KS",
       "position": "Senior Software Engineer II",
@@ -97,6 +103,7 @@
     },
     {
       "name": "Sitepen",
+      "image": "/resume/sitepen.svg",
       "remote": true,
       "location": "Palo Alto, CA",
       "position": "Senior Software Engineer",
@@ -113,6 +120,7 @@
     },
     {
       "name": "Flywheel",
+      "image": "/resume/flywheel.svg",
       "remote": false,
       "location": "Omaha, NE",
       "position": "Senior Software Engineer",
@@ -126,7 +134,9 @@
       ]
     },
     {
-      "name": "C2FO",
+      "name": "C2FO (Pollenware)",
+      "image": "/resume/c2fo.svg",
+      "description": "A financial technology startup that provides working capital solutions to businesses.",
       "remote": true,
       "location": "Kansas City, KS",
       "position": "Senior Software Engineer",
@@ -141,7 +151,8 @@
     },
     {
       "name": "Freelancing",
-      "remote": true,
+      "remote": false,
+      "hidden": true,
       "position": "Freelance Developer",
       "url": "https://nicknisi.com",
       "startDate": "2012-04-01",
@@ -157,6 +168,7 @@
     },
     {
       "name": "Lockheed Martin",
+      "image": "/resume/lockheed-martin.svg",
       "remote": false,
       "location": "Omaha, NE",
       "position": "Software Engineer / Englineering Leadership Development Program",
@@ -168,13 +180,7 @@
         "Accepted into Engineering Leadership Development Program (ELDP) based on job performance, panel interviews, and essays.",
         "Development lead for maintenance drop focusing on performance enhancement and usability, where duties include leading a team of three engineers, supporting builds and turnovers, and cross functional coordination to facilitate the engineering life cycle.",
         "Lead Developer of a system demo application using Flash and driven by XML files which included audio narration, videos, and interactive elements for the customer and met regularly with a customer working group to ensure the demo met their needs.",
-        "Chief Architect and lead developer of a metrics reporting web application written in Groovy/Grails that reads data from another application database and generates reports using JasperReports.",
-        "Developed custom SNMP agent for administration of a hardware device written in C.",
-        "Developed management console for an embedded hardware device using jQuery, Ruby, and PHP.",
-        "Developed a client side network performance testing application using JavaScript.",
-        "Web application development with Java/Spring/Struts.",
-        "et up Hadoop cluster and utilized MapReduce for analysis of large quantities of network traffic data.",
-        "Implemented the most visible components of web application including custom jQuery/TinyMCE plugins, a custom application navigation system, and the development of a custom inline rich text editor in JavaScript."
+        "Chief Architect and lead developer of a metrics reporting web application written in Groovy/Grails that reads data from another application database and generates reports using JasperReports."
       ]
     }
   ],
@@ -190,17 +196,48 @@
   "volunteer": [],
   "awards": [],
   "publications": [],
-  "skills": [],
-  "languages": [],
+  "skills": [
+    { "name": "TypeScript", "level": "expert" },
+    { "name": "JavaScript", "level": "expert" },
+    { "name": "React", "level": "expert" },
+    { "name": "Next.js", "level": "expert" },
+    { "name": "Node.js", "level": "expert" },
+    { "name": "GraphQL", "level": "expert" }
+  ],
+  "languages": [
+    {
+      "language": "English",
+      "fluency": "Native speaker"
+    }
+  ],
   "interests": [],
   "references": [],
   "projects": [
     {
       "name": "JS Party",
+      "startDate": "2018-04-06",
       "description": "A weekly celebration of JavaScript and the web.",
       "highlights": ["Panelist from 2018 through present"],
       "keywords": ["JavaScript", "TypeScript", "Community", "Conference"],
       "url": "https://jsparty.fm",
+      "roles": ["Panelist"],
+      "type": "podcast",
+      "entity": "Changelog"
+    },
+    {
+      "name": "TalkScript",
+      "startDate": "2015-05-01",
+      "endDate": "2022-12-14",
+      "description": "A podcast about for and about the TypeScript language and community.",
+      "highlights": [
+        "Interviwed guests from the TypeScript community",
+        "Interviewed Anders Hejlsberg, the creator of TypeScript",
+        "Interviewed Ryan Dahl, the creator of Node.js and Deno",
+        "Interviewed the TypeScript team at Microsoft",
+        "Performed live shows at each TypeScript Conf from 2018 through 2022"
+      ],
+      "keywords": ["JavaScript", "TypeScript", "Community", "Conference"],
+      "url": "https://talkscript.fm",
       "roles": ["Panelist"],
       "type": "podcast",
       "entity": "Changelog"
@@ -218,8 +255,12 @@
     {
       "name": "Dojo",
       "description": "A modern, reactive framework for building efficient and scalable web applications.",
-      "highlights": [],
-      "keywords": [],
+      "highlights": [
+        "Contributed to the Dojo 1.x framework and its supporting libraries",
+        "Contributed to the Dojo 2+ framework and its supporting libraries",
+        "Contributed to the Dojo CLI, including a codemod tool to help with upgrading from Dojo 2 to Dojo 3"
+      ],
+      "keywords": ["JavaScript", "TypeScript", "Framework", "Open Source"],
       "startDate": "2013-07-08",
       "endDate": "2020-05-26",
       "url": "https://dojo.io",
@@ -244,6 +285,8 @@
         "Organized a conference from 2015 through 2019",
         "Speakers from all over the world"
       ],
+      "startDate": "2015",
+      "endDate": "2019",
       "keywords": ["JavaScript", "Community", "Conference"],
       "url": "https://nejsconf.com",
       "roles": ["Organizer", "Emcee"],
@@ -252,6 +295,8 @@
     },
     {
       "name": "TypeScript Conf",
+      "startDate": "2018",
+      "endDate": "2022",
       "description": "A single day, single track conference highlighting TypeScript and the TypeScript community.",
       "highlights": ["Emcee from 2018 through present"],
       "keywords": ["JavaScript", "TypeScript", "Community", "Conference"],
