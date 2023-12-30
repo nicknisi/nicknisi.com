@@ -312,6 +312,10 @@
             "type": "string",
             "description": "e.g. IEEE, Computer Magazine"
           },
+          "hidden": {
+            "type": "boolean",
+            "description": "Whether to show or hide the publication"
+          },
           "releaseDate": {
             "$ref": "#/definitions/iso8601"
           },

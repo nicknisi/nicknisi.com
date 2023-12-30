@@ -21,6 +21,7 @@
   "bugs": {
     "url": "https://github.com/nicknisi/nicknisi.com/issues"
   },
+  "type": "module",
   "homepage": "https://github.com/nicknisi/nicknisi.com",
   "license": "MIT",
   "dependencies": {
