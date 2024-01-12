@@ -166,7 +166,7 @@ function getVideoThumbnail(url: string) {
         </div>
         <div class="mt-2 space-y-8">
           <h2 class="text-2xl font-bold">Projects</h2>
-          <!-- web layout -->
+          {/* web layout */}
           <div
             class="flex flex-1 flex-col flex-wrap gap-4 print:hidden sm:flex-row"
           >
@@ -199,7 +199,7 @@ function getVideoThumbnail(url: string) {
                 ))
             }
           </div>
-          <!-- print layout -->
+          {/* print layout */}
           <div class="hidden flex-1 flex-wrap gap-4 print:flex">
             {
               data.projects
@@ -249,7 +249,8 @@ function getVideoThumbnail(url: string) {
           data.publications && (
             <div class="mt-2 space-y-8">
               <h2 class="text-2xl font-bold">Recent Talks</h2>
-              <div class="flex flex-1 flex-col flex-wrap gap-4 sm:flex-row">
+              {/* web layout */}
+              <div class="flex flex-1 flex-col flex-wrap gap-4 print:hidden sm:flex-row">
                 {data.publications
                   .filter((p) => !p.hidden)
                   .map((publication) => (
@@ -275,18 +276,48 @@ function getVideoThumbnail(url: string) {
                             <div class="font-mono text-xs text-grey-500">
                               {dateToYear(publication.releaseDate)}
                             </div>
-                            <a
-                              href={`https://youtu.be/${getVideoId(
-                                publication.url
-                              )}`}
-                              class="hidden font-mono text-xs text-grey-500 print:block"
-                            >
-                              {`youtu.be/${getVideoId(publication.url)}`}
-                            </a>
                           </div>
                           <p class="font-sans text-xs">{publication.summary}</p>
                         </div>
                       </a>
+                    </div>
+                  ))}
+              </div>
+              {/* print layout */}
+              <div class="hidden flex-1 flex-col flex-wrap print:flex sm:flex-row">
+                {data.publications
+                  .filter((p) => !p.hidden)
+                  .map((publication) => (
+                    <div class="flex py-2">
+                      <img
+                        class="w-36 rounded-md"
+                        src={getVideoThumbnail(publication.url)}
+                        alt={publication.name}
+                      />
+                      <div>
+                        <div class="flex flex-col space-y-2 px-2 pb-4 pt-1">
+                          <h3 class="text-lg font-medium leading-tight text-grey-900">
+                            {publication.name}
+                          </h3>
+                          <div class="align-content-center justify-content-center flex">
+                            <div class="sticky font-mono text-xs font-bold leading-tight text-grey-500">
+                              {publication.publisher}
+                            </div>
+                            <div class="pl-2 font-mono text-xs text-grey-400">
+                              {dateToYear(publication.releaseDate)}
+                            </div>
+                          </div>
+                          <a
+                            href={`https://youtu.be/${getVideoId(
+                              publication.url
+                            )}`}
+                            class="font-mono text-xs text-grey-500"
+                          >
+                            {`youtu.be/${getVideoId(publication.url)}`}
+                          </a>
+                          <p class="font-mono text-xs">{publication.summary}</p>
+                        </div>
+                      </div>
                     </div>
                   ))}
               </div>
