@@ -12,7 +12,7 @@
     "email": "nick@nisi.org",
     "phone": "+14022161612",
     "url": "https://nicknisi.com",
-    "summary": "With 12 years in the industry as a dedicated JavaScript and TypeScript specialist, I actively advocate for community through teaching and enhancing developer tooling. I'm a panelist on the JS Party podcast and I proudly organized Nebraska's sole JavaScript conference.",
+    "summary": "With more than 12 years in the industry as a dedicated JavaScript and TypeScript specialist, I actively advocate for community through teaching and enhancing developer tooling. I'm a panelist on the JS Party podcast and I proudly organized Nebraska's sole JavaScript conference.",
     "location": {
       "address": "",
       "postalCode": "",
@@ -63,7 +63,8 @@
       "location": "Menlo Park, CA",
       "position": "Software Engineer",
       "url": "https://meta.com",
-      "startDate": "2024-02-05"
+      "startDate": "2024-02-05",
+      "hidden": true
     },
     {
       "name": "C2FO",
