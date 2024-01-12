@@ -81,19 +81,21 @@ function getVideoThumbnail(url: string) {
               </>
               <>
                 {
-                  data.basics.profiles.map((profile) => (
-                    <a
-                      class="border-1 mr-2 inline-block border-grey-300 text-xs text-grey-400 hover:text-grey-600"
-                      href={profile.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Icon
-                        name={`simple-icons:` + profile.network.toLowerCase()}
-                        class="mr-1 inline-block size-4"
-                      />
-                    </a>
-                  ))
+                  data.basics.profiles
+                    .filter((profile) => !profile.hidden)
+                    .map((profile) => (
+                      <a
+                        class="border-1 mr-2 inline-block border-grey-300 text-xs text-grey-400 hover:text-grey-600"
+                        href={profile.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Icon
+                          name={`simple-icons:` + profile.network.toLowerCase()}
+                          class="mr-1 inline-block size-4"
+                        />
+                      </a>
+                    ))
                 }
               </>
             </div>
@@ -164,32 +166,82 @@ function getVideoThumbnail(url: string) {
         </div>
         <div class="mt-2 space-y-8">
           <h2 class="text-2xl font-bold">Projects</h2>
-          <div class="flex flex-1 flex-col flex-wrap gap-4 sm:flex-row">
+          <!-- web layout -->
+          <div
+            class="flex flex-1 flex-col flex-wrap gap-4 print:hidden sm:flex-row"
+          >
             {
-              data.projects.map((project) => (
-                <div class="basis-52 space-y-2 border border-grey-100 p-4">
-                  <h3 class="font-semibold">
-                    <a
-                      href={project.url}
-                      class="cursor-pointer"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {project.name}
-                    </a>
-                  </h3>
-                  <p class="text-sm text-grey-500">{project.description}</p>
-                  {project.highlights && (
-                    <div class="flex flex-wrap gap-2">
-                      {project.keywords.map((keyword) => (
-                        <div class="inline-block rounded-md bg-blue-gray-50 p-1 font-mono text-xs font-semibold">
-                          {keyword}
-                        </div>
-                      ))}
+              data.projects
+                .filter((project) => !project.hidden)
+                .map((project) => (
+                  <div class="basis-52 space-y-2 border border-grey-100 p-4">
+                    <h3 class="font-semibold">
+                      <a
+                        href={project.url}
+                        class="cursor-pointer"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {project.name}
+                      </a>
+                    </h3>
+                    <p class="text-sm text-grey-500">{project.description}</p>
+                    {project.highlights && (
+                      <div class="flex flex-wrap gap-2">
+                        {project.keywords.map((keyword) => (
+                          <div class="inline-block rounded-md bg-blue-gray-50 p-1 font-mono text-xs font-semibold">
+                            {keyword}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ))
+            }
+          </div>
+          <!-- print layout -->
+          <div class="hidden flex-1 flex-wrap gap-4 print:flex">
+            {
+              data.projects
+                .filter((project) => !project.hidden)
+                .map((project) => (
+                  <div class="flex flex-col gap-1">
+                    <h3 class="m-0 p-0 text-lg font-medium">
+                      <a
+                        href={project.url}
+                        class="cursor-pointer"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {project.image && (
+                          <img
+                            src={project.image}
+                            alt={project.name}
+                            class="mr-2 inline-block size-4 rounded-md"
+                          />
+                        )}
+                        {project.name}
+                      </a>
+                    </h3>
+                    <p class="p-0 font-mono">{project.description}</p>
+                    <div class="font-mono text-sm">
+                      <ul class="list-disc gap-2 space-y-1">
+                        {project.highlights?.map((highlight) => (
+                          <li>{highlight}</li>
+                        ))}
+                      </ul>
                     </div>
-                  )}
-                </div>
-              ))
+                    {project.highlights && (
+                      <div class="flex flex-wrap gap-2">
+                        {project.keywords.map((keyword) => (
+                          <div class="inline-block rounded-md bg-blue-gray-50 p-1 font-mono text-xs font-semibold">
+                            {keyword}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ))
             }
           </div>
         </div>

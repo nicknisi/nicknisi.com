@@ -32,6 +32,11 @@
         "url": "https://linkedin.com/in/nicknisi"
       },
       {
+        "network": "Threads",
+        "username": "nicknisi",
+        "url": "https://threads.net/nicknisi"
+      },
+      {
         "network": "Mastodon",
         "username": "@nicknisi@nicknisi.com",
         "url": "https://nicknisi.com/@nicknisi"
@@ -42,14 +47,10 @@
         "url": "https://twitter.com/nicknisi"
       },
       {
-        "network": "Threads",
-        "username": "nicknisi",
-        "url": "https://threads.net/nicknisi"
-      },
-      {
         "network": "BlueSky",
         "username": "@nicknisi.com",
-        "url": "https://bsky.app/profile/nicknisi.com"
+        "url": "https://bsky.app/profile/nicknisi.com",
+        "hidden": true
       }
     ]
   },
@@ -73,6 +74,7 @@
       "position": "Staff Software Engineer",
       "url": "https://c2fo.com",
       "startDate": "2021-12-09",
+      "endDate": "2024-01-12",
       "summary": "A tinkering archetype focused on the developer experience and front end tooling.",
       "highlights": [
         "Part of the Developer Experience team",
@@ -231,7 +233,8 @@
     { "name": "React", "level": "expert" },
     { "name": "Next.js", "level": "expert" },
     { "name": "Node.js", "level": "expert" },
-    { "name": "GraphQL", "level": "expert" }
+    { "name": "GraphQL", "level": "expert" },
+    { "name": "Leadership", "level": "expert" }
   ],
   "languages": [
     {
@@ -244,10 +247,11 @@
   "projects": [
     {
       "name": "JS Party",
+      "image": "/resume/jsparty.png",
       "startDate": "2018-04-06",
       "description": "A weekly celebration of JavaScript and the web.",
       "highlights": ["Panelist from 2018 through present"],
-      "keywords": ["JavaScript", "TypeScript", "Community", "Conference"],
+      "keywords": ["JavaScript", "TypeScript", "Community", "Podcast"],
       "url": "https://jsparty.fm",
       "roles": ["Panelist"],
       "type": "podcast",
@@ -255,9 +259,10 @@
     },
     {
       "name": "NebraskaJS",
+      "image": "/resume/nebraskajs.svg",
       "description": "A community of JavaScript developers in Nebraska.",
       "highlights": ["Organized a conference from 2015 through 2019"],
-      "keywords": ["JavaScript", "Community", "Meetup"],
+      "keywords": ["JavaScript", "TypeScript", "Community", "Meetup"],
       "url": "https://nebraskajs.com",
       "roles": ["Organizer", "Speaker"],
       "type": "meetup",
@@ -265,9 +270,10 @@
     },
     {
       "name": "TalkScript",
+      "image": "/resume/talkscript.svg",
       "startDate": "2015-05-01",
       "endDate": "2022-12-14",
-      "description": "A podcast about for and about the TypeScript language and community.",
+      "description": "A podcast about the TypeScript language and community.",
       "highlights": [
         "Interviwed guests from the TypeScript community",
         "Interviewed Anders Hejlsberg, the creator of TypeScript",
@@ -275,7 +281,7 @@
         "Interviewed the TypeScript team at Microsoft",
         "Performed live shows at each TypeScript Conf from 2018 through 2022"
       ],
-      "keywords": ["JavaScript", "TypeScript", "Community", "Conference"],
+      "keywords": ["JavaScript", "TypeScript", "Community", "Podcast"],
       "url": "https://talkscript.fm",
       "roles": ["Panelist"],
       "type": "podcast",
@@ -295,7 +301,8 @@
       "url": "https://dojo.io",
       "roles": ["Contributor"],
       "type": "open source",
-      "entity": "Open Source"
+      "entity": "Open Source",
+      "hidden": true
     },
     {
       "name": "TypeDoc",
@@ -305,7 +312,8 @@
       "url": "https://typedoc.io",
       "roles": ["Contributor"],
       "type": "open source",
-      "entity": "Open Source"
+      "entity": "Open Source",
+      "hidden": true
     },
     {
       "name": "CodeSandbox",
@@ -317,7 +325,8 @@
       "url": "https://typedoc.io",
       "roles": ["Contributor"],
       "type": "open source",
-      "entity": "Open Source"
+      "entity": "Open Source",
+      "hidden": true
     },
     {
       "name": "nicknisi dotfiles",
@@ -337,7 +346,8 @@
       "url": "https://typedoc.io",
       "roles": ["Contributor"],
       "type": "open source",
-      "entity": "Open Source"
+      "entity": "Open Source",
+      "hidden": true
     },
     {
       "name": "NEJS Conf",
@@ -352,7 +362,8 @@
       "url": "https://nejsconf.com",
       "roles": ["Organizer", "Emcee"],
       "type": "conference",
-      "entity": "NebraskaJS"
+      "entity": "NebraskaJS",
+      "hidden": true
     },
     {
       "name": "TypeScript Conf",
@@ -364,7 +375,8 @@
       "url": "https://tsconf.io",
       "roles": ["Emcee"],
       "type": "conference",
-      "entity": "SitePen"
+      "entity": "SitePen",
+      "hidden": true
     }
   ],
   "certificates": []

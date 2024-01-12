@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 823 385" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <g transform="matrix(1,0,0,1,-109.326,-372.378)">
+        <g id="Layer1">
+            <g transform="matrix(0.760036,0,0,0.760036,110.759,214.375)">
+                <path d="M11.304,219.73L698.936,221.151L755.512,254.211L766.752,244.224L788.482,240.691L822.197,239.738L843.153,242.6L914.857,280.342C914.857,280.342 907.255,274.887 897.524,270.064C888.423,265.553 858.235,253.18 867.147,255.23C872.236,256.4 914.857,280.342 914.857,280.342L918.868,293.25L934.752,302.127L943.396,318.385L945.814,341.082L954.513,362.487L971.408,390.104L976.007,407.655L980.822,426.178L978.064,446.842L981.676,456.715L993.153,463.845L994.544,475.11L994.91,488.827L1003.59,498.365L996.005,510.888L1007.23,521.595L1007.91,578.872L1007.69,590.067L1019.41,612.37L1026.97,627.262L1029.95,650.053L1047.24,659.171L1055.22,672.992L1058.4,689.956L1068.38,702.069L253.544,701.206L253.515,547.485L9.957,544.095L11.304,219.73Z" style="fill:rgb(240,219,79);stroke:rgb(1,38,34);stroke-width:23.68px;"/>
+            </g>
+            <g id="NEJS" transform="matrix(1,0,0,1,-11.1859,238.914)">
+                <g transform="matrix(210,0,0,210,861.152,481.293)">
+                </g>
+                <text x="340.352px" y="481.293px" style="font-family:'MonaspaceRadonVar-Bold', 'Monaspace Radon Var';font-size:210px;fill:rgb(1,38,34);">NEJS</text>
+            </g>
+        </g>
+    </g>
+</svg>
