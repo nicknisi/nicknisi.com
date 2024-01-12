@@ -182,6 +182,13 @@ function getVideoThumbnail(url: string) {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
+                        {project.image && (
+                          <img
+                            src={project.image}
+                            alt={project.name}
+                            class="mr-2 inline-block size-4 rounded-md"
+                          />
+                        )}
                         {project.name}
                       </a>
                     </h3>
