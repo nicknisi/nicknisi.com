@@ -20,6 +20,15 @@ dependencies:
   '@astrojs/tailwind':
     specifier: 5.1.0
     version: 5.1.0(astro@4.1.2)(tailwindcss@3.4.1)
+  '@fontsource-variable/roboto-slab':
+    specifier: ^5.0.18
+    version: 5.0.18
+  '@fontsource/atkinson-hyperlegible':
+    specifier: ^5.0.18
+    version: 5.0.18
+  '@fontsource/space-mono':
+    specifier: ^5.0.18
+    version: 5.0.18
   '@tailwindcss/typography':
     specifier: 0.5.10
     version: 0.5.10(tailwindcss@3.4.1)
@@ -712,6 +721,18 @@ packages:
     requiresBuild: true
     dev: false
     optional: true
+
+  /@fontsource-variable/roboto-slab@5.0.18:
+    resolution: {integrity: sha512-YWX76puTPIVSkJBvtC2bvInZxCJtgSsYGej9LD3CuqJPsg7qltaFCe0dkhuxt/OFY6rkiwfdcWzASdurGw5w9w==}
+    dev: false
+
+  /@fontsource/atkinson-hyperlegible@5.0.18:
+    resolution: {integrity: sha512-94htZ6Q0UQVEEzbSy/IEmRuGH06Y4Qv+xZJHfCQrc2QCdcHxtdqw6tUXwLyCfiPqtI5oomsh2Un7Pnls4o4NRA==}
+    dev: false
+
+  /@fontsource/space-mono@5.0.18:
+    resolution: {integrity: sha512-2GKT0pokkncXbYF675JcxexjTwVGD2jX+a9rof9wgI+IuyMk0CNsZFBNuSDDsJoTfZpJjA2GCVaEr7f/bgp35A==}
+    dev: false
 
   /@iconify-json/ic@1.1.17:
     resolution: {integrity: sha512-EvAjZzVESmN36zlyefylePUNaU2BQ3eRKVZ6KQSQ2bG01ppoZaiFZRri74VTyvp5Mlv2yn68ux1fgCoT+etGmA==}

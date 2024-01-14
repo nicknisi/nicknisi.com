@@ -2,6 +2,9 @@
 import Header from '@components/Header.astro';
 import Footer from '@components/Footer.astro';
 import Head from '@components/Head.astro';
+import '@fontsource/space-mono';
+import '@fontsource-variable/roboto-slab';
+import '@fontsource/atkinson-hyperlegible';
 
 interface Props {
   title?: string | undefined;
@@ -18,11 +21,19 @@ const { title, description, hideHeader, hideFooter } = Astro.props;
   .base-colors {
     @apply bg-blue-gray-50 text-blue-gray-800 dark:bg-grey-900 dark:text-grey-50;
   }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h5 {
+    @apply font-serif;
+  }
 </style>
 
 <html lang="en">
   <Head title={title} description={description} />
-  <body class="base-colors font-normal">
+  <body class="base-colors font-sans font-normal">
     {!hideHeader && <Header />}
     <main class="z-30 mb-auto px-6">
       <div class="mx-auto max-w-3xl">

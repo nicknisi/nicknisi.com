@@ -4,6 +4,22 @@ module.exports = {
   safeList: [],
   // darkMode: 'class',
   theme: {
+    extend: {
+      typography: (theme) => ({
+        DEFAULT: {
+          css: {
+            pre: { fontFamily: 'Space Mono, monospace' },
+            pre: { fontFamily: 'Space Mono, monospace' },
+            'pre code': { fontFamily: 'Space Mono, monospace' },
+          },
+        },
+      }),
+    },
+    fontFamily: {
+      sans: ['Atkinson Hyperlegible', 'sans-serif'],
+      serif: ['Roboto Slab', 'serif'],
+      mono: ['Space Mono', 'monospace'],
+    },
     colors: {
       white: '#FFFFFF',
       transparent: 'transparent',
