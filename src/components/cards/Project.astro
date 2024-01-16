@@ -1,47 +1,45 @@
 ---
 interface Props {
-  title: string;
-  description: string;
-  role: string;
-  avatar: string;
-  url: string;
-  status?: 'active' | 'inactive';
+	title: string;
+	description: string;
+	role: string;
+	avatar: string;
+	url: string;
+	status?: 'active' | 'inactive';
 }
 
 const { title, url, role, description, avatar, status } = Astro.props;
 ---
 
 <div
-  class="align-center not-prose m-2 flex flex-col place-content-evenly justify-center space-x-2 space-y-2 rounded-lg bg-cool-gray-50 p-2 py-4 text-cool-gray-900 shadow-lg dark:bg-cool-gray-900 dark:text-cool-gray-50"
+	class="align-center not-prose m-2 flex flex-col place-content-evenly justify-center space-x-2 space-y-2 rounded-lg bg-cool-gray-50 p-2 py-4 text-cool-gray-900 shadow-lg dark:bg-cool-gray-900 dark:text-cool-gray-50"
 >
-  <a href={url} target="_blank" class="no-underline">
-    <div class="flex">
-      <div
-        class="align-items-center flex place-content-evenly justify-items-center"
-      >
-        <img alt="JS Party" class="mx-2 h-16 w-16 rounded" src={avatar} />
-        <div class="flex w-64 flex-col">
-          <h5 class="text-xl font-medium leading-tight">{title}</h5>
-          <p class="mb-2 w-64 p-2 text-sm">{description}</p>
-        </div>
-      </div>
-    </div>
-    <div class="flex place-content-baseline">
-      <span
-        class="last mr-1 inline-block rounded-full bg-teal-200 px-2 py-1 text-xs font-semibold uppercase text-teal-700 last:mr-0"
-      >
-        {role}
-      </span>
-      {
-        status === 'inactive' && (
-          <span
-            class="last mr-1 inline-block rounded-full bg-red-200 px-2 py-1
+	<a href={url} target="_blank" class="no-underline">
+		<div class="flex">
+			<div class="align-items-center flex place-content-evenly justify-items-center">
+				<img alt="JS Party" class="mx-2 h-16 w-16 rounded" src={avatar} />
+				<div class="flex w-64 flex-col">
+					<h5 class="text-xl font-medium leading-tight">{title}</h5>
+					<p class="mb-2 w-64 p-2 text-sm">{description}</p>
+				</div>
+			</div>
+		</div>
+		<div class="flex place-content-baseline">
+			<span
+				class="last mr-1 inline-block rounded-full bg-teal-200 px-2 py-1 text-xs font-semibold uppercase text-teal-700 last:mr-0"
+			>
+				{role}
+			</span>
+			{
+				status === 'inactive' && (
+					<span
+						class="last mr-1 inline-block rounded-full bg-red-200 px-2 py-1
           text-xs font-semibold uppercase text-red-700 last:mr-0"
-          >
-            {status}
-          </span>
-        )
-      }
-    </div>
-  </a>
+					>
+						{status}
+					</span>
+				)
+			}
+		</div>
+	</a>
 </div>

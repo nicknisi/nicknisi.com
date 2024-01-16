@@ -7,39 +7,39 @@ import '@fontsource-variable/roboto-slab';
 import '@fontsource/atkinson-hyperlegible';
 
 interface Props {
-  title?: string | undefined;
-  description?: string | undefined;
-  headerImage?: string | undefined;
-  hideHeader?: boolean;
-  hideFooter?: boolean;
+	title?: string | undefined;
+	description?: string | undefined;
+	headerImage?: string | undefined;
+	hideHeader?: boolean;
+	hideFooter?: boolean;
 }
 
 const { title, description, hideHeader, hideFooter } = Astro.props;
 ---
 
 <style is:global>
-  .base-colors {
-    @apply bg-blue-gray-50 text-blue-gray-800 dark:bg-grey-900 dark:text-grey-50;
-  }
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h5 {
-    @apply font-serif;
-  }
+	.base-colors {
+		@apply bg-blue-gray-50 text-blue-gray-800 dark:bg-grey-900 dark:text-grey-50;
+	}
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h5 {
+		@apply font-serif;
+	}
 </style>
 
 <html lang="en">
-  <Head title={title} description={description} />
-  <body class="base-colors font-sans font-normal">
-    {!hideHeader && <Header />}
-    <main class="z-30 mb-auto px-6">
-      <div class="mx-auto max-w-3xl">
-        <slot />
-      </div>
-    </main>
-    {!hideFooter && <Footer />}
-  </body>
+	<Head title={title} description={description} />
+	<body class="base-colors font-sans font-normal">
+		{!hideHeader && <Header />}
+		<main class="z-30 mb-auto px-6">
+			<div class="mx-auto max-w-3xl">
+				<slot />
+			</div>
+		</main>
+		{!hideFooter && <Footer />}
+	</body>
 </html>

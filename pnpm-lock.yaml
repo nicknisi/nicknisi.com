@@ -82,6 +82,9 @@ devDependencies:
   '@iconify-json/simple-icons':
     specifier: 1.1.87
     version: 1.1.87
+  '@nicknisi/standard':
+    specifier: ^0.1.0
+    version: 0.1.0
   '@types/luxon':
     specifier: 3.4.0
     version: 3.4.0
@@ -1050,6 +1053,10 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: false
+
+  /@nicknisi/standard@0.1.0:
+    resolution: {integrity: sha512-kF8JzVN2VJ9cvulXatB68PrnFMXLbu4HY0vK52eOpvUEEGS8qBd1fi7gDRMjvnE0a/gqBhwax5ss+LbiNLwCig==}
+    dev: true
 
   /@nodelib/fs.scandir@2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}

@@ -9,14 +9,10 @@ import talks from '../data/talks.json';
 import Project from '@components/cards/Project.astro';
 
 <section>
-  <div class="flex flex-col items-center">
-    <img
-      alt="Nick Nisi"
-      class="h-64 w-64 rounded-full"
-      src="/img/profile.jpg"
-    />
-    <h1>Nick Nisi</h1>
-  </div>
+	<div class="flex flex-col items-center">
+		<img alt="Nick Nisi" class="h-64 w-64 rounded-full" src="/img/profile.jpg" />
+		<h1>Nick Nisi</h1>
+	</div>
 </section>
 
 I'm a Software Engineer, coding professionally since 2009 and focused primarily on the front end and
@@ -35,11 +31,11 @@ Looking for my resume? You can find it [here](/resume).
 Nick is an occasional conference speaker and has spoken at conferences all over the world.
 
 <div class="grid-cols-3 md:grid md:auto-rows-auto">
-  {talks
-    .filter((talk) => talk.promote)
-    .map((talk) => (
-      <Talk {...talk} />
-    ))}
+	{talks
+		.filter(talk => talk.promote)
+		.map(talk => (
+			<Talk {...talk} />
+		))}
 </div>
 
 **[Full List of talks](/talks)**
@@ -47,9 +43,9 @@ Nick is an occasional conference speaker and has spoken at conferences all over 
 ## Projects
 
 <div class="flex flex-wrap place-content-evenly">
-  {metadata.projects.map((project) => (
-    <Project {...project} />
-  ))}
+	{metadata.projects.map(project => (
+		<Project {...project} />
+	))}
 </div>
 
 ## Bio

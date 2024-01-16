@@ -13,7 +13,7 @@ exciting 2024! Here's what happened, what I accomplished, and what I'm looking f
 ## Accomplishments
 
 - Celebrated 10 years of marriage. We got married on our 5th anniversary of dating, so we also celebrated 15
-years together. We celebrated with a trip to Vegas
+  years together. We celebrated with a trip to Vegas
 - I visited the [C2FO](https://c2fo.com) offices in India. It was an amazing trip which included a trip to the Taj Mahal and attending my first cricket match!
 - I attended the [Problem-Solving Leadership](https://www.congruentchange.com/problem-solving-leadership/) workshop in Albuquerque, NM taught by [Esther Derby](https://estherderby.com) and [Don Gray](https://www.donaldegray.com). This was life-changing and I highly recommend it to everyone.
 - I spoke at [KCDC](https://www.kcdc.info) on XState. I can't recommend this conference enough!

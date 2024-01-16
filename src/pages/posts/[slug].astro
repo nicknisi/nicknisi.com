@@ -7,23 +7,21 @@ import metadata from '@data/metadata.json';
 import Tag from '@components/Tag.astro';
 
 interface Props {
-  post: CollectionEntry<'posts'>;
-  prevPost: CollectionEntry<'posts'> | null;
+	post: CollectionEntry<'posts'>;
+	prevPost: CollectionEntry<'posts'> | null;
 }
 
 export async function getStaticPaths() {
-  const posts = (await getCollection('posts')).filter(
-    (post) => !post.data.draft
-  );
-  return posts.map((post, i) => ({
-    params: { slug: post.slug },
-    props: { post, prevPost: i > 0 ? posts[i - 1] : null },
-  }));
+	const posts = (await getCollection('posts')).filter(post => !post.data.draft);
+	return posts.map((post, i) => ({
+		params: { slug: post.slug },
+		props: { post, prevPost: i > 0 ? posts[i - 1] : null },
+	}));
 }
 
 const { post, prevPost } = Astro.props;
 const {
-  data: { title, description, pubDate, tags = [], draft },
+	data: { title, description, pubDate, tags = [], draft },
 } = post;
 const { Content } = await post.render();
 const date = readableDate(pubDate);
@@ -32,91 +30,69 @@ console.log('PREV', prevPost);
 ---
 
 {
-  draft && (
-    <div class="sticky top-0 z-40 w-full bg-red-800 text-lg font-bold text-white">
-      <div class="container mx-auto py-2">
-        <p class="text-center">
-          This post is a draft. It may contain errors or be incomplete.
-        </p>
-      </div>
-    </div>
-  )
+	draft && (
+		<div class="sticky top-0 z-40 w-full bg-red-800 text-lg font-bold text-white">
+			<div class="container mx-auto py-2">
+				<p class="text-center">This post is a draft. It may contain errors or be incomplete.</p>
+			</div>
+		</div>
+	)
 }
 <BaseLayout title={title} description={description}>
-  <div
-    class="prose prose-slate pb-10 pt-6 lg:prose-xl dark:prose-invert prose-headings:my-3 prose-headings:text-blue-gray-900 prose-a:text-teal-600 prose-code:font-medium prose-code:text-purple-800 prose-code:before:content-[''] prose-code:after:content-[''] prose-headings:dark:text-grey-200 dark:prose-a:text-teal-400 dark:prose-code:text-purple-100"
-  >
-    <article class="pt-10">
-      <header class="mb-8">
-        <h1 class="mb-4 text-3xl font-bold tracking-tight md:text-5xl">
-          {title}
-        </h1>
-        <div class="text-gray-600 py-1 text-sm font-light">
-          <span class="uppercase">{date}</span>
-          <span>•</span>
-          <span class="uppercase">{wordCount} minute read</span>
-          <span>•</span>
-          <span>
-            {tags.map((tag: string) => <Tag name={tag} />)}
-          </span>
-        </div>
-      </header>
-      <section>
-        <Content />
-      </section>
-      <div class="flex justify-center py-5 text-center sm:py-5">
-        <Icon
-          name="mdi:star-outline"
-          class="h-12 w-12 font-bold text-purple-600 dark:text-purple-200"
-        />
-        <Icon
-          name="mdi:star-outline"
-          class="h-12 w-12 font-bold text-purple-600 dark:text-purple-200"
-        />
-        <Icon
-          name="mdi:star-outline"
-          class="h-12 w-12 font-bold text-purple-600 dark:text-purple-200"
-        />
-      </div>
-      {
-        prevPost && (
-          <div class="mb-4 mt-8 flex justify-start">
-            <a
-              href={prevPost.slug}
-              class="flex items-center space-x-4 font-medium"
-            >
-              <Icon name="mdi:arrow-left-bold" class="h-6 w-6" />
-              <span>{prevPost.data.title}</span>
-            </a>
-          </div>
-        )
-      }
-      <div class="mx-auto flex flex-col items-center sm:flex-row">
-        <div
-          class="text-blue-500 inline-flex h-32 w-32 flex-shrink-0 items-center justify-center rounded-full sm:mr-10 sm:h-32 sm:w-32"
-        >
-          <img
-            src={metadata.profile}
-            alt="author"
-            class="h-32 w-32 rounded-full drop-shadow-lg"
-          />
-        </div>
-        <div class="mt-6 flex-grow text-center sm:mt-0 sm:text-left">
-          <h2 class="text-gray-900 title-font mb-2 text-lg font-medium">
-            {metadata.author.name}
-          </h2>
-          <p class="text-base leading-relaxed">{metadata.description}</p>
-          <p class="text-base leading-relaxed">
-            Follow me on
-            <a class="primary-link" href={metadata.social.mastodon.url}
-              >Mastodon</a
-            >
-            or <a class="primary-link" href={metadata.social.twitter.url}
-              >Twitter</a
-            >.
-          </p>
-        </div>
-      </div>
-    </article>
-  </div>
+	<div
+		class="prose prose-slate pb-10 pt-6 lg:prose-xl dark:prose-invert prose-headings:my-3 prose-headings:text-blue-gray-900 prose-a:text-teal-600 prose-code:font-medium prose-code:text-purple-800 prose-code:before:content-[''] prose-code:after:content-[''] prose-headings:dark:text-grey-200 dark:prose-a:text-teal-400 dark:prose-code:text-purple-100"
+	>
+		<article class="pt-10">
+			<header class="mb-8">
+				<h1 class="mb-4 text-3xl font-bold tracking-tight md:text-5xl">
+					{title}
+				</h1>
+				<div class="text-gray-600 py-1 text-sm font-light">
+					<span class="uppercase">{date}</span>
+					<span>•</span>
+					<span class="uppercase">{wordCount} minute read</span>
+					<span>•</span>
+					<span>
+						{tags.map((tag: string) => <Tag name={tag} />)}
+					</span>
+				</div>
+			</header>
+			<section>
+				<Content />
+			</section>
+			<div class="flex justify-center py-5 text-center sm:py-5">
+				<Icon name="mdi:star-outline" class="h-12 w-12 font-bold text-purple-600 dark:text-purple-200" />
+				<Icon name="mdi:star-outline" class="h-12 w-12 font-bold text-purple-600 dark:text-purple-200" />
+				<Icon name="mdi:star-outline" class="h-12 w-12 font-bold text-purple-600 dark:text-purple-200" />
+			</div>
+			{
+				prevPost && (
+					<div class="mb-4 mt-8 flex justify-start">
+						<a href={prevPost.slug} class="flex items-center space-x-4 font-medium">
+							<Icon name="mdi:arrow-left-bold" class="h-6 w-6" />
+							<span>{prevPost.data.title}</span>
+						</a>
+					</div>
+				)
+			}
+			<div class="mx-auto flex flex-col items-center sm:flex-row">
+				<div
+					class="text-blue-500 inline-flex h-32 w-32 flex-shrink-0 items-center justify-center rounded-full sm:mr-10 sm:h-32 sm:w-32"
+				>
+					<img src={metadata.profile} alt="author" class="h-32 w-32 rounded-full drop-shadow-lg" />
+				</div>
+				<div class="mt-6 flex-grow text-center sm:mt-0 sm:text-left">
+					<h2 class="text-gray-900 title-font mb-2 text-lg font-medium">
+						{metadata.author.name}
+					</h2>
+					<p class="text-base leading-relaxed">{metadata.description}</p>
+					<p class="text-base leading-relaxed">
+						Follow me on
+						<a class="primary-link" href={metadata.social.mastodon.url}>Mastodon</a>
+						or <a class="primary-link" href={metadata.social.twitter.url}>Twitter</a>.
+					</p>
+				</div>
+			</div>
+		</article>
+	</div>
 </BaseLayout>

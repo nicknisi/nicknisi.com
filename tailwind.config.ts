@@ -1,15 +1,16 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+import { type Config } from 'tailwindcss';
+
+const config: Config = {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   safeList: [],
   // darkMode: 'class',
   theme: {
     extend: {
-      typography: (theme) => ({
+      typography: () => ({
         DEFAULT: {
           css: {
             pre: { fontFamily: 'Space Mono, monospace' },
-            pre: { fontFamily: 'Space Mono, monospace' },
+            code: { fontFamily: 'Space Mono, monospace' },
             'pre code': { fontFamily: 'Space Mono, monospace' },
           },
         },
@@ -148,3 +149,5 @@ module.exports = {
   },
   plugins: [require('@tailwindcss/typography')],
 };
+
+export default config;

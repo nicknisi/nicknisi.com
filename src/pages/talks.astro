@@ -2,15 +2,12 @@
 import PageLayout from '@layouts/Page.astro';
 import Talk from '@components/cards/Talk.astro';
 import talks from '@data/talks.json';
-const youtubeTalks = talks.filter((talk) => talk.source === 'youtube');
+const youtubeTalks = talks.filter(talk => talk.source === 'youtube');
 ---
 
 <PageLayout title="Talks">
-  <p class="py-5">
-    Here is a collection of talks and videos I have given at various meetups and
-    conferences.
-  </p>
-  <div class="md:grid md:auto-rows-auto md:grid-cols-3 md:gap-1">
-    {youtubeTalks.map((talk) => <Talk {...talk} />)}
-  </div>
+	<p class="py-5">Here is a collection of talks and videos I have given at various meetups and conferences.</p>
+	<div class="md:grid md:auto-rows-auto md:grid-cols-3 md:gap-1">
+		{youtubeTalks.map(talk => <Talk {...talk} />)}
+	</div>
 </PageLayout>

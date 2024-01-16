@@ -2,108 +2,101 @@
 import Video from '@components/Video.astro';
 
 interface TimelineEvent {
-  time: string;
-  text: string;
-  image?: string;
-  video?: string;
-  link?: string;
+	time: string;
+	text: string;
+	image?: string;
+	video?: string;
+	link?: string;
 }
 
 interface Props {
-  events: Array<TimelineEvent>;
-  reverse?: boolean;
+	events: Array<TimelineEvent>;
+	reverse?: boolean;
 }
 const { events, reverse } = Astro.props;
 if (reverse) {
-  events.reverse();
+	events.reverse();
 }
 ---
 
 <style>
-  .time {
-  }
+	.time {
+	}
 
-  .in-view {
-    @apply after:bg-purple-700 dark:after:bg-purple-300;
-  }
+	.in-view {
+		@apply after:bg-purple-700 dark:after:bg-purple-300;
+	}
 
-  .in-view div {
-    @apply visible transform-none opacity-100;
-  }
+	.in-view div {
+		@apply visible transform-none opacity-100;
+	}
 </style>
 
 <script>
-  (() => {
-    const items = document.querySelectorAll('.timeline li');
+	(() => {
+		const items = document.querySelectorAll('.timeline li');
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('in-view');
-          }
-        }
-      },
-      {
-        root: null,
-        threshold: 0.5,
-      }
-    );
+		const observer = new IntersectionObserver(
+			entries => {
+				for (const entry of entries) {
+					if (entry.isIntersecting) {
+						entry.target.classList.add('in-view');
+					}
+				}
+			},
+			{
+				root: null,
+				threshold: 0.5,
+			},
+		);
 
-    for (const item of items) {
-      observer.observe(item);
-    }
-  })();
+		for (const item of items) {
+			observer.observe(item);
+		}
+	})();
 </script>
 
 <section class="timeline not-prose text-purple-50">
-  <ul class="px-0 py-12">
-    {
-      events.map((event, i) => (
-        <li
-          class="
+	<ul class="px-0 py-12">
+		{
+			events.map((event, i) => (
+				<li
+					class="
         after:content:[''] relative my-0 ml-5 w-[6px] list-none bg-grey-800 pt-12 shadow-lg
         after:absolute after:bottom-0 after:left-1/2 after:z-10 after:h-8 after:w-8
         after:-translate-x-1/2 after:rounded-full after:transition
         after:duration-500 after:ease-in-out md:mx-auto dark:bg-white
       "
-        >
-          <div
-            class={`
+				>
+					<div
+						class={`
       before:content:[''] invisible relative bottom-0 w-64 transform-gpu rounded-lg bg-purple-700 p-4
       opacity-0 shadow-lg transition-all duration-500 ease-in-out before:absolute
 before:bottom-2 before:h-0 before:w-0 before:border-solid md:w-96 dark:bg-purple-300
       ${
-        (i + 1) % 2 === 0
-          ? 'left-12 translate-x-[-200px] before:-left-4 before:border-y-8 before:border-r-[16px] before:border-transparent before:border-r-purple-700 md:-left-[439px] before:md:-right-4 before:md:left-auto before:md:border-l-[16px] before:md:border-r-0 before:md:border-l-purple-700 dark:before:border-r-purple-300 dark:before:md:border-l-purple-300'
-          : 'left-11 translate-x-[200px] before:-left-4 before:border-y-[8px] before:border-r-[16px] before:border-transparent before:border-r-purple-700 before:outline-none dark:before:border-r-purple-300'
-      }`}
-          >
-            <time class="mb-2 block text-lg font-bold">{event.time}</time>
-            {event.text && <p>{event.text}</p>}
-            {event.image && (
-              <div class="flex items-center justify-center">
-                <img
-                  src={event.image}
-                  alt={event.text}
-                  class="max-h-36 rounded-lg"
-                />
-              </div>
-            )}
-            {event.link && (
-              <div class="flex items-center justify-center">
-                <a
-                  href={event.link}
-                  class="font-bold text-purple-50 hover:text-purple-50"
-                >
-                  Link
-                </a>
-              </div>
-            )}
-            {event.video && <Video videoId={event.video} />}
-          </div>
-        </li>
-      ))
-    }
-  </ul>
+				(i + 1) % 2 === 0
+					? 'left-12 translate-x-[-200px] before:-left-4 before:border-y-8 before:border-r-[16px] before:border-transparent before:border-r-purple-700 md:-left-[439px] before:md:-right-4 before:md:left-auto before:md:border-l-[16px] before:md:border-r-0 before:md:border-l-purple-700 dark:before:border-r-purple-300 dark:before:md:border-l-purple-300'
+					: 'left-11 translate-x-[200px] before:-left-4 before:border-y-[8px] before:border-r-[16px] before:border-transparent before:border-r-purple-700 before:outline-none dark:before:border-r-purple-300'
+			}`}
+					>
+						<time class="mb-2 block text-lg font-bold">{event.time}</time>
+						{event.text && <p>{event.text}</p>}
+						{event.image && (
+							<div class="flex items-center justify-center">
+								<img src={event.image} alt={event.text} class="max-h-36 rounded-lg" />
+							</div>
+						)}
+						{event.link && (
+							<div class="flex items-center justify-center">
+								<a href={event.link} class="font-bold text-purple-50 hover:text-purple-50">
+									Link
+								</a>
+							</div>
+						)}
+						{event.video && <Video videoId={event.video} />}
+					</div>
+				</li>
+			))
+		}
+	</ul>
 </section>

@@ -3,13 +3,13 @@ import Base from './Base.astro';
 import type { MarkdownLayoutProps } from 'astro';
 
 interface Props
-  extends Partial<
-    MarkdownLayoutProps<{
-      title?: string;
-      description?: string;
-      headerImage?: string;
-    }>
-  > {}
+	extends Partial<
+		MarkdownLayoutProps<{
+			title?: string;
+			description?: string;
+			headerImage?: string;
+		}>
+	> {}
 
 const { frontmatter } = Astro.props;
 const title = frontmatter?.title;
@@ -17,9 +17,9 @@ const description = frontmatter?.description;
 ---
 
 <Base title={title} description={description}>
-  <div
-    class="prose prose-slate pb-10 pt-6 lg:prose-xl dark:prose-invert prose-headings:my-3 prose-headings:text-blue-gray-900 prose-a:text-teal-600 prose-code:font-medium prose-code:text-purple-800 prose-code:before:content-[''] prose-code:after:content-[''] prose-headings:dark:text-grey-200 dark:prose-a:text-teal-400 dark:prose-code:text-purple-100"
-  >
-    <slot />
-  </div>
+	<div
+		class="prose prose-slate pb-10 pt-6 lg:prose-xl dark:prose-invert prose-headings:my-3 prose-headings:text-blue-gray-900 prose-a:text-teal-600 prose-code:font-medium prose-code:text-purple-800 prose-code:before:content-[''] prose-code:after:content-[''] prose-headings:dark:text-grey-200 dark:prose-a:text-teal-400 dark:prose-code:text-purple-100"
+	>
+		<slot />
+	</div>
 </Base>

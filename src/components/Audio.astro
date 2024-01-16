@@ -1,9 +1,9 @@
 ---
 interface Props {
-  src: string;
-  theme?: 'night' | 'day';
-  controls?: boolean;
-  episode: number;
+	src: string;
+	theme?: 'night' | 'day';
+	controls?: boolean;
+	episode: number;
 }
 
 const { controls = true, theme = 'night', episode } = Astro.props;
@@ -13,11 +13,6 @@ const embedSrc = `https://changelog.com/jsparty/${episode}/embed`;
 const srcUrl = `https://op3.dev/e/https://cdn.changelog.com/uploads/jsparty/${episode}/js-party-${episode}.mp3`;
 ---
 
-<audio
-  data-theme={theme}
-  data-src={embedSrc}
-  src={srcUrl}
-  preload="none"
-  class="changelog-episode"
-  controls={controls}></audio>
+<audio data-theme={theme} data-src={embedSrc} src={srcUrl} preload="none" class="changelog-episode" controls={controls}
+></audio>
 <script is:inline async src="//cdn.changelog.com/embed.js"></script>

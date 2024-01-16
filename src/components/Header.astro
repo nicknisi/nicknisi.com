@@ -3,28 +3,21 @@ import metadata from '../data/metadata.json';
 ---
 
 <header class="base-colors sticky top-0 z-40 pb-2">
-  <div
-    class="mx-auto flex max-w-2xl flex-col items-baseline justify-between py-1 pt-4 md:flex-row"
-  >
-    <span
-      class="m-0 mx-auto flex items-center justify-between space-x-1 text-left text-xl md:mx-0"
-    >
-      <a
-        class="m-0 mx-auto flex items-center justify-between space-x-1 text-left text-xl md:mx-0"
-        href="/"
-      >
-        <img width="20px" height="20px" src={metadata.avatar} />
-        <span class="hidden font-medium md:inline-block">{metadata.title}</span>
-      </a>
-    </span>
-    <nav class="mx-auto md:mx-0">
-      <ul class="flex list-none space-x-4 md:space-x-8">
-        <li><a class="font-medium" href="/about">About</a></li>
-        <li><a class="font-medium" href="/talks">Talks</a></li>
-        <li><a class="font-medium" href="/posts">Posts</a></li>
-        <li><a class="font-medium" href="/uses">Uses</a></li>
-        <li><a class="font-medium" href="/vim">Vim</a></li>
-      </ul>
-    </nav>
-  </div>
+	<div class="mx-auto flex max-w-2xl flex-col items-baseline justify-between py-1 pt-4 md:flex-row">
+		<span class="m-0 mx-auto flex items-center justify-between space-x-1 text-left text-xl md:mx-0">
+			<a class="m-0 mx-auto flex items-center justify-between space-x-1 text-left text-xl md:mx-0" href="/">
+				<img width="20px" height="20px" src={metadata.avatar} />
+				<span class="hidden font-medium md:inline-block">{metadata.title}</span>
+			</a>
+		</span>
+		<nav class="mx-auto md:mx-0">
+			<ul class="flex list-none space-x-4 md:space-x-8">
+				<li><a class="font-medium" href="/about">About</a></li>
+				<li><a class="font-medium" href="/talks">Talks</a></li>
+				<li><a class="font-medium" href="/posts">Posts</a></li>
+				<li><a class="font-medium" href="/uses">Uses</a></li>
+				<li><a class="font-medium" href="/vim">Vim</a></li>
+			</ul>
+		</nav>
+	</div>
 </header>

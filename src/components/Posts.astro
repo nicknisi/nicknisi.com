@@ -5,39 +5,31 @@ import Tag from './Tag.astro';
 import PostDate from './PostDate.astro';
 
 interface Props {
-  posts: CollectionEntry<'posts'>[];
+	posts: CollectionEntry<'posts'>[];
 }
 
 const { posts } = Astro.props;
 ---
 
 <ul class="list-none">
-  {
-    posts.map((post) => (
-      <li class="mb-6 flex">
-        <time
-          class="flex flex-col items-center justify-center"
-          datetime={post.data.pubDate?.toISOString()}
-        >
-          <PostDate date={post.data.pubDate} />
-        </time>
-        <div class="ml-2 border-l pl-2 text-lg">
-          <a
-            class="align-center flex"
-            href={post.data.external ?? `/posts/${post.slug}`}
-          >
-            {post.data.title}
-            {post.data.external && (
-              <Icon name="mdi:open-in-new" class="h-4 w-4" />
-            )}
-          </a>
-          <div class="flex flex-initial flex-wrap items-center justify-start space-x-2">
-            {post.data.tags.map((tag) => (
-              <Tag name={tag} />
-            ))}
-          </div>
-        </div>
-      </li>
-    ))
-  }
+	{
+		posts.map(post => (
+			<li class="mb-6 flex">
+				<time class="flex flex-col items-center justify-center" datetime={post.data.pubDate?.toISOString()}>
+					<PostDate date={post.data.pubDate} />
+				</time>
+				<div class="ml-2 border-l pl-2 text-lg">
+					<a class="align-center flex" href={post.data.external ?? `/posts/${post.slug}`}>
+						{post.data.title}
+						{post.data.external && <Icon name="mdi:open-in-new" class="h-4 w-4" />}
+					</a>
+					<div class="flex flex-initial flex-wrap items-center justify-start space-x-2">
+						{post.data.tags.map(tag => (
+							<Tag name={tag} />
+						))}
+					</div>
+				</div>
+			</li>
+		))
+	}
 </ul>

@@ -39,11 +39,7 @@ With a codemod targeted at replacing this import properly, we can be assured tha
 import { render } from 'some-library';
 ```
 
-<img
-  src="/img/posts/codemods-ast.png"
-  class="image"
-  alt="an AST representation of our import statement"
-/>
+<img src="/img/posts/codemods-ast.png" class="image" alt="an AST representation of our import statement" />
 
 Looking at the AST, it's made up of a top-level source that contains a single `ImportDeclration` node. This node
 contains an `ImportClause` and a `StringLiteral`. The `StringLiteral` is what we want to change, but we need to assess
@@ -59,7 +55,7 @@ The first thing we need to do is to import some types from jscodeshift and set u
 import { API, FileInfo } from 'jscodeshift';
 
 export default function transform(file: FileInfo, { jscodeshift: j }: API) {
-  // codemod goes here.
+	// codemod goes here.
 }
 ```
 
@@ -83,12 +79,12 @@ other cases, where potentially only `screen` or other imports we don't care abou
 
 ```ts
 const importDeclaration = root.find(j.ImportDeclaration, {
-  source: {
-    value: 'some-library',
-  },
+	source: {
+		value: 'some-library',
+	},
 });
 const importRender = importDeclaration.find(j.ImportSpecifier, {
-  imported: { name: 'render' },
+	imported: { name: 'render' },
 });
 ```
 
@@ -127,13 +123,13 @@ that import alone and add our new one after it.
 
 ```ts
 if (importDeclaration.find(j.ImportSpecifier).size() === 0) {
-  // render was the only import so replace the old ImportDeclaration
-  // with our new one
-  importDeclaration.replaceWith(newImport);
+	// render was the only import so replace the old ImportDeclaration
+	// with our new one
+	importDeclaration.replaceWith(newImport);
 } else {
-  // Something else was imported, so leave the rest alone and add ours
-  // as a new import immediately following
-  importDeclaration.insertAfter(newImport);
+	// Something else was imported, so leave the rest alone and add ours
+	// as a new import immediately following
+	importDeclaration.insertAfter(newImport);
 }
 ```
 
@@ -142,7 +138,7 @@ the styles that are already there, but you can also provide it with some hints.
 
 ```ts
 return root.toSource({
-  quote: 'single',
+	quote: 'single',
 });
 ```
 
@@ -175,41 +171,36 @@ And, here's the full source code.
 import { API, FileInfo } from 'jscodeshift';
 
 export default function transform(file: FileInfo, { jscodeshift: j }: API) {
-  const REPLACEMENT = 'custom-render-package';
-  const root = j(file.source);
+	const REPLACEMENT = 'custom-render-package';
+	const root = j(file.source);
 
-  const importDeclaration = root.find(j.ImportDeclaration, {
-    source: {
-      value: 'some-library',
-    },
-  });
-  const importRender = importDeclaration.find(j.ImportSpecifier, {
-    imported: { name: 'render' },
-  });
+	const importDeclaration = root.find(j.ImportDeclaration, {
+		source: {
+			value: 'some-library',
+		},
+	});
+	const importRender = importDeclaration.find(j.ImportSpecifier, {
+		imported: { name: 'render' },
+	});
 
-  if (importRender.size() > 0) {
-    // get the render's local name
-    const renderLocalName = importRender.get().value.local.name;
-    importRender.remove();
-    const newImport = j.importDeclaration(
-      [
-        j.importSpecifier(
-          j.identifier('render'),
-          j.identifier(renderLocalName)
-        ),
-      ],
-      j.literal(REPLACEMENT)
-    );
+	if (importRender.size() > 0) {
+		// get the render's local name
+		const renderLocalName = importRender.get().value.local.name;
+		importRender.remove();
+		const newImport = j.importDeclaration(
+			[j.importSpecifier(j.identifier('render'), j.identifier(renderLocalName))],
+			j.literal(REPLACEMENT),
+		);
 
-    if (importDeclaration.find(j.ImportSpecifier).size() === 0) {
-      importDeclaration.replaceWith(newImport);
-    } else {
-      importDeclaration.insertAfter(newImport);
-    }
-    return root.toSource({
-      quote: 'single',
-    });
-  }
+		if (importDeclaration.find(j.ImportSpecifier).size() === 0) {
+			importDeclaration.replaceWith(newImport);
+		} else {
+			importDeclaration.insertAfter(newImport);
+		}
+		return root.toSource({
+			quote: 'single',
+		});
+	}
 }
 ```
 

@@ -4,377 +4,303 @@ import data from './_data.json';
 import { Icon } from 'astro-icon/components';
 
 function dateToYear(date: string) {
-  return new Date(date).getFullYear();
+	return new Date(date).getFullYear();
 }
 
 function getVideoId(url: string) {
-  return url.split('?v=')[1];
+	return url.split('?v=')[1];
 }
 
 function getVideoThumbnail(url: string) {
-  return `https://img.youtube.com/vi/${getVideoId(url)}/hqdefault.jpg`;
+	return `https://img.youtube.com/vi/${getVideoId(url)}/hqdefault.jpg`;
 }
 ---
 
 <html lang="en">
-  <Head title="Resume - Nicholas Nisi" description="Nick Nisi's Resume" />
-  <body>
-    <main
-      class="container relative mx-auto scroll-my-12 overflow-auto p-4 print:p-12 md:p-16"
-    >
-      <section
-        class="print:spacey-y-6 mx-auto max-w-2xl space-y-8 bg-white font-sans"
-      >
-        <div
-          class="flex flex-col-reverse items-center justify-between sm:flex-row"
-        >
-          <div class="flex-1 space-y-1.5">
-            <h1 class="text-2xl font-bold">{data.basics.name}</h1>
-            <p class="max-w-md text-pretty font-mono text-sm">
-              {data.basics.summary}
-            </p>
-            <p class="text-xs text-grey-400">
-              {data.basics.location.city}, {data.basics.location.region}
-            </p>
-            <div
-              class="hidden items-baseline gap-2 text-sm text-grey-500 print:flex"
-            >
-              <div>
-                <Icon
-                  name="mdi:envelope-outline"
-                  class="mr-1 inline-block size-4"
-                />
-                <a href={'mailto:' + data.basics.email}>{data.basics.email}</a>
-              </div>
-              <div>
-                <Icon
-                  name="ic:round-phone-iphone"
-                  class="mr-1 inline-block size-4"
-                />
-                <a href={'tel:' + data.basics.phone}>{data.basics.phone}</a>
-              </div>
-            </div>
-            <div class="flex pt-2 print:hidden">
-              <>
-                <a
-                  class="border-1 mr-2 inline-block border-grey-300 text-xs text-grey-400 hover:text-grey-600"
-                  href={'mailto:' + data.basics.email}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Icon
-                    name="mdi:envelope-outline"
-                    class="mr-1 inline-block size-4"
-                  />
-                </a>
-                <a
-                  class="border-1 mr-2 inline-block border-grey-300 text-xs text-grey-400 hover:text-grey-600"
-                  href={'tel:' + data.basics.phone}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Icon
-                    name="ic:round-phone-iphone"
-                    class="mr-1 inline-block size-4"
-                  />
-                </a>
-              </>
-              <>
-                {
-                  data.basics.profiles
-                    .filter((profile) => !profile.hidden)
-                    .map((profile) => (
-                      <a
-                        class="border-1 mr-2 inline-block border-grey-300 text-xs text-grey-400 hover:text-grey-600"
-                        href={profile.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Icon
-                          name={`simple-icons:` + profile.network.toLowerCase()}
-                          class="mr-1 inline-block size-4"
-                        />
-                      </a>
-                    ))
-                }
-              </>
-            </div>
-          </div>
-          <img
-            class="mb-8 size-32 rounded-md object-cover object-top sm:mb-0"
-            src={data.basics.image}
-            alt={data.basics.name}
-          />
-        </div>
-        <div class="mt-2 space-y-8">
-          <h2 class="text-2xl font-bold">Work Experience</h2>
-          <div class="space-y-8 print:space-y-4">
-            {
-              data.work
-                .filter((job) => !job.hidden)
-                .map((job) => (
-                  <div class="space-y-2">
-                    <div>
-                      <div class="flex justify-between">
-                        <div class="flex flex-col items-baseline gap-2 sm:flex-row">
-                          <div class="flex items-baseline p-0 text-lg font-medium">
-                            <a
-                              class="flex cursor-pointer items-baseline"
-                              href={job.url}
-                            >
-                              {job.image && (
-                                <img
-                                  src={job.image}
-                                  alt={job.name}
-                                  class="mr-2 inline-block size-4 rounded-md"
-                                />
-                              )}
-                              {job.name}
-                            </a>
-                          </div>
-                          <div class="flex items-center">
-                            <div class="font-mono text-xs">{job.location}</div>
-                            {job.remote && (
-                              <span class="ml-2 inline-block rounded-md bg-blue-gray-50 p-1 font-mono text-xs font-semibold">
-                                Remote
-                              </span>
-                            )}
-                          </div>
-                        </div>
-                        <div class="flex items-center font-mono text-xs">
-                          <div>{dateToYear(job.startDate)}</div>
-                          <div>&nbsp;-&nbsp;</div>
-                          <div>
-                            {job.endDate ? dateToYear(job.endDate) : 'Present'}
-                          </div>
-                        </div>
-                      </div>
-                      <div class="font-mono">{job.position}</div>
-                    </div>
-                    <div class="border-b border-grey-200 sm:hidden" />
-                    <div class="font-mono text-sm">
-                      <ul class="list-disc gap-2 space-y-1">
-                        {job.highlights?.map((highlight) => (
-                          <li>{highlight}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                ))
-            }
-          </div>
-        </div>
-        <div class="mt-2 space-y-8">
-          <h2 class="text-2xl font-bold">Projects</h2>
-          {/* web layout */}
-          <div
-            class="flex flex-1 flex-col flex-wrap gap-4 print:hidden sm:flex-row"
-          >
-            {
-              data.projects
-                .filter((project) => !project.hidden)
-                .map((project) => (
-                  <div class="basis-52 space-y-2 border border-grey-100 p-4">
-                    <h3 class="font-semibold">
-                      <a
-                        href={project.url}
-                        class="cursor-pointer"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {project.image && (
-                          <img
-                            src={project.image}
-                            alt={project.name}
-                            class="mr-2 inline-block size-4 rounded-md"
-                          />
-                        )}
-                        {project.name}
-                      </a>
-                    </h3>
-                    <p class="text-sm text-grey-500">{project.description}</p>
-                    {project.highlights && (
-                      <div class="flex flex-wrap gap-2">
-                        {project.keywords.map((keyword) => (
-                          <div class="inline-block rounded-md bg-blue-gray-50 p-1 font-mono text-xs font-semibold">
-                            {keyword}
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                ))
-            }
-          </div>
-          {/* print layout */}
-          <div class="hidden flex-1 flex-wrap gap-4 print:flex">
-            {
-              data.projects
-                .filter((project) => !project.hidden)
-                .map((project) => (
-                  <div class="flex flex-col gap-1">
-                    <h3 class="m-0 p-0 text-lg font-medium">
-                      <a
-                        href={project.url}
-                        class="cursor-pointer"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {project.image && (
-                          <img
-                            src={project.image}
-                            alt={project.name}
-                            class="mr-2 inline-block size-4 rounded-md"
-                          />
-                        )}
-                        {project.name}
-                      </a>
-                    </h3>
-                    <p class="p-0 font-mono">{project.description}</p>
-                    <div class="font-mono text-sm">
-                      <ul class="list-disc gap-2 space-y-1">
-                        {project.highlights?.map((highlight) => (
-                          <li>{highlight}</li>
-                        ))}
-                      </ul>
-                    </div>
-                    {project.highlights && (
-                      <div class="flex flex-wrap gap-2">
-                        {project.keywords.map((keyword) => (
-                          <div class="inline-block rounded-md bg-blue-gray-50 p-1 font-mono text-xs font-semibold">
-                            {keyword}
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                ))
-            }
-          </div>
-        </div>
-        {
-          data.publications && (
-            <div class="mt-2 space-y-8">
-              <h2 class="text-2xl font-bold">Recent Talks</h2>
-              {/* web layout */}
-              <div class="flex flex-1 flex-col flex-wrap gap-4 print:hidden sm:flex-row">
-                {data.publications
-                  .filter((p) => !p.hidden)
-                  .map((publication) => (
-                    <div class="basis-44 rounded-lg border border-grey-100 p-4">
-                      <a
-                        href={publication.url}
-                        target="_blank"
-                        class="no-underline"
-                      >
-                        <div class="flex flex-col items-center space-y-2 px-2 pb-4 pt-1 text-center">
-                          <h3 class="text-center text-xs font-bold leading-tight text-grey-900">
-                            {publication.name}
-                          </h3>
-                          <img
-                            class="not-prose mx-1 w-48 rounded pb-1"
-                            src={getVideoThumbnail(publication.url)}
-                            alt={publication.name}
-                          />
-                          <div class="align-content-center justify-content-center flex flex-col">
-                            <div class="sticky font-mono text-xs font-bold leading-tight text-grey-500">
-                              {publication.publisher}
-                            </div>
-                            <div class="font-mono text-xs text-grey-500">
-                              {dateToYear(publication.releaseDate)}
-                            </div>
-                          </div>
-                          <p class="font-sans text-xs">{publication.summary}</p>
-                        </div>
-                      </a>
-                    </div>
-                  ))}
-              </div>
-              {/* print layout */}
-              <div class="hidden flex-1 flex-col flex-wrap print:flex sm:flex-row">
-                {data.publications
-                  .filter((p) => !p.hidden)
-                  .map((publication) => (
-                    <div class="flex py-2">
-                      <img
-                        class="w-36 rounded-md"
-                        src={getVideoThumbnail(publication.url)}
-                        alt={publication.name}
-                      />
-                      <div>
-                        <div class="flex flex-col space-y-2 px-2 pb-4 pt-1">
-                          <h3 class="text-lg font-medium leading-tight text-grey-900">
-                            {publication.name}
-                          </h3>
-                          <div class="align-content-center justify-content-center flex">
-                            <div class="sticky font-mono text-xs font-bold leading-tight text-grey-500">
-                              {publication.publisher}
-                            </div>
-                            <div class="pl-2 font-mono text-xs text-grey-400">
-                              {dateToYear(publication.releaseDate)}
-                            </div>
-                          </div>
-                          <a
-                            href={`https://youtu.be/${getVideoId(
-                              publication.url
-                            )}`}
-                            class="font-mono text-xs text-grey-500"
-                          >
-                            {`youtu.be/${getVideoId(publication.url)}`}
-                          </a>
-                          <p class="font-mono text-xs">{publication.summary}</p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-              </div>
-            </div>
-          )
-        }
-        <div class="mt-2 space-y-8">
-          <h2 class="text-2xl font-bold">Skills</h2>
-          <div class="flex gap-4">
-            {
-              data.skills.map((skill) => (
-                <div class="inline-block rounded-md bg-blue-gray-50 p-1 font-mono text-xs font-semibold">
-                  {skill.name}
-                </div>
-              ))
-            }
-          </div>
-          <div class="mt-2 space-y-8">
-            <h2 class="text-2xl font-bold">Education</h2>
-            {
-              data.education.map((school) => (
-                <div class="space-y-2">
-                  <div>
-                    <div class="flex justify-between">
-                      <div class="flex flex-col items-baseline gap-2 sm:flex-row">
-                        <div class="flex items-baseline p-0 text-lg font-medium">
-                          {school.institution}
-                        </div>
-                      </div>
-                      <div class="flex items-center font-mono text-xs">
-                        <div>{dateToYear(school.startDate)}</div>
-                        <div>&nbsp;-&nbsp;</div>
-                        <div>
-                          {school.endDate
-                            ? dateToYear(school.endDate)
-                            : 'Present'}
-                        </div>
-                      </div>
-                    </div>
-                    <div class="font-mono">
-                      {school.studyType}, {school.area}
-                    </div>
-                  </div>
-                  <div class="border-b border-grey-200 sm:hidden" />
-                </div>
-              ))
-            }
-          </div>
-        </div>
-      </section>
-    </main>
-  </body>
+	<Head title="Resume - Nicholas Nisi" description="Nick Nisi's Resume" />
+	<body>
+		<main class="container relative mx-auto scroll-my-12 overflow-auto p-4 md:p-16 print:p-12">
+			<section class="print:spacey-y-6 mx-auto max-w-2xl space-y-8 bg-white font-sans">
+				<div class="flex flex-col-reverse items-center justify-between sm:flex-row">
+					<div class="flex-1 space-y-1.5">
+						<h1 class="text-2xl font-bold">{data.basics.name}</h1>
+						<p class="max-w-md text-pretty font-mono text-sm">
+							{data.basics.summary}
+						</p>
+						<p class="text-xs text-grey-400">
+							{data.basics.location.city}, {data.basics.location.region}
+						</p>
+						<div class="hidden items-baseline gap-2 text-sm text-grey-500 print:flex">
+							<div>
+								<Icon name="mdi:envelope-outline" class="mr-1 inline-block size-4" />
+								<a href={'mailto:' + data.basics.email}>{data.basics.email}</a>
+							</div>
+							<div>
+								<Icon name="ic:round-phone-iphone" class="mr-1 inline-block size-4" />
+								<a href={'tel:' + data.basics.phone}>{data.basics.phone}</a>
+							</div>
+						</div>
+						<div class="flex pt-2 print:hidden">
+							<>
+								<a
+									class="border-1 mr-2 inline-block border-grey-300 text-xs text-grey-400 hover:text-grey-600"
+									href={'mailto:' + data.basics.email}
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									<Icon name="mdi:envelope-outline" class="mr-1 inline-block size-4" />
+								</a>
+								<a
+									class="border-1 mr-2 inline-block border-grey-300 text-xs text-grey-400 hover:text-grey-600"
+									href={'tel:' + data.basics.phone}
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									<Icon name="ic:round-phone-iphone" class="mr-1 inline-block size-4" />
+								</a>
+							</>
+							<>
+								{
+									data.basics.profiles
+										.filter(profile => !profile.hidden)
+										.map(profile => (
+											<a
+												class="border-1 mr-2 inline-block border-grey-300 text-xs text-grey-400 hover:text-grey-600"
+												href={profile.url}
+												target="_blank"
+												rel="noopener noreferrer"
+											>
+												<Icon name={`simple-icons:` + profile.network.toLowerCase()} class="mr-1 inline-block size-4" />
+											</a>
+										))
+								}
+							</>
+						</div>
+					</div>
+					<img
+						class="mb-8 size-32 rounded-md object-cover object-top sm:mb-0"
+						src={data.basics.image}
+						alt={data.basics.name}
+					/>
+				</div>
+				<div class="mt-2 space-y-8">
+					<h2 class="text-2xl font-bold">Work Experience</h2>
+					<div class="space-y-8 print:space-y-4">
+						{
+							data.work
+								.filter(job => !job.hidden)
+								.map(job => (
+									<div class="space-y-2">
+										<div>
+											<div class="flex justify-between">
+												<div class="flex flex-col items-baseline gap-2 sm:flex-row">
+													<div class="flex items-baseline p-0 text-lg font-medium">
+														<a class="flex cursor-pointer items-baseline" href={job.url}>
+															{job.image && (
+																<img src={job.image} alt={job.name} class="mr-2 inline-block size-4 rounded-md" />
+															)}
+															{job.name}
+														</a>
+													</div>
+													<div class="flex items-center">
+														<div class="font-mono text-xs">{job.location}</div>
+														{job.remote && (
+															<span class="ml-2 inline-block rounded-md bg-blue-gray-50 p-1 font-mono text-xs font-semibold">
+																Remote
+															</span>
+														)}
+													</div>
+												</div>
+												<div class="flex items-center font-mono text-xs">
+													<div>{dateToYear(job.startDate)}</div>
+													<div>&nbsp;-&nbsp;</div>
+													<div>{job.endDate ? dateToYear(job.endDate) : 'Present'}</div>
+												</div>
+											</div>
+											<div class="font-mono">{job.position}</div>
+										</div>
+										<div class="border-b border-grey-200 sm:hidden" />
+										<div class="font-mono text-sm">
+											<ul class="list-disc gap-2 space-y-1">
+												{job.highlights?.map(highlight => (
+													<li>{highlight}</li>
+												))}
+											</ul>
+										</div>
+									</div>
+								))
+						}
+					</div>
+				</div>
+				<div class="mt-2 space-y-8">
+					<h2 class="text-2xl font-bold">Projects</h2>
+					{/* web layout */}
+					<div class="flex flex-1 flex-col flex-wrap gap-4 sm:flex-row print:hidden">
+						{
+							data.projects
+								.filter(project => !project.hidden)
+								.map(project => (
+									<div class="basis-52 space-y-2 border border-grey-100 p-4">
+										<h3 class="font-semibold">
+											<a href={project.url} class="cursor-pointer" target="_blank" rel="noopener noreferrer">
+												{project.image && (
+													<img src={project.image} alt={project.name} class="mr-2 inline-block size-4 rounded-md" />
+												)}
+												{project.name}
+											</a>
+										</h3>
+										<p class="text-sm text-grey-500">{project.description}</p>
+										{project.highlights && (
+											<div class="flex flex-wrap gap-2">
+												{project.keywords.map(keyword => (
+													<div class="inline-block rounded-md bg-blue-gray-50 p-1 font-mono text-xs font-semibold">
+														{keyword}
+													</div>
+												))}
+											</div>
+										)}
+									</div>
+								))
+						}
+					</div>
+					{/* print layout */}
+					<div class="hidden flex-1 flex-wrap gap-4 print:flex">
+						{
+							data.projects
+								.filter(project => !project.hidden)
+								.map(project => (
+									<div class="flex flex-col gap-1">
+										<h3 class="m-0 p-0 text-lg font-medium">
+											<a href={project.url} class="cursor-pointer" target="_blank" rel="noopener noreferrer">
+												{project.image && (
+													<img src={project.image} alt={project.name} class="mr-2 inline-block size-4 rounded-md" />
+												)}
+												{project.name}
+											</a>
+										</h3>
+										<p class="p-0 font-mono">{project.description}</p>
+										<div class="font-mono text-sm">
+											<ul class="list-disc gap-2 space-y-1">
+												{project.highlights?.map(highlight => (
+													<li>{highlight}</li>
+												))}
+											</ul>
+										</div>
+										{project.highlights && (
+											<div class="flex flex-wrap gap-2">
+												{project.keywords.map(keyword => (
+													<div class="inline-block rounded-md bg-blue-gray-50 p-1 font-mono text-xs font-semibold">
+														{keyword}
+													</div>
+												))}
+											</div>
+										)}
+									</div>
+								))
+						}
+					</div>
+				</div>
+				{
+					data.publications && (
+						<div class="mt-2 space-y-8">
+							<h2 class="text-2xl font-bold">Recent Talks</h2>
+							{/* web layout */}
+							<div class="flex flex-1 flex-col flex-wrap gap-4 sm:flex-row print:hidden">
+								{data.publications
+									.filter(p => !p.hidden)
+									.map(publication => (
+										<div class="basis-44 rounded-lg border border-grey-100 p-4">
+											<a href={publication.url} target="_blank" class="no-underline">
+												<div class="flex flex-col items-center space-y-2 px-2 pb-4 pt-1 text-center">
+													<h3 class="text-center text-xs font-bold leading-tight text-grey-900">{publication.name}</h3>
+													<img
+														class="not-prose mx-1 w-48 rounded pb-1"
+														src={getVideoThumbnail(publication.url)}
+														alt={publication.name}
+													/>
+													<div class="align-content-center justify-content-center flex flex-col">
+														<div class="sticky font-mono text-xs font-bold leading-tight text-grey-500">
+															{publication.publisher}
+														</div>
+														<div class="font-mono text-xs text-grey-500">{dateToYear(publication.releaseDate)}</div>
+													</div>
+													<p class="font-sans text-xs">{publication.summary}</p>
+												</div>
+											</a>
+										</div>
+									))}
+							</div>
+							{/* print layout */}
+							<div class="hidden flex-1 flex-col flex-wrap sm:flex-row print:flex">
+								{data.publications
+									.filter(p => !p.hidden)
+									.map(publication => (
+										<div class="flex py-2">
+											<img class="w-36 rounded-md" src={getVideoThumbnail(publication.url)} alt={publication.name} />
+											<div>
+												<div class="flex flex-col space-y-2 px-2 pb-4 pt-1">
+													<h3 class="text-lg font-medium leading-tight text-grey-900">{publication.name}</h3>
+													<div class="align-content-center justify-content-center flex">
+														<div class="sticky font-mono text-xs font-bold leading-tight text-grey-500">
+															{publication.publisher}
+														</div>
+														<div class="pl-2 font-mono text-xs text-grey-400">
+															{dateToYear(publication.releaseDate)}
+														</div>
+													</div>
+													<a
+														href={`https://youtu.be/${getVideoId(publication.url)}`}
+														class="font-mono text-xs text-grey-500"
+													>
+														{`youtu.be/${getVideoId(publication.url)}`}
+													</a>
+													<p class="font-mono text-xs">{publication.summary}</p>
+												</div>
+											</div>
+										</div>
+									))}
+							</div>
+						</div>
+					)
+				}
+				<div class="mt-2 space-y-8">
+					<h2 class="text-2xl font-bold">Skills</h2>
+					<div class="flex gap-4">
+						{
+							data.skills.map(skill => (
+								<div class="inline-block rounded-md bg-blue-gray-50 p-1 font-mono text-xs font-semibold">
+									{skill.name}
+								</div>
+							))
+						}
+					</div>
+					<div class="mt-2 space-y-8">
+						<h2 class="text-2xl font-bold">Education</h2>
+						{
+							data.education.map(school => (
+								<div class="space-y-2">
+									<div>
+										<div class="flex justify-between">
+											<div class="flex flex-col items-baseline gap-2 sm:flex-row">
+												<div class="flex items-baseline p-0 text-lg font-medium">{school.institution}</div>
+											</div>
+											<div class="flex items-center font-mono text-xs">
+												<div>{dateToYear(school.startDate)}</div>
+												<div>&nbsp;-&nbsp;</div>
+												<div>{school.endDate ? dateToYear(school.endDate) : 'Present'}</div>
+											</div>
+										</div>
+										<div class="font-mono">
+											{school.studyType}, {school.area}
+										</div>
+									</div>
+									<div class="border-b border-grey-200 sm:hidden" />
+								</div>
+							))
+						}
+					</div>
+				</div>
+			</section>
+		</main>
+	</body>
 </html>
