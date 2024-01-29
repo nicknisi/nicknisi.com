@@ -83,7 +83,7 @@ devDependencies:
     specifier: 1.1.87
     version: 1.1.87
   '@nicknisi/standard':
-    specifier: ^0.1.0
+    specifier: 0.1.0
     version: 0.1.0
   '@types/luxon':
     specifier: 3.4.0
