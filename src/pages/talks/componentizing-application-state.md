@@ -8,9 +8,12 @@ title: Componentizing Application State
 Thanks for coming to my talk! Here's a list of all of the resources that were in my talk at [THAT Conference
 (Texas) 2024](https://thatconference.com/tx/2024/).
 
-<div>
-    <a href="" target="_self">
-        <button class="bg-blue-500 text-white p-4">Download Slides</button>
+<div class="flex gap-4 items-center justify-center">
+    <a href="/talks/componentizing-application-state-that-texas-2024.pdf" target="_blank">
+        <button class="font-bold bg-teal-500 text-white px-2 py-4 rounded-lg">Download Slides</button>
+    </a>
+    <a href="https://stately.ai/registry/editor/99a58056-666f-4521-843d-c7b514af2ef4?mode=design&machineId=5da0911a-5cd4-4b8e-83a9-3e7b52ad2200" target="_blank">
+        <button class="font-bold bg-teal-500 text-white px-2 py-4 rounded-lg">Stately Studio Examples</button>
     </a>
 </div>
 
