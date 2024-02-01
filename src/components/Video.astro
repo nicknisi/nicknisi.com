@@ -1,14 +1,14 @@
 ---
 interface Props {
 	videoId: string;
-	width?: number;
-	height?: number;
+	class?: string;
 }
 
-const { videoId } = Astro.props;
+const { videoId, class: className } = Astro.props;
+const classes = ['relative w-full pt-[56.25%]', className].join(' ');
 ---
 
-<div class="relative w-full pt-[56.25%]">
+<div class={classes}>
 	<iframe
 		class="absolute left-0 top-0 h-full w-full rounded-lg"
 		src={`https://www.youtube.com/embed/${videoId}`}
