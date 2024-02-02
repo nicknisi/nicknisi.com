@@ -1,24 +1,23 @@
 ---
+import type { Talk } from '@/types.js';
+import { getThumbnailUrl } from '@/util.js';
+
 interface Props {
-	url: string;
-	title: string;
-	location: string;
-	date: string;
-	videoId: string;
-	type: string;
+	talk: Talk;
 }
 
-const { url, title, location, date, videoId, type } = Astro.props;
-const thumbnail = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+const { talk } = Astro.props;
+const { source, url, title, location, date, type } = talk;
+const thumbnail = await getThumbnailUrl(talk);
 ---
 
 <div
 	class="xs:flex-grow w-89 not-prose m-2 space-x-2 space-y-2 rounded-lg bg-cool-gray-50 p-2 pb-6 shadow-lg md:flex-1 dark:bg-cool-gray-900"
 >
-	<a href={url} target="_blank" class="no-underline">
+	<a href={url} target={source === 'page' ? undefined : '_blank'} class="no-underline">
 		<div class="flex flex-col items-center px-2 pb-4 pt-1 text-center">
-			<img class="not-prose mx-1 w-48 rounded pb-1" src={thumbnail} alt={title} />
-			<h5 class="text-l h-12 text-center font-bold leading-tight text-grey-900 dark:text-grey-100">
+			{thumbnail && <img class="not-prose mx-1 w-48 rounded pb-1" src={thumbnail} alt={title} />}
+			<h5 class="h-12 text-center text-lg font-bold leading-tight text-grey-900 dark:text-grey-100">
 				{title}
 			</h5>
 			<div class="align-content-center justify-content-center flex flex-col">
@@ -28,18 +27,14 @@ const thumbnail = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
 				<div class="text-m h-8 font-medium leading-tight text-grey-600 dark:text-grey-200">
 					{location}
 				</div>
-				{
-					type === 'panel' && (
-						<div class="self-end pt-4">
-							<span
-								class="last mr-1 inline-block rounded-full bg-purple-100 px-2 py-1
-              text-xs font-semibold uppercase text-purple-700 last:mr-0"
-							>
-								Panel
-							</span>
-						</div>
-					)
-				}
+				<div class="pt-4">
+					<span
+						class="last mr-1 inline-block rounded-full bg-purple-700 px-2 py-1
+				font-sans text-lg font-semibold uppercase text-white last:mr-0"
+					>
+						{type}
+					</span>
+				</div>
 			</div>
 		</div>
 	</a>

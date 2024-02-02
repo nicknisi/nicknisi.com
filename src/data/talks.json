@@ -1,14 +1,14 @@
 [
 	{
 		"title": "Componentizing Application State",
-		"date": "April 2022",
-		"location": "React Global Online Summit 2022",
-		"url": "https://www.youtube.com/watch?v=B5BmHj0WCiA",
-		"videoId": "B5BmHj0WCiA",
+		"date": "January 2024",
+		"location": "THAT Conference Texas 2024",
+		"url": "/talks/componentizing-application-state",
+		"videoId": "4-msZqqrN1A",
 		"promote": true,
-		"source": "youtube",
+		"source": "page",
 		"type": "talk",
-		"remote": true
+		"remote": false
 	},
 	{
 		"title": "TalkScript with the TypeScript Team",
@@ -55,7 +55,7 @@
 		"date": "October 2019",
 		"location": "NebraskaJS",
 		"url": "https://www.youtube.com/watch?v=aHKn59spc6M",
-		"videoId": "yI0BtEzdGtw",
+		"videoId": "aHKn59spc6M",
 		"source": "youtube",
 		"promote": true,
 		"type": "talk",
@@ -106,7 +106,6 @@
 		"date": "May 2015",
 		"location": "JSConf 2015",
 		"url": "http://2015.jsconf.us/speakers.html#nisi",
-		"videoId": "nisi",
 		"source": "website",
 		"type": "workshop",
 		"remote": false

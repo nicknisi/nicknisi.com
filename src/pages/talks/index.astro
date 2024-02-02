@@ -2,12 +2,15 @@
 import PageLayout from '@layouts/Page.astro';
 import Talk from '@components/cards/Talk.astro';
 import talks from '@data/talks.json';
-const youtubeTalks = talks.filter(talk => talk.source === 'youtube');
+import type { Talk as TalkItem } from '../../types.js';
 ---
 
 <PageLayout title="Talks">
-	<p class="py-5">Here is a collection of talks and videos I have given at various meetups and conferences.</p>
+	<p class="py-5 text-xl">
+		I'm an occasional conference speaker. I speak at conferences and meetups, and emcee and moderate panel discussions
+		on stage at conferences. I've also officiated nine weddings (not listed)!
+	</p>
 	<div class="md:grid md:auto-rows-auto md:grid-cols-3 md:gap-1">
-		{youtubeTalks.map(talk => <Talk {...talk} />)}
+		{talks.map(talk => <Talk talk={talk as TalkItem} />)}
 	</div>
 </PageLayout>
