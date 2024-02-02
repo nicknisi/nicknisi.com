@@ -34,7 +34,7 @@ Nick is an occasional conference speaker and has spoken at conferences all over 
 	{talks
 		.filter(talk => talk.promote)
 		.map(talk => (
-			<Talk {...talk} />
+			<Talk talk={talk} />
 		))}
 </div>
 
