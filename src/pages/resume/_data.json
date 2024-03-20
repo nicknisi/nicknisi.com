@@ -176,6 +176,7 @@
 			"url": "https://lockheedmartin.com",
 			"startDate": "2009-01-23",
 			"endDate": "2011-11-09",
+			"hidden": true,
 			"summary": "",
 			"highlights": [
 				"Accepted into Engineering Leadership Development Program (ELDP) based on job performance, panel interviews, and essays.",
@@ -199,9 +200,9 @@
 	"publications": [
 		{
 			"name": "Componentizing Application State",
-			"publisher": "React Global Online Summit",
-			"releaseDate": "2022-04-20",
-			"url": "https://www.youtube.com/watch?v=B5BmHj0WCiA",
+			"publisher": "THAT Conference Texas",
+			"releaseDate": "2024-01-30",
+			"url": "https://www.youtube.com/watch?v=4-msZqqrN1A",
 			"summary": "A talk about treating your application state as a component using React and XState."
 		},
 		{

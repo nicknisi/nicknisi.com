@@ -27,10 +27,10 @@ function getVideoThumbnail(url: string) {
 						<p class="max-w-md text-pretty font-mono text-sm">
 							{data.basics.summary}
 						</p>
-						<p class="text-xs text-grey-400">
+						<p class="text-xs text-grey-600">
 							{data.basics.location.city}, {data.basics.location.region}
 						</p>
-						<div class="hidden items-baseline gap-2 text-sm text-grey-500 print:flex">
+						<div class="hidden items-baseline gap-2 text-sm text-grey-600 print:flex">
 							<div>
 								<Icon name="mdi:envelope-outline" class="mr-1 inline-block size-4" />
 								<a href={'mailto:' + data.basics.email}>{data.basics.email}</a>
@@ -83,8 +83,8 @@ function getVideoThumbnail(url: string) {
 						alt={data.basics.name}
 					/>
 				</div>
-				<div class="mt-2 space-y-8">
-					<h2 class="text-2xl font-bold">Work Experience</h2>
+				<div class="mt-2 space-y-8 print:space-y-4">
+					<h2 class="text-2xl font-bold print:text-lg">Work Experience</h2>
 					<div class="space-y-8 print:space-y-4">
 						{
 							data.work
@@ -132,8 +132,8 @@ function getVideoThumbnail(url: string) {
 						}
 					</div>
 				</div>
-				<div class="mt-2 space-y-8">
-					<h2 class="text-2xl font-bold">Projects</h2>
+				<div class="mt-2 space-y-8 print:space-y-4">
+					<h2 class="text-2xl font-bold print:text-lg">Projects</h2>
 					{/* web layout */}
 					<div class="flex flex-1 flex-col flex-wrap gap-4 sm:flex-row print:hidden">
 						{
@@ -202,8 +202,8 @@ function getVideoThumbnail(url: string) {
 				</div>
 				{
 					data.publications && (
-						<div class="mt-2 space-y-8">
-							<h2 class="text-2xl font-bold">Recent Talks</h2>
+						<div class="mt-2 space-y-8 print:space-y-4">
+							<h2 class="text-2xl font-bold print:text-lg">Recent Talks</h2>
 							{/* web layout */}
 							<div class="flex flex-1 flex-col flex-wrap gap-4 sm:flex-row print:hidden">
 								{data.publications
@@ -236,21 +236,25 @@ function getVideoThumbnail(url: string) {
 									.filter(p => !p.hidden)
 									.map(publication => (
 										<div class="flex py-2">
-											<img class="w-36 rounded-md" src={getVideoThumbnail(publication.url)} alt={publication.name} />
+											<img
+												class="w-24 rounded-md object-contain"
+												src={getVideoThumbnail(publication.url)}
+												alt={publication.name}
+											/>
 											<div>
 												<div class="flex flex-col space-y-2 px-2 pb-4 pt-1">
-													<h3 class="text-lg font-medium leading-tight text-grey-900">{publication.name}</h3>
+													<h3 class="text-md font-medium leading-tight text-grey-900">{publication.name}</h3>
 													<div class="align-content-center justify-content-center flex">
-														<div class="sticky font-mono text-xs font-bold leading-tight text-grey-500">
+														<div class="sticky font-mono text-xs font-bold leading-tight text-grey-700">
 															{publication.publisher}
 														</div>
-														<div class="pl-2 font-mono text-xs text-grey-400">
+														<div class="pl-2 font-mono text-xs text-grey-600">
 															{dateToYear(publication.releaseDate)}
 														</div>
 													</div>
 													<a
 														href={`https://youtu.be/${getVideoId(publication.url)}`}
-														class="font-mono text-xs text-grey-500"
+														class="font-mono text-xs text-grey-600"
 													>
 														{`youtu.be/${getVideoId(publication.url)}`}
 													</a>
@@ -263,8 +267,8 @@ function getVideoThumbnail(url: string) {
 						</div>
 					)
 				}
-				<div class="mt-2 space-y-8">
-					<h2 class="text-2xl font-bold">Skills</h2>
+				<div class="mt-2 space-y-8 print:space-y-4">
+					<h2 class="text-2xl font-bold print:text-lg">Skills</h2>
 					<div class="flex gap-4">
 						{
 							data.skills.map(skill => (
@@ -274,8 +278,8 @@ function getVideoThumbnail(url: string) {
 							))
 						}
 					</div>
-					<div class="mt-2 space-y-8">
-						<h2 class="text-2xl font-bold">Education</h2>
+					<div class="mt-2 space-y-8 print:space-y-4">
+						<h2 class="text-2xl font-bold print:text-lg">Education</h2>
 						{
 							data.education.map(school => (
 								<div class="space-y-2">
