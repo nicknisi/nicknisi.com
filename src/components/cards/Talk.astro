@@ -12,25 +12,24 @@ const thumbnail = await getThumbnailUrl(talk);
 ---
 
 <div
-	class="xs:flex-grow w-89 not-prose m-2 space-x-2 space-y-2 rounded-lg bg-cool-gray-50 p-2 pb-6 shadow-lg md:flex-1 dark:bg-cool-gray-900"
+	class="xs:flex-grow w-89 not-prose m-2 space-x-2 space-y-2 rounded-lg bg-cool-gray-50 p-2 pb-6 text-lg shadow-lg md:flex-1 dark:bg-cool-gray-900"
 >
 	<a href={url} target={source === 'page' ? undefined : '_blank'} class="no-underline">
 		<div class="flex flex-col items-center px-2 pb-4 pt-1 text-center">
-			{thumbnail && <img class="not-prose mx-1 w-48 rounded pb-1" src={thumbnail} alt={title} />}
-			<h5 class="h-12 text-center text-lg font-bold leading-tight text-grey-900 dark:text-grey-100">
+			{thumbnail && <img class="not-prose mx-1 w-56 rounded pb-1" src={thumbnail} alt={title} />}
+			<h5 class="h-12 text-center text-xl font-bold leading-tight text-grey-900 dark:text-grey-100">
 				{title}
 			</h5>
 			<div class="align-content-center justify-content-center flex flex-col">
-				<div class="text-blue-grey-600 text-xs font-bold dark:text-blue-gray-200">
+				<div class="text-blue-grey-600 text-sm font-bold dark:text-blue-gray-200">
 					{date}
 				</div>
-				<div class="text-m h-8 font-medium leading-tight text-grey-600 dark:text-grey-200">
+				<div class="h-8 text-lg font-medium leading-tight text-grey-600 dark:text-grey-200">
 					{location}
 				</div>
 				<div class="pt-4">
 					<span
-						class="last mr-1 inline-block rounded-full bg-purple-700 px-2 py-1
-				font-sans text-lg font-semibold uppercase text-white last:mr-0"
+						class="last shadow-gray-200 mr-1 inline-block min-w-24 rounded-full bg-purple-700 px-2 py-1 font-sans text-base font-semibold uppercase text-grey-100 shadow-lg last:mr-0"
 					>
 						{type}
 					</span>
