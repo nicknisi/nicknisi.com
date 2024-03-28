@@ -15,7 +15,7 @@ const thumbnail = await getThumbnailUrl(talk);
 	class="xs:flex-grow w-89 not-prose m-2 space-x-2 space-y-2 rounded-lg bg-cool-gray-50 p-2 pb-6 text-lg shadow-lg md:flex-1 dark:bg-cool-gray-900"
 >
 	<a href={url} target={source === 'page' ? undefined : '_blank'} class="no-underline">
-		<div class="flex flex-col items-center px-2 pb-4 pt-1 text-center">
+		<div class="flex flex-col items-center gap-4 px-2 pb-4 pt-1 text-center">
 			{thumbnail && <img class="not-prose mx-1 w-56 rounded pb-1" src={thumbnail} alt={title} />}
 			<h5 class="h-12 text-center text-xl font-bold leading-tight text-grey-900 dark:text-grey-100">
 				{title}
