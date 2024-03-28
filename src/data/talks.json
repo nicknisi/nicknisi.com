@@ -1,5 +1,16 @@
 [
 	{
+		"title": "Unleashing the TypeScript Compiler",
+		"date": "March 2024",
+		"location": "The Monthly Dev",
+		"url": "https://www.youtube.com/live/SELZVza_DoM?si=LlqJaREEG6cPD9MR&t=2719",
+		"videoId": "SELZVza_DoM",
+		"promote": false,
+		"source": "youtube",
+		"type": "talk",
+		"remote": true
+	},
+	{
 		"title": "Componentizing Application State",
 		"date": "January 2024",
 		"location": "THAT Conference Texas 2024",
