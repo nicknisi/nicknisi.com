@@ -12,7 +12,7 @@
 		"email": "nick@nisi.org",
 		"phone": "+14022161612",
 		"url": "https://nicknisi.com",
-		"summary": "With more than 12 years in the industry as a dedicated JavaScript and TypeScript specialist, I actively advocate for community through teaching and enhancing developer tooling. I'm a panelist on the JS Party podcast and I proudly organized Nebraska's sole JavaScript conference.",
+		"summary": "With more than 15 years in the industry as a dedicated JavaScript and TypeScript specialist, I actively advocate for community through teaching and enhancing developer tooling. I'm a panelist on the JS Party podcast and I proudly organized Nebraska's sole JavaScript conference.",
 		"location": {
 			"address": "",
 			"postalCode": "",
@@ -198,6 +198,14 @@
 	"volunteer": [],
 	"awards": [],
 	"publications": [
+		{
+			"name": "Unleashing the TypeScript Compiler",
+			"releaseDate": "2024-03-19",
+			"publisher": "The Monthly Dev",
+			"url": "https://www.youtube.com/SELZVza_DoM?t=2719",
+			"summary": "A brief introduction to querying and modifying TypeScript source using the compiler API.",
+			"hidden": true
+		},
 		{
 			"name": "Componentizing Application State",
 			"publisher": "THAT Conference Texas",
