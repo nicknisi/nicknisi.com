@@ -32,6 +32,7 @@
 		"@astrojs/tailwind": "5.1.0",
 		"@fontsource-variable/roboto-slab": "^5.0.20",
 		"@fontsource/atkinson-hyperlegible": "^5.0.20",
+		"@fontsource/oswald": "^5.0.20",
 		"@fontsource/space-mono": "^5.0.20",
 		"@tailwindcss/typography": "0.5.13",
 		"@types/cheerio": "0.22.35",
