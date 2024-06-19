@@ -8,3 +8,4 @@
 
 # Talk redirects
 /state-talk /talks/componentizing-application-state 301
+/compiler-talk /talks/unleashing-the-typescript-compiler 301
