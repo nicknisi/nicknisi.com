@@ -1,7 +1,10 @@
 # mastodon redirects
-/@nicknisi https://fediverse.nicknisi.com/@nicknisi 301
 /.well-known/host-meta* https://fediverse.nicknisi.com/.well-known/host-meta:splat 301
 /.well-known/webfinger* https://fediverse.nicknisi.com/.well-known/webfinger:splat 301
 /.well-known/nodeinfo* https://fediverse.nicknisi.com/.well-known/nodeinfo:splat 301
+/@nicknisi https://fediverse.nicknisi.com/@nicknisi 301
 
 /feed/feed.xml https://nicknisi.com/rss.xml 301
+
+# Talk redirects
+/state-talk /talks/componentizing-application-state 301
