@@ -2,9 +2,8 @@
 	{
 		"title": "Unleashing the TypeScript Compiler",
 		"date": "June 2024",
-		"location": "KCDC 2024",
 		"url": "/talks/unleashing-the-typescript-compiler",
-		"promote": false,
+		"promote": true,
 		"source": "youtube",
 		"type": "talk",
 		"remote": false
@@ -12,7 +11,6 @@
 	{
 		"title": "Componentizing Application State",
 		"date": "January 2024",
-		"location": "THAT Conference Texas 2024",
 		"url": "/talks/componentizing-application-state",
 		"videoId": "4-msZqqrN1A",
 		"promote": true,
@@ -129,7 +127,7 @@
 		"source": "youtube",
 		"remote": false,
 		"type": "talk",
-		"promote": true
+		"promote": false
 	},
 	{
 		"title": "Modern Dojo",

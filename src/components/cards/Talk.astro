@@ -16,17 +16,17 @@ const thumbnail = await getThumbnailUrl(talk);
 >
 	<a href={url} target={source === 'page' ? undefined : '_blank'} class="no-underline">
 		<div class="flex flex-col items-center gap-4 px-2 pb-4 pt-1 text-center">
-			{thumbnail && <img class="not-prose mx-1 w-56 rounded pb-1" src={thumbnail} alt={title} />}
+			{thumbnail && <img class="not-prose mx-1 aspect-video rounded object-cover pb-1" src={thumbnail} alt={title} />}
 			<h5 class="h-12 text-center text-xl font-bold leading-tight text-grey-900 dark:text-grey-100">
 				{title}
 			</h5>
 			<div class="align-content-center justify-content-center flex flex-col">
-				<div class="text-blue-grey-600 text-sm font-bold dark:text-blue-gray-200">
-					{date}
-				</div>
-				<div class="h-8 text-lg font-medium leading-tight text-grey-600 dark:text-grey-200">
-					{location}
-				</div>
+				{location && date && <div class="text-blue-grey-600 text-sm font-bold dark:text-blue-gray-200">{date}</div>}
+				{
+					location && (
+						<div class="h-8 text-lg font-medium leading-tight text-grey-600 dark:text-grey-200">{location}</div>
+					)
+				}
 				<div class="pt-4">
 					<span
 						class="last shadow-gray-200 mr-1 inline-block min-w-24 rounded-full bg-purple-700 px-2 py-1 font-sans text-base font-semibold uppercase text-grey-100 shadow-lg last:mr-0"
