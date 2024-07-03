@@ -7,7 +7,7 @@ interface Props {
 }
 
 const { talk } = Astro.props;
-const { source, url, title, location, date, type } = talk;
+const { source, url, title, location, date, type, multiple } = talk;
 const thumbnail = await getThumbnailUrl(talk);
 ---
 
@@ -25,7 +25,7 @@ const thumbnail = await getThumbnailUrl(talk);
 				{title}
 			</h5>
 			<div class="align-content-center justify-content-center flex flex-col">
-				{location && date && <div class="text-blue-grey-600 text-sm font-bold dark:text-blue-gray-200">{date}</div>}
+				{(<div class="text-blue-grey-600 text-sm font-bold dark:text-blue-gray-200">{date}</div>)}
 				{
 					location && (
 						<div class="h-8 text-lg font-medium leading-tight text-grey-600 dark:text-grey-200">{location}</div>

@@ -6,7 +6,8 @@
 		"promote": true,
 		"source": "youtube",
 		"type": "talk",
-		"remote": false
+		"remote": false,
+		"multiple": true
 	},
 	{
 		"title": "Componentizing Application State",
@@ -16,7 +17,8 @@
 		"promote": true,
 		"source": "page",
 		"type": "talk",
-		"remote": false
+		"remote": false,
+		"multiple": true
 	},
 	{
 		"title": "TalkScript with the TypeScript Team",

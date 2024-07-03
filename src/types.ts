@@ -4,11 +4,12 @@ export type TalkType = 'talk' | 'workshop' | 'panel' | 'keynote' | 'interview' |
 export interface Talk {
 	title: string;
 	date: string;
-	location: string;
+	location?: string;
 	url: string;
 	videoId: string;
 	promote?: boolean;
 	source: TalkSource;
 	type: TalkType;
 	remote?: boolean;
+	multiple?: boolean;
 }
