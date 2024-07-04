@@ -7,10 +7,12 @@ import Talk from '@components/cards/Talk.astro';
 import metadata from '../data/metadata.json';
 import talks from '../data/talks.json';
 import Project from '@components/cards/Project.astro';
+import profileImg from '@/assets/profile.jpg'
+import { Image } from 'astro:assets';
 
 <section>
 	<div class="flex flex-col items-center">
-		<img alt="Nick Nisi" class="h-64 w-64 rounded-full" src="/img/profile.jpg" />
+		<Image alt="Nick Nisi" width={256} height={256} class="h-64 w-64 rounded-full" src={profileImg}/>
 		<h1>Nick Nisi</h1>
 	</div>
 </section>

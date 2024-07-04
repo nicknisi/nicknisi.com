@@ -1,6 +1,8 @@
 import { DateTime } from 'luxon';
 import { getCollection } from 'astro:content';
 import { Talk } from '@/types.js';
+import { getImage } from 'astro:assets';
+import { ImageMetadata } from 'astro';
 
 /**
  * Convert a data to a readable format
@@ -43,19 +45,26 @@ export async function getPosts(max?: number) {
 	return posts;
 }
 
-export async function getThumbnailUrl(talk: Talk) {
+const images = import.meta.glob<{ default: ImageMetadata }>('@/assets/*.{png,jpg,jpeg}');
+async function _getImage(name: string) {
+	if (images[name]) {
+		return (await images[name]()).default;
+	}
+	console.log(images);
+	throw new Error(`Image ${name} not found`);
+}
+
+export async function getThumbnail(talk: Talk): Promise<string | ImageMetadata> {
+	let defaultThumbnail = await _getImage('/src/assets/talk_thumbnail.png');
 	if (talk.source === 'vimeo') {
 		const response = await fetch(`http://vimeo.com/api/v2/video/${talk.videoId}.json`);
 		if (response.ok) {
 			const data = await response.json();
-			console.log('RESPONSE', data);
 			return data[0].thumbnail_medium as string;
 		}
-	}
-
-	if (talk.videoId) {
+	} else if (talk.videoId) {
 		return `https://img.youtube.com/vi/${talk.videoId}/hqdefault.jpg`;
 	}
 
-	return '/img/talk_thumbnail.png';
+	return defaultThumbnail;
 }
