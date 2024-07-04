@@ -6,6 +6,9 @@ tags:
   - typescript
 ---
 
+import { Image } from 'astro:assets';
+import astImage from '@/assets/posts/codemods-ast.png';
+
 I gave a quick talk at Idea Storm Q1 2023 in Grand Island, NE where I spoke about something I've been pretty excited about recently... codemods! Codemods are a powerful tool for developers to automate repetitive and time-consuming tasks. These small scripts can analyze and modify source code, allowing developers to easily make sweeping changes across their entire codebase without having to manually search and replace code. More importantly, they allow for consistency when making changes, as specific _types_ of code can be targeted, ensuring the changes are exactly what's expected while handling any edge cases.
 
 ## The setup
@@ -39,7 +42,7 @@ With a codemod targeted at replacing this import properly, we can be assured tha
 import { render } from 'some-library';
 ```
 
-<img src="/img/posts/codemods-ast.png" class="image" alt="an AST representation of our import statement" />
+<Image src={astImage} class="image" alt="an AST representation of our import statement" />
 
 Looking at the AST, it's made up of a top-level source that contains a single `ImportDeclration` node. This node
 contains an `ImportClause` and a `StringLiteral`. The `StringLiteral` is what we want to change, but we need to assess

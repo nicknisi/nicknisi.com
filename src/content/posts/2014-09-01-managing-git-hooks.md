@@ -13,7 +13,7 @@ Git hooks are custom scripts that can be fired off when different actions occur,
 
 The hooks are contained within the `.git/hooks`. By default, git will provide a number of sample scripts, which can be removed or renamed and modified to fit your needs.
 
-![Default git hooks setup](/img/posts/git-hooks-default.png)
+![Default git hooks setup](@/assets/posts/git-hooks-default.png)
 
 Removing the `.sample` extension from any of these files will activate them. Then, they can be modified to perform whatever task is necessary. for example, adding a file called `post-checkout` with the following will cause git to display the 5 most recent commits to the branch checked out when running `git checkout`
 
@@ -39,7 +39,7 @@ Git hooks can be tedious to manage in multiple projects. It can be cumbersome to
 
 This way, you can manage your git hook scripts from another repository, such as your dotfiles and they wil be copied over to each new project. To add them to an existing project, just execute `git init` and they will be copied over.
 
-![Git custom hooks setup](/img/posts/git-hooks-custom.png)
+![Git custom hooks setup](@/assets/posts/git-hooks-custom.png)
 
 Please note that they will not overwrite files that already exist in the `.git/hooks` directory, so you will need to delete them first to completely replace them with more up-to-date scripts.
 

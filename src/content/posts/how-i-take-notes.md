@@ -1,5 +1,5 @@
 ---
-title: 'How I take notes in Obsidian'
+title: "How I take notes in Obsidian"
 draft: true
 pubDate: 2022-10-16
 description: "It's totally not a cult!"
@@ -34,7 +34,7 @@ These notes typically come from articles, books, or videos I'm consuming. For ar
 [Readwise](https://readwise.io) service to allow me to use the Kindle/Matter highlight feature, and then those
 highlights are automatically synced into my Obsidian vault via the [Official Readwise Plugin](https://github.com/readwiseio/obsidian-readwise). From there I try to break the highlights down into my own words. This helps me to get a better understanding of the thoughts represented by the highlights. Then, I try to make those thoughts into atomic notes, which are useful standalone, and no longer need to link directly to the reference material or notes. This is the process described in the book, _[How to Take Smart Notes](https://www.amazon.com/How-Take-Smart-Notes-Nonfiction/dp/1542866502)_.
 
-![The notes flow for my zettelkasten](/img/posts/2022-10-16-notes-flow.svg)
+![The notes flow for my zettelkasten](@/assets/posts/2022-10-16-notes-flow.svg)
 
 ## Plugins
 
