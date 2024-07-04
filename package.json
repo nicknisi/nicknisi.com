@@ -25,9 +25,9 @@
 	"homepage": "https://github.com/nicknisi/nicknisi.com",
 	"license": "MIT",
 	"dependencies": {
-		"@astrojs/mdx": "3.1.1",
+		"@astrojs/mdx": "3.1.2",
 		"@astrojs/react": "3.6.0",
-		"@astrojs/rss": "4.0.6",
+		"@astrojs/rss": "4.0.7",
 		"@astrojs/sitemap": "3.1.6",
 		"@astrojs/tailwind": "5.1.0",
 		"@fontsource-variable/roboto-slab": "^5.0.20",
@@ -38,7 +38,7 @@
 		"@types/cheerio": "0.22.35",
 		"@types/react": "18.3.3",
 		"@types/react-dom": "18.3.0",
-		"astro": "4.10.3",
+		"astro": "4.11.5",
 		"astro-icon": "1.1.0",
 		"luxon": "3.4.4",
 		"markdown-it": "14.1.0",
@@ -50,9 +50,9 @@
 	},
 	"devDependencies": {
 		"@iconify-json/ic": "1.1.17",
-		"@iconify-json/mdi": "1.1.66",
+		"@iconify-json/mdi": "1.1.67",
 		"@iconify-json/raphael": "1.1.8",
-		"@iconify-json/simple-icons": "1.1.106",
+		"@iconify-json/simple-icons": "1.1.108",
 		"@nicknisi/standard": "0.1.0",
 		"@types/luxon": "3.4.2",
 		"@types/markdown-it": "14.1.1",
@@ -60,6 +60,6 @@
 		"prettier": "3.3.2",
 		"prettier-plugin-astro": "0.14.0",
 		"prettier-plugin-tailwindcss": "0.6.5",
-		"typescript": "5.4.5"
+		"typescript": "5.5.3"
 	}
 }
