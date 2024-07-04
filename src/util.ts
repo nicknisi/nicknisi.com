@@ -1,7 +1,6 @@
 import { DateTime } from 'luxon';
 import { getCollection } from 'astro:content';
 import { Talk } from '@/types.js';
-import { getImage } from 'astro:assets';
 import { ImageMetadata } from 'astro';
 
 /**
