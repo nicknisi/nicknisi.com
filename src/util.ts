@@ -44,7 +44,7 @@ export async function getPosts(max?: number) {
 	return posts;
 }
 
-const images = import.meta.glob<{ default: ImageMetadata }>('@/assets/*.{png,jpg,jpeg}');
+const images = import.meta.glob<{ default: ImageMetadata }>('./assets/*.{png,jpg,jpeg}');
 async function _getImage(name: string) {
 	if (images[name]) {
 		return (await images[name]()).default;
@@ -54,7 +54,7 @@ async function _getImage(name: string) {
 }
 
 export async function getThumbnail(talk: Talk): Promise<string | ImageMetadata> {
-	let defaultThumbnail = await _getImage('/src/assets/talk_thumbnail.png');
+	let defaultThumbnail = await _getImage('./assets/talk_thumbnail.png');
 	if (talk.source === 'vimeo') {
 		const response = await fetch(`http://vimeo.com/api/v2/video/${talk.videoId}.json`);
 		if (response.ok) {
