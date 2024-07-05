@@ -11,23 +11,26 @@ import tailwind from '@astrojs/tailwind';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://nicknisi.com',
-  server: {
-    port: 8080,
-  },
-  integrations: [
-    icon(),
-    react(),
-    mdx(),
-    tailwind(),
-    sitemap({
-      filter: (page) => page !== 'https://nicknisi.com/resume',
-    }),
-  ],
-  markdown: {
-    shikiConfig: {
-      theme: 'dracula',
-      wrap: true,
-    },
-  },
+	site: 'https://nicknisi.com',
+	server: {
+		port: 8080,
+	},
+	image: {
+		domains: ['img.youtube.com', 'vimeo.com'],
+	},
+	integrations: [
+		icon(),
+		react(),
+		mdx(),
+		tailwind(),
+		sitemap({
+			filter: page => page !== 'https://nicknisi.com/resume',
+		}),
+	],
+	markdown: {
+		shikiConfig: {
+			theme: 'dracula',
+			wrap: true,
+		},
+	},
 });
