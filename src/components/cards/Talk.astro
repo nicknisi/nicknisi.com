@@ -1,6 +1,6 @@
 ---
 import type { Talk } from '@/types.js';
-import { getThumbnail } from '@/util.js';
+import { getThumbnail } from '@/utils/image.js';
 import { Image } from 'astro:assets';
 
 interface Props {
@@ -23,6 +23,7 @@ const thumbnail = await getThumbnail(talk);
 				alt={title}
 				width={205}
 				height={111}
+				quality="high"
 			/>
 			<h5 class="h-12 text-center text-xl font-bold leading-tight text-grey-900 dark:text-grey-100">
 				{title}
