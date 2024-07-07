@@ -3,8 +3,8 @@
 	"url": "https://nicknisi.com",
 	"_description": "👋 Hi, I'm Nick. I write and talk about JavaScript and the web.",
 	"description": "Software developer and podcaster based in Nebraska. TypeScript enthusiast, transpiling dreams into reality.",
-	"avatar": "/img/beef_nick.png",
-	"profile": "/img/profile.jpg",
+	"avatar": "beef_nick.png",
+	"profile": "profile.jpg",
 	"ogImage": "/og/colorful.png",
 	"feed": {
 		"subtitle": "",
@@ -54,7 +54,7 @@
 			"type": "podcast",
 			"url": "https://changelog.com/jsparty",
 			"description": "A weekly celebration of JavaScript and the web.",
-			"avatar": "/img/jsparty.png",
+			"image": "jsparty.png",
 			"status": "active"
 		},
 		{
@@ -63,7 +63,7 @@
 			"type": "meetup",
 			"url": "https://nebraskajs.com",
 			"description": "A monthly meetup for JavaScript developers in Nebraska with over 1500 members.",
-			"avatar": "/img/nebraskajs.png",
+			"image": "nebraskajs.png",
 			"status": "active"
 		},
 		{
@@ -72,7 +72,7 @@
 			"type": "podcast",
 			"url": "https://talkscript.fm",
 			"description": "A podcast focusing on TypeScript and the people that use it. It's the official podcast of TSConf!",
-			"avatar": "/img/talkscript.png",
+			"image": "talkscript.png",
 			"status": "inactive"
 		},
 		{
@@ -81,7 +81,7 @@
 			"type": "conference",
 			"url": "https://tsconf.io",
 			"description": "A conference about TypeScript featuring the people that work with and on TypeScript.",
-			"avatar": "/img/tsconf.png",
+			"image": "tsconf.png",
 			"status": "inactive"
 		},
 		{
@@ -90,7 +90,7 @@
 			"type": "conference",
 			"url": "https://nejsconf.com",
 			"description": "A regional conference showcasing the best in the industry from around the world and right here in Nebraska.",
-			"avatar": "/img/nejsconf.png",
+			"image": "nejsconf.png",
 			"status": "inactive"
 		}
 	]

@@ -3,12 +3,16 @@ interface Props {
 	title: string;
 	description: string;
 	role: string;
-	avatar: string;
+	image: string;
 	url: string;
 	status?: 'active' | 'inactive';
 }
+import { getAsset } from '@/utils/image.js';
+import { Image } from 'astro:assets';
 
-const { title, url, role, description, avatar, status } = Astro.props;
+const image = await getAsset(Astro.props.image);
+
+const { title, url, role, description, status } = Astro.props;
 ---
 
 <div
@@ -17,7 +21,7 @@ const { title, url, role, description, avatar, status } = Astro.props;
 	<a href={url} target="_blank" class="no-underline">
 		<div class="flex">
 			<div class="align-items-center flex place-content-evenly justify-items-center">
-				<img alt="JS Party" class="mx-2 h-16 w-16 rounded" src={avatar} />
+				<Image alt="JS Party" class="mx-2 h-16 w-16 rounded" src={image} quality="high" height={128} width={128} />
 				<div class="flex w-64 flex-col">
 					<h5 class="text-xl font-medium leading-tight">{title}</h5>
 					<p class="mb-2 w-64 p-2 text-sm">{description}</p>
@@ -32,10 +36,7 @@ const { title, url, role, description, avatar, status } = Astro.props;
 			</span>
 			{
 				status === 'inactive' && (
-					<span
-						class="last mr-1 inline-block rounded-full bg-red-200 px-2 py-1
-          text-xs font-semibold uppercase text-red-700 last:mr-0"
-					>
+					<span class="last mr-1 inline-block rounded-full bg-red-200 px-2 py-1 text-xs font-semibold uppercase text-red-700 last:mr-0">
 						{status}
 					</span>
 				)

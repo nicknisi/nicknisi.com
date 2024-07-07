@@ -1,12 +1,15 @@
 ---
 import metadata from '../data/metadata.json';
+import { getAsset } from '@/utils/image.js';
+const avatar = await getAsset(metadata.avatar);
+import { Image } from 'astro:assets';
 ---
 
 <header class="base-colors sticky top-0 z-40 pb-2">
 	<div class="mx-auto flex max-w-2xl flex-col items-baseline justify-between py-1 pt-4 md:flex-row">
 		<span class="m-0 mx-auto flex items-center justify-between space-x-1 text-left text-xl md:mx-0">
 			<a class="m-0 mx-auto flex items-center justify-between space-x-1 text-left text-xl md:mx-0" href="/">
-				<img width="20px" height="20px" src={metadata.avatar} />
+				<Image src={avatar} alt="nicknisi" width={20} height={20} quality="max" />
 				<span class="hidden font-medium md:inline-block">{metadata.title}</span>
 			</a>
 		</span>

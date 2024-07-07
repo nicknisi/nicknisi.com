@@ -3,9 +3,11 @@ import metadata from '../data/metadata.json';
 import BaseLayout from '../layouts/Base.astro';
 import Posts from '@components/Posts.astro';
 import Tag from '@components/Tag.astro';
-import { getPosts } from '../util';
+import { getPosts } from '../util.js';
 import { Icon } from 'astro-icon/components';
-
+import { getAsset } from '@/utils/image.js';
+import { Image } from 'astro:assets';
+const profileImage = await getAsset('profile.jpg');
 const allPosts = await getPosts();
 const tags: string[] = [...new Set(allPosts.map(post => post.data.tags).flat())];
 const posts = allPosts.slice(0, 10);
@@ -21,9 +23,12 @@ const posts = allPosts.slice(0, 10);
 				<div
 					class="text-blue-500 inline-flex h-32 w-32 flex-shrink-0 items-center justify-center rounded-full sm:mr-10 md:h-64 md:w-64"
 				>
-					<img
-						src={metadata.profile}
-						alt="author"
+					<Image
+						src={profileImage}
+						alt="Nick Nisi - author"
+						width={512}
+						height={512}
+						quality="max"
 						class="mx-auto h-32 w-32 rounded-full object-cover shadow-lg drop-shadow-md md:h-64 md:w-64"
 					/>
 				</div>

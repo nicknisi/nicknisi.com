@@ -2,9 +2,11 @@
 import { type CollectionEntry, getCollection } from 'astro:content';
 import BaseLayout from '@layouts/Base.astro';
 import { Icon } from 'astro-icon/components';
-import { readableDate, getWordCount } from '../../util';
+import { readableDate, getWordCount } from '../../util.js';
 import metadata from '@data/metadata.json';
 import Tag from '@components/Tag.astro';
+import { getAsset } from '@/utils/image.js';
+import { Image } from 'astro:assets';
 
 interface Props {
 	post: CollectionEntry<'posts'>;
@@ -26,7 +28,7 @@ const {
 const { Content } = await post.render();
 const date = readableDate(pubDate);
 const wordCount = getWordCount(post?.body);
-console.log('PREV', prevPost);
+const profileImg = await getAsset(metadata.profile);
 ---
 
 {
@@ -79,7 +81,14 @@ console.log('PREV', prevPost);
 				<div
 					class="text-blue-500 inline-flex h-32 w-32 flex-shrink-0 items-center justify-center rounded-full sm:mr-10 sm:h-32 sm:w-32"
 				>
-					<img src={metadata.profile} alt="author" class="h-32 w-32 rounded-full drop-shadow-lg" />
+					<Image
+						src={profileImg}
+						alt="author"
+						height={512}
+						width={512}
+						quality="max"
+						class="h-32 w-32 rounded-full drop-shadow-lg"
+					/>
 				</div>
 				<div class="mt-6 flex-grow text-center sm:mt-0 sm:text-left">
 					<h2 class="text-gray-900 title-font mb-2 text-lg font-medium">
