@@ -1,0 +1,19 @@
+---
+import { Image } from 'astro:assets';
+import { getAsset } from '@/utils/image.js';
+
+interface Props {
+	src: string;
+	width?: number;
+	height?: number;
+	alt: string;
+	quality?: number | 'low' | 'medium' | 'high' | 'max';
+	class?: string;
+}
+
+const { src, ...rest } = Astro.props;
+
+const image = await getAsset(src);
+---
+
+<Image src={image} {...rest} />
