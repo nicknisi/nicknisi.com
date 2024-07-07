@@ -1,7 +1,7 @@
 import { ImageMetadata } from 'astro';
 import { Talk } from '@/types.js';
 
-const STATIC_ASSETS = import.meta.glob<{ default: ImageMetadata }>('../assets/*.{png,jpg,jpeg}');
+const STATIC_ASSETS = import.meta.glob<{ default: ImageMetadata }>('../assets/**/*.{png,jpg,jpeg,svg}');
 
 const assets = Object.entries(STATIC_ASSETS).reduce(
 	(acc, [key, value]) => ({
