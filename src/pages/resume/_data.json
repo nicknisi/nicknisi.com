@@ -8,7 +8,7 @@
 	"basics": {
 		"name": "Nick Nisi",
 		"label": "Staff Software Engineer",
-		"image": "/resume/nicknisi.jpg",
+		"image": "resume/nicknisi.jpg",
 		"email": "nick@nisi.org",
 		"phone": "+14022161612",
 		"url": "https://nicknisi.com",
@@ -57,7 +57,7 @@
 	"work": [
 		{
 			"name": "Meta",
-			"image": "/resume/meta.svg",
+			"image": "resume/meta.svg",
 			"remote": true,
 			"description": "Global technology company focusing on social networking services and virtual reality.",
 			"location": "Menlo Park, CA",
@@ -67,7 +67,7 @@
 		},
 		{
 			"name": "C2FO",
-			"image": "/resume/c2fo.svg",
+			"image": "resume/c2fo.svg",
 			"description": "A financial technology company that provides working capital solutions to businesses.",
 			"remote": true,
 			"location": "Kansas City, KS",
@@ -86,7 +86,7 @@
 		},
 		{
 			"name": "C2FO",
-			"image": "/resume/c2fo.svg",
+			"image": "resume/c2fo.svg",
 			"description": "A financial technology company that provides working capital solutions to businesses.",
 			"remote": true,
 			"location": "Kansas City, KS",
@@ -104,7 +104,7 @@
 		},
 		{
 			"name": "Sitepen",
-			"image": "/resume/sitepen.svg",
+			"image": "resume/sitepen.svg",
 			"remote": true,
 			"location": "Palo Alto, CA",
 			"position": "Senior Software Engineer",
@@ -121,7 +121,7 @@
 		},
 		{
 			"name": "Flywheel",
-			"image": "/resume/flywheel.svg",
+			"image": "resume/flywheel.svg",
 			"remote": false,
 			"location": "Omaha, NE",
 			"position": "Senior Software Engineer",
@@ -136,7 +136,7 @@
 		},
 		{
 			"name": "C2FO (Pollenware)",
-			"image": "/resume/c2fo.svg",
+			"image": "resume/c2fo.svg",
 			"description": "A financial technology startup that provides working capital solutions to businesses.",
 			"remote": true,
 			"location": "Kansas City, KS",
@@ -169,7 +169,7 @@
 		},
 		{
 			"name": "Lockheed Martin",
-			"image": "/resume/lockheed-martin.svg",
+			"image": "resume/lockheed-martin.svg",
 			"remote": false,
 			"location": "Omaha, NE",
 			"position": "Software Engineer / Englineering Leadership Development Program",
@@ -256,7 +256,7 @@
 	"projects": [
 		{
 			"name": "JS Party",
-			"image": "/resume/jsparty.png",
+			"image": "resume/jsparty.png",
 			"startDate": "2018-04-06",
 			"description": "A weekly celebration of JavaScript and the web.",
 			"highlights": ["Panelist from 2018 through present"],
@@ -268,7 +268,7 @@
 		},
 		{
 			"name": "NebraskaJS",
-			"image": "/resume/nebraskajs.svg",
+			"image": "resume/nebraskajs.svg",
 			"description": "A community of JavaScript developers in Nebraska.",
 			"highlights": ["Organized a conference from 2015 through 2019"],
 			"keywords": ["JavaScript", "TypeScript", "Community", "Meetup"],
@@ -279,7 +279,7 @@
 		},
 		{
 			"name": "TalkScript",
-			"image": "/resume/talkscript.svg",
+			"image": "resume/talkscript.svg",
 			"startDate": "2015-05-01",
 			"endDate": "2022-12-14",
 			"description": "A podcast about the TypeScript language and community.",
