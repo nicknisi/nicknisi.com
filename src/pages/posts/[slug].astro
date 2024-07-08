@@ -49,11 +49,11 @@ const profileImg = await getAsset(metadata.profile);
 				<h1 class="mb-4 text-3xl font-bold tracking-tight md:text-5xl">
 					{title}
 				</h1>
-				<div class="text-gray-600 flex gap-1 text-sm font-light">
+				<div class="text-gray-600 flex gap-2 text-sm font-light sm:gap-1">
 					<span class="uppercase">{date}</span>
-					<span>•</span>
+					<span class="hidden md:inline">•</span>
 					<span class="uppercase">{wordCount} minute read</span>
-					<span>•</span>
+					<span class="hidden sm:inline">•</span>
 					<span>
 						{tags.map((tag: string) => <Tag name={tag} />)}
 					</span>
