@@ -70,7 +70,7 @@ const profileImg = await getAsset(metadata.profile);
 			{
 				prevPost && (
 					<div class="mb-4 mt-8 flex justify-start">
-						<a href={prevPost.slug} class="flex items-center space-x-4 font-medium">
+						<a href={`/posts/${prevPost.slug}`} class="flex items-center space-x-4 font-medium">
 							<Icon name="mdi:arrow-left-bold" class="h-6 w-6" />
 							<span>{prevPost.data.title}</span>
 						</a>
