@@ -1,0 +1,143 @@
+---
+title: "Speaking at Conferences"
+pubDate: 2024-07-08
+description: "My thoughts on preparing to speak at conferences."
+tags: 
+  - speaking
+  - conferences
+---
+import { Image } from 'astro:assets';
+import storyCircle from '@/assets/posts/story-circle.png';
+import qrCode from '@/assets/posts/qr-code-example.png';
+import Callout from '@/components/Callout.astro';
+
+I like to label myself as an occasional conference speaker. I've also been a conference organizer, so I have a unique
+perspective on the process. I've been speaking at conferences for a few years now, and I've spent a decent part of my
+career teaching 5-day workshops. I've learned a few pointers along the way. Here are some of my thoughts on preparing to speak at conferences.
+
+## Write a compelling abstract
+
+The abstract is your one change to get the attention of the conference organizing team. It needs to be compelling and to the point. Here are some tips for writing a great abstract:
+
+<Callout title="Check out my recent abstracts" type="info">
+I created small _marketing pages_ for the talks I've given in 2024. These include all resources and the abstracts I
+  submitted to the conference organizers. You can find them at
+  [nicknisi.com/compiler-talk](https://nicknisi.com/compiler-talk) and
+  [nicknisi.com/state-talk](https://nicknisi.com/state-talk).
+</Callout>
+
+
+### Be specific
+
+Don't be too vague about your topic. You need to portray enough information about what the talk is and what the audience
+can expect to learn from it to convince the organizers that it's worth having you speak and that you can deliver. You
+don't have to have the talk completely created in advance, but have a good outline ready to go and derive the abstract
+from that.
+
+### Outline the objectives
+
+Define what the talk aims to achieve. Have a target audience in mind and write to their level. If you're giving a talk
+on a specific technology, mention the prerequisites the audience should have.
+
+### Don't fear rejection
+
+Conference organizers aren't kidding when they say they have to make hard choices. At [NEJS Conf](https://nejsconf.com),
+  we would regularly get more than 300 submissions and would have to whittle that list down to nine each year.
+
+
+## Tell a story
+
+The number one thing to remember when preparing a talk is that you don’t have to be an expert. You can discuss a project or technology with which you only have a passing familiarity. The key is to tell a story—explain how you approached the technology with a specific problem and how you solved it. People love stories; they’re engaging, relatable, and memorable. When preparing your talk, focus on the story you want to tell. This is what separates a good talk from a great one. Especially with technical talks, narrating how you solved a problem or built something personalizes your presentation and makes it uniquely yours.
+
+### Telling a great story
+
+If you're a fan of [Community](https://en.wikipedia.org/wiki/Community_(TV_series)) or [Rick and
+Morty](https://en.wikipedia.org/wiki/Rick_and_Morty), you might have heard of [Dan
+Harmon](https://en.wikipedia.org/wiki/Dan_Harmon). He famously developed a framework
+for consistently telling great stories. It's called the [Story
+Circle](https://en.wikipedia.org/wiki/Dan_Harmon#%22Story_circle%22_technique) and it's an eight step process adapted
+from [Joseph
+Campbell's](https://en.wikipedia.org/wiki/Joseph_Campbell) [monomyth](https://en.wikipedia.org/wiki/Hero%27s_journey). Here are the steps:
+
+1. **You** - A character is in a zone of comfort
+2. **Need** - They want something
+3. **Go** - They enter an unfamiliar situation
+4. **Search** - They adapt to it
+5. **Find** - They find what they wanted
+6. **Take** - They pay a heavy price for it
+7. **Return** - They return to their familiar situation
+8. **Change** - Having changed
+
+In the Story Circle, the top-half of the circle represents order and the bottom-half represents chaos. When in the top
+part, the character is in tehir comfort zone and the status quo is maintained. When they cross the threshold into the
+bottom-half, the status quo is disrupted and the character must adapt to the new situation. The character then returns
+to the top-half, having changed the status quo in some way. Each section in the top-half is the antithesis of the corresponding section in the bottom-half. For example, in the "Go" section, the character enters an unfamiliar situation. Then in the "Return" section, they return to their familiar situation.
+
+### The Tech Talk Story Circle
+
+The Story Circle can be adapted to technical talks pretty well. Here's how I've adapted it.
+
+<Image src={storyCircle} alt="The Tech Talk Story Circle" quality="max" inferSize={true} />
+
+1. **Introduction (You)** - Introduce yourself and the current status quo of your project.
+2. **Problem Statement (Need)** - Identify and explain the problem you're trying to solve.
+3. **Exploration (Go)** - Describe the steps taken to address the problem. What did you try? What worked? What didn't?
+4. **Experimentation (Search)** - Detail the process digging into the actual problem. What did you learn?
+5. **Solution (Find)** - Explain how you found the solution or made significant progress towards solving the problem.
+6. **Challenges (Take)** - Discuss the actual implementation of the project. Emphasize the disruption to the status quo.
+7. **Apply Knowledge (Return)** - Describe the results and how the solution impacted the problem or was integrated into your
+project, specifically.
+8. **Results & Insights (Change)** - Conclude the journey with your perspective on the lessons learned and how you or your
+workflow may have changed.
+
+in this revised circle, the top-half represents established practices while the bottom half represents disruption and
+experimentation. The character (you) starts in the top-half, enters the bottom-half to experiment and disrupt, and then
+returns to the top-half with new knowledge and insights, changing the status quo which could be your project, your team, or your workflow.
+
+### Example: The Story Circle in Action
+
+In my talk, [Unleashing the TypeScript Compiler](/compiler-talk), I used the Story Circle to structure my talk. I start
+with the status quo (1) of a project I worked on, developing a TypeScript/React application using
+[Material-UI](https://mui.com) and the challenges we faced with that project (2). I describe the solutions we tried as a
+way to work around the issues (3) before disrupting things by exploring the TypeScript compiler and the world of
+codemods (4).
+
+I talk about how I could use this new knowledge to solve my problems (5) and then I open up about the
+challenges I faced in implementing the solution (6), specifically around handling every possible scenario.
+
+I then discuss how I applied this new knowledge to my project (7), returning back to the top-half of the circle before finally
+ending my story with the results of this exploration and how it changed my team's perspective on the problem (8),
+convincing some that codemods can reduce some of the complexity of replacing a technology.
+
+## Remember, you're an entertainer
+
+Having a great story to tell only works if you can deliver it in an engaging way. You don't have to be a stand-up
+comedian, but you should be able to keep the audience's attention. Here are some tips for being an engaging speaker:
+
+- **Practice, practice, practice** - The more you practice your talk, the more comfortable you'll be delivering it. You'll
+	also be able to identify areas where you can improve. This is especially important to do in front of trusted
+friends whenever possible. You'll only get the timing right when you have an audience to play off of, and timing is
+everything
+- **Use humor** - A well-placed joke can go a long way in keeping the audience engaged. Just make sure it's appropriate
+and relevant to the topic.
+- **Use visuals** - Visual aids can help reinforce your points and keep the audience engaged. Just make sure they're
+relevant and not distracting.
+- **Engage the audience** - Ask questions, encourage participation, and make eye contact with the audience. This will help keep them engaged and make them feel like they're part of the conversation.
+
+
+## If showing code, make sure it's readable
+
+Make sure your code is large enough for everyone in the back to see. Break it up across slides, if necessary. This also helps keep the audience engaged, focusing on one piece of code at a time. Ensure your code is syntax highlighted and legible. Use a theme that's going to work well, even on the crappiest of projectors. You might even consider a light mode theme 😱.
+
+## Make it easy to follow up
+
+<Image src={qrCode} alt="Example QR code at the end of my slides" quality="max" inferSize={true} />
+
+At the end of your talk, provide an easy to remember link to your slides, code, and contact info, and encourage the
+audience to reach out. This is one of the few use cases for a QR code, but a short URL works just as well. For my talk,
+I used the memorable URL, [typescript.fun/compiler-talk](https://typescript.fun/compiler-talk) to link to my slides,
+abstract, and contact info.
+
+## Conclusion
+
+Crafting a compelling conference talk isn't just about sharing your expertise—it's about telling a story that resonates with your audience. From writing a persuasive abstract to structuring your presentation using a story circle, each step plays a crucial role in capturing and maintaining attention. Remember, you don't have to be an expert; you just need to be authentic and engaging. Practice diligently, prepare for technical setbacks, and always make it easy for your audience to follow up with you. By blending established practices with innovative problem-solving, you'll not only educate but also inspire your audience. So, take these insights, craft your story, and get ready to deliver a talk that stands out. See you on stage!
