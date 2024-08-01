@@ -43,6 +43,9 @@ export default defineConfig({
 		// redirects for RSS feed
 		'/feed/feed.xml': 'https://nicknisi.com/rss.xml',
 
+		// tsconf info
+		'/tsconf': 'https://archive.tsconf.io/2021/',
+
 		// simpler talk redirects for sharing
 		'/state-talk': '/talks/componentizing-application-state',
 		'/compiler-talk': '/talks/unleashing-the-typescript-compiler',
