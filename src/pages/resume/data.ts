@@ -63,11 +63,11 @@ const data: Resume = {
 			url: 'https://meta.com',
 			startDate: '2024-02-05',
 			highlights: [
-				'Developed and implemented high-priority bug fixes and features, including an onboarding wizard, directly contributing to increased revenue and improved user experience',
-				'Led cross-functional efforts, including bugfix initiative, alignment on new cross-platform APIs, and the planning and execution of an internal UI summit for front-end developers',
-				'Utilized React, JavaScript/Flow, and Hack/PHP to deliver high-quality, scalable solutions, leveraging extensive knowledge of the React ecosystem to write performant and effective code',
-				'Demonstrated strong leadership and mentorship skills by guiding and onboarding new team members, and driving the development of cross-platform APIs to enhance team efficiency and collaboration',
-				'Fostered a productive partnership between the Ads Manager Desktop and Signals teams by establishing regular communication channels and ensuring timely responsiveness to mutual needs, resulting in seamless cross-functional collaboration',
+				'Drove feature development, including an onboarding wizard, enhancing user experience and contributing to increased revenue',
+				'Spearheaded cross-functional initiatives, such as major bug fixes and cross-platform API alignment, fostering collaboration and efficiency',
+				'Organized a successful internal UI summit for front-end developers, promoting knowledge sharing and innovation',
+				'Leveraged expertise in React, JavaScript/Flow, and Hack/PHP to deliver high-quality, scalable solutions',
+				'Strengthened collaboration between Ads Manager Desktop and cross-functional teams through effective communication and mentorship',
 			],
 		},
 		{
