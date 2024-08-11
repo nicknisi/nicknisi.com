@@ -41,3 +41,12 @@ export async function getPosts(max?: number) {
 
 	return posts;
 }
+
+/**
+ * Get the Year from a date string
+ * @param date Date string to get the year from
+ * @returns The year from the date string
+ */
+export function dateToYear(date: string) {
+	return new Date(date).getFullYear();
+}

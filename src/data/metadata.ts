@@ -1,0 +1,96 @@
+export const title = 'nicknisi';
+export const url = 'https://nicknisi.com';
+export const description =
+	'Software developer and podcaster based in Nebraska. TypeScript enthusiast, transpiling dreams into reality.';
+export const avatar = 'beef_nick.png';
+export const profile = 'profile.jpg';
+export const ogImage = '/og/colorful.png';
+export const feed = {
+	subtitle: '',
+	filename: 'feed.xml',
+	path: '/feed/feed.xml',
+	url: 'https://nicknisi.com/feed/feed.xml',
+	id: 'https://nicknisi.com',
+};
+export const author = {
+	name: 'Nick Nisi',
+	email: 'nick@nisi.org',
+};
+export const social = {
+	mastodon: {
+		username: '@nicknisi@nicknisi.com',
+		url: 'https://fediverse.nicknisi.com/@nicknisi',
+	},
+	linkedin: {
+		username: 'nicknisi',
+		url: 'https://linkedin.com/in/nicknisi',
+	},
+	github: {
+		username: 'nicknisi',
+		url: 'https://github.com/nicknisi',
+	},
+	youtube: {
+		username: 'nicknisi',
+		url: 'https://www.youtube.com/nicknisi',
+	},
+	instagram: {
+		username: 'nicknisi',
+		url: 'https://www.instagram.com/nicknisi/',
+	},
+	bluesky: {
+		username: '@nicknisi.com',
+		url: 'https://bsky.app/profile/nicknisi.com',
+	},
+	twitter: {
+		username: 'nicknisi',
+		url: 'https://twitter.com/nicknisi',
+	},
+};
+export const projects = [
+	{
+		title: 'JS Party',
+		role: 'Panelist',
+		type: 'podcast',
+		url: 'https://changelog.com/jsparty',
+		description: 'A weekly celebration of JavaScript and the web.',
+		image: 'jsparty.png',
+		status: 'active',
+	},
+	{
+		title: 'NebraskaJS',
+		role: 'Oranizer',
+		type: 'meetup',
+		url: 'https://nebraskajs.com',
+		description: 'A monthly meetup for JavaScript developers in Nebraska with over 1500 members.',
+		image: 'nebraskajs.png',
+		status: 'active',
+	},
+	{
+		title: 'TalkScript',
+		role: 'Panelist',
+		type: 'podcast',
+		url: 'https://talkscript.fm',
+		description: "A podcast focusing on TypeScript and the people that use it. It's the official podcast of TSConf!",
+		image: 'talkscript.png',
+		status: 'inactive',
+	},
+	{
+		title: 'TypeScript Conf US',
+		role: 'Emcee',
+		type: 'conference',
+		url: 'https://tsconf.io',
+		description: 'A conference about TypeScript featuring the people that work with and on TypeScript.',
+		image: 'tsconf.png',
+		status: 'inactive',
+	},
+	{
+		title: 'NebraskaJS Conference',
+		role: 'Emcee',
+		type: 'conference',
+		url: 'https://nejsconf.com',
+		description:
+			'A regional conference showcasing the best in the industry from around the world and right here in Nebraska.',
+		image: 'nejsconf.png',
+		status: 'inactive',
+	},
+];
