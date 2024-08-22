@@ -2,7 +2,6 @@
 import metadata from '../data/metadata.json';
 import { DateTime } from 'luxon';
 import { Icon } from 'astro-icon/components';
-import Pixel from './Pixel.astro';
 const year = DateTime.local().year;
 const mode = import.meta.env.MODE;
 ---
@@ -62,5 +61,4 @@ const mode = import.meta.env.MODE;
 			</div>
 		</div>
 	</div>
-	{mode !== 'production' && <Pixel />}
 </footer>
