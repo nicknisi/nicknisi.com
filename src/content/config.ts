@@ -1,6 +1,7 @@
 import { z, defineCollection } from 'astro:content';
+import { file } from 'astro/loaders';
 
-const postsCollection = defineCollection({
+const posts = defineCollection({
 	schema: z.object({
 		title: z.string(),
 		permalink: z.optional(z.string()),
@@ -12,6 +13,17 @@ const postsCollection = defineCollection({
 	}),
 });
 
-export const collections = {
-	posts: postsCollection,
-};
+const talks = defineCollection({
+	loader: file('src/data/talks.json'),
+	schema: z.object({
+		title: z.string(),
+		date: z.string(),
+		promote: z.optional(z.boolean()),
+		url: z.string(),
+		source: z.enum(['website', 'youtube', 'vimeo', 'page']),
+		type: z.enum(['talk', 'workshop', 'panel']),
+		remote: z.optional(z.boolean()),
+	}),
+});
+
+export const collections = { posts, talks };

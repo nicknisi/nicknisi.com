@@ -18,6 +18,9 @@ export default defineConfig({
 	image: {
 		domains: ['img.youtube.com', 'vimeo.com'],
 	},
+	experimental: {
+		contentLayer: true,
+	},
 	integrations: [
 		icon(),
 		react(),
