@@ -3,12 +3,13 @@ layout: '@layouts/Markdown.astro'
 title: About Nick
 ---
 
+import { getCollection } from 'astro:content'
 import Talk from '@components/cards/Talk.astro';
 import metadata from '../data/metadata.json';
-import talks from '../data/talks.json';
 import Project from '@components/cards/Project.astro';
 import { Image } from 'astro:assets';
 import { getAsset } from '@/utils/image.js'
+export const talks = await getCollection('talks', talk => talk.data.promote);
 export const profileImg = await getAsset(metadata.profile);
 
 <section>
@@ -40,8 +41,7 @@ Nick is an occasional conference speaker and has spoken at conferences all over 
 
 <div class="grid-cols-3 md:grid md:auto-rows-auto">
 	{talks
-		.filter(talk => talk.promote)
-		.map(talk => (
+	.map(({ data: talk }) => (
 			<Talk talk={talk} />
 		))}
 </div>
