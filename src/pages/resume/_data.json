@@ -63,7 +63,14 @@
 			"location": "Menlo Park, CA",
 			"position": "Software Engineer",
 			"url": "https://meta.com",
-			"startDate": "2024-02-05"
+			"startDate": "2024-02-05",
+			"highlights": [
+				"Developed and implemented high-priority bug fixes and features, including an onboarding wizard, directly contributing to increased revenue and improved user experience",
+				"Led cross-functional efforts, including bugfix initiative, alignment on new cross-platform APIs, and the planning and execution of an internal UI summit for front-end developers",
+				"Utilized React, JavaScript/Flow, and Hack/PHP to deliver high-quality, scalable solutions, leveraging extensive knowledge of the React ecosystem to write performant and effective code",
+				"Demonstrated strong leadership and mentorship skills by guiding and onboarding new team members, and driving the development of cross-platform APIs to enhance team efficiency and collaboration",
+				"Fostered a productive partnership between the Ads Manager Desktop and Signals teams by establishing regular communication channels and ensuring timely responsiveness to mutual needs, resulting in seamless cross- functional collaboration"
+			]
 		},
 		{
 			"name": "C2FO",
@@ -71,17 +78,18 @@
 			"description": "A financial technology company that provides working capital solutions to businesses.",
 			"remote": true,
 			"location": "Kansas City, KS",
-			"position": "Staff Software Engineer",
+			"position": "Staff Developer Experience Engineer",
 			"url": "https://c2fo.com",
 			"startDate": "2021-12-09",
 			"endDate": "2024-01-12",
 			"summary": "A tinkering archetype focused on the developer experience and front end tooling.",
 			"highlights": [
-				"Part of the Developer Experience team",
+				"Maintainer of custom configurations and tooling to facilitate productivity across monorepo",
+				"Developed and maintained scripts and codemods to automate work and enforce best practices",
 				"Maintainer of design system and react component library using MUI and Storybook",
 				"Lead front end chapter meetings to discuss new paradigms and best practices",
 				"Lead on project building a complex builder application using multiple state machines",
-				"oversaw conversion from react-scripts to vite in the frontend monorepo"
+				"Oversaw conversion from react-scripts to vite in the frontend monorepo"
 			]
 		},
 		{
@@ -123,6 +131,7 @@
 			"name": "Flywheel",
 			"image": "resume/flywheel.svg",
 			"remote": false,
+			"hidden": true,
 			"location": "Omaha, NE",
 			"position": "Senior Software Engineer",
 			"url": "https://getflywheel.com/",
@@ -139,6 +148,7 @@
 			"image": "resume/c2fo.svg",
 			"description": "A financial technology startup that provides working capital solutions to businesses.",
 			"remote": true,
+			"hidden": true,
 			"location": "Kansas City, KS",
 			"position": "Senior Software Engineer",
 			"url": "https://c2fo.com",
@@ -199,16 +209,16 @@
 	"awards": [],
 	"publications": [
 		{
-			"name": "Unleashing the TypeScript Compiler",
-			"releaseDate": "2024-03-19",
-			"publisher": "The Monthly Dev",
-			"url": "https://www.youtube.com/SELZVza_DoM?t=2719",
-			"summary": "A brief introduction to querying and modifying TypeScript source using the compiler API.",
-			"hidden": true
+			"name": "Unleashing TypeScript's Compiler",
+			"publisher": "THAT Conference",
+			"releaseDate": "2024-08-01",
+			"url": "https://www.youtube.com/watch?v=SELZVza_DoM&t=2719s",
+			"img": "typescript-compiler.jpg",
+			"summary": "Do more work with less code by utilizing the TypeScript Compiler API and Codemods."
 		},
 		{
 			"name": "Componentizing Application State",
-			"publisher": "THAT Conference Texas",
+			"publisher": "THAT Conference",
 			"releaseDate": "2024-01-30",
 			"url": "https://www.youtube.com/watch?v=4-msZqqrN1A",
 			"summary": "A talk about treating your application state as a component using React and XState."
@@ -233,7 +243,8 @@
 			"publisher": "JSConf US",
 			"releaseDate": "2018-08-21",
 			"url": "https://www.youtube.com/watch?v=qGK541P2xII",
-			"summary": "A talk about incrementally adding TypeScript to your JavaScript project."
+			"summary": "A talk about incrementally adding TypeScript to your JavaScript project.",
+			"hidden": true
 		}
 	],
 	"skills": [
@@ -287,8 +298,7 @@
 				"Interviwed guests from the TypeScript community",
 				"Interviewed Anders Hejlsberg, the creator of TypeScript",
 				"Interviewed Ryan Dahl, the creator of Node.js and Deno",
-				"Interviewed the TypeScript team at Microsoft",
-				"Performed live shows at each TypeScript Conf from 2018 through 2022"
+				"Interviewed the TypeScript team at Microsoft"
 			],
 			"keywords": ["JavaScript", "TypeScript", "Community", "Podcast"],
 			"url": "https://talkscript.fm",

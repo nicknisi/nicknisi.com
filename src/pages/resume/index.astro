@@ -4,6 +4,7 @@ import data from './_data.json';
 import { Icon } from 'astro-icon/components';
 import AssetImage from '@/components/AssetImage.astro';
 import { Image } from 'astro:assets';
+import { getAsset } from '@/utils/image.js';
 
 function dateToYear(date: string) {
 	return new Date(date).getFullYear();
@@ -86,7 +87,7 @@ function getVideoThumbnail(url: string) {
 					/>
 				</div>
 				<div class="mt-2 space-y-8 print:space-y-4">
-					<h2 class="text-2xl font-bold print:text-lg">Work Experience</h2>
+					<h2 class="print:text-lg text-2xl font-bold">Work Experience</h2>
 					<div class="space-y-8 print:space-y-4">
 						{
 							data.work
@@ -96,7 +97,7 @@ function getVideoThumbnail(url: string) {
 										<div>
 											<div class="flex justify-between">
 												<div class="flex flex-col items-baseline gap-2 sm:flex-row">
-													<div class="flex items-baseline p-0 text-lg font-medium">
+													<div class="text-lg flex items-baseline p-0 font-medium">
 														<a class="flex cursor-pointer items-baseline" href={job.url}>
 															{job.image && (
 																<AssetImage
@@ -139,7 +140,7 @@ function getVideoThumbnail(url: string) {
 					</div>
 				</div>
 				<div class="mt-2 space-y-8 print:space-y-4">
-					<h2 class="text-2xl font-bold print:text-lg">Projects</h2>
+					<h2 class="print:text-lg text-2xl font-bold">Projects</h2>
 					{/* web layout */}
 					<div class="flex flex-1 flex-col flex-wrap gap-4 sm:flex-row print:hidden">
 						{
@@ -180,7 +181,7 @@ function getVideoThumbnail(url: string) {
 								.filter(project => !project.hidden)
 								.map(project => (
 									<div class="flex flex-col gap-1">
-										<h3 class="m-0 p-0 text-lg font-medium">
+										<h3 class="text-lg m-0 p-0 font-medium">
 											<a href={project.url} class="cursor-pointer" target="_blank" rel="noopener noreferrer">
 												{project.image && (
 													<AssetImage
@@ -217,7 +218,7 @@ function getVideoThumbnail(url: string) {
 				{
 					data.publications && (
 						<div class="mt-2 space-y-8 print:space-y-4">
-							<h2 class="text-2xl font-bold print:text-lg">Recent Talks</h2>
+							<h2 class="print:text-lg text-2xl font-bold">Recent Talks</h2>
 							{/* web layout */}
 							<div class="flex flex-1 flex-col flex-wrap gap-4 sm:flex-row print:hidden">
 								{data.publications
@@ -227,12 +228,20 @@ function getVideoThumbnail(url: string) {
 											<a href={publication.url} target="_blank" class="no-underline">
 												<div class="flex flex-col items-center space-y-2 px-2 pb-4 pt-1 text-center">
 													<h3 class="text-center text-xs font-bold leading-tight text-grey-900">{publication.name}</h3>
-													<Image
-														inferSize={true}
-														class="not-prose mx-1 w-48 rounded pb-1"
-														src={getVideoThumbnail(publication.url)}
-														alt={publication.name}
-													/>
+													{publication.img ? (
+														<AssetImage
+															class="not-prose mx-1 aspect-video h-auto max-w-36 rounded pb-1"
+															src={publication.img}
+															alt={publication.name}
+														/>
+													) : (
+														<Image
+															inferSize={true}
+															class="not-prose mx-1 aspect-video h-auto max-w-36 rounded pb-1"
+															src={getVideoThumbnail(publication.url)}
+															alt={publication.name}
+														/>
+													)}
 													<div class="align-content-center justify-content-center flex flex-col">
 														<div class="sticky font-mono text-xs font-bold leading-tight text-grey-500">
 															{publication.publisher}
@@ -251,12 +260,20 @@ function getVideoThumbnail(url: string) {
 									.filter(p => !p.hidden)
 									.map(publication => (
 										<div class="flex py-2">
-											<Image
-												inferSize={true}
-												class="w-24 rounded-md object-contain"
-												src={getVideoThumbnail(publication.url)}
-												alt={publication.name}
-											/>
+											{publication.img ? (
+												<AssetImage
+													class="not-prose mx-1 aspect-video max-w-36 rounded pb-1"
+													src={publication.img}
+													alt={publication.name}
+												/>
+											) : (
+												<Image
+													inferSize={true}
+													class="not-prose mx-1 aspect-video max-w-36 rounded pb-1"
+													src={getVideoThumbnail(publication.url)}
+													alt={publication.name}
+												/>
+											)}
 											<div>
 												<div class="flex flex-col space-y-2 px-2 pb-4 pt-1">
 													<h3 class="text-md font-medium leading-tight text-grey-900">{publication.name}</h3>
@@ -284,7 +301,7 @@ function getVideoThumbnail(url: string) {
 					)
 				}
 				<div class="mt-2 space-y-8 print:space-y-4">
-					<h2 class="text-2xl font-bold print:text-lg">Skills</h2>
+					<h2 class="print:text-lg text-2xl font-bold">Skills</h2>
 					<div class="flex gap-4">
 						{
 							data.skills.map(skill => (
@@ -295,14 +312,14 @@ function getVideoThumbnail(url: string) {
 						}
 					</div>
 					<div class="mt-2 space-y-8 print:space-y-4">
-						<h2 class="text-2xl font-bold print:text-lg">Education</h2>
+						<h2 class="print:text-lg text-2xl font-bold">Education</h2>
 						{
 							data.education.map(school => (
 								<div class="space-y-2">
 									<div>
 										<div class="flex justify-between">
 											<div class="flex flex-col items-baseline gap-2 sm:flex-row">
-												<div class="flex items-baseline p-0 text-lg font-medium">{school.institution}</div>
+												<div class="text-lg flex items-baseline p-0 font-medium">{school.institution}</div>
 											</div>
 											<div class="flex items-center font-mono text-xs">
 												<div>{dateToYear(school.startDate)}</div>

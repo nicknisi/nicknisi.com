@@ -1,0 +1,15 @@
+---
+import { getCollection } from 'astro:content';
+import PageLayout from '@layouts/Page.astro';
+
+const jobs = await getCollection('jobs');
+console.log('JOBS', jobs);
+---
+
+<PageLayout title="Jobs">
+	<div class="my-8">
+		<ul>
+			{jobs.map(job => <li>{job.data.position}</li>)}
+		</ul>
+	</div>
+</PageLayout>
