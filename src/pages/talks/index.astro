@@ -1,8 +1,8 @@
 ---
+import { getCollection } from 'astro:content';
 import PageLayout from '@layouts/Page.astro';
 import Talk from '@components/cards/Talk.astro';
-import talks from '@data/talks.json';
-import type { Talk as TalkItem } from '../../types.js';
+const talks = await getCollection('talks');
 ---
 
 <PageLayout title="Talks">
@@ -11,6 +11,6 @@ import type { Talk as TalkItem } from '../../types.js';
 		on stage at conferences. I've also officiated nine weddings (not listed)!
 	</p>
 	<div class="md:grid md:auto-rows-auto md:grid-cols-3 md:gap-1">
-		{talks.map(talk => <Talk talk={talk as TalkItem} />)}
+		{talks.map(({ data: talk }) => <Talk talk={talk} />)}
 	</div>
 </PageLayout>

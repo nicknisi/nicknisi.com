@@ -1,0 +1,155 @@
+[
+	{
+		"id": "meta",
+		"name": "Meta",
+		"image": "resume/meta.svg",
+		"remote": true,
+		"description": "Global technology company focusing on social networking services and virtual reality.",
+		"summary": "",
+		"location": "Menlo Park, CA",
+		"position": "Software Engineer",
+		"url": "https://meta.com",
+		"startDate": "2024-02-05",
+		"highlights": [
+			"Developed and implemented high-priority bug fixes and features, including an onboarding wizard, directly contributing to increased revenue and improved user experience",
+			"Led cross-functional efforts, including bugfix initiative, alignment on new cross-platform APIs, and the planning and execution of an internal UI summit for front-end developers",
+			"Utilized React, JavaScript/Flow, and Hack/PHP to deliver high-quality, scalable solutions, leveraging extensive knowledge of the React ecosystem to write performant and effective code",
+			"Demonstrated strong leadership and mentorship skills by guiding and onboarding new team members, and driving the development of cross-platform APIs to enhance team efficiency and collaboration",
+			"Fostered a productive partnership between the Ads Manager Desktop and Signals teams by establishing regular communication channels and ensuring timely responsiveness to mutual needs, resulting in seamless cross- functional collaboration"
+		]
+	},
+	{
+		"id": "c2fo-staff",
+		"name": "C2FO",
+		"image": "resume/c2fo.svg",
+		"description": "A financial technology company that provides working capital solutions to businesses.",
+		"remote": true,
+		"location": "Kansas City, KS",
+		"position": "Staff Developer Experience Engineer",
+		"url": "https://c2fo.com",
+		"startDate": "2021-12-09",
+		"endDate": "2024-01-12",
+		"summary": "A tinkering archetype focused on the developer experience and front end tooling.",
+		"highlights": [
+			"Maintainer of custom configurations and tooling to facilitate productivity across monorepo",
+			"Developed and maintained scripts and codemods to automate work and enforce best practices",
+			"Maintainer of design system and react component library using MUI and Storybook",
+			"Lead front end chapter meetings to discuss new paradigms and best practices",
+			"Lead on project building a complex builder application using multiple state machines",
+			"Oversaw conversion from react-scripts to vite in the frontend monorepo"
+		]
+	},
+	{
+		"id": "c2fo-senior",
+		"name": "C2FO",
+		"image": "resume/c2fo.svg",
+		"description": "A financial technology company that provides working capital solutions to businesses.",
+		"remote": true,
+		"location": "Kansas City, KS",
+		"position": "Senior Software Engineer II",
+		"url": "https://c2fo.com",
+		"startDate": "2020-05-26",
+		"endDate": "2021-12-09",
+		"summary": "Focus on the front end of the money-making product.",
+		"highlights": [
+			"Oversaw and implemented the upgrade of React and TypeScript in a monorepo with more than 70 apps without introducing regressions",
+			"Implemented tooling that used AST walking to identify areas of application that were missing internationalization",
+			"Maintainer of React component library for internal design system",
+			"Full-stack development with TypeScript, implementing GraphQL APIs with NestJS, and consuming them in a React front end"
+		]
+	},
+	{
+		"id": "sitepen",
+		"name": "Sitepen",
+		"image": "resume/sitepen.svg",
+		"remote": true,
+		"location": "Palo Alto, CA",
+		"position": "Senior Software Engineer",
+		"url": "https://sitepen.com",
+		"startDate": "2013-07-08",
+		"endDate": "2020-05-04",
+		"description": "A JavaScript consultancy that provides expert advice and development services.",
+		"summary": "An open source contributor, instructor, and lead developer working with some of the top clients in the world.",
+		"highlights": [
+			"Open Source Contributor, ensuring success on many company and community open source initiatives including Dojo, Intern, TypeDoc, and CodeSandbox",
+			"Instructor, teaching 2-5 day workshops online and in-person on topics including TypeScript, JavaScript fundamentals, and Dojo.",
+			"Lead Developer, managing teams of up to three developers on successful customer-facing projects for world-class clients including hotels, government agencies, and banks.",
+			"Lead Support Engineer, providing timely and thorough answers to technical questions from developers about code, bugs, testing, and architecture."
+		]
+	},
+	{
+		"id": "flywheel",
+		"name": "Flywheel",
+		"image": "resume/flywheel.svg",
+		"remote": false,
+		"hidden": true,
+		"location": "Omaha, NE",
+		"position": "Senior Software Engineer",
+		"url": "https://getflywheel.com/",
+		"startDate": "2018-01-23",
+		"endDate": "2018-04-23",
+		"summary": "A developer on the Fly-Tools team",
+		"description": "A web hosting company that provides managed WordPress hosting.",
+		"highlights": [
+			"Developer on the Fly-tools team, delivering tools to internal users to ensure success of a thriving startup and web-hosting company",
+			"Introduced TypeScript to the company via the development of a small application for linking support tickets"
+		]
+	},
+	{
+		"id": "c2fo",
+		"name": "C2FO (Pollenware)",
+		"image": "resume/c2fo.svg",
+		"description": "A financial technology startup that provides working capital solutions to businesses.",
+		"remote": true,
+		"hidden": true,
+		"location": "Kansas City, KS",
+		"position": "Senior Software Engineer",
+		"url": "https://c2fo.com",
+		"startDate": "2011-11-11",
+		"endDate": "2013-07-08",
+		"summary": "",
+		"highlights": [
+			"Part of core development team delivering results which lead to $9.1 million funding round lead by Union Square Ventures.",
+			"Designed and developed frontend architecture on c2fo.com with a focus on the responsive design and using Backbone, RequireJS, Handlebars, and Less to create a friendly single page application."
+		]
+	},
+	{
+		"id": "freelancing",
+		"name": "Freelancing",
+		"remote": true,
+		"hidden": true,
+		"location": "Omaha, NE",
+		"description": "",
+		"position": "Freelance Developer",
+		"url": "https://nicknisi.com",
+		"startDate": "2012-04-01",
+		"endDate": "2012-06-30",
+		"summary": "",
+		"highlights": [
+			"Architected and implemented a proof of concept application for a client utilizing advanced HTML5 and canvas technologies.",
+			"Demonstrated the feasibility of using these technologies to make a custom, drag and drop interface that is functional on desktop and iPad/tablet devices.",
+			"Utilized Backbone Models and Views to manage rendering and state of shapes and images drawn to a canvas.",
+			"Connected to simple REST interface written in Ruby on Rails to save and load state.",
+			"Delivered on time and successfully."
+		]
+	},
+	{
+		"id": "lockheed-martin",
+		"name": "Lockheed Martin",
+		"image": "resume/lockheed-martin.svg",
+		"remote": false,
+		"location": "Omaha, NE",
+		"position": "Software Engineer / Englineering Leadership Development Program",
+		"url": "https://lockheedmartin.com",
+		"startDate": "2009-01-23",
+		"endDate": "2011-11-09",
+		"hidden": true,
+		"summary": "",
+		"highlights": [
+			"Accepted into Engineering Leadership Development Program (ELDP) based on job performance, panel interviews, and essays.",
+			"Development lead for maintenance drop focusing on performance enhancement and usability, where duties include leading a team of three engineers, supporting builds and turnovers, and cross functional coordination to facilitate the engineering life cycle.",
+			"Lead Developer of a system demo application using Flash and driven by XML files which included audio narration, videos, and interactive elements for the customer and met regularly with a customer working group to ensure the demo met their needs.",
+			"Chief Architect and lead developer of a metrics reporting web application written in Groovy/Grails that reads data from another application database and generates reports using JasperReports."
+		]
+	}
+]
