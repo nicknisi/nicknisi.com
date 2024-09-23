@@ -4,15 +4,18 @@
 		"title": "Unleashing the TypeScript Compiler",
 		"date": "June 2024",
 		"url": "/talks/unleashing-the-typescript-compiler",
+		"location": "THAT Conference 2024",
 		"promote": true,
 		"source": "youtube",
 		"type": "talk",
 		"remote": false,
-		"multiple": true
+		"multiple": true,
+		"img": "typescript-compiler.jpg"
 	},
 	{
 		"id": "state-talk",
 		"title": "Componentizing Application State",
+		"location": "THAT Conference 2024",
 		"date": "January 2024",
 		"url": "/talks/componentizing-application-state",
 		"videoId": "4-msZqqrN1A",

@@ -1,18 +1,14 @@
 ---
-interface Props {
-	title: string;
-	description: string;
-	role: string;
-	image: string;
-	url: string;
-	status?: 'active' | 'inactive';
-}
+import { type CollectionEntry } from 'astro:content';
+
+type ProjectType = CollectionEntry<'projects'>['data'];
+interface Props extends ProjectType {}
 import { getAsset } from '@/utils/image.js';
 import { Image } from 'astro:assets';
 
-const image = await getAsset(Astro.props.image);
+const image = Astro.props.image ? await getAsset(Astro.props.image) : null;
 
-const { title, url, role, description, status } = Astro.props;
+const { name, url, roles, description, status } = Astro.props;
 ---
 
 <div
@@ -21,19 +17,25 @@ const { title, url, role, description, status } = Astro.props;
 	<a href={url} target="_blank" class="no-underline">
 		<div class="flex">
 			<div class="align-items-center flex place-content-evenly justify-items-center">
-				<Image alt="JS Party" class="mx-2 h-16 w-16 rounded" src={image} quality="high" height={128} width={128} />
+				{
+					image && (
+						<Image alt="JS Party" class="mx-2 h-16 w-16 rounded" src={image} quality="high" height={128} width={128} />
+					)
+				}
 				<div class="flex w-64 flex-col">
-					<h5 class="text-xl font-medium leading-tight">{title}</h5>
+					<h5 class="text-xl font-medium leading-tight">{name}</h5>
 					<p class="mb-2 w-64 p-2 text-sm">{description}</p>
 				</div>
 			</div>
 		</div>
 		<div class="flex place-content-baseline">
-			<span
-				class="last mr-1 inline-block rounded-full bg-teal-200 px-2 py-1 text-xs font-semibold uppercase text-teal-700 last:mr-0"
-			>
-				{role}
-			</span>
+			{
+				roles.map(role => (
+					<span class="last mr-1 inline-block rounded-full bg-teal-200 px-2 py-1 text-xs font-semibold uppercase text-teal-700 last:mr-0">
+						{role}
+					</span>
+				))
+			}
 			{
 				status === 'inactive' && (
 					<span class="last mr-1 inline-block rounded-full bg-red-200 px-2 py-1 text-xs font-semibold uppercase text-red-700 last:mr-0">

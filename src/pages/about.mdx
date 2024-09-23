@@ -11,6 +11,7 @@ import { Image } from 'astro:assets';
 import { getAsset } from '@/utils/image.js'
 export const talks = await getCollection('talks', talk => talk.data.promote);
 export const profileImg = await getAsset(metadata.profile);
+export const projects = await getCollection('projects', project => !project.data.hidden);
 
 <section>
 	<div class="flex flex-col items-center">
@@ -51,8 +52,8 @@ Nick is an occasional conference speaker and has spoken at conferences all over 
 ## Projects
 
 <div class="flex flex-wrap place-content-evenly">
-	{metadata.projects.map(project => (
-		<Project {...project} />
+	{projects.map(project => (
+		<Project {...project.data} />
 	))}
 </div>
 

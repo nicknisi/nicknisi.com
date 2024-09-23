@@ -4,7 +4,12 @@ import data from './_data.json';
 import { Icon } from 'astro-icon/components';
 import AssetImage from '@/components/AssetImage.astro';
 import { Image } from 'astro:assets';
-import { getAsset } from '@/utils/image.js';
+import { getCollection } from 'astro:content';
+
+const projects = (await getCollection('projects', project => !project.data.hidden)).map(project => project.data) ?? [];
+const talks = (await getCollection('talks', talk => talk.data.promote)).map(talk => talk.data) ?? [];
+const jobs = (await getCollection('jobs')).map(job => job.data) ?? [];
+const profiles = (await getCollection('profiles', profile => !profile.data.hidden)).map(profile => profile.data) ?? [];
 
 function dateToYear(date: string) {
 	return new Date(date).getFullYear();
@@ -14,8 +19,9 @@ function getVideoId(url: string) {
 	return url.split('?v=')[1];
 }
 
-function getVideoThumbnail(url: string) {
-	return `https://img.youtube.com/vi/${getVideoId(url)}/hqdefault.jpg`;
+function getVideoThumbnail(videoId: string) {
+	console.log({ videoId });
+	return `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
 }
 ---
 
@@ -64,18 +70,16 @@ function getVideoThumbnail(url: string) {
 							</>
 							<>
 								{
-									data.basics.profiles
-										.filter(profile => !profile.hidden)
-										.map(profile => (
-											<a
-												class="border-1 mr-2 inline-block border-grey-300 text-xs text-grey-400 hover:text-grey-600"
-												href={profile.url}
-												target="_blank"
-												rel="noopener noreferrer"
-											>
-												<Icon name={`simple-icons:` + profile.network.toLowerCase()} class="mr-1 inline-block size-4" />
-											</a>
-										))
+									profiles.map(profile => (
+										<a
+											class="border-1 mr-2 inline-block border-grey-300 text-xs text-grey-400 hover:text-grey-600"
+											href={profile.url}
+											target="_blank"
+											rel="noopener noreferrer"
+										>
+											<Icon name={`simple-icons:` + profile.network.toLowerCase()} class="mr-1 inline-block size-4" />
+										</a>
+									))
 								}
 							</>
 						</div>
@@ -90,52 +94,46 @@ function getVideoThumbnail(url: string) {
 					<h2 class="print:text-lg text-2xl font-bold">Work Experience</h2>
 					<div class="space-y-8 print:space-y-4">
 						{
-							data.work
-								.filter(job => !job.hidden)
-								.map(job => (
-									<div class="space-y-2">
-										<div>
-											<div class="flex justify-between">
-												<div class="flex flex-col items-baseline gap-2 sm:flex-row">
-													<div class="text-lg flex items-baseline p-0 font-medium">
-														<a class="flex cursor-pointer items-baseline" href={job.url}>
-															{job.image && (
-																<AssetImage
-																	src={job.image}
-																	alt={job.name}
-																	class="mr-2 inline-block size-4 rounded-md"
-																/>
-															)}
-															{job.name}
-														</a>
-													</div>
-													<div class="flex items-center">
-														<div class="font-mono text-xs">{job.location}</div>
-														{job.remote && (
-															<span class="ml-2 inline-block rounded-md bg-blue-gray-50 p-1 font-mono text-xs font-semibold">
-																Remote
-															</span>
+							jobs.map(job => (
+								<div class="space-y-2">
+									<div>
+										<div class="flex justify-between">
+											<div class="flex flex-col items-baseline gap-2 sm:flex-row">
+												<div class="text-lg flex items-baseline p-0 font-medium">
+													<a class="flex cursor-pointer items-baseline" href={job.url}>
+														{job.image && (
+															<AssetImage src={job.image} alt={job.name} class="mr-2 inline-block size-4 rounded-md" />
 														)}
-													</div>
+														{job.name}
+													</a>
 												</div>
-												<div class="flex items-center font-mono text-xs">
-													<div>{dateToYear(job.startDate)}</div>
-													<div>&nbsp;-&nbsp;</div>
-													<div>{job.endDate ? dateToYear(job.endDate) : 'Present'}</div>
+												<div class="flex items-center">
+													<div class="font-mono text-xs">{job.location}</div>
+													{job.remote && (
+														<span class="ml-2 inline-block rounded-md bg-blue-gray-50 p-1 font-mono text-xs font-semibold">
+															Remote
+														</span>
+													)}
 												</div>
 											</div>
-											<div class="font-mono">{job.position}</div>
+											<div class="flex items-center font-mono text-xs">
+												<div>{dateToYear(job.startDate)}</div>
+												<div>&nbsp;-&nbsp;</div>
+												<div>{job.endDate ? dateToYear(job.endDate) : 'Present'}</div>
+											</div>
 										</div>
-										<div class="border-b border-grey-200 sm:hidden" />
-										<div class="font-mono text-sm">
-											<ul class="list-disc gap-2 space-y-1">
-												{job.highlights?.map(highlight => (
-													<li>{highlight}</li>
-												))}
-											</ul>
-										</div>
+										<div class="font-mono">{job.position}</div>
 									</div>
-								))
+									<div class="border-b border-grey-200 sm:hidden" />
+									<div class="font-mono text-sm">
+										<ul class="list-disc gap-2 space-y-1">
+											{job.highlights?.map(highlight => (
+												<li>{highlight}</li>
+											))}
+										</ul>
+									</div>
+								</div>
+							))
 						}
 					</div>
 				</div>
@@ -144,162 +142,149 @@ function getVideoThumbnail(url: string) {
 					{/* web layout */}
 					<div class="flex flex-1 flex-col flex-wrap gap-4 sm:flex-row print:hidden">
 						{
-							data.projects
-								.filter(project => !project.hidden)
-								.map(project => (
-									<div class="basis-52 space-y-2 border border-grey-100 p-4">
-										<h3 class="font-semibold">
-											<a href={project.url} class="cursor-pointer" target="_blank" rel="noopener noreferrer">
-												{project.image && (
-													<AssetImage
-														src={project.image}
-														alt={project.name}
-														class="mr-2 inline-block size-4 rounded-md"
-													/>
-												)}
-												{project.name}
-											</a>
-										</h3>
-										<p class="text-sm text-grey-500">{project.description}</p>
-										{project.highlights && (
-											<div class="flex flex-wrap gap-2">
-												{project.keywords.map(keyword => (
-													<div class="inline-block rounded-md bg-blue-gray-50 p-1 font-mono text-xs font-semibold">
-														{keyword}
-													</div>
-												))}
-											</div>
-										)}
-									</div>
-								))
+							projects.map(project => (
+								<div class="basis-52 space-y-2 border border-grey-100 p-4">
+									<h3 class="font-semibold">
+										<a href={project.url} class="cursor-pointer" target="_blank" rel="noopener noreferrer">
+											{project.image && (
+												<AssetImage
+													src={project.image}
+													alt={project.name}
+													class="mr-2 inline-block size-4 rounded-md"
+												/>
+											)}
+											{project.name}
+										</a>
+									</h3>
+									<p class="text-sm text-grey-500">{project.description}</p>
+									{project.highlights && (
+										<div class="flex flex-wrap gap-2">
+											{project.keywords.map(keyword => (
+												<div class="inline-block rounded-md bg-blue-gray-50 p-1 font-mono text-xs font-semibold">
+													{keyword}
+												</div>
+											))}
+										</div>
+									)}
+								</div>
+							))
 						}
 					</div>
 					{/* print layout */}
 					<div class="hidden flex-1 flex-wrap gap-4 print:flex">
 						{
-							data.projects
-								.filter(project => !project.hidden)
-								.map(project => (
-									<div class="flex flex-col gap-1">
-										<h3 class="text-lg m-0 p-0 font-medium">
-											<a href={project.url} class="cursor-pointer" target="_blank" rel="noopener noreferrer">
-												{project.image && (
-													<AssetImage
-														src={project.image}
-														alt={project.name}
-														class="mr-2 inline-block size-4 rounded-md"
-													/>
-												)}
-												{project.name}
-											</a>
-										</h3>
-										<p class="p-0 font-mono">{project.description}</p>
-										<div class="font-mono text-sm">
-											<ul class="list-disc gap-2 space-y-1">
-												{project.highlights?.map(highlight => (
-													<li>{highlight}</li>
-												))}
-											</ul>
-										</div>
-										{project.highlights && (
-											<div class="flex flex-wrap gap-2">
-												{project.keywords.map(keyword => (
-													<div class="inline-block rounded-md bg-blue-gray-50 p-1 font-mono text-xs font-semibold">
-														{keyword}
-													</div>
-												))}
-											</div>
-										)}
+							projects.map(project => (
+								<div class="flex flex-col gap-1">
+									<h3 class="text-lg m-0 p-0 font-medium">
+										<a href={project.url} class="cursor-pointer" target="_blank" rel="noopener noreferrer">
+											{project.image && (
+												<AssetImage
+													src={project.image}
+													alt={project.name}
+													class="mr-2 inline-block size-4 rounded-md"
+												/>
+											)}
+											{project.name}
+										</a>
+									</h3>
+									<p class="p-0 font-mono">{project.description}</p>
+									<div class="font-mono text-sm">
+										<ul class="list-disc gap-2 space-y-1">
+											{project.highlights?.map(highlight => (
+												<li>{highlight}</li>
+											))}
+										</ul>
 									</div>
-								))
+									{project.highlights && (
+										<div class="flex flex-wrap gap-2">
+											{project.keywords.map(keyword => (
+												<div class="inline-block rounded-md bg-blue-gray-50 p-1 font-mono text-xs font-semibold">
+													{keyword}
+												</div>
+											))}
+										</div>
+									)}
+								</div>
+							))
 						}
 					</div>
 				</div>
-				{
-					data.publications && (
-						<div class="mt-2 space-y-8 print:space-y-4">
-							<h2 class="print:text-lg text-2xl font-bold">Recent Talks</h2>
-							{/* web layout */}
-							<div class="flex flex-1 flex-col flex-wrap gap-4 sm:flex-row print:hidden">
-								{data.publications
-									.filter(p => !p.hidden)
-									.map(publication => (
-										<div class="basis-44 rounded-lg border border-grey-100 p-4">
-											<a href={publication.url} target="_blank" class="no-underline">
-												<div class="flex flex-col items-center space-y-2 px-2 pb-4 pt-1 text-center">
-													<h3 class="text-center text-xs font-bold leading-tight text-grey-900">{publication.name}</h3>
-													{publication.img ? (
-														<AssetImage
-															class="not-prose mx-1 aspect-video h-auto max-w-36 rounded pb-1"
-															src={publication.img}
-															alt={publication.name}
-														/>
-													) : (
-														<Image
-															inferSize={true}
-															class="not-prose mx-1 aspect-video h-auto max-w-36 rounded pb-1"
-															src={getVideoThumbnail(publication.url)}
-															alt={publication.name}
-														/>
-													)}
-													<div class="align-content-center justify-content-center flex flex-col">
-														<div class="sticky font-mono text-xs font-bold leading-tight text-grey-500">
-															{publication.publisher}
-														</div>
-														<div class="font-mono text-xs text-grey-500">{dateToYear(publication.releaseDate)}</div>
-													</div>
-													<p class="font-sans text-xs">{publication.summary}</p>
-												</div>
-											</a>
-										</div>
-									))}
-							</div>
-							{/* print layout */}
-							<div class="hidden flex-1 flex-col flex-wrap sm:flex-row print:flex">
-								{data.publications
-									.filter(p => !p.hidden)
-									.map(publication => (
-										<div class="flex py-2">
-											{publication.img ? (
+				<div class="mt-2 space-y-8 print:space-y-4">
+					<h2 class="print:text-lg text-2xl font-bold">Recent Talks</h2>
+					{/* web layout */}
+					<div class="flex flex-1 flex-col flex-wrap gap-4 sm:flex-row print:hidden">
+						{
+							talks.map(talk => (
+								<div class="basis-44 rounded-lg border border-grey-100 p-4">
+									<a href={talk.url} target="_blank" class="no-underline">
+										<div class="flex flex-col items-center space-y-2 px-2 pb-4 pt-1 text-center">
+											<h3 class="text-center text-xs font-bold leading-tight text-grey-900">{talk.title}</h3>
+											{talk.img ? (
 												<AssetImage
-													class="not-prose mx-1 aspect-video max-w-36 rounded pb-1"
-													src={publication.img}
-													alt={publication.name}
+													class="not-prose mx-1 aspect-video h-auto max-w-36 rounded pb-1"
+													src={talk.img}
+													alt={talk.title}
 												/>
 											) : (
 												<Image
 													inferSize={true}
-													class="not-prose mx-1 aspect-video max-w-36 rounded pb-1"
-													src={getVideoThumbnail(publication.url)}
-													alt={publication.name}
+													class="not-prose mx-1 aspect-video h-auto max-w-36 rounded pb-1"
+													src={talk.videoId ? getVideoThumbnail(talk.videoId) : ''}
+													alt={talk.title}
 												/>
 											)}
-											<div>
-												<div class="flex flex-col space-y-2 px-2 pb-4 pt-1">
-													<h3 class="text-md font-medium leading-tight text-grey-900">{publication.name}</h3>
-													<div class="align-content-center justify-content-center flex">
-														<div class="sticky font-mono text-xs font-bold leading-tight text-grey-700">
-															{publication.publisher}
-														</div>
-														<div class="pl-2 font-mono text-xs text-grey-600">
-															{dateToYear(publication.releaseDate)}
-														</div>
-													</div>
-													<a
-														href={`https://youtu.be/${getVideoId(publication.url)}`}
-														class="font-mono text-xs text-grey-600"
-													>
-														{`youtu.be/${getVideoId(publication.url)}`}
-													</a>
-													<p class="font-mono text-xs">{publication.summary}</p>
+											<div class="align-content-center justify-content-center flex flex-col">
+												<div class="sticky font-mono text-xs font-bold leading-tight text-grey-500">
+													{talk.location}
 												</div>
+												<div class="font-mono text-xs text-grey-500">{dateToYear(talk.date)}</div>
 											</div>
+											<p class="font-sans text-xs">{talk.summary}</p>
 										</div>
-									))}
-							</div>
-						</div>
-					)
-				}
+									</a>
+								</div>
+							))
+						}
+					</div>
+					{/* print layout */}
+					<div class="hidden flex-1 flex-col flex-wrap sm:flex-row print:flex">
+						{
+							talks.map(talk => (
+								<div class="flex py-2">
+									{talk.img ? (
+										<AssetImage
+											class="not-prose mx-1 aspect-video max-w-36 rounded pb-1"
+											src={talk.img}
+											alt={talk.title}
+										/>
+									) : (
+										<Image
+											inferSize={true}
+											class="not-prose mx-1 aspect-video max-w-36 rounded pb-1"
+											src={talk.videoId ? getVideoThumbnail(talk.videoId) : ''}
+											alt={talk.title}
+										/>
+									)}
+									<div>
+										<div class="flex flex-col space-y-2 px-2 pb-4 pt-1">
+											<h3 class="text-md font-medium leading-tight text-grey-900">{talk.title}</h3>
+											<div class="align-content-center justify-content-center flex">
+												<div class="sticky font-mono text-xs font-bold leading-tight text-grey-700">
+													{talk.location}
+												</div>
+												<div class="pl-2 font-mono text-xs text-grey-600">{dateToYear(talk.date)}</div>
+											</div>
+											<a href={`https://youtu.be/${getVideoId(talk.url)}`} class="font-mono text-xs text-grey-600">
+												{`youtu.be/${getVideoId(talk.url)}`}
+											</a>
+											<p class="font-mono text-xs">{talk.summary}</p>
+										</div>
+									</div>
+								</div>
+							))
+						}
+					</div>
+				</div>
 				<div class="mt-2 space-y-8 print:space-y-4">
 					<h2 class="print:text-lg text-2xl font-bold">Skills</h2>
 					<div class="flex gap-4">

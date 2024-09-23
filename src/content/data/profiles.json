@@ -1,0 +1,51 @@
+[
+	{
+		"id": "github",
+		"network": "GitHub",
+		"username": "nicknisi",
+		"url": "https://github.com/nicknisi"
+	},
+	{
+		"id": "linkedin",
+		"network": "LinkedIn",
+		"username": "nicknisi",
+		"url": "https://linkedin.com/in/nicknisi"
+	},
+	{
+		"id": "threads",
+		"network": "Threads",
+		"username": "nicknisi",
+		"url": "https://threads.net/nicknisi"
+	},
+	{
+		"id": "mastodon",
+		"network": "Mastodon",
+		"username": "@nicknisi@nicknisi.com",
+		"url": "https://nicknisi.com/@nicknisi"
+	},
+	{
+		"id": "twitter",
+		"network": "Twitter",
+		"username": "nicknisi",
+		"url": "https://twitter.com/nicknisi"
+	},
+	{
+		"id": "instagram",
+		"network": "Instagram",
+		"username": "nicknisi",
+		"url": "https://instagram.com/nicknisi"
+	},
+	{
+		"id": "youtube",
+		"network": "YouTube",
+		"username": "nicknisi",
+		"url": "https://youtube.com/@nicknisi"
+	},
+	{
+		"id": "bluesky",
+		"network": "BlueSky",
+		"username": "@nicknisi.com",
+		"url": "https://bsky.app/profile/nicknisi.com",
+		"hidden": true
+	}
+]
