@@ -17,8 +17,10 @@ const mode = import.meta.env.MODE;
 
 <head>
 	<meta charset="utf-8" />
+	<meta http-equiv="content-language" content="en" />
 	<title>{title}</title>
 
+	<meta name="color-scheme" content="light dark" />
 	<meta name="theme-color" content="#240754" />
 	<meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff" />
 	<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000" />
@@ -33,6 +35,8 @@ const mode = import.meta.env.MODE;
 	<meta name="viewport" content="width=device-width,initial-scale=1" />
 
 	<meta name="author" content={metadata.author.name} />
+	<meta name="description" content={description} />
+	<link rel="canonical" href={url} />
 
 	<!-- Twitter Card -->
 	<meta name="twitter:card" content="summary_large_image" />

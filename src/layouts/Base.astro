@@ -19,9 +19,6 @@ const { title, description, hideHeader, hideFooter } = Astro.props;
 ---
 
 <style is:global>
-	.base-colors {
-		@apply bg-blue-gray-50 text-blue-gray-800 dark:bg-dark-obsidian dark:text-grey-50;
-	}
 	h1,
 	h2,
 	h3,
@@ -34,7 +31,7 @@ const { title, description, hideHeader, hideFooter } = Astro.props;
 
 <html lang="en">
 	<Head title={title} description={description} />
-	<body class="base-colors font-sans font-normal">
+	<body class="bg-blue-gray-50 font-sans font-normal text-blue-gray-800 dark:bg-dark-obsidian dark:text-grey-50">
 		{!hideHeader && <Header />}
 		<main class="z-30 mb-auto px-6">
 			<div class="mx-auto max-w-3xl">
