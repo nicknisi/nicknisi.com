@@ -17,10 +17,11 @@ const mode = import.meta.env.MODE;
 
 <head>
 	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width,initial-scale=1" />
 	<title>{title}</title>
 
 	<meta name="theme-color" content="#240754" />
+	<meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff" />
+	<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000" />
 
 	<link rel="alternate" href={metadata.feed.path} type="application/atom+xml" title={metadata.title} />
 	<link rel="webmention" href="https://webmention.io/nicknisi.com/webmention" />
@@ -28,11 +29,19 @@ const mode = import.meta.env.MODE;
 
 	<link rel="icon" href="/favicon.ico" type="image/x-icon" />
 
+	<!-- responsive meta -->
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+
+	<meta name="author" content={metadata.author.name} />
+
 	<!-- Twitter Card -->
-	<meta property="twitter:card" content="summary_large_image" />
-	<meta property="twitter:site" content={metadata.social.twitter.username} />
-	<meta property="twitter:creator" content={metadata.social.twitter.username} />
-	<meta property="twitter:image" content={headerImage} />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:site" content={metadata.social.twitter.username} />
+	<meta name="twitter:creator" content={metadata.social.twitter.username} />
+	<meta name="twitter:image" content={headerImage} />
+	<meta name="twitter:title" content={title} />
+	<meta name="twitter:description" content={description ?? metadata.description} />
+	<meta property="og:type" content="website" />
 	<meta property="og:url" content={url ?? site?.origin ?? metadata.url} />
 	<meta property="og:title" content={title} />
 	<meta property="og:description" content={description ?? metadata.description} />
