@@ -36,10 +36,10 @@ function getVideoThumbnail(videoId: string) {
 						<p class="max-w-md text-pretty font-mono text-sm">
 							{data.basics.summary}
 						</p>
-						<p class="text-xs text-grey-600">
+						<p class="text-xs text-gray-600">
 							{data.basics.location.city}, {data.basics.location.region}
 						</p>
-						<div class="hidden items-baseline gap-2 text-sm text-grey-600 print:flex">
+						<div class="hidden items-baseline gap-2 text-sm text-gray-600 print:flex">
 							<div>
 								<Icon name="mdi:envelope-outline" class="mr-1 inline-block size-4" />
 								<a href={'mailto:' + data.basics.email}>{data.basics.email}</a>
@@ -52,7 +52,7 @@ function getVideoThumbnail(videoId: string) {
 						<div class="flex pt-2 print:hidden">
 							<>
 								<a
-									class="border-1 mr-2 inline-block border-grey-300 text-xs text-grey-400 hover:text-grey-600"
+									class="border-1 mr-2 inline-block border-gray-300 text-xs text-gray-400 hover:text-gray-600"
 									href={'mailto:' + data.basics.email}
 									target="_blank"
 									rel="noopener noreferrer"
@@ -60,7 +60,7 @@ function getVideoThumbnail(videoId: string) {
 									<Icon name="mdi:envelope-outline" class="mr-1 inline-block size-4" />
 								</a>
 								<a
-									class="border-1 mr-2 inline-block border-grey-300 text-xs text-grey-400 hover:text-grey-600"
+									class="border-1 mr-2 inline-block border-gray-300 text-xs text-gray-400 hover:text-gray-600"
 									href={'tel:' + data.basics.phone}
 									target="_blank"
 									rel="noopener noreferrer"
@@ -72,7 +72,7 @@ function getVideoThumbnail(videoId: string) {
 								{
 									profiles.map(profile => (
 										<a
-											class="border-1 mr-2 inline-block border-grey-300 text-xs text-grey-400 hover:text-grey-600"
+											class="border-1 mr-2 inline-block border-gray-300 text-xs text-gray-400 hover:text-gray-600"
 											href={profile.url}
 											target="_blank"
 											rel="noopener noreferrer"
@@ -124,7 +124,7 @@ function getVideoThumbnail(videoId: string) {
 										</div>
 										<div class="font-mono">{job.position}</div>
 									</div>
-									<div class="border-b border-grey-200 sm:hidden" />
+									<div class="border-b border-gray-200 sm:hidden" />
 									<div class="font-mono text-sm">
 										<ul class="list-disc gap-2 space-y-1">
 											{job.highlights?.map(highlight => (
@@ -143,7 +143,7 @@ function getVideoThumbnail(videoId: string) {
 					<div class="flex flex-1 flex-col flex-wrap gap-4 sm:flex-row print:hidden">
 						{
 							projects.map(project => (
-								<div class="basis-52 space-y-2 border border-grey-100 p-4">
+								<div class="basis-52 space-y-2 border border-gray-100 p-4">
 									<h3 class="font-semibold">
 										<a href={project.url} class="cursor-pointer" target="_blank" rel="noopener noreferrer">
 											{project.image && (
@@ -156,7 +156,7 @@ function getVideoThumbnail(videoId: string) {
 											{project.name}
 										</a>
 									</h3>
-									<p class="text-sm text-grey-500">{project.description}</p>
+									<p class="text-sm text-gray-500">{project.description}</p>
 									{project.highlights && (
 										<div class="flex flex-wrap gap-2">
 											{project.keywords.map(keyword => (
@@ -215,10 +215,10 @@ function getVideoThumbnail(videoId: string) {
 					<div class="flex flex-1 flex-col flex-wrap gap-4 sm:flex-row print:hidden">
 						{
 							talks.map(talk => (
-								<div class="basis-44 rounded-lg border border-grey-100 p-4">
+								<div class="basis-44 rounded-lg border border-gray-100 p-4">
 									<a href={talk.url} target="_blank" class="no-underline">
 										<div class="flex flex-col items-center space-y-2 px-2 pb-4 pt-1 text-center">
-											<h3 class="text-center text-xs font-bold leading-tight text-grey-900">{talk.title}</h3>
+											<h3 class="text-center text-xs font-bold leading-tight text-gray-900">{talk.title}</h3>
 											{talk.img ? (
 												<AssetImage
 													class="not-prose mx-1 aspect-video h-auto max-w-36 rounded pb-1"
@@ -234,10 +234,10 @@ function getVideoThumbnail(videoId: string) {
 												/>
 											)}
 											<div class="align-content-center justify-content-center flex flex-col">
-												<div class="sticky font-mono text-xs font-bold leading-tight text-grey-500">
+												<div class="sticky font-mono text-xs font-bold leading-tight text-gray-500">
 													{talk.location}
 												</div>
-												<div class="font-mono text-xs text-grey-500">{dateToYear(talk.date)}</div>
+												<div class="font-mono text-xs text-gray-500">{dateToYear(talk.date)}</div>
 											</div>
 											<p class="font-sans text-xs">{talk.summary}</p>
 										</div>
@@ -267,14 +267,14 @@ function getVideoThumbnail(videoId: string) {
 									)}
 									<div>
 										<div class="flex flex-col space-y-2 px-2 pb-4 pt-1">
-											<h3 class="text-md font-medium leading-tight text-grey-900">{talk.title}</h3>
+											<h3 class="text-md font-medium leading-tight text-gray-900">{talk.title}</h3>
 											<div class="align-content-center justify-content-center flex">
-												<div class="sticky font-mono text-xs font-bold leading-tight text-grey-700">
+												<div class="sticky font-mono text-xs font-bold leading-tight text-gray-700">
 													{talk.location}
 												</div>
-												<div class="pl-2 font-mono text-xs text-grey-600">{dateToYear(talk.date)}</div>
+												<div class="pl-2 font-mono text-xs text-gray-600">{dateToYear(talk.date)}</div>
 											</div>
-											<a href={`https://youtu.be/${getVideoId(talk.url)}`} class="font-mono text-xs text-grey-600">
+											<a href={`https://youtu.be/${getVideoId(talk.url)}`} class="font-mono text-xs text-gray-600">
 												{`youtu.be/${getVideoId(talk.url)}`}
 											</a>
 											<p class="font-mono text-xs">{talk.summary}</p>
@@ -316,7 +316,7 @@ function getVideoThumbnail(videoId: string) {
 											{school.studyType}, {school.area}
 										</div>
 									</div>
-									<div class="border-b border-grey-200 sm:hidden" />
+									<div class="border-b border-gray-200 sm:hidden" />
 								</div>
 							))
 						}

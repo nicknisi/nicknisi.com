@@ -31,7 +31,18 @@ const { title, description, hideHeader, hideFooter } = Astro.props;
 
 <html lang="en">
 	<Head title={title} description={description} />
-	<body class="bg-blue-gray-50 font-sans font-normal text-blue-gray-800 dark:bg-dark-obsidian dark:text-grey-50">
+	<body
+		class:list={[
+			'font-normal',
+			'font-sans',
+			'text-blue-gray-800',
+			'dark:text-gray-50',
+			'bg-gradient-to-b',
+			'from-dark-smoky-black',
+			'via-dark-eerie-black',
+			'to-dark-obsidian',
+		]}
+	>
 		{!hideHeader && <Header />}
 		<main class="z-30 mb-auto px-6">
 			<div class="mx-auto max-w-3xl">

@@ -42,14 +42,14 @@ const profileImg = await getAsset(metadata.profile);
 }
 <BaseLayout title={title} description={description}>
 	<div
-		class="prose prose-slate pb-10 pt-6 lg:prose-xl dark:prose-invert prose-headings:my-3 prose-headings:text-blue-gray-900 prose-a:text-teal-600 prose-code:font-medium prose-code:text-purple-800 prose-code:before:content-[''] prose-code:after:content-[''] prose-headings:dark:text-grey-200 dark:prose-a:text-teal-400 dark:prose-code:text-purple-100"
+		class="prose prose-slate pb-10 pt-6 lg:prose-xl dark:prose-invert prose-headings:my-3 prose-headings:text-blue-gray-900 prose-a:text-teal-600 prose-code:font-medium prose-code:text-purple-800 prose-code:before:content-[''] prose-code:after:content-[''] prose-headings:dark:text-gray-200 dark:prose-a:text-teal-400 dark:prose-code:text-purple-100"
 	>
 		<article class="pt-10">
 			<header class="mb-8">
 				<h1 class="mb-4 text-3xl font-bold tracking-tight md:text-5xl">
 					{title}
 				</h1>
-				<div class="text-gray-600 flex gap-2 text-sm font-light sm:gap-1">
+				<div class="flex gap-2 text-sm font-light text-gray-600 sm:gap-1">
 					<span class="uppercase">{date}</span>
 					<span class="hidden md:inline">•</span>
 					<span class="uppercase">{wordCount} minute read</span>
@@ -91,7 +91,7 @@ const profileImg = await getAsset(metadata.profile);
 					/>
 				</div>
 				<div class="mt-6 flex-grow text-center sm:mt-0 sm:text-left">
-					<h2 class="text-gray-900 title-font text-lg mb-2 font-medium">
+					<h2 class="title-font text-lg mb-2 font-medium text-gray-900">
 						{metadata.author.name}
 					</h2>
 					<p class="text-base leading-relaxed">{metadata.description}</p>

@@ -16,7 +16,7 @@ const posts = allPosts.slice(0, 10);
 <BaseLayout>
 	<div class="py-10">
 		<div class="flex flex-col items-center">
-			<div class="flex flex-col items-center justify-center md:flex-row">
+			<div class="flex flex-col items-center justify-center gap-2 md:flex-row">
 				<div class="text-2xl font-bold sm:text-3xl lg:text-4xl">
 					{metadata.description}
 				</div>
@@ -34,7 +34,7 @@ const posts = allPosts.slice(0, 10);
 				</div>
 			</div>
 			<div
-				class="flex w-full items-center justify-center pt-2 text-grey-200 md:items-end md:justify-start md:pt-0 dark:text-grey-700"
+				class="flex w-full items-center justify-center pt-2 text-gray-200 md:items-end md:justify-start md:pt-0 dark:text-gray-700"
 			>
 				{
 					['raphael:vim', 'mdi:language-typescript', 'mdi:react', 'mdi:nodejs', 'mdi:language-javascript'].map(name => (
