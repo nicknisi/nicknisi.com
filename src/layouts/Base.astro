@@ -15,7 +15,7 @@ interface Props {
 	hideFooter?: boolean;
 }
 
-const { title, description, hideHeader, hideFooter } = Astro.props;
+const { title, description, hideHeader, hideFooter, headerImage } = Astro.props;
 ---
 
 <style is:global>
@@ -30,17 +30,18 @@ const { title, description, hideHeader, hideFooter } = Astro.props;
 </style>
 
 <html lang="en">
-	<Head title={title} description={description} />
+	<Head title={title} description={description} headerImage={headerImage} />
 	<body
 		class:list={[
 			'font-normal',
 			'font-sans',
+			'bg-gray-50',
 			'text-blue-gray-800',
 			'dark:text-gray-50',
-			'bg-gradient-to-b',
-			'from-dark-smoky-black',
-			'via-dark-eerie-black',
-			'to-dark-obsidian',
+			'dark:bg-gradient-to-b',
+			'dark:from-dark-smoky-black',
+			'dark:via-dark-eerie-black',
+			'dark:to-dark-obsidian',
 		]}
 	>
 		{!hideHeader && <Header />}
