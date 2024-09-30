@@ -4,7 +4,7 @@ pubDate: 2024-09-30
 description: SquiggleConf is a web devtools-focused conference in Boston.
 tags:
   - community
-headerImage: src/assets/squiggleconf2024.png
+headerImage: /src/assets/squiggleconf2024.png
 ---
 
 I'm thrilled to be co-emceeing SquiggleConf at the New England Aquarium in Boston on October 3-4, 2024. This conference focuses on supercharging web developers and their tools, bringing together experts to discuss cutting-edge web development practices. 1
