@@ -306,11 +306,13 @@ function getVideoThumbnail(videoId: string) {
 											<div class="flex flex-col items-baseline gap-2 sm:flex-row">
 												<div class="text-lg flex items-baseline p-0 font-medium">{school.institution}</div>
 											</div>
-											<div class="flex items-center font-mono text-xs">
-												<div>{dateToYear(school.startDate)}</div>
-												<div>&nbsp;-&nbsp;</div>
-												<div>{school.endDate ? dateToYear(school.endDate) : 'Present'}</div>
-											</div>
+											{false && (
+												<div class="flex items-center font-mono text-xs">
+													<div>{dateToYear(school.startDate)}</div>
+													<div>&nbsp;-&nbsp;</div>
+													<div>{school.endDate ? dateToYear(school.endDate) : 'Present'}</div>
+												</div>
+											)}
 										</div>
 										<div class="font-mono">
 											{school.studyType}, {school.area}
