@@ -5,11 +5,13 @@ interface Props {
 	title?: string | undefined;
 	description?: string | undefined;
 	headerImage?: string;
+	colorscheme?: 'light' | 'dark' | 'light dark';
 }
 
 const props = Astro.props;
 const { site, url } = Astro;
 const title = props.title ? `${props.title} | ${metadata.title}` : metadata.title;
+const { colorscheme = 'light dark' } = props;
 const description = props.description ?? metadata.description;
 const headerImage = (url?.origin ?? metadata.url) + (props.headerImage ?? metadata.ogImage);
 const mode = import.meta.env.MODE;
@@ -20,7 +22,7 @@ const mode = import.meta.env.MODE;
 	<meta http-equiv="content-language" content="en" />
 	<title>{title}</title>
 
-	<meta name="color-scheme" content="light dark" />
+	<meta name="color-scheme" content={colorscheme} />
 	<meta name="theme-color" content="#240754" />
 	<meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff" />
 	<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000" />
