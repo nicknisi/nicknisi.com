@@ -33,26 +33,26 @@
 		"@fontsource-variable/roboto-slab": "^5.1.0",
 		"@fontsource/atkinson-hyperlegible": "^5.1.0",
 		"@fontsource/oswald": "^5.1.0",
-		"@fontsource/space-mono": "^5.1.0",
+		"@fontsource/space-mono": "^5.1.1",
 		"@tailwindcss/typography": "0.5.15",
 		"@types/cheerio": "0.22.35",
-		"@types/react": "18.3.9",
-		"@types/react-dom": "18.3.0",
+		"@types/react": "18.3.12",
+		"@types/react-dom": "18.3.1",
 		"astro": "4.16.7",
 		"astro-icon": "1.1.1",
 		"luxon": "3.5.0",
 		"markdown-it": "14.1.0",
 		"react": "18.3.1",
 		"react-dom": "18.3.1",
-		"sanitize-html": "2.13.0",
+		"sanitize-html": "2.13.1",
 		"sharp": "0.33.5",
-		"tailwindcss": "3.4.13"
+		"tailwindcss": "3.4.14"
 	},
 	"devDependencies": {
-		"@iconify-json/ic": "1.2.0",
-		"@iconify-json/mdi": "1.2.0",
+		"@iconify-json/ic": "1.2.1",
+		"@iconify-json/mdi": "1.2.1",
 		"@iconify-json/raphael": "1.2.0",
-		"@iconify-json/simple-icons": "1.2.4",
+		"@iconify-json/simple-icons": "1.2.9",
 		"@nicknisi/standard": "0.1.0",
 		"@types/luxon": "3.4.2",
 		"@types/markdown-it": "14.1.2",
@@ -60,6 +60,6 @@
 		"prettier": "3.3.3",
 		"prettier-plugin-astro": "0.14.1",
 		"prettier-plugin-tailwindcss": "0.6.8",
-		"typescript": "5.6.2"
+		"typescript": "5.6.3"
 	}
 }
