@@ -11,7 +11,6 @@ interface Props {
 const { colorscheme = 'light dark', ...props } = Astro.props;
 const { site, url } = Astro;
 const title = props.title ? `${props.title} | ${metadata.title}` : metadata.title;
-const { colorscheme = 'light dark' } = props;
 const description = props.description ?? metadata.description;
 const headerImage = (url?.origin ?? metadata.url) + (props.headerImage ?? metadata.ogImage);
 const mode = import.meta.env.MODE;
