@@ -18,6 +18,14 @@
 		"email": "nick@nisi.org"
 	},
 	"social": {
+		"bluesky": {
+			"username": "@nicknisi.com",
+			"url": "https://bsky.app/profile/nicknisi.com"
+		},
+		"threads": {
+			"username": "nicknisi",
+			"url": "https://www.threads.net/@nicknisi"
+		},
 		"mastodon": {
 			"username": "@nicknisi@nicknisi.com",
 			"url": "https://fediverse.nicknisi.com/@nicknisi"
@@ -38,13 +46,10 @@
 			"username": "nicknisi",
 			"url": "https://www.instagram.com/nicknisi/"
 		},
-		"bluesky": {
-			"username": "@nicknisi.com",
-			"url": "https://bsky.app/profile/nicknisi.com"
-		},
 		"twitter": {
 			"username": "nicknisi",
-			"url": "https://twitter.com/nicknisi"
+			"url": "https://twitter.com/nicknisi",
+			"hidden": true
 		}
 	}
 }
