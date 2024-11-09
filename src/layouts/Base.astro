@@ -6,6 +6,7 @@ import '@fontsource/space-mono';
 import '@fontsource-variable/roboto-slab';
 import '@fontsource/atkinson-hyperlegible';
 import '@fontsource/oswald';
+import '../styles/base.css';
 
 interface Props {
 	title?: string | undefined;
@@ -17,17 +18,6 @@ interface Props {
 
 const { title, description, hideHeader, hideFooter, headerImage } = Astro.props;
 ---
-
-<style is:global>
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h5 {
-		@apply font-serif;
-	}
-</style>
 
 <html lang="en">
 	<Head title={title} description={description} headerImage={headerImage} />

@@ -5,6 +5,7 @@ import { Icon } from 'astro-icon/components';
 import AssetImage from '@/components/AssetImage.astro';
 import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
+import '@/styles/base.css';
 
 const projects = (await getCollection('projects', project => !project.data.hidden)).map(project => project.data) ?? [];
 const talks = (await getCollection('talks', talk => talk.data.promote)).map(talk => talk.data) ?? [];

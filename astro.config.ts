@@ -25,7 +25,9 @@ export default defineConfig({
 		icon(),
 		react(),
 		mdx(),
-		tailwind(),
+		tailwind({
+			applyBaseStyles: false,
+		}),
 		sitemap({
 			filter: page => page !== 'https://nicknisi.com/resume',
 		}),
