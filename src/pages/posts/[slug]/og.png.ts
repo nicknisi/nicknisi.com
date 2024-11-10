@@ -2,18 +2,26 @@ import fs from 'fs/promises';
 import { join } from 'path';
 import satori from 'satori';
 import sharp from 'sharp';
-import type { APIRoute } from 'astro';
 import { type ReactNode } from 'react';
+import { type CollectionEntry, getCollection } from 'astro:content';
+import { APIRoute } from 'astro';
 
-export const GET: APIRoute = async ({ params, request, props }) => {
-	const oswaldBoldData = await fs.readFile(
-		join(import.meta.dirname, '..', '..', 'public/fonts/Oswald/Oswald-Bold.ttf'),
+interface Props {
+	props: { post: CollectionEntry<'posts'> };
+}
+
+export const GET: APIRoute = async ({ props }: Props) => {
+	const { post } = props;
+
+	const robotoData = await fs.readFile(
+		join(import.meta.dirname, '..', '..', '..', '..', 'public/fonts/Roboto/Roboto-Regular.ttf'),
 	);
-	const robotoData = await fs.readFile(join(import.meta.dirname, '..', '..', 'public/fonts/Roboto/Roboto-Regular.ttf'));
 	const robotoBoldData = await fs.readFile(
-		join(import.meta.dirname, '..', '..', 'public/fonts/Roboto/Roboto-Bold.ttf'),
+		join(import.meta.dirname, '..', '..', '..', '..', 'public/fonts/Roboto/Roboto-Bold.ttf'),
 	);
-	const beef = (await fs.readFile(join(import.meta.dirname, '..', '..', 'public/beef_nick.png'))).toString('base64');
+	const beef = (await fs.readFile(join(import.meta.dirname, '..', '..', '..', '..', 'public/beef_nick.png'))).toString(
+		'base64',
+	);
 	const svg = await satori(
 		{
 			type: 'div',
@@ -46,7 +54,7 @@ export const GET: APIRoute = async ({ params, request, props }) => {
 								{
 									type: 'h1',
 									props: {
-										children: 'Hello, World! This is a very long title that should wrap to the next line.',
+										children: post.data.title,
 										style: {
 											fontFamily: 'Roboto Bold',
 											fontSize: 60,
@@ -112,11 +120,6 @@ export const GET: APIRoute = async ({ params, request, props }) => {
 			height: 630,
 			fonts: [
 				{
-					data: oswaldBoldData,
-					name: 'Oswald Bold',
-					style: 'normal',
-				},
-				{
 					data: robotoData,
 					name: 'Roboto',
 					style: 'normal',
@@ -138,3 +141,11 @@ export const GET: APIRoute = async ({ params, request, props }) => {
 		},
 	});
 };
+
+export async function getStaticPaths() {
+	const posts = await getCollection('posts');
+	return posts.map(post => ({
+		params: { slug: post.slug },
+		props: { post },
+	}));
+}
