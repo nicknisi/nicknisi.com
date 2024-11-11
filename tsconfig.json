@@ -1,8 +1,10 @@
 {
+	"$schema": "http://json.schemastore.org/tsconfig",
 	"extends": "@nicknisi/standard/tsconfigs/base",
 	"compilerOptions": {
 		"types": ["vite/client"],
 		"baseUrl": ".",
+		"resolveJsonModule": true,
 		"paths": {
 			"@/*": ["src/*"],
 			"@components/*": ["src/components/*"],

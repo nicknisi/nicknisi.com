@@ -5,7 +5,7 @@
 	"description": "A passionate TypeScript enthusiast, podcast host, and dedicated community builder.",
 	"avatar": "beef_nick.png",
 	"profile": "profile.jpg",
-	"ogImage": "/og/colorful.png",
+	"ogImage": "/og-image.png",
 	"feed": {
 		"subtitle": "",
 		"filename": "feed.xml",
