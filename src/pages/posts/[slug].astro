@@ -23,7 +23,8 @@ export async function getStaticPaths() {
 
 const { post, prevPost } = Astro.props;
 const {
-	data: { title, description, pubDate, tags = [], draft, headerImage },
+	slug,
+	data: { title, description, pubDate, tags = [], draft },
 } = post;
 console.log('post', post);
 const { Content } = await post.render();
@@ -41,7 +42,7 @@ const profileImg = await getAsset(metadata.profile);
 		</div>
 	)
 }
-<BaseLayout title={title} description={description} headerImage={headerImage}>
+<BaseLayout title={title} description={description} headerImage={`/posts/${slug}/og.png`}>
 	<div
 		class="prose prose-slate pb-10 pt-6 lg:prose-xl dark:prose-invert prose-headings:my-3 prose-headings:text-blue-gray-900 prose-a:text-teal-600 prose-code:font-medium prose-code:text-purple-800 prose-code:before:content-[''] prose-code:after:content-[''] prose-headings:dark:text-gray-200 dark:prose-a:text-teal-400 dark:prose-code:text-purple-100"
 	>

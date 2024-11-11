@@ -134,6 +134,7 @@ export const GET: APIRoute<Props> = async ({ props }) => {
 								justifyContent: 'flex-end',
 								alignItems: 'flex-end',
 								paddingBottom: 20,
+								paddingRight: 20,
 								fontSize: 32,
 							},
 						},
