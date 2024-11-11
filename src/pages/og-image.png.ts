@@ -15,7 +15,7 @@ interface Props {
 
 export const GET: APIRoute<Props> = async ({ props }) => {
 	const oswaldBoldData = await fs.readFile(`${PUBLIC}/fonts/Oswald/Oswald-Bold.ttf`);
-	const dmSansBoldData = await fs.readFile(`${PUBLIC}/fonts/DM_SANS/DMSans-Bold.ttf`);
+	const dmSansBoldData = await fs.readFile(`${PUBLIC}/fonts/DM_Sans/DMSans-Bold.ttf`);
 	const robotoData = await fs.readFile(`${PUBLIC}/fonts/Roboto/Roboto-Regular.ttf`);
 	const robotoBoldData = await fs.readFile(`${PUBLIC}/fonts/Roboto/Roboto-Bold.ttf`);
 	const beef = (await fs.readFile(`${PUBLIC}/beef_nick.png`)).toString('base64');
