@@ -1,5 +1,5 @@
 ---
-title: JS Party is going to be at React Summit!
+title: JS Party Will Be in NYC at React Summit!
 slug: react-summit-2024
 pubDate: 2024-11-11
 tags:
