@@ -4,6 +4,7 @@ pubDate: 2024-09-30
 description: SquiggleConf is a web devtools-focused conference in Boston.
 tags:
   - community
+  - conferences
 headerImage: /src/assets/squiggleconf2024.png
 ---
 
