@@ -16,7 +16,7 @@ const posts = defineCollection({
 });
 
 const bluesky = defineCollection({
-	loader: authorFeedLoader({ handle: 'nicknisi.com', limit: 10 }),
+	loader: authorFeedLoader({ handle: 'nicknisi.com', limit: 5 }),
 });
 
 const profiles = defineCollection({
