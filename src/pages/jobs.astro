@@ -1,6 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
-import PageLayout from '@layouts/Page.astro';
+import PageLayout from '@/layouts/Page.astro';
 
 const jobs = await getCollection('jobs');
 console.log('JOBS', jobs);

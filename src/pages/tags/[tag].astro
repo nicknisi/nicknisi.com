@@ -1,8 +1,8 @@
 ---
-import Posts from '@components/Posts.astro';
-import Tag from '@components/Tag.astro';
-import BaseLayout from '@layouts/Base.astro';
-import { CollectionEntry, getCollection } from 'astro:content';
+import Posts from '@/components/Posts.astro';
+import Tag from '@/components/Tag.astro';
+import BaseLayout from '@/layouts/Base.astro';
+import { type CollectionEntry, getCollection } from 'astro:content';
 
 interface Props {
 	posts: CollectionEntry<'posts'>[];

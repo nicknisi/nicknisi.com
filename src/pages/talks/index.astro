@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
-import PageLayout from '@layouts/Page.astro';
-import Talk from '@components/cards/Talk.astro';
+import PageLayout from '@/layouts/Page.astro';
+import Talk from '@/components/cards/Talk.astro';
 const talks = await getCollection('talks');
 ---
 

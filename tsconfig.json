@@ -1,15 +1,10 @@
 {
 	"$schema": "http://json.schemastore.org/tsconfig",
-	"extends": "@nicknisi/standard/tsconfigs/base",
+	"extends": "astro/tsconfigs/strictest",
 	"compilerOptions": {
-		"types": ["vite/client"],
 		"baseUrl": ".",
-		"resolveJsonModule": true,
 		"paths": {
-			"@/*": ["src/*"],
-			"@components/*": ["src/components/*"],
-			"@layouts/*": ["src/layouts/*"],
-			"@data/*": ["src/data/*"]
+			"@/*": ["src/*"]
 		},
 		"jsx": "react-jsx",
 		"jsxImportSource": "react"

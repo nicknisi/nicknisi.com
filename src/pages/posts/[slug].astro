@@ -1,10 +1,10 @@
 ---
 import { type CollectionEntry, getCollection } from 'astro:content';
-import BaseLayout from '@layouts/Base.astro';
+import BaseLayout from '@/layouts/Base.astro';
 import { Icon } from 'astro-icon/components';
 import { readableDate, getWordCount } from '../../util.js';
-import metadata from '@data/metadata.json';
-import Tag from '@components/Tag.astro';
+import metadata from '@/data/metadata.json';
+import Tag from '@/components/Tag.astro';
 import { getAsset } from '@/utils/image.js';
 import { Image } from 'astro:assets';
 

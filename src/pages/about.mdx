@@ -1,13 +1,13 @@
 ---
-layout: '@layouts/Markdown.astro'
+layout: '@/layouts/Markdown.astro'
 title: About Nick Nisi
 description: Learn more about Nick Nisi, a senior FAANG engineer, podcast host, and conference speaker.
 ---
 
 import { getCollection } from 'astro:content'
-import Talk from '@components/cards/Talk.astro';
+import Talk from '@/components/cards/Talk.astro';
 import metadata from '../data/metadata.json';
-import Project from '@components/cards/Project.astro';
+import Project from '@/components/cards/Project.astro';
 import { Image } from 'astro:assets';
 import { getAsset } from '@/utils/image.js'
 export const talks = await getCollection('talks', talk => talk.data.promote);

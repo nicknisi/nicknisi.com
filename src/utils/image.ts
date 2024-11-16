@@ -1,5 +1,7 @@
-import { ImageMetadata } from 'astro';
-import { Talk } from '@/types.js';
+import type { ImageMetadata } from 'astro';
+import type { CollectionEntry } from 'astro:content';
+
+type Talk = CollectionEntry<'talks'>['data'];
 
 const STATIC_ASSETS = import.meta.glob<{ default: ImageMetadata }>('../assets/**/*.{png,jpg,jpeg,svg}');
 
