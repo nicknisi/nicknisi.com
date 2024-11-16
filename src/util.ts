@@ -22,7 +22,7 @@ export function getWordCount(content: string = '') {
 	return Math.ceil(length / 240);
 }
 
-export async function getPosts(max?: number) {
+export async function getPosts(limit?: number | undefined) {
 	const mode = import.meta.env.MODE;
 	const posts = (
 		await getCollection('posts', post => {
@@ -35,8 +35,8 @@ export async function getPosts(max?: number) {
 		return new Date(a.data.pubDate) > new Date(b.data.pubDate) ? -1 : 1;
 	});
 
-	if (max) {
-		return posts.slice(0, max);
+	if (limit) {
+		return posts.slice(0, limit);
 	}
 
 	return posts;

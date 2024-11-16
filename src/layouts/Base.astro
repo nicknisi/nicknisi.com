@@ -7,16 +7,17 @@ import '@fontsource-variable/roboto-slab';
 import '@fontsource/atkinson-hyperlegible';
 import '@fontsource/oswald';
 import '../styles/base.css';
+import metadata from '@/data/metadata.json';
 
 interface Props {
-	title?: string | undefined;
-	description?: string | undefined;
-	headerImage?: string | undefined;
+	title?: string;
+	description?: string;
+	headerImage?: string;
 	hideHeader?: boolean;
 	hideFooter?: boolean;
 }
 
-const { title, description, hideHeader, hideFooter, headerImage } = Astro.props;
+const { title = metadata.title, description, hideHeader, hideFooter, headerImage } = Astro.props;
 ---
 
 <html lang="en">
@@ -36,7 +37,7 @@ const { title, description, hideHeader, hideFooter, headerImage } = Astro.props;
 	>
 		{!hideHeader && <Header />}
 		<main class="z-30 mb-auto px-6">
-			<div class="mx-auto max-w-3xl">
+			<div class="mx-auto max-w-5xl">
 				<slot />
 			</div>
 		</main>

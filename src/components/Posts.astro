@@ -1,32 +1,43 @@
 ---
-import type { CollectionEntry } from 'astro:content';
 import { Icon } from 'astro-icon/components';
 import Tag from './Tag.astro';
 import PostDate from './PostDate.astro';
+import { Image } from 'astro:assets';
+import { getPosts } from '@/util';
 
 interface Props {
-	posts: CollectionEntry<'posts'>[];
+	limit?: number;
 }
 
-const { posts } = Astro.props;
+const { limit } = Astro.props;
+const posts = await getPosts(limit);
 ---
 
-<ul class="list-none">
+<ul class="flex list-none flex-wrap gap-3">
 	{
 		posts.map(post => (
-			<li class="mb-6 flex">
-				<time class="flex flex-col items-center justify-center" datetime={post.data.pubDate?.toISOString()}>
-					<PostDate date={post.data.pubDate} />
-				</time>
-				<div class="ml-2 border-l pl-2 text-lg">
+			<li class="mb-6 flex h-64 max-w-80">
+				<div class="text-lg ml-2 pl-2">
 					<a class="align-center flex" href={post.data.external ?? `/posts/${post.slug}`}>
-						{post.data.title}
-						{post.data.external && <Icon name="mdi:open-in-new" class="h-4 w-4" />}
+						<div class="flex flex-col">
+							<Image src={`/posts/${post.slug}/og.png`} width={300} height={158} alt={post.data.title} />
+							<div class="flex-grow-0 text-xl">
+								<span class="max-w-full text-wrap">
+									{post.data.title}
+									{post.data.external && <Icon name="mdi:open-in-new" class="h-4 w-4" />}
+								</span>
+							</div>
+						</div>
 					</a>
 					<div class="flex flex-initial flex-wrap items-center justify-start space-x-2">
-						{post.data.tags.map(tag => (
-							<Tag name={tag} />
-						))}
+						<span>
+							<PostDate date={post.data.pubDate} />
+						</span>
+						<span>
+							{post.data.tags.map(tag => (
+								<Tag name={tag} />
+							))}
+						</span>
 					</div>
 				</div>
 			</li>

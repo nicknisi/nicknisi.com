@@ -12,8 +12,10 @@ const month = luxonDate.toLocaleString({ month: 'short' });
 const { day, year } = luxonDate;
 ---
 
-<div class="flex flex-col items-center justify-center text-blue-gray-700 dark:text-blue-gray-200">
-	<div class="text-xs uppercase tracking-wider">{month}</div>
-	<div class="text-xl font-bold">{day}</div>
-	<div class="text-xs uppercase tracking-wider">{year}</div>
-</div>
+<time class="flex flex-col items-center justify-center" datetime={date.toISOString()}>
+	<div class="flex items-center justify-center gap-1 text-blue-gray-700 dark:text-blue-gray-200">
+		<div class="text-sm font-bold">{day}</div>
+		<div class="text-sm uppercase tracking-wider">{month}</div>
+		<div class="text-sm uppercase tracking-wider">{year}</div>
+	</div>
+</time>
