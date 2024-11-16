@@ -1,5 +1,6 @@
 import { z, defineCollection } from 'astro:content';
 import { file } from 'astro/loaders';
+import { authorFeedLoader } from '@/loaders/bsky.js';
 
 const posts = defineCollection({
 	schema: z.object({
@@ -12,6 +13,10 @@ const posts = defineCollection({
 		draft: z.optional(z.boolean()),
 		headerImage: z.optional(z.string()),
 	}),
+});
+
+const bluesky = defineCollection({
+	loader: authorFeedLoader({ handle: 'nicknisi.com', limit: 10 }),
 });
 
 const profiles = defineCollection({
@@ -82,4 +87,5 @@ export const collections = {
 	jobs,
 	projects,
 	profiles,
+	bluesky,
 };

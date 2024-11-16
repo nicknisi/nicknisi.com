@@ -25,11 +25,13 @@
 	"homepage": "https://github.com/nicknisi/nicknisi.com",
 	"license": "MIT",
 	"dependencies": {
+		"@astro-community/astro-embed-bluesky": "^0.1.1",
 		"@astrojs/mdx": "3.1.9",
 		"@astrojs/react": "3.6.2",
 		"@astrojs/rss": "4.0.9",
 		"@astrojs/sitemap": "3.2.1",
 		"@astrojs/tailwind": "5.1.2",
+		"@atproto/api": "^0.13.16",
 		"@fontsource-variable/roboto-slab": "^5.1.0",
 		"@fontsource/atkinson-hyperlegible": "^5.1.0",
 		"@fontsource/oswald": "^5.1.0",

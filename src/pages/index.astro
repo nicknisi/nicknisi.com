@@ -7,6 +7,10 @@ import { getPosts } from '../util.js';
 import { Icon } from 'astro-icon/components';
 import { getAsset } from '@/utils/image.js';
 import { Image } from 'astro:assets';
+import { BlueskyPost } from '@astro-community/astro-embed-bluesky';
+import { getCollection } from 'astro:content';
+
+const blueskyPosts = await getCollection('bluesky');
 const profileImage = await getAsset('profile.jpg');
 const allPosts = await getPosts();
 const tags: string[] = [...new Set(allPosts.map(post => post.data.tags).flat())];
@@ -15,7 +19,7 @@ const tags: string[] = [...new Set(allPosts.map(post => post.data.tags).flat())]
 <BaseLayout>
 	<div class="py-10">
 		<div class="flex flex-col items-center">
-			<div class="flex flex-col items-center justify-center gap-2 md:flex-row">
+			<div class="flex flex-col items-center justify-center gap-10 md:flex-row">
 				<div class="text-2xl font-bold sm:text-3xl lg:text-4xl">
 					{metadata.description}
 				</div>
@@ -51,13 +55,26 @@ const tags: string[] = [...new Set(allPosts.map(post => post.data.tags).flat())]
 				<a class="font-bold text-purple-700 dark:text-purple-200" href="/about">More about me.</a>
 			</p>
 
-			<h3 class="my-4 mt-8 text-2xl">Latest posts</h3>
-			<Posts limit={6} />
+			<section class="flex flex-col gap-4 sm:flex-row">
+				<div>
+					<h3 class="my-4 mt-8 text-2xl">Latest Skeets</h3>
+					<div class="flex flex-col justify-start gap-4">
+						{blueskyPosts.map(post => <BlueskyPost id={post.id} />)}
+					</div>
+				</div>
 
-			<h3 class="my-4 mt-8 text-2xl">Tags</h3>
-			<div class="flex flex-initial flex-wrap items-center justify-start space-x-2">
-				{tags.map(tag => <Tag name={tag} />)}
-			</div>
+				<div class="flex flex-col">
+					<h3 class="my-4 mt-8 text-2xl">Latest posts</h3>
+					<div class="flex items-center justify-center text-center">
+						<Posts limit={6} />
+					</div>
+
+					<h3 class="my-4 mt-8 text-2xl">Tags</h3>
+					<div class="flex flex-initial flex-wrap items-center justify-start space-x-2">
+						{tags.map(tag => <Tag name={tag} />)}
+					</div>
+				</div>
+			</section>
 		</div>
 	</div>
 </BaseLayout>
