@@ -22,9 +22,9 @@ const posts = await getPosts(limit);
 						<div class="flex flex-col">
 							<Image src={`/posts/${post.slug}/og.png`} class="mb-2" width={300} height={158} alt={post.data.title} />
 							<div class="flex-grow-0 text-xl">
-								<span class="max-w-full text-wrap">
+								<span class="inline-block max-w-[280px] overflow-hidden text-ellipsis text-nowrap">
 									{post.data.title}
-									{post.data.external && <Icon name="mdi:open-in-new" class="h-4 w-4" />}
+									{post.data.external && <Icon name="mdi:open-in-new" class="inline-block h-4 w-4" />}
 								</span>
 							</div>
 						</div>
