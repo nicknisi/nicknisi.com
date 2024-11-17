@@ -20,7 +20,7 @@ export const GET: APIRoute<Props> = async ({ props }) => {
 	const robotoBoldData = await fs.readFile(`${PUBLIC}/fonts/Roboto/Roboto-Bold.ttf`);
 	const beef = (await fs.readFile(`${PUBLIC}/beef_nick.png`)).toString('base64');
 	const headshot = (await fs.readFile(`${PUBLIC}/headshot.png`)).toString('base64');
-	const { data: { title = metadata.description } = {} } = props.post ?? {};
+	const { data: { title = metadata.description, description } = {} } = props.post ?? {};
 	const svg = await satori(
 		{
 			type: 'div',
@@ -51,22 +51,51 @@ export const GET: APIRoute<Props> = async ({ props }) => {
 									},
 								},
 								{
-									type: 'h1',
+									type: 'div',
 									props: {
-										children: title,
+										children: [
+											{
+												type: 'h1',
+												props: {
+													children: title,
+													style: {
+														fontFamily: 'Roboto Bold',
+														fontSize: 60,
+														color: 'transparent',
+														backgroundImage: 'linear-gradient(45deg, rgb(0, 124, 240), rgb(0, 223, 216))',
+														backgroundClip: 'text',
+														//color: '#0b1215',
+														textAlign: 'center',
+													},
+												},
+											},
+											{
+												type: 'h2',
+												props: {
+													children: description,
+													style: {
+														fontFamily: 'Roboto Bold',
+														fontSize: 30,
+														color: 'transparent',
+														backgroundImage: 'linear-gradient(45deg, rgb(0, 124, 240), rgb(0, 223, 216))',
+														backgroundClip: 'text',
+														//color: '#0b1215',
+														textAlign: 'center',
+													},
+												},
+											},
+										],
 										style: {
-											fontFamily: 'Roboto Bold',
-											fontSize: 60,
-											//color: 'transparent',
-											//backgroundImage: 'linear-gradient(45deg, #5921a7, rgb(0, 124, 240), rgb(0, 223, 216))',
-											//backgroundClip: 'text',
-											color: '#0b1215',
+											display: 'flex',
+											flexDirection: 'column',
+											justifyContent: 'center',
+											alignItems: 'center',
 											flexGrow: 1,
-											flexBasis: '1000px',
+											flexBasis: '800px',
 											letterSpacing: -1,
+											textAlign: 'center',
 											whiteSpace: 'wrap',
 											marginRight: '2rem',
-											textAlign: 'center',
 										},
 									},
 								},
@@ -107,7 +136,7 @@ export const GET: APIRoute<Props> = async ({ props }) => {
 											textAlign: 'center',
 											fontWeight: 900,
 											flexGrow: 0,
-											color: '#2463EA',
+											color: '#b3ecff',
 											paddingRight: '8px',
 											paddingLeft: '8px',
 											letterSpacing: -1,
@@ -124,7 +153,7 @@ export const GET: APIRoute<Props> = async ({ props }) => {
 											textAlign: 'center',
 											fontWeight: 900,
 											flexGrow: 0,
-											color: '#0b1215',
+											color: '#eff0f1',
 											letterSpacing: -1,
 										},
 									},
@@ -134,8 +163,8 @@ export const GET: APIRoute<Props> = async ({ props }) => {
 								display: 'flex',
 								justifyContent: 'flex-end',
 								alignItems: 'flex-end',
-								paddingBottom: 20,
-								paddingRight: 20,
+								paddingBottom: 30,
+								paddingRight: 30,
 								fontSize: 32,
 							},
 						},
@@ -146,7 +175,8 @@ export const GET: APIRoute<Props> = async ({ props }) => {
 					width: '100%',
 					height: '100%',
 					flexDirection: 'column',
-					backgroundImage: 'linear-gradient(to bottom, #B3ECFF,  #cfbcf2)',
+					backgroundImage: 'linear-gradient(to bottom, #11181C, #0b1215)',
+					backgroundColor: '#0b1215',
 				},
 			},
 		} as ReactNode,
