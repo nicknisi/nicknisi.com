@@ -1,10 +1,22 @@
 import type { ImageMetadata } from 'astro';
 import type { CollectionEntry } from 'astro:content';
+import { invariant } from './common';
+import { readFile } from 'fs/promises';
+import { extname } from 'path';
 
 type Talk = CollectionEntry<'talks'>['data'];
 
 const STATIC_ASSETS = import.meta.glob<{ default: ImageMetadata }>('../assets/**/*.{png,jpg,jpeg,svg}');
-
+const mimeTypes = {
+	'.jpg': 'data:image/jpeg;base64,',
+	'.jpeg': 'data:image/jpeg;base64,',
+	'.png': 'data:image/png;base64,',
+	'.webp': 'data:image/webp;base64,',
+	jpg: 'data:image/jpeg;base64,',
+	jpeg: 'data:image/jpeg;base64,',
+	png: 'data:image/png;base64,',
+	webp: 'data:image/webp;base64,',
+};
 const assets = Object.entries(STATIC_ASSETS).reduce(
 	(acc, [key, value]) => ({
 		...acc,
@@ -42,4 +54,54 @@ export async function getThumbnail(talk: Talk): Promise<string | ImageMetadata> 
 	}
 
 	return defaultThumbnail;
+}
+
+/**
+ * Get the mimetype for a provided file, or derive it from a provided format.
+ * Throws an error if the mimetype is unsupported.
+ * @param filepath The path to check
+ * @param format The format to check
+ * @returns The mimetype for the provided file or format
+ */
+function getMimeType(filepath: string, format?: string) {
+	const ext = (format ?? extname(filepath).toLowerCase()) as keyof typeof mimeTypes;
+	const mimeType = mimeTypes[ext];
+	invariant(mimeType, `Unsupported image format: ${ext}`);
+	return mimeType;
+}
+
+/**
+ * Convert an image at the provided file path to a base64 string.
+ */
+export async function imageToBase64(filepath: string, format?: string): Promise<string> {
+	const mimeType = getMimeType(filepath, format);
+	return `${mimeType}${(await readFile(filepath)).toString('base64')}`;
+}
+
+/**
+ * Calculate the aspect ratio of an image based on its width and height
+ * @param width The width of the image
+ * @param height The height of the image
+ * @returns The aspect ratio as a string
+ */
+export function calculateAspectRatio(width: number, height: number): string {
+	const gcd = (a: number, b: number): number => (b === 0 ? a : gcd(b, a % b));
+	const divisor = gcd(width, height);
+
+	return `${width / divisor}:${height / divisor}`;
+}
+
+/**
+ * Check if the aspect ratio of an image is valid for OpenGraph
+ * @param width The width of the image
+ * @param height The height of the image
+ * @param tolerance The tolerance for the aspect ratio
+ * @returns Whether the aspect ratio is valid
+ */
+export function isValidOpenGraphRatio(width: number, height: number, tolerance: number = 0.06): boolean {
+	const aspectRatio = width / height;
+	const targetRatio = 1.91;
+	const minRatio = targetRatio - tolerance;
+	const maxRatio = targetRatio + tolerance;
+	return aspectRatio >= minRatio && aspectRatio <= maxRatio;
 }

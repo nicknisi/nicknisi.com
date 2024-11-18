@@ -2,6 +2,9 @@
 title: JS Party Will Be in NYC at React Summit!
 slug: react-summit-2024
 pubDate: 2024-11-11
+image:
+  src: "@/assets/posts/jsnation.jpg"
+  alt: Nick Nisi introducing JSNation Online
 tags:
   - community
   - conferences

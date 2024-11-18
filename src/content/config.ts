@@ -3,16 +3,22 @@ import { file } from 'astro/loaders';
 import { authorFeedLoader } from '@/loaders/bsky.js';
 
 const posts = defineCollection({
-	schema: z.object({
-		title: z.string(),
-		permalink: z.optional(z.string()),
-		tags: z.array(z.string()),
-		description: z.optional(z.string()),
-		pubDate: z.date(),
-		external: z.optional(z.string()),
-		draft: z.optional(z.boolean()),
-		headerImage: z.optional(z.string()),
-	}),
+	schema: ({ image }) =>
+		z.object({
+			title: z.string(),
+			permalink: z.string().optional(),
+			tags: z.array(z.string()),
+			description: z.string().optional(),
+			pubDate: z.coerce.date(),
+			external: z.string().optional(),
+			draft: z.z.boolean().optional(),
+			image: z
+				.object({
+					src: image(),
+					alt: z.string(),
+				})
+				.optional(),
+		}),
 });
 
 const bluesky = defineCollection({
