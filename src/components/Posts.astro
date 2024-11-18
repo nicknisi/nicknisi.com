@@ -16,11 +16,17 @@ const posts = await getPosts(limit);
 <ul class="flex list-none flex-wrap justify-center gap-3">
 	{
 		posts.map(post => (
-			<li class="my-4 mb-6 flex h-52 max-w-80">
+			<li class="group my-4 mb-6 flex h-52 max-w-80">
 				<div class="text-lg">
 					<a class="align-center flex" href={post.data.external ?? `/posts/${post.slug}`}>
 						<div class="flex flex-col">
-							<Image src={`/posts/${post.slug}/og.png`} class="mb-2" width={300} height={158} alt={post.data.title} />
+							<Image
+								class="mb-2 transition duration-300 motion-safe:hover:scale-110"
+								src={`/posts/${post.slug}/og.png`}
+								width={300}
+								height={158}
+								alt={post.data.title}
+							/>
 							<div class="flex-grow-0 text-xl">
 								<span class="inline-block max-w-[280px] overflow-hidden text-ellipsis text-nowrap">
 									{post.data.title}
