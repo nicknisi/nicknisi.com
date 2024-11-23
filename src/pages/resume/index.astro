@@ -217,30 +217,30 @@ function getVideoThumbnail(videoId: string) {
 						{
 							talks.map(talk => (
 								<div class="basis-44 rounded-lg border border-gray-100 p-4">
-									<a href={talk.url} target="_blank" class="no-underline">
+									<a href={talk.instances[0]!.url} target="_blank" class="no-underline">
 										<div class="flex flex-col items-center space-y-2 px-2 pb-4 pt-1 text-center">
 											<h3 class="text-center text-xs font-bold leading-tight text-gray-900">{talk.title}</h3>
-											{talk.img ? (
+											{talk.thumbnail ? (
 												<AssetImage
 													class="not-prose mx-1 aspect-video h-auto max-w-36 rounded pb-1"
-													src={talk.img}
+													src={talk.thumbnail}
 													alt={talk.title}
 												/>
 											) : (
 												<Image
 													inferSize={true}
 													class="not-prose mx-1 aspect-video h-auto max-w-36 rounded pb-1"
-													src={talk.videoId ? getVideoThumbnail(talk.videoId) : ''}
+													src={talk.instances[0]!.videoId ? getVideoThumbnail(talk.instances[0]!.videoId) : ''}
 													alt={talk.title}
 												/>
 											)}
 											<div class="align-content-center justify-content-center flex flex-col">
 												<div class="sticky font-mono text-xs font-bold leading-tight text-gray-500">
-													{talk.location}
+													{talk.instances[0]!.location}
 												</div>
-												<div class="font-mono text-xs text-gray-500">{dateToYear(talk.date)}</div>
+												<div class="font-mono text-xs text-gray-500">{dateToYear(talk.instances[0]!.date)}</div>
 											</div>
-											<p class="font-sans text-xs">{talk.summary}</p>
+											<p class="font-sans text-xs">{talk.description}</p>
 										</div>
 									</a>
 								</div>
@@ -252,17 +252,17 @@ function getVideoThumbnail(videoId: string) {
 						{
 							talks.map(talk => (
 								<div class="flex py-2">
-									{talk.img ? (
+									{talk.thumbnail ? (
 										<AssetImage
 											class="not-prose mx-1 aspect-video max-w-36 rounded pb-1"
-											src={talk.img}
+											src={talk.thumbnail}
 											alt={talk.title}
 										/>
 									) : (
 										<Image
 											inferSize={true}
 											class="not-prose mx-1 aspect-video max-w-36 rounded pb-1"
-											src={talk.videoId ? getVideoThumbnail(talk.videoId) : ''}
+											src={talk.instances[0]!.videoId ? getVideoThumbnail(talk.instances[0]!.videoId) : ''}
 											alt={talk.title}
 										/>
 									)}
@@ -271,14 +271,21 @@ function getVideoThumbnail(videoId: string) {
 											<h3 class="text-md font-medium leading-tight text-gray-900">{talk.title}</h3>
 											<div class="align-content-center justify-content-center flex">
 												<div class="sticky font-mono text-xs font-bold leading-tight text-gray-700">
-													{talk.location}
+													{talk.instances[0]!.location}
 												</div>
-												<div class="pl-2 font-mono text-xs text-gray-600">{dateToYear(talk.date)}</div>
+												<div class="pl-2 font-mono text-xs text-gray-600">{dateToYear(talk.instances[0]!.date)}</div>
 											</div>
-											<a href={`https://youtu.be/${getVideoId(talk.url)}`} class="font-mono text-xs text-gray-600">
-												{`youtu.be/${getVideoId(talk.url)}`}
+											<a
+												href={
+													talk.instances[0]!.url
+														? `https://youtu.be/${getVideoId(talk.instances[0]!.url)}`
+														: talk.thumbnail
+												}
+												class="font-mono text-xs text-gray-600"
+											>
+												{`youtu.be/${talk.instances[0]!.videoId}`}
 											</a>
-											<p class="font-mono text-xs">{talk.summary}</p>
+											<p class="font-mono text-xs">{talk.description}</p>
 										</div>
 									</div>
 								</div>
