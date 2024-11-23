@@ -1,6 +1,7 @@
 import { z, defineCollection } from 'astro:content';
 import { file } from 'astro/loaders';
 import { authorFeedLoader } from '@/loaders/bsky.js';
+import TalkSchema from './schemas/Talk';
 
 const posts = defineCollection({
 	schema: ({ image }) =>
@@ -37,19 +38,7 @@ const profiles = defineCollection({
 
 const talks = defineCollection({
 	loader: file('src/content/data/talks.json'),
-	schema: z.object({
-		title: z.string(),
-		date: z.string(),
-		promote: z.optional(z.boolean()),
-		url: z.string(),
-		source: z.enum(['website', 'youtube', 'vimeo', 'page']),
-		type: z.enum(['talk', 'workshop', 'panel']),
-		remote: z.optional(z.boolean()),
-		videoId: z.optional(z.string()),
-		location: z.optional(z.string()),
-		summary: z.optional(z.string()),
-		img: z.optional(z.string()),
-	}),
+	schema: TalkSchema,
 });
 
 const projects = defineCollection({

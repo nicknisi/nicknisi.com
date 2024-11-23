@@ -1,0 +1,12 @@
+---
+import { getCollection } from 'astro:content';
+import PageLayout from '@/layouts/Page.astro';
+import Talk from '@/components/cards/Talk.astro';
+const talks = await getCollection('talks');
+---
+
+<PageLayout title="All Talks">
+	<div class="flex flex-col gap-2 md:grid md:auto-rows-auto md:grid-cols-3">
+		{talks.map(({ id }) => <Talk id={id} />)}
+	</div>
+</PageLayout>

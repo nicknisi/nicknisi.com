@@ -43,14 +43,15 @@ export async function getAsset(name: string) {
  */
 export async function getThumbnail(talk: Talk): Promise<string | ImageMetadata> {
 	let defaultThumbnail = await getAsset('talk_thumbnail.png');
-	if (talk.source === 'vimeo') {
-		const response = await fetch(`http://vimeo.com/api/v2/video/${talk.videoId}.json`);
+	const firstInstance = talk.instances[0]!;
+	if (firstInstance.url?.includes('vimeo')) {
+		const response = await fetch(`http://vimeo.com/api/v2/video/${firstInstance.videoId}.json`);
 		if (response.ok) {
 			const data = await response.json();
 			return data[0].thumbnail_medium as string;
 		}
-	} else if (talk.videoId) {
-		return `https://img.youtube.com/vi/${talk.videoId}/hqdefault.jpg`;
+	} else if (firstInstance.videoId) {
+		return `https://img.youtube.com/vi/${firstInstance.videoId}/hqdefault.jpg`;
 	}
 
 	return defaultThumbnail;

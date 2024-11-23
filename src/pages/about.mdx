@@ -41,10 +41,10 @@ Looking for my resume? You can find it [here](/resume).
 
 Nick is an occasional conference speaker and has spoken at conferences all over the world.
 
-<div class="grid-cols-3 md:grid md:auto-rows-auto">
+<div class="grid-cols-3 flex flex-col md:grid md:auto-rows-auto gap-2">
 	{talks
-	.map(({ data: talk }) => (
-			<Talk talk={talk} />
+	.map(({ id }) => (
+	<Talk id={id} />
 		))}
 </div>
 

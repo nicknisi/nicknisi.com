@@ -1,50 +1,94 @@
 ---
-import { type CollectionEntry } from 'astro:content';
+import { type CollectionEntry, getEntry } from 'astro:content';
 import { getThumbnail } from '@/utils/image.js';
 import { Image } from 'astro:assets';
+import Card from '@/components/Card.astro';
+import type { ImageMetadata } from 'astro';
 
 type Talk = CollectionEntry<'talks'>['data'];
 
 interface Props {
-	talk: Talk;
+	id: CollectionEntry<'talks'>['id'];
 }
 
-const { talk } = Astro.props;
-const { source, url, title, location, date, type } = talk;
-const thumbnail = await getThumbnail(talk);
+const { id } = Astro.props;
+const talk = await getEntry('talks', id);
+const { type, title, detailsUrl, instances } = talk.data;
+const thumbnail = await getThumbnail(talk.data);
+const hasMultipleInstances = instances.length > 1;
+const firstInstance = instances[0]!;
 ---
 
-<div
-	class="xs:flex-grow w-89 not-prose text-lg m-2 space-x-2 space-y-2 rounded-lg bg-cool-gray-50 p-2 pb-6 shadow-lg md:flex-1 dark:bg-cool-gray-900"
->
-	<a href={url} target={source === 'page' ? undefined : '_blank'} class="no-underline">
-		<div class="flex flex-col items-center gap-4 px-2 pb-4 pt-1 text-center">
+<Card class="bg-white dark:bg-gray-900">
+	<div class="p-3">
+		<div class="group relative">
 			<Image
-				class="not-prose mx-1 aspect-video h-auto w-56 rounded-lg object-cover pb-1"
 				src={thumbnail as ImageMetadata}
 				alt={title}
-				width={205}
-				height={111}
-				quality="high"
+				width={240}
+				height={135}
+				class="aspect-video w-full rounded object-cover"
 			/>
-			<h5 class="h-12 text-center text-xl font-bold leading-tight text-gray-900 dark:text-gray-100">
-				{title}
-			</h5>
-			<div class="align-content-center justify-content-center flex flex-col">
-				{(<div class="text-sm font-bold text-blue-gray-600 dark:text-blue-gray-200">{date}</div>)}
-				{
-					location && (
-						<div class="text-lg h-8 font-medium leading-tight text-gray-600 dark:text-gray-200">{location}</div>
-					)
-				}
-				<div class="pt-4">
-					<span
-						class="last mr-1 inline-block min-w-24 rounded-full bg-purple-700 px-2 py-1 font-sans text-base font-semibold uppercase text-gray-100 shadow-lg shadow-gray-200 last:mr-0"
+			{
+				hasMultipleInstances ? (
+					<a
+						href={detailsUrl}
+						class="absolute inset-0 flex items-center justify-center bg-dark-obsidian/0 transition-all duration-200 group-hover:bg-dark-obsidian/30"
+						title="View all instances of this talk"
 					>
-						{type}
-					</span>
-				</div>
-			</div>
+						<span class="rounded-full bg-dark-obsidian/50 px-3 py-1 text-sm text-white opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+							View All
+						</span>
+					</a>
+				) : (
+					instances[0] && (
+						<a
+							href={firstInstance.url}
+							class="absolute inset-0 flex items-center justify-center bg-dark-obsidian/0 transition-all duration-200 group-hover:bg-dark-obsidian/30"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<span class="rounded-full bg-dark-obsidian/50 px-3 py-1 text-sm text-white opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+								Watch Video
+							</span>
+						</a>
+					)
+				)
+			}
 		</div>
-	</a>
-</div>
+
+		<div class="mt-3">
+			<div class="mb-2">
+				<span class="text-blue-600 dark:text-blue-300 text-xs font-medium">
+					{type}
+				</span>
+			</div>
+
+			<h3 class="mb-2 line-clamp-2 text-base font-medium">
+				{title}
+			</h3>
+
+			{
+				hasMultipleInstances ? (
+					<div class="space-y-1">
+						<div class="flex items-center justify-between text-xs text-gray-600 dark:text-gray-400">
+							<span>{instances.length} presentations</span>
+							<a href={detailsUrl} class="text-blue-600 dark:text-blue-300 hover:underline">
+								View all →
+							</a>
+						</div>
+					</div>
+				) : (
+					<div class="space-y-1 text-xs text-gray-600 dark:text-gray-400">
+						<div>{firstInstance.event}</div>
+						<div class="flex gap-1">
+							<div>{firstInstance.location}</div>
+
+							<div>{firstInstance.date}</div>
+						</div>
+					</div>
+				)
+			}
+		</div>
+	</div>
+</Card>

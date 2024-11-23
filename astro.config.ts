@@ -54,5 +54,7 @@ export default defineConfig({
 		// simpler talk redirects for sharing
 		'/state-talk': '/talks/componentizing-application-state',
 		'/compiler-talk': '/talks/unleashing-the-typescript-compiler',
+		// rename /talks to /speaking
+		'/talks': '/speaking',
 	},
 });

@@ -1,0 +1,29 @@
+---
+interface Props {
+	class?: string;
+	hover?: boolean;
+	padding?: keyof typeof paddingMap;
+}
+
+const { class: className = '', hover = false, padding = 'medium' } = Astro.props;
+
+const paddingMap = {
+	none: '',
+	small: 'p-2',
+	medium: 'p-4',
+	large: 'p-6',
+};
+---
+
+<div
+	class:list={[
+		'rounded-lg',
+		'border border-gray-200 dark:border-gray-800',
+		'bg-white dark:bg-gray-900',
+		hover && 'transition-shadow duration-200 hover:shadow-md',
+		paddingMap[padding],
+		className,
+	]}
+>
+	<slot />
+</div>
