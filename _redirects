@@ -1,0 +1,9 @@
+# redirects for mastodon
+/.well-known/host-meta* https://fediverse.nicknisi.com/.well-known/host-meta:splat
+/.well-known/webfinger* https://fediverse.nicknisi.com/.well-known/webfinger:splat
+/.well-known/nodeinfo* https://fediverse.nicknisi.com/.well-known/nodeinfo:splat
+/@nicknisi https://fediverse.nicknisi.com/@nicknisi
+
+# tsconf info
+/tsconf https://archive.tsconf.io/2021/
+
