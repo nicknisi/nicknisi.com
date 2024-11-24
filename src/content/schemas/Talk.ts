@@ -1,6 +1,6 @@
 import { z } from 'astro:content';
 
-const TalkType = z.enum(['Conference Talk', 'Panel', 'Podcast', 'Moderation', 'Workshop']);
+const TalkType = z.enum(['Conference Talk', 'Panel', 'Podcast', 'Moderation', 'Workshop', 'Keynote', 'Lightning Talk']);
 
 const TalkInstance = z.object({
 	event: z.string(),

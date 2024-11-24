@@ -4,6 +4,7 @@ import { getThumbnail } from '@/utils/image.js';
 import { Image } from 'astro:assets';
 import Card from '@/components/Card.astro';
 import type { ImageMetadata } from 'astro';
+import { Icon } from 'astro-icon/components';
 
 type Talk = CollectionEntry<'talks'>['data'];
 
@@ -11,12 +12,27 @@ interface Props {
 	id: CollectionEntry<'talks'>['id'];
 }
 
+const talkTypeMap = {
+	'Conference Talk': {
+		icon: 'mdi:presentation-play',
+		bgClass: 'bg-vivid-light-blue-100',
+		iconClass: 'text-vivid-light-blue-700',
+	},
+	Panel: { icon: 'mdi:forum', bgClass: 'bg-teal-100', iconClass: 'text-teal-800' },
+	Workshop: { icon: 'mdi:hammer-wrench', bgClass: 'bg-yellow-100', iconClass: 'text-yellow-800' },
+	Keynote: { icon: 'mdi:star', bgClass: 'bg-vivid-pink-100', iconClass: 'text-vivid-pink-800' },
+	'Lightning Talk': { icon: 'mdi:flash', bgClass: 'bg-purple-100', iconClass: '' },
+	Podcast: { icon: 'mdi:microphone', bgClass: 'bg-vivid-yellow-100', iconClass: 'bg-vivid-yellow-600' },
+	Moderation: { icon: 'mdi:forum', bgClass: 'bg-purple-100', iconClass: 'text-purple-400' },
+} as const;
+
 const { id } = Astro.props;
 const talk = await getEntry('talks', id);
 const { type, title, detailsUrl, instances } = talk.data;
 const thumbnail = await getThumbnail(talk.data);
 const hasMultipleInstances = instances.length > 1;
 const firstInstance = instances[0]!;
+const { icon, bgClass, iconClass } = talkTypeMap[type as keyof typeof talkTypeMap];
 ---
 
 <Card class="bg-white dark:bg-gray-900">
@@ -59,36 +75,39 @@ const firstInstance = instances[0]!;
 
 		<div class="mt-3">
 			<div class="mb-2">
-				<span class="text-blue-600 dark:text-blue-300 text-xs font-medium">
-					{type}
+				<span class:list={['flex items-center gap-2 text-xs font-medium', iconClass]}>
+					<span class:list={[bgClass, 'inline-block rounded-full p-1']}>
+						<Icon class:list={[iconClass]} name={icon} />
+					</span>
+					<span class="font-bold">{type}</span>
 				</span>
+
+				<h3 class="mb-2 line-clamp-2 text-base font-medium">
+					{title}
+				</h3>
+
+				{
+					hasMultipleInstances ? (
+						<div class="space-y-1">
+							<div class="flex items-center justify-between text-xs text-gray-600 dark:text-gray-400">
+								<span>{instances.length} presentations</span>
+								<a href={detailsUrl} class="text-blue-600 dark:text-blue-300 hover:underline">
+									View all →
+								</a>
+							</div>
+						</div>
+					) : (
+						<div class="space-y-1 text-xs text-gray-600 dark:text-gray-400">
+							<div>{firstInstance.event}</div>
+							<div class="flex gap-1">
+								<div>{firstInstance.location}</div>
+
+								<div>{firstInstance.date}</div>
+							</div>
+						</div>
+					)
+				}
 			</div>
-
-			<h3 class="mb-2 line-clamp-2 text-base font-medium">
-				{title}
-			</h3>
-
-			{
-				hasMultipleInstances ? (
-					<div class="space-y-1">
-						<div class="flex items-center justify-between text-xs text-gray-600 dark:text-gray-400">
-							<span>{instances.length} presentations</span>
-							<a href={detailsUrl} class="text-blue-600 dark:text-blue-300 hover:underline">
-								View all →
-							</a>
-						</div>
-					</div>
-				) : (
-					<div class="space-y-1 text-xs text-gray-600 dark:text-gray-400">
-						<div>{firstInstance.event}</div>
-						<div class="flex gap-1">
-							<div>{firstInstance.location}</div>
-
-							<div>{firstInstance.date}</div>
-						</div>
-					</div>
-				)
-			}
 		</div>
 	</div>
 </Card>
