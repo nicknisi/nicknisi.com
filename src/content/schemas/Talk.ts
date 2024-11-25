@@ -5,7 +5,7 @@ const TalkType = z.enum(['Conference Talk', 'Panel', 'Podcast', 'Moderation', 'W
 const TalkInstance = z.object({
 	event: z.string(),
 	location: z.string(),
-	date: z.string(),
+	date: z.coerce.date(),
 	url: z.string().url().optional(),
 	videoId: z.string().optional(),
 	remote: z.boolean().optional(),

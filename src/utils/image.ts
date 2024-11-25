@@ -4,7 +4,7 @@ import { invariant } from './common';
 import { readFile } from 'fs/promises';
 import { extname } from 'path';
 
-type Talk = CollectionEntry<'talks'>['data'];
+type Talk = CollectionEntry<'appearances'>['data'];
 
 const STATIC_ASSETS = import.meta.glob<{ default: ImageMetadata }>('../assets/**/*.{png,jpg,jpeg,svg}');
 const mimeTypes = {

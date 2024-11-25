@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 import PageLayout from '@/layouts/Page.astro';
 import Talk from '@/components/cards/Talk.astro';
 import Callout from '@/components/Callout.astro';
-const talks = (await getCollection('talks')).slice(0, 9);
+const appearances = (await getCollection('appearances')).slice(0, 9);
 ---
 
 <PageLayout title="Speaking">
@@ -14,7 +14,7 @@ const talks = (await getCollection('talks')).slice(0, 9);
 	</p>
 
 	<div class="flex flex-col gap-2 md:grid md:auto-rows-auto md:grid-cols-3">
-		{talks.map(({ id }) => <Talk id={id} />)}
+		{appearances.map(appearance => <Talk appearance={appearance} />)}
 	</div>
 	<div class="mt-8 flex justify-end">
 		<a href="/talks/all" class="text-blue-600 font-bold hover:underline">View all talks →</a>
