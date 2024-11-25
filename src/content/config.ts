@@ -41,6 +41,10 @@ const talks = defineCollection({
 	schema: TalkSchema,
 });
 
+const appearances = defineCollection({
+	schema: TalkSchema,
+});
+
 const projects = defineCollection({
 	loader: file('src/content/data/projects.json'),
 	schema: z.object({
@@ -83,4 +87,5 @@ export const collections = {
 	projects,
 	profiles,
 	bluesky,
+	appearances,
 };

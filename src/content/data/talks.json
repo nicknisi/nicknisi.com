@@ -1,51 +1,5 @@
 [
 	{
-		"id": "typescript-compiler",
-		"title": "Unleashing the TypeScript Compiler",
-		"promote": true,
-		"type": "Conference Talk",
-		"thumbnail": "typescript-compiler.jpg",
-		"detailsUrl": "/talks/unleashing-the-typescript-compiler",
-		"instances": [
-			{
-				"event": "THAT Conference",
-				"location": "Wisconsin Dells, WI",
-				"date": "2024-08-01"
-			},
-			{
-				"event": "KCDC",
-				"location": "Kansas City, KS",
-				"date": "2024-06-27"
-			},
-			{
-				"event": "Monthly Dev",
-				"location": "Online",
-				"date": "March 2024"
-			}
-		]
-	},
-	{
-		"id": "state-talk",
-		"title": "Componentizing Application State",
-		"detailsUrl": "/talks/componentizing-application-state",
-		"promote": true,
-		"type": "Conference Talk",
-		"instances": [
-			{
-				"event": "THAT Conference",
-				"location": "Austin, TX",
-				"date": "2024-01-29",
-				"url": "https://www.youtube.com/watch?v=4-msZqqrN1A",
-				"videoId": "4-msZqqrN1A"
-			},
-			{
-				"event": "KCDC",
-				"location": "Kansas City, KS",
-				"date": "2023-07-16"
-			}
-		]
-	},
-	{
 		"id": "tsconf-ts-team-2021",
 		"title": "TalkScript with the TypeScript Team",
 		"type": "Moderation",
