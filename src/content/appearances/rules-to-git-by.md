@@ -3,7 +3,7 @@ title: Rules to Git By
 promote: true
 type: Conference Talk
 instances:
-  - date: October 2019
+  - date: 2019-10-21
     event: NebraskaJS
     location: Omaha, NE
     url: https://www.youtube.com/watch?v=aHKn59spc6M

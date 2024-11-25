@@ -2,7 +2,7 @@
 title: Intro to Intern
 type: Conference Talk
 instances:
-  - date: January 2015
+  - date: 2015-01-06
     event: Coffee and Code
     location: Omaha, NE
     url: https://www.youtube.com/watch?v=Fgt_frjlAaQ

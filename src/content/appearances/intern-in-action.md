@@ -2,7 +2,7 @@
 title: Intern in Action
 type: Conference Talk
 instances:
-  - date: January 2015
+  - date: 2015-01-11
     event: Omaha Ruby and Open Source Meetup
     location: Omaha, NE
     url: https://www.youtube.com/watch?v=oOssM0DusYc
