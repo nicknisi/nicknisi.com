@@ -41,3 +41,24 @@ export async function getPosts(limit?: number | undefined) {
 
 	return posts;
 }
+
+export async function getAppearances(limit?: number | undefined) {
+	let appearances = (await getCollection('appearances')).sort((a, b) => {
+		return new Date(a.data.instances[0].date) > new Date(b.data.instances[0].date) ? -1 : 1;
+	});
+
+	if (limit) {
+		appearances = appearances.slice(0, limit);
+	}
+
+	return appearances.map(appearance => ({
+		...appearance,
+		data: {
+			...appearance.data,
+			instances: appearance.data.instances.map(instance => ({
+				...instance,
+				date: readableDate(instance.date),
+			})),
+		},
+	}));
+}

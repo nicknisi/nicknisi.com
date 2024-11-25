@@ -1,9 +1,9 @@
 ---
-import { getCollection } from 'astro:content';
 import PageLayout from '@/layouts/Page.astro';
 import Talk from '@/components/cards/Talk.astro';
 import Callout from '@/components/Callout.astro';
-const appearances = (await getCollection('appearances')).slice(0, 9);
+import { getAppearances } from '@/util';
+const appearances = await getAppearances(9);
 ---
 
 <PageLayout title="Speaking">

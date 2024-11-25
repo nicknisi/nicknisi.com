@@ -10,7 +10,7 @@ import metadata from '../data/metadata.json';
 import Project from '@/components/cards/Project.astro';
 import { Image } from 'astro:assets';
 import { getAsset } from '@/utils/image.js'
-export const talks = await getCollection('talks', talk => talk.data.promote);
+export const appearances = await getCollection('appearances', talk => talk.data.promote);
 export const profileImg = await getAsset(metadata.profile);
 export const projects = await getCollection('projects', project => !project.data.hidden);
 
@@ -42,9 +42,9 @@ Looking for my resume? You can find it [here](/resume).
 Nick is an occasional conference speaker and has spoken at conferences all over the world.
 
 <div class="grid-cols-3 flex flex-col md:grid md:auto-rows-auto gap-2">
-	{talks
-	.map(({ id }) => (
-	<Talk id={id} />
+	{appearances
+	.map(appearance => (
+	<Talk appearance={appearance} />
 		))}
 </div>
 

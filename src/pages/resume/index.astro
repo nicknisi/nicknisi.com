@@ -8,7 +8,8 @@ import { getCollection } from 'astro:content';
 import '@/styles/base.css';
 
 const projects = (await getCollection('projects', project => !project.data.hidden)).map(project => project.data) ?? [];
-const talks = (await getCollection('talks', talk => talk.data.promote)).map(talk => talk.data) ?? [];
+const appearances =
+	(await getCollection('appearances', appearance => appearance.data.promote)).map(appearance => appearance.data) ?? [];
 const jobs = (await getCollection('jobs')).map(job => job.data) ?? [];
 const profiles = (await getCollection('profiles', profile => !profile.data.hidden)).map(profile => profile.data) ?? [];
 
@@ -214,32 +215,34 @@ function getVideoThumbnail(videoId: string) {
 					{/* web layout */}
 					<div class="flex flex-1 flex-col flex-wrap gap-4 sm:flex-row print:hidden">
 						{
-							talks.map(talk => (
+							appearances.map(appearance => (
 								<div class="basis-44 rounded-lg border border-gray-100 p-4">
-									<a href={talk.instances[0]!.url} target="_blank" class="no-underline">
+									<a href={appearance.instances[0]!.url} target="_blank" class="no-underline">
 										<div class="flex flex-col items-center space-y-2 px-2 pb-4 pt-1 text-center">
-											<h3 class="text-center text-xs font-bold leading-tight text-gray-900">{talk.title}</h3>
-											{talk.thumbnail ? (
+											<h3 class="text-center text-xs font-bold leading-tight text-gray-900">{appearance.title}</h3>
+											{appearance.thumbnail ? (
 												<AssetImage
 													class="not-prose mx-1 aspect-video h-auto max-w-36 rounded pb-1"
-													src={talk.thumbnail}
-													alt={talk.title}
+													src={appearance.thumbnail}
+													alt={appearance.title}
 												/>
 											) : (
 												<Image
 													inferSize={true}
 													class="not-prose mx-1 aspect-video h-auto max-w-36 rounded pb-1"
-													src={talk.instances[0]!.videoId ? getVideoThumbnail(talk.instances[0]!.videoId) : ''}
-													alt={talk.title}
+													src={
+														appearance.instances[0]!.videoId ? getVideoThumbnail(appearance.instances[0]!.videoId) : ''
+													}
+													alt={appearance.title}
 												/>
 											)}
 											<div class="align-content-center justify-content-center flex flex-col">
 												<div class="sticky font-mono text-xs font-bold leading-tight text-gray-500">
-													{talk.instances[0]!.location}
+													{appearance.instances[0]!.location}
 												</div>
-												<div class="font-mono text-xs text-gray-500">{dateToYear(talk.instances[0]!.date)}</div>
+												<div class="font-mono text-xs text-gray-500">{dateToYear(appearance.instances[0]!.date)}</div>
 											</div>
-											<p class="font-sans text-xs">{talk.description}</p>
+											<p class="font-sans text-xs">{appearance.description}</p>
 										</div>
 									</a>
 								</div>
@@ -249,7 +252,7 @@ function getVideoThumbnail(videoId: string) {
 					{/* print layout */}
 					<div class="hidden flex-1 flex-col flex-wrap sm:flex-row print:flex">
 						{
-							talks.map(talk => (
+							appearances.map(talk => (
 								<div class="flex py-2">
 									{talk.thumbnail ? (
 										<AssetImage

@@ -36,11 +36,6 @@ const profiles = defineCollection({
 	}),
 });
 
-const talks = defineCollection({
-	loader: file('src/content/data/talks.json'),
-	schema: TalkSchema,
-});
-
 const appearances = defineCollection({
 	schema: TalkSchema,
 });
@@ -82,7 +77,6 @@ const jobs = defineCollection({
 
 export const collections = {
 	posts,
-	talks,
 	jobs,
 	projects,
 	profiles,
