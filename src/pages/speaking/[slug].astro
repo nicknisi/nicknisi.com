@@ -19,7 +19,6 @@ const {
 	data: { title, description },
 } = entry;
 const { Content, headings } = await entry.render();
-console.log('HEADINGS', headings);
 ---
 
 <Markdown title={title} description={description}>

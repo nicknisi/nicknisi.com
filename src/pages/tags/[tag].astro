@@ -20,8 +20,6 @@ export async function getStaticPaths() {
 
 const { posts = [], tag } = Astro.props;
 
-console.log('POST', posts[0]);
-
 const tagPosts = posts.filter(post => post.data?.tags.includes(tag));
 ---
 

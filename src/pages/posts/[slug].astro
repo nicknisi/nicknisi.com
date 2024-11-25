@@ -26,7 +26,6 @@ const {
 	slug,
 	data: { title, description, pubDate, tags = [], draft },
 } = post;
-console.log('post', post);
 const { Content } = await post.render();
 const date = readableDate(pubDate);
 const wordCount = getWordCount(post?.body);
