@@ -10,11 +10,11 @@ import '../styles/base.css';
 import metadata from '@/data/metadata.json';
 
 interface Props {
-	title?: string;
-	description?: string;
-	headerImage?: string;
-	hideHeader?: boolean;
-	hideFooter?: boolean;
+	title?: string | undefined;
+	description?: string | undefined;
+	headerImage?: string | undefined;
+	hideHeader?: boolean | undefined;
+	hideFooter?: boolean | undefined;
 }
 
 const { title = metadata.title, description, hideHeader, hideFooter, headerImage } = Astro.props;
