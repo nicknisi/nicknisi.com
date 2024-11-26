@@ -11,7 +11,8 @@
 		"start": "astro dev",
 		"build": "astro build",
 		"preview": "astro preview",
-		"format": "prettier --check --write src/**/*"
+		"format": "prettier --check --write src/**/*",
+		"upgrade": "pnpm dlx @astrojs/upgrade"
 	},
 	"author": {
 		"name": "Nick Nisi",
@@ -25,13 +26,14 @@
 	"homepage": "https://github.com/nicknisi/nicknisi.com",
 	"license": "MIT",
 	"dependencies": {
-		"@astro-community/astro-embed-bluesky": "^0.1.1",
+		"@astro-community/astro-embed-bluesky": "^0.1.2",
+		"@astrojs/cloudflare": "^11.2.0",
 		"@astrojs/mdx": "3.1.9",
-		"@astrojs/react": "3.6.2",
+		"@astrojs/react": "3.6.3",
 		"@astrojs/rss": "4.0.9",
 		"@astrojs/sitemap": "3.2.1",
 		"@astrojs/tailwind": "5.1.2",
-		"@atproto/api": "^0.13.16",
+		"@atproto/api": "^0.13.18",
 		"@fontsource-variable/roboto-slab": "^5.1.0",
 		"@fontsource/atkinson-hyperlegible": "^5.1.0",
 		"@fontsource/oswald": "^5.1.0",
@@ -40,29 +42,30 @@
 		"@types/cheerio": "0.22.35",
 		"@types/react": "18.3.12",
 		"@types/react-dom": "18.3.1",
-		"astro": "4.16.10",
-		"astro-icon": "1.1.2",
+		"astro": "4.16.15",
+		"astro-icon": "1.1.4",
 		"luxon": "3.5.0",
 		"markdown-it": "14.1.0",
 		"react": "18.3.1",
 		"react-dom": "18.3.1",
 		"sanitize-html": "2.13.1",
-		"satori": "^0.11.3",
+		"satori": "^0.12.0",
 		"sharp": "0.33.5",
-		"tailwindcss": "3.4.14"
+		"tailwindcss": "3.4.15"
 	},
 	"devDependencies": {
 		"@iconify-json/ic": "1.2.1",
 		"@iconify-json/mdi": "1.2.1",
 		"@iconify-json/raphael": "1.2.0",
-		"@iconify-json/simple-icons": "1.2.11",
+		"@iconify-json/simple-icons": "1.2.13",
 		"@nicknisi/standard": "0.1.0",
 		"@types/luxon": "3.4.2",
 		"@types/markdown-it": "14.1.2",
 		"@types/sanitize-html": "2.13.0",
-		"prettier": "3.3.3",
+		"prettier": "3.4.1",
 		"prettier-plugin-astro": "0.14.1",
-		"prettier-plugin-tailwindcss": "0.6.8",
-		"typescript": "5.6.3"
+		"prettier-plugin-tailwindcss": "0.6.9",
+		"typescript": "5.7.2",
+		"wrangler": "^3.90.0"
 	}
 }
