@@ -25,6 +25,7 @@
 	"type": "module",
 	"homepage": "https://github.com/nicknisi/nicknisi.com",
 	"license": "MIT",
+	"packageManager": "pnpm@9.14.2",
 	"dependencies": {
 		"@astro-community/astro-embed-bluesky": "0.1.2",
 		"@astrojs/cloudflare": "11.2.0",
