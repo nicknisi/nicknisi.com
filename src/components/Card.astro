@@ -1,29 +1,143 @@
 ---
+// Card.astro
+import { Image } from 'astro:assets';
+import { type ImageMetadata } from 'astro';
+
 interface Props {
-	class?: string;
-	hover?: boolean;
-	padding?: keyof typeof paddingMap;
+	class?: string | undefined;
+	padding?: 'small' | 'normal' | 'large' | undefined;
+	shadow?: 'none' | 'small' | 'normal' | 'large' | undefined;
+	border?: boolean | undefined;
+	hover?: boolean | undefined;
+	title?: string | undefined;
+	subtitle?: string | undefined;
+	titleClassName?: string | undefined;
+	subtitleClassName?: string | undefined;
+	image?: ImageMetadata | string | undefined;
+	imageAlt?: string | undefined;
+	imagePosition?: 'top' | 'bottom' | undefined;
+	imageFit?: 'cover' | 'contain' | 'fill' | undefined;
+	imageWidth?: number | undefined;
+	imageHeight?: number | undefined;
+	hideImageOnMobile?: boolean | undefined;
+	interactive?: boolean | undefined;
+	href?: string | undefined;
+	target?: '_self' | '_blank' | '_parent' | '_top' | undefined;
 }
 
-const { class: className = '', hover = false, padding = 'medium' } = Astro.props;
+const {
+	class: className = '',
+	padding = 'small',
+	shadow = 'small',
+	border = false,
+	hover = false,
+	title,
+	subtitle,
+	titleClassName = '',
+	subtitleClassName = '',
+	image,
+	imageAlt = '',
+	imagePosition = 'top',
+	imageFit = 'cover',
+	imageWidth = 240,
+	imageHeight = 135,
+	hideImageOnMobile = false,
+	interactive = false,
+	target,
+	href,
+} = Astro.props;
 
-const paddingMap = {
-	none: '',
-	small: 'p-2',
-	medium: 'p-4',
-	large: 'p-6',
+// Utility mappings
+const paddingVariants = {
+	small: 'px-3',
+	normal: 'px-6',
+	large: 'px-8',
 };
+
+const shadowVariants = {
+	none: '',
+	small: 'shadow-sm',
+	normal: 'shadow-md',
+	large: 'shadow-lg',
+};
+
+const imageFitVariants = {
+	cover: 'object-cover',
+	contain: 'object-contain',
+	fill: 'object-fill',
+};
+
+// Compose classes
+const baseClasses = [
+	'rounded-lg',
+	'transition-all duration-200',
+	'bg-white dark:bg-gray-800',
+	'overflow-hidden',
+	shadowVariants[shadow],
+	border && 'border border-gray-200 dark:border-gray-700',
+	hover && 'hover:shadow-lg hover:-translate-y-1',
+	interactive && 'cursor-pointer',
+	className,
+]
+	.filter(Boolean)
+	.join(' ');
+
+const defaultTitleClasses = 'text-xl font-semibold text-gray-800 dark:text-white my-2';
+const defaultSubtitleClasses = 'text-sm text-gray-600 dark:text-gray-300 mt-1';
+
+const imageClasses = ['w-full h-full', imageFitVariants[imageFit], hideImageOnMobile && 'hidden sm:block']
+	.filter(Boolean)
+	.join(' ');
+
+const imageWrapperClasses = ['w-full', hideImageOnMobile && 'hidden sm:block'].filter(Boolean).join(' ');
+
+// Determine the wrapper element based on whether we have an href
+const WrapperElement = href ? 'a' : 'div';
 ---
 
-<div
-	class:list={[
-		'rounded-lg',
-		'border border-gray-200 dark:border-gray-800',
-		'bg-white dark:bg-gray-900',
-		hover && 'transition-shadow duration-200 hover:shadow-md',
-		paddingMap[padding],
-		className,
-	]}
->
-	<slot />
-</div>
+<WrapperElement href={href} target={target} class={baseClasses}>
+	{/* Top Image */}
+	{
+		image && imagePosition === 'top' && (
+			<div class={imageWrapperClasses} style={`height: ${imageHeight}px;`}>
+				<Image
+					src={image as ImageMetadata}
+					alt={imageAlt}
+					width={imageWidth}
+					height={imageHeight}
+					class={imageClasses}
+				/>
+			</div>
+		)
+	}
+
+	{/* Title Section */}
+	{
+		(title || subtitle) && (
+			<div class={paddingVariants[padding]}>
+				{title && <h3 class:list={[defaultTitleClasses, titleClassName]}>{title}</h3>}
+				{subtitle && <p class:list={[defaultSubtitleClasses, subtitleClassName]}>{subtitle}</p>}
+			</div>
+		)
+	}
+
+	{/* Content Section */}
+	<div class={paddingVariants[padding]}>
+		<slot />
+	</div>
+
+	{/* Bottom Image */}
+	{
+		image && imagePosition === 'bottom' && (
+			<div class={imageWrapperClasses} style={`height: ${imageHeight}px;`}>
+				<Image
+					src={image as ImageMetadata}
+					alt={imageAlt}
+					width={imageWidth}
+					height={imageHeight}
+					class={imageClasses}
+				/>
+			</div>
+		)
+	}
+</WrapperElement>

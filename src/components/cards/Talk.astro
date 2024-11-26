@@ -1,9 +1,7 @@
 ---
 import { type CollectionEntry } from 'astro:content';
 import { getThumbnail } from '@/utils/image.js';
-import { Image } from 'astro:assets';
 import Card from '@/components/Card.astro';
-import type { ImageMetadata } from 'astro';
 import { Icon } from 'astro-icon/components';
 import { toReadableDate } from '@/utils/common';
 
@@ -24,12 +22,12 @@ const talkTypeMap = {
 	Keynote: { icon: 'mdi:star', bgClass: 'bg-vivid-pink-100', iconClass: 'text-vivid-pink-800' },
 	'Lightning Talk': { icon: 'mdi:flash', bgClass: 'bg-purple-100', iconClass: '' },
 	Podcast: { icon: 'mdi:microphone', bgClass: 'bg-vivid-yellow-100', iconClass: 'bg-vivid-yellow-600' },
-	Moderation: { icon: 'mdi:forum', bgClass: 'bg-purple-100', iconClass: 'text-purple-400' },
+	Moderation: { icon: 'mdi:forum', bgClass: 'bg-vivid-pink-100', iconClass: 'text-vivid-pink-300' },
 } as const;
 
 const { appearance: talk } = Astro.props;
 const { slug } = talk;
-const { type, title, detailsUrl, instances } = talk.data;
+const { type, title, instances } = talk.data;
 const thumbnail = await getThumbnail(talk.data);
 const hasMultipleInstances = instances.length > 1;
 const firstInstance = instances[0]!;
@@ -37,78 +35,56 @@ const { icon, bgClass, iconClass } = talkTypeMap[type as keyof typeof talkTypeMa
 const date = toReadableDate(firstInstance.date);
 ---
 
-<Card class="bg-white dark:bg-gray-900">
-	<div class="p-3">
-		<div class="group relative">
-			<Image
-				src={thumbnail as ImageMetadata}
-				alt={title}
-				width={240}
-				height={135}
-				class="aspect-video w-full rounded object-cover"
-			/>
+<Card
+	class="bg-white dark:bg-gray-900"
+	image={thumbnail}
+	imageWidth={240}
+	imageHeight={135}
+	imageAlt={title}
+	hover
+	title={title}
+	interactive
+	border
+	href={hasMultipleInstances ? `/speaking/${slug}` : firstInstance.url}
+>
+	<div>
+		<div class="mb-2">
+			<span class:list={['flex items-center gap-2 text-xs font-bold', iconClass]}>
+				<span class:list={[bgClass, 'inline-block rounded-full p-1']}>
+					<Icon class:list={[iconClass]} name={icon} />
+				</span>
+				<span class="text-xl font-bold">{type}</span>
+			</span>
+
 			{
 				hasMultipleInstances ? (
-					<a
-						href={`/speaking/${slug}`}
-						class="absolute inset-0 flex items-center justify-center bg-dark-obsidian/0 transition-all duration-200 group-hover:bg-dark-obsidian/30"
-						title="View all instances of this talk"
-					>
-						<span class="rounded-full bg-dark-obsidian/50 px-3 py-1 text-sm text-white opacity-0 transition-opacity duration-200 group-hover:opacity-100">
-							View All
-						</span>
-					</a>
+					<div class="mt-2 space-y-1">
+						<div class="text-md flex items-center justify-between font-medium text-gray-600 dark:text-gray-400">
+							<div class="flex items-center gap-1">
+								<Icon name="mdi:star-circle" />
+								<span>{instances.length} appearances</span>
+							</div>
+						</div>
+					</div>
 				) : (
-					firstInstance && (
-						<a
-							href={firstInstance.url}
-							class="absolute inset-0 flex items-center justify-center bg-dark-obsidian/0 transition-all duration-200 group-hover:bg-dark-obsidian/30"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							<span class="rounded-full bg-dark-obsidian/50 px-3 py-1 text-sm text-white opacity-0 transition-opacity duration-200 group-hover:opacity-100">
-								Watch Video
-							</span>
-						</a>
-					)
+					<div class="text-md mt-2 flex flex-col font-medium text-gray-500 dark:text-gray-400">
+						<div class="flex items-center gap-1">
+							<Icon name="mdi:ticket" />
+							{firstInstance.event}
+						</div>
+						<div class="flex gap-2">
+							<div class="flex items-center gap-1">
+								<Icon name="mdi:map-marker" />
+								{firstInstance.location}
+							</div>
+							<div class="flex items-center gap-1">
+								<Icon name="mdi:calendar" />
+								{date}
+							</div>
+						</div>
+					</div>
 				)
 			}
-		</div>
-
-		<div class="mt-3">
-			<div class="mb-2">
-				<span class:list={['flex items-center gap-2 text-xs font-medium', iconClass]}>
-					<span class:list={[bgClass, 'inline-block rounded-full p-1']}>
-						<Icon class:list={[iconClass]} name={icon} />
-					</span>
-					<span class="font-bold">{type}</span>
-				</span>
-
-				<h3 class="mb-2 line-clamp-2 text-base font-medium">
-					{title}
-				</h3>
-
-				{
-					hasMultipleInstances ? (
-						<div class="space-y-1">
-							<div class="flex items-center justify-between text-xs text-gray-600 dark:text-gray-400">
-								<span>{instances.length} presentations</span>
-								<a href={`/speaking/${slug}`} class="text-blue-600 dark:text-blue-300 hover:underline">
-									View all →
-								</a>
-							</div>
-						</div>
-					) : (
-						<div class="space-y-1 text-xs text-gray-600 dark:text-gray-400">
-							<div>{firstInstance.event}</div>
-							<div class="flex gap-1">
-								<div>{firstInstance.location}</div>
-								<div>{date}</div>
-							</div>
-						</div>
-					)
-				}
-			</div>
 		</div>
 	</div>
 </Card>
