@@ -2,7 +2,7 @@
 import { type CollectionEntry, getCollection } from 'astro:content';
 import BaseLayout from '@/layouts/Base.astro';
 import { Icon } from 'astro-icon/components';
-import { readableDate, getWordCount } from '../../util.js';
+import { toReadableDate, getWordCount } from '@/utils/common';
 import metadata from '@/data/metadata.json';
 import Tag from '@/components/Tag.astro';
 import { getAsset } from '@/utils/image.js';
@@ -27,7 +27,7 @@ const {
 	data: { title, description, pubDate, tags = [], draft },
 } = post;
 const { Content } = await post.render();
-const date = readableDate(pubDate);
+const date = toReadableDate(pubDate);
 const wordCount = getWordCount(post?.body);
 const profileImg = await getAsset(metadata.profile);
 ---

@@ -2,7 +2,7 @@
 import PageLayout from '@/layouts/Page.astro';
 import Talk from '@/components/cards/Talk.astro';
 import Callout from '@/components/Callout.astro';
-import { getAppearances } from '@/util';
+import { getAppearances } from '@/utils/common';
 const appearances = await getAppearances(9);
 ---
 
@@ -17,7 +17,7 @@ const appearances = await getAppearances(9);
 		{appearances.map(appearance => <Talk appearance={appearance} />)}
 	</div>
 	<div class="mt-8 flex justify-end">
-		<a href="/talks/all" class="text-blue-600 font-bold hover:underline">View all talks →</a>
+		<a href="/speaking/all" class="text-blue-600 font-bold hover:underline">View all talks →</a>
 	</div>
 
 	<div class="pt-8">
