@@ -5,7 +5,7 @@ description: Learn more about Nick Nisi, a senior FAANG engineer, podcast host, 
 ---
 
 import { getCollection } from 'astro:content'
-import Talk from '@/components/cards/Talk.astro';
+import Appearances from '@/components/sections/Appearances.astro';
 import metadata from '../data/metadata.json';
 import Project from '@/components/cards/Project.astro';
 import { Image } from 'astro:assets';
@@ -41,14 +41,9 @@ Looking for my resume? You can find it [here](/resume).
 
 Nick is an occasional conference speaker and has spoken at conferences all over the world.
 
-<div class="grid-cols-3 flex flex-col md:grid md:auto-rows-auto gap-2">
-	{appearances
-	.map(appearance => (
-	<Talk appearance={appearance} />
-		))}
+<div class="not-prose">
+	<Appearances promoted />
 </div>
-
-**[Full List of talks](/talks)**
 
 ## Projects
 

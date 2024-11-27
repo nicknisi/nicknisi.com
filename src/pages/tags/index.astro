@@ -8,11 +8,11 @@ const tags: string[] = [...new Set(allPosts.map(post => post.frontmatter.tags).f
 <BaseLayout>
 	<div class="my-8 mb-8">
 		<h2 class="mb-3 text-3xl">Tags</h2>
-		<ul class="list-none space-y-3">
+		<ul class="flex list-none items-baseline gap-2 space-y-3">
 			{
 				tags.map(tag => (
 					<li>
-						<Tag name={tag} />
+						<Tag size="large" name={tag} />
 					</li>
 				))
 			}

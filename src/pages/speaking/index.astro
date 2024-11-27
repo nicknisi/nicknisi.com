@@ -1,9 +1,7 @@
 ---
 import PageLayout from '@/layouts/Page.astro';
-import Talk from '@/components/cards/Talk.astro';
 import Callout from '@/components/Callout.astro';
-import { getAppearances } from '@/utils/common';
-const appearances = await getAppearances(9);
+import Appearances from '@/components/sections/Appearances.astro';
 ---
 
 <PageLayout title="Speaking">
@@ -13,14 +11,9 @@ const appearances = await getAppearances(9);
 		creating memorable experiences for audiences across various formats.
 	</p>
 
-	<div class="flex flex-col gap-2 md:grid md:auto-rows-auto md:grid-cols-3">
-		{appearances.map(appearance => <Talk appearance={appearance} />)}
-	</div>
-	<div class="mt-8 flex justify-end">
-		<a href="/speaking/all" class="font-bold hover:underline">View all talks →</a>
-	</div>
+	<Appearances limit={9} />
 
-	<div class="pt-8">
+	<div class="mb-8 mt-16 flex justify-center">
 		<Callout type="info">
 			<p>
 				Fun fact: Beyond tech conferences, I've had the honor of officiating nine weddings, bringing the same dedication

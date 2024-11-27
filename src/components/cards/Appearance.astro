@@ -1,12 +1,10 @@
 ---
 import { type CollectionEntry } from 'astro:content';
 import { getThumbnail } from '@/utils/image.js';
-import Card from '@/components/Card.astro';
+import Card from '@/components/cards/Card.astro';
 import { Icon } from 'astro-icon/components';
 import { toReadableDate } from '@/utils/common';
 import FormattedDate from '../FormattedDate.astro';
-
-type Talk = CollectionEntry<'appearances'>['data'];
 
 interface Props {
 	appearance: CollectionEntry<'appearances'>;

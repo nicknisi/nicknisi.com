@@ -1,12 +1,8 @@
 ---
 import PageLayout from '@/layouts/Page.astro';
-import Talk from '@/components/cards/Talk.astro';
-import { getAppearances } from '@/utils/common';
-const appearances = await getAppearances();
+import Appearances from '@/components/sections/Appearances.astro';
 ---
 
-<PageLayout title="All Talks">
-	<div class="flex flex-col gap-2 md:grid md:auto-rows-auto md:grid-cols-3">
-		{appearances.map(appearance => <Talk appearance={appearance} />)}
-	</div>
+<PageLayout title="All Appearances">
+	<Appearances />
 </PageLayout>

@@ -1,0 +1,33 @@
+---
+import { getPosts } from '@/utils/common';
+import Post from '@/components/cards/Post.astro';
+
+interface Props {
+	limit?: number | undefined;
+	tag?: string | undefined;
+}
+
+const { limit, tag } = Astro.props;
+let posts = await getPosts(tag ? undefined : limit);
+
+if (tag) {
+	posts = posts.filter(post => post.data.tags?.includes(tag)).slice(0, limit);
+}
+
+let isTruncated = limit !== undefined || !!tag;
+---
+
+<div class="flex flex-col gap-2">
+	<div class="flex flex-col gap-4 md:grid md:auto-rows-auto md:grid-cols-3">
+		{posts.map(post => <Post post={post} />)}
+	</div>
+	{
+		isTruncated && (
+			<div class="mt-8 flex justify-end">
+				<a href="/posts" class="font-bold hover:underline">
+					View all posts →
+				</a>
+			</div>
+		)
+	}
+</div>

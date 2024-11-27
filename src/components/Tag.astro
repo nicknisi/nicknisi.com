@@ -1,12 +1,16 @@
 ---
 interface Props {
 	name: string;
+	size?: 'small' | 'large' | 'base' | undefined;
 }
-const { name } = Astro.props;
+const { name, size = 'small' } = Astro.props;
 ---
 
 <div
-	class="not-prose inline-flex flex-initial items-center justify-start px-1 text-sm tracking-wide text-gray-600 dark:text-gray-400"
+	class:list={[
+		'not-prose inline-flex flex-initial items-center justify-start px-1 tracking-wide text-gray-600 dark:text-gray-400',
+		size === 'small' ? 'text-sm' : size === 'base' ? 'text-base' : 'text-xl',
+	]}
 >
 	<div class="font-bold">#</div>
 	<a href={`/tags/${name}`}>{name.toLowerCase()}</a>

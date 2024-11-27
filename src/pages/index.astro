@@ -1,7 +1,7 @@
 ---
 import metadata from '../data/metadata.json';
 import BaseLayout from '../layouts/Base.astro';
-import Posts from '@/components/Posts.astro';
+import Posts from '@/components/sections//Posts.astro';
 import Tag from '@/components/Tag.astro';
 import { getPosts } from '@/utils/common';
 import { Icon } from 'astro-icon/components';
@@ -68,13 +68,10 @@ const tags: string[] = [...new Set(allPosts.map(post => post.data.tags).flat())]
 					<div class="flex items-center justify-center">
 						<Posts limit={6} />
 					</div>
-		<div class="mt-8 flex justify-end">
-			<a href="/posts" class="font-bold hover:underline">View all posts →</a>
-		</div>
 
 					<h3 class="my-4 mt-8 text-2xl">Tags</h3>
 					<div class="flex flex-initial flex-wrap items-center justify-start space-x-2">
-						{tags.map(tag => <Tag name={tag} />)}
+						{tags.map(tag => <Tag size="large" name={tag} />)}
 					</div>
 				</div>
 			</section>
