@@ -1,6 +1,6 @@
 ---
 import Tag from './Tag.astro';
-import PostDate from './PostDate.astro';
+import FormattedDate from './FormattedDate.astro';
 import { getPosts } from '@/utils/common';
 import Card from '@/components/Card.astro';
 import { Icon } from 'astro-icon/components';
@@ -32,7 +32,7 @@ const posts = await getPosts(limit);
 					<div class="flex flex-initial flex-wrap justify-start space-x-2">
 						<div class="flex gap-1">
 							<Icon name="mdi:calendar" />
-							<PostDate date={post.data.pubDate} />
+							<FormattedDate date={post.data.pubDate} />
 						</div>
 						{!!post.data.tags?.length && (
 							<div class="flex flex-initial flex-wrap justify-start">
