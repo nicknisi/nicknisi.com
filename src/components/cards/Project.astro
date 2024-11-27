@@ -2,28 +2,25 @@
 import { type CollectionEntry } from 'astro:content';
 
 type ProjectType = CollectionEntry<'projects'>['data'];
-interface Props extends ProjectType {}
+
+interface Props {
+	project: CollectionEntry<'projects'>;
+}
+
 import { getAsset } from '@/utils/image.js';
 import { Image } from 'astro:assets';
+import Card from './Card.astro';
 
-const image = Astro.props.image ? await getAsset(Astro.props.image) : null;
-
-const { name, url, roles, description, status } = Astro.props;
+const {
+	data: { name, url, roles, description, status, image },
+} = Astro.props.project;
 ---
 
-<div
-	class="align-center not-prose m-2 flex flex-col place-content-evenly justify-center space-x-2 space-y-2 rounded-lg bg-cool-gray-50 p-2 py-4 text-cool-gray-900 shadow-lg dark:bg-cool-gray-900 dark:text-cool-gray-50"
->
+<Card title={name} image={image} imagePosition="bottom" imageFit="contain">
 	<a href={url} target="_blank" class="no-underline">
 		<div class="flex">
 			<div class="align-items-center flex place-content-evenly justify-items-center">
-				{
-					image && (
-						<Image alt="JS Party" class="mx-2 h-16 w-16 rounded" src={image} quality="high" height={128} width={128} />
-					)
-				}
 				<div class="flex w-64 flex-col">
-					<h5 class="text-xl font-medium leading-tight">{name}</h5>
 					<p class="mb-2 w-64 p-2 text-sm">{description}</p>
 				</div>
 			</div>
@@ -45,4 +42,4 @@ const { name, url, roles, description, status } = Astro.props;
 			}
 		</div>
 	</a>
-</div>
+</Card>

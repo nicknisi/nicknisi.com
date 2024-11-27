@@ -6,10 +6,11 @@ description: Learn more about Nick Nisi, a senior FAANG engineer, podcast host, 
 
 import { getCollection } from 'astro:content'
 import Appearances from '@/components/sections/Appearances.astro';
+import Projects from '@/components/sections/Projects.astro';
 import metadata from '../data/metadata.json';
-import Project from '@/components/cards/Project.astro';
 import { Image } from 'astro:assets';
 import { getAsset } from '@/utils/image.js'
+import Callout from '@/components/Callout.astro';
 export const appearances = await getCollection('appearances', talk => talk.data.promote);
 export const profileImg = await getAsset(metadata.profile);
 export const projects = await getCollection('projects', project => !project.data.hidden);
@@ -21,6 +22,7 @@ export const projects = await getCollection('projects', project => !project.data
 	</div>
 </section>
 
+
 Hi there! I'm Nick Nisi - a proud father of two wonderful kids and the lucky husband of my amazing wife. Family is the center of my world and my greatest joy.
 
 In the tech community, you might know me as a host on the [JS Party](https://jsparty.fm) podcast, where I get to discuss the latest trends and topics in JavaScript with some of the brightest minds in the field. It's a real honor to be part of such an awesome show.
@@ -29,13 +31,15 @@ I'm passionate about bringing people together to learn and grow. In the past, I 
 
 As an engineer, I specialize in web technologies and have a deep love for TypeScript. I'm always exploring the latest frameworks and tools, and I take pride in writing clean, efficient, and maintainable code. Whether I'm working on a complex web app or a small side project, I strive to deliver top-notch results.
 
+<Callout title="Looking for my resume?">
+	<p>You can find here at <a href="/resume">nicknisi.com/resume</a>.</p>
+</Callout>
+
 In my (limited) free time, I'm excitedly tinkering on a startup of my own. While I can't share too many details yet, stay tuned for updates as this new venture takes shape! I also enjoy taking on diverse challenges and learning new things. For example, I've had the honor of officiating 10 weddings for friends and family over the years. It's always incredibly meaningful to play a role in joining two lives together.
 
 Oh, and did I mention I'm also a senior engineer at a FAANG company? It's challenging and rewarding work that keeps me on my toes.
 
 Feel free to connect with me on [Bluesky](https://bsky.app/profile/nicknisi.com), [GitHub](https://github.com/nicknisi), or [LinkedIn](https://linkedin.com/in/nicknisi). I'm always happy to chat about web development, TypeScript, podcasting, or really anything else! Fair warning though - with my packed schedule, it might take me a bit to respond!
-
-Looking for my resume? You can find it [here](/resume).
 
 ## Talks
 
@@ -47,10 +51,8 @@ Nick is an occasional conference speaker and has spoken at conferences all over 
 
 ## Projects
 
-<div class="flex flex-wrap place-content-evenly">
-	{projects.map(project => (
-		<Project {...project.data} />
-	))}
+<div class="not-prose">
+	<Projects promoted />
 </div>
 
 ## Bio

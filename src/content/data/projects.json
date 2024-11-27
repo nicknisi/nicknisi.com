@@ -2,7 +2,7 @@
 	{
 		"id": "js-party",
 		"name": "JS Party",
-		"image": "resume/jsparty.png",
+		"image": "@/assets/resume/jsparty.png",
 		"startDate": "2018-04-06",
 		"description": "A weekly celebration of JavaScript and the web.",
 		"highlights": ["Panelist from 2018 through present"],
@@ -11,12 +11,13 @@
 		"roles": ["Panelist"],
 		"type": "podcast",
 		"entity": "Changelog",
-		"status": "active"
+		"status": "active",
+		"promote": true
 	},
 	{
 		"slug": "nebraskajs",
 		"name": "NebraskaJS",
-		"image": "resume/nebraskajs.svg",
+		"image": "@/assets/resume/nebraskajs.svg",
 		"description": "A community of JavaScript developers in Nebraska.",
 		"highlights": ["Organized a conference from 2015 through 2019"],
 		"keywords": ["JavaScript", "TypeScript", "Community", "Meetup"],
@@ -25,12 +26,13 @@
 		"type": "meetup",
 		"entity": "NebraskaJS",
 		"startDate": "2012-01-01",
-		"status": "active"
+		"status": "active",
+		"promote": true
 	},
 	{
 		"id": "talkscript",
 		"name": "TalkScript",
-		"image": "resume/talkscript.svg",
+		"image": "@/assets/resume/talkscript.svg",
 		"startDate": "2015-05-01",
 		"endDate": "2022-12-14",
 		"description": "A podcast about the TypeScript language and community.",
@@ -45,7 +47,8 @@
 		"roles": ["Panelist"],
 		"type": "podcast",
 		"entity": "Changelog",
-		"status": "inactive"
+		"status": "inactive",
+		"promote": true
 	},
 	{
 		"id": "dojo",
@@ -63,7 +66,6 @@
 		"roles": ["Contributor"],
 		"type": "open source",
 		"entity": "Open Source",
-		"hidden": true,
 		"status": "inactive"
 	},
 	{
@@ -72,11 +74,10 @@
 		"description": "A documentation generator for TypeScript projects.",
 		"highlights": [],
 		"keywords": ["JavaScript", "TypeScript", "Open Source"],
-		"url": "https://typedoc.io",
+		"url": "https://typedoc.org",
 		"roles": ["Contributor"],
 		"type": "open source",
 		"entity": "Open Source",
-		"hidden": true,
 		"startDate": "2015-01-01",
 		"status": "inactive"
 	},
@@ -86,11 +87,10 @@
 		"description": "An online editor for rapid prototyping and sharing of web applications.",
 		"highlights": ["First outside contributor of new framework support (Dojo)."],
 		"keywords": ["JavaScript", "TypeScript", "Open Source"],
-		"url": "https://typedoc.io",
+		"url": "https://codesandbox.io",
 		"roles": ["Contributor"],
 		"type": "open source",
 		"entity": "Open Source",
-		"hidden": true,
 		"startDate": "2018-01-01",
 		"status": "inactive"
 	},
@@ -100,12 +100,13 @@
 		"description": "A collection of configuration files for my development environment.",
 		"highlights": ["Maintainer of a popular dotfiles repository with more than 3,000 stars on GitHub"],
 		"keywords": ["Vim", "Neovim", "tmux", "Zsh", "Bash", "Lua", "Open Source"],
-		"url": "https://typedoc.io",
+		"url": "https://github.com/nicknisi/dotfiles",
 		"roles": ["Contributor"],
 		"type": "open source",
 		"entity": "Open Source",
 		"startDate": "2012-04-11",
-		"status": "active"
+		"status": "active",
+		"promote": true
 	},
 	{
 		"id": "nejsconf",
@@ -119,7 +120,8 @@
 		"roles": ["Organizer", "Emcee"],
 		"type": "conference",
 		"entity": "NebraskaJS",
-		"status": "inactive"
+		"status": "inactive",
+		"promote": true
 	},
 	{
 		"id": "tsconf",
@@ -129,10 +131,11 @@
 		"description": "A single day, single track conference highlighting TypeScript and the TypeScript community.",
 		"highlights": ["Emcee from 2018 through present"],
 		"keywords": ["JavaScript", "TypeScript", "Community", "Conference"],
-		"url": "https://tsconf.io",
+		"url": "https://nicknisi.com/tsconf",
 		"roles": ["Emcee"],
 		"type": "conference",
 		"entity": "SitePen",
-		"status": "inactive"
+		"status": "inactive",
+		"promote": true
 	}
 ]

@@ -7,7 +7,7 @@ import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import '@/styles/base.css';
 
-const projects = (await getCollection('projects', project => !project.data.hidden)).map(project => project.data) ?? [];
+const projects = (await getCollection('projects', project => project.data.promote)).map(project => project.data) ?? [];
 const appearances =
 	(await getCollection('appearances', appearance => appearance.data.promote)).map(appearance => appearance.data) ?? [];
 const jobs = (await getCollection('jobs')).map(job => job.data) ?? [];
@@ -92,7 +92,7 @@ function getVideoThumbnail(videoId: string) {
 					/>
 				</div>
 				<div class="mt-2 space-y-8 print:space-y-4">
-					<h2 class="print:text-lg text-2xl font-bold">Work Experience</h2>
+					<h2 class="text-2xl font-bold print:text-lg">Work Experience</h2>
 					<div class="space-y-8 print:space-y-4">
 						{
 							jobs.map(job => (
@@ -100,7 +100,7 @@ function getVideoThumbnail(videoId: string) {
 									<div>
 										<div class="flex justify-between">
 											<div class="flex flex-col items-baseline gap-2 sm:flex-row">
-												<div class="text-lg flex items-baseline p-0 font-medium">
+												<div class="flex items-baseline p-0 text-lg font-medium">
 													<a class="flex cursor-pointer items-baseline" href={job.url}>
 														{job.image && (
 															<AssetImage src={job.image} alt={job.name} class="mr-2 inline-block size-4 rounded-md" />
@@ -139,7 +139,7 @@ function getVideoThumbnail(videoId: string) {
 					</div>
 				</div>
 				<div class="mt-2 space-y-8 print:space-y-4">
-					<h2 class="print:text-lg text-2xl font-bold">Projects</h2>
+					<h2 class="text-2xl font-bold print:text-lg">Projects</h2>
 					{/* web layout */}
 					<div class="flex flex-1 flex-col flex-wrap gap-4 sm:flex-row print:hidden">
 						{
@@ -148,11 +148,7 @@ function getVideoThumbnail(videoId: string) {
 									<h3 class="font-semibold">
 										<a href={project.url} class="cursor-pointer" target="_blank" rel="noopener noreferrer">
 											{project.image && (
-												<AssetImage
-													src={project.image}
-													alt={project.name}
-													class="mr-2 inline-block size-4 rounded-md"
-												/>
+												<Image src={project.image} alt={project.name} class="mr-2 inline-block size-4 rounded-md" />
 											)}
 											{project.name}
 										</a>
@@ -176,14 +172,10 @@ function getVideoThumbnail(videoId: string) {
 						{
 							projects.map(project => (
 								<div class="flex flex-col gap-1">
-									<h3 class="text-lg m-0 p-0 font-medium">
+									<h3 class="m-0 p-0 text-lg font-medium">
 										<a href={project.url} class="cursor-pointer" target="_blank" rel="noopener noreferrer">
 											{project.image && (
-												<AssetImage
-													src={project.image}
-													alt={project.name}
-													class="mr-2 inline-block size-4 rounded-md"
-												/>
+												<Image src={project.image} alt={project.name} class="mr-2 inline-block size-4 rounded-md" />
 											)}
 											{project.name}
 										</a>
@@ -211,7 +203,7 @@ function getVideoThumbnail(videoId: string) {
 					</div>
 				</div>
 				<div class="mt-2 space-y-8 print:space-y-4">
-					<h2 class="print:text-lg text-2xl font-bold">Recent Talks</h2>
+					<h2 class="text-2xl font-bold print:text-lg">Recent Talks</h2>
 					{/* web layout */}
 					<div class="flex flex-1 flex-col flex-wrap gap-4 sm:flex-row print:hidden">
 						{
@@ -296,7 +288,7 @@ function getVideoThumbnail(videoId: string) {
 					</div>
 				</div>
 				<div class="mt-2 space-y-8 print:space-y-4">
-					<h2 class="print:text-lg text-2xl font-bold">Skills</h2>
+					<h2 class="text-2xl font-bold print:text-lg">Skills</h2>
 					<div class="flex gap-4">
 						{
 							data.skills.map(skill => (
@@ -307,14 +299,14 @@ function getVideoThumbnail(videoId: string) {
 						}
 					</div>
 					<div class="mt-2 space-y-8 print:space-y-4">
-						<h2 class="print:text-lg text-2xl font-bold">Education</h2>
+						<h2 class="text-2xl font-bold print:text-lg">Education</h2>
 						{
 							data.education.map(school => (
 								<div class="space-y-2">
 									<div>
 										<div class="flex justify-between">
 											<div class="flex flex-col items-baseline gap-2 sm:flex-row">
-												<div class="text-lg flex items-baseline p-0 font-medium">{school.institution}</div>
+												<div class="flex items-baseline p-0 text-lg font-medium">{school.institution}</div>
 											</div>
 											{false && (
 												<div class="flex items-center font-mono text-xs">

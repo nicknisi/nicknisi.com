@@ -42,20 +42,21 @@ const appearances = defineCollection({
 
 const projects = defineCollection({
 	loader: file('src/content/data/projects.json'),
-	schema: z.object({
-		name: z.string(),
-		image: z.optional(z.string()),
-		startDate: z.string().date(),
-		endDate: z.optional(z.string().date()),
-		description: z.optional(z.string()),
-		url: z.string().url(),
-		roles: z.array(z.string()),
-		entity: z.optional(z.string()),
-		highlights: z.array(z.string()),
-		keywords: z.array(z.string()),
-		hidden: z.optional(z.boolean()),
-		status: z.enum(['active', 'inactive']),
-	}),
+	schema: ({ image }) =>
+		z.object({
+			name: z.string(),
+			image: image().optional(),
+			startDate: z.string().date(),
+			endDate: z.optional(z.string().date()),
+			description: z.optional(z.string()),
+			url: z.string().url(),
+			roles: z.array(z.string()),
+			entity: z.optional(z.string()),
+			highlights: z.array(z.string()),
+			keywords: z.array(z.string()),
+			promote: z.boolean().optional(),
+			status: z.enum(['active', 'inactive']),
+		}),
 });
 
 const jobs = defineCollection({
