@@ -1,0 +1,49 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<button type="button" id="themeToggle" class="p-2 text-2xl">
+	<Icon name="mdi:white-balance-sunny" />
+</button>
+
+<script is:inline>
+	function getTheme() {
+		if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+			return localStorage.getItem('theme');
+		}
+		if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+			return 'dark';
+		}
+		return 'light';
+	}
+
+	const theme = getTheme();
+
+	if (theme === 'light') {
+		document.documentElement.classList.remove('dark');
+	} else {
+		document.documentElement.classList.add('dark');
+	}
+	window.localStorage.setItem('theme', theme);
+
+	const button = document.querySelector('button#themeToggle');
+
+	function setTheme(theme = getTheme()) {
+		if (theme === 'light') {
+			document.documentElement.classList.remove('dark');
+		} else {
+			document.documentElement.classList.add('dark');
+		}
+		window.localStorage.setItem('theme', theme);
+	}
+
+	function toggleTheme() {
+		console.log('toggling theme');
+		const theme = getTheme() == 'light' ? 'dark' : 'light';
+		setTheme(theme);
+	}
+
+	button.addEventListener('click', toggleTheme);
+
+	setTheme();
+</script>
