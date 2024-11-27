@@ -56,13 +56,13 @@ const tags: string[] = [...new Set(allPosts.map(post => post.data.tags).flat())]
 			</p>
 
 			<section class="flex flex-col gap-4 sm:flex-row">
-				<div>
-					<h3 class="my-4 mt-8 text-2xl">Latest Skeets</h3>
-					<div class="flex flex-col justify-start gap-4">
-						{blueskyPosts.map(post => <BlueskyPost id={post.id} />)}
-					</div>
-				</div>
-
+				<!--<div>-->
+				<!--	<h3 class="my-4 mt-8 text-4xl">Latest Skeets</h3>-->
+				<!--	<div class="flex flex-col justify-start gap-4">-->
+				<!--		{blueskyPosts.map(post => <BlueskyPost id={post.id} />)}-->
+				<!--	</div>-->
+				<!--</div>-->
+				<!---->
 				<div class="flex flex-col">
 					<h3 class="my-4 mt-8 text-4xl">Latest posts</h3>
 					<div class="flex items-center justify-center">
