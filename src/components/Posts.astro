@@ -1,9 +1,9 @@
 ---
-import { Icon } from 'astro-icon/components';
 import Tag from './Tag.astro';
 import PostDate from './PostDate.astro';
-import { Image } from 'astro:assets';
 import { getPosts } from '@/utils/common';
+import Card from '@/components/Card.astro';
+import { Icon } from 'astro-icon/components';
 
 interface Props {
 	limit?: number;
@@ -13,40 +13,38 @@ const { limit } = Astro.props;
 const posts = await getPosts(limit);
 ---
 
-<ul class="flex list-none flex-wrap justify-center gap-3">
+<div class="flex flex-col gap-4 md:grid md:auto-rows-auto md:grid-cols-3">
 	{
 		posts.map(post => (
-			<li class="group my-4 mb-6 flex h-52 max-w-80">
+			<Card
+				image={`/posts/${post.slug}/og.png`}
+				imageWidth={290}
+				imageHeight={158}
+				imageAlt={post.data.title}
+				imageFit="fill"
+				hover
+				interactive
+				title={post.data.title}
+				subtitle={post.data.description}
+				href={post.data.external ?? `/posts/${post.slug}`}
+			>
 				<div class="text-lg">
-					<a class="align-center flex" href={post.data.external ?? `/posts/${post.slug}`}>
-						<div class="flex flex-col">
-							<Image
-								class="mb-2 transition duration-300 motion-safe:hover:scale-110"
-								src={`/posts/${post.slug}/og.png`}
-								width={300}
-								height={158}
-								alt={post.data.title}
-							/>
-							<div class="flex-grow-0 text-xl">
-								<span class="inline-block max-w-[280px] overflow-hidden text-ellipsis text-nowrap">
-									{post.data.title}
-									{post.data.external && <Icon name="mdi:open-in-new" class="inline-block h-4 w-4" />}
-								</span>
-							</div>
-						</div>
-					</a>
-					<div class="flex flex-initial flex-wrap items-center justify-start space-x-2">
-						<span>
+					<div class="flex flex-initial flex-wrap justify-start space-x-2">
+						<div class="flex gap-1">
+							<Icon name="mdi:calendar" />
 							<PostDate date={post.data.pubDate} />
-						</span>
-						<span>
-							{post.data.tags.map(tag => (
-								<Tag name={tag} />
-							))}
-						</span>
+						</div>
+						{!!post.data.tags?.length && (
+							<div class="flex flex-initial flex-wrap justify-start">
+								<Icon name="mdi:tag" class="text-gray-600 dark:text-gray-400" />
+								{post.data.tags.map(tag => (
+									<Tag name={tag} />
+								))}
+							</div>
+						)}
 					</div>
 				</div>
-			</li>
+			</Card>
 		))
 	}
-</ul>
+</div>
