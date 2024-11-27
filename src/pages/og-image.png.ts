@@ -165,7 +165,7 @@ export const GET: APIRoute<Props> = async ({ props }) => {
 										textAlign: 'center',
 										fontWeight: 900,
 										flexGrow: 0,
-										color: '#b3ecff',
+										color: '#2BB0ED',
 										paddingRight: '8px',
 										paddingLeft: '8px',
 										letterSpacing: -1,
@@ -201,6 +201,7 @@ export const GET: APIRoute<Props> = async ({ props }) => {
 			],
 			style: {
 				display: 'flex',
+				flexDirection: 'column',
 				width: '100%',
 				height: '100%',
 				...background,
