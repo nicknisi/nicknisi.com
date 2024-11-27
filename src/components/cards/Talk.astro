@@ -4,6 +4,7 @@ import { getThumbnail } from '@/utils/image.js';
 import Card from '@/components/Card.astro';
 import { Icon } from 'astro-icon/components';
 import { toReadableDate } from '@/utils/common';
+import FormattedDate from '../FormattedDate.astro';
 
 type Talk = CollectionEntry<'appearances'>['data'];
 
@@ -79,7 +80,7 @@ const date = toReadableDate(firstInstance.date);
 							</div>
 							<div class="flex items-center gap-1">
 								<Icon name="mdi:calendar" />
-								{date}
+								<FormattedDate date={new Date(date)} />
 							</div>
 						</div>
 					</div>
