@@ -3,7 +3,6 @@ import type { CollectionEntry } from 'astro:content';
 import { invariant } from './common';
 import { readFile } from 'fs/promises';
 import { extname } from 'path';
-import defaultThumbnail from '@/assets/talk_thumbnail.png';
 
 type Talk = CollectionEntry<'appearances'>['data'];
 
@@ -43,7 +42,7 @@ export async function getAsset(name: string) {
  * @param talk The talk to get the thumbnail for
  */
 export async function getThumbnail(talk: Talk): Promise<string | ImageMetadata> {
-	let thumbnail = defaultThumbnail;
+	let thumbnail = await getAsset('talk_thumbnail.png');
 	const firstInstance = talk.instances[0]!;
 	if (firstInstance.url?.includes('vimeo')) {
 		const response = await fetch(`http://vimeo.com/api/v2/video/${firstInstance.videoId}.json`);
