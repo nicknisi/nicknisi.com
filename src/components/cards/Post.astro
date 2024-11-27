@@ -1,0 +1,45 @@
+---
+import Tag from '@/components/Tag.astro';
+import FormattedDate from '@/components/FormattedDate.astro';
+import Card from '@/components/Card.astro';
+import { Icon } from 'astro-icon/components';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+	post: CollectionEntry<'posts'>;
+}
+
+const { post } = Astro.props;
+---
+
+<Card
+	image={`/posts/${post.slug}/og.png`}
+	imageWidth={290}
+	imageHeight={158}
+	imageAlt={post.data.title}
+	imageFit="fill"
+	hover
+	interactive
+	title={post.data.title}
+	subtitle={post.data.description}
+	href={post.data.external ?? `/posts/${post.slug}`}
+>
+	<div class="text-lg">
+		<div class="flex flex-initial flex-wrap justify-start space-x-2">
+			<div class="flex gap-1">
+				<Icon name="mdi:calendar" />
+				<FormattedDate date={post.data.pubDate} />
+			</div>
+			{
+				!!post.data.tags?.length && (
+					<div class="flex flex-initial flex-wrap justify-start">
+						<Icon name="mdi:tag" class="text-gray-600 dark:text-gray-400" />
+						{post.data.tags.map(tag => (
+							<Tag name={tag} />
+						))}
+					</div>
+				)
+			}
+		</div>
+	</div>
+</Card>

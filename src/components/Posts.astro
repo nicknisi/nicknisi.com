@@ -1,9 +1,6 @@
 ---
-import Tag from './Tag.astro';
-import FormattedDate from './FormattedDate.astro';
 import { getPosts } from '@/utils/common';
-import Card from '@/components/Card.astro';
-import { Icon } from 'astro-icon/components';
+import Post from '@/components/cards/Post.astro';
 
 interface Props {
 	limit?: number;
@@ -14,37 +11,5 @@ const posts = await getPosts(limit);
 ---
 
 <div class="flex flex-col gap-4 md:grid md:auto-rows-auto md:grid-cols-3">
-	{
-		posts.map(post => (
-			<Card
-				image={`/posts/${post.slug}/og.png`}
-				imageWidth={290}
-				imageHeight={158}
-				imageAlt={post.data.title}
-				imageFit="fill"
-				hover
-				interactive
-				title={post.data.title}
-				subtitle={post.data.description}
-				href={post.data.external ?? `/posts/${post.slug}`}
-			>
-				<div class="text-lg">
-					<div class="flex flex-initial flex-wrap justify-start space-x-2">
-						<div class="flex gap-1">
-							<Icon name="mdi:calendar" />
-							<FormattedDate date={post.data.pubDate} />
-						</div>
-						{!!post.data.tags?.length && (
-							<div class="flex flex-initial flex-wrap justify-start">
-								<Icon name="mdi:tag" class="text-gray-600 dark:text-gray-400" />
-								{post.data.tags.map(tag => (
-									<Tag name={tag} />
-								))}
-							</div>
-						)}
-					</div>
-				</div>
-			</Card>
-		))
-	}
+	{posts.map(post => <Post post={post} />)}
 </div>
