@@ -49,6 +49,12 @@ const {
 
 // Utility mappings
 const paddingVariants = {
+	small: 'p-3',
+	normal: 'p-6',
+	large: 'p-8',
+};
+
+const titlePaddingVariants = {
 	small: 'px-3',
 	normal: 'px-6',
 	large: 'px-8',
@@ -69,6 +75,7 @@ const imageFitVariants = {
 
 // Compose classes
 const baseClasses = [
+	'inline-block',
 	'rounded-lg',
 	'transition-all duration-200',
 	'bg-white dark:bg-gray-800',
@@ -78,16 +85,12 @@ const baseClasses = [
 	hover && 'hover:shadow-lg hover:-translate-y-1',
 	interactive && 'cursor-pointer',
 	className,
-]
-	.filter(Boolean)
-	.join(' ');
+];
 
 const defaultTitleClasses = 'text-xl font-semibold text-gray-800 dark:text-white my-2';
 const defaultSubtitleClasses = 'text-sm text-gray-600 dark:text-gray-300 mt-1';
 
-const imageClasses = ['w-full h-full', imageFitVariants[imageFit], hideImageOnMobile && 'hidden sm:block']
-	.filter(Boolean)
-	.join(' ');
+const imageClasses = ['w-full h-full', imageFitVariants[imageFit], hideImageOnMobile && 'hidden sm:block'];
 
 const imageWrapperClasses = ['w-full', hideImageOnMobile && 'hidden sm:block'].filter(Boolean).join(' ');
 
@@ -95,49 +98,45 @@ const imageWrapperClasses = ['w-full', hideImageOnMobile && 'hidden sm:block'].f
 const WrapperElement = href ? 'a' : 'div';
 ---
 
-<WrapperElement href={href} target={target} class={baseClasses}>
-	{/* Top Image */}
-	{
-		image && imagePosition === 'top' && (
-			<div class={imageWrapperClasses} style={`height: ${imageHeight}px;`}>
-				<Image
-					src={image as ImageMetadata}
-					alt={imageAlt}
-					width={imageWidth}
-					height={imageHeight}
-					class={imageClasses}
-				/>
-			</div>
-		)
-	}
-
-	{/* Title Section */}
-	{
-		(title || subtitle) && (
-			<div class={paddingVariants[padding]}>
-				{title && <h3 class:list={[defaultTitleClasses, titleClassName]}>{title}</h3>}
-				{subtitle && <p class:list={[defaultSubtitleClasses, subtitleClassName]}>{subtitle}</p>}
-			</div>
-		)
-	}
-
-	{/* Content Section */}
-	<div class={paddingVariants[padding]}>
-		<slot />
-	</div>
-
-	{/* Bottom Image */}
-	{
-		image && imagePosition === 'bottom' && (
-			<div class={imageWrapperClasses} style={`height: ${imageHeight}px;`}>
-				<Image
-					src={image as ImageMetadata}
-					alt={imageAlt}
-					width={imageWidth}
-					height={imageHeight}
-					class={imageClasses}
-				/>
-			</div>
-		)
-	}
-</WrapperElement>
+<div class:list={baseClasses}>
+	<WrapperElement href={href} target={target}>
+		{/* Top Image */}
+		{
+			image && imagePosition === 'top' && (
+				<div class={imageWrapperClasses} style={`height: ${imageHeight}px;`}>
+					<Image
+						src={image as ImageMetadata}
+						alt={imageAlt}
+						width={imageWidth}
+						height={imageHeight}
+						class:list={imageClasses}
+					/>
+				</div>
+			)
+		}
+		{
+			(title || subtitle) && (
+				<div class:list={[titlePaddingVariants[padding], 'mb-2']}>
+					{title && <h3 class:list={[defaultTitleClasses, titleClassName]}>{title}</h3>}
+					{subtitle && <p class:list={[defaultSubtitleClasses, subtitleClassName]}>{subtitle}</p>}
+				</div>
+			)
+		}
+		<div class={paddingVariants[padding]}>
+			<slot />
+		</div>
+		{
+			image && imagePosition === 'bottom' && (
+				<div class={imageWrapperClasses} style={`height: ${imageHeight}px;`}>
+					<Image
+						src={image as ImageMetadata}
+						alt={imageAlt}
+						width={imageWidth}
+						height={imageHeight}
+						class:list={imageClasses}
+					/>
+				</div>
+			)
+		}
+	</WrapperElement>
+</div>
