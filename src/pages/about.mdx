@@ -11,6 +11,7 @@ import metadata from '../data/metadata.json';
 import { Image } from 'astro:assets';
 import { getAsset } from '@/utils/image.js'
 import Callout from '@/components/Callout.astro';
+import CopyableContent from '@/components/CopyableContent.astro';
 export const appearances = await getCollection('appearances', talk => talk.data.promote);
 export const profileImg = await getAsset(metadata.profile);
 export const projects = await getCollection('projects', project => !project.data.hidden);
@@ -61,8 +62,12 @@ Here's a few different versions of my bio that you can use for different purpose
 
 ### First Person Bio
 
+<CopyableContent>
 >I'm Nick Nisi, a TypeScript enthusiast and host of the JS Party podcast. I'm passionate about building communities and have organized conferences like NEJS Conf and TypeScript Conf. When I'm not coding or podcasting, you can find me tinkering on my startup or officiating weddings. Oh, and I also happen to be a senior engineer at a FAANG company. Let's connect and chat about all things web development!
+</CopyableContent>
 
 ### Third Person Bio
 
+<CopyableContent>
 >Nick Nisi is a TypeScript enthusiast and host of the JS Party podcast. He's passionate about building communities and has organized conferences like NEJS Conf and TypeScript Conf. When he's not coding or podcasting, you can find him tinkering on his startup or officiating weddings. Oh, and he also happens to be a senior engineer at a FAANG company. Connect with Nick to chat about all things web development!
+</CopyableContent>
