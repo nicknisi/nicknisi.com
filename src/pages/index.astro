@@ -7,10 +7,8 @@ import { getPosts } from '@/utils/common';
 import { Icon } from 'astro-icon/components';
 import { getAsset } from '@/utils/image.js';
 import { Image } from 'astro:assets';
-import { BlueskyPost } from '@astro-community/astro-embed-bluesky';
-import { getCollection } from 'astro:content';
+import Skeets from '@/components/Skeets.astro';
 
-const blueskyPosts = await getCollection('bluesky');
 const profileImage = await getAsset('profile.jpg');
 const allPosts = await getPosts();
 const tags: string[] = [...new Set(allPosts.map(post => post.data.tags).flat())];
@@ -37,7 +35,7 @@ const tags: string[] = [...new Set(allPosts.map(post => post.data.tags).flat())]
 				</div>
 			</div>
 			<div
-				class="flex w-full items-center justify-center pt-2 text-gray-200 md:items-end md:justify-start md:pt-0 dark:text-gray-700"
+				class="flex w-full items-center justify-center pt-2 text-gray-200 dark:text-gray-700 md:items-end md:justify-start md:pt-0"
 			>
 				{
 					['raphael:vim', 'mdi:language-typescript', 'mdi:react', 'mdi:nodejs', 'mdi:language-javascript'].map(name => (
@@ -55,26 +53,24 @@ const tags: string[] = [...new Set(allPosts.map(post => post.data.tags).flat())]
 				<a class="font-bold text-purple-700 dark:text-purple-200" href="/about">More about me.</a>
 			</p>
 
-			<section class="flex flex-col gap-4 sm:flex-row">
-				<!--<div>-->
-				<!--	<h3 class="my-4 mt-8 text-4xl">Latest Skeets</h3>-->
-				<!--	<div class="flex flex-col justify-start gap-4">-->
-				<!--		{blueskyPosts.map(post => <BlueskyPost id={post.id} />)}-->
-				<!--	</div>-->
-				<!--</div>-->
-				<!---->
-				<div class="flex flex-col">
+			<section class="flex flex-col flex-nowrap gap-4 sm:flex-row">
+				<div>
+					<h3 class="my-4 mt-8 text-4xl">Latest Skeets</h3>
+					<Skeets limit={3} server:defer>
+						<h3 slot="fallback">Loading Latest Bluesky posts...</h3>
+					</Skeets>
+				</div>
+				<div>
 					<h3 class="my-4 mt-8 text-4xl">Latest posts</h3>
 					<div class="flex items-center justify-center">
 						<Posts limit={6} />
 					</div>
-
-					<h3 class="my-4 mt-8 text-2xl">Tags</h3>
-					<div class="flex flex-initial flex-wrap items-center justify-start space-x-2">
-						{tags.map(tag => <Tag size="large" name={tag} />)}
-					</div>
 				</div>
 			</section>
+			<h3 class="my-4 mt-8 text-2xl">Tags</h3>
+			<div class="flex flex-initial flex-wrap items-center justify-start space-x-2">
+				{tags.map(tag => <Tag size="large" name={tag} />)}
+			</div>
 		</div>
 	</div>
 </BaseLayout>
