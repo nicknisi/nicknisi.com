@@ -1,17 +1,8 @@
 ---
-import { getCollection } from 'astro:content';
-import { BlueskyPost } from '@astro-community/astro-embed-bluesky';
-
-const blueskyPosts = await getCollection('bluesky');
-export const prerender = false;
-const now = new Date().toISOString();
+import BaseLayout from '@/layouts/Base.astro';
+import Skeets from '@/components/Skeets.astro';
 ---
 
-<h1>Right now</h1>
-<h2>{now}</h2>
-<div>
-	<h3 class="my-4 mt-8 text-4xl">Latest Skeets</h3>
-	<div class="flex flex-col justify-start gap-4">
-		{blueskyPosts.map(post => <BlueskyPost id={post.id} />)}
-	</div>
-</div>
+<BaseLayout title="Right Now">
+	<Skeets server:defer> <h1 slot="fallback">LOADING</h1> </Skeets>
+</BaseLayout>

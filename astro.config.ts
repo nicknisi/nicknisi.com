@@ -40,6 +40,7 @@ export default defineConfig({
 
 	experimental: {
 		contentLayer: true,
+		serverIslands: true,
 	},
 
 	integrations: [
@@ -77,5 +78,7 @@ export default defineConfig({
 	},
 
 	output: 'hybrid',
-	adapter: cloudflare(),
+	adapter: cloudflare({
+		imageService: 'cloudflare',
+	}),
 });

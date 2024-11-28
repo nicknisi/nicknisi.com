@@ -1,0 +1,28 @@
+---
+import { BlueskyPost } from '@astro-community/astro-embed-bluesky';
+import { AtpAgent } from '@atproto/api';
+
+const now = new Date().toISOString();
+const handle = 'nicknisi.com';
+
+const agent = new AtpAgent({ service: 'https://public.api.bsky.app' });
+const {
+	data: { feed },
+} = await agent.getAuthorFeed({
+	actor: handle,
+	limit: 5,
+});
+
+const posts = feed.map(({ post }) => post);
+---
+
+<div>
+	<h1>Right now</h1>
+	<h2>{now}</h2>
+	<div>
+		<h3 class="my-4 mt-8 text-4xl">Latest Skeets</h3>
+		<div class="flex flex-col justify-start gap-4">
+			{posts.map(post => <BlueskyPost post={post} />)}
+		</div>
+	</div>
+</div>
