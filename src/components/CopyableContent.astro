@@ -1,20 +1,30 @@
 ---
 import { Icon } from 'astro-icon/components';
+interface Props {
+	border?: boolean;
+	padding?: boolean;
+}
+
+const { border = false, padding = false } = Astro.props;
 ---
 
-<div class="copyable-content flex gap-2 rounded-lg border border-gray-200 p-4 dark:border-gray-800">
-	<div class="content min-w-0 flex-grow">
+<div
+	class:list={[
+		'copyable-content relative',
+		border && 'rounded-lg border border-gray-200 dark:border-gray-800',
+		padding && 'p-4',
+	]}
+>
+	<div class:list={['content min-w-0', padding && 'pr-8']}>
 		<slot />
 	</div>
-	<div class="flex-shrink-0 self-start">
-		<button
-			class="copy-button rounded-md p-2 text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-700 dark:hover:text-gray-100"
-			aria-label="Copy to clipboard"
-		>
-			<Icon name="mdi:content-copy" class="copy-icon" />
-			<Icon name="mdi:check" class="check-icon hidden text-teal-500 dark:text-teal-400" />
-		</button>
-	</div>
+	<button
+		class="copy-button absolute right-3 top-3 rounded-md p-2 text-gray-500 transition-colors hover:bg-gray-100/75 hover:text-gray-700 dark:hover:bg-gray-700/75 dark:hover:text-gray-100"
+		aria-label="Copy to clipboard"
+	>
+		<Icon name="mdi:content-copy" class="copy-icon" />
+		<Icon name="mdi:check" class="check-icon hidden text-teal-500 dark:text-teal-400" />
+	</button>
 </div>
 
 <script>
