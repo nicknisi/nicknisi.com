@@ -1,0 +1,65 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<div class="copyable-content flex gap-2 rounded-lg border border-gray-200 p-4 dark:border-gray-800">
+	<div class="content min-w-0 flex-grow">
+		<slot />
+	</div>
+	<div class="flex-shrink-0 self-start">
+		<button
+			class="copy-button rounded-md p-2 text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-700 dark:hover:text-gray-100"
+			aria-label="Copy to clipboard"
+		>
+			<Icon name="mdi:content-copy" class="copy-icon" />
+			<Icon name="mdi:check" class="check-icon hidden text-teal-500 dark:text-teal-400" />
+		</button>
+	</div>
+</div>
+
+<script>
+	function setupCopyableButtons() {
+		document.querySelectorAll('.copyable-content').forEach(container => {
+			const button = container.querySelector('.copy-button');
+			const content = container.querySelector('.content');
+			const copyIcon = container.querySelector('.copy-icon');
+			const checkIcon = container.querySelector('.check-icon');
+
+			if (!button || !content || !copyIcon || !checkIcon) {
+				return;
+			}
+
+			button.addEventListener('click', async () => {
+				try {
+					let textToCopy;
+
+					const codeElements = content.querySelectorAll('pre, code');
+					if (codeElements.length > 0) {
+						textToCopy = Array.from(codeElements)
+							.map(el => el.textContent)
+							.join('\n');
+					} else {
+						textToCopy = content.textContent;
+					}
+
+					if (textToCopy) {
+						await navigator.clipboard.writeText(textToCopy);
+					}
+
+					copyIcon.classList.add('hidden');
+					checkIcon.classList.remove('hidden');
+
+					setTimeout(() => {
+						copyIcon.classList.remove('hidden');
+						checkIcon.classList.add('hidden');
+					}, 2000);
+				} catch (err) {
+					console.error('Failed to copy content to clipboard', err);
+				}
+			});
+		});
+	}
+
+	setupCopyableButtons();
+	document.addEventListener('astro:page-load', setupCopyableButtons);
+</script>
