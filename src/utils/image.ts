@@ -1,22 +1,9 @@
 import type { ImageMetadata } from 'astro';
 import type { CollectionEntry } from 'astro:content';
-import { invariant } from './common';
-import { readFile } from 'fs/promises';
-import { extname } from 'path';
 
 type Talk = CollectionEntry<'appearances'>['data'];
 
 const STATIC_ASSETS = import.meta.glob<{ default: ImageMetadata }>('../assets/**/*.{png,jpg,jpeg,svg}');
-const mimeTypes = {
-	'.jpg': 'data:image/jpeg;base64,',
-	'.jpeg': 'data:image/jpeg;base64,',
-	'.png': 'data:image/png;base64,',
-	'.webp': 'data:image/webp;base64,',
-	jpg: 'data:image/jpeg;base64,',
-	jpeg: 'data:image/jpeg;base64,',
-	png: 'data:image/png;base64,',
-	webp: 'data:image/webp;base64,',
-};
 const assets = Object.entries(STATIC_ASSETS).reduce(
 	(acc, [key, value]) => ({
 		...acc,
@@ -55,28 +42,6 @@ export async function getThumbnail(talk: Talk): Promise<string | ImageMetadata> 
 	}
 
 	return thumbnail;
-}
-
-/**
- * Get the mimetype for a provided file, or derive it from a provided format.
- * Throws an error if the mimetype is unsupported.
- * @param filepath The path to check
- * @param format The format to check
- * @returns The mimetype for the provided file or format
- */
-function getMimeType(filepath: string, format?: string) {
-	const ext = (format ?? extname(filepath).toLowerCase()) as keyof typeof mimeTypes;
-	const mimeType = mimeTypes[ext];
-	invariant(mimeType, `Unsupported image format: ${ext}`);
-	return mimeType;
-}
-
-/**
- * Convert an image at the provided file path to a base64 string.
- */
-export async function imageToBase64(filepath: string, format?: string): Promise<string> {
-	const mimeType = getMimeType(filepath, format);
-	return `${mimeType}${(await readFile(filepath)).toString('base64')}`;
 }
 
 /**

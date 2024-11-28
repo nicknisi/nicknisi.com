@@ -1,55 +1,48 @@
-import fs from 'fs/promises';
-import { join } from 'path';
 import satori from 'satori';
 import sharp from 'sharp';
 import type { APIRoute } from 'astro';
 import { type ReactNode } from 'react';
 import { type CollectionEntry } from 'astro:content';
 import metadata from '@/data/metadata.json';
-import { imageToBase64, isValidOpenGraphRatio } from '@/utils/image';
-import { invariant } from '@/utils/common';
 
-const PROJECT_DIR = join(import.meta.dirname, '..', '..');
-const PUBLIC = join(PROJECT_DIR, 'public');
+import oswaldBoldData from '@@/public/fonts/Oswald/Oswald-Bold.ttf';
+import dmSansBoldData from '@@/public/fonts/DM_Sans/DMSans-Bold.ttf';
+import robotoData from '@@/public/fonts/Roboto/Roboto-Regular.ttf';
+import robotoBoldData from '@@/public/fonts/Roboto/Roboto-Bold.ttf';
+
+import beefImage from '@/assets/beef_nick.png?buffer';
+import headshotImage from '@/assets/headshot.png?buffer';
 
 interface Props {
 	post?: CollectionEntry<'posts'>;
 }
 
-function normalizeVitePath(path: string) {
-	// Remove @fs prefix
-	let normalPath = path.replace(/^\/@fs/, '');
-
-	// Remove query parameters (anything after ?)
-	normalPath = normalPath.split('?')?.[0] ?? normalPath;
-	invariant(normalPath, `Failed to normalize path: "${path}"`);
-
-	return normalPath;
-}
-
 export const GET: APIRoute<Props> = async ({ props }) => {
-	const oswaldBoldData = await fs.readFile(`${PUBLIC}/fonts/Oswald/Oswald-Bold.ttf`);
-	const dmSansBoldData = await fs.readFile(`${PUBLIC}/fonts/DM_Sans/DMSans-Bold.ttf`);
-	const robotoData = await fs.readFile(`${PUBLIC}/fonts/Roboto/Roboto-Regular.ttf`);
-	const robotoBoldData = await fs.readFile(`${PUBLIC}/fonts/Roboto/Roboto-Bold.ttf`);
-	const beef = await imageToBase64(`${PUBLIC}/beef_nick.png`);
-	const headshot = await imageToBase64(`${PUBLIC}/headshot.png`);
-	const { data: { title = metadata.description, description, image: heroImage } = {} } = props.post ?? {};
+	const beef = `data:image/png;base64,${Buffer.from(beefImage).toString('base64')}`;
+	const headshot = `data:image/png;base64,${Buffer.from(headshotImage).toString('base64')}`;
+
+	const {
+		data: {
+			title = metadata.description,
+			description,
+			//image: heroImage
+		} = {},
+	} = props.post ?? {};
 
 	let background: Record<string, unknown> = {
 		backgroundImage: 'linear-gradient(to bottom, #11181C, #0b1215)',
 		backgroundColor: '#0b1215',
 	};
 
-	if (heroImage && isValidOpenGraphRatio(heroImage.src.width, heroImage.src.height)) {
-		const backgroundImage = await imageToBase64(normalizeVitePath(heroImage.src.src), heroImage.src.format);
-		background = {
-			...background,
-			backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(${backgroundImage})`,
-			backgroundRepeat: 'no-repeat',
-			backgroundSize: '100% 100%',
-		};
-	}
+	//if (heroImage && isValidOpenGraphRatio(heroImage.src.width, heroImage.src.height)) {
+	//	const backgroundImage = await imageToBase64(normalizeVitePath(heroImage.src.src), heroImage.src.format);
+	//	background = {
+	//		...background,
+	//		backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(${backgroundImage})`,
+	//		backgroundRepeat: 'no-repeat',
+	//		backgroundSize: '100% 100%',
+	//	};
+	//}
 
 	const node: ReactNode = {
 		type: 'div',
@@ -214,22 +207,22 @@ export const GET: APIRoute<Props> = async ({ props }) => {
 		height: 630,
 		fonts: [
 			{
-				data: dmSansBoldData,
+				data: Buffer.from(dmSansBoldData),
 				name: 'DM Sans Bold',
 				style: 'normal',
 			},
 			{
-				data: oswaldBoldData,
+				data: Buffer.from(oswaldBoldData),
 				name: 'Oswald Bold',
 				style: 'normal',
 			},
 			{
-				data: robotoData,
+				data: Buffer.from(robotoData),
 				name: 'Roboto',
 				style: 'normal',
 			},
 			{
-				data: robotoBoldData,
+				data: Buffer.from(robotoBoldData),
 				name: 'Roboto Bold',
 				style: 'normal',
 			},
