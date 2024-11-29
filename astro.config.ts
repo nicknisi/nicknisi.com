@@ -60,6 +60,7 @@ export default defineConfig({
 
 	vite: {
 		plugins: [rawBuffer()],
+		build: { minify: false },
 	},
 
 	output: 'hybrid',

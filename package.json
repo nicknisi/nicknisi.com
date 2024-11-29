@@ -10,7 +10,7 @@
 		"dev": "astro dev",
 		"start": "astro dev",
 		"build": "astro build",
-		"preview": "astro preview",
+		"preview": "wrangler pages dev ./dist",
 		"format": "prettier --check --write src/**/*",
 		"upgrade": "pnpm dlx @astrojs/upgrade"
 	},
@@ -66,6 +66,7 @@
 		"prettier": "3.4.1",
 		"prettier-plugin-astro": "0.14.1",
 		"prettier-plugin-tailwindcss": "0.6.9",
-		"typescript": "5.7.2"
+		"typescript": "5.7.2",
+		"wrangler": "^3.91.0"
 	}
 }
