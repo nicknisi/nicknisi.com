@@ -9,21 +9,6 @@ import mdx from '@astrojs/mdx';
 import tailwind from '@astrojs/tailwind';
 import cloudflare from '@astrojs/cloudflare';
 
-function rawBuffer(ext: string[]) {
-	return {
-		name: 'vite-plugin-raw-buffer',
-		transform(_: unknown, id: string) {
-			if (ext.some(e => id.endsWith(e))) {
-				const buffer = readFileSync(id.replace(/\?buffer$/, ''));
-				return {
-					code: `export default ${JSON.stringify(buffer)}`,
-					map: null,
-				};
-			}
-		},
-	};
-}
-
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://nicknisi.com',
@@ -74,7 +59,7 @@ export default defineConfig({
 	},
 
 	vite: {
-		plugins: [rawBuffer(['.ttf', '?buffer'])],
+		plugins: [rawBuffer()],
 	},
 
 	output: 'hybrid',
@@ -82,3 +67,25 @@ export default defineConfig({
 		//imageService: 'cloudflare',
 	}),
 });
+
+/**
+ * Vite plugin to load raw buffer data from a file.
+ * This is useful for loading binary data like images or fonts.
+ * @returns a Vite plugin object
+ * @see https://vitejs.dev/config/#plugins
+ */
+function rawBuffer() {
+	return {
+		name: 'vite-plugin-raw-buffer',
+		transform(_: unknown, id: string) {
+			if (id.endsWith('?buffer')) {
+				const buffer = readFileSync(id.replace(/\?buffer$/, ''));
+				return {
+					code: `export default ${JSON.stringify(buffer)}`,
+					map: null,
+				};
+			}
+			return undefined;
+		},
+	};
+}
