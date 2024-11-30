@@ -5,10 +5,10 @@ import { type ReactNode } from 'react';
 import { type CollectionEntry } from 'astro:content';
 import metadata from '@/data/metadata.json';
 
-import oswaldBoldData from '@@/public/fonts/Oswald/Oswald-Bold.ttf';
-import dmSansBoldData from '@@/public/fonts/DM_Sans/DMSans-Bold.ttf';
-import robotoData from '@@/public/fonts/Roboto/Roboto-Regular.ttf';
-import robotoBoldData from '@@/public/fonts/Roboto/Roboto-Bold.ttf';
+import oswaldBoldData from '@@/public/fonts/Oswald/Oswald-Bold.ttf?buffer';
+import dmSansBoldData from '@@/public/fonts/DM_Sans/DMSans-Bold.ttf?buffer';
+import robotoData from '@@/public/fonts/Roboto/Roboto-Regular.ttf?buffer';
+import robotoBoldData from '@@/public/fonts/Roboto/Roboto-Bold.ttf?buffer';
 
 import beefImage from '@/assets/beef_nick.png?buffer';
 import headshotImage from '@/assets/headshot.png?buffer';
