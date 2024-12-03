@@ -1,5 +1,7 @@
-import { AppBskyFeedDefs, type AppBskyFeedGetLikes, type AppBskyFeedGetPostThread } from '@atproto/api';
-
+import {
+	type AppBskyFeedGetLikes,
+	//type AppBskyFeedGetPostThread
+} from '@atproto/api';
 const DID = 'did:plc:qcyz4wcmgnz4mzxevrsrf6j6';
 
 function formatUri(uri: string) {
@@ -41,31 +43,31 @@ export async function getLikes(uri: string, limit = 100) {
 	return likes;
 }
 
-export async function getPostThread(uri: string) {
-	const atUri = formatUri(uri);
-	const params = new URLSearchParams({ uri: atUri });
-
-	const res = await fetch('https://public.api.bsky.app/xrpc/app.bsky.feed.getPostThread?' + params.toString(), {
-		method: 'GET',
-		headers: {
-			Accept: 'application/json',
-		},
-		cache: 'no-store',
-	});
-
-	if (!res.ok) {
-		console.error(await res.text());
-		throw new Error('Failed to fetch post thread');
-	}
-
-	const data = (await res.json()) as AppBskyFeedGetPostThread.OutputSchema;
-
-	if (!AppBskyFeedDefs.isThreadViewPost(data.thread)) {
-		throw new Error('Could not find thread');
-	}
-
-	return data.thread;
-}
+//export async function getPostThread(uri: string) {
+//	const atUri = formatUri(uri);
+//	const params = new URLSearchParams({ uri: atUri });
+//
+//	const res = await fetch('https://public.api.bsky.app/xrpc/app.bsky.feed.getPostThread?' + params.toString(), {
+//		method: 'GET',
+//		headers: {
+//			Accept: 'application/json',
+//		},
+//		cache: 'no-store',
+//	});
+//
+//	if (!res.ok) {
+//		console.error(await res.text());
+//		throw new Error('Failed to fetch post thread');
+//	}
+//
+//	const data = (await res.json()) as AppBskyFeedGetPostThread.OutputSchema;
+//
+//	if (!AppBskyFeedDefs.isThreadViewPost(data.thread)) {
+//		throw new Error('Could not find thread');
+//	}
+//
+//	return data.thread;
+//}
 
 /**
  * recursively check for replies and add them up
