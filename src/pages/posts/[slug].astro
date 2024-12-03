@@ -7,6 +7,8 @@ import metadata from '@/data/metadata.json';
 import Tag from '@/components/Tag.astro';
 import { getAsset } from '@/utils/image.js';
 import { Image } from 'astro:assets';
+import LikeCount from '@/components/bluesky/LikeCount.astro';
+import Likes from '@/components/bluesky/Likes.astro';
 
 interface Props {
 	post: CollectionEntry<'posts'>;
@@ -25,7 +27,7 @@ export async function getStaticPaths() {
 const { post, prevPost } = Astro.props;
 const {
 	slug,
-	data: { title, description, pubDate, tags = [], draft },
+	data: { title, description, pubDate, tags = [], draft, post: postUri },
 } = post;
 const { Content } = await post.render();
 const date = toReadableDate(pubDate);
@@ -55,15 +57,26 @@ const profileImg = await getAsset(metadata.profile);
 					<span class="uppercase">{date}</span>
 					<span class="hidden md:inline">•</span>
 					<span class="uppercase">{wordCount} minute read</span>
-					<span class="hidden sm:inline">•</span>
-					<span>
-						{tags.map((tag: string) => <Tag name={tag} />)}
+					{
+						postUri && (
+							<>
+								<span class="hidden sm:inline">•</span>
+								<LikeCount server:defer uri={postUri} />
+							</>
+						)
+					}
+					<span class="hidden sm:inline">
+						<span class="hidden sm:inline">•</span>
+						<span>
+							{tags.map((tag: string) => <Tag name={tag} />)}
+						</span>
 					</span>
 				</div>
 			</header>
 			<section>
 				<Content />
 			</section>
+			{postUri && <Likes server:defer post={postUri} />}
 			<div class="flex justify-center py-5 text-center sm:py-5">
 				<Icon name="mdi:star-outline" class="h-12 w-12 font-bold text-purple-600 dark:text-purple-200" />
 				<Icon name="mdi:star-outline" class="h-12 w-12 font-bold text-purple-600 dark:text-purple-200" />

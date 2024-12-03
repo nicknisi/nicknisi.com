@@ -12,7 +12,8 @@ const posts = defineCollection({
 			description: z.string().optional(),
 			pubDate: z.coerce.date(),
 			external: z.string().optional(),
-			draft: z.z.boolean().optional(),
+			draft: z.boolean().optional(),
+			post: z.string().url().optional(),
 			image: z
 				.object({
 					src: image(),

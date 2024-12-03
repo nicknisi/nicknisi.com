@@ -1,0 +1,17 @@
+---
+import { getPostThread } from '@/utils/bsky';
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+	uri: string;
+}
+
+const { uri } = Astro.props;
+const postData = await getPostThread(uri);
+const likes = postData.post.likeCount ?? 0;
+---
+
+<span>
+	<Icon name="mdi:heart" class="inline-block" />
+	<span>{likes}</span>
+</span>
