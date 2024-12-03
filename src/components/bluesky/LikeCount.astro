@@ -1,5 +1,5 @@
 ---
-import { getPostThread } from '@/utils/bluesky';
+import { getLikes } from '@/utils/bluesky';
 import { Icon } from 'astro-icon/components';
 
 interface Props {
@@ -7,11 +7,11 @@ interface Props {
 }
 
 const { uri } = Astro.props;
-const postData = await getPostThread(uri);
-const likes = postData.post.likeCount ?? 0;
+const likes = await getLikes(uri);
+const likeCount = likes?.length ?? 0;
 ---
 
 <span>
 	<Icon name="mdi:heart" class="inline-block" />
-	<span>{likes}</span>
+	<span>{likeCount}</span>
 </span>
