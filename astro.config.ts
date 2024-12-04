@@ -23,10 +23,7 @@ export default defineConfig({
 		domains: ['img.youtube.com', 'vimeo.com'],
 	},
 
-	experimental: {
-		contentLayer: true,
-		serverIslands: true,
-	},
+	experimental: {},
 
 	integrations: [
 		icon(),
@@ -63,7 +60,7 @@ export default defineConfig({
 		build: { minify: false },
 	},
 
-	output: 'hybrid',
+	output: 'static',
 	adapter: cloudflare({
 		//imageService: 'cloudflare',
 	}),
