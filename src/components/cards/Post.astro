@@ -14,10 +14,10 @@ const { post } = Astro.props;
 
 <Card
 	image={`/posts/${post.slug}/og.png`}
-	imageWidth={290}
-	imageHeight={158}
+	imageWidth={300}
+	imageHeight={180}
 	imageAlt={post.data.title}
-	imageFit="fill"
+	imageFit="cover"
 	hover
 	interactive
 	title={post.data.title}
