@@ -1,27 +1,18 @@
+import useFetchValue from '@/hooks/useFetchValue';
 import { getLikes } from '@/utils/bluesky';
-import { useState } from 'react';
-import { useEffect } from 'react';
-
-type Like = Awaited<ReturnType<typeof getLikes>>[number];
 
 interface Props {
 	post: string;
 }
 
 export default function Likes({ post }: Props) {
-	const [count, setCount] = useState(0);
-	const [likes, setLikes] = useState<Like[]>([]);
-	useEffect(() => {
-		getLikes(post).then(likes => {
-			setLikes(likes);
-			setCount(likes.length);
-		});
-	}, [post]);
+	const { value: likes = [] } = useFetchValue(() => getLikes(post), [post]);
+	const count = likes.length;
 
-	return (
+	return !count ? null : (
 		<div className="not-prose mt-8 flex flex-col gap-4">
 			<div className="text-base-950 dark:text-base-100 text-sm font-semibold">
-				<h2>
+				<h2 className="">
 					{count} like{count === 1 ? '' : 's'}
 				</h2>
 			</div>

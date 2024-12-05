@@ -1,5 +1,6 @@
-import { useEffect, useState, type ReactNode } from 'react';
+import useFetchValue from '@/hooks/useFetchValue';
 import { getLikes } from '@/utils/bluesky';
+import { type ReactNode } from 'react';
 
 interface Props {
 	post: string;
@@ -7,18 +8,16 @@ interface Props {
 }
 
 export default function LikeCount({ likeIcon, post }: Props) {
-	const [likeCount, setLikeCount] = useState(0);
+	const { value: likeCount } = useFetchValue(
+		() => getLikes(post),
+		[post],
+		likes => likes?.length ?? 0,
+	);
 
-	useEffect(() => {
-		getLikes(post).then(likes => {
-			setLikeCount(likes.length);
-		});
-	}, [post]);
-
-	return (
+	return likeCount ? (
 		<span className="flex gap-1">
 			{likeIcon}
 			<span>{likeCount}</span>
 		</span>
-	);
+	) : null;
 }
