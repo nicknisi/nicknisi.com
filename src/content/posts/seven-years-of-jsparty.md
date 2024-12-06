@@ -8,6 +8,7 @@ image:
   alt: "An empty JS Party booth at React Summit"
 tags:
   - community
+post: https://bsky.app/profile/nicknisi.com/post/3lclwls23js2e
 ---
 
 When I joined JS Party back at episode 20 nearly seven years ago, I had no idea how this journey would transform both my professional life and my connection to the JavaScript community. As we prepare our final episodes, I find myself reflecting on what this incredible chapter has meant to me.
