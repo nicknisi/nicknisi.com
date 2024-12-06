@@ -63,7 +63,7 @@ const tags: string[] = [...new Set(allPosts.map(post => post.data.tags).flat())]
 				<div>
 					<h3 class="my-4 mt-8 text-4xl">Latest posts</h3>
 					<div class="flex items-center justify-center">
-						<Posts limit={6} />
+						<Posts hideImages limit={6} />
 					</div>
 				</div>
 			</section>

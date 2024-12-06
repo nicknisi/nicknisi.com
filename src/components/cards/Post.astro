@@ -7,13 +7,14 @@ import type { CollectionEntry } from 'astro:content';
 
 interface Props {
 	post: CollectionEntry<'posts'>;
+	hideImage?: boolean | undefined;
 }
 
-const { post } = Astro.props;
+const { post, hideImage } = Astro.props;
 ---
 
 <Card
-	image={`/posts/${post.slug}/og.png`}
+	image={hideImage ? undefined : `/posts/${post.slug}/og.png`}
 	imageWidth={300}
 	imageHeight={180}
 	imageAlt={post.data.title}

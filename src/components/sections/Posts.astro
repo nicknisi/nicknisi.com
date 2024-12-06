@@ -3,11 +3,12 @@ import { getPosts } from '@/utils/common';
 import Post from '@/components/cards/Post.astro';
 
 interface Props {
+	hideImages?: boolean;
 	limit?: number | undefined;
 	tag?: string | undefined;
 }
 
-const { limit, tag } = Astro.props;
+const { limit, tag, hideImages: hideImage } = Astro.props;
 let posts = await getPosts(tag ? undefined : limit);
 
 if (tag) {
@@ -19,7 +20,7 @@ let isTruncated = limit !== undefined || !!tag;
 
 <div class="flex flex-col gap-2">
 	<div class="flex flex-col gap-4 md:grid md:auto-rows-auto md:grid-cols-3">
-		{posts.map(post => <Post post={post} />)}
+		{posts.map(post => <Post hideImage={hideImage} post={post} />)}
 	</div>
 	{
 		isTruncated && (
