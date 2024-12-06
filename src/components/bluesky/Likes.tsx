@@ -21,6 +21,7 @@ export default function Likes({ post }: Props) {
 				{likes.map((like, index) => (
 					<a
 						href={`https://bsky.app/profile/${like.actor.handle}`}
+						key={like.actor.did}
 						className={[
 							'ring-base-50 dark:ring-base-900 bg-base-950 relative inline-block size-12 overflow-hidden rounded-full ring-2',
 							index === 0 ? '-ml-2' : '',

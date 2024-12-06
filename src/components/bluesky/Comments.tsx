@@ -61,17 +61,14 @@ export default function Comments({ post }: Props) {
 			<h3>Comments</h3>
 			{commentCount > 0 && (
 				<>
-					<div className="text-base-950 dark:text-base-100 text-sm font-semibold">
-						{commentCount} comments, sorted by newest first
-					</div>
-					<div className="text-base-950 dark:text-base-100 text-sm font-semibold">
-						To comment, visit the post on{' '}
+					<div className="text-base-950 dark:text-base-100 text-base font-semibold">
+						<span className="font-bold">{commentCount}</span> comments from{' '}
 						<a className="font-bold text-teal-700 dark:text-teal-400" href={post}>
 							Bluesky
 						</a>
-						.
+						, sorted by newest first.
 					</div>
-					<div className="pt-4">{comments?.map(comment => <Comment comment={comment} />)}</div>
+					<div className="pt-4">{comments?.map(comment => <Comment key={comment.post.cid} comment={comment} />)}</div>
 				</>
 			)}
 		</div>
