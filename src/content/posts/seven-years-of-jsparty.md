@@ -11,6 +11,8 @@ tags:
 post: https://bsky.app/profile/nicknisi.com/post/3lclwls23js2e
 ---
 
+JS Party is [coming to an end](https://changelog.com/posts/a-new-era-for-the-changelog-podcast-universe).
+
 When I joined JS Party back at episode 20 nearly seven years ago, I had no idea how this journey would transform both my professional life and my connection to the JavaScript community. As we prepare our final episodes, I find myself reflecting on what this incredible chapter has meant to me.
 
 ## The State of Change
