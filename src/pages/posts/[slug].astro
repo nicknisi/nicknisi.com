@@ -8,6 +8,7 @@ import Tag from '@/components/Tag.astro';
 import { getAsset } from '@/utils/image.js';
 import { Image } from 'astro:assets';
 import LikeCount from '@/components/bluesky/LikeCount';
+import Comments from '@/components/bluesky/Comments';
 import Likes from '@/components/bluesky/Likes';
 
 interface Props {
@@ -79,6 +80,7 @@ const profileImg = await getAsset(metadata.profile);
 				<Content />
 			</section>
 			{postUri && <Likes client:load post={postUri} />}
+			{postUri && <Comments client:load post={postUri} />}
 			<div class="flex justify-center py-5 text-center sm:py-5">
 				<Icon name="mdi:star-outline" class="h-12 w-12 font-bold text-purple-600 dark:text-purple-200" />
 				<Icon name="mdi:star-outline" class="h-12 w-12 font-bold text-purple-600 dark:text-purple-200" />
