@@ -4,7 +4,7 @@ pubDate: 2024-12-05
 description: |
   A personal reflection on seven years of JS Party as the show transitions into its next chapter with dysfunctional.fm.
 image:
-  src: @/assets/posts/seven-years-of-js-party.jpg
+  src: "@/assets/posts/seven-years-of-js-party.jpg"
   alt: "An empty JS Party booth at React Summit"
 tags:
   - community
