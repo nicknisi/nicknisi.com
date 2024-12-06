@@ -11,11 +11,9 @@ export default function Likes({ post }: Props) {
 
 	return !count ? null : (
 		<div className="not-prose mt-8 flex flex-col gap-4">
-			<div className="text-base-950 dark:text-base-100 text-sm font-semibold">
-				<h2 className="">
-					{count} like{count === 1 ? '' : 's'}
-				</h2>
-			</div>
+			<h2>
+				{count} like{count === 1 ? '' : 's'}
+			</h2>
 
 			<div className="isolate flex flex-wrap -space-x-2 overflow-hidden px-4">
 				{likes.map((like, index) => (
@@ -23,7 +21,7 @@ export default function Likes({ post }: Props) {
 						href={`https://bsky.app/profile/${like.actor.handle}`}
 						key={like.actor.did}
 						className={[
-							'ring-base-50 dark:ring-base-900 bg-base-950 relative inline-block size-12 overflow-hidden rounded-full ring-2',
+							'bg-purple-950 relative inline-block size-12 overflow-hidden rounded-full ring-2 ring-purple-50 dark:ring-purple-900',
 							index === 0 ? '-ml-2' : '',
 						].join(' ')}
 						target="_blank"
