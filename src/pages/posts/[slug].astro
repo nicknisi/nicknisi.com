@@ -28,7 +28,7 @@ export async function getStaticPaths() {
 const { post, prevPost } = Astro.props;
 const {
 	slug,
-	data: { title, description, pubDate, tags = [], draft, post: postUri },
+	data: { hero, title, description, pubDate, tags = [], draft, post: postUri },
 } = post;
 const { Content } = await post.render();
 const date = toReadableDate(pubDate);
@@ -45,15 +45,13 @@ const profileImg = await getAsset(metadata.profile);
 		</div>
 	)
 }
-<BaseLayout title={title} description={description} headerImage={`/posts/${slug}/og.png`}>
+<BaseLayout heroImage={hero} title={title} description={description} headerImage={`/posts/${slug}/og.png`}>
 	<div
 		class="prose prose-slate pb-10 pt-6 dark:prose-invert lg:prose-xl prose-headings:my-3 prose-headings:text-blue-gray-900 prose-a:text-teal-600 prose-code:font-medium prose-code:text-purple-800 prose-code:before:content-[''] prose-code:after:content-[''] prose-headings:dark:text-gray-200 dark:prose-a:text-teal-400 dark:prose-code:text-purple-100"
 	>
 		<article class="pt-10">
 			<header class="mb-8">
-				<h1 class="mb-4 text-3xl font-bold tracking-tight md:text-5xl">
-					{title}
-				</h1>
+				{!hero && <h1 class="mb-4 text-3xl font-bold tracking-tight md:text-5xl">{title}</h1>}
 				<div class="flex gap-2 text-sm font-light text-gray-600 sm:gap-1">
 					<span class="uppercase">{date}</span>
 					<span class="hidden md:inline">•</span>

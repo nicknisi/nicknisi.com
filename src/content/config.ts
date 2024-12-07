@@ -14,10 +14,11 @@ const posts = defineCollection({
 			external: z.string().optional(),
 			draft: z.boolean().optional(),
 			post: z.string().url().optional(),
-			image: z
+			hero: z
 				.object({
-					src: image(),
+					img: image(),
 					alt: z.string(),
+					darkOverlay: z.boolean().optional(),
 				})
 				.optional(),
 		}),

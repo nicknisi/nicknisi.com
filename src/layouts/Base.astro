@@ -2,12 +2,14 @@
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 import Head from '@/components/Head.astro';
+import Hero from '@/components/Hero.astro';
 import '@fontsource/space-mono';
 import '@fontsource-variable/roboto-slab';
 import '@fontsource/atkinson-hyperlegible';
 import '@fontsource/oswald';
 import '../styles/base.css';
 import metadata from '@/data/metadata.json';
+import type { HeroImage } from '@/env';
 
 interface Props {
 	title?: string | undefined;
@@ -15,9 +17,10 @@ interface Props {
 	headerImage?: string | undefined;
 	hideHeader?: boolean | undefined;
 	hideFooter?: boolean | undefined;
+	heroImage?: HeroImage | undefined;
 }
 
-const { title = metadata.title, description, hideHeader, hideFooter, headerImage } = Astro.props;
+const { heroImage, title = metadata.title, description, hideHeader, hideFooter, headerImage } = Astro.props;
 ---
 
 <html lang="en">
@@ -36,6 +39,7 @@ const { title = metadata.title, description, hideHeader, hideFooter, headerImage
 		]}
 	>
 		{!hideHeader && <Header />}
+		{heroImage && <Hero title={title} alt={heroImage.alt} darkOverlay={heroImage.darkOverlay} image={heroImage.img} />}
 		<main class="z-30 mb-auto px-6">
 			<div class="mx-auto max-w-5xl">
 				<slot />

@@ -5,12 +5,9 @@ description: SquiggleConf is a web devtools-focused conference in Boston.
 tags:
   - community
   - conferences
-# image:
-#   src: '@/assets/posts/squiggleconf2024.png'
-#   alt: My SquiggleConf 2024 badge
 ---
 
-I'm thrilled to be co-emceeing [SquiggleConf](https://2024.squiggleconf.com) at the New England Aquarium in Boston on October 3-4, 2024. This conference focuses on supercharging web developers and their tools, bringing together experts to discuss cutting-edge web development practices. 1
+I'm thrilled to be co-emceeing [SquiggleConf](https://2024.squiggleconf.com) at the New England Aquarium in Boston on October 3-4, 2024. This conference focuses on supercharging web developers and their tools, bringing together experts to discuss cutting-edge web development practices.
 
 ![SquiggleConf](@/assets/posts/squiggleconf2024.png)
 

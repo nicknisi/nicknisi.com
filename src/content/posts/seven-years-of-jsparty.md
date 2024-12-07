@@ -3,9 +3,10 @@ title: "Seven Years of JS Party: A Personal Reflection"
 pubDate: 2024-12-05
 description: |
   A personal reflection on seven years of JS Party as the show transitions into its next chapter with dysfunctional.fm.
-image:
-  src: "@/assets/posts/seven-years-of-js-party.jpg"
+hero:
+  img: "@/assets/posts/seven-years-of-js-party.jpg"
   alt: "An empty JS Party booth at React Summit"
+  darkOverlay: true
 tags:
   - community
 post: https://bsky.app/profile/nicknisi.com/post/3lclwls23js2e

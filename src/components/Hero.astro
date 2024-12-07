@@ -1,0 +1,40 @@
+---
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+	title: string;
+	alt: string;
+	image: ImageMetadata;
+	darkOverlay?: boolean | undefined;
+}
+
+const { title, image, darkOverlay } = Astro.props;
+console.log('darkOverlay:', darkOverlay);
+---
+
+<section
+	class="relative flex h-[50vh] w-full flex-col items-center justify-center overflow-hidden bg-cover text-center"
+	class:list={['bg-scroll bg-center bg-no-repeat', ``]}
+	style={{
+		backgroundImage: darkOverlay
+			? `radial-gradient(ellipse at center, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.85) 37%, rgba(0,0,0,0.5) 100%), url(${image.src})`
+			: `radial-gradient(ellipse at center, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 37%, rgba(0,0,0,0.0) 100%), url(${image.src})`,
+	}}
+	role="img"
+	aria-label="Image Description"
+>
+	{/* Optional overlay to ensure text readability in both modes */}
+	<div class="bg-obsidian/20 dark:bg-obsidian/40 absolute inset-0"></div>
+
+	{/* Content wrapper */}
+	<div class="relative z-10">
+		<h1
+			class:list={[
+				'mb-10 text-[11vmin] font-bold leading-none tracking-[0.03em] text-white',
+				'[text-shadow:1px_2px_4px_rgba(0,0,0,0.8)]',
+			]}
+		>
+			{title}
+		</h1>
+	</div>
+</section>
