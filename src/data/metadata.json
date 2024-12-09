@@ -24,6 +24,10 @@
 			"icon": "mdi:web"
 		},
 		{
+			"title": "What I'm doing now",
+			"url": "https://nicknisi.com./now"
+		},
+		{
 			"title": "My Dotfiles",
 			"url": "https://github.com/nicknisi/dotfiles",
 			"icon": "mdi:console"
