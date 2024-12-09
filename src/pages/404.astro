@@ -10,3 +10,10 @@ import Base from '@/layouts/Base.astro';
 		</p>
 	</div>
 </Base>
+
+<script>
+	document.addEventListener('DOMContentLoaded', function () {
+		var path = window.location.pathname;
+		fathom.trackEvent('404: ' + path);
+	});
+</script>
