@@ -29,7 +29,7 @@
 	"dependencies": {
 		"@astro-community/astro-embed-bluesky": "0.1.2",
 		"@astrojs/cloudflare": "12.0.1",
-		"@astrojs/mdx": "4.0.1",
+		"@astrojs/mdx": "4.0.2",
 		"@astrojs/react": "4.0.0",
 		"@astrojs/rss": "4.0.10",
 		"@astrojs/sitemap": "3.2.1",
@@ -40,10 +40,7 @@
 		"@fontsource/oswald": "5.1.0",
 		"@fontsource/space-mono": "5.1.1",
 		"@tailwindcss/typography": "0.5.15",
-		"@types/cheerio": "0.22.35",
-		"@types/react": "18.3.13",
-		"@types/react-dom": "18.3.1",
-		"astro": "5.0.3",
+		"astro": "5.0.4",
 		"astro-icon": "1.1.4",
 		"luxon": "3.5.0",
 		"markdown-it": "14.1.0",
@@ -58,15 +55,17 @@
 		"@iconify-json/ic": "1.2.1",
 		"@iconify-json/mdi": "1.2.1",
 		"@iconify-json/raphael": "1.2.0",
-		"@iconify-json/simple-icons": "1.2.14",
+		"@iconify-json/simple-icons": "1.2.15",
 		"@nicknisi/standard": "0.1.0",
 		"@types/luxon": "3.4.2",
 		"@types/markdown-it": "14.1.2",
+		"@types/react": "18.3.13",
+		"@types/react-dom": "18.3.1",
 		"@types/sanitize-html": "2.13.0",
 		"prettier": "3.4.2",
 		"prettier-plugin-astro": "0.14.1",
 		"prettier-plugin-tailwindcss": "0.6.9",
 		"typescript": "5.7.2",
-		"wrangler": "^3.92.0"
+		"wrangler": "3.93.0"
 	}
 }
