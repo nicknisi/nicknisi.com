@@ -17,34 +17,53 @@
 		"name": "Nick Nisi",
 		"email": "nick@nisi.org"
 	},
+	"links": [
+		{
+			"title": "My Dotfiles",
+			"url": "https://github.com/nicknisi/dotfiles",
+			"icon": "mdi:console"
+		},
+		{
+			"title": "Side Effects Consulting",
+			"url": "https://sideeffects.dev",
+			"icon": "mdi:account-hard-hat"
+		}
+	],
 	"social": {
 		"bluesky": {
 			"username": "@nicknisi.com",
-			"url": "https://bsky.app/profile/nicknisi.com"
+			"url": "https://bsky.app/profile/nicknisi.com",
+			"hidden": false
 		},
 		"threads": {
 			"username": "nicknisi",
-			"url": "https://www.threads.net/@nicknisi"
+			"url": "https://www.threads.net/@nicknisi",
+			"hidden": false
 		},
 		"mastodon": {
 			"username": "@nicknisi@nicknisi.com",
-			"url": "https://fediverse.nicknisi.com/@nicknisi"
+			"url": "https://fediverse.nicknisi.com/@nicknisi",
+			"hidden": false
 		},
 		"linkedin": {
 			"username": "nicknisi",
-			"url": "https://linkedin.com/in/nicknisi"
+			"url": "https://linkedin.com/in/nicknisi",
+			"hidden": false
 		},
 		"github": {
 			"username": "nicknisi",
-			"url": "https://github.com/nicknisi"
+			"url": "https://github.com/nicknisi",
+			"hidden": false
 		},
 		"youtube": {
 			"username": "nicknisi",
-			"url": "https://www.youtube.com/nicknisi"
+			"url": "https://www.youtube.com/nicknisi",
+			"hidden": false
 		},
 		"instagram": {
 			"username": "nicknisi",
-			"url": "https://www.instagram.com/nicknisi/"
+			"url": "https://www.instagram.com/nicknisi/",
+			"hidden": false
 		},
 		"twitter": {
 			"username": "nicknisi",
