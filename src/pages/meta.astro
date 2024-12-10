@@ -13,18 +13,24 @@ import meme from '@/assets/so-youve-meme.jpg';
 	<title>So you're looking for my contact info...</title>
 	<script src="https://cdn.tailwindcss.com"></script>
 
-	<body class="bg-dark-gunmetal">
+	<body class="bg-dark-obsidian">
 		<!-- Hero Section -->
 		<div class="relative h-screen w-full overflow-hidden md:h-[70vh]">
 			<!-- Hero Image -->
-			<Image src={meme} alt="Captain America PSA Meme" class="h-full w-full object-cover object-right" />
+			<Image
+				src={meme}
+				alt="Captain America PSA Meme"
+				class="h-full w-full object-cover object-[80%_center] md:object-right"
+			/>
 			<!-- Gradient Overlay -->
-			<div class="absolute inset-0 bg-gradient-to-b from-transparent via-dark-gunmetal/70 to-dark-gunmetal"></div>
+			<div class="absolute inset-0 bg-gradient-to-b from-transparent via-dark-obsidian/70 to-dark-obsidian"></div>
 
 			<!-- Hero Content -->
 			<div class="absolute inset-0 flex items-center justify-center">
 				<div class="px-4 text-center">
-					<h1 class="mb-4 text-4xl font-bold text-white md:text-6xl">So... you're looking for my contact info</h1>
+					<h1 class="mb-4 font-sans text-4xl font-bold text-white md:text-6xl">
+						So... you're looking for my contact info
+					</h1>
 					<p class="text-xl text-blue-gray-100 md:text-2xl">Let's stay connected!</p>
 				</div>
 			</div>
@@ -38,13 +44,13 @@ import meme from '@/assets/so-youve-meme.jpg';
 					<div class="mb-12 grid gap-8 md:grid-cols-2">
 						<!-- Quick contact -->
 						<div class="space-y-6">
-							<h2 class="mb-6 flex items-center text-2xl font-semibold text-white">
+							<h2 class="mb-6 flex items-center font-sans text-2xl font-semibold text-white">
 								<span class="mr-3 h-2 w-2 rounded-full bg-vivid-light-blue-400"></span>
 								Quick Connect
 							</h2>
 							<div class="space-y-4">
 								<a
-									href="mailto:email@example.com"
+									href="mailto:nick@nisi.org"
 									class="flex items-center rounded-lg bg-dark-charleston-green p-4 text-blue-gray-100 transition-colors duration-200 hover:bg-dark-jet"
 								>
 									<svg
@@ -60,11 +66,11 @@ import meme from '@/assets/so-youve-meme.jpg';
 											d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
 										></path>
 									</svg>
-									<span>email@example.com</span>
+									<span>nick@nisi.org</span>
 								</a>
 
 								<a
-									href="#"
+									href="https://linkedin.com/in/nicknisi"
 									class="flex items-center rounded-lg bg-dark-charleston-green p-4 text-blue-gray-100 transition-colors duration-200 hover:bg-dark-jet"
 								>
 									<svg
@@ -83,7 +89,7 @@ import meme from '@/assets/so-youve-meme.jpg';
 								</a>
 
 								<a
-									href="#"
+									href="https://bsky.app/profile/nicknisi.com"
 									class="flex items-center rounded-lg bg-dark-charleston-green p-4 text-blue-gray-100 transition-colors duration-200 hover:bg-dark-jet"
 								>
 									<svg
@@ -99,14 +105,14 @@ import meme from '@/assets/so-youve-meme.jpg';
 											d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"
 										></path>
 									</svg>
-									<span>@slackhandle</span>
+									<span>Bluesky</span>
 								</a>
 							</div>
 						</div>
 
 						<!-- New Adventure -->
 						<div class="space-y-6">
-							<h2 class="mb-6 flex items-center text-2xl font-semibold text-white">
+							<h2 class="mb-6 flex items-center font-sans text-2xl font-semibold text-white">
 								<span class="mr-3 h-2 w-2 rounded-full bg-vivid-pink-400"></span>
 								New Adventure
 							</h2>
@@ -122,8 +128,8 @@ import meme from '@/assets/so-youve-meme.jpg';
 										</svg>
 									</div>
 									<div>
-										<h3 class="font-semibold text-white">New Role</h3>
-										<p class="text-blue-gray-300">at New Company</p>
+										<h3 class="font-semibold text-white">Developer Experienec Engineer</h3>
+										<p class="text-blue-gray-300">at WorkOS</p>
 									</div>
 								</div>
 								<p class="text-blue-gray-200">
@@ -136,7 +142,7 @@ import meme from '@/assets/so-youve-meme.jpg';
 					<!-- Footer note -->
 					<div class="border-t border-cool-gray-700 pt-8">
 						<div class="rounded-lg bg-dark-charleston-green p-6">
-							<h3 class="mb-4 flex items-center text-xl font-semibold text-white">
+							<h3 class="mb-4 flex items-center font-sans text-xl font-semibold text-white">
 								<span class="mr-3 h-2 w-2 rounded-full bg-teal-300"></span>
 								A Note to My Team
 							</h3>
