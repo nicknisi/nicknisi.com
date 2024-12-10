@@ -2,9 +2,15 @@
 import { Icon } from 'astro-icon/components';
 ---
 
-<button type="button" id="themeToggle" class="p-2 text-2xl">
-	<Icon name="mdi:white-balance-sunny" />
-</button>
+<div class="sm:fixed sm:right-0 sm:top-2">
+	<button
+		type="button"
+		id="themeToggle"
+		class="p-2 text-base sm:rounded-l-full sm:bg-purple-100 sm:text-2xl sm:dark:bg-purple-300"
+	>
+		<Icon name="mdi:theme-light-dark" class="text-dark-obsidian dark:text-gray-100" />
+	</button>
+</div>
 
 <script is:inline>
 	function getTheme() {
@@ -16,17 +22,6 @@ import { Icon } from 'astro-icon/components';
 		}
 		return 'light';
 	}
-
-	const theme = getTheme();
-
-	if (theme === 'light') {
-		document.documentElement.classList.remove('dark');
-	} else {
-		document.documentElement.classList.add('dark');
-	}
-	window.localStorage.setItem('theme', theme);
-
-	const button = document.querySelector('button#themeToggle');
 
 	function setTheme(theme = getTheme()) {
 		if (theme === 'light') {
@@ -43,7 +38,10 @@ import { Icon } from 'astro-icon/components';
 		setTheme(theme);
 	}
 
+	const theme = getTheme();
+	const button = document.querySelector('button#themeToggle');
 	button.addEventListener('click', toggleTheme);
 
+	// initially set the theme
 	setTheme();
 </script>
