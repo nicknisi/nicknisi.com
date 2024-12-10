@@ -4,6 +4,7 @@ import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
 import '../styles/base.css';
 import hero from '@/assets/meta/hero.png';
+import ogImage from '@/assets/meta/og-image.png?url';
 
 const quickConnectLinks = [
 	{
@@ -31,11 +32,7 @@ const quickConnectLinks = [
 
 <!doctype html>
 <html lang="en">
-	<Head title="Contact Me | Nick Nisi" description="How to find me" />
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>So you're looking for my contact info...</title>
-	<script src="https://cdn.tailwindcss.com"></script>
+	<Head title="Contact Me" description="How to find me after my departure from Meta." headerImage={ogImage} />
 
 	<body class="bg-dark-obsidian">
 		<!-- Hero Section -->
