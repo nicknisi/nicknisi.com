@@ -8,7 +8,6 @@ import '@fontsource-variable/roboto-slab';
 import '@fontsource/atkinson-hyperlegible';
 import '@fontsource/oswald';
 import '../styles/base.css';
-import metadata from '@/data/metadata.json';
 import type { HeroImage } from '@/types';
 
 interface Props {
@@ -20,7 +19,7 @@ interface Props {
 	heroImage?: HeroImage | undefined;
 }
 
-const { heroImage, title = metadata.title, description, hideHeader, hideFooter, headerImage } = Astro.props;
+const { heroImage, title = '', description, hideHeader, hideFooter, headerImage } = Astro.props;
 ---
 
 <html lang="en">

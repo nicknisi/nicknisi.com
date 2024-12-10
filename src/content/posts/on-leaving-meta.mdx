@@ -1,0 +1,133 @@
+---
+title: "On Leaving Meta"
+pubDate: 2024-12-13
+tags:
+  - career
+description: |
+  From imposter syndrome to shipping features used by millions, here's what I learned during my year as a remote engineer at Meta.
+hero:
+  img: "@/assets/posts/meta-badge-post.png"
+  alt: "My laptop and badge"
+---
+import Callout from '@/components/Callout.astro'
+
+Before joining Meta, I was comfortable. I had carved out my niche in developer experience at a financial services
+company, making life better for front-end engineers through build systems, tooling, and design systems. Then came the
+opportunity that would push me way outside that comfort zone: a role at Meta.
+
+## Taking the Leap
+
+I won't lie – joining Meta was intimidating. This isn't just any tech company; it's one of the places where the tools
+and frameworks we use every day were born. The company that turned React from an internal experiment into the library
+that transformed how we build for the web. A place where some of the industry's brightest minds solve problems at a
+scale that most of us can barely imagine.
+
+As a father of two in the Midwest, far from the Silicon Valley bustle, I couldn't help but wonder: Could I keep up?
+Would I belong? Looking at my interviewers' backgrounds during the hiring process – MIT, Stanford, previous FAANG
+experience – it was hard not to feel like an outsider. The imposter syndrome was real.
+
+But beneath the apprehension was genuine excitement. The team I'd be joining is working on Ads Manager – literally the
+oldest and largest React application in the world. The same codebase where React itself was born. The opportunity to
+work on something with that kind of historical significance doesn't come along often. I knew I'd regret not taking the
+chance to be part of that story.
+
+## The Meta Way
+
+Let's talk about Meta's dev tools. Unsurprisingly, I had opinions going in. [Mercurial](https://www.mercurial-scm.org) (okay,
+[Sapling](https://sapling-scm.com) now) Instead of Git? A custom fork  of
+[VSCode](https://code.visualstudio.com/download) when I had my [Neovim setup](https://github.com/nicknisi/dotfiles) just
+the way I liked it?  Their own programming languages like [Flow](https://flow.org) and [Hack](https://hacklang.org)
+instead of my beloved [TypeScript](https://typescriptlang.org)? My initial reaction was basically "why?"It seemed like
+swimming upstream from the rest of the industry.
+
+<Callout title="Neovim totally exists at Meta, btw.">
+  I could totally use Neovim at meta. They have their own plugin to set it up and it's pretty nice. I just didn't
+  want to deal with the inevitable issues that would arise in the beginning while I'm also ramping up on everything
+  else, so I used Neovim through VSCode.
+</Callout>
+
+But are they wrong? What I discovered was an incredibly cohesive development environment where tools didn't just coexist
+– they worked in harmony. The way tasks, diffs, and chat seamlessly reference each other, how custom tools and even
+custom Chrome extensions are used to tie everything together, and how the entire company can work in a single repository
+– it's impressive.
+
+It's also clear how Flow and Hack were born out of the company's needs, and it's obvious how they influence each other.
+They're not creating Flow as an alternative to TypeScript. They're making a language that feels familiar to Hack
+developers, and vice versa.
+
+## The Reality of Scale
+
+Working on the Ads Manager brought another revelation. I expected the codebase to be immaculate – pristine code with no
+tech debt, bad patterns, or confusion. Instead, I found something very human: code that reflected the reality of
+maintaining a massive application over many years. Yes, there was tech debt. Yes, there were outdated patterns. But
+that wasn't a weakness; it was a validation that software engineering is hard at every scale, even at Meta. It was also
+eye-opening seeing this code being incredibly performant and reliable.
+
+On my team, we would regularly dive deep into both Hack APIs and React interfaces. We built in-app advertising
+features and streamlined complex workflows, always trying to make the platform more accessible to newcomers while
+maintaining its power for experienced advertisers of all sizes.
+
+<Callout title="A Meta Moment">
+One of my favorite memories? Getting texts from friends asking why my face kept showing up in their Instagram feeds.
+  Look, when you're testing ad features, you gotta use what you've got. I like to think I brought a certain... charm to
+  people's social media experience.
+
+And what was I selling in this ad? Nothing! It was just a test video where I was singing "Never Gonna Give You Up",
+acapella-style! 😂
+
+![My test ad.](@/assets/posts/meta-ad.png)
+
+</Callout>
+
+## Finding Connection
+
+Despite being remote, I found ways to connect. Our team operated like a well-oiled machine, everyone busy but never too
+busy to help explain a project flow or deployment process. During our onsites, I made the most of every moment –
+including a memorable karaoke party where I was the sole performer, belting out "Unbreak My Heart" to my amused
+colleagues.
+
+I even took on the role of _Social Captain_ for an internal, Meta-wide UIE Summit, helping create the conference's intro
+video and bringing people together. These moments of connection made the virtual distance feel smaller.
+
+## The Balancing Act
+
+In the span of a month I emceed a conference on one coast, organized and ran an internal conference on the other coast,
+and shipped two big features before a code freeze deadline! I worked more than 100 hours in a single week before it was
+all over. Wild. But here's the thing - I did it. While being a dad. While running a podcast. While being a technical
+advisor to two startups. While organizing meetups. While speaking at conferences. (Writing this out now, I'm questioning
+how I had time for anything... 😅)
+
+## Time for Change
+
+The decision to leave wasn't easy. Meta challenged me, taught me, and showed me what engineering at massive scale looks
+like. But as time went on, I found myself craving something different. While my teammates were exceptional, I realized I
+was spending more time on team alignment and metrics than actual engineering. The technical problems that energized me
+were taking a backseat to the organizational mechanics of working at scale. In some ways, that's probably inevitable on
+a product team of that size. But it wasn't where I wanted to focus my energy.
+
+I considered looking for an internal transfer, perhaps to an internal infra team where I could focus more on the
+technical challenges I'm passionate about. But with the current perceived emphasis on RTO, finding a team that was
+amenable to remote teammates proved challenging. As a Midwest dad with roots in my community, relocating wasn't an
+option I wanted to pursue.
+
+An opportunity emerged that would let me return to my developer experience roots – the kind of work that has always
+energized me – while building on everything I learned at Meta. It felt like the right time to take what I'd gained here
+– the confidence, the experience with scale, the understanding of complex organizations – and apply it in a role more
+aligned with my technical passions.
+
+## Looking Back
+
+You know what's funny about big tech companies? From the outside, they can seem almost mythical. I remember thinking
+Meta engineers must be coding wizards who never ship bugs and write perfect PRs in their sleep. But after a year there,
+I've learned something important: we're all just people trying to build good stuff while juggling meetings and fixing
+prod issues.
+
+Yeah, I worked at Meta. No, I didn't become some 10x engineer or discover the secret sauce to perfect code. What I did
+do was show up every day, ship some cool features, work with some incredibly smart people, and learn a ton about
+building software at ridiculous scale.
+
+I'm grateful for the experience, but I'm also excited about what's next. Meta taught me a lot about what I want (and
+don't want) in my engineering career. Most importantly? It taught me that there's no magic - just people solving
+problems together, whether that's at a FAANG company or a two-person startup.
+
+Time to take these lessons and build something new.
