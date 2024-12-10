@@ -36,89 +36,91 @@ const wordCount = getWordCount(post?.body);
 const profileImg = await getAsset(metadata.profile);
 ---
 
-{
-	draft && (
-		<div class="sticky top-0 z-40 w-full bg-red-800 text-lg font-bold text-white">
-			<div class="container mx-auto py-2">
-				<p class="text-center">This post is a draft. It may contain errors or be incomplete.</p>
+<>
+	{
+		draft && (
+			<div class="sticky top-0 z-40 w-full bg-red-800 text-lg font-bold text-white">
+				<div class="container mx-auto py-2">
+					<p class="text-center">DRAFT POST</p>
+				</div>
 			</div>
-		</div>
-	)
-}
-<BaseLayout heroImage={hero} title={title} description={description} headerImage={`/posts/${slug}/og.png`}>
-	<div
-		class="prose prose-slate pb-10 pt-6 dark:prose-invert lg:prose-xl prose-headings:my-3 prose-headings:text-blue-gray-900 prose-a:text-teal-600 prose-code:font-medium prose-code:text-purple-800 prose-code:before:content-[''] prose-code:after:content-[''] prose-headings:dark:text-gray-200 dark:prose-a:text-teal-400 dark:prose-code:text-purple-100"
-	>
-		<article class="pt-10">
-			<header class="mb-8">
-				{!hero && <h1 class="mb-4 text-3xl font-bold tracking-tight md:text-5xl">{title}</h1>}
-				<div class="flex gap-2 text-sm font-light text-gray-600 sm:gap-1">
-					<span class="uppercase">{date}</span>
-					<span class="hidden md:inline">•</span>
-					<span class="uppercase">{wordCount} minute read</span>
-					{
-						postUri && (
-							<>
-								<span class="hidden sm:inline">•</span>
-								<LikeCount client:load post={postUri}>
-									<Icon slot="likeIcon" name="mdi:heart-outline" class="h-6 w-6" />
-								</LikeCount>
-							</>
-						)
-					}
-					<span class="hidden sm:inline">
-						<span class="hidden sm:inline">•</span>
-						<span>
-							{tags.map((tag: string) => <Tag name={tag} />)}
+		)
+	}
+	<BaseLayout heroImage={hero} title={title} description={description} headerImage={`/posts/${slug}/og.png`}>
+		<div
+			class="prose prose-slate pb-10 pt-6 dark:prose-invert lg:prose-xl prose-headings:my-3 prose-headings:text-blue-gray-900 prose-a:text-teal-600 prose-code:font-medium prose-code:text-purple-800 prose-code:before:content-[''] prose-code:after:content-[''] prose-headings:dark:text-gray-200 dark:prose-a:text-teal-400 dark:prose-code:text-purple-100"
+		>
+			<article class="pt-10">
+				<header class="mb-8">
+					{!hero && <h1 class="mb-4 text-3xl font-bold tracking-tight md:text-5xl">{title}</h1>}
+					<div class="flex gap-2 text-sm font-light text-gray-600 sm:gap-1">
+						<span class="uppercase">{date}</span>
+						<span class="hidden md:inline">•</span>
+						<span class="uppercase">{wordCount} minute read</span>
+						{
+							postUri && (
+								<>
+									<span class="hidden sm:inline">•</span>
+									<LikeCount client:load post={postUri}>
+										<Icon slot="likeIcon" name="mdi:heart-outline" class="h-6 w-6" />
+									</LikeCount>
+								</>
+							)
+						}
+						<span class="hidden sm:inline">
+							<span class="hidden sm:inline">•</span>
+							<span>
+								{tags.map((tag: string) => <Tag name={tag} />)}
+							</span>
 						</span>
-					</span>
-				</div>
-			</header>
-			<section>
-				<Content />
-			</section>
-			{postUri && <Likes client:load post={postUri} />}
-			{postUri && <Comments client:load post={postUri} />}
-			<div class="flex justify-center py-5 text-center sm:py-5">
-				<Icon name="mdi:star-outline" class="h-12 w-12 font-bold text-purple-600 dark:text-purple-200" />
-				<Icon name="mdi:star-outline" class="h-12 w-12 font-bold text-purple-600 dark:text-purple-200" />
-				<Icon name="mdi:star-outline" class="h-12 w-12 font-bold text-purple-600 dark:text-purple-200" />
-			</div>
-			{
-				prevPost && (
-					<div class="mb-4 mt-8 flex justify-start">
-						<a href={`/posts/${prevPost.slug}`} class="flex items-center space-x-4 font-medium">
-							<Icon name="mdi:arrow-left-bold" class="h-6 w-6" />
-							<span>{prevPost.data.title}</span>
-						</a>
 					</div>
-				)
-			}
-			<div class="mx-auto flex flex-col items-center sm:flex-row">
-				<div
-					class="text-blue-500 inline-flex h-32 w-32 flex-shrink-0 items-center justify-center rounded-full sm:mr-10 sm:h-32 sm:w-32"
-				>
-					<Image
-						src={profileImg}
-						alt="author"
-						height={512}
-						width={512}
-						quality="max"
-						class="h-32 w-32 rounded-full drop-shadow-lg"
-					/>
+				</header>
+				<section>
+					<Content />
+				</section>
+				{postUri && <Likes client:load post={postUri} />}
+				{postUri && <Comments client:load post={postUri} />}
+				<div class="flex justify-center py-5 text-center sm:py-5">
+					<Icon name="mdi:star-outline" class="h-12 w-12 font-bold text-purple-600 dark:text-purple-200" />
+					<Icon name="mdi:star-outline" class="h-12 w-12 font-bold text-purple-600 dark:text-purple-200" />
+					<Icon name="mdi:star-outline" class="h-12 w-12 font-bold text-purple-600 dark:text-purple-200" />
 				</div>
-				<div class="mt-6 flex-grow text-center sm:mt-0 sm:text-left">
-					<h2 class="title-font mb-2 text-lg font-medium text-gray-900">
-						{metadata.author.name}
-					</h2>
-					<p class="text-base leading-relaxed">{metadata.description}</p>
-					<p class="text-base leading-relaxed">
-						Follow me on
-						<a class="primary-link" href={metadata.social.mastodon.url}>Mastodon</a>
-						or <a class="primary-link" href={metadata.social.twitter.url}>Twitter</a>.
-					</p>
+				{
+					prevPost && (
+						<div class="mb-4 mt-8 flex justify-start">
+							<a href={`/posts/${prevPost.slug}`} class="flex items-center space-x-4 font-medium">
+								<Icon name="mdi:arrow-left-bold" class="h-6 w-6" />
+								<span>{prevPost.data.title}</span>
+							</a>
+						</div>
+					)
+				}
+				<div class="mx-auto flex flex-col items-center sm:flex-row">
+					<div
+						class="text-blue-500 inline-flex h-32 w-32 flex-shrink-0 items-center justify-center rounded-full sm:mr-10 sm:h-32 sm:w-32"
+					>
+						<Image
+							src={profileImg}
+							alt="author"
+							height={512}
+							width={512}
+							quality="max"
+							class="h-32 w-32 rounded-full drop-shadow-lg"
+						/>
+					</div>
+					<div class="mt-6 flex-grow text-center sm:mt-0 sm:text-left">
+						<h2 class="title-font mb-2 text-lg font-medium text-gray-900">
+							{metadata.author.name}
+						</h2>
+						<p class="text-base leading-relaxed">{metadata.description}</p>
+						<p class="text-base leading-relaxed">
+							Follow me on
+							<a class="primary-link" href={metadata.social.mastodon.url}>Mastodon</a>
+							or <a class="primary-link" href={metadata.social.twitter.url}>Twitter</a>.
+						</p>
+					</div>
 				</div>
-			</div>
-		</article>
-	</div>
-</BaseLayout>
+			</article>
+		</div>
+	</BaseLayout>
+</>
