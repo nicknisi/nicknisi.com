@@ -24,11 +24,6 @@
 			"icon": "mdi:calendar"
 		},
 		{
-			"title": "My Website",
-			"url": "https://nicknisi.com",
-			"icon": "mdi:web"
-		},
-		{
 			"title": "What I'm doing now",
 			"url": "https://nicknisi.com./now"
 		},

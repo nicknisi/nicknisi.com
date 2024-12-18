@@ -71,3 +71,12 @@ import '../styles/base.css';
 		</div>
 	</body>
 </html>
+
+<script is:inline>
+	const links = document.querySelectorAll<HTMLAnchorElement>('[data-type="social-link"]');
+	links.forEach(link => {
+		link.addEventListener('click', () => {
+			fathom.trackEvent(`social: ${link.href}`);
+		});
+	});
+</script>>
