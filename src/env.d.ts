@@ -6,3 +6,17 @@ declare module '*?buffer' {
 	const value: string;
 	export default value;
 }
+
+interface Window {
+	fathom: {
+		trackPageview: () => void;
+		trackGoal: (eventId: string, value: number) => void;
+		trackEvent: (category: string) => void;
+	};
+}
+
+declare const fathom: {
+	trackPageview: () => void;
+	trackGoal: (eventId: string, value: number) => void;
+	trackEvent: (category: string) => void;
+};

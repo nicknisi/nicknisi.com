@@ -11,7 +11,7 @@ import Base from '@/layouts/Base.astro';
 	</div>
 </Base>
 
-<script is:inline>
+<script>
 	document.addEventListener('DOMContentLoaded', function () {
 		var path = window.location.pathname;
 		fathom.trackEvent(`404: ${path}`);
