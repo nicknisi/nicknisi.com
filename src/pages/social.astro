@@ -36,13 +36,15 @@ import '../styles/base.css';
 			<main class="container mx-auto flex flex-col gap-4">
 				<!-- Profile -->
 				<div class="flex flex-col items-center justify-center text-center">
-					<Image
-						alt="Nick Nisi"
-						src={profileImage}
-						width={256}
-						height={256}
-						class="mb-4 size-36 rounded-full border-2 border-solid border-purple-300 shadow-sm"
-					/>
+					<a href="/">
+						<Image
+							alt="Nick Nisi"
+							src={profileImage}
+							width={256}
+							height={256}
+							class="mb-4 size-36 rounded-full border-2 border-solid border-purple-300 shadow-sm"
+						/>
+					</a>
 					<h1 class="font-sans text-4xl font-extrabold tracking-wide">{metadata.author.name}</h1>
 					<p class="font-semibold tracking-wide text-gray-700">{metadata.description}</p>
 				</div>
