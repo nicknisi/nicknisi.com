@@ -51,8 +51,8 @@ export default defineConfig({
 		// simpler talk redirects for sharing
 		'/state-talk': '/speaking/componentizing-application-state',
 		'/compiler-talk': '/speaking/unleashing-the-typescript-compiler',
-		//'/talks/componentizing-application-state': '/speaking/componentizing-application-state',
-		//'/talks/unleashing-the-typescript-compiler': '/speaking/unleashing-the-typescript-compiler',
+		'/talks/componentizing-application-state': '/speaking/componentizing-application-state',
+		'/talks/unleashing-the-typescript-compiler': '/speaking/unleashing-the-typescript-compiler',
 		// rename /talks to /speaking
 		'/talks': '/speaking',
 	},
