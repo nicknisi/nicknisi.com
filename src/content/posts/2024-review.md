@@ -3,7 +3,9 @@ title: 2024 Review - A Year of Growth and Change
 slug: '2024'
 pubDate: 2024-12-31
 tags: ['career', 'conferences', 'community']
-draft: true
+hero:
+  img: "@/assets/posts/2024-review.jpg"
+  alt: "My laptop and badge"
 ---
 
 2024 was a year of significant transitions and growth, marked by new adventures at Meta, a return to in-person conferences, and ultimately, a exciting new role at WorkOS. Looking back, it's amazing how much can change in just twelve months.
