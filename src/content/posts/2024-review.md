@@ -5,7 +5,9 @@ pubDate: 2024-12-31
 tags: ['career', 'conferences', 'community']
 hero:
   img: "@/assets/posts/2024-review.jpg"
-  alt: "My laptop and badge"
+  alt: "2024 in pictures"
+post: "https://bsky.app/profile/nicknisi.com/post/3lenciyvv7k2s"
+description: "A brief review of 2024 and what I'm looking forward to in 2025."
 ---
 
 2024 was a year of significant transitions and growth, marked by new adventures at Meta, a return to in-person conferences, and ultimately, a exciting new role at WorkOS. Looking back, it's amazing how much can change in just twelve months.
