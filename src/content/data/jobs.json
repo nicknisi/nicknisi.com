@@ -1,5 +1,18 @@
 [
 	{
+		"id": "workos",
+		"name": "WorkOS",
+		"image": "resume/workos.svg",
+		"remote": true,
+		"description": "A startup focused on user management and authentication for startups.",
+		"summary": "",
+		"location": "San Francisco, CA",
+		"position": "DEveloper Experience Engineer",
+		"url": "https://workos.com",
+		"startDate": "2024-12-30",
+		"highlights": []
+	},
+	{
 		"id": "meta",
 		"name": "Meta",
 		"image": "resume/meta.svg",
@@ -10,6 +23,7 @@
 		"position": "Software Engineer",
 		"url": "https://meta.com",
 		"startDate": "2024-02-05",
+		"endDate": "2024-12-13",
 		"highlights": [
 			"Developed and implemented high-priority bug fixes and features, including an onboarding wizard, directly contributing to increased revenue and improved user experience",
 			"Led cross-functional efforts, including bugfix initiative, alignment on new cross-platform APIs, and the planning and execution of an internal UI summit for front-end developers",
