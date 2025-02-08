@@ -1,21 +1,38 @@
 ---
-import { DateTime } from 'luxon';
-
 interface Props {
-	date: Date;
+	date: Date | string;
+	showTime?: boolean;
+	class?: string;
+	long?: boolean;
 }
 
-const { date } = Astro.props;
-const luxonDate = DateTime.fromJSDate(date, { zone: 'utc' });
+const { date: rawDate, showTime, class: className, long } = Astro.props;
+const date = rawDate instanceof Date ? rawDate : new Date(rawDate.length === 10 ? `${rawDate}T00:00:00` : rawDate);
 
-const month = luxonDate.toLocaleString({ month: 'short' });
-const { day, year } = luxonDate;
+const formatOptions: Intl.DateTimeFormatOptions = {
+	dateStyle: 'long',
+	...(showTime && {
+		timeStyle: 'short',
+	}),
+};
+
+const formattedDate = new Intl.DateTimeFormat('en-US', formatOptions).format(date);
+
+const day = date.getDate();
+const month = new Intl.DateTimeFormat('en-US', { month: 'short' }).format(date).toUpperCase();
+const year = date.getFullYear();
 ---
 
-<time class="flex flex-col items-center justify-center" datetime={date.toISOString()}>
-	<div class="flex items-center justify-center gap-1 text-blue-gray-700 dark:text-blue-gray-200">
-		<div class="text-sm font-bold">{day}</div>
-		<div class="text-sm uppercase tracking-wider">{month}</div>
-		<div class="text-sm uppercase tracking-wider">{year}</div>
-	</div>
+<time class:list={['', className]} datetime={date.toISOString()}>
+	{
+		long ? (
+			formattedDate
+		) : (
+			<div class="flex items-center justify-center gap-1 text-blue-gray-700 dark:text-blue-gray-200">
+				<div class="text-sm font-bold">{day}</div>
+				<div class="text-sm uppercase tracking-wider">{month}</div>
+				<div class="text-sm uppercase tracking-wider">{year}</div>
+			</div>
+		)
+	}
 </time>

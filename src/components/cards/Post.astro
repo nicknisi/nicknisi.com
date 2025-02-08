@@ -29,7 +29,7 @@ const { post, hideImage } = Astro.props;
 		<div class="flex flex-initial flex-wrap justify-start space-x-2">
 			<div class="flex gap-1">
 				<Icon name="mdi:calendar" />
-				<FormattedDate date={post.data.pubDate} />
+				<FormattedDate class="flex flex-col items-center justify-center" date={post.data.pubDate} />
 			</div>
 			{
 				!!post.data.tags?.length && (
