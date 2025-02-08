@@ -7,6 +7,12 @@ import { Icon } from 'astro-icon/components';
 import LinkButton from '@/components/LinkButton.astro';
 import backgroundImage from '@/assets/backgrounds/watercolor.png?url';
 import '../styles/base.css';
+import { getUTM, setUTM } from '@/utils/utm';
+
+const utm = {
+	...getUTM(Astro.url),
+	content: 'social_linkroll',
+};
 ---
 
 <html lang="en">
@@ -67,7 +73,11 @@ import '../styles/base.css';
 
 				<!-- Links -->
 				<div class="flex w-full flex-col items-center space-y-4 p-4">
-					{metadata.links.map(({ title, url, icon }) => <LinkButton title={title} url={url} icon={icon} />)}
+					{
+						metadata.links.map(({ title, url, icon }) => (
+							<LinkButton title={title} url={setUTM(url, utm).toString()} icon={icon} />
+						))
+					}
 				</div>
 			</main>
 		</div>

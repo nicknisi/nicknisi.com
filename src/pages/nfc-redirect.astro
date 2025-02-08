@@ -1,0 +1,15 @@
+---
+import { type UTM, setUTM } from '@/utils/utm';
+
+const campaign = Astro.url.searchParams.get('event') ?? 'networking';
+const utm: UTM = {
+	medium: 'offline',
+	campaign,
+	source: 'nfc',
+};
+
+const redirect = new URL('/social', Astro.url);
+setUTM(redirect, utm);
+
+return Astro.redirect(redirect.toString());
+---
