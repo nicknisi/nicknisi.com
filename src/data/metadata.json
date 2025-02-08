@@ -25,7 +25,8 @@
 		},
 		{
 			"title": "What I'm doing now",
-			"url": "https://nicknisi.com/now"
+			"url": "https://nicknisi.com/now",
+			"icon": "mdi:clock-alert"
 		},
 		{
 			"title": "My Dotfiles",
