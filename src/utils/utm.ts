@@ -58,7 +58,7 @@ export function setUTM(url: URL | string, utm: UTM): URL {
 	const { searchParams: params } = url;
 
 	for (const [key, value] of Object.entries(utm)) {
-		params.set(key, value);
+		params.set(`utm_${key}`, value);
 	}
 
 	return url;
