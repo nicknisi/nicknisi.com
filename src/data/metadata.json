@@ -25,7 +25,7 @@
 		},
 		{
 			"title": "What I'm doing now",
-			"url": "https://nicknisi.com./now"
+			"url": "https://nicknisi.com/now"
 		},
 		{
 			"title": "My Dotfiles",
@@ -47,12 +47,12 @@
 		"threads": {
 			"username": "nicknisi",
 			"url": "https://www.threads.net/@nicknisi",
-			"hidden": false
+			"hidden": true
 		},
 		"mastodon": {
 			"username": "@nicknisi@nicknisi.com",
 			"url": "https://fediverse.nicknisi.com/@nicknisi",
-			"hidden": false
+			"hidden": true
 		},
 		"linkedin": {
 			"username": "nicknisi",
