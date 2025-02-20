@@ -15,37 +15,40 @@
 		"id": "threads",
 		"network": "Threads",
 		"username": "nicknisi",
-		"url": "https://threads.net/nicknisi"
+		"url": "https://threads.net/nicknisi",
+		"hidden": true
 	},
 	{
 		"id": "mastodon",
 		"network": "Mastodon",
 		"username": "@nicknisi@nicknisi.com",
-		"url": "https://nicknisi.com/@nicknisi"
+		"url": "https://nicknisi.com/@nicknisi",
+		"hidden": true
 	},
 	{
 		"id": "twitter",
 		"network": "Twitter",
 		"username": "nicknisi",
-		"url": "https://twitter.com/nicknisi"
+		"url": "https://twitter.com/nicknisi",
+		"hidden": true
 	},
 	{
 		"id": "instagram",
 		"network": "Instagram",
 		"username": "nicknisi",
-		"url": "https://instagram.com/nicknisi"
+		"url": "https://instagram.com/nicknisi",
+		"hidden": true
+	},
+	{
+		"id": "bluesky",
+		"network": "BlueSky",
+		"username": "@nicknisi.com",
+		"url": "https://bsky.app/profile/nicknisi.com"
 	},
 	{
 		"id": "youtube",
 		"network": "YouTube",
 		"username": "nicknisi",
 		"url": "https://youtube.com/@nicknisi"
-	},
-	{
-		"id": "bluesky",
-		"network": "BlueSky",
-		"username": "@nicknisi.com",
-		"url": "https://bsky.app/profile/nicknisi.com",
-		"hidden": true
 	}
 ]

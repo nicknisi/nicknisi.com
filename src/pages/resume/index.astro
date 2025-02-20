@@ -51,7 +51,7 @@ function getVideoThumbnail(videoId: string) {
 							</div>
 						</div>
 						<div class="flex pt-2 print:hidden">
-							<>
+							<div>
 								<a
 									class="border-1 mr-2 inline-block border-gray-300 text-xs text-gray-400 hover:text-gray-600"
 									href={'mailto:' + data.basics.email}
@@ -68,8 +68,8 @@ function getVideoThumbnail(videoId: string) {
 								>
 									<Icon name="ic:round-phone-iphone" class="mr-1 inline-block size-4" />
 								</a>
-							</>
-							<>
+							</div>
+							<div>
 								{
 									profiles.map(profile => (
 										<a
@@ -82,7 +82,7 @@ function getVideoThumbnail(videoId: string) {
 										</a>
 									))
 								}
-							</>
+							</div>
 						</div>
 					</div>
 					<AssetImage

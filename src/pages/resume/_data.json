@@ -32,28 +32,9 @@
 				"url": "https://linkedin.com/in/nicknisi"
 			},
 			{
-				"network": "Threads",
-				"username": "nicknisi",
-				"url": "https://threads.net/nicknisi"
-				"hidden": true,
-			},
-			{
-				"network": "Mastodon",
-				"username": "@nicknisi@nicknisi.com",
-				"url": "https://nicknisi.com/@nicknisi"
-				"hidden": true,
-			},
-			{
-				"network": "Twitter",
-				"username": "nicknisi",
-				"url": "https://twitter.com/nicknisi"
-				"hidden": true,
-			},
-			{
 				"network": "BlueSky",
 				"username": "@nicknisi.com",
-				"url": "https://bsky.app/profile/nicknisi.com",
-				"hidden": true
+				"url": "https://bsky.app/profile/nicknisi.com"
 			}
 		]
 	},
