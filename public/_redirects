@@ -4,6 +4,12 @@
 /.well-known/nodeinfo* https://fediverse.nicknisi.com/.well-known/nodeinfo:splat
 /@nicknisi https://fediverse.nicknisi.com/@nicknisi
 
+# Podcast redirects
+/dysfunctional https://dysfunctional.dev
+/dysfunctional/studio https://riverside.fm/studio/dysfunctional-mogi0?t=e98e3be764f5457b5426
+/sed https://softwareengineeringdaily.com/
+/sed/studio https://riverside.fm/studio/software-engineering-daily-jghY5?t=bfc0b975af97204dfb78
+
 # tsconf info
 /tsconf https://archive.tsconf.io/2021/
 

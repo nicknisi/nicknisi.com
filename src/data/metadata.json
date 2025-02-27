@@ -39,6 +39,20 @@
 			"icon": "mdi:account-hard-hat"
 		}
 	],
+	"podcast": [
+		{
+			"name": "Dysfunctional",
+			"url": "https://dysfunctional.fm/",
+			"icon": "mdi:podcast",
+			"studio": "https://riverside.fm/studio/dysfunctional-mogi0?t=e98e3be764f5457b5426"
+		},
+		{
+			"name": "Software Engineering Daily",
+			"url": "https://softwareengineeringdaily.com/",
+			"icon": "mdi:podcast",
+			"studio": "https://riverside.fm/studio/software-engineering-daily-jghY5?t=bfc0b975af97204dfb78"
+		}
+	],
 	"social": {
 		"bluesky": {
 			"username": "@nicknisi.com",

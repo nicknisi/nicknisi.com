@@ -1,0 +1,78 @@
+---
+import Head from '@/components/Head.astro';
+import { Image } from 'astro:assets';
+import metadata from '@/data/metadata.json';
+import profileImage from '@/assets/profile.jpg';
+import LinkButton from '@/components/LinkButton.astro';
+import backgroundImage from '@/assets/backgrounds/watercolor.png?url';
+import '../styles/base.css';
+---
+
+<html lang="en">
+	<Head title="Social Links | Nick Nisi" description="A collection of social links for Nick Nisi" />
+	<body
+		style={{
+			backgroundColor: '#f0f0f0',
+			backgroundImage: `url(${backgroundImage})`,
+			backgroundSize: 'cover',
+			backgroundRepeat: 'no-repeat',
+			backgroundPosition: 'center center',
+		}}
+		class:list={[
+			'min-h-screen',
+			'font-normal',
+			'font-sans',
+			'bg-gray-50',
+			'text-blue-gray-800',
+			'dark:text-gray-50',
+			'dark:bg-gradient-to-b',
+			'dark:from-dark-smoky-black',
+			'dark:via-dark-eerie-black',
+			'dark:to-dark-obsidian',
+		]}
+	>
+		<div class="mx-auto px-4 py-8 sm:max-w-xl md:max-w-2xl lg:max-w-3xl xl:max-w-4xl">
+			<main class="container mx-auto flex flex-col gap-4">
+				<!-- Profile -->
+				<div class="flex flex-col items-center justify-center text-center">
+					<a href="/">
+						<Image
+							alt="Nick Nisi"
+							src={profileImage}
+							width={256}
+							height={256}
+							class="mb-4 size-36 rounded-full border-2 border-solid border-purple-300 shadow-sm"
+						/>
+					</a>
+					<h1 class="font-sans text-4xl font-extrabold tracking-wide">Studio Links</h1>
+					<section class="font-semibold tracking-wide text-gray-700">
+						<p>Thank you for being a guest on our podcast!</p>
+
+						<p>
+							To join your scheduled recording session, simply click on the appropriate studio link below. The virtual
+							studio will open in your browser, so no additional software is required.
+						</p>
+					</section>
+				</div>
+
+				<!-- Links -->
+				<div class="flex w-full flex-col items-center space-y-4 p-4">
+					{metadata.podcast.map(({ name, studio, icon }) => <LinkButton title={name} url={studio} icon={icon} />)}
+				</div>
+
+				<section class="text-center font-semibold tracking-wide text-gray-700">
+					<p>{`If you encounter any technical difficulties, please contact me at ${metadata.author.email}`}.</p>
+				</section>
+			</main>
+		</div>
+	</body>
+</html>
+
+<script>
+	const links = document.querySelectorAll<HTMLAnchorElement>('a[data-type="social-link"]');
+	links.forEach(link => {
+		link.addEventListener('click', () => {
+			fathom.trackEvent(`social: ${link.href}`);
+		});
+	});
+</script>
