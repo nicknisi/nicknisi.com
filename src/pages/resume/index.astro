@@ -214,14 +214,14 @@ function getVideoThumbnail(videoId: string) {
 											<h3 class="text-center text-xs font-bold leading-tight text-gray-900">{appearance.title}</h3>
 											{appearance.thumbnail ? (
 												<AssetImage
-													class="not-prose mx-1 aspect-video h-auto max-w-36 rounded pb-1"
+													class="not-prose mx-1 aspect-video h-auto max-w-36 rounded-sm pb-1"
 													src={appearance.thumbnail}
 													alt={appearance.title}
 												/>
 											) : (
 												<Image
 													inferSize={true}
-													class="not-prose mx-1 aspect-video h-auto max-w-36 rounded pb-1"
+													class="not-prose mx-1 aspect-video h-auto max-w-36 rounded-sm pb-1"
 													src={
 														appearance.instances[0]!.videoId ? getVideoThumbnail(appearance.instances[0]!.videoId) : ''
 													}
@@ -248,14 +248,14 @@ function getVideoThumbnail(videoId: string) {
 								<div class="flex py-2">
 									{talk.thumbnail ? (
 										<AssetImage
-											class="not-prose mx-1 aspect-video max-w-36 rounded pb-1"
+											class="not-prose mx-1 aspect-video max-w-36 rounded-sm pb-1"
 											src={talk.thumbnail}
 											alt={talk.title}
 										/>
 									) : (
 										<Image
 											inferSize={true}
-											class="not-prose mx-1 aspect-video max-w-36 rounded pb-1"
+											class="not-prose mx-1 aspect-video max-w-36 rounded-sm pb-1"
 											src={talk.instances[0]!.videoId ? getVideoThumbnail(talk.instances[0]!.videoId) : ''}
 											alt={talk.title}
 										/>

@@ -6,7 +6,7 @@ import { readFileSync } from 'fs';
 
 // https://astro.build/config
 import mdx from '@astrojs/mdx';
-import tailwind from '@astrojs/tailwind';
+import tailwind from '@tailwindcss/vite';
 import cloudflare from '@astrojs/cloudflare';
 
 // https://astro.build/config
@@ -29,9 +29,6 @@ export default defineConfig({
 		icon(),
 		react(),
 		mdx(),
-		tailwind({
-			applyBaseStyles: false,
-		}),
 		sitemap({
 			filter: page => page !== 'https://nicknisi.com/resume',
 		}),
@@ -58,7 +55,7 @@ export default defineConfig({
 	},
 
 	vite: {
-		plugins: [rawBuffer()],
+		plugins: [rawBuffer(), tailwind()],
 		build: { minify: false },
 	},
 
