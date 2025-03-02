@@ -64,8 +64,8 @@ if (reverse) {
 					<div
 						class={`before:content:[''] invisible relative bottom-0 w-64 transform-gpu rounded-lg bg-purple-700 p-4 opacity-0 shadow-lg transition-all duration-500 ease-in-out before:absolute before:bottom-2 before:h-0 before:w-0 before:border-solid md:w-96 dark:bg-purple-300 ${
 							(i + 1) % 2 === 0
-								? 'left-12 translate-x-[-200px] before:-left-4 before:border-y-8 before:border-r-[16px] before:border-transparent before:border-r-purple-700 md:-left-[439px] before:md:-right-4 before:md:left-auto before:md:border-l-[16px] before:md:border-r-0 before:md:border-l-purple-700 dark:before:border-r-purple-300 dark:before:md:border-l-purple-300'
-								: 'left-11 translate-x-[200px] before:-left-4 before:border-y-[8px] before:border-r-[16px] before:border-transparent before:border-r-purple-700 before:outline-none dark:before:border-r-purple-300'
+								? 'left-12 translate-x-[-200px] before:-left-4 before:border-y-8 before:border-r-[16px] before:border-transparent before:border-r-purple-700 md:-left-[439px] md:before:-right-4 md:before:left-auto md:before:border-l-[16px] md:before:border-r-0 md:before:border-l-purple-700 dark:before:border-r-purple-300 dark:md:before:border-l-purple-300'
+								: 'left-11 translate-x-[200px] before:-left-4 before:border-y-[8px] before:border-r-[16px] before:border-transparent before:border-r-purple-700 before:outline-hidden dark:before:border-r-purple-300'
 						}`}
 					>
 						<time class="text-lg mb-2 block font-bold">{event.time}</time>

@@ -1,8 +1,181 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+@custom-variant dark (&:where(.dark, .dark *));
+@plugin "@tailwindcss/typography";
+
+@theme {
+	/*--tw-prose-pre-font-family: Space Mono, monospace;*/
+	/*--tw-prose-code-font-family: Space Mono, monospace;*/
+	/*--tw-prose-pre-code-font-family: Space Mono, monospace;*/
+
+	--font-sans: Atkinson Hyperlegible, sans-serif;
+	--font-serif: Oswald, Roboto Slab, serif;
+	--font-mono: Space Mono, monospace;
+
+	--text-xs: 0.75rem;
+	--text-sm: 0.875rem;
+	--text-base: 1rem;
+	--text-lg: 1.125rem;
+	--text-xl: 1.25rem;
+	--text-2xl: 1.5rem;
+	--text-3xl: 1.875rem;
+	--text-4xl: 2.25rem;
+	--text-5xl: 3rem;
+	--text-6xl: 3.75rem;
+	--text-7xl: 4.5rem;
+
+	--color-white: #ffffff;
+	--color-transparent: transparent;
+	--color-purple-50: #eae2f8;
+	--color-purple-100: #cfbcf2;
+	--color-purple-200: #a081d9;
+	--color-purple-300: #8662c7;
+	--color-purple-400: #724bb7;
+	--color-purple-500: #653cad;
+	--color-purple-600: #51279b;
+	--color-purple-700: #421987;
+	--color-purple-800: #34126f;
+	--color-purple-900: #240754;
+
+	--color-red-50: #ffe3e3;
+	--color-red-100: #ffbdbd;
+	--color-red-200: #ff9b9b;
+	--color-red-300: #f86a6a;
+	--color-red-400: #ef4e4e;
+	--color-red-500: #e12d39;
+	--color-red-600: #cf1124;
+	--color-red-700: #ab091e;
+	--color-red-800: #8a041a;
+	--color-red-900: #610316;
+
+	--color-blue-gray-50: #f0f4f8;
+	--color-blue-gray-100: #d9e2ec;
+	--color-blue-gray-200: #bcccdc;
+	--color-blue-gray-300: #9fb3c8;
+	--color-blue-gray-400: #829ab1;
+	--color-blue-gray-500: #627d98;
+	--color-blue-gray-600: #486581;
+	--color-blue-gray-700: #334e68;
+	--color-blue-gray-800: #243b53;
+	--color-blue-gray-900: #102a43;
+
+	--color-teal-50: #f0fcf9;
+	--color-teal-100: #c6f7e9;
+	--color-teal-200: #8eedd1;
+	--color-teal-300: #5fe3c0;
+	--color-teal-400: #2dcca7;
+	--color-teal-500: #17b897;
+	--color-teal-600: #079a82;
+	--color-teal-700: #048271;
+	--color-teal-800: #016457;
+	--color-teal-900: #004440;
+
+	--color-yellow-50: #fffbea;
+	--color-yellow-100: #fff3c4;
+	--color-yellow-200: #fce588;
+	--color-yellow-300: #fadb5f;
+	--color-yellow-400: #f7c948;
+	--color-yellow-500: #f0b429;
+	--color-yellow-600: #de911d;
+	--color-yellow-700: #cb6e17;
+	--color-yellow-800: #b44d12;
+	--color-yellow-900: #8d2b0b;
+
+	--color-vivid-light-blue-50: #e3f8ff;
+	--color-vivid-light-blue-100: #b3ecff;
+	--color-vivid-light-blue-200: #81defd;
+	--color-vivid-light-blue-300: #5ed0fa;
+	--color-vivid-light-blue-400: #40c3f7;
+	--color-vivid-light-blue-500: #2bb0ed;
+	--color-vivid-light-blue-600: #1992d4;
+	--color-vivid-light-blue-700: #127fbf;
+	--color-vivid-light-blue-800: #0b69a3;
+	--color-vivid-light-blue-900: #035388;
+
+	--color-gray-50: '#f6f6f6';
+	--color-gray-100: '#e7e7e7';
+	--color-gray-200: '#d1d1d1';
+	--color-gray-300: '#b0b0b0';
+	--color-gray-400: '#888888';
+	--color-gray-500: '#6d6d6d';
+	--color-gray-600: '#5d5d5d';
+	--color-gray-700: '#4f4f4f';
+	--color-gray-800: '#454545';
+	--color-gray-900: '#3d3d3d';
+	--color-gray-950: '#0c0c0c';
+
+	--color-cool-gray-50: #f5f7fa;
+	--color-cool-gray-100: #e4e7eb;
+	--color-cool-gray-200: #cbd2d9;
+	--color-cool-gray-300: #9aa5b1;
+	--color-cool-gray-400: #7b8794;
+	--color-cool-gray-500: #616e7c;
+	--color-cool-gray-600: #52606d;
+	--color-cool-gray-700: #3e4c59;
+	--color-cool-gray-800: #323f4b;
+	--color-cool-gray-900: #1f2933;
+
+	--color-vivid-pink-50: #ffe3ec;
+	--color-vivid-pink-100: #ffb8d2;
+	--color-vivid-pink-200: #ff8cba;
+	--color-vivid-pink-300: #f364a2;
+	--color-vivid-pink-400: #e8368f;
+	--color-vivid-pink-500: #da127d;
+	--color-vivid-pink-600: #bc0a6f;
+	--color-vivid-pink-700: #a30664;
+	--color-vivid-pink-800: #870557;
+	--color-vivid-pink-900: #620042;
+
+	--color-vivid-yellow-50: #fffbea;
+	--color-vivid-yellow-100: #fff3c4;
+	--color-vivid-yellow-200: #fce588;
+	--color-vivid-yellow-300: #fadb5f;
+	--color-vivid-yellow-400: #f7c948;
+	--color-vivid-yellow-500: #f0b429;
+	--color-vivid-yellow-600: #de911d;
+	--color-vivid-yellow-700: #cb6e17;
+	--color-vivid-yellow-800: #b44d12;
+	--color-vivid-yellow-900: #8d2b0b;
+
+	--color-dark-charcoal-gray: #121212;
+	--color-dark-dark-slate-gray: #191919;
+	--color-dark-outer-space: #252525;
+	--color-dark-rich-black: #0a0a0a;
+	--color-dark-coffee-bean: #1b1b1b;
+	--color-dark-dark-gray: #212427;
+	--color-dark-oil-black: #0c0c0c;
+	--color-dark-obsidian: #0b1215;
+	--color-dark-ebony: #222428;
+	--color-dark-black-chocolate: #100d08;
+	--color-dark-gunmetal: #1d1f21;
+	--color-dark-smoky-black: #101720;
+	--color-dark-oxford-blue: #212a37;
+	--color-dark-eerie-black: #232023;
+	--color-dark-jet-black: #161618;
+	--color-dark-iridium: #181818;
+	--color-dark-arsenic: #11181c;
+	--color-dark-charleston-green: #212124;
+	--color-dark-jet: #2a2a2a;
+	--color-dark-black-olive: #242526;
+	--color-dark-midnight-blue: #212121;
+}
 
 @layer base {
+	/*
+The default border color has changed to `currentColor` in Tailwind CSS v4,
+so we've added these compatibility styles to make sure everything still
+looks the same as it did with Tailwind CSS v3.
+
+If we ever want to remove these styles, we need to add an explicit border
+color utility to any element that depends on these defaults.
+*/
+	*,
+	::after,
+	::before,
+	::backdrop,
+	::file-selector-button {
+		border-color: var(--color-gray-200, currentColor);
+	}
+
 	h1,
 	h2,
 	h3,
@@ -13,21 +186,21 @@
 	}
 
 	h1 {
-		@apply p-4 text-4xl font-bold leading-tight;
+		@apply p-4 text-4xl leading-tight font-bold;
 	}
 	h2 {
-		@apply p-3 text-3xl font-bold leading-snug;
+		@apply p-3 text-3xl leading-snug font-bold;
 	}
 	h3 {
-		@apply p-2 text-2xl font-semibold leading-normal;
+		@apply p-2 text-2xl leading-normal font-semibold;
 	}
 	h4 {
-		@apply p-2 text-xl font-semibold leading-normal;
+		@apply p-2 text-xl leading-normal font-semibold;
 	}
 	h5 {
-		@apply p-2 text-lg font-medium leading-relaxed;
+		@apply p-2 text-lg leading-relaxed font-medium;
 	}
 	h6 {
-		@apply p-1 text-base font-medium leading-relaxed;
+		@apply p-1 text-base leading-relaxed font-medium;
 	}
 }
