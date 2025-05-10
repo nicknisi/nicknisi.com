@@ -7,7 +7,6 @@ import { getPosts } from '@/utils/common';
 import { Icon } from 'astro-icon/components';
 import { getAsset } from '@/utils/image.js';
 import { Image } from 'astro:assets';
-import Skeets from '@/components/Skeets.astro';
 
 const profileImage = await getAsset('profile.jpg');
 const allPosts = await getPosts();
@@ -22,7 +21,7 @@ const tags: string[] = [...new Set(allPosts.map(post => post.data.tags).flat())]
 					{metadata.description}
 				</div>
 				<div
-					class="text-blue-500 inline-flex h-32 w-32 shrink-0 items-center justify-center rounded-full sm:mr-10 md:h-64 md:w-64"
+					class="inline-flex h-32 w-32 shrink-0 items-center justify-center rounded-full text-blue-500 sm:mr-10 md:h-64 md:w-64"
 				>
 					<Image
 						src={profileImage}
@@ -35,7 +34,7 @@ const tags: string[] = [...new Set(allPosts.map(post => post.data.tags).flat())]
 				</div>
 			</div>
 			<div
-				class="flex w-full items-center justify-center pt-2 text-gray-200 dark:text-gray-700 md:items-end md:justify-start md:pt-0"
+				class="flex w-full items-center justify-center pt-2 text-gray-200 md:items-end md:justify-start md:pt-0 dark:text-gray-700"
 			>
 				{
 					['raphael:vim', 'mdi:language-typescript', 'mdi:react', 'mdi:nodejs', 'mdi:language-javascript'].map(name => (
@@ -54,12 +53,6 @@ const tags: string[] = [...new Set(allPosts.map(post => post.data.tags).flat())]
 			</p>
 
 			<section class="flex flex-col flex-nowrap gap-4 sm:flex-row">
-				<div>
-					<h3 class="my-4 mt-8 text-4xl">Latest Skeets</h3>
-					<Skeets limit={3} server:defer>
-						<h3 slot="fallback">Loading Latest Bluesky posts...</h3>
-					</Skeets>
-				</div>
 				<div>
 					<h3 class="my-4 mt-8 text-4xl">Latest posts</h3>
 					<div class="flex items-center justify-center">

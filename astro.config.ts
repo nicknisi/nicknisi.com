@@ -7,7 +7,7 @@ import { readFileSync } from 'fs';
 // https://astro.build/config
 import mdx from '@astrojs/mdx';
 import tailwind from '@tailwindcss/vite';
-import cloudflare from '@astrojs/cloudflare';
+// import cloudflare from '@astrojs/cloudflare';
 
 // https://astro.build/config
 export default defineConfig({
@@ -60,9 +60,9 @@ export default defineConfig({
 	},
 
 	output: 'static',
-	adapter: cloudflare({
-		//imageService: 'cloudflare',
-	}),
+	// adapter: cloudflare({
+	// 	//imageService: 'cloudflare',
+	// }),
 });
 
 /**
