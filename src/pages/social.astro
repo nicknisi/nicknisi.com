@@ -65,7 +65,11 @@ const utm = {
 									href={url}
 									class="hover:animate-wiggle text-2xl text-gray-600 transition-colors duration-300 hover:text-gray-800 sm:text-3xl md:text-4xl"
 								>
-									<Icon name={`simple-icons:${type}`} class="inline-block size-8 text-gray-500 hover:text-gray-600" />
+									<Icon
+										aria-label={type}
+										name={`simple-icons:${type}`}
+										class="inline-block size-8 text-gray-500 hover:text-gray-600"
+									/>
 								</a>
 							))
 					}

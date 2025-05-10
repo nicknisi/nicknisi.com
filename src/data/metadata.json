@@ -20,8 +20,18 @@
 	"links": [
 		{
 			"title": "Meet with me",
-			"url": "https://fantastical.app/nicknisi/30",
+			"url": "https://calendly.com/nicknisi/30min",
 			"icon": "mdi:calendar"
+		},
+		{
+			"title": "Recent talks",
+			"url": "https://nicknisi.com/talks",
+			"icon": "mdi:microphone"
+		},
+		{
+			"title": "Dysfunctional Podcast",
+			"url": "https://dysfunctional.fm",
+			"icon": "mdi:podcast"
 		},
 		{
 			"title": "What I'm doing now",
@@ -32,11 +42,6 @@
 			"title": "My Dotfiles",
 			"url": "https://github.com/nicknisi/dotfiles",
 			"icon": "mdi:console"
-		},
-		{
-			"title": "Side Effects Consulting",
-			"url": "https://sideeffects.dev",
-			"icon": "mdi:account-hard-hat"
 		}
 	],
 	"podcast": [
@@ -54,6 +59,16 @@
 		}
 	],
 	"social": {
+		"linkedin": {
+			"username": "nicknisi",
+			"url": "https://linkedin.com/in/nicknisi",
+			"hidden": false
+		},
+		"github": {
+			"username": "nicknisi",
+			"url": "https://github.com/nicknisi",
+			"hidden": false
+		},
 		"bluesky": {
 			"username": "@nicknisi.com",
 			"url": "https://bsky.app/profile/nicknisi.com",
@@ -69,16 +84,6 @@
 			"url": "https://fediverse.nicknisi.com/@nicknisi",
 			"hidden": true
 		},
-		"linkedin": {
-			"username": "nicknisi",
-			"url": "https://linkedin.com/in/nicknisi",
-			"hidden": false
-		},
-		"github": {
-			"username": "nicknisi",
-			"url": "https://github.com/nicknisi",
-			"hidden": false
-		},
 		"youtube": {
 			"username": "nicknisi",
 			"url": "https://www.youtube.com/nicknisi",
@@ -87,7 +92,7 @@
 		"instagram": {
 			"username": "nicknisi",
 			"url": "https://www.instagram.com/nicknisi/",
-			"hidden": false
+			"hidden": true
 		},
 		"twitter": {
 			"username": "nicknisi",
