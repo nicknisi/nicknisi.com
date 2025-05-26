@@ -9,6 +9,7 @@ hero:
   img: "@/assets/posts/mcp-robot.jpg"
   alt: "WorkOS CEO Michael Grinich and a Robot at MCP Night"
   darkOverlay: true
+post: https://bsky.app/profile/nicknisi.com/post/3lq3jqrpm5s2w
 ---
 
 I've been thinking a lot about how we use AI in our daily work. Before my first [WorkOS](https://workos.com) onsite, I primarily used AI as a thinking assistant. I'd have higher-level architecture discussions with AI, use it to generate mermaid diagrams, and help manage the context in my head. Safe, controlled interactions.
