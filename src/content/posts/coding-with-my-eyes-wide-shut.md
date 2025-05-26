@@ -1,7 +1,7 @@
 ---
 title: 'Coding With My Eyes Wide Shut'
 pubDate: 2025-05-26
-description: At WorkOS's AI onsite and MCP Night, I experimented with vibe coding What started as a two-hour experiment with 5,000 lines of unseen TypeScript became a glimpse into programming's future.
+description: At WorkOS's AI onsite and MCP Night, I experimented with vibe coding. What started as a two-hour experiment with 5,000 lines of unseen TypeScript became a glimpse into programming's future.
 tags:
   - mcp
   - ai
@@ -29,7 +29,7 @@ A large part of our onsite was dedicated to AI hacking - see what you can do wit
 
 The tedium struck me immediately. Here's an incredible engineer doing the same simple task multiple times, context switching between languages. Time that could be spent on more interesting problems.
 
-My teammate Nick and I claimed a corner of the conference room. We had a couple hours. Perfect time to experiment with something I'd been hearing about: vibe coding.
+My teammate Nick and I claimed a corner of the conference room. We had a couple hours. Perfect time to experiment with something I'd yet to try: vibe coding.
 
 ## The Experiment
 
@@ -71,7 +71,7 @@ By the end of our two-hour session:
 
 The PRs it generated for [Ruby](https://github.com/workos/workos-ruby/pull/373) and [PHP](https://github.com/workos/workos-php/pull/284) weren't perfect. But they worked. Somewhat. Changes in one SDK triggered matching changes in others.
 
-That night in my hotel room, I couldn't sleep. What had taken us two hours would have been days of careful coding for me before. If AI could do this now, what would it do in six months? A year? I'd spent fifteen years perfecting my craft, and suddenly I was wondering if those skills were becoming obsolete. The ground beneath my career felt unstable. Was I witnessing the beginning of the end for traditional programming? The thought was terrifying.
+That night in my hotel room, I couldn't sleep. What had taken us two hours would have been days of careful coding before. If AI could do this now, what would it do in six months? A year? I'd spent fifteen years perfecting my craft, and suddenly I was wondering if those skills were becoming obsolete. The ground beneath my career felt unstable. Was I witnessing the beginning of the end for traditional programming? The thought was terrifying.
 
 ## MCP Night Perspective
 
@@ -109,8 +109,10 @@ The developers still submitting the same PR three times aren't just wasting time
 
 My workshop talked about augmenting skills. My lightning talk showed AI handling peripheral tasks. But the vibe coding experiment? That showed me what augmentation really means. It's not about AI writing code for you. It's about developing new skills for a world where code can write itself.
 
-That week, I learned to code with my eyes shut.
+That week, I learned to code with my eyes wide shut.
 
-The strange part? I've never seen more clearly where we're headed. We're not replacing programmers. We're evolving what programming means. The future isn't about writing code - it's about intent, architecture, and knowing when human creativity matters most. Vibe coding isn't my future, but I'm evolving to understand where I best fit in to the problem solving equation and the future of this profession.
+The strange part? I've never seen more clearly where we're headed. We're not replacing programmers. We're evolving what programming means. The future isn't about writing code - it's about intent, architecture, and knowing when human creativity matters most. 
+
+I won't be vibe coding in production anytime soon. But the experiment taught me something crucial: I need to evolve where I fit in the problem-solving equation. The future of this profession isn't about protecting our old ways of working. It's about finding new ways to create value.
 
 And sometimes, you need to close your eyes to see that future.
