@@ -19,6 +19,11 @@
 	},
 	"links": [
 		{
+			"title": "Connect with WorkOS",
+			"url": "https://workos.com/",
+			"icon": "mdi:work"
+		},
+		{
 			"title": "Meet with me",
 			"url": "https://calendly.com/nicknisi/30min",
 			"icon": "mdi:calendar"
