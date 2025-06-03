@@ -19,6 +19,11 @@
 	},
 	"links": [
 		{
+			"title": "mcp.shop",
+			"url": "https://mcp.shop",
+			"icon": "mdi:account-cowboy-hat"
+		},
+		{
 			"title": "Connect with WorkOS",
 			"url": "https://workos.com/",
 			"icon": "mdi:work"
