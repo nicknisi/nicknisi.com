@@ -29,12 +29,12 @@ function getVideoThumbnail(videoId: string) {
 <html lang="en">
 	<Head title="Resume - Nicholas Nisi" description="Nick Nisi's Resume" colorscheme="light" />
 	<body>
-		<main class="container relative mx-auto scroll-my-12 overflow-auto p-4 md:p-16 print:p-12">
+		<main class="relative container mx-auto scroll-my-12 overflow-auto p-4 md:p-16 print:p-12">
 			<section class="print:spacey-y-6 mx-auto max-w-2xl space-y-8 bg-white font-sans">
 				<div class="flex flex-col-reverse items-center justify-between sm:flex-row">
 					<div class="flex-1 space-y-1.5">
 						<h1 class="text-2xl font-bold">{data.basics.name}</h1>
-						<p class="max-w-md text-pretty font-mono text-sm">
+						<p class="max-w-md font-mono text-sm text-pretty">
 							{data.basics.summary}
 						</p>
 						<p class="text-xs text-gray-600">
@@ -53,32 +53,35 @@ function getVideoThumbnail(videoId: string) {
 						<div class="flex pt-2 print:hidden">
 							<div>
 								<a
-									class="border-1 mr-2 inline-block border-gray-300 text-xs text-gray-400 hover:text-gray-600"
+									class="mr-2 inline-block border-gray-300 text-xs text-gray-400 hover:text-gray-600"
 									href={'mailto:' + data.basics.email}
 									target="_blank"
 									rel="noopener noreferrer"
 								>
-									<Icon name="mdi:envelope-outline" class="mr-1 inline-block size-4" />
+									<Icon name="mdi:envelope-outline" class="mr-1 inline-block size-4 border-0" />
 								</a>
 								<a
-									class="border-1 mr-2 inline-block border-gray-300 text-xs text-gray-400 hover:text-gray-600"
+									class="mr-2 inline-block border-gray-300 text-xs text-gray-400 hover:text-gray-600"
 									href={'tel:' + data.basics.phone}
 									target="_blank"
 									rel="noopener noreferrer"
 								>
-									<Icon name="ic:round-phone-iphone" class="mr-1 inline-block size-4" />
+									<Icon name="ic:round-phone-iphone" class="mr-1 inline-block size-4 border-0" />
 								</a>
 							</div>
 							<div>
 								{
 									profiles.map(profile => (
 										<a
-											class="border-1 mr-2 inline-block border-gray-300 text-xs text-gray-400 hover:text-gray-600"
+											class="mr-2 inline-block border-gray-300 text-xs text-gray-400 hover:text-gray-600"
 											href={profile.url}
 											target="_blank"
 											rel="noopener noreferrer"
 										>
-											<Icon name={`simple-icons:` + profile.network.toLowerCase()} class="mr-1 inline-block size-4" />
+											<Icon
+												name={`simple-icons:` + profile.network.toLowerCase()}
+												class="mr-1 inline-block size-4 border-0"
+											/>
 										</a>
 									))
 								}
@@ -111,7 +114,7 @@ function getVideoThumbnail(videoId: string) {
 												<div class="flex items-center">
 													<div class="font-mono text-xs">{job.location}</div>
 													{job.remote && (
-														<span class="ml-2 inline-block rounded-md bg-blue-gray-50 p-1 font-mono text-xs font-semibold">
+														<span class="bg-blue-gray-50 ml-2 inline-block rounded-md p-1 font-mono text-xs font-semibold">
 															Remote
 														</span>
 													)}
@@ -157,7 +160,7 @@ function getVideoThumbnail(videoId: string) {
 									{project.highlights && (
 										<div class="flex flex-wrap gap-2">
 											{project.keywords.map(keyword => (
-												<div class="inline-block rounded-md bg-blue-gray-50 p-1 font-mono text-xs font-semibold">
+												<div class="bg-blue-gray-50 inline-block rounded-md p-1 font-mono text-xs font-semibold">
 													{keyword}
 												</div>
 											))}
@@ -191,7 +194,7 @@ function getVideoThumbnail(videoId: string) {
 									{project.highlights && (
 										<div class="flex flex-wrap gap-2">
 											{project.keywords.map(keyword => (
-												<div class="inline-block rounded-md bg-blue-gray-50 p-1 font-mono text-xs font-semibold">
+												<div class="bg-blue-gray-50 inline-block rounded-md p-1 font-mono text-xs font-semibold">
 													{keyword}
 												</div>
 											))}
@@ -210,8 +213,8 @@ function getVideoThumbnail(videoId: string) {
 							appearances.map(appearance => (
 								<div class="basis-44 rounded-lg border border-gray-100 p-4">
 									<a href={appearance.instances[0]!.url} target="_blank" class="no-underline">
-										<div class="flex flex-col items-center space-y-2 px-2 pb-4 pt-1 text-center">
-											<h3 class="text-center text-xs font-bold leading-tight text-gray-900">{appearance.title}</h3>
+										<div class="flex flex-col items-center space-y-2 px-2 pt-1 pb-4 text-center">
+											<h3 class="text-center text-xs leading-tight font-bold text-gray-900">{appearance.title}</h3>
 											{appearance.thumbnail ? (
 												<AssetImage
 													class="not-prose mx-1 aspect-video h-auto max-w-36 rounded-sm pb-1"
@@ -229,7 +232,7 @@ function getVideoThumbnail(videoId: string) {
 												/>
 											)}
 											<div class="align-content-center justify-content-center flex flex-col">
-												<div class="sticky font-mono text-xs font-bold leading-tight text-gray-500">
+												<div class="sticky font-mono text-xs leading-tight font-bold text-gray-500">
 													{appearance.instances[0]!.location}
 												</div>
 												<div class="font-mono text-xs text-gray-500">{dateToYear(appearance.instances[0]!.date)}</div>
@@ -261,10 +264,10 @@ function getVideoThumbnail(videoId: string) {
 										/>
 									)}
 									<div>
-										<div class="flex flex-col space-y-2 px-2 pb-4 pt-1">
-											<h3 class="text-md font-medium leading-tight text-gray-900">{talk.title}</h3>
+										<div class="flex flex-col space-y-2 px-2 pt-1 pb-4">
+											<h3 class="text-md leading-tight font-medium text-gray-900">{talk.title}</h3>
 											<div class="align-content-center justify-content-center flex">
-												<div class="sticky font-mono text-xs font-bold leading-tight text-gray-700">
+												<div class="sticky font-mono text-xs leading-tight font-bold text-gray-700">
 													{talk.instances[0]!.location}
 												</div>
 												<div class="pl-2 font-mono text-xs text-gray-600">{dateToYear(talk.instances[0]!.date)}</div>
@@ -292,7 +295,7 @@ function getVideoThumbnail(videoId: string) {
 					<div class="flex gap-4">
 						{
 							data.skills.map(skill => (
-								<div class="inline-block rounded-md bg-blue-gray-50 p-1 font-mono text-xs font-semibold">
+								<div class="bg-blue-gray-50 inline-block rounded-md p-1 font-mono text-xs font-semibold">
 									{skill.name}
 								</div>
 							))
