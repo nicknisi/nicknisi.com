@@ -1,0 +1,195 @@
+---
+title: "Evolving with the Tools"
+pubDate: 2025-06-13
+draft: true
+tags:
+  - ai
+  - tooling
+description: |
+  After 16 years of writing code, I fought the idea of AI agents replacing developers until I discovered they could amplify rather than replace me. This is my journey from skepticism to embracing Claude Code as a pair programmer who speaks fluent bash and transforms how I ship software.
+hero:
+  img: "@/assets/posts/ai-tooling.png"
+  alt: "My laptop and badge"
+---
+
+import Callout from '@/components/Callout.astro'
+
+<Callout title="Want to dive in?">
+[My Claude configuration](https://github.com/nicknisi/dotfiles/tree/main/home/.claude) | [Anthropic's best practices](https://www.anthropic.com/engineering/claude-code-best-practices) | [CLI documentation](https://docs.anthropic.com/en/docs/claude-code/cli-usage) | Start with `/init` in any project.
+</Callout>
+
+"AI is going to replace developers."
+
+I must have heard that phrase a hundred times in the last year. 16 years I've been writing code. Almost two decades of carefully curated vim configurations, meticulously crafted bash scripts, and hard-won muscle memory that lets me navigate codebases like breathing. Now some VC-funded startup was telling me a chatbot could do my job?
+
+But every day brought new demos, new breakthroughs, new colleagues raving about their AI workflows and how much faster they were shipping. The FOMO was real, but so was the fear. What if they were right? What if I was the blacksmith stubbornly insisting that automobiles were just a fad while everyone else was learning to drive?
+
+So I started experimenting. Cautiously and with skepticism.
+
+I was wrong, but not in the way I feared.
+
+## From Apprehension to Adoption
+
+I spent weeks fighting the entire concept of AI agents. Not any specific tool, mind you, but the idea itself. These things were supposed to replace me, so why would I help train my replacement? Every demo I watched made me more defensive, every success story felt like a threat to everything I'd spent two decades building.
+
+My journey started small, almost embarrassingly so. I began asking ChatGPT and Claude basic questions like syntax I'd forgotten or best practices for new frameworks I was exploring. Nothing I couldn't have figured out myself with a few minutes on Stack Overflow, but the instant responses were... nice.
+
+Then I started copying and pasting code snippets back and forth. Question in the chat, code snippet back, copy, paste, test, repeat. It worked well enough, but the constant context switching was killing my flow. Jumping between browser and terminal, losing my place, forgetting what I was trying to accomplish in the first place. (I work almost exclusively on open source projects, so I wasn't worried about sharing code with these services.)
+
+When Claude Code launched, I saw it as a simple efficiency gain. No more copy-paste friction, just let it write directly in my terminal. That seemed reasonable enough, a natural evolution of the workflow I'd already adopted.
+
+But then something clicked.
+
+I watched it use `rg` to search through codebases, just like I would. It ran `npm test` to verify its changes weren't breaking anything. It created branches with `git`, checked logs with `docker compose`, even cleaned up after itself.
+
+It wasn't just writing code. It was using the same tools I use, following the same workflows I follow, making the same kinds of decisions I make when navigating a codebase. The terminal commands flying by weren't some alien syntax; they were exactly what I would have typed, just faster.
+
+🤯
+
+This wasn't a code generator trying to replace me. It was a pair programmer who spoke fluent bash, understood my toolchain, and could keep up with my thought process. That changed everything. I wasn't being replaced, I was being amplified.
+
+Claude Code stuck with me because it met me where I was: on the command line. It didn't ask me to leave vim or learn a new IDE or change my workflow. It enhanced the environment I'd spent years perfecting.
+
+Three things set it apart:
+
+1. **It asks clarifying questions**. When I say "refactor this," it asks what success looks like, or at least defines it in a way that I can correct it.
+2. **It makes everything a task**. It creates a checklist so I can see what it's thinking and then executes it, step-by-step.
+3. **It maintains context**. I can be in there making changes right along side it. It adapts the changes and continues.
+
+The shift from fear to flow took time. But once I stopped fighting and started collaborating, everything changed.
+
+## My Philosophy on AI Tools
+
+Here's what I've learned about working with AI after months of daily use and countless experiments:
+
+**You're not cheating, you're adapting.** Using AI doesn't make you less of a developer any more than using an IDE makes you less of a programmer. The developers who insist on writing every line by hand are like accountants refusing to use spreadsheets because "real accountants use ledgers."
+
+**Clarity beats cleverness every time.** The better you communicate intent, the better results you get. Vague instructions produce vague code, while clear specifications produce clear implementations. Think of it like delegating to a brilliant junior developer who has perfect recall but sometimes questionable judgment.
+
+If your experience tells you it can't solve your complex problems and that those who claim clear gains just don't have hard problem to solve, you're wrong. You're just not simplifying your tasks enough or you don't know enough about what success looks like to tell it how to succeed.
+
+**Trust but verify remains the golden rule.** AI is incredibly capable but it's not infallible. Let it implement while you architect, let it write while you review, let it explore solutions while you evaluate trade-offs. The relationship works best when you're both playing to your strengths.
+
+**Context is everything, and more is almost always better.** The more context you provide (project structure, coding standards, business requirements, even team preferences) the better the output becomes. Don't assume it knows your conventions; teach it explicitly.
+
+**Stay in the driver's seat, always.** You decide what to build and why, you set the standards, you make the judgment calls about architecture and design. AI handles the implementation details while you handle the decisions that require human insight, experience, and wisdom.
+
+## How I Use Claude Code
+
+### Setting Up for Success
+
+**Create a `CLAUDE.md` File**
+
+Run `/init` in any project. This generates a context file that helps Claude understand your project:
+
+- How to build and run the app
+- How to run tests
+- Project-specific patterns and practices
+- Examples of good code (`@`-reference specific files)
+
+Claude supports three variants:
+
+| File                  | Purpose                                                 |
+| --------------------- | ------------------------------------------------------- |
+| `CLAUDE.md`           | Project-specific info, checked into version control     |
+| `CLAUDE.local.md`     | Personal project notes, automatically gitignored        |
+| `~/.claude/CLAUDE.md` | Global preferences for how you want to work with Claude |
+
+### Planning Before Doing
+
+For any substantial task, I start with a plan. Press ⇧-Tab twice to enter Planning Mode. Claude outlines what it wants to do without making changes. This lets you refine the approach before any code gets written.
+
+I keep plans in a `plan.md` file. The more granular the steps, the better the results. Claude can update the plan as requirements evolve.
+
+### Global Configuration
+
+**Global Settings**
+
+Configure Claude in `~/.claude/settings.json`. Most importantly, set up permissions so Claude doesn't ask about routine operations:
+
+```json
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls:*)",
+      "Read(~/Developer/**)",
+      "Bash(git branch:*)",
+      "Bash(git switch:*)",
+      "Bash(docker compose exec:*)",
+      "Bash(grep:*)",
+      "Bash(rg:*)"
+    ]
+  }
+}
+```
+
+**Custom Commands**
+
+Add your own slash commands by creating markdown files in `~/.claude/commands/`. The filename becomes the command name.
+
+Example `/issue` command:
+
+```markdown
+Please analyze and fix the GitHub issue: $ARGUMENTS.
+
+1. Use `gh issue view` to get the issue details
+2. Understand the problem described
+3. Search the codebase for relevant files
+4. Implement the necessary changes
+5. Write and run tests
+6. Ensure code passes linting
+7. Create a descriptive commit
+8. Push and create a PR
+```
+
+Use it with `/issue 123`.
+
+### Parallel Development with Worktrees
+
+Git worktrees let you work on multiple branches simultaneously. I spin up Claude in different worktrees for parallel tasks:
+
+- One worktree for refactoring
+- Another for new features
+- A third for documentation
+
+Using tmux, I manage multiple Claude sessions. Each has its own context and its own goals. I implement and review and merge while Claude implements.
+
+### Daily Workflow
+
+My typical day has transformed completely since adopting Claude Code. Mornings start with reviewing what needs to be done and creating detailed plans for Claude to execute. Not unlike how I used to plan my own coding sessions, but with a different mindset about who's doing what.
+
+I'll spin up multiple Claude instances for different tasks throughout the day: one might be refactoring a particularly gnarly authentication system while another writes comprehensive test coverage for features I shipped last week. A third might be updating documentation based on recent API changes. While they work, I'm reviewing their output, providing feedback, handling the inevitable merge conflicts, and thinking about the bigger architectural decisions that need human judgment.
+
+The strangest part? I'm coding less but shipping more, and the code quality is often better than what I'd write alone. It turns out that having an tireless assistant who never gets bored of writing tests or updating documentation means those important-but-tedious tasks actually get done instead of being perpetually pushed to "next sprint."
+
+## Where I See This Going
+
+We're not being replaced. We're evolving, and the transformation is happening faster than most of us expected.
+
+**Near term (happening now):** Developers are becoming orchestrators rather than implementers, with AI handling the boilerplate and repetitive tasks that used to consume hours of our day. We're focusing more on architecture, design, and the human elements of software development: understanding user needs, making trade-offs, navigating organizational dynamics.
+
+**Medium term (1-2 years):** I expect to see AI agents collaborating with each other, forming virtual development teams that we guide and manage. Natural language will become the primary programming interface for many tasks. Not because code is going away, but because expressing intent in human terms is often clearer than wrestling with syntax.
+
+**Long term (2-3 years):** AI will likely understand business requirements directly from stakeholders, prototype solutions, and handle much of what we consider "development" today. Our role shifts to being quality gatekeepers, system designers, and the bridge between human needs and machine capabilities. We'll be the ones ensuring that what gets built actually solves real problems for real people.
+
+The developers who thrive in this new world won't necessarily be the fastest typists or the cleverest algorithm designers. They'll be the best communicators, the clearest thinkers, the most empathetic problem solvers. **They'll be the ones who learned to leverage these tools rather than compete with them.**
+
+## Getting Started
+
+If you're ready to try this yourself, start small. Pick one feature, one bug fix, or one refactor that's been sitting in your backlog. Write out a clear plan of what you want to accomplish, let Claude execute it, then carefully review the results. That feeling of discomfort you'll inevitably experience? That's not a bug, it's a feature. It's the feeling of growth, of your mental model expanding to accommodate new ways of working.
+
+You might feel like you're cheating at first, like you're not a "real" developer anymore because you're not typing every character. Push through that feeling. You're not being replaced; **you're being amplified**. You're focusing on the parts of development that actually require human creativity and judgment.
+
+## Learn From Others
+
+The Claude Code and general AI tooling community is growing rapidly, and there's tremendous value in seeing how others structure their workflows and contexts. Search GitHub for `.claude/CLAUDE.md` files to discover different approaches to project configuration, or watch streams and videos to see how other developers are pushing the boundaries of what's possible with AI-assisted development.
+
+My own configuration is in my [dotfiles repo](https://github.com/nicknisi/dotfiles/tree/main/home/.claude) if you want to see how I've set things up. Don't just copy blindly though. The beauty of this tool is that it adapts to your workflow, not the other way around.
+
+## References
+
+- [Claude Code: Best practices for agentic coding](https://www.anthropic.com/engineering/claude-code-best-practices)
+- [CLI usage and controls](https://docs.anthropic.com/en/docs/claude-code/cli-usage)
+- [Prompt Engineering Overview](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview)
+- [GitHub Search: .claude/CLAUDE.md](https://github.com/search?type=code&q=path:.claude/CLAUDE.md)
+- [GitHub Search: .claude/commands/](https://github.com/search?type=code&q=path:.claude/commands)
