@@ -36,7 +36,7 @@ const wordCount = getWordCount(post?.body);
 const profileImg = await getAsset(metadata.profile);
 ---
 
-<>
+<div>
 	{
 		draft && (
 			<div class="sticky top-0 z-40 w-full bg-red-800 text-lg font-bold text-white">
@@ -48,7 +48,7 @@ const profileImg = await getAsset(metadata.profile);
 	}
 	<BaseLayout heroImage={hero} title={title} description={description} headerImage={`/posts/${slug}/og.png`}>
 		<div
-			class="prose prose-slate pb-10 pt-6 dark:prose-invert lg:prose-xl prose-headings:my-3 prose-headings:text-blue-gray-900 prose-a:text-teal-600 prose-code:font-medium prose-code:text-purple-800 prose-code:before:content-[''] prose-code:after:content-[''] dark:prose-headings:text-gray-200 dark:prose-a:text-teal-400 dark:prose-code:text-purple-100"
+			class="prose prose-slate dark:prose-invert lg:prose-xl prose-headings:my-3 prose-headings:text-blue-gray-900 prose-a:text-teal-600 prose-code:font-medium prose-code:text-purple-800 prose-code:before:content-[''] prose-code:after:content-[''] dark:prose-headings:text-gray-200 dark:prose-a:text-teal-400 dark:prose-code:text-purple-100 pt-6 pb-10"
 		>
 			<article class="pt-10">
 				<header class="mb-8">
@@ -87,7 +87,7 @@ const profileImg = await getAsset(metadata.profile);
 				</div>
 				{
 					prevPost && (
-						<div class="mb-4 mt-8 flex justify-start">
+						<div class="mt-8 mb-4 flex justify-start">
 							<a href={`/posts/${prevPost.slug}`} class="flex items-center space-x-4 font-medium">
 								<Icon name="mdi:arrow-left-bold" class="h-6 w-6" />
 								<span>{prevPost.data.title}</span>
@@ -97,7 +97,7 @@ const profileImg = await getAsset(metadata.profile);
 				}
 				<div class="mx-auto flex flex-col items-center sm:flex-row">
 					<div
-						class="text-blue-500 inline-flex h-32 w-32 shrink-0 items-center justify-center rounded-full sm:mr-10 sm:h-32 sm:w-32"
+						class="inline-flex h-32 w-32 shrink-0 items-center justify-center rounded-full text-blue-500 sm:mr-10 sm:h-32 sm:w-32"
 					>
 						<Image
 							src={profileImg}
@@ -122,4 +122,4 @@ const profileImg = await getAsset(metadata.profile);
 			</article>
 		</div>
 	</BaseLayout>
-</>
+</div>
