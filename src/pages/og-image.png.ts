@@ -4,6 +4,8 @@ import type { APIRoute } from 'astro';
 import { type ReactNode } from 'react';
 import { type CollectionEntry } from 'astro:content';
 import metadata from '@/data/metadata.json';
+import { isValidOpenGraphRatio } from '@/utils/image';
+import fs from 'fs/promises';
 
 import oswaldBoldData from '@@/public/fonts/Oswald/Oswald-Bold.ttf?buffer';
 import dmSansBoldData from '@@/public/fonts/DM_Sans/DMSans-Bold.ttf?buffer';
@@ -17,32 +19,69 @@ interface Props {
 	post?: CollectionEntry<'posts'>;
 }
 
+const normalizeVitePath = (src: string): string => {
+	return src.replace(/@fs|[?&].*$/g, '');
+};
+
+const imageToBase64 = async (imagePath: string, format: string): Promise<string> => {
+	const normalizedPath = normalizeVitePath(imagePath);
+	const buffer = await fs.readFile(normalizedPath);
+	// Normalize format for MIME type (jpg -> jpeg)
+	const mimeFormat = format === 'jpg' ? 'jpeg' : format;
+	return `data:image/${mimeFormat};base64,${buffer.toString('base64')}`;
+};
+
 export const GET: APIRoute<Props> = async ({ props }) => {
 	const beef = `data:image/png;base64,${Buffer.from(beefImage).toString('base64')}`;
 	const headshot = `data:image/png;base64,${Buffer.from(headshotImage).toString('base64')}`;
 
-	const {
-		data: {
-			title = metadata.description,
-			description,
-			//image: heroImage
-		} = {},
-	} = props.post ?? {};
+	const { data: { title = metadata.description, description, hero } = {} } = props.post ?? {};
 
 	let background: Record<string, unknown> = {
 		backgroundImage: 'linear-gradient(to bottom, #11181C, #0b1215)',
 		backgroundColor: '#0b1215',
 	};
 
-	//if (heroImage && isValidOpenGraphRatio(heroImage.src.width, heroImage.src.height)) {
-	//	const backgroundImage = await imageToBase64(normalizeVitePath(heroImage.src.src), heroImage.src.format);
-	//	background = {
-	//		...background,
-	//		backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(${backgroundImage})`,
-	//		backgroundRepeat: 'no-repeat',
-	//		backgroundSize: '100% 100%',
-	//	};
-	//}
+	if (
+		hero?.img
+		// && isValidOpenGraphRatio(hero.img.width, hero.img.height)
+	) {
+		try {
+			console.log('hero.img object:', hero.img);
+			console.log('hero.img keys:', Object.keys(hero.img));
+			console.log('hero.img type:', typeof hero.img);
+			
+			// Check if hero.img is a string (path) or an object with metadata
+			let imagePath: string;
+			let imageFormat: string = 'jpg'; // default format
+			
+			if (typeof hero.img === 'string') {
+				imagePath = hero.img;
+				// Try to determine format from extension
+				const ext = imagePath.split('.').pop()?.toLowerCase();
+				if (ext && ['jpg', 'jpeg', 'png', 'webp', 'avif'].includes(ext)) {
+					imageFormat = ext === 'jpg' ? 'jpeg' : ext;
+				}
+			} else if (hero.img && typeof hero.img === 'object' && 'src' in hero.img) {
+				imagePath = hero.img.src;
+				imageFormat = hero.img.format || 'jpg';
+			} else {
+				console.error('Unexpected hero.img structure:', hero.img);
+				throw new Error('Invalid hero.img structure');
+			}
+			
+			const backgroundImage = await imageToBase64(normalizeVitePath(imagePath), imageFormat);
+			background = {
+				...background,
+				backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(${backgroundImage})`,
+				backgroundRepeat: 'no-repeat',
+				backgroundSize: '100% 100%',
+			};
+		} catch (error) {
+			console.error('Failed to load hero image for OG image:', error);
+			// Fall back to default background
+		}
+	}
 
 	const node: ReactNode = {
 		type: 'div',
@@ -91,7 +130,7 @@ export const GET: APIRoute<Props> = async ({ props }) => {
 												},
 											},
 										},
-										{
+										description && {
 											type: 'h2',
 											props: {
 												children: description,
@@ -106,7 +145,7 @@ export const GET: APIRoute<Props> = async ({ props }) => {
 												},
 											},
 										},
-									],
+									].filter(Boolean),
 									style: {
 										display: 'flex',
 										flexDirection: 'column',
