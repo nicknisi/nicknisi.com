@@ -91,7 +91,7 @@ export const GET: APIRoute<Props> = async ({ props }) => {
 					type: 'div',
 					props: {
 						children: [
-							{
+							!hero?.img && {
 								type: 'div',
 								props: {
 									children: '',
@@ -160,7 +160,7 @@ export const GET: APIRoute<Props> = async ({ props }) => {
 									},
 								},
 							},
-						],
+						].filter(Boolean),
 						style: {
 							display: 'flex',
 							alignItems: 'center',
