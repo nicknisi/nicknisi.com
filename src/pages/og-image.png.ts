@@ -50,11 +50,11 @@ export const GET: APIRoute<Props> = async ({ props }) => {
 			console.log('hero.img object:', hero.img);
 			console.log('hero.img keys:', Object.keys(hero.img));
 			console.log('hero.img type:', typeof hero.img);
-			
+
 			// Check if hero.img is a string (path) or an object with metadata
 			let imagePath: string;
 			let imageFormat: string = 'jpg'; // default format
-			
+
 			if (typeof hero.img === 'string') {
 				imagePath = hero.img;
 				// Try to determine format from extension
@@ -69,7 +69,7 @@ export const GET: APIRoute<Props> = async ({ props }) => {
 				console.error('Unexpected hero.img structure:', hero.img);
 				throw new Error('Invalid hero.img structure');
 			}
-			
+
 			const backgroundImage = await imageToBase64(normalizeVitePath(imagePath), imageFormat);
 			background = {
 				...background,
@@ -130,21 +130,21 @@ export const GET: APIRoute<Props> = async ({ props }) => {
 												},
 											},
 										},
-										description && {
-											type: 'h2',
-											props: {
-												children: description,
-												style: {
-													fontFamily: 'Roboto Bold',
-													fontSize: 30,
-													color: 'transparent',
-													backgroundImage: 'linear-gradient(45deg, rgb(0, 124, 240), rgb(0, 223, 216))',
-													backgroundClip: 'text',
-													//color: '#0b1215',
-													textAlign: 'center',
-												},
-											},
-										},
+										// description && {
+										// 	type: 'h2',
+										// 	props: {
+										// 		children: description,
+										// 		style: {
+										// 			fontFamily: 'Roboto Bold',
+										// 			fontSize: 30,
+										// 			color: 'transparent',
+										// 			backgroundImage: 'linear-gradient(45deg, rgb(0, 124, 240), rgb(0, 223, 216))',
+										// 			backgroundClip: 'text',
+										// 			//color: '#0b1215',
+										// 			textAlign: 'center',
+										// 		},
+										// 	},
+										// },
 									].filter(Boolean),
 									style: {
 										display: 'flex',
