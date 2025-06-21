@@ -23,6 +23,31 @@ const normalizeVitePath = (src: string): string => {
 	return src.replace(/@fs|[?&].*$/g, '');
 };
 
+const resolveImagePath = (imagePath: string): string => {
+	// If it's already an absolute path to a source file, use it
+	if (imagePath.startsWith('/Users/')) {
+		return imagePath;
+	}
+	
+	// If it's a build-time generated path (/_astro/...), extract the filename
+	// and resolve it to the source assets directory
+	if (imagePath.startsWith('/_astro/')) {
+		// Extract the original filename from the hashed filename
+		// e.g., /_astro/meta-badge-post.CdKNIagU.png -> meta-badge-post.png
+		const filename = imagePath.split('/').pop() || '';
+		const match = filename.match(/^(.+?)\.[\w]+\.(jpg|jpeg|png|webp|avif)$/);
+		if (match) {
+			const [, baseName, ext] = match;
+			// Reconstruct the original filename
+			const originalFilename = `${baseName}.${ext}`;
+			// Return the path to the source file
+			return `/Users/nicknisi/Developer/nicknisi.com/src/assets/posts/${originalFilename}`;
+		}
+	}
+	
+	return imagePath;
+};
+
 const imageToBase64 = async (imagePath: string, format: string): Promise<string> => {
 	const normalizedPath = normalizeVitePath(imagePath);
 	const buffer = await fs.readFile(normalizedPath);
@@ -69,14 +94,14 @@ export const GET: APIRoute<Props> = async ({ props }) => {
 					imageFormat = ext === 'jpg' ? 'jpeg' : ext;
 				}
 			} else if (hero.img && typeof hero.img === 'object' && 'src' in hero.img) {
-				imagePath = hero.img.src;
+				imagePath = resolveImagePath(hero.img.src);
 				imageFormat = hero.img.format || 'jpg';
 			} else {
 				console.error('Unexpected hero.img structure:', hero.img);
 				throw new Error('Invalid hero.img structure');
 			}
 
-			const backgroundImage = await imageToBase64(normalizeVitePath(imagePath), imageFormat);
+			const backgroundImage = await imageToBase64(imagePath, imageFormat);
 			background = {
 				...background,
 				backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(${backgroundImage})`,
