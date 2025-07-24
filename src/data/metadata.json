@@ -19,14 +19,9 @@
 	},
 	"links": [
 		{
-			"title": "mcp.shop",
-			"url": "https://mcp.shop",
-			"icon": "mdi:account-cowboy-hat"
-		},
-		{
-			"title": "Connect with WorkOS",
-			"url": "https://workos.com/",
-			"icon": "mdi:work"
+			"title": "Connect on LinkedIn",
+			"url": "https://linkedin.com/in/nicknisi",
+			"icon": "simple-icons:linkedin"
 		},
 		{
 			"title": "Meet with me",
@@ -49,7 +44,7 @@
 			"icon": "mdi:clock-alert"
 		},
 		{
-			"title": "My Dotfiles",
+			"title": "my dotfiles",
 			"url": "https://github.com/nicknisi/dotfiles",
 			"icon": "mdi:console"
 		}
