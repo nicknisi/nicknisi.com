@@ -19,6 +19,11 @@
 	},
 	"links": [
 		{
+			"title": "About My Coworkers Talk",
+			"url": "https://nicknisi.com/talks/about-my-coworkers",
+			"icon": "mdi:microphone"
+		},
+		{
 			"title": "Connect on LinkedIn",
 			"url": "https://linkedin.com/in/nicknisi",
 			"icon": "simple-icons:linkedin"
@@ -27,11 +32,6 @@
 			"title": "Meet with me",
 			"url": "https://calendly.com/nicknisi/30min",
 			"icon": "mdi:calendar"
-		},
-		{
-			"title": "Recent talks",
-			"url": "https://nicknisi.com/talks",
-			"icon": "mdi:microphone"
 		},
 		{
 			"title": "Dysfunctional Podcast",
