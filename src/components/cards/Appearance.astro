@@ -26,7 +26,7 @@ const talkTypeMap = {
 
 const { appearance: talk } = Astro.props;
 const { slug } = talk;
-const { type, title, instances } = talk.data;
+const { type, title, instances, detailsUrl } = talk.data;
 const thumbnail = await getThumbnail(talk.data);
 const hasMultipleInstances = instances.length > 1;
 const firstInstance = instances[0]!;
@@ -37,14 +37,14 @@ const date = toReadableDate(firstInstance.date);
 <Card
 	class="bg-white dark:bg-gray-900"
 	image={thumbnail}
-	imageWidth={240}
-	imageHeight={135}
+	imageWidth={320}
+	imageHeight={180}
 	imageAlt={title}
 	hover
 	title={title}
 	interactive
 	border
-	href={hasMultipleInstances ? `/speaking/${slug}` : firstInstance.url}
+	href={detailsUrl || (hasMultipleInstances ? `/speaking/${slug}` : firstInstance.url)}
 >
 	<div>
 		<div class="mb-2">

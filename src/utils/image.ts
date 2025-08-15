@@ -29,6 +29,15 @@ export async function getAsset(name: string) {
  * @param talk The talk to get the thumbnail for
  */
 export async function getThumbnail(talk: Talk): Promise<string | ImageMetadata> {
+	// Check if talk has a custom thumbnail property
+	if (talk.thumbnail) {
+		try {
+			return await getAsset(talk.thumbnail);
+		} catch (error) {
+			// Fall through to default behavior if custom thumbnail not found
+		}
+	}
+
 	let thumbnail = await getAsset('talk_thumbnail.png');
 	const firstInstance = talk.instances[0]!;
 	if (firstInstance.url?.includes('vimeo')) {
