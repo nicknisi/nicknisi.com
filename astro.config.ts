@@ -50,6 +50,7 @@ export default defineConfig({
 		'/compiler-talk': '/speaking/unleashing-the-typescript-compiler',
 		'/talks/componentizing-application-state': '/speaking/componentizing-application-state',
 		'/talks/unleashing-the-typescript-compiler': '/speaking/unleashing-the-typescript-compiler',
+		'/talks/about-my-coworkers': '/speaking/about-my-coworkers',
 		// rename /talks to /speaking
 		'/talks': '/speaking',
 	},
