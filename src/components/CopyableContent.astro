@@ -41,15 +41,15 @@ const { border = false, padding = false } = Astro.props;
 
 			button.addEventListener('click', async () => {
 				try {
-					let textToCopy;
+					let textToCopy: string;
 
 					const codeElements = content.querySelectorAll('pre, code');
 					if (codeElements.length > 0) {
 						textToCopy = Array.from(codeElements)
 							.map(el => el.textContent)
-							.join('\n');
+							.join('\n').trim();
 					} else {
-						textToCopy = content.textContent;
+						textToCopy = content.textContent.trim();
 					}
 
 					if (textToCopy) {
