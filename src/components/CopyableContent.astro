@@ -4,7 +4,6 @@ interface Props {
 	border?: boolean;
 	padding?: boolean;
 }
-
 const { border = false, padding = false } = Astro.props;
 ---
 
@@ -18,50 +17,181 @@ const { border = false, padding = false } = Astro.props;
 	<div class:list={['content min-w-0', padding && 'pr-8']}>
 		<slot />
 	</div>
-	<button
-		class="copy-button absolute right-3 top-3 rounded-md p-2 text-gray-500 transition-colors hover:bg-gray-100/75 hover:text-gray-700 dark:hover:bg-gray-700/75 dark:hover:text-gray-100"
-		aria-label="Copy to clipboard"
-	>
-		<Icon name="mdi:content-copy" class="copy-icon" />
-		<Icon name="mdi:check" class="check-icon hidden text-teal-500 dark:text-teal-400" />
-	</button>
+	<div class="absolute top-3 right-3 flex gap-1">
+		<button
+			class="copy-button-plain rounded-md p-2 text-gray-500 transition-colors hover:bg-gray-100/75 hover:text-gray-700 dark:hover:bg-gray-700/75 dark:hover:text-gray-100"
+			aria-label="Copy as plain text"
+			title="Copy as plain text"
+		>
+			<Icon name="mdi:text" class="copy-icon h-5 w-5" />
+			<Icon name="mdi:check" class="check-icon hidden h-5 w-5 text-teal-500 dark:text-teal-400" />
+		</button>
+		<button
+			class="copy-button-markdown rounded-md p-2 text-gray-500 transition-colors hover:bg-gray-100/75 hover:text-gray-700 dark:hover:bg-gray-700/75 dark:hover:text-gray-100"
+			aria-label="Copy as markdown"
+			title="Copy as markdown"
+		>
+			<Icon name="mdi:language-markdown" class="copy-icon h-5 w-5" />
+			<Icon name="mdi:check" class="check-icon hidden h-5 w-5 text-teal-500 dark:text-teal-400" />
+		</button>
+	</div>
 </div>
-
 <script>
+	function convertToMarkdown(element: Element): string {
+		let markdown = '';
+
+		element.childNodes.forEach(node => {
+			if (node.nodeType === Node.TEXT_NODE) {
+				markdown += node.textContent;
+			} else if (node.nodeType === Node.ELEMENT_NODE) {
+				const el = node as HTMLElement;
+				const tag = el.tagName.toLowerCase();
+
+				switch (tag) {
+					case 'h1':
+						markdown += `# ${el.textContent}\n\n`;
+						break;
+					case 'h2':
+						markdown += `## ${el.textContent}\n\n`;
+						break;
+					case 'h3':
+						markdown += `### ${el.textContent}\n\n`;
+						break;
+					case 'h4':
+						markdown += `#### ${el.textContent}\n\n`;
+						break;
+					case 'h5':
+						markdown += `##### ${el.textContent}\n\n`;
+						break;
+					case 'h6':
+						markdown += `###### ${el.textContent}\n\n`;
+						break;
+					case 'p':
+						const pContent = convertToMarkdown(el).trim();
+						if (pContent) {
+							markdown += `${pContent}\n\n`;
+						}
+						break;
+					case 'blockquote':
+						const content = convertToMarkdown(el).trim();
+						const lines = content.split('\n');
+						lines.forEach(line => {
+							markdown += `> ${line}\n`;
+						});
+						markdown += '\n';
+						break;
+					case 'strong':
+					case 'b':
+						markdown += `**${el.textContent}**`;
+						break;
+					case 'em':
+					case 'i':
+						markdown += `*${el.textContent}*`;
+						break;
+					case 'code':
+						if (el.parentElement?.tagName === 'PRE') {
+							const language = el.className.replace('language-', '') || '';
+							markdown += `\`\`\`${language}\n${el.textContent}\n\`\`\`\n\n`;
+						} else {
+							markdown += `\`${el.textContent}\``;
+						}
+						break;
+					case 'pre':
+						if (!el.querySelector('code')) {
+							markdown += `\`\`\`\n${el.textContent}\n\`\`\`\n\n`;
+						} else {
+							markdown += convertToMarkdown(el);
+						}
+						break;
+					case 'a':
+						markdown += `[${el.textContent}](${el.getAttribute('href')})`;
+						break;
+					case 'ul':
+						el.querySelectorAll(':scope > li').forEach(li => {
+							markdown += `- ${li.textContent?.trim()}\n`;
+						});
+						markdown += '\n';
+						break;
+					case 'ol':
+						el.querySelectorAll(':scope > li').forEach((li, idx) => {
+							markdown += `${idx + 1}. ${li.textContent?.trim()}\n`;
+						});
+						markdown += '\n';
+						break;
+					case 'li':
+						break;
+					case 'br':
+						markdown += '\n';
+						break;
+					default:
+						markdown += convertToMarkdown(el);
+						break;
+				}
+			}
+		});
+
+		return markdown;
+	}
+
 	function setupCopyableButtons() {
 		document.querySelectorAll('.copyable-content').forEach(container => {
-			const button = container.querySelector('.copy-button');
+			const plainButton = container.querySelector('.copy-button-plain');
+			const markdownButton = container.querySelector('.copy-button-markdown');
 			const content = container.querySelector('.content');
-			const copyIcon = container.querySelector('.copy-icon');
-			const checkIcon = container.querySelector('.check-icon');
 
-			if (!button || !content || !copyIcon || !checkIcon) {
+			if (!plainButton || !markdownButton || !content) {
 				return;
 			}
 
-			button.addEventListener('click', async () => {
+			plainButton.addEventListener('click', async () => {
 				try {
 					let textToCopy: string;
-
 					const codeElements = content.querySelectorAll('pre, code');
 					if (codeElements.length > 0) {
 						textToCopy = Array.from(codeElements)
 							.map(el => el.textContent)
-							.join('\n').trim();
+							.join('\n')
+							.trim();
 					} else {
-						textToCopy = content.textContent.trim();
+						textToCopy = content.textContent?.trim() || '';
 					}
 
 					if (textToCopy) {
 						await navigator.clipboard.writeText(textToCopy);
 					}
 
-					copyIcon.classList.add('hidden');
-					checkIcon.classList.remove('hidden');
+					const copyIcon = plainButton.querySelector('.copy-icon');
+					const checkIcon = plainButton.querySelector('.check-icon');
+
+					copyIcon?.classList.add('hidden');
+					checkIcon?.classList.remove('hidden');
 
 					setTimeout(() => {
-						copyIcon.classList.remove('hidden');
-						checkIcon.classList.add('hidden');
+						copyIcon?.classList.remove('hidden');
+						checkIcon?.classList.add('hidden');
+					}, 2000);
+				} catch (err) {
+					console.error('Failed to copy content to clipboard', err);
+				}
+			});
+
+			markdownButton.addEventListener('click', async () => {
+				try {
+					const textToCopy = convertToMarkdown(content).trim();
+
+					if (textToCopy) {
+						await navigator.clipboard.writeText(textToCopy);
+					}
+
+					const copyIcon = markdownButton.querySelector('.copy-icon');
+					const checkIcon = markdownButton.querySelector('.check-icon');
+
+					copyIcon?.classList.add('hidden');
+					checkIcon?.classList.remove('hidden');
+
+					setTimeout(() => {
+						copyIcon?.classList.remove('hidden');
+						checkIcon?.classList.add('hidden');
 					}, 2000);
 				} catch (err) {
 					console.error('Failed to copy content to clipboard', err);
