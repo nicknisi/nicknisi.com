@@ -1,0 +1,80 @@
+---
+title: "Why Everyone Should Try Claude Skills"
+pubDate: 2025-10-23
+tags:
+  - ai
+  - tooling
+description: |
+  Claude Skills are the approachable AI tool I didn't know I needed.
+hero:
+  darkOverlay: true
+  img: '@/assets/posts/erc-jaws.jpg'
+  alt: 'Michael Grinich presenting at Enterprise Ready Conf 2025'
+# post: ''
+---
+
+import nickPresenting from '@/assets/posts/nick-presenting-workos-claude-skills.jpg';
+import { Image } from 'astro:assets';
+
+Anthropic just released [Claude Skills](https://www.anthropic.com/news/skills), and I'm trying not to get too excited. But I am.
+
+Simon Willison wrote that [this could be bigger than MCP](https://simonwillison.net/2025/Oct/16/claude-skills/). After spending time with Skills this week, I think he's right.
+
+## What Took Me a While to Understand
+
+Skills are just markdown files. That sounds simple. Maybe too simple. How could these be any different than the other Markdown files that Claude provides such as /commands, agents, and the iconic CLAUDE.md?
+
+It took me a bit to see why this is different. Skills aren't about hiding context like subagents do. They aren't prompts you explicitly invoke like slash commands. Skills are about discovery and determinism.
+
+Claude figures out when to use them. And when it does, it can leverage scripts and other tools to generate consistent, predictable output.
+
+## Where Skills Really Work
+
+Skills can reference scripts and other resources. Claude Code will actually run those scripts in your environment. That's powerful.
+
+They work in Claude Desktop too, which is exciting. But there's a catch - no network access. Skills can't fetch from the internet or hit APIs when running in the desktop or web versions. Everything has to be internal.
+
+At first, this feels limiting. And it is, for Claude Desktop and web. But in Claude Code? No limits. You can access commands on your system, run scripts that talk to APIs, do whatever you need. MCP is about external connections. Skills are about what's already there.
+
+## Forcing Myself to Learn Them
+
+<Image quality="max" alt="Giving a presentation at the WorkOS office on Claude Skills" loading="lazy" 
+inferSize src={nickPresenting}/>
+
+I'm in San Francisco this week for a company onsite. I was asked to give a presentation on AI or my workflow. I decided to talk about Skills because they were brand new, and I wanted to force myself to actually learn them.
+
+I made three skills:
+
+[**GPT-5 Consultant**](https://github.com/nicknisi/dotfiles/tree/main/home/.claude/skills/gpt5-consultant): I turned my existing agent into a skill. It felt like a better fit. A self-contained script that knows how to talk to the OpenAI API. Clean. No external MCP needed.
+
+[**Conference Talk Builder**](https://github.com/nicknisi/dotfiles/tree/main/home/.claude/skills/conference-talk-builder): This one lets me brain-dump talking points and conclusions into a proper outline that tells a complete story. No more staring at blank slides wondering how to structure my thoughts.
+
+[**Claude Code Analyzer**](https://github.com/nicknisi/dotfiles/tree/main/home/.claude/skills/claude-code-analyzer): This is the one I'm most excited about. It looks at how you use Claude Code in a project. It highlights permissions you grant frequently and suggests which ones to auto-approve. It recommends commands and agents you might want to create, then finds real examples on GitHub so you can see how others built similar tools. It also analyzes your usage patterns and suggests optimizations.
+
+## The Real Advantage Over MCP
+
+The barrier to entry is absurdly low. You start with a markdown file. That's it.
+
+You experiment. You package it as a zip. You send it to colleagues. They can try it, modify it, extract value from it immediately. No complex tooling. No hosting. No distribution headaches.
+
+Claude ships with a skill creator skill. You describe what you want, and it builds the skill for you. Drop the zip into `.claude/skills` or drag it into Claude Desktop or web. Done.
+
+MCP is powerful for external integrations. But Skills meet you where you are, with what you already have.
+
+## What Happened After My Talk
+
+I presented these skills to the company. Showed why they're powerful. Demoed what I'd built.
+
+Shortly after, I got a Slack message:
+
+> Felt inspired by Nick Nisi's talk and created a design system Claude skill. It takes all content from the WorkDS pages and provides Claude with context on how to use certain components. Not all components are there, but I figure we can add to it and improve it over time.
+
+Someone took the idea and ran with it. Built something useful for their workflow. In the time it took me to grab coffee.
+
+That's the power of low barriers.
+
+## Try This
+
+Everyone should experiment with Skills. The approachability is the feature. Start with a markdown file and see what happens.
+
+As Claude adds features, Skills will get more powerful. But they're already useful right now. You don't need to wait for the perfect use case. Make something small. See where it takes you.
