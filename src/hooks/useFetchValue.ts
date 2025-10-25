@@ -78,7 +78,7 @@ export function useFetchValue<T, R = T>(
 		return () => {
 			isMounted = false;
 		};
-	}, [fetchFn, transform, ...(dependencies ?? [])]);
+	}, dependencies ?? []);
 
 	return { value, isLoading, error };
 }
