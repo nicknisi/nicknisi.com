@@ -161,10 +161,17 @@
 
 @layer base {
 	/* Shiki dual theme support - switch between light and dark themes */
+	.astro-code {
+		border: 1px solid var(--color-gray-200);
+		border-radius: 0.5rem;
+	}
 	.astro-code,
 	.astro-code span {
 		color: var(--shiki-light) !important;
 		background-color: var(--shiki-light-bg) !important;
+	}
+	.dark .astro-code {
+		border-color: transparent;
 	}
 	.dark .astro-code,
 	.dark .astro-code span {
