@@ -4,6 +4,7 @@ slug: 'very-important-agents'
 pubDate: 2025-12-08
 tags: ['ai', 'claude-code', 'workflow', 'podcasts']
 description: 'My recent Changelog and Friends podcast appearance and the Claude Code plugins that help me get real work done with AI.'
+post: 'https://bsky.app/profile/nicknisi.com/post/3m7i3ygaets2v'
 ---
 
 I recently appeared on [Changelog and Friends](https://changelog.com/friends/120) to talk about agents, the Bun acquisition by Anthropic, and how I've been using Claude Code in my daily workflow. The conversation kept circling back to a question I find interesting: how do we use AI to get real work done without producing generic _slop_?
