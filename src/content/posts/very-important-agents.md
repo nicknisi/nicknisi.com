@@ -11,7 +11,7 @@ I recently appeared on [Changelog and Friends](https://changelog.com/friends/120
 
 I've been building toward an answer - two custom Claude Code plugins called [Essentials](https://github.com/nicknisi/claude-plugins/tree/main/plugins/essentials) and [Ideation](https://github.com/nicknisi/claude-plugins/tree/main/plugins/ideation) that help me stay productive while keeping my code and ideas authentically mine. Rather than let that podcast conversation disappear into the archives, I wanted to share what I've learned.
 
-## Keeping Code Clean with Essentials
+## Keeping Code Clean with [Essentials](https://github.com/nicknisi/claude-plugins/tree/main/plugins/essentials)
 
 The Essentials plugin is my first line of defense against code complexity. It has two components I reach for constantly.
 
@@ -21,9 +21,9 @@ The Essentials plugin is my first line of defense against code complexity. It ha
 
 This might seem contradictory. Using AI to remove evidence of AI? But that's exactly the point. I want AI assistance with the mechanics, not AI aesthetics polluting my codebase.
 
-## From Brain Dump to Structure with Ideation
+## From Brain Dump to Structure with [Ideation](https://github.com/nicknisi/claude-plugins/tree/main/plugins/ideation)
 
-Here's where things get meta. The Ideation plugin takes messy stream-of-consciousness thoughts and transforms them into structured artifacts.
+Here's where things get meta. The [Ideation skill](https://github.com/nicknisi/claude-plugins/blob/main/plugins/ideation/skills/ideation/SKILL.md) takes messy stream-of-consciousness thoughts and transforms them into structured artifacts.
 
 I'm literally using this plugin right now to write this post.
 
