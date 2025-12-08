@@ -171,7 +171,7 @@
 		background-color: var(--shiki-light-bg) !important;
 	}
 	.dark .astro-code {
-		border-color: transparent;
+		border-color: var(--color-gray-700);
 	}
 	.dark .astro-code,
 	.dark .astro-code span {
