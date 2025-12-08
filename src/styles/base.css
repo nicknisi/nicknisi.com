@@ -160,6 +160,17 @@
 }
 
 @layer base {
+	/* Shiki dual theme support - switch between light and dark themes */
+	.astro-code,
+	.astro-code span {
+		color: var(--shiki-light) !important;
+		background-color: var(--shiki-light-bg) !important;
+	}
+	.dark .astro-code,
+	.dark .astro-code span {
+		color: var(--shiki-dark) !important;
+		background-color: var(--shiki-dark-bg) !important;
+	}
 	/*
 The default border color has changed to `currentColor` in Tailwind CSS v4,
 so we've added these compatibility styles to make sure everything still
