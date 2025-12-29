@@ -271,7 +271,7 @@ export const GET: APIRoute<Props> = async ({ props }) => {
 		],
 	});
 
-	const png = await sharp(Buffer.from(svg)).png().toBuffer();
+	const png = new Uint8Array(await sharp(Buffer.from(svg)).png().toBuffer());
 
 	return new Response(png, {
 		headers: {
