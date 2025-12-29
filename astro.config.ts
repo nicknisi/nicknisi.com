@@ -3,6 +3,10 @@ import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 import icon from 'astro-icon';
 import { readFileSync } from 'fs';
+import astroExpressiveCode from 'astro-expressive-code';
+import ecTwoSlash from 'expressive-code-twoslash';
+import { pluginLineNumbers } from '@expressive-code/plugin-line-numbers';
+import { pluginCollapsibleSections } from '@expressive-code/plugin-collapsible-sections';
 
 // https://astro.build/config
 import mdx from '@astrojs/mdx';
@@ -26,6 +30,13 @@ export default defineConfig({
 	experimental: {},
 
 	integrations: [
+		astroExpressiveCode({
+			defaultProps: {
+				showLineNumbers: false,
+			},
+			themes: ['tokyo-night', 'github-light'],
+			plugins: [pluginLineNumbers(), pluginCollapsibleSections(), ecTwoSlash()],
+		}),
 		icon(),
 		react(),
 		mdx(),
@@ -34,15 +45,7 @@ export default defineConfig({
 		}),
 	],
 
-	markdown: {
-		shikiConfig: {
-			themes: {
-				light: 'github-light',
-				dark: 'dracula',
-			},
-			wrap: true,
-		},
-	},
+	markdown: {},
 
 	redirects: {
 		// redirects for RSS feed
