@@ -12,7 +12,8 @@
 		"build": "astro build",
 		"preview": "wrangler pages dev ./dist",
 		"format": "prettier --check --write src/**/*",
-		"upgrade": "pnpm dlx @astrojs/upgrade"
+		"upgrade": "pnpm dlx @astrojs/upgrade",
+		"typecheck": "tsc --noEmit"
 	},
 	"author": {
 		"name": "Nick Nisi",

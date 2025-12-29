@@ -23,7 +23,7 @@ const resolveImagePath = (imagePath: string): string => {
 	const projectRoot = process.cwd();
 
 	// Strip query params (dev server adds ?origWidth=... etc)
-	const pathWithoutQuery = imagePath.split('?')[0];
+	const pathWithoutQuery = imagePath.split('?')[0] ?? '';
 
 	// Dev server: /@fs/path/to/file -> /path/to/file
 	if (pathWithoutQuery.startsWith('/@fs/')) {

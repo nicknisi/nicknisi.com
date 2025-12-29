@@ -1,4 +1,6 @@
 import { AppBskyFeedDefs, type AppBskyFeedGetLikes, type AppBskyFeedGetPostThread } from '@atproto/api';
+
+type ThreadReply = NonNullable<AppBskyFeedDefs.ThreadViewPost['replies']>[number];
 const DID = 'did:plc:qcyz4wcmgnz4mzxevrsrf6j6';
 
 function formatUri(uri: string) {
@@ -82,9 +84,8 @@ export function getCommentCount(comments: { replies?: any }[]) {
 	return count;
 }
 
-export function sortByLikes(a: unknown, b: unknown) {
-	if (!AppBskyFeedDefs.isThreadViewPost(a) || !AppBskyFeedDefs.isThreadViewPost(b)) {
-		return 0;
-	}
-	return (b.post.likeCount ?? 0) - (a.post.likeCount ?? 0);
+export function sortByLikes(a: ThreadReply, b: ThreadReply) {
+	const aLikes = AppBskyFeedDefs.isThreadViewPost(a) ? a.post.likeCount ?? 0 : 0;
+	const bLikes = AppBskyFeedDefs.isThreadViewPost(b) ? b.post.likeCount ?? 0 : 0;
+	return bLikes - aLikes;
 }
