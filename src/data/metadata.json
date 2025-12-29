@@ -6,6 +6,7 @@
 	"avatar": "beef_nick.png",
 	"profile": "profile.jpg",
 	"ogImage": "/og-image.png",
+	"officiantCount": 11,
 	"feed": {
 		"subtitle": "",
 		"filename": "feed.xml",

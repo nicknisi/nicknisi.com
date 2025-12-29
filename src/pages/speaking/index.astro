@@ -2,6 +2,7 @@
 import PageLayout from '@/layouts/Page.astro';
 import Callout from '@/components/Callout.astro';
 import Appearances from '@/components/sections/Appearances.astro';
+import metadata from '@/data/metadata.json';
 ---
 
 <PageLayout title="Speaking">
@@ -13,11 +14,12 @@ import Appearances from '@/components/sections/Appearances.astro';
 
 	<Appearances limit={9} />
 
-	<div class="mb-8 mt-16 flex justify-center">
+	<div class="mt-16 mb-8 flex justify-center">
 		<Callout title="Fun fact" variant="info">
 			<p>
-				Beyond tech conferences, I've had the honor of officiating <span class="font-bold">10 weddings</span>, bringing
-				the same dedication to creating meaningful moments in people's lives.
+				Beyond tech conferences, I've had the honor of officiating <span class="font-bold"
+					>{metadata.officiantCount} weddings</span
+				>, bringing the same dedication to creating meaningful moments in people's lives.
 			</p>
 		</Callout>
 	</div>
