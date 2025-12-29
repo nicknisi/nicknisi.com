@@ -22,14 +22,17 @@ interface Props {
 const resolveImagePath = (imagePath: string): string => {
 	const projectRoot = process.cwd();
 
-	// If it's already an absolute path to source, use it
-	if (imagePath.startsWith('/') && !imagePath.startsWith('/_astro/')) {
-		return imagePath;
+	// Strip query params (dev server adds ?origWidth=... etc)
+	const pathWithoutQuery = imagePath.split('?')[0];
+
+	// Dev server: /@fs/path/to/file -> /path/to/file
+	if (pathWithoutQuery.startsWith('/@fs/')) {
+		return '/' + pathWithoutQuery.slice(5);
 	}
 
 	// Build-time path (/_astro/...) -> resolve to source file
-	if (imagePath.startsWith('/_astro/')) {
-		const filename = imagePath.split('/').pop() || '';
+	if (pathWithoutQuery.startsWith('/_astro/')) {
+		const filename = pathWithoutQuery.split('/').pop() || '';
 		const match = filename.match(/^(.+?)\.[\w]+\.(jpg|jpeg|png|webp|avif)$/);
 		if (match) {
 			const [, baseName, ext] = match;
@@ -37,7 +40,7 @@ const resolveImagePath = (imagePath: string): string => {
 		}
 	}
 
-	return imagePath;
+	return pathWithoutQuery;
 };
 
 const imageToBase64 = async (imagePath: string, format: string): Promise<string> => {
