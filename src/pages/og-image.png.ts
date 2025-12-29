@@ -28,7 +28,7 @@ const resolveImagePath = (imagePath: string): string => {
 	if (imagePath.startsWith('/Users/')) {
 		return imagePath;
 	}
-	
+
 	// If it's a build-time generated path (/_astro/...), extract the filename
 	// and resolve it to the source assets directory
 	if (imagePath.startsWith('/_astro/')) {
@@ -44,7 +44,7 @@ const resolveImagePath = (imagePath: string): string => {
 			return `/Users/nicknisi/Developer/nicknisi.com/src/assets/posts/${originalFilename}`;
 		}
 	}
-	
+
 	return imagePath;
 };
 
@@ -78,10 +78,6 @@ export const GET: APIRoute<Props> = async ({ props }) => {
 		// && isValidOpenGraphRatio(hero.img.width, hero.img.height)
 	) {
 		try {
-			console.log('hero.img object:', hero.img);
-			console.log('hero.img keys:', Object.keys(hero.img));
-			console.log('hero.img type:', typeof hero.img);
-
 			// Check if hero.img is a string (path) or an object with metadata
 			let imagePath: string;
 			let imageFormat: string = 'jpg'; // default format
