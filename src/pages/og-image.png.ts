@@ -263,7 +263,7 @@ export const GET: APIRoute<Props> = async ({ props }) => {
 	});
 
 	const resvg = new Resvg(svg);
-	const png = resvg.render().asPng();
+	const png = new Uint8Array(resvg.render().asPng());
 
 	return new Response(png, {
 		headers: {
