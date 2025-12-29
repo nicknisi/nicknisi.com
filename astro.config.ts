@@ -25,6 +25,9 @@ export default defineConfig({
 
 	image: {
 		domains: ['img.youtube.com', 'vimeo.com'],
+		service: {
+			entrypoint: 'astro/assets/services/noop',
+		},
 	},
 
 	experimental: {},

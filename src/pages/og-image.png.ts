@@ -2,7 +2,7 @@ import metadata from '@/data/metadata.json';
 import { jsx } from '@/utils/jsx-factory';
 import type { APIRoute } from 'astro';
 import { type CollectionEntry } from 'astro:content';
-import fs from 'fs/promises';
+import { readFile } from 'node:fs/promises';
 import { type ReactNode } from 'react';
 import satori from 'satori';
 import { Resvg } from '@resvg/resvg-js';
@@ -19,29 +19,21 @@ interface Props {
 	post?: CollectionEntry<'posts'>;
 }
 
-const normalizeVitePath = (src: string): string => {
-	return src.replace(/@fs|[?&].*$/g, '');
-};
-
 const resolveImagePath = (imagePath: string): string => {
-	// If it's already an absolute path to a source file, use it
-	if (imagePath.startsWith('/Users/')) {
+	const projectRoot = process.cwd();
+
+	// If it's already an absolute path to source, use it
+	if (imagePath.startsWith('/') && !imagePath.startsWith('/_astro/')) {
 		return imagePath;
 	}
 
-	// If it's a build-time generated path (/_astro/...), extract the filename
-	// and resolve it to the source assets directory
+	// Build-time path (/_astro/...) -> resolve to source file
 	if (imagePath.startsWith('/_astro/')) {
-		// Extract the original filename from the hashed filename
-		// e.g., /_astro/meta-badge-post.CdKNIagU.png -> meta-badge-post.png
 		const filename = imagePath.split('/').pop() || '';
 		const match = filename.match(/^(.+?)\.[\w]+\.(jpg|jpeg|png|webp|avif)$/);
 		if (match) {
 			const [, baseName, ext] = match;
-			// Reconstruct the original filename
-			const originalFilename = `${baseName}.${ext}`;
-			// Return the path to the source file
-			return `/Users/nicknisi/Developer/nicknisi.com/src/assets/posts/${originalFilename}`;
+			return `${projectRoot}/src/assets/posts/${baseName}.${ext}`;
 		}
 	}
 
@@ -49,9 +41,8 @@ const resolveImagePath = (imagePath: string): string => {
 };
 
 const imageToBase64 = async (imagePath: string, format: string): Promise<string> => {
-	const normalizedPath = normalizeVitePath(imagePath);
-	const buffer = await fs.readFile(normalizedPath);
-	// Normalize format for MIME type (jpg -> jpeg)
+	const resolvedPath = resolveImagePath(imagePath);
+	const buffer = await readFile(resolvedPath);
 	const mimeFormat = format === 'jpg' ? 'jpeg' : format;
 	return `data:image/${mimeFormat};base64,${buffer.toString('base64')}`;
 };
@@ -90,7 +81,7 @@ export const GET: APIRoute<Props> = async ({ props }) => {
 					imageFormat = ext === 'jpg' ? 'jpeg' : ext;
 				}
 			} else if (hero.img && typeof hero.img === 'object' && 'src' in hero.img) {
-				imagePath = resolveImagePath(hero.img.src);
+				imagePath = hero.img.src;
 				imageFormat = hero.img.format || 'jpg';
 			} else {
 				console.error('Unexpected hero.img structure:', hero.img);
