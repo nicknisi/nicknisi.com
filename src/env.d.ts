@@ -3,7 +3,7 @@
 /// <reference types="astro/image/client" />
 
 declare module '*?buffer' {
-	const value: string;
+	const value: ArrayBuffer;
 	export default value;
 }
 

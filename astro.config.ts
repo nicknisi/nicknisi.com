@@ -74,9 +74,8 @@ export default defineConfig({
 
 /**
  * Vite plugin to load raw buffer data from a file.
- * This is useful for loading binary data like images or fonts.
+ * Exports as ArrayBuffer for universal compatibility.
  * @returns a Vite plugin object
- * @see https://vitejs.dev/config/#plugins
  */
 function rawBuffer() {
 	return {
@@ -84,8 +83,9 @@ function rawBuffer() {
 		transform(_: unknown, id: string) {
 			if (id.endsWith('?buffer')) {
 				const buffer = readFileSync(id.replace(/\?buffer$/, ''));
+				// Export as ArrayBuffer (universal, no Node Buffer dependency)
 				return {
-					code: `export default ${JSON.stringify(buffer)}`,
+					code: `export default new Uint8Array([${buffer.join(',')}]).buffer`,
 					map: null,
 				};
 			}

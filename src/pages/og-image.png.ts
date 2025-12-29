@@ -5,7 +5,7 @@ import { type CollectionEntry } from 'astro:content';
 import fs from 'fs/promises';
 import { type ReactNode } from 'react';
 import satori from 'satori';
-import sharp from 'sharp';
+import { Resvg } from '@resvg/resvg-js';
 
 import dmSansBoldData from '@@/public/fonts/DM_Sans/DMSans-Bold.ttf?buffer';
 import oswaldBoldData from '@@/public/fonts/Oswald/Oswald-Bold.ttf?buffer';
@@ -271,7 +271,8 @@ export const GET: APIRoute<Props> = async ({ props }) => {
 		],
 	});
 
-	const png = new Uint8Array(await sharp(Buffer.from(svg)).png().toBuffer());
+	const resvg = new Resvg(svg);
+	const png = resvg.render().asPng();
 
 	return new Response(png, {
 		headers: {
