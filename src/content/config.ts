@@ -39,6 +39,7 @@ const profiles = defineCollection({
 });
 
 const appearances = defineCollection({
+	loader: file('src/content/data/speaking.json'),
 	schema: TalkSchema,
 });
 
