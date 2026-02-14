@@ -12,6 +12,7 @@ tags:
   - workflow
   - planning
   - plugins
+post: https://bsky.app/profile/nicknisi.com/post/3meu2jsh4r22r
 ---
 
 AI can write the code. That part's easy now.
