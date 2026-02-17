@@ -61,7 +61,7 @@ const profileImg = await getAsset(metadata.profile);
 							postUri && (
 								<>
 									<span class="hidden sm:inline">•</span>
-									<LikeCount client:load post={postUri}>
+									<LikeCount client:only="react" post={postUri}>
 										<Icon slot="likeIcon" name="mdi:heart-outline" class="h-6 w-6" />
 									</LikeCount>
 								</>
@@ -78,8 +78,8 @@ const profileImg = await getAsset(metadata.profile);
 				<section>
 					<Content />
 				</section>
-				{postUri && <Likes client:load post={postUri} />}
-				{postUri && <Comments client:load post={postUri} />}
+				{postUri && <Likes client:only="react" post={postUri} />}
+				{postUri && <Comments client:only="react" post={postUri} />}
 				<div class="flex justify-center py-5 text-center sm:py-5">
 					<Icon name="mdi:star-outline" class="h-12 w-12 font-bold text-purple-600 dark:text-purple-200" />
 					<Icon name="mdi:star-outline" class="h-12 w-12 font-bold text-purple-600 dark:text-purple-200" />
