@@ -1,0 +1,29 @@
+---
+interface Props {
+	email: string;
+	subject?: string;
+	label: string;
+	variant?: 'primary' | 'secondary';
+}
+
+const { email, subject, label, variant = 'primary' } = Astro.props;
+
+const href = `mailto:${email}${subject ? `?subject=${encodeURIComponent(subject)}` : ''}`;
+
+const styles: Record<string, string> = {
+	primary:
+		'bg-purple-700 text-white hover:bg-purple-800 shadow-lg',
+	secondary:
+		'border-2 border-purple-200 text-purple-200 hover:bg-white/10',
+};
+---
+
+<a
+	href={href}
+	class:list={[
+		'inline-block rounded-lg font-serif text-lg px-8 py-4 transition-all duration-200 hover:scale-105',
+		styles[variant],
+	]}
+>
+	{label}
+</a>

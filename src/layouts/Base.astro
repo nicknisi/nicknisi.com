@@ -17,9 +17,10 @@ interface Props {
 	hideHeader?: boolean | undefined;
 	hideFooter?: boolean | undefined;
 	heroImage?: HeroImage | undefined;
+	fullWidth?: boolean | undefined;
 }
 
-const { heroImage, title = '', description, hideHeader, hideFooter, headerImage } = Astro.props;
+const { heroImage, title = '', description, hideHeader, hideFooter, headerImage, fullWidth } = Astro.props;
 ---
 
 <html lang="en">
@@ -36,10 +37,8 @@ const { heroImage, title = '', description, hideHeader, hideFooter, headerImage 
 	>
 		{!hideHeader && <Header />}
 		{heroImage && <Hero title={title} alt={heroImage.alt} darkOverlay={heroImage.darkOverlay} image={heroImage.img} />}
-		<main class="z-30 mb-auto px-6">
-			<div class="mx-auto max-w-5xl">
-				<slot />
-			</div>
+		<main class:list={['z-30 mb-auto', !fullWidth && 'px-6']}>
+			{fullWidth ? <slot /> : <div class="mx-auto max-w-5xl"><slot /></div>}
 		</main>
 		{!hideFooter && <Footer />}
 	</body>

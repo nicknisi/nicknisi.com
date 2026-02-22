@@ -1,0 +1,23 @@
+---
+interface Props {
+	id?: string;
+	variant?: 'default' | 'muted' | 'accent' | 'dark';
+	class?: string;
+	narrow?: boolean;
+}
+
+const { id, variant = 'default', class: className, narrow } = Astro.props;
+
+const bgClasses: Record<string, string> = {
+	default: 'bg-gray-50 dark:bg-dark-arsenic',
+	muted: 'bg-gray-100 dark:bg-dark-gunmetal',
+	accent: 'bg-purple-50 dark:bg-purple-900/20',
+	dark: 'bg-gradient-to-br from-purple-900 via-purple-800 to-purple-700 text-white',
+};
+---
+
+<section id={id} class:list={[bgClasses[variant], className]}>
+	<div class:list={['mx-auto px-6 py-16 md:py-24', narrow ? 'max-w-3xl' : 'max-w-5xl']}>
+		<slot />
+	</div>
+</section>

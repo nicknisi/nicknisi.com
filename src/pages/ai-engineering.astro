@@ -1,0 +1,254 @@
+---
+import BaseLayout from '../layouts/Base.astro';
+import Section from '@/components/landing/Section.astro';
+import CTA from '@/components/landing/CTA.astro';
+import TopicCard from '@/components/landing/TopicCard.astro';
+import { Icon } from 'astro-icon/components';
+import { getAsset } from '@/utils/image';
+import { Image } from 'astro:assets';
+
+const profileImage = await getAsset('profile.jpg');
+const email = 'nick@nisi.org';
+const subject = 'AI Engineering Course Inquiry';
+---
+
+<BaseLayout
+	title="AI Engineering for Production Teams"
+	description="Transform your engineering team into AI-native builders. A live, cohort-based AI engineering course for enterprise teams."
+	fullWidth
+>
+	{/* Hero */}
+	<Section variant="dark" class="text-center">
+		<h1 class="font-serif text-5xl leading-tight font-bold tracking-tight md:text-7xl">
+			AI Engineering for<br />Production Teams
+		</h1>
+		<p class="mx-auto mt-6 max-w-2xl text-xl text-purple-100 md:text-2xl">
+			Transform your engineering team into AI-native builders.
+		</p>
+		<div class="mt-10">
+			<CTA email={email} subject={subject} label="Get in Touch" />
+		</div>
+	</Section>
+
+	{/* Problem */}
+	<Section variant="default" narrow>
+		<h2 class="text-center font-serif text-3xl font-bold md:text-4xl">
+			Your Team Is Building AI — But Are They Building It Right?
+		</h2>
+		<div class="mt-8 space-y-4 text-lg text-gray-700 dark:text-gray-300">
+			<p>
+				Your engineers can write code. They can ship features. But LLMs aren't just another API.
+				The gap between a working prototype and a production-grade AI system is enormous — and it's where most teams get stuck.
+			</p>
+			<p>
+				Architecture decisions that seem fine in a demo fall apart at scale. Evaluation strategies
+				get skipped. Costs spiral. Hallucinations ship to customers. The team is moving fast, but
+				without the foundations to build AI systems that actually work.
+			</p>
+			<p>
+				This course closes that gap — giving your team the engineering patterns, mental models, and
+				hands-on practice to build AI systems they can be confident in.
+			</p>
+		</div>
+	</Section>
+
+	{/* Curriculum */}
+	<Section variant="muted">
+		<h2 class="text-center font-serif text-3xl font-bold md:text-4xl">
+			What Your Team Will Master
+		</h2>
+		<div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+			<TopicCard
+				icon="mdi:robot-outline"
+				title="Building with LLMs"
+				description="Prompt engineering at scale, model selection, and API patterns for production use."
+			/>
+			<TopicCard
+				icon="mdi:sitemap-outline"
+				title="AI Agent Architectures"
+				description="Tool use, planning loops, and multi-agent systems that solve real problems."
+			/>
+			<TopicCard
+				icon="mdi:database-search-outline"
+				title="RAG Pipelines"
+				description="Retrieval strategies, embedding models, chunking, and reranking for your data."
+			/>
+			<TopicCard
+				icon="mdi:tune-vertical"
+				title="Fine-Tuning"
+				description="When to fine-tune vs. prompt, data preparation, and evaluation strategies."
+			/>
+			<TopicCard
+				icon="mdi:chart-box-outline"
+				title="Evaluation Frameworks"
+				description="Automated evals, human-in-the-loop review, and regression testing for AI."
+			/>
+			<TopicCard
+				icon="mdi:rocket-launch-outline"
+				title="Production Deployment"
+				description="Observability, guardrails, cost optimization, and latency management."
+			/>
+			<TopicCard
+				icon="mdi:code-braces"
+				title="AI-Native Dev Tools"
+				description="Integrating AI into your engineering workflows and developer experience."
+			/>
+			<TopicCard
+				icon="mdi:shield-check-outline"
+				title="Security & Responsible AI"
+				description="Prompt injection defense, data privacy, and content filtering."
+			/>
+		</div>
+	</Section>
+
+	{/* How It Works */}
+	<Section variant="default">
+		<h2 class="text-center font-serif text-3xl font-bold md:text-4xl">
+			Built for How Engineering Teams Actually Learn
+		</h2>
+		<div class="mt-12 grid grid-cols-1 gap-10 md:grid-cols-3">
+			<div class="text-center">
+				<Icon name="mdi:account-group-outline" class="mx-auto mb-4 size-12 text-purple-700 dark:text-purple-200" />
+				<h3 class="p-0 font-serif text-xl font-semibold text-gray-900 dark:text-white">Live & Interactive</h3>
+				<p class="mt-2 text-gray-600 dark:text-gray-300">
+					Not pre-recorded lectures. Real-time instruction, Q&A, and pair programming.
+				</p>
+			</div>
+			<div class="text-center">
+				<Icon name="mdi:cog-outline" class="mx-auto mb-4 size-12 text-purple-700 dark:text-purple-200" />
+				<h3 class="p-0 font-serif text-xl font-semibold text-gray-900 dark:text-white">Customized for Your Stack</h3>
+				<p class="mt-2 text-gray-600 dark:text-gray-300">
+					Curriculum adapted to your team's languages, frameworks, and use cases.
+				</p>
+			</div>
+			<div class="text-center">
+				<Icon name="mdi:hammer-wrench" class="mx-auto mb-4 size-12 text-purple-700 dark:text-purple-200" />
+				<h3 class="p-0 font-serif text-xl font-semibold text-gray-900 dark:text-white">Hands-On Projects</h3>
+				<p class="mt-2 text-gray-600 dark:text-gray-300">
+					Your team builds real AI features during the course, not toy demos.
+				</p>
+			</div>
+		</div>
+	</Section>
+
+	{/* Instructor */}
+	<Section variant="muted">
+		<h2 class="text-center font-serif text-3xl font-bold md:text-4xl">
+			Meet Your Instructor
+		</h2>
+		<div class="mt-12 flex flex-col items-center gap-8 md:flex-row md:items-start">
+			<Image
+				src={profileImage}
+				alt="Nick Nisi"
+				width={256}
+				height={256}
+				quality="max"
+				class="h-48 w-48 shrink-0 rounded-full object-cover shadow-lg"
+			/>
+			<div>
+				<p class="text-lg text-gray-700 dark:text-gray-300">
+					Nick Nisi is a Staff Engineer, conference speaker, and host on the
+					<a href="https://jsparty.fm" class="font-bold text-purple-700 dark:text-purple-200">JS Party podcast</a>.
+					With deep experience across TypeScript, web platform engineering, and AI-assisted development,
+					he brings a practical, engineering-first approach to teaching AI concepts.
+				</p>
+				<div class="mt-6 flex flex-wrap gap-6 text-sm font-semibold text-gray-600 dark:text-gray-300">
+					<span>50+ Conference Talks</span>
+					<span>Staff Engineer</span>
+					<span>Podcast Host</span>
+					<span>Open Source</span>
+				</div>
+				<p class="mt-4">
+					<a href="/about" class="font-bold text-purple-700 dark:text-purple-200">Full bio &rarr;</a>
+				</p>
+			</div>
+		</div>
+	</Section>
+
+	{/* Who This Is For */}
+	<Section variant="default">
+		<h2 class="text-center font-serif text-3xl font-bold md:text-4xl">
+			Is This Right for Your Team?
+		</h2>
+		<div class="mt-12 grid grid-cols-1 gap-10 md:grid-cols-2">
+			<div>
+				<h3 class="p-0 font-serif text-xl font-semibold text-green-700 dark:text-green-400">Great Fit</h3>
+				<ul class="mt-4 space-y-2 text-gray-700 dark:text-gray-300">
+					<li>Senior engineers and tech leads</li>
+					<li>Teams actively shipping AI features</li>
+					<li>Companies investing in AI capabilities</li>
+					<li>Engineers with strong software fundamentals</li>
+				</ul>
+			</div>
+			<div>
+				<h3 class="p-0 font-serif text-xl font-semibold text-red-600 dark:text-red-400">Not a Fit</h3>
+				<ul class="mt-4 space-y-2 text-gray-700 dark:text-gray-300">
+					<li>Complete beginners to programming</li>
+					<li>Non-technical roles</li>
+					<li>Teams looking for off-the-shelf solutions</li>
+				</ul>
+			</div>
+		</div>
+	</Section>
+
+	{/* FAQ */}
+	<Section variant="muted" narrow>
+		<h2 class="text-center font-serif text-3xl font-bold md:text-4xl">
+			Common Questions
+		</h2>
+		<div class="mt-12 space-y-4">
+			<details class="group rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800">
+				<summary class="cursor-pointer font-serif text-lg font-semibold text-gray-900 dark:text-white">How long is the course?</summary>
+				<p class="mt-3 text-gray-600 dark:text-gray-300">
+					Flexible — typically 4 to 8 weeks depending on your team's schedule and goals.
+				</p>
+			</details>
+			<details class="group rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800">
+				<summary class="cursor-pointer font-serif text-lg font-semibold text-gray-900 dark:text-white">What's the ideal team size?</summary>
+				<p class="mt-3 text-gray-600 dark:text-gray-300">
+					Optimized for 5 to 15 engineers. Small enough for personalized attention, large enough for rich discussion.
+				</p>
+			</details>
+			<details class="group rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800">
+				<summary class="cursor-pointer font-serif text-lg font-semibold text-gray-900 dark:text-white">Do we need prior AI experience?</summary>
+				<p class="mt-3 text-gray-600 dark:text-gray-300">
+					No, but strong software engineering fundamentals are required. We start from first principles and build up.
+				</p>
+			</details>
+			<details class="group rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800">
+				<summary class="cursor-pointer font-serif text-lg font-semibold text-gray-900 dark:text-white">What languages and frameworks?</summary>
+				<p class="mt-3 text-gray-600 dark:text-gray-300">
+					Language-agnostic principles with hands-on examples in Python and TypeScript.
+				</p>
+			</details>
+			<details class="group rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800">
+				<summary class="cursor-pointer font-serif text-lg font-semibold text-gray-900 dark:text-white">Can we customize the curriculum?</summary>
+				<p class="mt-3 text-gray-600 dark:text-gray-300">
+					Absolutely. We tailor topics, projects, and examples to your team's stack and business goals.
+				</p>
+			</details>
+			<details class="group rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800">
+				<summary class="cursor-pointer font-serif text-lg font-semibold text-gray-900 dark:text-white">What's the investment?</summary>
+				<p class="mt-3 text-gray-600 dark:text-gray-300">
+					Contact for pricing. Investment is based on team size and curriculum customization.
+				</p>
+			</details>
+		</div>
+	</Section>
+
+	{/* Final CTA */}
+	<Section variant="dark" class="text-center">
+		<h2 class="font-serif text-3xl font-bold md:text-5xl">
+			Ready to Make Your Team AI-Native?
+		</h2>
+		<p class="mx-auto mt-4 max-w-xl text-lg text-purple-100">
+			Let's build a curriculum tailored to your team's goals and stack.
+		</p>
+		<div class="mt-10">
+			<CTA email={email} subject={subject} label="Start the Conversation" />
+		</div>
+		<p class="mt-6 text-sm text-purple-200">
+			Or email <a href={`mailto:${email}`} class="underline">{email}</a> directly.
+		</p>
+	</Section>
+</BaseLayout>
