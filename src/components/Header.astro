@@ -7,37 +7,39 @@ import ThemeToggle from '@/components/ThemeToggle.astro';
 ---
 
 <header class="sticky top-0 z-40 border-b border-gray-200/50 bg-gray-50/80 backdrop-blur-md dark:border-dark-border dark:bg-dark-arsenic/80">
-	<div class="mx-auto flex max-w-5xl items-center justify-between px-6 py-3">
-		<a href="/" class="hover-glow flex items-center gap-2 rounded-lg p-1">
-			<Image loading="eager" src={avatar} alt="nicknisi" width={28} height={28} quality="max" class="rounded-full" />
-			<span class="font-serif text-lg font-semibold">{metadata.title}</span>
-		</a>
+	<div class="mx-auto max-w-5xl px-6 py-3">
+		<div class="flex flex-col items-center gap-2 sm:flex-row sm:justify-between">
+			<a href="/" class="hover-glow flex items-center gap-2 rounded-lg p-1">
+				<Image loading="eager" src={avatar} alt="nicknisi" width={28} height={28} quality="max" class="rounded-full" />
+				<span class="font-serif text-lg font-semibold">{metadata.title}</span>
+			</a>
 
-		<div class="flex items-center gap-6">
-			<nav>
-				<ul class="flex list-none gap-6">
-					{[
-						{ href: '/about', label: 'About' },
-						{ href: '/posts', label: 'Posts' },
-						{ href: '/speaking', label: 'Speaking' },
-						{ href: '/uses', label: 'Uses' },
-						{ href: '/now', label: 'Now' },
-					].map(({ href, label }) => (
-						<li>
-							<a
-								href={href}
-								class:list={[
-									'nav-underline font-medium transition-colors hover:text-purple-700 dark:hover:text-purple-300',
-									Astro.url.pathname.startsWith(href) && 'active text-purple-700 dark:text-purple-300',
-								]}
-							>
-								{label}
-							</a>
-						</li>
-					))}
-				</ul>
-			</nav>
-			<ThemeToggle />
+			<div class="flex items-center gap-6">
+				<nav>
+					<ul class="flex list-none gap-6">
+						{[
+							{ href: '/about', label: 'About' },
+							{ href: '/posts', label: 'Posts' },
+							{ href: '/speaking', label: 'Speaking' },
+							{ href: '/uses', label: 'Uses' },
+							{ href: '/now', label: 'Now' },
+						].map(({ href, label }) => (
+							<li>
+								<a
+									href={href}
+									class:list={[
+										'nav-underline font-medium transition-colors hover:text-purple-700 dark:hover:text-purple-300',
+										Astro.url.pathname.startsWith(href) && 'active text-purple-700 dark:text-purple-300',
+									]}
+								>
+									{label}
+								</a>
+							</li>
+						))}
+					</ul>
+				</nav>
+				<ThemeToggle />
+			</div>
 		</div>
 	</div>
 </header>
