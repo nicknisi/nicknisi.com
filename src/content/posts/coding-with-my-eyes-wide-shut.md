@@ -6,8 +6,8 @@ tags:
   - mcp
   - ai
 hero:
-  img: "@/assets/posts/mcp-robot.jpg"
-  alt: "WorkOS CEO Michael Grinich and a Robot at MCP Night"
+  img: '@/assets/posts/mcp-robot.jpg'
+  alt: 'WorkOS CEO Michael Grinich and a Robot at MCP Night'
   darkOverlay: true
 post: https://bsky.app/profile/nicknisi.com/post/3lq3jqrpm5s2w
 ---
@@ -18,7 +18,7 @@ That all changed during my AI week in San Francisco. Or did it?
 
 ## The Setup
 
-At the onsite, I taught a workshop about using AI to augment your skills. The key message: AI should enhance what you do, not replace who you are. Break down problems into smaller pieces. Keep the AI focused on solutions, not praise. 
+At the onsite, I taught a workshop about using AI to augment your skills. The key message: AI should enhance what you do, not replace who you are. Break down problems into smaller pieces. Keep the AI focused on solutions, not praise.
 
 I also gave a lightning talk called "AI on the coding periphery" - showcasing all the ways AI helps with the boring stuff that eats your day. Not writing code, but everything around it.
 
@@ -39,6 +39,7 @@ My teammate Nick and I claimed a corner of the conference room. We had a couple 
 It's like cooking with your eyes closed, tasting along the way and suggesting changes, but never dealing with ingredients directly.
 
 **Our goal:** build a GitHub Action that would:
+
 1. Watch for PRs with a specific label in any SDK repo
 2. Analyze what changed
 3. Automatically create matching PRs in our other SDK repos
@@ -54,6 +55,7 @@ First test with [`act`](https://github.com/nektos/act): complete failure. But no
 This is where vibe coding gets challenging. When things go wrong, you're debugging blind. You can't just open the file and see what's happening. You have to think differently.
 
 Instead of diving into code, I started interviewing Claude like a detective:
+
 - "Walk me through your approach"
 - "What exactly are you sending to the OpenAI API?"
 - "Why would this approach result in deleted files?"
@@ -65,6 +67,7 @@ One corrective prompt changed everything: "Focus on diffs. Make minimal changes.
 ## The Results
 
 By the end of our two-hour session:
+
 - ~5,000 lines of TypeScript we never read
 - A working [GitHub Action](https://github.com/workos/workos-node/tree/automatic-prs/.github/actions/sdk-sync) that successfully created PRs
 - Automated SDK synchronization (with some rough edges)
@@ -100,7 +103,7 @@ The practical sweet spot isn't full vibe coding or full manual coding. It's know
 
 ## The Transformation
 
-Would I ship our vibe-coded GitHub Action to production? No way. Not without a thorough review and probably a rewrite. 
+Would I ship our vibe-coded GitHub Action to production? No way. Not without a thorough review and probably a rewrite.
 
 But that misses the point entirely.
 
@@ -112,7 +115,7 @@ My workshop talked about augmenting skills. My lightning talk showed AI handling
 
 That week, I learned to code with my eyes wide shut.
 
-The strange part? I've never seen more clearly where we're headed. We're not replacing programmers. We're evolving what programming means. The future isn't about writing code - it's about intent, architecture, and knowing when human creativity matters most. 
+The strange part? I've never seen more clearly where we're headed. We're not replacing programmers. We're evolving what programming means. The future isn't about writing code - it's about intent, architecture, and knowing when human creativity matters most.
 
 I won't be vibe coding in production anytime soon. But the experiment taught me something crucial: I need to evolve where I fit in the problem-solving equation. The future of this profession isn't about protecting our old ways of working. It's about finding new ways to create value.
 

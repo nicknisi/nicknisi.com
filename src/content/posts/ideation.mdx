@@ -15,10 +15,13 @@ tags:
 post: https://bsky.app/profile/nicknisi.com/post/3meu2jsh4r22r
 ---
 
-import Callout from '@/components/Callout.astro'
+import Callout from '@/components/Callout.astro';
 
 <Callout title="TL;DR" variant="info">
-Ideation is a Claude Code plugin that turns messy brain dumps into structured, executable implementation specs. <a href="#try-it" class="underline font-medium text-vivid-light-blue-100 hover:text-white">Skip to install instructions &rarr;</a>
+	Ideation is a Claude Code plugin that turns messy brain dumps into structured, executable implementation specs.{' '}
+	<a href="#try-it" class="text-vivid-light-blue-100 font-medium underline hover:text-white">
+		Skip to install instructions &rarr;
+	</a>
 </Callout>
 
 AI can write the code. That part's easy now.
@@ -144,7 +147,8 @@ Then install the plugin:
 Then type `/ideation` and start rambling. The mess is the input.
 
 <Callout title="Why not npx skills?" variant="info">
-`npx skills add nicknisi/claude-plugins` only installs the `/ideation` skill. Installing the full plugin includes the companion `/execute-spec` skill, which handles handing off your spec to a fresh session for implementation.
+	`npx skills add nicknisi/claude-plugins` only installs the `/ideation` skill. Installing the full plugin includes the
+	companion `/execute-spec` skill, which handles handing off your spec to a fresh session for implementation.
 </Callout>
 
 The code writes itself now. Ideation makes sure you know what to write.

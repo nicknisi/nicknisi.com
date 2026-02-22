@@ -28,14 +28,14 @@ const {
 		<div class="flex place-content-baseline">
 			{
 				roles.map(role => (
-					<span class="last mr-1 inline-block rounded-full bg-teal-200 px-2 py-1 text-xs font-semibold uppercase text-teal-700 last:mr-0">
+					<span class="last mr-1 inline-block rounded-full bg-teal-200 px-2 py-1 text-xs font-semibold text-teal-700 uppercase last:mr-0">
 						{role}
 					</span>
 				))
 			}
 			{
 				status === 'inactive' && (
-					<span class="last mr-1 inline-block rounded-full bg-red-200 px-2 py-1 text-xs font-semibold uppercase text-red-700 last:mr-0">
+					<span class="last mr-1 inline-block rounded-full bg-red-200 px-2 py-1 text-xs font-semibold text-red-700 uppercase last:mr-0">
 						{status}
 					</span>
 				)

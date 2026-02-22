@@ -47,4 +47,3 @@ export function jsx(type: string, props?: JSXProps | null, ...children: JSXChild
 		},
 	} as ReactNode;
 }
-

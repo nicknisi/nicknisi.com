@@ -28,10 +28,10 @@ const year = date.getFullYear();
 		long ? (
 			formattedDate
 		) : (
-			<div class="flex items-center justify-center gap-1 text-blue-gray-700 dark:text-blue-gray-200">
+			<div class="text-blue-gray-700 dark:text-blue-gray-200 flex items-center justify-center gap-1">
 				<div class="text-sm font-bold">{day}</div>
-				<div class="text-sm uppercase tracking-wider">{month}</div>
-				<div class="text-sm uppercase tracking-wider">{year}</div>
+				<div class="text-sm tracking-wider uppercase">{month}</div>
+				<div class="text-sm tracking-wider uppercase">{year}</div>
 			</div>
 		)
 	}

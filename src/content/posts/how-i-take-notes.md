@@ -1,5 +1,5 @@
 ---
-title: "How I take notes in Obsidian"
+title: 'How I take notes in Obsidian'
 draft: true
 pubDate: 2022-10-16
 description: "It's totally not a cult!"

@@ -21,7 +21,7 @@ export default function Likes({ post }: Props) {
 						href={`https://bsky.app/profile/${like.actor.handle}`}
 						key={like.actor.did}
 						className={[
-							'bg-purple-950 relative inline-block size-12 overflow-hidden rounded-full ring-2 ring-purple-50 dark:ring-purple-900',
+							'relative inline-block size-12 overflow-hidden rounded-full bg-purple-950 ring-2 ring-purple-50 dark:ring-purple-900',
 							index === 0 ? '-ml-2' : '',
 						].join(' ')}
 						target="_blank"

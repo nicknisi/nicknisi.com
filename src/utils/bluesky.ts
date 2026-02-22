@@ -85,7 +85,7 @@ export function getCommentCount(comments: { replies?: any }[]) {
 }
 
 export function sortByLikes(a: ThreadReply, b: ThreadReply) {
-	const aLikes = AppBskyFeedDefs.isThreadViewPost(a) ? a.post.likeCount ?? 0 : 0;
-	const bLikes = AppBskyFeedDefs.isThreadViewPost(b) ? b.post.likeCount ?? 0 : 0;
+	const aLikes = AppBskyFeedDefs.isThreadViewPost(a) ? (a.post.likeCount ?? 0) : 0;
+	const bLikes = AppBskyFeedDefs.isThreadViewPost(b) ? (b.post.likeCount ?? 0) : 0;
 	return bLikes - aLikes;
 }

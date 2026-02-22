@@ -1,5 +1,5 @@
 ---
-title: "Evolving with the Tools"
+title: 'Evolving with the Tools'
 pubDate: 2025-06-13
 tags:
   - ai
@@ -7,15 +7,17 @@ tags:
 description: |
   After 16 years of writing code, I fought the idea of AI agents replacing developers until I discovered they could amplify rather than replace me. This is my journey from skepticism to embracing Claude Code as a pair programmer who speaks fluent bash and transforms how I ship software.
 hero:
-  img: "@/assets/posts/ai-tooling.png"
-  alt: "My laptop and badge"
-post: "https://bsky.app/profile/nicknisi.com/post/3lrjy7q4eks2h"
+  img: '@/assets/posts/ai-tooling.png'
+  alt: 'My laptop and badge'
+post: 'https://bsky.app/profile/nicknisi.com/post/3lrjy7q4eks2h'
 ---
 
-import Callout from '@/components/Callout.astro'
+import Callout from '@/components/Callout.astro';
 
 <Callout title="Want to dive in?">
-[My Claude configuration](https://github.com/nicknisi/dotfiles/tree/main/home/.claude) | [Anthropic's best practices](https://www.anthropic.com/engineering/claude-code-best-practices) | [CLI documentation](https://docs.anthropic.com/en/docs/claude-code/cli-usage) | Start with `/init` in any project.
+	[My Claude configuration](https://github.com/nicknisi/dotfiles/tree/main/home/.claude) | [Anthropic's best
+	practices](https://www.anthropic.com/engineering/claude-code-best-practices) | [CLI
+	documentation](https://docs.anthropic.com/en/docs/claude-code/cli-usage) | Start with `/init` in any project.
 </Callout>
 
 "AI is going to replace developers."
@@ -110,17 +112,17 @@ Configure Claude in `~/.claude/settings.json`. Most importantly, set up permissi
 
 ```json
 {
-  "permissions": {
-    "allow": [
-      "Bash(ls:*)",
-      "Read(~/Developer/**)",
-      "Bash(git branch:*)",
-      "Bash(git switch:*)",
-      "Bash(docker compose exec:*)",
-      "Bash(grep:*)",
-      "Bash(rg:*)"
-    ]
-  }
+	"permissions": {
+		"allow": [
+			"Bash(ls:*)",
+			"Read(~/Developer/**)",
+			"Bash(git branch:*)",
+			"Bash(git switch:*)",
+			"Bash(docker compose exec:*)",
+			"Bash(grep:*)",
+			"Bash(rg:*)"
+		]
+	}
 }
 ```
 
@@ -195,4 +197,4 @@ My own configuration is in my [dotfiles repo](https://github.com/nicknisi/dotfil
 - [GitHub Search: .claude/CLAUDE.md](https://github.com/search?type=code&q=path:.claude/CLAUDE.md)
 - [GitHub Search: .claude/commands/](https://github.com/search?type=code&q=path:.claude/commands)
 
-*Thanks to [John Christopher](https://jdotc.xyz/) for reviewing this post.*
+_Thanks to [John Christopher](https://jdotc.xyz/) for reviewing this post._

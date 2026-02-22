@@ -1,11 +1,11 @@
 ---
-title: "Seven Years of JS Party: A Personal Reflection"
+title: 'Seven Years of JS Party: A Personal Reflection'
 pubDate: 2024-12-05
 description: |
   A personal reflection on seven years of JS Party as the show transitions into its next chapter with dysfunctional.fm.
 hero:
-  img: "@/assets/posts/seven-years-of-js-party.jpg"
-  alt: "An empty JS Party booth at React Summit"
+  img: '@/assets/posts/seven-years-of-js-party.jpg'
+  alt: 'An empty JS Party booth at React Summit'
   darkOverlay: true
 tags:
   - community
@@ -18,7 +18,7 @@ When I joined JS Party back at episode 20 nearly seven years ago, I had no idea 
 
 ## The State of Change
 
-I'll be honest – when I first heard about the end of JS Party, it hit me hard. Change, even positive change, can be difficult to process. But after seeing Adam and Jerod's vision for Changelog's future, I've found myself genuinely excited about what's ahead! 
+I'll be honest – when I first heard about the end of JS Party, it hit me hard. Change, even positive change, can be difficult to process. But after seeing Adam and Jerod's vision for Changelog's future, I've found myself genuinely excited about what's ahead!
 
 ## More Than Just a Tech Podcast
 

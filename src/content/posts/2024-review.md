@@ -4,9 +4,9 @@ slug: '2024'
 pubDate: 2024-12-31
 tags: ['career', 'conferences', 'community']
 hero:
-  img: "@/assets/posts/2024-review.jpg"
-  alt: "2024 in pictures"
-post: "https://bsky.app/profile/nicknisi.com/post/3lenciyvv7k2s"
+  img: '@/assets/posts/2024-review.jpg'
+  alt: '2024 in pictures'
+post: 'https://bsky.app/profile/nicknisi.com/post/3lenciyvv7k2s'
 description: "A brief review of 2024 and what I'm looking forward to in 2025."
 ---
 
@@ -36,6 +36,7 @@ Speaking of Bluesky, it's become my primary social platform in 2024. The communi
 ## A Year in Motion
 
 2024 kept me moving, with trips spanning work, conferences, and family time:
+
 - Multiple extended stays in Menlo Park
 - Conference speaking in Austin, Kansas City, and Wisconsin Dells
 - Meta office visits in London and New York
