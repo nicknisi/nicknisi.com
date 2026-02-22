@@ -11,7 +11,7 @@
 		"roles": ["Panelist"],
 		"type": "podcast",
 		"entity": "Changelog",
-		"status": "active",
+		"status": "inactive",
 		"promote": true
 	},
 	{

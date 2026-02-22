@@ -8,9 +8,10 @@ interface Props {
 	limit?: number | undefined;
 	tag?: string | undefined;
 	featuredFirst?: boolean | undefined;
+	list?: boolean | undefined;
 }
 
-const { limit, tag, hideImages: hideImage, featuredFirst } = Astro.props;
+const { limit, tag, hideImages: hideImage, featuredFirst, list } = Astro.props;
 let posts = await getPosts(tag ? undefined : limit);
 
 if (tag) {
@@ -53,9 +54,9 @@ const listPosts = featured ? posts.slice(1) : posts;
 	)}
 
 	{/* Remaining posts: compact list with dividers */}
-	{featuredFirst ? (
+	{featuredFirst || list ? (
 		<div class="divide-y divide-gray-100 dark:divide-dark-border">
-			{listPosts.map(post => (
+			{(featuredFirst ? listPosts : posts).map(post => (
 				<a href={post.data.external ?? `/posts/${post.slug}`} class="group flex items-baseline justify-between gap-4 py-3">
 					<h3 class="font-semibold text-gray-800 group-hover:text-purple-700 dark:text-white dark:group-hover:text-purple-300">
 						{post.data.title}
