@@ -329,4 +329,31 @@ color utility to any element that depends on these defaults.
 	.nav-underline.active::after {
 		width: 100%;
 	}
+
+	/* Custom view transition animations */
+	::view-transition-old(root) {
+		animation: 0.2s ease-out both fade-out;
+	}
+	::view-transition-new(root) {
+		animation: 0.2s ease-out both fade-in;
+	}
+
+	@keyframes fade-out {
+		to {
+			opacity: 0;
+			transform: translateY(-8px);
+		}
+	}
+	@keyframes fade-in {
+		from {
+			opacity: 0;
+			transform: translateY(8px);
+		}
+	}
+
+	/* Named transition for post titles — morph between card and page */
+	::view-transition-group(post-title) {
+		animation-duration: 0.3s;
+		animation-timing-function: ease;
+	}
 }

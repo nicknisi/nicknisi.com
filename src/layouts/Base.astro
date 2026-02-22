@@ -1,4 +1,5 @@
 ---
+import { ClientRouter } from 'astro:transitions';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 import Head from '@/components/Head.astro';
@@ -25,6 +26,19 @@ const { heroImage, title = '', description, hideHeader, hideFooter, headerImage,
 
 <html lang="en">
 	<Head title={title} description={description} headerImage={headerImage} />
+	<ClientRouter />
+	<script is:inline>
+		// Restore theme before paint on every View Transition swap
+		document.addEventListener('astro:after-swap', () => {
+			const theme = localStorage.getItem('theme') ||
+				(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+			if (theme === 'dark') {
+				document.documentElement.classList.add('dark');
+			} else {
+				document.documentElement.classList.remove('dark');
+			}
+		});
+	</script>
 	<body
 		class:list={[
 			'font-normal',
@@ -35,7 +49,7 @@ const { heroImage, title = '', description, hideHeader, hideFooter, headerImage,
 			'dark:bg-dark-arsenic',
 		]}
 	>
-		{!hideHeader && <Header />}
+		{!hideHeader && <Header transition:persist />}
 		{heroImage && <Hero title={title} alt={heroImage.alt} darkOverlay={heroImage.darkOverlay} image={heroImage.img} />}
 		<main class:list={['z-30 mb-auto', !fullWidth && 'px-6']}>
 			{fullWidth ? <slot /> : <div class="mx-auto max-w-5xl"><slot /></div>}

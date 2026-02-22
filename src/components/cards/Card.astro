@@ -9,6 +9,7 @@ interface Props {
 	shadow?: 'none' | 'small' | 'normal' | 'large' | undefined;
 	border?: boolean | undefined;
 	hover?: boolean | undefined;
+	featured?: boolean | undefined;
 	title?: string | undefined;
 	subtitle?: string | undefined;
 	titleClassName?: string | undefined;
@@ -31,6 +32,7 @@ const {
 	shadow = 'small',
 	border = false,
 	hover = false,
+	featured = false,
 	title,
 	subtitle,
 	titleClassName = '',
@@ -76,13 +78,14 @@ const imageFitVariants = {
 // Compose classes
 const baseClasses = [
 	'inline-block',
-	'rounded-lg',
+	'rounded-xl',
 	'transition-all duration-200',
-	'bg-white dark:bg-gray-800',
+	'bg-white dark:bg-dark-surface',
 	'overflow-hidden',
 	shadowVariants[shadow],
-	border && 'border border-gray-200 dark:border-gray-700',
-	hover && 'hover:shadow-lg hover:-translate-y-1',
+	'border border-gray-100 dark:border-dark-border',
+	hover && 'hover-glow',
+	featured && 'border-l-4 border-l-transparent bg-gradient-to-r from-purple-50 to-white dark:from-purple-900/10 dark:to-dark-surface',
 	interactive && 'cursor-pointer',
 	className,
 ];

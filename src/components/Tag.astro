@@ -6,12 +6,12 @@ interface Props {
 const { name, size = 'small' } = Astro.props;
 ---
 
-<div
+<a
+	href={`/tags/${name}`}
 	class:list={[
-		'not-prose inline-flex flex-initial items-center justify-start px-1 tracking-wide text-gray-600 dark:text-gray-400',
-		size === 'small' ? 'text-sm' : size === 'base' ? 'text-base' : 'text-xl',
+		'not-prose inline-flex items-center rounded-full border border-gray-200 bg-gray-50 px-2.5 py-0.5 font-medium text-gray-600 transition-colors hover:border-purple-300 hover:bg-purple-50 hover:text-purple-700 dark:border-dark-border dark:bg-dark-surface dark:text-gray-400 dark:hover:border-purple-500/40 dark:hover:bg-purple-900/20 dark:hover:text-purple-300',
+		size === 'small' ? 'text-xs' : size === 'base' ? 'text-sm' : 'text-base',
 	]}
 >
-	<div class="font-bold">#</div>
-	<a href={`/tags/${name}`}>{name.toLowerCase()}</a>
-</div>
+	{name.toLowerCase()}
+</a>

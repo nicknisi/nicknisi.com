@@ -2,15 +2,13 @@
 import { Icon } from 'astro-icon/components';
 ---
 
-<div class="sm:fixed sm:top-2 sm:right-0">
-	<button
-		type="button"
-		id="themeToggle"
-		class="p-2 text-base sm:rounded-l-full sm:bg-purple-100 sm:text-2xl sm:dark:bg-purple-300"
-	>
-		<Icon name="mdi:theme-light-dark" class="text-dark-obsidian dark:text-gray-100" />
-	</button>
-</div>
+<button
+	type="button"
+	id="themeToggle"
+	class="rounded-lg p-2 text-gray-600 transition-colors hover:bg-gray-100 hover:text-purple-700 dark:text-gray-300 dark:hover:bg-dark-surface dark:hover:text-purple-300"
+>
+	<Icon name="mdi:theme-light-dark" class="h-5 w-5" />
+</button>
 
 <script is:inline>
 	function getTheme() {
@@ -33,15 +31,24 @@ import { Icon } from 'astro-icon/components';
 	}
 
 	function toggleTheme() {
-		console.log('toggling theme');
-		const theme = getTheme() == 'light' ? 'dark' : 'light';
+		const theme = getTheme() === 'light' ? 'dark' : 'light';
 		setTheme(theme);
 	}
 
-	const theme = getTheme();
-	const button = document.querySelector('button#themeToggle');
-	button.addEventListener('click', toggleTheme);
-
-	// initially set the theme
+	// Set theme immediately (before paint)
 	setTheme();
+
+	// Re-attach listener on every page load (View Transitions re-execute scripts)
+	document.addEventListener('astro:page-load', () => {
+		const button = document.querySelector('button#themeToggle');
+		if (button) {
+			button.addEventListener('click', toggleTheme);
+		}
+	});
+
+	// Also handle initial load (first page, no View Transition)
+	const button = document.querySelector('button#themeToggle');
+	if (button) {
+		button.addEventListener('click', toggleTheme);
+	}
 </script>

@@ -18,8 +18,8 @@ if (tag) {
 let isTruncated = limit !== undefined || !!tag;
 ---
 
-<div class="flex flex-col gap-2">
-	<div class="flex flex-col gap-4 md:grid md:auto-rows-auto md:grid-cols-3">
+<div class="flex flex-col gap-2 scroll-reveal">
+	<div class="fade-up-grid flex flex-col gap-4 md:grid md:auto-rows-auto md:grid-cols-3">
 		{posts.map(post => <Post hideImage={hideImage} post={post} />)}
 	</div>
 	{

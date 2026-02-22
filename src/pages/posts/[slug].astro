@@ -52,7 +52,14 @@ const profileImg = await getAsset(metadata.profile);
 		>
 			<article class="pt-10">
 				<header class="mb-8">
-					{!hero && <h1 class="mb-4 text-3xl font-bold tracking-tight md:text-5xl">{title}</h1>}
+					{!hero && (
+					<h1
+						transition:name={`post-${slug}`}
+						class="mb-4 text-3xl font-bold tracking-tight md:text-5xl"
+					>
+						{title}
+					</h1>
+				)}
 					<div class="flex gap-2 text-sm font-light text-gray-600 sm:gap-1">
 						<span class="uppercase">{date}</span>
 						<span class="hidden md:inline">•</span>

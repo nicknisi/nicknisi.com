@@ -1,64 +1,79 @@
 ---
-import metadata from '../data/metadata.json';
 import BaseLayout from '../layouts/Base.astro';
 import Posts from '@/components/sections//Posts.astro';
-import { getPosts } from '@/utils/common';
-import { Icon } from 'astro-icon/components';
 import { getAsset } from '@/utils/image.js';
 import { Image } from 'astro:assets';
 
 const profileImage = await getAsset('profile.jpg');
-const allPosts = await getPosts();
-const tags: string[] = [...new Set(allPosts.map(post => post.data.tags).flat())];
 ---
 
-<BaseLayout>
-	<div class="py-10">
-		<div class="flex flex-col items-center">
-			<div class="flex flex-col items-center justify-center gap-10 md:flex-row">
-				<div class="text-2xl font-bold sm:text-3xl lg:text-4xl">
-					{metadata.description}
-				</div>
-				<div
-					class="inline-flex h-32 w-32 shrink-0 items-center justify-center rounded-full text-blue-500 sm:mr-10 md:h-64 md:w-64"
-				>
-					<Image
-						src={profileImage}
-						alt="Nick Nisi - author"
-						width={512}
-						height={512}
-						quality="max"
-						class="mx-auto h-32 w-32 rounded-full object-cover shadow-lg drop-shadow-md md:h-64 md:w-64"
-					/>
-				</div>
+<BaseLayout fullWidth>
+	<!-- Hero -->
+	<section class="relative overflow-hidden bg-gray-50 dark:bg-dark-arsenic">
+		<!-- Subtle gradient blobs -->
+		<div class="absolute inset-0 overflow-hidden">
+			<div class="absolute top-[-20%] left-[10%] h-[500px] w-[500px] rounded-full bg-purple-200/20 blur-3xl dark:bg-purple-700/10"></div>
+			<div class="absolute bottom-[-10%] right-[15%] h-[400px] w-[400px] rounded-full bg-teal-200/20 blur-3xl dark:bg-teal-700/10"></div>
+		</div>
+
+		<div class="relative z-10 mx-auto flex max-w-5xl flex-col items-center px-6 pt-16 pb-20 md:pt-24 md:pb-28">
+			<!-- Profile image with gradient ring -->
+			<div class="gradient-border rounded-full p-1">
+				<Image
+					src={profileImage}
+					alt="Nick Nisi"
+					width={512}
+					height={512}
+					quality="max"
+					class="h-40 w-40 rounded-full object-cover md:h-56 md:w-56"
+				/>
 			</div>
-			<div
-				class="flex w-full items-center justify-center pt-2 text-gray-200 md:items-end md:justify-start md:pt-0 dark:text-gray-700"
-			>
-				{
-					['raphael:vim', 'mdi:language-typescript', 'mdi:react', 'mdi:nodejs', 'mdi:language-javascript'].map(name => (
-						<Icon name={name} class="h-8 w-8" />
-					))
-				}
-			</div>
-			<p class="mt-2 leading-8">
-				A Front End Staff Engineer who specializes in JavaScript and web development. An expert in TypeScript and is
-				dedicated to delivering the best developer experience. Frequent speaker at meetups and conferences, conference
-				organizer and emcee, panelist on the <a href="https://jsparty.fm">JS Party podcast</a>, and an organizer of the <a
-					href="https://nebraskajs.com">NebraskaJS</a
-				>
-				meetup.
-				<a class="font-bold text-purple-700 dark:text-purple-200" href="/about">More about me.</a>
+
+			<!-- Name with gradient text -->
+			<h1 class="gradient-text mt-8 text-center font-serif text-5xl font-bold tracking-tight md:text-7xl">
+				Nick Nisi
+			</h1>
+
+			<!-- Tagline -->
+			<p class="mt-4 text-center text-xl text-blue-gray-600 dark:text-gray-300 md:text-2xl">
+				Staff Engineer · TypeScript · Developer Experience
 			</p>
 
-			<section class="flex flex-col flex-nowrap gap-4 sm:flex-row">
-				<div>
-					<h3 class="my-4 mt-8 text-4xl">Latest posts</h3>
-					<div class="flex items-center justify-center">
-						<Posts hideImages limit={6} />
-					</div>
-				</div>
-			</section>
+			<!-- Social proof chips -->
+			<div class="mt-6 flex flex-wrap justify-center gap-3">
+				{["JS Party Co-host", "50+ Conference Talks", "NebraskaJS Organizer"].map(label => (
+					<span class="rounded-full border border-gray-200 bg-white/80 px-4 py-1.5 text-sm font-medium text-gray-700 dark:border-dark-border dark:bg-dark-surface/80 dark:text-gray-300">
+						{label}
+					</span>
+				))}
+			</div>
+
+			<!-- CTAs -->
+			<div class="mt-10 flex gap-4">
+				<a href="/posts" class="hover-glow rounded-xl bg-purple-700 px-6 py-3 font-semibold text-white">
+					Read the Blog
+				</a>
+				<a href="/about" class="hover-glow gradient-border rounded-xl px-6 py-3 font-semibold text-gray-800 dark:text-gray-200">
+					About Me
+				</a>
+			</div>
 		</div>
-	</div>
+	</section>
+
+	<!-- Latest Posts -->
+	<section class="bg-white px-6 py-16 dark:bg-dark-surface/50 md:py-24">
+		<div class="mx-auto max-w-5xl">
+			<h2 class="mb-12 text-center font-serif text-3xl font-bold md:text-4xl">
+				Latest Posts
+			</h2>
+			<div class="fade-up-grid">
+				<Posts hideImages limit={6} />
+			</div>
+			<div class="mt-12 text-center">
+				<a href="/posts" class="font-bold text-purple-700 hover:underline dark:text-purple-300">
+					View all posts →
+				</a>
+			</div>
+		</div>
+	</section>
 </BaseLayout>
