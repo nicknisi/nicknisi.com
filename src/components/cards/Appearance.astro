@@ -13,15 +13,39 @@ interface Props {
 const talkTypeMap = {
 	'Conference Talk': {
 		icon: 'mdi:presentation-play',
-		bgClass: 'bg-vivid-light-blue-100',
-		iconClass: 'text-vivid-light-blue-700',
+		bgClass: 'bg-vivid-light-blue-100 dark:bg-vivid-light-blue-900/20',
+		iconClass: 'text-vivid-light-blue-700 dark:text-vivid-light-blue-300',
 	},
-	Panel: { icon: 'mdi:forum', bgClass: 'bg-teal-100', iconClass: 'text-teal-800' },
-	Workshop: { icon: 'mdi:hammer-wrench', bgClass: 'bg-yellow-100', iconClass: 'text-yellow-800' },
-	Keynote: { icon: 'mdi:star', bgClass: 'bg-vivid-pink-100', iconClass: 'text-vivid-pink-800' },
-	'Lightning Talk': { icon: 'mdi:flash', bgClass: 'bg-purple-100', iconClass: '' },
-	Podcast: { icon: 'mdi:microphone', bgClass: 'bg-vivid-yellow-100', iconClass: 'bg-vivid-yellow-600' },
-	Moderation: { icon: 'mdi:forum', bgClass: 'bg-vivid-pink-100', iconClass: 'text-vivid-pink-300' },
+	Panel: {
+		icon: 'mdi:forum',
+		bgClass: 'bg-teal-100 dark:bg-teal-900/20',
+		iconClass: 'text-teal-800 dark:text-teal-300',
+	},
+	Workshop: {
+		icon: 'mdi:hammer-wrench',
+		bgClass: 'bg-yellow-100 dark:bg-yellow-900/20',
+		iconClass: 'text-yellow-800 dark:text-yellow-300',
+	},
+	Keynote: {
+		icon: 'mdi:star',
+		bgClass: 'bg-vivid-pink-100 dark:bg-vivid-pink-900/20',
+		iconClass: 'text-vivid-pink-800 dark:text-vivid-pink-300',
+	},
+	'Lightning Talk': {
+		icon: 'mdi:flash',
+		bgClass: 'bg-purple-100 dark:bg-purple-900/20',
+		iconClass: 'text-purple-700 dark:text-purple-300',
+	},
+	Podcast: {
+		icon: 'mdi:microphone',
+		bgClass: 'bg-vivid-yellow-100 dark:bg-vivid-yellow-900/20',
+		iconClass: 'text-vivid-yellow-700 dark:text-vivid-yellow-300',
+	},
+	Moderation: {
+		icon: 'mdi:forum',
+		bgClass: 'bg-vivid-pink-100 dark:bg-vivid-pink-900/20',
+		iconClass: 'text-vivid-pink-700 dark:text-vivid-pink-300',
+	},
 } as const;
 
 const { appearance: talk } = Astro.props;
@@ -35,7 +59,7 @@ const date = toReadableDate(firstInstance.date);
 ---
 
 <Card
-	class="bg-white dark:bg-gray-900"
+	class="bg-white dark:bg-dark-surface"
 	image={thumbnail}
 	imageWidth={320}
 	imageHeight={180}

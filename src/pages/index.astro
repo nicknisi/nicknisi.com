@@ -16,7 +16,7 @@ const profileImage = await getAsset('profile.jpg');
 			<div class="absolute bottom-[-10%] right-[15%] h-[400px] w-[400px] rounded-full bg-teal-200/20 blur-3xl dark:bg-teal-700/10"></div>
 		</div>
 
-		<div class="relative z-10 mx-auto flex max-w-5xl flex-col items-center px-6 pt-16 pb-20 md:pt-24 md:pb-28">
+		<div class="relative z-10 mx-auto flex max-w-5xl flex-col items-center px-6 pt-16 pb-12 md:pt-24 md:pb-16">
 			<!-- Profile image with gradient ring -->
 			<div class="gradient-border rounded-full p-1">
 				<Image
@@ -58,22 +58,18 @@ const profileImage = await getAsset('profile.jpg');
 				</a>
 			</div>
 		</div>
+
+		<!-- Gradient fade to next section -->
+		<div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-white dark:to-dark-arsenic"></div>
 	</section>
 
 	<!-- Latest Posts -->
-	<section class="bg-white px-6 py-16 dark:bg-dark-surface/50 md:py-24">
+	<section class="bg-white px-6 pt-10 pb-16 dark:bg-dark-arsenic md:pt-14 md:pb-24">
 		<div class="mx-auto max-w-5xl">
-			<h2 class="mb-12 text-center font-serif text-3xl font-bold md:text-4xl">
+			<h2 class="mb-10 text-center font-serif text-3xl font-bold md:text-4xl">
 				Latest Posts
 			</h2>
-			<div class="fade-up-grid">
-				<Posts hideImages limit={6} />
-			</div>
-			<div class="mt-12 text-center">
-				<a href="/posts" class="font-bold text-purple-700 hover:underline dark:text-purple-300">
-					View all posts →
-				</a>
-			</div>
+			<Posts hideImages featuredFirst limit={6} />
 		</div>
 	</section>
 </BaseLayout>

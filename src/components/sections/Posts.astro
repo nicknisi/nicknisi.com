@@ -1,14 +1,16 @@
 ---
 import { getPosts } from '@/utils/common';
 import Post from '@/components/cards/Post.astro';
+import FormattedDate from '@/components/FormattedDate.astro';
 
 interface Props {
 	hideImages?: boolean;
 	limit?: number | undefined;
 	tag?: string | undefined;
+	featuredFirst?: boolean | undefined;
 }
 
-const { limit, tag, hideImages: hideImage } = Astro.props;
+const { limit, tag, hideImages: hideImage, featuredFirst } = Astro.props;
 let posts = await getPosts(tag ? undefined : limit);
 
 if (tag) {
@@ -16,14 +18,62 @@ if (tag) {
 }
 
 let isTruncated = limit !== undefined || !!tag;
+const featured = featuredFirst && posts.length > 0 ? posts[0] : null;
+const listPosts = featured ? posts.slice(1) : posts;
 ---
 
-<div class="flex flex-col gap-2 scroll-reveal">
-	<div class="fade-up-grid flex flex-col gap-4 md:grid md:auto-rows-auto md:grid-cols-3">
-		{posts.map(post => <Post hideImage={hideImage} post={post} />)}
-	</div>
+<div class="scroll-reveal">
+	{/* Featured post: horizontal card with OG image */}
+	{featured && (
+		<a
+			href={featured.data.external ?? `/posts/${featured.slug}`}
+			class="group mb-8 flex flex-col overflow-hidden rounded-xl border border-gray-100 bg-white transition-all duration-200 hover:shadow-lg dark:border-dark-border dark:bg-dark-surface sm:flex-row"
+		>
+			<div class="sm:w-80 sm:flex-shrink-0">
+				<img
+					src={`/posts/${featured.slug}/og.png`}
+					alt=""
+					class="w-full transition-transform duration-300 group-hover:scale-105"
+				/>
+			</div>
+			<div class="flex flex-1 flex-col justify-center gap-2 p-5">
+				<h3 class="text-lg font-bold text-gray-800 group-hover:text-purple-700 dark:text-white dark:group-hover:text-purple-300 sm:text-xl">
+					{featured.data.title}
+				</h3>
+				{featured.data.description && (
+					<p class="text-sm leading-relaxed text-gray-500 dark:text-gray-400 line-clamp-2">
+						{featured.data.description}
+					</p>
+				)}
+				<div class="text-xs text-gray-400 dark:text-gray-500">
+					<FormattedDate date={featured.data.pubDate} />
+				</div>
+			</div>
+		</a>
+	)}
+
+	{/* Remaining posts: compact list with dividers */}
+	{featuredFirst ? (
+		<div class="divide-y divide-gray-100 dark:divide-dark-border">
+			{listPosts.map(post => (
+				<a href={post.data.external ?? `/posts/${post.slug}`} class="group flex items-baseline justify-between gap-4 py-3">
+					<h3 class="font-semibold text-gray-800 group-hover:text-purple-700 dark:text-white dark:group-hover:text-purple-300">
+						{post.data.title}
+					</h3>
+					<span class="flex-shrink-0 text-xs text-gray-400 dark:text-gray-500">
+						<FormattedDate date={post.data.pubDate} />
+					</span>
+				</a>
+			))}
+		</div>
+	) : (
+		<div class="fade-up-grid flex flex-col gap-4 md:grid md:auto-rows-auto md:grid-cols-3">
+			{posts.map(post => <Post hideImage={hideImage} post={post} />)}
+		</div>
+	)}
+
 	{
-		isTruncated && (
+		isTruncated && !featuredFirst && (
 			<div class="mt-8 flex justify-end">
 				<a href="/posts" class="font-bold hover:underline">
 					View all posts →
