@@ -11,8 +11,6 @@ import { pluginCollapsibleSections } from '@expressive-code/plugin-collapsible-s
 // https://astro.build/config
 import mdx from '@astrojs/mdx';
 import tailwind from '@tailwindcss/vite';
-// import cloudflare from '@astrojs/cloudflare';
-
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://nicknisi.com',
@@ -25,9 +23,7 @@ export default defineConfig({
 
 	image: {
 		domains: ['img.youtube.com', 'vimeo.com'],
-		service: {
-			entrypoint: 'astro/assets/services/noop',
-		},
+		layout: 'constrained',
 	},
 
 	experimental: {},
@@ -70,9 +66,6 @@ export default defineConfig({
 	},
 
 	output: 'static',
-	// adapter: cloudflare({
-	// 	//imageService: 'cloudflare',
-	// }),
 });
 
 /**
