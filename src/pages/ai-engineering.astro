@@ -4,6 +4,7 @@ import Section from '@/components/landing/Section.astro';
 import CTA from '@/components/landing/CTA.astro';
 import TopicCard from '@/components/landing/TopicCard.astro';
 import StatCard from '@/components/landing/StatCard.astro';
+import PricingCalculator from '@/components/landing/PricingCalculator';
 import { Icon } from 'astro-icon/components';
 import { getAsset } from '@/utils/image';
 import { Image } from 'astro:assets';
@@ -294,7 +295,12 @@ const bookingUrl = 'https://calendly.com/nicknisi/ai-engineer';
 		</div>
 	</Section>
 
-	{/* Section 10: FAQ */}
+	{/* Section 10: Pricing Calculator */}
+	<Section variant="dark">
+		<PricingCalculator client:only="react" bookingUrl={bookingUrl} email={email} />
+	</Section>
+
+	{/* Section 11: FAQ */}
 	<Section variant="muted" narrow>
 		<h2 class="text-center font-serif text-3xl font-bold md:text-4xl">
 			Common Questions
@@ -368,7 +374,7 @@ const bookingUrl = 'https://calendly.com/nicknisi/ai-engineer';
 		</div>
 	</Section>
 
-	{/* Section 11: Final CTA */}
+	{/* Section 12: Final CTA */}
 	<Section variant="dark" class="text-center">
 		<h2 class="font-serif text-3xl font-bold md:text-5xl">
 			Ready to Make Your Team AI-Native?

@@ -300,6 +300,36 @@ color utility to any element that depends on these defaults.
 	.fade-up-grid > *:nth-child(8) { animation-delay: 320ms; }
 	.fade-up-grid > *:nth-child(9) { animation-delay: 360ms; }
 
+	/* Pricing calculator range slider */
+	.pricing-slider {
+		-webkit-appearance: none;
+		appearance: none;
+		height: 6px;
+		background: linear-gradient(to right, #653cad var(--progress), #e5e7eb33 var(--progress));
+		border-radius: 999px;
+		outline: none;
+	}
+	.pricing-slider::-webkit-slider-thumb {
+		-webkit-appearance: none;
+		appearance: none;
+		width: 24px;
+		height: 24px;
+		border-radius: 50%;
+		background: white;
+		border: 3px solid #653cad;
+		cursor: pointer;
+		box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+	}
+	.pricing-slider::-moz-range-thumb {
+		width: 24px;
+		height: 24px;
+		border-radius: 50%;
+		background: white;
+		border: 3px solid #653cad;
+		cursor: pointer;
+		box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+	}
+
 	/* Scroll-driven reveal animation */
 	@supports (animation-timeline: view()) {
 		.scroll-reveal {
