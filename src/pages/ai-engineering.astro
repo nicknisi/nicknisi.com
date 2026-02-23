@@ -20,20 +20,27 @@ const bookingUrl = 'https://calendly.com/nicknisi/ai-engineer';
 	fullWidth
 >
 	{/* Section 1: Hero */}
-	<Section variant="dark" class="text-center">
-		<h1 class="font-serif text-5xl leading-tight font-bold tracking-tight md:text-7xl">
-			The AI-Native Engineer
-		</h1>
-		<p class="mx-auto mt-6 max-w-2xl text-xl text-purple-100 md:text-2xl">
-			You're not being replaced. You're being promoted.
-		</p>
-		<p class="mx-auto mt-4 max-w-2xl text-lg text-purple-200">
-			The job is shifting from writing every line of code to directing the build.
-			Your engineering judgment is more valuable than ever — if you know how to wield it.
-		</p>
-		<div class="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-			<CTA href={bookingUrl} label="Book a Call" />
-			<CTA email={email} subject={subject} label="Or Email Me" variant="secondary" />
+	<Section variant="hero" class="text-center">
+		{/* Decorative gradient backdrop */}
+		<div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+			<div class="absolute -top-1/2 left-1/2 h-[800px] w-[800px] -translate-x-1/2 rounded-full bg-purple-500/15 blur-3xl" />
+			<div class="absolute -bottom-1/2 right-0 h-[600px] w-[600px] rounded-full bg-teal-500/10 blur-3xl" />
+		</div>
+		<div class="relative z-10">
+			<h1 class="font-serif text-6xl leading-tight font-bold tracking-tight md:text-8xl">
+				The AI-Native Engineer
+			</h1>
+			<p class="gradient-text mx-auto mt-6 max-w-2xl text-xl font-semibold md:text-2xl">
+				You're not being replaced. You're being promoted.
+			</p>
+			<p class="mx-auto mt-4 max-w-2xl text-lg text-purple-200">
+				The job is shifting from writing every line of code to directing the build.
+				Your engineering judgment is more valuable than ever — if you know how to wield it.
+			</p>
+			<div class="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+				<CTA href={bookingUrl} label="Book a Call" />
+				<CTA email={email} subject={subject} label="Or Email Me" variant="secondary" />
+			</div>
 		</div>
 	</Section>
 
@@ -57,18 +64,18 @@ const bookingUrl = 'https://calendly.com/nicknisi/ai-engineer';
 	</Section>
 
 	{/* Section 3: The Reframe */}
-	<Section variant="accent">
+	<Section variant="accent" class="border-l-4 border-purple-500">
 		<h2 class="text-center font-serif text-3xl font-bold md:text-4xl">
 			AI Doesn't Replace Engineers. It Demands Better Ones.
 		</h2>
-		<div class="mx-auto mt-8 max-w-3xl space-y-4 text-lg text-gray-700 dark:text-gray-300">
+		<div class="mx-auto mt-8 max-w-3xl space-y-4 text-xl text-gray-700 md:text-2xl dark:text-gray-300">
 			<p>
 				Code is becoming an artifact, not the craft itself. The craft is knowing <em>what</em> to build,
-				<em>why</em> to build it, and <em>how</em> to verify it's right. That's engineering judgment — and
+				<em>why</em> to build it, and <em>how</em> to verify it's right. That's <strong class="gradient-text">engineering judgment</strong> — and
 				AI can't do it for you.
 			</p>
 			<p>
-				Your years of experience aren't obsolete. They're your superpower. The engineers who thrive
+				Your years of experience aren't obsolete. <strong class="gradient-text">They're your superpower.</strong> The engineers who thrive
 				aren't the ones who type the fastest — they're the ones who think the clearest.
 			</p>
 			<p>
@@ -78,8 +85,8 @@ const bookingUrl = 'https://calendly.com/nicknisi/ai-engineer';
 	</Section>
 
 	{/* Section 4: Social Proof / Stats */}
-	<Section variant="muted">
-		<div class="grid grid-cols-2 gap-8 md:grid-cols-4">
+	<Section variant="muted" class="scroll-reveal">
+		<div class="fade-up-grid grid grid-cols-2 gap-8 md:grid-cols-4">
 			<StatCard value="3x" label="GitHub contributions in one year" />
 			<StatCard value="0" label="Lines of code written by hand in 6 months" />
 			<StatCard value="50+" label="Conference talks delivered" />
@@ -92,7 +99,7 @@ const bookingUrl = 'https://calendly.com/nicknisi/ai-engineer';
 	</Section>
 
 	{/* Section 5: Curriculum — Core Modules */}
-	<Section variant="default">
+	<Section variant="default" class="scroll-reveal">
 		<h2 class="text-center font-serif text-3xl font-bold md:text-4xl">
 			What Your Team Will Learn
 		</h2>
@@ -104,26 +111,31 @@ const bookingUrl = 'https://calendly.com/nicknisi/ai-engineer';
 				icon="mdi:swap-horizontal"
 				title="The Shift"
 				description="Why AI changes the job but not the craft. Mental models for working with agents. Your experience is your superpower."
+				number={1}
 			/>
 			<TopicCard
 				icon="mdi:text-box-search-outline"
 				title="Context is Everything"
 				description="How to give AI the right context. Prompt engineering for code, tool selection, structuring projects for AI comprehension."
+				number={2}
 			/>
 			<TopicCard
 				icon="mdi:drawing"
 				title="Architecture-First Thinking"
 				description="When code is cheap, design matters more. Systems thinking, tradeoff analysis, making the decisions agents can't."
+				number={3}
 			/>
 			<TopicCard
 				icon="mdi:check-decagram-outline"
 				title="Review, Verify, Ship"
 				description="You're an editor, not a writer. Evaluating AI output, catching subtle bugs, testing what you didn't write."
+				number={4}
 			/>
 			<TopicCard
 				icon="mdi:source-branch"
 				title="Working in Parallel"
 				description="Managing multiple workstreams simultaneously. Practical workflows for 3x-ing your output with agents."
+				number={5}
 			/>
 		</div>
 	</Section>
@@ -192,7 +204,7 @@ const bookingUrl = 'https://calendly.com/nicknisi/ai-engineer';
 	</Section>
 
 	{/* Section 8: Instructor */}
-	<Section variant="muted">
+	<Section variant="muted" class="scroll-reveal">
 		<h2 class="text-center font-serif text-3xl font-bold md:text-4xl">
 			Meet Your Instructor
 		</h2>
@@ -258,47 +270,68 @@ const bookingUrl = 'https://calendly.com/nicknisi/ai-engineer';
 			Common Questions
 		</h2>
 		<div class="mt-12 space-y-4">
-			<details class="group rounded-xl border border-gray-200 bg-white p-4 dark:border-dark-border dark:bg-dark-surface">
-				<summary class="cursor-pointer font-serif text-lg font-semibold text-gray-900 dark:text-white">What makes this different from AI/ML courses?</summary>
-				<p class="mt-3 text-gray-600 dark:text-gray-300">
+			<details class="group rounded-xl border border-gray-200 bg-white p-5 transition-all duration-200 hover:border-purple-300 dark:border-dark-border dark:bg-dark-surface dark:hover:border-purple-700">
+				<summary class="flex cursor-pointer items-center justify-between font-serif text-lg font-semibold text-gray-900 dark:text-white">
+					<span>What makes this different from AI/ML courses?</span>
+					<Icon name="mdi:chevron-down" class="size-5 shrink-0 text-purple-500 transition-transform duration-200 group-open:rotate-180" />
+				</summary>
+				<p class="mt-4 leading-relaxed text-gray-600 dark:text-gray-300">
 					This isn't about building AI. It's about being a better engineer with AI. No RAG pipelines,
 					no fine-tuning. Practical workflows for shipping software faster.
 				</p>
 			</details>
-			<details class="group rounded-xl border border-gray-200 bg-white p-4 dark:border-dark-border dark:bg-dark-surface">
-				<summary class="cursor-pointer font-serif text-lg font-semibold text-gray-900 dark:text-white">How long is the training?</summary>
-				<p class="mt-3 text-gray-600 dark:text-gray-300">
+			<details class="group rounded-xl border border-gray-200 bg-white p-5 transition-all duration-200 hover:border-purple-300 dark:border-dark-border dark:bg-dark-surface dark:hover:border-purple-700">
+				<summary class="flex cursor-pointer items-center justify-between font-serif text-lg font-semibold text-gray-900 dark:text-white">
+					<span>How long is the training?</span>
+					<Icon name="mdi:chevron-down" class="size-5 shrink-0 text-purple-500 transition-transform duration-200 group-open:rotate-180" />
+				</summary>
+				<p class="mt-4 leading-relaxed text-gray-600 dark:text-gray-300">
 					Tailored to your team. We scope the engagement based on your goals, team size, and depth needed.
 				</p>
 			</details>
-			<details class="group rounded-xl border border-gray-200 bg-white p-4 dark:border-dark-border dark:bg-dark-surface">
-				<summary class="cursor-pointer font-serif text-lg font-semibold text-gray-900 dark:text-white">What's the ideal team size?</summary>
-				<p class="mt-3 text-gray-600 dark:text-gray-300">
+			<details class="group rounded-xl border border-gray-200 bg-white p-5 transition-all duration-200 hover:border-purple-300 dark:border-dark-border dark:bg-dark-surface dark:hover:border-purple-700">
+				<summary class="flex cursor-pointer items-center justify-between font-serif text-lg font-semibold text-gray-900 dark:text-white">
+					<span>What's the ideal team size?</span>
+					<Icon name="mdi:chevron-down" class="size-5 shrink-0 text-purple-500 transition-transform duration-200 group-open:rotate-180" />
+				</summary>
+				<p class="mt-4 leading-relaxed text-gray-600 dark:text-gray-300">
 					5-15 engineers. Small enough for hands-on attention, large enough for rich discussion.
 				</p>
 			</details>
-			<details class="group rounded-xl border border-gray-200 bg-white p-4 dark:border-dark-border dark:bg-dark-surface">
-				<summary class="cursor-pointer font-serif text-lg font-semibold text-gray-900 dark:text-white">Do we need AI experience?</summary>
-				<p class="mt-3 text-gray-600 dark:text-gray-300">
+			<details class="group rounded-xl border border-gray-200 bg-white p-5 transition-all duration-200 hover:border-purple-300 dark:border-dark-border dark:bg-dark-surface dark:hover:border-purple-700">
+				<summary class="flex cursor-pointer items-center justify-between font-serif text-lg font-semibold text-gray-900 dark:text-white">
+					<span>Do we need AI experience?</span>
+					<Icon name="mdi:chevron-down" class="size-5 shrink-0 text-purple-500 transition-transform duration-200 group-open:rotate-180" />
+				</summary>
+				<p class="mt-4 leading-relaxed text-gray-600 dark:text-gray-300">
 					No. Strong software engineering fundamentals are the prerequisite. We start from first principles.
 				</p>
 			</details>
-			<details class="group rounded-xl border border-gray-200 bg-white p-4 dark:border-dark-border dark:bg-dark-surface">
-				<summary class="cursor-pointer font-serif text-lg font-semibold text-gray-900 dark:text-white">What tools do you cover?</summary>
-				<p class="mt-3 text-gray-600 dark:text-gray-300">
+			<details class="group rounded-xl border border-gray-200 bg-white p-5 transition-all duration-200 hover:border-purple-300 dark:border-dark-border dark:bg-dark-surface dark:hover:border-purple-700">
+				<summary class="flex cursor-pointer items-center justify-between font-serif text-lg font-semibold text-gray-900 dark:text-white">
+					<span>What tools do you cover?</span>
+					<Icon name="mdi:chevron-down" class="size-5 shrink-0 text-purple-500 transition-transform duration-200 group-open:rotate-180" />
+				</summary>
+				<p class="mt-4 leading-relaxed text-gray-600 dark:text-gray-300">
 					Language-agnostic principles with hands-on time in tools like Claude Code, Cursor, GitHub Copilot, and others.
 					Adapted to what your team uses or wants to adopt.
 				</p>
 			</details>
-			<details class="group rounded-xl border border-gray-200 bg-white p-4 dark:border-dark-border dark:bg-dark-surface">
-				<summary class="cursor-pointer font-serif text-lg font-semibold text-gray-900 dark:text-white">Can we customize the curriculum?</summary>
-				<p class="mt-3 text-gray-600 dark:text-gray-300">
+			<details class="group rounded-xl border border-gray-200 bg-white p-5 transition-all duration-200 hover:border-purple-300 dark:border-dark-border dark:bg-dark-surface dark:hover:border-purple-700">
+				<summary class="flex cursor-pointer items-center justify-between font-serif text-lg font-semibold text-gray-900 dark:text-white">
+					<span>Can we customize the curriculum?</span>
+					<Icon name="mdi:chevron-down" class="size-5 shrink-0 text-purple-500 transition-transform duration-200 group-open:rotate-180" />
+				</summary>
+				<p class="mt-4 leading-relaxed text-gray-600 dark:text-gray-300">
 					That's the point. The core modules are the baseline. We go deeper on what matters to your team.
 				</p>
 			</details>
-			<details class="group rounded-xl border border-gray-200 bg-white p-4 dark:border-dark-border dark:bg-dark-surface">
-				<summary class="cursor-pointer font-serif text-lg font-semibold text-gray-900 dark:text-white">What's the investment?</summary>
-				<p class="mt-3 text-gray-600 dark:text-gray-300">
+			<details class="group rounded-xl border border-gray-200 bg-white p-5 transition-all duration-200 hover:border-purple-300 dark:border-dark-border dark:bg-dark-surface dark:hover:border-purple-700">
+				<summary class="flex cursor-pointer items-center justify-between font-serif text-lg font-semibold text-gray-900 dark:text-white">
+					<span>What's the investment?</span>
+					<Icon name="mdi:chevron-down" class="size-5 shrink-0 text-purple-500 transition-transform duration-200 group-open:rotate-180" />
+				</summary>
+				<p class="mt-4 leading-relaxed text-gray-600 dark:text-gray-300">
 					Contact for pricing. Investment is based on team size and curriculum customization.
 				</p>
 			</details>

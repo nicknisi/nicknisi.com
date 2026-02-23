@@ -1,0 +1,25 @@
+---
+interface Props {
+	quote: string;
+	author: string;
+	role?: string;
+	company?: string;
+}
+
+const { quote, author, role, company } = Astro.props;
+---
+
+<div class="rounded-2xl bg-white p-10 text-center dark:bg-dark-surface">
+	<div class="mx-auto mb-6 text-4xl text-purple-300">&ldquo;</div>
+	<blockquote class="mx-auto max-w-2xl font-serif text-xl leading-relaxed text-gray-800 italic dark:text-gray-200">
+		{quote}
+	</blockquote>
+	<div class="mt-6">
+		<p class="font-semibold text-gray-900 dark:text-white">{author}</p>
+		{(role || company) && (
+			<p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
+				{[role, company].filter(Boolean).join(' · ')}
+			</p>
+		)}
+	</div>
+</div>

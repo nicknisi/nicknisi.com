@@ -5,14 +5,20 @@ interface Props {
 	icon: string;
 	title: string;
 	description: string;
+	number?: number;
 }
 
-const { icon, title, description } = Astro.props;
+const { icon, title, description, number } = Astro.props;
 ---
 
 <div
-	class="hover-glow rounded-xl border border-gray-200 bg-white p-6 transition-all duration-200 dark:border-dark-border dark:bg-dark-surface"
+	class="hover-glow relative rounded-xl border border-gray-200 bg-white p-6 transition-all duration-200 dark:border-dark-border dark:bg-dark-surface"
 >
+	{number && (
+		<div class="absolute -top-3 -right-3 flex h-8 w-8 items-center justify-center rounded-full bg-purple-700 text-sm font-bold text-white">
+			{number}
+		</div>
+	)}
 	<Icon name={icon} class="mb-3 size-10 text-purple-700 dark:text-purple-200" />
 	<h3 class="p-0 font-serif text-lg font-semibold text-gray-900 dark:text-white">{title}</h3>
 	<p class="mt-1 text-sm text-gray-600 dark:text-gray-300">{description}</p>

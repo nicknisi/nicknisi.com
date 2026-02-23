@@ -7,7 +7,7 @@ interface Props {
 const { value, label } = Astro.props;
 ---
 
-<div class="text-center">
-	<div class="gradient-text font-serif text-4xl font-bold md:text-5xl">{value}</div>
+<div class="hover-glow rounded-2xl bg-white/50 p-8 text-center shadow-purple-500/5 dark:bg-dark-surface">
+	<div class="gradient-text font-serif text-5xl font-bold md:text-6xl">{value}</div>
 	<p class="mt-2 text-sm text-gray-600 dark:text-gray-300">{label}</p>
 </div>

@@ -1,7 +1,7 @@
 ---
 interface Props {
 	id?: string;
-	variant?: 'default' | 'muted' | 'accent' | 'dark';
+	variant?: 'default' | 'muted' | 'accent' | 'dark' | 'hero';
 	class?: string;
 	narrow?: boolean;
 }
@@ -13,11 +13,16 @@ const bgClasses: Record<string, string> = {
 	muted: 'bg-gray-100 dark:bg-dark-surface/50',
 	accent: 'bg-purple-50 dark:bg-purple-900/20',
 	dark: 'bg-gradient-to-br from-purple-900 via-purple-800 to-purple-700 text-white',
+	hero: 'relative bg-gradient-to-br from-purple-950 via-purple-900 to-purple-800 text-white overflow-hidden',
 };
 ---
 
 <section id={id} class:list={[bgClasses[variant], className]}>
-	<div class:list={['mx-auto px-6 py-16 md:py-24', narrow ? 'max-w-3xl' : 'max-w-5xl']}>
+	<div class:list={[
+		'mx-auto px-6',
+		variant === 'hero' ? 'py-28 md:py-40' : 'py-16 md:py-24',
+		narrow ? 'max-w-3xl' : 'max-w-5xl',
+	]}>
 		<slot />
 	</div>
 </section>
