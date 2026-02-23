@@ -242,6 +242,21 @@ color utility to any element that depends on these defaults.
 	.gradient-text {
 		background: linear-gradient(
 			135deg,
+			#653cad,
+			#048271,
+			#0b69a3,
+			#653cad
+		);
+		background-size: 300% 300%;
+		background-clip: text;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		color: transparent;
+		animation: gradient-shift 6s ease infinite;
+	}
+	:is(.dark, .dark *) .gradient-text {
+		background: linear-gradient(
+			135deg,
 			#8662c7,
 			#5fe3c0,
 			#81defd,
@@ -250,9 +265,6 @@ color utility to any element that depends on these defaults.
 		background-size: 300% 300%;
 		background-clip: text;
 		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		color: transparent;
-		animation: gradient-shift 6s ease infinite;
 	}
 
 	/* Gradient border using mask technique */
