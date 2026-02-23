@@ -1,11 +1,13 @@
 import React, { useState, useMemo } from 'react';
 
 // ── Pricing config — edit values here ──────────────────────────────
+// Graduated pricing (like tax brackets): each tier's rate applies only
+// to the engineers within that bracket, so the total always increases.
 const PRICING = {
-	tiers: [
-		{ min: 3, max: 5, perHead: 3000 },
-		{ min: 6, max: 10, perHead: 2500 },
-		{ min: 11, max: 15, perHead: 2000 },
+	brackets: [
+		{ upTo: 5, perHead: 3000 },
+		{ upTo: 10, perHead: 2500 },
+		{ upTo: 15, perHead: 2000 },
 	],
 	addOns: [
 		{
@@ -26,9 +28,23 @@ const fmt = new Intl.NumberFormat('en-US', {
 	maximumFractionDigits: 0,
 });
 
-function getPerHeadRate(count: number) {
-	const tier = PRICING.tiers.find((t) => count >= t.min && count <= t.max);
-	return tier?.perHead ?? PRICING.tiers.at(-1)!.perHead;
+function getGraduatedTotal(count: number) {
+	let total = 0;
+	let remaining = count;
+	let prevUpTo = 0;
+	for (const bracket of PRICING.brackets) {
+		const slotSize = bracket.upTo - prevUpTo;
+		const used = Math.min(remaining, slotSize);
+		total += used * bracket.perHead;
+		remaining -= used;
+		prevUpTo = bracket.upTo;
+		if (remaining <= 0) break;
+	}
+	return total;
+}
+
+function getEffectiveRate(count: number) {
+	return Math.round(getGraduatedTotal(count) / count);
 }
 
 // ── Component ──────────────────────────────────────────────────────
@@ -41,14 +57,16 @@ export default function PricingCalculator({ bookingUrl }: Props) {
 	const [count, setCount] = useState(5);
 	const [addOns, setAddOns] = useState<Record<string, boolean>>({ followup: false });
 
-	const rate = useMemo(() => getPerHeadRate(count), [count]);
-	const base = rate * count;
+	const base = useMemo(() => getGraduatedTotal(count), [count]);
+	const effectiveRate = useMemo(() => getEffectiveRate(count), [count]);
 	const addOnTotal = PRICING.addOns.reduce(
 		(sum, a) => sum + (addOns[a.id] ? a.price : 0),
 		0,
 	);
 	const total = base + addOnTotal;
 	const progress = ((count - PRICING.min) / (PRICING.max - PRICING.min)) * 100;
+	const fullPrice = count * PRICING.brackets[0].perHead;
+	const savings = fullPrice - base;
 
 	return (
 		<div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-2">
@@ -125,8 +143,13 @@ export default function PricingCalculator({ bookingUrl }: Props) {
 					/>
 					<div className="mt-1.5 flex justify-between text-xs text-purple-300">
 						<span>Minimum {PRICING.min} engineers</span>
-						<span>{fmt.format(rate)} per engineer</span>
+						<span>{fmt.format(effectiveRate)} avg per engineer</span>
 					</div>
+					{savings > 0 && (
+						<div className="mt-2 text-xs font-medium text-teal-300">
+							Volume discount: saving {fmt.format(savings)} vs. base rate
+						</div>
+					)}
 				</div>
 
 				{/* Add-on */}
