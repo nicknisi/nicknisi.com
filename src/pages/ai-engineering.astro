@@ -94,7 +94,8 @@ const bookingUrl = 'https://calendly.com/nicknisi/ai-engineer';
 		</div>
 		<p class="mx-auto mt-8 max-w-2xl text-center text-gray-600 dark:text-gray-300">
 			Built the WorkOS CLI AI Installer — a production agent that configures, validates, and ships
-			SDK integrations autonomously. This isn't theory. It's how I work every day.
+			SDK integrations autonomously. Spent a full year as a solo DX engineer, maintaining 20+ repos
+			on GitHub with AI-native workflows. This isn't theory. It's how I work every day.
 		</p>
 	</Section>
 
@@ -106,37 +107,66 @@ const bookingUrl = 'https://calendly.com/nicknisi/ai-engineer';
 		<p class="mx-auto mt-4 max-w-2xl text-center text-lg text-gray-600 dark:text-gray-300">
 			A baseline curriculum tailored to your team's stack, experience, and goals.
 		</p>
-		<div class="fade-up-grid mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-			<TopicCard
-				icon="mdi:swap-horizontal"
-				title="The Shift"
-				description="Why AI changes the job but not the craft. Mental models for working with agents. Your experience is your superpower."
-				number={1}
-			/>
-			<TopicCard
-				icon="mdi:text-box-search-outline"
-				title="Context is Everything"
-				description="How to give AI the right context. Prompt engineering for code, tool selection, structuring projects for AI comprehension."
-				number={2}
-			/>
-			<TopicCard
-				icon="mdi:drawing"
-				title="Architecture-First Thinking"
-				description="When code is cheap, design matters more. Systems thinking, tradeoff analysis, making the decisions agents can't."
-				number={3}
-			/>
-			<TopicCard
-				icon="mdi:check-decagram-outline"
-				title="Review, Verify, Ship"
-				description="You're an editor, not a writer. Evaluating AI output, catching subtle bugs, testing what you didn't write."
-				number={4}
-			/>
-			<TopicCard
-				icon="mdi:source-branch"
-				title="Working in Parallel"
-				description="Managing multiple workstreams simultaneously. Practical workflows for 3x-ing your output with agents."
-				number={5}
-			/>
+		<div class="fade-up-grid mx-auto mt-12 max-w-4xl space-y-12">
+			{/* Step 1 — left */}
+			<div class="flex flex-col items-center gap-6 md:flex-row">
+				<div class="flex shrink-0 items-center gap-4">
+					<div class="flex h-12 w-12 items-center justify-center rounded-full bg-purple-700 text-lg font-bold text-white">1</div>
+					<Icon name="mdi:swap-horizontal" class="size-10 text-purple-700 dark:text-purple-200" />
+				</div>
+				<div>
+					<h3 class="p-0 font-serif text-xl font-semibold text-gray-900 dark:text-white">The Shift</h3>
+					<p class="mt-1 text-gray-600 dark:text-gray-300">Why AI changes the job but not the craft. Mental models for working with agents. Your experience is your superpower.</p>
+				</div>
+			</div>
+
+			{/* Step 2 */}
+			<div class="flex flex-col items-center gap-6 md:flex-row">
+				<div class="flex shrink-0 items-center gap-4">
+					<div class="flex h-12 w-12 items-center justify-center rounded-full bg-purple-700 text-lg font-bold text-white">2</div>
+					<Icon name="mdi:text-box-search-outline" class="size-10 text-purple-700 dark:text-purple-200" />
+				</div>
+				<div>
+					<h3 class="p-0 font-serif text-xl font-semibold text-gray-900 dark:text-white">Context is Everything</h3>
+					<p class="mt-1 text-gray-600 dark:text-gray-300">How to give AI the right context. Prompt engineering for code, tool selection, structuring projects for AI comprehension.</p>
+				</div>
+			</div>
+
+			{/* Step 3 — left */}
+			<div class="flex flex-col items-center gap-6 md:flex-row">
+				<div class="flex shrink-0 items-center gap-4">
+					<div class="flex h-12 w-12 items-center justify-center rounded-full bg-purple-700 text-lg font-bold text-white">3</div>
+					<Icon name="mdi:drawing" class="size-10 text-purple-700 dark:text-purple-200" />
+				</div>
+				<div>
+					<h3 class="p-0 font-serif text-xl font-semibold text-gray-900 dark:text-white">Architecture-First Thinking</h3>
+					<p class="mt-1 text-gray-600 dark:text-gray-300">When code is cheap, design matters more. Systems thinking, tradeoff analysis, making the decisions agents can't.</p>
+				</div>
+			</div>
+
+			{/* Step 4 */}
+			<div class="flex flex-col items-center gap-6 md:flex-row">
+				<div class="flex shrink-0 items-center gap-4">
+					<div class="flex h-12 w-12 items-center justify-center rounded-full bg-purple-700 text-lg font-bold text-white">4</div>
+					<Icon name="mdi:check-decagram-outline" class="size-10 text-purple-700 dark:text-purple-200" />
+				</div>
+				<div>
+					<h3 class="p-0 font-serif text-xl font-semibold text-gray-900 dark:text-white">Review, Verify, Ship</h3>
+					<p class="mt-1 text-gray-600 dark:text-gray-300">You're an editor, not a writer. Evaluating AI output, catching subtle bugs, testing what you didn't write.</p>
+				</div>
+			</div>
+
+			{/* Step 5 — left */}
+			<div class="flex flex-col items-center gap-6 md:flex-row">
+				<div class="flex shrink-0 items-center gap-4">
+					<div class="flex h-12 w-12 items-center justify-center rounded-full bg-purple-700 text-lg font-bold text-white">5</div>
+					<Icon name="mdi:source-branch" class="size-10 text-purple-700 dark:text-purple-200" />
+				</div>
+				<div>
+					<h3 class="p-0 font-serif text-xl font-semibold text-gray-900 dark:text-white">Working in Parallel</h3>
+					<p class="mt-1 text-gray-600 dark:text-gray-300">Managing multiple workstreams simultaneously. Practical workflows for 3x-ing your output with agents.</p>
+				</div>
+			</div>
 		</div>
 	</Section>
 
