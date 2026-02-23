@@ -89,12 +89,14 @@ const bookingUrl = 'https://calendly.com/nicknisi/ai-engineer';
 
 	{/* Section 4: Social Proof / Stats */}
 	<Section variant="muted" class="scroll-reveal">
-		<div class="fade-up-grid grid grid-cols-2 gap-8 md:grid-cols-4">
+		<div class="fade-up-grid grid grid-cols-1 gap-8 sm:grid-cols-3">
 			<StatCard value="3x" label="GitHub contributions in one year" />
 			<StatCard value="0" label="Lines of code written by hand in 6 months" />
-			<StatCard value="50+" label="Conference talks delivered" />
-			<StatCard value="Staff" label="Engineer building AI-native at scale" />
+			<StatCard value="20+" label="Repos maintained solo with AI workflows" />
 		</div>
+		<p class="mx-auto mt-4 max-w-md text-center text-sm text-gray-500 dark:text-gray-400">
+			Output tripled. Quality held. Staff Engineer, still shipping every day.
+		</p>
 		<p class="mx-auto mt-8 max-w-2xl text-center text-gray-600 dark:text-gray-300">
 			I built a production AI agent that configures and ships SDK integrations on its own.
 			I maintained 20+ repos as a solo DX engineer using these same workflows.
@@ -245,9 +247,9 @@ const bookingUrl = 'https://calendly.com/nicknisi/ai-engineer';
 			/>
 			<div>
 				<p class="text-lg text-gray-700 dark:text-gray-300">
-					Nick Nisi is a Staff Engineer who hasn't written a line of code by hand in six months. His
-					output has never been higher. He built the WorkOS CLI AI Installer (a production agent that
-					ships SDK integrations on its own), has given 50+ conference talks, and was a host on
+					I'm a Staff Engineer. I haven't written a line of code by hand in six months and my
+					output has never been higher. I built the WorkOS CLI AI Installer (a production agent that
+					ships SDK integrations on its own), I've given 50+ conference talks, and I was a host on
 					<a href="https://jsparty.fm" class="font-bold text-purple-700 dark:text-purple-200">JS Party</a>.
 				</p>
 				<div class="mt-6 flex flex-wrap gap-6 text-sm font-semibold text-gray-600 dark:text-gray-300">
@@ -290,7 +292,7 @@ const bookingUrl = 'https://calendly.com/nicknisi/ai-engineer';
 	</Section>
 
 	{/* Section 10: Pricing Calculator */}
-	<Section variant="dark">
+	<Section id="pricing" variant="dark">
 		<PricingCalculator client:only="react" bookingUrl={bookingUrl} email={email} />
 	</Section>
 
@@ -362,7 +364,7 @@ const bookingUrl = 'https://calendly.com/nicknisi/ai-engineer';
 					<Icon name="mdi:chevron-down" class="size-5 shrink-0 text-purple-500 transition-transform duration-200 group-open:rotate-180" />
 				</summary>
 				<p class="mt-4 leading-relaxed text-gray-600 dark:text-gray-300">
-					Use the calculator above for a ballpark. Exact pricing depends on team size and what we cover. Let's talk about it on a call.
+					There's a <a href="#pricing" class="font-semibold text-purple-700 dark:text-purple-200">pricing calculator</a> on this page for a ballpark. Exact numbers depend on team size and what we cover. Let's talk about it on a call.
 				</p>
 			</details>
 		</div>
