@@ -1,14 +1,15 @@
 ---
 interface Props {
-	email: string;
+	email?: string;
 	subject?: string;
 	label: string;
 	variant?: 'primary' | 'secondary';
+	href?: string;
 }
 
-const { email, subject, label, variant = 'primary' } = Astro.props;
+const { email, subject, label, variant = 'primary', href: hrefProp } = Astro.props;
 
-const href = `mailto:${email}${subject ? `?subject=${encodeURIComponent(subject)}` : ''}`;
+const href = hrefProp ?? `mailto:${email}${subject ? `?subject=${encodeURIComponent(subject)}` : ''}`;
 
 const styles: Record<string, string> = {
 	primary:
