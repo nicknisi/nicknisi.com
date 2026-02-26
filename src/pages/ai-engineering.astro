@@ -2,7 +2,6 @@
 import BaseLayout from '../layouts/Base.astro';
 import Section from '@/components/landing/Section.astro';
 import CTA from '@/components/landing/CTA.astro';
-import TopicCard from '@/components/landing/TopicCard.astro';
 import StatCard from '@/components/landing/StatCard.astro';
 import PricingCalculator from '@/components/landing/PricingCalculator';
 import { Icon } from 'astro-icon/components';
@@ -113,15 +112,21 @@ const bookingUrl = 'https://calendly.com/nicknisi/ai-engineer';
 			A baseline curriculum tailored to your team's stack, experience, and goals.
 		</p>
 		<div class="fade-up-grid mx-auto mt-12 max-w-4xl space-y-12">
-			{/* Step 1 — left */}
+			{/* Step 1 */}
 			<div class="flex flex-col items-center gap-6 md:flex-row">
 				<div class="flex shrink-0 items-center gap-4">
 					<div class="flex h-12 w-12 items-center justify-center rounded-full bg-purple-700 text-lg font-bold text-white">1</div>
 					<Icon name="mdi:swap-horizontal" class="size-10 text-purple-700 dark:text-purple-200" />
 				</div>
 				<div>
-					<h3 class="p-0 font-serif text-xl font-semibold text-gray-900 dark:text-white">The Shift</h3>
-					<p class="mt-1 text-gray-600 dark:text-gray-300">Why AI changes the job but not the craft. How to think about working with agents. Addressing the fear head-on.</p>
+					<h3 class="p-0 font-serif text-xl font-semibold text-gray-900 dark:text-white">The AI Mindset</h3>
+					<p class="mt-1 text-gray-600 dark:text-gray-300">Before touching any tools — how to think about working with AI. What changes, what doesn't, and why your engineering experience matters more now, not less.</p>
+					<ul class="mt-3 list-disc space-y-1 pl-5 text-sm text-gray-500 dark:text-gray-400">
+							<li>From writing code to directing agents — mental models that work</li>
+							<li>Addressing the fear and FUD head-on</li>
+							<li>Where AI excels vs. where you still need a human in the loop</li>
+							<li>Why senior engineers have an advantage, not a disadvantage</li>
+						</ul>
 				</div>
 			</div>
 
@@ -133,19 +138,31 @@ const bookingUrl = 'https://calendly.com/nicknisi/ai-engineer';
 				</div>
 				<div>
 					<h3 class="p-0 font-serif text-xl font-semibold text-gray-900 dark:text-white">Context is Everything</h3>
-					<p class="mt-1 text-gray-600 dark:text-gray-300">The difference between "make this work" and "build this well" is the context you provide. Hands-on with Claude Code, Copilot, Cursor.</p>
+					<p class="mt-1 text-gray-600 dark:text-gray-300">The difference between "make this work" and "build this well" is the context you provide. Whirlwind tour of AI coding tools — we focus on whatever your team has access to.</p>
+					<ul class="mt-3 list-disc space-y-1 pl-5 text-sm text-gray-500 dark:text-gray-400">
+							<li>Prompt engineering for real codebases, not toy examples</li>
+							<li>Structuring context so the agent builds what you actually want</li>
+							<li>Hands-on with your team's tools (Claude Code, Copilot, Cursor, etc.)</li>
+							<li>When to use chat, inline, and agentic modes</li>
+						</ul>
 				</div>
 			</div>
 
-			{/* Step 3 — left */}
+			{/* Step 3 */}
 			<div class="flex flex-col items-center gap-6 md:flex-row">
 				<div class="flex shrink-0 items-center gap-4">
 					<div class="flex h-12 w-12 items-center justify-center rounded-full bg-purple-700 text-lg font-bold text-white">3</div>
-					<Icon name="mdi:drawing" class="size-10 text-purple-700 dark:text-purple-200" />
+					<Icon name="mdi:rocket-launch-outline" class="size-10 text-purple-700 dark:text-purple-200" />
 				</div>
 				<div>
-					<h3 class="p-0 font-serif text-xl font-semibold text-gray-900 dark:text-white">Architecture-First Thinking</h3>
-					<p class="mt-1 text-gray-600 dark:text-gray-300">When code is cheap, design matters more. How to think about systems, tradeoffs, and the decisions that agents can't make for you.</p>
+					<h3 class="p-0 font-serif text-xl font-semibold text-gray-900 dark:text-white">Build It Live</h3>
+					<p class="mt-1 text-gray-600 dark:text-gray-300">We build something complex together, in real-time. Not slides about best practices. Actual code, actual problems, actual shipping.</p>
+					<ul class="mt-3 list-disc space-y-1 pl-5 text-sm text-gray-500 dark:text-gray-400">
+							<li>Pick a real feature or project and build it start to finish</li>
+							<li>Watch the workflow in action — how to direct, iterate, and course-correct</li>
+							<li>Everyone codes along and builds the same thing with their own tools</li>
+							<li>See what "fast" actually looks like when you're working with agents</li>
+						</ul>
 				</div>
 			</div>
 
@@ -153,44 +170,99 @@ const bookingUrl = 'https://calendly.com/nicknisi/ai-engineer';
 			<div class="flex flex-col items-center gap-6 md:flex-row">
 				<div class="flex shrink-0 items-center gap-4">
 					<div class="flex h-12 w-12 items-center justify-center rounded-full bg-purple-700 text-lg font-bold text-white">4</div>
+					<Icon name="mdi:drawing" class="size-10 text-purple-700 dark:text-purple-200" />
+				</div>
+				<div>
+					<h3 class="p-0 font-serif text-xl font-semibold text-gray-900 dark:text-white">Architecture-First Thinking</h3>
+					<p class="mt-1 text-gray-600 dark:text-gray-300">When code is cheap, design matters more. How to think about systems, tradeoffs, and the decisions that agents can't make for you.</p>
+					<ul class="mt-3 list-disc space-y-1 pl-5 text-sm text-gray-500 dark:text-gray-400">
+						<li>Designing systems when generating code costs nothing</li>
+						<li>Tradeoff analysis and making decisions agents can't</li>
+						<li>How to spec work so agents produce better output</li>
+						<li>Avoiding the "it works but it's a mess" trap</li>
+					</ul>
+				</div>
+			</div>
+
+			{/* Step 5 */}
+			<div class="flex flex-col items-center gap-6 md:flex-row">
+				<div class="flex shrink-0 items-center gap-4">
+					<div class="flex h-12 w-12 items-center justify-center rounded-full bg-purple-700 text-lg font-bold text-white">5</div>
 					<Icon name="mdi:check-decagram-outline" class="size-10 text-purple-700 dark:text-purple-200" />
 				</div>
 				<div>
 					<h3 class="p-0 font-serif text-xl font-semibold text-gray-900 dark:text-white">Review, Verify, Ship</h3>
 					<p class="mt-1 text-gray-600 dark:text-gray-300">Reading code is the job now. How to evaluate what AI wrote, catch the subtle bugs it introduces, and test code you didn't write.</p>
+					<ul class="mt-3 list-disc space-y-1 pl-5 text-sm text-gray-500 dark:text-gray-400">
+						<li>Code review patterns for AI-generated code</li>
+						<li>Common failure modes — what agents get wrong and how to spot it</li>
+						<li>Testing strategies when you didn't write the implementation</li>
+						<li>Building confidence in code you didn't type</li>
+					</ul>
 				</div>
 			</div>
 
-			{/* Step 5 — left */}
+			{/* Step 6 */}
 			<div class="flex flex-col items-center gap-6 md:flex-row">
 				<div class="flex shrink-0 items-center gap-4">
-					<div class="flex h-12 w-12 items-center justify-center rounded-full bg-purple-700 text-lg font-bold text-white">5</div>
+					<div class="flex h-12 w-12 items-center justify-center rounded-full bg-purple-700 text-lg font-bold text-white">6</div>
 					<Icon name="mdi:source-branch" class="size-10 text-purple-700 dark:text-purple-200" />
 				</div>
 				<div>
 					<h3 class="p-0 font-serif text-xl font-semibold text-gray-900 dark:text-white">Working in Parallel</h3>
 					<p class="mt-1 text-gray-600 dark:text-gray-300">I tripled my GitHub contributions in one year. Here's how to run multiple workstreams at once with agents doing the heavy lifting.</p>
+					<ul class="mt-3 list-disc space-y-1 pl-5 text-sm text-gray-500 dark:text-gray-400">
+						<li>Running multiple agents on different tasks simultaneously</li>
+						<li>Managing context across parallel workstreams</li>
+						<li>When to parallelize and when to focus</li>
+						<li>Practical workflows for juggling projects without losing quality</li>
+					</ul>
 				</div>
 			</div>
 		</div>
 	</Section>
 
-	{/* Section 6: Customizable Add-ons */}
+	{/* Section 6: For Engineering Leaders */}
+	<Section variant="accent" class="scroll-reveal border-l-4 border-teal-500">
+		<h2 class="text-center font-serif text-3xl font-bold md:text-4xl">
+			For Engineering Leaders
+		</h2>
+		<div class="mx-auto mt-8 max-w-3xl space-y-4 text-lg text-gray-700 dark:text-gray-300">
+			<p>
+				You got the mandate: adopt AI. But what does that actually mean for your team?
+				How do you measure it? What does "good" look like? This isn't just training for ICs.
+			</p>
+			<p>
+				We cover how to think about AI adoption as a leader — setting expectations,
+				measuring impact, building conventions that stick, and knowing what to watch out for.
+			</p>
+		</div>
+		<div class="mx-auto mt-10 max-w-3xl grid grid-cols-1 gap-6 md:grid-cols-3">
+			<div class="rounded-xl border border-gray-200 bg-white/80 p-5 dark:border-dark-border dark:bg-dark-surface">
+				<h3 class="p-0 font-serif text-lg font-semibold text-gray-900 dark:text-white">First 30 Days</h3>
+				<p class="mt-2 text-sm text-gray-600 dark:text-gray-300">Team adopts new workflows. You see AI usage shift from autocomplete to agentic coding. PR velocity starts climbing.</p>
+			</div>
+			<div class="rounded-xl border border-gray-200 bg-white/80 p-5 dark:border-dark-border dark:bg-dark-surface">
+				<h3 class="p-0 font-serif text-lg font-semibold text-gray-900 dark:text-white">60 Days</h3>
+				<p class="mt-2 text-sm text-gray-600 dark:text-gray-300">Engineers are self-sufficient with AI tools. Internal conventions are established. The team has a shared language for how they work with AI.</p>
+			</div>
+			<div class="rounded-xl border border-gray-200 bg-white/80 p-5 dark:border-dark-border dark:bg-dark-surface">
+				<h3 class="p-0 font-serif text-lg font-semibold text-gray-900 dark:text-white">90 Days</h3>
+				<p class="mt-2 text-sm text-gray-600 dark:text-gray-300">Shipping velocity is measurably higher. Engineers are tackling projects they would've deprioritized before. The team wonders how they worked without this.</p>
+			</div>
+		</div>
+	</Section>
+
+	{/* Section 7: Customizable Add-ons */}
 	<Section variant="muted">
 		<h2 class="text-center font-serif text-3xl font-bold md:text-4xl">
 			Go Deeper Where You Need It
 		</h2>
 		<p class="mx-auto mt-4 max-w-2xl text-center text-lg text-gray-600 dark:text-gray-300">
-			Everyone gets the core modules. These are optional add-ons we can mix in.
+			Everyone gets the core modules. These are examples of add-ons we've built before —
+			or we can create something new based on what your team actually needs.
 		</p>
 		<div class="mx-auto mt-10 max-w-2xl space-y-4">
-			<div class="flex items-start gap-3">
-				<Icon name="mdi:account-group-outline" class="mt-1 size-6 shrink-0 text-purple-700 dark:text-purple-200" />
-				<div>
-					<h3 class="p-0 font-serif text-lg font-semibold text-gray-900 dark:text-white">Team Adoption Strategies</h3>
-					<p class="text-sm text-gray-600 dark:text-gray-300">For eng managers. How to roll out AI workflows across the org without it being a mess.</p>
-				</div>
-			</div>
 			<div class="flex items-start gap-3">
 				<Icon name="mdi:magnify" class="mt-1 size-6 shrink-0 text-purple-700 dark:text-purple-200" />
 				<div>
@@ -205,20 +277,27 @@ const bookingUrl = 'https://calendly.com/nicknisi/ai-engineer';
 					<p class="text-sm text-gray-600 dark:text-gray-300">Setting team standards for AI usage. Style guides, review policies, quality gates.</p>
 				</div>
 			</div>
+			<div class="flex items-start gap-3">
+				<Icon name="mdi:puzzle-outline" class="mt-1 size-6 shrink-0 text-purple-700 dark:text-purple-200" />
+				<div>
+					<h3 class="p-0 font-serif text-lg font-semibold text-gray-900 dark:text-white">Something Else Entirely</h3>
+					<p class="text-sm text-gray-600 dark:text-gray-300">Have a specific challenge? We'll scope a custom module together on the intro call.</p>
+				</div>
+			</div>
 		</div>
 	</Section>
 
-	{/* Section 7: How It Works */}
+	{/* Section 9: How It Works */}
 	<Section variant="default">
 		<h2 class="text-center font-serif text-3xl font-bold md:text-4xl">
 			How It Works
 		</h2>
-		<div class="mt-12 grid grid-cols-1 gap-10 md:grid-cols-2">
+		<div class="mt-12 grid grid-cols-1 gap-10 md:grid-cols-3">
 			<div class="text-center">
 				<Icon name="mdi:account-group-outline" class="mx-auto mb-4 size-12 text-purple-700 dark:text-purple-200" />
 				<h3 class="p-0 font-serif text-xl font-semibold text-gray-900 dark:text-white">Live, Not Pre-Recorded</h3>
 				<p class="mt-2 text-gray-600 dark:text-gray-300">
-					Real-time instruction with Q&A and pair programming. We work through your actual codebase.
+					Real-time instruction with Q&A and pair programming. Remote or on-site — whatever works for your team.
 				</p>
 			</div>
 			<div class="text-center">
@@ -228,10 +307,61 @@ const bookingUrl = 'https://calendly.com/nicknisi/ai-engineer';
 					I adapt the curriculum to your languages, frameworks, and the projects you're actually working on.
 				</p>
 			</div>
+			<div class="text-center">
+				<Icon name="mdi:calendar-check-outline" class="mx-auto mb-4 size-12 text-purple-700 dark:text-purple-200" />
+				<h3 class="p-0 font-serif text-xl font-semibold text-gray-900 dark:text-white">Flexible Format</h3>
+				<p class="mt-2 text-gray-600 dark:text-gray-300">
+					One intensive day, a series of sessions over a week, or something in between. We scope it on the intro call.
+				</p>
+			</div>
 		</div>
 	</Section>
 
-	{/* Section 8: Instructor */}
+	{/* Section 10: What Your Team Walks Away With */}
+	<Section variant="muted" class="scroll-reveal">
+		<h2 class="text-center font-serif text-3xl font-bold md:text-4xl">
+			What Your Team Walks Away With
+		</h2>
+		<div class="mx-auto mt-10 max-w-2xl space-y-4">
+			<div class="flex items-start gap-3">
+				<Icon name="mdi:file-document-outline" class="mt-1 size-6 shrink-0 text-purple-700 dark:text-purple-200" />
+				<div>
+					<h3 class="p-0 font-serif text-lg font-semibold text-gray-900 dark:text-white">AI Workflow Playbook</h3>
+					<p class="text-sm text-gray-600 dark:text-gray-300">A written guide covering the workflows, patterns, and prompts covered in training — tailored to your stack.</p>
+				</div>
+			</div>
+			<div class="flex items-start gap-3">
+				<Icon name="mdi:code-braces" class="mt-1 size-6 shrink-0 text-purple-700 dark:text-purple-200" />
+				<div>
+					<h3 class="p-0 font-serif text-lg font-semibold text-gray-900 dark:text-white">Working Examples</h3>
+					<p class="text-sm text-gray-600 dark:text-gray-300">The code your team built during the live session — real examples to reference, not throwaway demos.</p>
+				</div>
+			</div>
+			<div class="flex items-start gap-3">
+				<Icon name="mdi:clipboard-check-outline" class="mt-1 size-6 shrink-0 text-purple-700 dark:text-purple-200" />
+				<div>
+					<h3 class="p-0 font-serif text-lg font-semibold text-gray-900 dark:text-white">Team Conventions Template</h3>
+					<p class="text-sm text-gray-600 dark:text-gray-300">A starting point for internal AI usage guidelines — review standards, quality gates, and tool recommendations.</p>
+				</div>
+			</div>
+			<div class="flex items-start gap-3">
+				<Icon name="mdi:video-outline" class="mt-1 size-6 shrink-0 text-purple-700 dark:text-purple-200" />
+				<div>
+					<h3 class="p-0 font-serif text-lg font-semibold text-gray-900 dark:text-white">Session Recording</h3>
+					<p class="text-sm text-gray-600 dark:text-gray-300">Full recording of the training for team members who couldn't attend or anyone who wants a refresher.</p>
+				</div>
+			</div>
+			<div class="flex items-start gap-3">
+				<Icon name="mdi:calendar-refresh-outline" class="mt-1 size-6 shrink-0 text-purple-700 dark:text-purple-200" />
+				<div>
+					<h3 class="p-0 font-serif text-lg font-semibold text-gray-900 dark:text-white">Optional Follow-Up Session</h3>
+					<p class="text-sm text-gray-600 dark:text-gray-300">30-60 days after training, we regroup. Address new questions, reinforce what stuck, and troubleshoot what didn't.</p>
+				</div>
+			</div>
+		</div>
+	</Section>
+
+	{/* Section 11: Instructor */}
 	<Section variant="muted" class="scroll-reveal">
 		<h2 class="text-center font-serif text-3xl font-bold md:text-4xl">
 			Meet Your Instructor
@@ -265,7 +395,7 @@ const bookingUrl = 'https://calendly.com/nicknisi/ai-engineer';
 		</div>
 	</Section>
 
-	{/* Section 9: Who It's For */}
+	{/* Section 12: Who It's For */}
 	<Section variant="default">
 		<h2 class="text-center font-serif text-3xl font-bold md:text-4xl">
 			Is This Right for Your Team?
@@ -274,29 +404,29 @@ const bookingUrl = 'https://calendly.com/nicknisi/ai-engineer';
 			<div>
 				<h3 class="p-0 font-serif text-xl font-semibold text-green-700 dark:text-green-400">Great Fit</h3>
 				<ul class="mt-4 space-y-2 text-gray-700 dark:text-gray-300">
-					<li>Engineers who know AI is changing the job and want to get good at it</li>
-					<li>Teams where leadership said "use AI" but nobody explained how</li>
-					<li>Companies watching competitors ship faster</li>
-					<li>Anyone who'd rather build things than type boilerplate</li>
+					<li>Teams of 3-50 engineers shipping a product</li>
+					<li>Organizations where leadership said "use AI" but nobody explained how</li>
+					<li>Engineers using Copilot for autocomplete but not much else</li>
+					<li>Eng managers who need to measure and report on AI adoption</li>
 				</ul>
 			</div>
 			<div>
 				<h3 class="p-0 font-serif text-xl font-semibold text-red-600 dark:text-red-400">Not a Fit</h3>
 				<ul class="mt-4 space-y-2 text-gray-700 dark:text-gray-300">
-					<li>Looking for a course on building AI/ML models</li>
-					<li>Non-technical roles</li>
-					<li>Teams already fully AI-native</li>
+					<li>Looking for a course on building AI/ML models or agents</li>
+					<li>Non-technical teams or individuals looking for 1:1 coaching</li>
+					<li>Teams already shipping with agentic workflows daily</li>
 				</ul>
 			</div>
 		</div>
 	</Section>
 
-	{/* Section 10: Pricing Calculator */}
+	{/* Section 13: Pricing Calculator */}
 	<Section id="pricing" variant="dark">
 		<PricingCalculator client:only="react" bookingUrl={bookingUrl} email={email} />
 	</Section>
 
-	{/* Section 11: FAQ */}
+	{/* Section 14: FAQ */}
 	<Section variant="muted" narrow>
 		<h2 class="text-center font-serif text-3xl font-bold md:text-4xl">
 			Common Questions
@@ -345,8 +475,8 @@ const bookingUrl = 'https://calendly.com/nicknisi/ai-engineer';
 					<Icon name="mdi:chevron-down" class="size-5 shrink-0 text-purple-500 transition-transform duration-200 group-open:rotate-180" />
 				</summary>
 				<p class="mt-4 leading-relaxed text-gray-600 dark:text-gray-300">
-					Claude Code, Cursor, GitHub Copilot, and others. The principles are language-agnostic but
-					we'll spend time in whatever your team uses or wants to try.
+					Claude Code, Claude Desktop, Cursor, GitHub Copilot, and others. Every team's toolset is different —
+					we'll focus on what your company already has access to and what makes sense for your stack.
 				</p>
 			</details>
 			<details class="group rounded-xl border border-gray-200 bg-white p-5 transition-all duration-200 hover:border-purple-300 dark:border-dark-border dark:bg-dark-surface dark:hover:border-purple-700">
@@ -355,7 +485,7 @@ const bookingUrl = 'https://calendly.com/nicknisi/ai-engineer';
 					<Icon name="mdi:chevron-down" class="size-5 shrink-0 text-purple-500 transition-transform duration-200 group-open:rotate-180" />
 				</summary>
 				<p class="mt-4 leading-relaxed text-gray-600 dark:text-gray-300">
-					That's the whole idea. The five core modules are the baseline. We go deeper wherever your team needs it.
+					That's the whole idea. The six core modules are the baseline. We go deeper wherever your team needs it.
 				</p>
 			</details>
 			<details class="group rounded-xl border border-gray-200 bg-white p-5 transition-all duration-200 hover:border-purple-300 dark:border-dark-border dark:bg-dark-surface dark:hover:border-purple-700">
@@ -370,7 +500,7 @@ const bookingUrl = 'https://calendly.com/nicknisi/ai-engineer';
 		</div>
 	</Section>
 
-	{/* Section 12: Final CTA */}
+	{/* Section 15: Final CTA */}
 	<Section variant="dark" class="text-center">
 		<h2 class="font-serif text-3xl font-bold md:text-5xl">
 			Let's Talk About Your Team

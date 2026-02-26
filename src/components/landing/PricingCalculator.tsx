@@ -198,10 +198,15 @@ export default function PricingCalculator({ bookingUrl }: Props) {
 					<span className="gradient-text text-4xl font-bold">{fmt.format(total)}</span>
 				</div>
 
+				{/* Larger teams note */}
+				<p className="mt-4 text-center text-xs text-purple-300">
+					Larger team? <a href={bookingUrl} className="underline hover:text-white">Let's talk</a> — we'll put together custom pricing.
+				</p>
+
 				{/* CTA */}
 				<a
 					href={bookingUrl}
-					className="mt-6 block w-full rounded-lg bg-purple-600 py-4 text-center font-serif text-lg font-semibold text-white shadow-lg shadow-purple-500/20 transition-all duration-200 hover:scale-[1.02] hover:bg-purple-500 hover:shadow-xl hover:shadow-purple-500/30"
+					className="mt-4 block w-full rounded-lg bg-purple-600 py-4 text-center font-serif text-lg font-semibold text-white shadow-lg shadow-purple-500/20 transition-all duration-200 hover:scale-[1.02] hover:bg-purple-500 hover:shadow-xl hover:shadow-purple-500/30"
 				>
 					Schedule a Consultation
 				</a>
