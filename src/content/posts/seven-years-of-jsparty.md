@@ -9,7 +9,7 @@ hero:
   darkOverlay: true
 tags:
   - community
-post: https://bsky.app/profile/nicknisi.com/post/3lclwls23js2e
+post: https://bsky.app/profile/nicknisi.com/post/3mfuq6ux55s2i
 ---
 
 JS Party is [coming to an end](https://changelog.com/posts/a-new-era-for-the-changelog-podcast-universe).
