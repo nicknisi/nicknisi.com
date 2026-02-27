@@ -1,0 +1,262 @@
+---
+title: "Writing My First Evals"
+pubDate: 2026-02-27
+description: "I had no background in evals. I built two very different evaluation systems for two AI-powered developer tools, and they taught me the same lesson: trust isn't a feeling, it's a measurement."
+tags:
+  - ai
+  - evals
+  - developer-tools
+  - testing
+hero:
+  darkOverlay: true
+  img: '@/assets/evals.png'
+  alt: 'Writing my first evals'
+---
+
+import Callout from '@/components/Callout.astro';
+
+I've spent the last few weeks building two AI-powered developer tools at [WorkOS](https://workos.com). At some point I realized I had no idea if they actually worked.
+
+Not "worked" in the sense of "does it run." They ran fine. I mean "worked" in the sense of "does running this tool actually make things better for the developer using it?" That's a harder question than it sounds when the tool's output is different every time you run it.
+
+I needed evals. I also had no background in writing them.
+
+This is the story of building two very different evaluation systems for two very different problems, and discovering they were teaching me the same thing.
+
+<Callout title="The projects">
+	[WorkOS CLI](https://github.com/workos/cli) (the `workos install` command, powered by
+	[Claude Agent SDK](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/sdk)) |
+	[WorkOS Skills](https://github.com/workos/skills) (auto-generated agent context from our docs)
+</Callout>
+
+## Does the agent do the right thing?
+
+The first tool is `workos install`, a CLI command that uses the Claude Agent SDK to automatically install [WorkOS AuthKit](https://workos.com/docs/user-management) into your project. You point it at a Next.js app, a React SPA, a Python Flask server, or any of 16 supported frameworks, and it figures out what to do. It reads your code, understands your project structure, creates the right files, modifies the right configs, and installs the right dependencies.
+
+It's magic. And magic is untestable by default.
+
+The problem with testing an AI agent is that it doesn't do the same thing twice. Same input project, same prompt, different output. Different file names, different import styles, different error handling approaches. `expect(output).toBe(expected)` falls apart instantly.
+
+So I built an eval system.
+
+### Fixtures as starting states
+
+The eval starts with fixture projects: minimal starter apps for each supported framework. A React SPA with three pages. A Next.js app with a basic layout. A Python Flask server with a health endpoint. 16 frameworks total, each with multiple starting states like `example`, `example-auth0` (migrating from Auth0), `partial-install`, and `conflicting-middleware`.
+
+The fixture manager copies each one to a temp directory, runs `pnpm install` (or `pip install`, `bundle install`, `go mod download`, depending on what it detects), and initializes a git repo. That git init matters. The diff after the agent runs becomes the source of truth for what changed.
+
+I'll be honest. When I had about 24 fixtures, my reaction was: "This feels both like not enough and like it's too much to maintain. Is this really the best path?" I also worried about synthetic fixtures: if a test fails, is it because the agent screwed up or because the fixture wasn't realistic? The answer was to use real-world starting states, actual project structures that developers would have, rather than contrived setups. Every fixture runs before the agent touches it. If it doesn't work clean, it's not a valid test.
+
+### The agent runs for real
+
+For each fixture, the eval executor invokes the real agent with the real skill. Same code path as production. No mocks. It tells the agent "Use the `workos-authkit-nextjs` skill to integrate WorkOS AuthKit into this application" and lets it go. It tracks every tool call, every correction attempt, every token.
+
+If the agent fails, it can self-correct, up to two retries within the same session. The eval tracks whether a scenario passed on first attempt, needed correction, or needed a full retry. This distinction matters later.
+
+### Grading: the part I got wrong at first
+
+I started with simple file checks. Does `middleware.ts` exist? Does it import `@workos-inc/authkit-nextjs`? Does the callback route handle `handleAuth`?
+
+This worked for about an hour. Then I hit the first real eval lesson: **passing isn't the same as good.**
+
+The Next.js grader checks seven things: callback route exists, middleware or proxy exists (but not both, since Next.js 16 throws an error if you have both `middleware.ts` and `proxy.ts`), the SDK is imported correctly, `authkitMiddleware` or the `authkit()` composable is integrated, `AuthKitProvider` wraps the layout, and the project builds. Every check must pass.
+
+That "not both middleware and proxy" check encodes real domain knowledge. It's the kind of thing a developer would catch in code review. Without it, the agent could create a technically correct but broken integration.
+
+But even with all those checks passing, an agent could still produce code that no human developer would accept. Over-engineered error handling. Unnecessary abstractions. Comments explaining what `const x = 1` does. Technically correct. Terrible.
+
+So I added a second grading stage. The functional grader does pass/fail. But then a quality grader sends the code to Claude Haiku, which scores it on four dimensions:
+
+- **Code style**: does it match the project's conventions?
+- **Minimalism**: are the changes focused, or did it modify unrelated files?
+- **Error handling**: appropriate for the context, or paranoid?
+- **Idiomatic**: does it follow the framework's patterns?
+
+Each scored 1–5 with rubrics that define what a 1 versus a 5 looks like. Chain-of-thought reasoning before scoring, so the LLM has to justify each number.
+
+[Anthropic's eval guide](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents) calls this "grading outcomes, not paths." The grader doesn't care which tools the agent used or what order it did things in. It cares about what the project looks like when the agent is done.
+
+### Not pass/fail, pass rates
+
+Here's where evals diverge from tests. My success criteria aren't "all scenarios pass." They're:
+
+- **80%** pass on first attempt, no corrections
+- **90%** pass with self-correction allowed
+- **95%** pass with full retries
+
+<Callout variant="info" title="Evals aren't tests">
+	Tests verify deterministic behavior: given input X, expect output Y. Evals measure statistical quality: given input X, does the _distribution_ of outputs meet quality thresholds? Your test suite should be 100% green. Your eval suite won't be. That's by design.
+</Callout>
+
+The [Pragmatic Engineer's deep dive on evals](https://newsletter.pragmaticengineer.com/p/evals) makes this point clearly: use pass/fail judgments for individual cases, but measure them as rates across many trials. A single failure doesn't mean the system is broken. A pattern of failures does.
+
+40 scenarios. 16 frameworks. Each one designed to test a different situation the agent might encounter in the wild.
+
+## Does the context actually help?
+
+The second tool is a different kind of problem entirely. I'm building a set of [agent skills](https://github.com/workos/skills) for WorkOS, structured context documents that get loaded into an LLM's system prompt when a developer asks about WorkOS features. SSO flows, directory sync, RBAC, AuthKit integration. The skills are auto-generated from our docs using a pipeline that fetches, parses, splits, and refines content through Claude. The evals are how I decided they were ready to ship.
+
+The question here isn't "does the agent do the right thing?" It's more basic: **does feeding this context to the LLM actually make its output better?**
+
+I assumed the answer was yes. I was wrong about at least one of them.
+
+### A/B testing for LLMs
+
+The skills eval takes a completely different approach from the CLI eval. For each test case, it runs the same prompt twice: once with the skill loaded into the system prompt, once without. Same model, same temperature, same everything except the system prompt. Then it scores both outputs and compares.
+
+The test cases are declarative YAML:
+
+```yaml
+- id: sso-node-basic
+  product: sso
+  skill: workos-sso
+  prompt: |
+    Implement SSO login flow for a Node.js Express
+    app using the WorkOS SDK.
+  expected:
+    methods:
+      - workos.sso.getAuthorizationUrl
+      - workos.sso.getProfileAndToken
+    imports:
+      - '@workos-inc/node'
+    flowSteps:
+      - generate authorization URL
+      - redirect user to IdP
+      - handle callback
+      - exchange code for profile
+    antiPatterns:
+      - hardcoded API key
+    hallucinations:
+      - workos.sso.authenticate
+      - workos.sso.login
+```
+
+That `hallucinations` field lists methods that don't exist in the WorkOS SDK but that LLMs commonly invent. `workos.sso.authenticate` sounds right. It isn't real. The scorer checks whether the LLM hallucinates these phantom methods, and whether having the skill context prevents it.
+
+Scoring runs across seven dimensions (method accuracy, parameter coverage, environment variable usage, imports, flow correctness, anti-pattern avoidance) each weighted and combined into a composite score:
+
+```typescript
+const base =
+	methodAccuracy * 20 +
+	paramAccuracy * 15 +
+	envVarCoverage * 15 +
+	importAccuracy * 10 +
+	flowCorrectness * 20 +
+	antiPatternAvoidance * 15 +
+	(hallucinationCount === 0 ? 5 : 0);
+
+const penalty = Math.min(hallucinationCount * 5, 25);
+return Math.max(0, Math.round(base - penalty));
+```
+
+100 points maximum. Hallucinations carry a -5 penalty each, capped at -25. A clean hallucination-free output gets a 5-point bonus.
+
+42 test cases. Each one runs both arms in parallel. The delta between with-skill and without-skill tells you whether the skill is helping, hurting, or irrelevant.
+
+### The skill that hurt
+
+One of the generated skills scored negative. Not zero. _Negative_. The LLM produced worse output with the skill than without it.
+
+The directory sync skill for Ruby hit -12%. The SSO CSRF state validation case hit -20%. I wouldn't have caught either of these manually. I thought the skills were helping. They looked helpful. They contained accurate information.
+
+But the eval showed, across multiple runs, that the LLM consistently scored lower when these skills were in the system prompt. The SSO case was particularly bad: the skill taught the CSRF nuance correctly but omitted the auth URL generation step, costing 20 points on `missing_method`. The LLM was learning the wrong lesson from the context.
+
+The breakthrough came when I started saving full LLM transcripts from both runs and built tools to diff them side by side. Not just "which scored better?" but "what did the LLM actually do differently?" I could see the skill introducing noise. Too much tangential context pulling the LLM away from the core task. The methods were right, but the flow was wrong. The LLM was getting distracted by the very context meant to help it.
+
+This was the moment where I went from "evals are something I probably need" to "evals are how I know what's real."
+
+### Detecting things that aren't real
+
+One detail worth calling out: the scorer handles negation. If the LLM output says "don't use `workos.sso.authenticate`, that method doesn't exist," that's not a hallucination. The LLM is correctly warning against a phantom method. A naive string match would flag it as a failure.
+
+The scorer checks the 30 characters before each match for negation signals ("don't," "avoid," "should not," "never") and for cautionary labels like "anti-pattern" or "trap." If the method appears in a negation context, it gets skipped.
+
+Small thing. But it's the kind of nuance that makes the difference between an eval you trust and one that cries wolf.
+
+## Same question, different angle
+
+These two eval systems share no code. The CLI evals copy fixture projects, invoke a real agent, and grade file outputs. The skills evals call the Claude API directly, compare system prompt variations, and score generated text. Different architectures. Different grading approaches. Different problems.
+
+But they're both answering the same question: **how do you measure value when the code is non-deterministic and the environments vary wildly?**
+
+The agent doesn't produce the same files twice. The LLM doesn't generate the same code twice. You can't write a test that says "the output should be X" because the output is never X. It's some variation of X that might be better or worse than what you expected.
+
+Both systems solve this the same way:
+
+1. **Define what "good" looks like.** Not the exact output, but the signals that indicate quality. Files exist, methods are correct, flow is right, hallucinations are absent, the project builds.
+2. **Measure statistically.** Pass rates and composite scores across many trials, not individual assertions.
+3. **Save everything.** Transcripts, diffs, scores, tool calls. Because when something fails, you need to understand _why_, not just _that_.
+4. **Gate regressions.** Automated thresholds that prevent you from shipping something worse than what you had.
+
+This is what I mean when I say evals aren't tests. Tests tell you "this is broken." Evals tell you "this is getting worse," or in the case of my negative-scoring skill, "this thing you thought was helping is actively hurting."
+
+## The eval can be wrong too
+
+Here's something nobody warns you about: your evaluation system can have bugs just like the thing it's evaluating.
+
+I ran a full eval pass and saw 13 cases with negative deltas, skills apparently making things _worse_. My stomach dropped. Then I investigated.
+
+All 13 flow regressions were scorer bugs, not skill regressions. The scorer expected implementation steps in a specific conceptual order, but the with-skill outputs used a diagnosis-first pattern: symptom, cause, verify, fix. The without-skill outputs happened to match the scorer's expected order by coincidence. The skills were actually producing _better_ structured code. My scorer was just too rigid to recognize it.
+
+After fixing the scorer's flow-ordering logic to use proximity-based matching instead of strict sequence checking, those 13 "regressions" became 13 neutral-to-positive results.
+
+The lesson: when your eval says something is broken, investigate the eval first. Especially early on.
+
+## Building trust with a system you built with AI
+
+Here's the part I'm almost embarrassed to admit. I built both eval systems with Claude Code. The majority of the CLI eval system (the fixture manager, the graders, the parallel runner, the quality scoring) was written in conversations with Claude. Which means I was using the AI I was trying to evaluate to build the evaluation system.
+
+For the first few days, I was blindly trusting it. Claude would suggest a grading approach, I'd implement it, and I'd move on. It told me things were working correctly, and I had no frame of reference to push back. I'd never written evals before. At one point I asked Claude: "Are evals graders? Did we follow the best practices set out in these docs?" I was literally asking the AI to grade its own homework.
+
+It's a bit like an Apple Watch tracking your heart rate. I don't think the absolute number is perfectly accurate. But I don't need it to be. I need it to tell me if things are getting better or worse. A reliable baseline, even an imperfect one, is worth more than no baseline at all. That's what the evals gave me. Not perfect truth, but a consistent signal I could track over time.
+
+Then I had a moment of genuine doubt. I remember typing into Codex: "I don't actually know if the evals are being honest with me about how useful these skills actually are. Can you do an independent analysis?"
+
+I was using _two_ different AIs, Claude Code and Codex, to cross-check each other. I'd run the evals with Claude, paste the results into Codex for analysis, then take Codex's feedback back to Claude. "I asked Claude to review your response," I kept telling Codex. It felt absurd. But it was also working. Each model caught things the other missed. Codex flagged scorer assumptions Claude hadn't questioned. Claude found implementation bugs Codex couldn't see.
+
+Still, AI checking AI wasn't enough. I needed external ground truth.
+
+I read three things: [Anthropic's guide to demystifying evals for AI agents](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents), the [Pragmatic Engineer's deep dive on evals](https://newsletter.pragmaticengineer.com/p/evals), and [OpenAI's evaluation best practices](https://developers.openai.com/api/docs/guides/evaluation-best-practices/). Real resources from people who had thought deeply about this problem.
+
+Then I fed those articles back to Claude and asked it to evaluate whether our eval systems aligned with the principles. The feedback was specific: we had the fundamentals right. A/B structure, deterministic scoring, pass/fail judgments measured as rates, outcome-based grading. The pieces were there. They just needed refinement.
+
+We were on the right path. We just needed to sharpen the edges. "Update the quality grader to use thinking before scoring," I told Claude after reading that chain-of-thought improves grading accuracy. Small refinements, not a rewrite.
+
+## What I'd tell you if you're starting from zero
+
+**Start with pass/fail.** Don't build a sophisticated scoring system on day one. Start with the simplest question: did it work? For me, that was "does the file exist and does the project build." Get that running across a handful of cases, get a baseline, then iterate. I added quality scoring weeks later. The eval system grows with your understanding of what matters.
+
+**Evals aren't tests. Treat them differently.** Your test suite should be 100% green. Your eval suite won't be. Set statistical thresholds and measure trends. An 85% first-attempt pass rate that's improving every week is better than chasing 100% on a small set of easy cases.
+
+**Save transcripts.** I cannot overstate this. When the skill scored negative, the only reason I found the root cause was because I had full transcripts from both the with-skill and without-skill runs. Scores tell you _what_. Transcripts tell you _why_.
+
+**Calibrate against humans.** The skills eval has a labeling system, a simple JSONL file where I mark cases as "ship" or "no-ship" with a reason. Then a calibration script measures how often the automated scorer agrees with my judgment. If we disagree on more than 20% of cases, the scorer needs work, not me. Automated scoring without human calibration is just a faster way to be confidently wrong.
+
+**Measure the thing you actually care about.** Generic "helpfulness" scores from off-the-shelf tools didn't help me. I needed to know: does the middleware import the right SDK? Does the authorization URL use the correct parameters? Does the skill prevent hallucinated method names? Domain-specific signals beat generic metrics every time. The [Pragmatic Engineer article](https://newsletter.pragmaticengineer.com/p/evals) puts it well: avoid pre-built metrics that don't correlate with what your users actually experience.
+
+**Question whether you're adding value or duplicating knowledge.** At one point I asked Claude to verify that the skills were "actually additive, not just duplicating the docs." This is the core question for any context-augmented AI tool. If the LLM already knows the answer, your skill is dead weight. If your skill adds noise, it's actively harmful. The A/B delta is the only way I've found to answer this honestly.
+
+## Trust is a measurement
+
+I started this with no background in evals. I built two systems that are different in almost every way. One copies starter projects across 16 frameworks and runs an AI agent against them. The other A/B tests whether feeding context to an LLM actually improves its output. No shared code. No shared architecture.
+
+But they taught me the same thing: trust isn't a feeling. It's a number. It's a pass rate, a delta score, a regression gate. When someone asks me "does this AI tool actually work?" I don't have to say "I think so." I can show them the data.
+
+And when the data says something I built is making things worse? I fix it or I kill it. That's what the negative-scoring skill taught me. My intuition said it was helpful. The eval said otherwise.
+
+The eval was right.
+
+I should be honest about what I don't know yet. These tools are still evolving. Time will tell whether the evals I built actually set me up for success or just made me feel better about shipping. I started this with no background in evals, and I'm sure someone who does this for a living would find plenty to improve. If that's you, I'd genuinely love to hear what I'm getting wrong. I'm [@nicknisi.com](https://bsky.app/profile/nicknisi.com) on Bluesky.
+
+What I do know: I'm shipping with more confidence than I had before, and I have real numbers to back it up. That's more than vibes. For now, that's enough.
+
+**Resources that shaped my thinking:**
+
+- [Demystifying Evals for AI Agents](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents) (Anthropic)
+- [Evals](https://newsletter.pragmaticengineer.com/p/evals) (Pragmatic Engineer)
+- [Evaluation Best Practices](https://developers.openai.com/api/docs/guides/evaluation-best-practices/) (OpenAI)
+
+**The projects mentioned in this post:**
+
+- [WorkOS CLI](https://github.com/workos/cli)
+- [WorkOS Skills](https://github.com/workos/skills)
