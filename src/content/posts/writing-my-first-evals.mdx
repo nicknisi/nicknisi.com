@@ -90,7 +90,17 @@ Here's where evals diverge from tests. My success criteria aren't "all scenarios
 
 The [Pragmatic Engineer's deep dive on evals](https://newsletter.pragmaticengineer.com/p/evals) makes this point clearly: use pass/fail judgments for individual cases, but measure them as rates across many trials. A single failure doesn't mean the system is broken. A pattern of failures does.
 
-40 scenarios. 16 frameworks. Each one designed to test a different situation the agent might encounter in the wild.
+40 scenarios. 16 frameworks. Each one designed to test a different situation the agent might encounter in the wild. Here's what the validation output looks like after a full run:
+
+```
+════════════════════════════════════════════════════
+✓ PASS: All success criteria met
+
+First-attempt:    92.0% (required: 80%)
+With-correction:  94.0% (required: 90%)
+With-retry:       96.0% (required: 95%)
+════════════════════════════════════════════════════
+```
 
 ## Does the context actually help?
 
@@ -153,6 +163,24 @@ return Math.max(0, Math.round(base - penalty));
 
 42 test cases. Each one runs both arms in parallel. The delta between with-skill and without-skill tells you whether the skill is helping, hurting, or irrelevant.
 
+Here's what a real eval run looks like:
+
+```
+──────────────────────────────────────────────────────────────────
+WorkOS Skill Eval Report
+Model: claude-sonnet-4-5-20250929 | Cases: 42 | Date: 2026-02-26
+──────────────────────────────────────────────────────────────────
+
+Product             Cases  With Skill  Without     Delta
+──────────────────────────────────────────────────────────────────
+sso                     8         97%      95%       +2%
+rbac                    5         91%      89%       +2%
+directory-sync          6         87%      87%        0%
+audit-logs              4         96%      96%        0%
+mfa                     5         85%      83%       +2%
+vault                   4         89%      88%       +1%
+```
+
 ### The skill that hurt
 
 One of the generated skills scored negative. Not zero. _Negative_. The LLM produced worse output with the skill than without it.
@@ -161,7 +189,24 @@ The directory sync skill for Ruby hit -12%. The SSO CSRF state validation case h
 
 But the eval showed, across multiple runs, that the LLM consistently scored lower when these skills were in the system prompt. The SSO case was particularly bad: the skill taught the CSRF nuance correctly but omitted the auth URL generation step, costing 20 points on `missing_method`. The LLM was learning the wrong lesson from the context.
 
-The breakthrough came when I started saving full LLM transcripts from both runs and built tools to diff them side by side. Not just "which scored better?" but "what did the LLM actually do differently?" I could see the skill introducing noise. Too much tangential context pulling the LLM away from the core task. The methods were right, but the flow was wrong. The LLM was getting distracted by the very context meant to help it.
+The breakthrough came when I started saving full LLM transcripts from both runs and built tools to diff them side by side. Not just "which scored better?" but "what did the LLM actually do differently?"
+
+```
+┌─── With Skill (composite: 77%) ──────────────────────────
+  Methods:        4/5 ✗
+    missing: getAuthorizationUrl
+  Params:         3/4 ✗
+  Flow:           3/6 out of order
+  Hallucinations: 0
+
+┌─── Without Skill (composite: 97%) ───────────────────────
+  Methods:        5/5 ✓
+  Params:         4/4 ✓
+  Flow:           6/6 in order
+  Hallucinations: 0
+```
+
+I could see the skill introducing noise. Too much tangential context pulling the LLM away from the core task. The methods were right, but the flow was wrong. The LLM was getting distracted by the very context meant to help it.
 
 This was the moment where I went from "evals are something I probably need" to "evals are how I know what's real."
 
