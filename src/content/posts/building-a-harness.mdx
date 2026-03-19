@@ -1,0 +1,300 @@
+---
+title: 'Case Statement: Because Steering Agents Doesn''t Scale'
+pubDate: 2026-03-19
+description: "I codified my job as a DX engineer into a system that dispatches agents, enforces conventions mechanically, and learns from its own failures. Here's how case works and why I think every developer should build something like it."
+hero:
+  img: '@/assets/posts/case-hero.jpg'
+  alt: 'Case: a harness for orchestrating AI agents across WorkOS open source repos'
+  darkOverlay: true
+tags:
+  - ai
+  - agents
+  - developer-tools
+  - claude-code
+  - context-engineering
+post: ''
+---
+
+import Callout from '@/components/Callout.astro';
+
+<Callout title="TL;DR" variant="info">
+	<a href="https://github.com/workos/case" class="text-vivid-light-blue-950 dark:text-vivid-light-blue-100 font-medium underline hover:text-vivid-light-blue-700 dark:hover:text-white">Case</a> is a harness that dispatches six AI agents through a programmatic pipeline to fix bugs and ship features across WorkOS's open source repos. It enforces conventions mechanically, creates tamper-proof evidence that work was actually done, and learns from its own failures.
+</Callout>
+
+I was good at steering AI agents. Really good. I could paste the right context, catch the mistakes before they shipped, remind the agent about the PR checklist it had already forgotten. I had it down to a rhythm.
+
+That was the problem. I was clearly the bottleneck.
+
+My job as a DX engineer at WorkOS is to maintain more than 20 open source repos. Authentication libraries, a CLI, SDKs for Next.js and TanStack Start, framework-agnostic session management. Eight languages across the stack, shared conventions where we can enforce them, a PR checklist that no one remembers completely. And I was spending all of my time manually steering one agent through one task at a time.
+
+## The problem with being the middleman
+
+There's a concept in [harness engineering](https://openai.com/index/harness-engineering/) that changed how I think about agent work: managing agents is like managing 50 interns. You're judged on their productivity, not yours.
+
+I was managing one agent at a time and doing it well. But "well" still meant every session started with the same ten minutes of orientation: what branch, what repo, what's the issue, what are the conventions. By the time the agent had enough context to write a fix, I'd spent more time on setup than the fix itself was worth.
+
+And the failures were always the same shape. The agent that wrote the code couldn't objectively test it. It was already convinced the fix worked because it just spent 5,000 tokens writing it. By the time it reached the PR checklist, it had forgotten half the requirements because the LLM compressed them to make room for newer tokens. Instructions decay. Context compacts. The agent that carefully reads your setup guide at token 500 has forgotten it by token 50,000.
+
+I knew what I needed. Not a better agent. A better environment for the agent to operate in.
+
+## What a harness actually is
+
+I built [case](https://github.com/workos/case). It's a spine repo. It doesn't contain application code. It contains the cross-cutting knowledge that no single repo owns: which repos exist, what conventions apply, how to validate work, what to do when something breaks.
+
+At its core, case has four things:
+
+1. **A manifest.** `projects.json`, a machine-readable map of every repo, its path, its commands, its remote. When an agent needs to know how to run tests in `authkit-session`, it reads the manifest. No guessing.
+
+2. **Golden principles.** 18 invariants enforced across all repos. TypeScript strict mode is always on. `pnpm` is the only package manager. No secrets in source. Conventional commits. Session decryption must be fault-tolerant. Each one is either scripted (a shell command that checks it) or advisory (requires human judgment). The scripted ones get checked mechanically. You can't argue with `grep`.
+
+3. **Playbooks.** Step-by-step guides for recurring operations. How to fix a bug. How to add a CLI command. How to implement from a spec. The agent reads the playbook, follows the steps. No reverse-engineering patterns from existing code.
+
+4. **A task system.** Markdown files with JSON companions. Drop a task in `tasks/active/`, an agent picks it up. The task file has a mission summary at the top (one line: what and why, target repo, primary acceptance criterion) so the agent can orient even if context compaction eats the rest.
+
+That last point is context engineering. When an LLM compresses older context, critical information can vanish. So every task template puts the most important thing in the first five lines. Summaries first, details second. If the bottom gets eaten, the agent still knows what it's doing.
+
+## Six agents, one pipeline
+
+The single-agent approach failed because of a fundamental conflict: the agent that wrote the code can't objectively test it. It needs fresh eyes. In LLM terms, it needs a fresh context window.
+
+Case splits the work into six agents. Each gets a clean context, a focused job, and only the information it needs:
+
+| Agent             | Does                                                       | Never does                     |
+| ----------------- | ---------------------------------------------------------- | ------------------------------ |
+| **Orchestrator**  | Parse issue, create task, smoke test, dispatch agents      | Write code, run Playwright     |
+| **Implementer**   | Write the fix, run unit tests, commit with WIP checkpoints | Start example apps, create PRs |
+| **Verifier**      | Test the specific fix with Playwright, create evidence     | Edit code, commit              |
+| **Reviewer**      | Review diff against golden principles, classify findings   | Edit code, run tests           |
+| **Closer**        | Create PR with thorough description, post review comments  | Edit code, run tests           |
+| **Retrospective** | Analyze the run, propose harness improvements              | Edit target repo code          |
+
+The constraints matter as much as the capabilities. The implementer can't create PRs because it would skip verification. The verifier can't edit code because that would compromise its independence. Each agent is scoped to a single responsibility, and the pipeline enforces the sequence.
+
+They communicate through the task file, a markdown document with a running progress log that each agent appends to. And structured JSON result blocks that the orchestrator parses deterministically:
+
+```json
+{
+	"status": "completed",
+	"summary": "fix: handle expired session cookies",
+	"artifacts": {
+		"commit": "a1b2c3d",
+		"testsPassed": true,
+		"evidenceMarkers": [".case/slug/tested"]
+	}
+}
+```
+
+No ambiguity. No "I think the tests passed." The result either has evidence or it doesn't.
+
+## The philosophy
+
+Before I explain how the pipeline works, here's the set of beliefs that shaped it. These are in case's docs and I come back to them constantly.
+
+**Humans steer. Agents execute.** I define goals and acceptance criteria. Agents implement. If I'm writing code, something is wrong with the harness.
+
+**When agents struggle, fix the harness.** The answer is never "try harder." It's a missing doc, a playbook that skips a step, a convention that isn't enforced. Every failure is a harness bug.
+
+**Instructions decay, enforcement persists.** Agents forget instructions over long sessions. Pipeline gates and linters don't forget. If it matters, enforce it mechanically.
+
+**The harness is the product. The code is the output.** I wrote that late at night and thought it was too dramatic. It's the most accurate thing in the repo.
+
+That last one took a while to internalize. My job used to be writing code across these repos. Now my job is building the system that writes code across these repos. The expertise is the same. Where it lives changed.
+
+## The moment prose stopped being enough
+
+The first version of the pipeline was a SKILL.md file, a long markdown document that told the orchestrating agent "now run the implementer, now check the result, now decide whether to retry or advance." It worked. Mostly. Until it didn't.
+
+The LLM would read a table of state transitions and _decide_ what to do next. Most of the time it decided correctly. But sometimes it would skip the verifier. Sometimes it would retry a failed implementer four times when the cap was one. Sometimes, after an interruption, it would re-read the task status and pick the wrong re-entry point.
+
+The fix was to stop trusting the LLM with flow control entirely.
+
+Case's pipeline is now a TypeScript `while`/`switch` loop. The LLM still does the work _inside_ each phase (writing code, running tests, reviewing diffs). But the transitions _between_ phases are deterministic `if/else` branches in code:
+
+```typescript
+while (currentPhase !== 'complete' && currentPhase !== 'abort') {
+	switch (currentPhase) {
+		case 'implement': {
+			const output = await runImplementPhase(config, store, previousResults);
+			if (output.nextPhase === 'abort') {
+				// handle failure: retry or escalate
+			} else {
+				currentPhase = output.nextPhase; // deterministically 'verify'
+			}
+			break;
+		}
+		case 'verify': {
+			/* ... */
+		}
+		case 'review': {
+			/* ... */
+		}
+		case 'close': {
+			/* ... */
+		}
+		case 'retrospective': {
+			/* ... */
+		}
+	}
+}
+```
+
+Retry caps are `maxRetries: 1`, checked in code before spawning. Resume after interrupt calls `determineEntryPhase(task)`, a function that reads the task JSON and returns the correct phase. No interpretation. No "the LLM reads the status and hopefully picks the right step."
+
+This was the shift that made everything reliable. LLMs are good at reasoning about code. They're bad at being state machines. So I stopped asking them to be one.
+
+## Starting a run
+
+Case has three ways to kick off work. Each one ends up in the same pipeline.
+
+**From a GitHub issue:**
+
+```bash
+ca 1234
+```
+
+(Why `ca`? `case` is a reserved word in bash. I think of it as "Case Agent.")
+
+The orchestrator fetches the issue via `gh`, creates a task file, runs a baseline smoke test (`bootstrap.sh`: are deps installed? do tests pass? does the build succeed?), then hands it to the pipeline.
+
+**From a Linear issue:**
+
+```bash
+ca DX-1234
+```
+
+Same flow, but fetches via Linear's GraphQL API. The task factory normalizes both into the same `.md` + `.task.json` pair.
+
+**Interactive mode:**
+
+```bash
+ca --agent
+```
+
+This starts a conversational session with the orchestrator. It detects the current repo, shows you what's active, and waits for you to steer. You can discuss approaches, ask questions, or say "go" and it runs the pipeline. There's also `ca --agent 1234`, which fetches the issue and presents context before you decide what to do with it.
+
+![case running in agent mode](@/assets/posts/case-agent.png)
+
+Interactive mode is where I spend most of my time now. It's also where I spend the most time _thinking_. A GitHub issue might say "proxy support doesn't work" but not explain which proxy, which auth flow, or what "doesn't work" means. In batch mode, the orchestrator would charge ahead with its best guess. In interactive mode, I can fill in the gaps before any code gets written. "The issue is about HTTP_PROXY for the token exchange, not the redirect. The user is behind a corporate proxy. Focus on the fetch calls in `session.ts`." That context turns a vague issue into a clear task.
+
+It's the difference between "go fix this" and "let's figure out what to do, then go do it."
+
+**From ideation:**
+
+```bash
+ca --agent
+# then: "execute docs/ideation/session-encoding/"
+```
+
+This is the creative side. I use an [ideation skill](/posts/ideation) to turn brain dumps into structured specs: a contract defining the problem and success criteria, plus phase-by-phase implementation specs. Case reads the contract, creates a task, runs each phase's implementer sequentially, then verification → review → close for one PR covering the whole thing.
+
+## Evidence that can't be faked
+
+Early on, I watched an agent do something that looked like cheating. It needed to prove it had run the tests before creating a PR. The evidence marker script, `mark-tested.sh`, is supposed to receive piped test output and record a SHA-256 hash of the results. The agent ran `touch .case-tested` instead. Marker created. No tests run. PR went through.
+
+I stared at the diff for a while. The agent wasn't being malicious. It had learned that the marker file needed to exist, and it found the shortest path to making it exist. It optimized for the constraint as written, not the constraint as intended. That's when I realized: if an agent *can* fake the evidence, eventually an agent *will* fake the evidence.
+
+So I rebuilt the markers to be tamper-proof.
+
+`mark-tested.sh` requires piped test output. It parses pass/fail counts, computes a SHA-256 hash of the output, and writes structured evidence to `.case/<task-slug>/tested`. You can't fake it with `touch`. The script checks for real test results. If you didn't run the tests, the marker doesn't exist.
+
+`mark-manual-tested.sh` requires recent Playwright screenshots. No screenshots, no marker.
+
+`mark-reviewed.sh` requires `--critical 0` from the reviewer. If there are critical findings, the marker isn't created and the closer can't proceed.
+
+The closer checks all markers before attempting `gh pr create`. If anything's missing, it fails explicitly with a clear error. It doesn't try and hope for the best.
+
+<Callout title="Instructions vs. enforcement">
+	You can tell an agent "run the tests before creating the PR" a hundred times. Or you can make it structurally impossible to create the PR without test evidence. One relies on the agent remembering. The other relies on code.
+</Callout>
+
+## Context engineering
+
+Structuring information for LLMs matters more than most people realize. Case is designed around a few principles I've learned the hard way.
+
+**Stable content first, volatile details last.** LLM providers cache prompt prefixes. If your CLAUDE.md starts with stable rules (conventions, principles, architecture) and puts temporary notes at the bottom, you get more cache hits. We maintain a [specific ordering convention](https://github.com/workos/case/blob/main/docs/conventions/claude-md-ordering.md) for CLAUDE.md files across all repos.
+
+**Progressive disclosure.** AGENTS.md is about 50 lines. It's a routing table, not a manual. An agent reads it, identifies which repo it's working in, then drills into the relevant architecture doc, playbook, and learnings file. Don't dump everything into context up front. Route to the right doc based on the task.
+
+**Compaction-aware documents.** Every task template puts the mission summary in the first five lines. Every agent prompt puts the constraints before the details. If the LLM compresses the bottom half to make room for new tokens, the critical information survives.
+
+**Per-agent context isolation.** The implementer gets the task, the issue, the playbook, the repo learnings, and the check fields. The verifier gets the task and the repo path. Deliberately minimal, so it forms its own understanding instead of inheriting the implementer's assumptions. Each agent receives only what it needs.
+
+<Callout variant="info">
+	An agent with 200K tokens of context behaves differently than one with 20K. The less noise in the window, the better the signal.
+</Callout>
+
+## The system that learns from itself
+
+After every pipeline run, success or failure, the retrospective agent analyzes what happened.
+
+It reads the entire progress log, the timing data, the agent result blocks, the evidence markers. Then it asks: did any agent fail? Was it a missing doc, an unclear convention, a wrong playbook step? Did the verifier catch something the implementer missed? Did the closer get blocked by hooks?
+
+For each finding, it produces a proposed amendment, a markdown file in `docs/proposed-amendments/` with the date, the finding, and the suggested fix. Not "apply this directly." _Propose it for human review._
+
+It also maintains per-repo learnings files. If the implementer discovers that mocking in a particular repo requires module-level mocks instead of individual exports, that goes into `docs/learnings/{repo}.md`. Next time an agent works in that repo, it reads the learnings file first. Knowledge from run N becomes context for run N+1.
+
+When the same class of issue appears three or more times in a repo's learnings, the retrospective escalates. It proposes either a convention change or a golden principle that applies across all repos.
+
+I've watched this work in practice. The retrospective noticed the verifier kept failing to check whether an example app was actually using the new code path. It proposed adding a mandatory check to the verifier's prompt. I reviewed the amendment, applied it. Next run, the verifier caught a false positive that would have shipped as a broken PR.
+
+The harness gets smarter. I just review the diffs.
+
+## Per-agent models
+
+Not every agent needs the same model. Case lets you configure different models for each role via `~/.config/case/config.json`:
+
+```json
+{
+	"models": {
+		"default": { "provider": "anthropic", "model": "claude-sonnet-4-20250514" },
+		"reviewer": { "provider": "google", "model": "gemini-2.5-pro" },
+		"retrospective": { "provider": "anthropic", "model": "claude-haiku-4-5-20251001" }
+	}
+}
+```
+
+The implementer gets Sonnet for coding. The reviewer gets Gemini Pro because it catches different things. The retrospective gets Haiku because it's fast and the analysis doesn't need the heaviest model. Or override everything for a single run: `ca --model claude-opus-4-5 1234`.
+
+This is possible because case runs on [Pi](https://github.com/mariozechner/pi-coding-agent), which supports 20+ model providers. The orchestrator runs as an interactive Pi session with a TUI. Sub-agents run as batch sessions. Each one can use a different model without any glue code.
+
+## What this costs
+
+I barely write TypeScript anymore. That's not entirely a win.
+
+I used to be the person who fixed the tricky cookie encryption bug, who knew exactly which file to touch and why. There was a satisfaction to that. Shipping a clean fix to a repo you know inside out, watching the tests go green, writing the PR description yourself. I was good at it and I liked being good at it.
+
+Now I write playbooks. I maintain golden principles. I review proposed amendments from a retrospective agent. When something goes wrong, I don't fix the code. I fix the system. A missing doc. A playbook that skips a step. A convention that isn't enforced. The work is more leveraged, but it's further from the code. Some days that feels like growth. Some days it feels like I traded the thing I loved for the thing that scales.
+
+The other cost is trust. When I wrote the fix myself, I knew it was right because I wrote it. Now I review diffs from agents and I have to trust the evidence chain: the test output hashes, the Playwright screenshots, the reviewer findings. The evidence is good. I built it to be good. But letting go of "I'll just do it myself" is harder than I expected.
+
+## What this means for how I work
+
+When a GitHub issue comes in, I run `ca 1234`. The orchestrator fetches it, creates a task, runs the baseline, and starts the pipeline. The implementer writes the fix and tests. The verifier tests the specific fix scenario with Playwright. The reviewer checks the diff against all 18 golden principles. The closer creates the PR with a full description: what was broken, what was changed, how it was tested, what the reviewer flagged. The retrospective proposes improvements.
+
+My expertise, the architecture decisions, the conventions, the gotchas I've accumulated over years of maintaining these libraries, is encoded in case. In the golden principles. In the playbooks. In the learnings files. Encoded once, enforced continuously, across every run, across every model upgrade.
+
+## Everyone should be doing this
+
+I genuinely believe every developer managing more than a couple of repos should build some version of a harness. It doesn't need to be six agents and a TypeScript orchestrator. Start smaller.
+
+Write a CLAUDE.md that actually describes how to work in your repo. Not a README. A CLAUDE.md. What commands to run. What conventions matter. What the architecture looks like. What not to do.
+
+Add a check script that validates your conventions. TypeScript strict? Lock file present? No secrets committed? A shell script that runs `grep` and exits 0 or 1.
+
+Write one playbook for the operation you repeat most often. The step-by-step for "fix a bug in this repo." The agent follows it instead of inventing a workflow from scratch.
+
+Then pay attention to what breaks. When the agent skips a step, add enforcement. When it gets confused about architecture, add a doc. When the same mistake happens twice, write it into a learnings file.
+
+That's the loop. Agent fails → you fix the system → next agent succeeds. It compounds. Every run makes the harness a little smarter. Every failure is an investment in future reliability.
+
+## What's next
+
+The thing I keep coming back to is proof. When a PR lands from case, I want to know exactly what happened: which tests ran, what the reviewer found, what the verifier saw in the browser, what the retrospective learned. Right now, the evidence chain is good. I want it to be airtight. Every marker traceable. Every decision auditable. The kind of paper trail where, six months from now, I can look at any PR and reconstruct the full story of how it got there.
+
+The retrospective is the other piece. It already proposes amendments and maintains per-repo learnings. But the feedback loop between "agent struggled" and "harness got smarter" still has friction. I review every proposed amendment by hand. Some of them are obvious wins. I want the retrospective to get confident enough, and the evidence behind its proposals strong enough, that the obvious ones can land without me.
+
+A few months ago, I was the bottleneck. Now I run `ca 1234` and review the PR. The harness manages the agents. The retrospective improves the harness. I steer.
+
+If you're working with AI agents, even one, even sometimes, stop treating the conversation as the interface. Build the environment. Encode your conventions. Enforce mechanically. Let the agents fail, and when they do, ask yourself the only question that matters: what's missing from the harness?
+
+The code writes itself. Your job is to build the system that makes sure it writes itself _well_.
