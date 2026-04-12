@@ -33,7 +33,7 @@ const resolveImagePath = (imagePath: string): string => {
 	// Build-time path (/_astro/...) -> resolve to source file
 	if (pathWithoutQuery.startsWith('/_astro/')) {
 		const filename = pathWithoutQuery.split('/').pop() || '';
-		const match = filename.match(/^(.+?)\.[\w]+\.(jpg|jpeg|png|webp|avif)$/);
+		const match = filename.match(/^(.+?)\.[\w-]+\.(jpg|jpeg|png|webp|avif)$/);
 		if (match) {
 			const [, baseName, ext] = match;
 			return `${projectRoot}/src/assets/posts/${baseName}.${ext}`;
