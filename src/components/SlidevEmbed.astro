@@ -1,0 +1,14 @@
+---
+interface Props {
+	src: string;
+	title?: string;
+	class?: string;
+}
+
+const { src, title = 'Slides', class: className } = Astro.props;
+const classes = ['relative w-full pt-[56.25%]', className].join(' ');
+---
+
+<div class={classes}>
+	<iframe class="absolute top-0 left-0 h-full w-full rounded-lg" src={src} title={title} allowfullscreen></iframe>
+</div>

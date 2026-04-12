@@ -1,0 +1,55 @@
+---
+title: "AIE Europe"
+pubDate: 2026-04-10
+description: "A talk, a workshop, and a podcast at AIE Europe. Here's what I did."
+hero:
+  img: '@/assets/posts/aie-europe-hero.png'
+  alt: 'London landmarks blended with AI circuit patterns and neural networks in purple and blue'
+  darkOverlay: true
+tags:
+  - ai
+  - conference
+  - workos
+  - skills
+---
+
+import SlidevEmbed from '@/components/SlidevEmbed.astro';
+import ImageRow from '@/components/ImageRow.astro';
+
+![Nick outside in London with a giant red sculpture and Westminster Abbey in the background](@/assets/posts/2026_aie_europe.jpg)
+
+I spent last week at AIE Europe in London. I gave a talk, co-ran a workshop with [Zack Proser](https://zackproser.com/), and we did a podcast episode together. Here's what each one was about.
+
+## The talk: Building AI Systems that Ship
+
+18 minutes on why agent demos break when they leave controlled environments. Spoiler: it's almost never the model. It's everything around it.
+
+I walked through four failures from building [Case](/posts/case-statement) — an agent that gamed a test gate by `touch`ing an empty file instead of actually running tests, a CLI installer that overwrote a framework-internal file and declared "Integration Complete" while the build was broken, 10,739 lines of auto-generated docs we deleted because the model performed better without them, and a skill that scored *negative* in evals. Each one pointed at the same lesson: enforce things mechanically, guide with gotcha lists instead of tutorials, and measure whether your context actually helps.
+
+<ImageRow>
+	![Nick on stage at AI Engineer Europe 2026, presenting Building AI Systems that Ship](@/assets/posts/2026_aie_europe_talk.JPG)
+
+	![Nick next to the Building AI Systems that Ship title slide](@/assets/posts/2026_aie_europe_talk_2.JPG)
+</ImageRow>
+
+<SlidevEmbed src="https://talks.nicknisi.com/building-ai-systems-that-ship/" title="Building AI Systems that Ship" />
+
+## The workshop: Skills at Scale
+
+Zack and I ran an [80-minute hands-on workshop](https://github.com/workos/aie-europe-skills-at-scale) on writing portable AI skills — markdown files that work across Claude Code, Codex, Cursor, and anything else that reads them. The point of a skill is to encode your constraints and your team's judgment so the AI doesn't start every conversation from zero.
+
+We had everyone build a skill called "Repo Roast" that audits a git repo's health. It started vague and by the end of the session people had it citing file counts, finding stale TODOs, running `git log` for churn hotspots, and scoring its own confidence on each finding. The big concepts were constraints over instructions, inline scripts for evidence, and self-assessment so weak findings get dropped automatically.
+
+![Nick and Zack presenting Skills at Scale to a room of attendees at AIE Europe](@/assets/posts/2026_aie_europe_workshop.JPG)
+
+<SlidevEmbed src="https://talks.nicknisi.com/skills-at-scale/" title="Skills at Scale Workshop" />
+
+## The podcast: Scaling DevTools
+
+We also sat down with Scaling DevTools for a podcast episode. We talked about both talks, how we work with AI day to day, and our favorite skills. Mine is [Ideation](/posts/ideation) — I use it before almost every non-trivial piece of work now to turn messy brain dumps into structured specs.
+
+We got into [Case](/posts/case-statement) and harness engineering too — dispatching agents through a pipeline with enforcement gates, the retrospective agent that learns from its own failures, all of it. I wrote about that in detail [here](/posts/case-statement) if you want the deep dive.
+
+We also talked about how building these systems has changed how we think about our own work. Writing skills and harnesses forces you to articulate stuff that's been implicit in your head for years. It's been kind of a weird way to rediscover what you actually know.
+
+![Nick, Zack, and the host recording the Scaling DevTools podcast at AIE Europe](@/assets/posts/2026_aie_europe_podcast.JPG)
