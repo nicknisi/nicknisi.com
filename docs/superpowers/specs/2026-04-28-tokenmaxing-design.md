@@ -144,9 +144,20 @@ Single JSON file, single top-level object. Versioned via a `schemaVersion` field
       "costUSD": 12.34,
       "sessions": 5,
       "messages": 234,
+      "hourCounts": [0,0,0,0,0,0,0,0,0,0,0,3,12,40,55,30,18,12,8,5,2,0,0,0],  // 24-element histogram of message counts by local hour; supports peak-hour merge
       "byTool": {
-        "claude-code": { "tokens": 1000000, "costUSD": 10.00 },
-        "pi":          { "tokens":  234567, "costUSD":  2.34 }
+        "claude-code": { "tokens": 1000000, "costUSD": 10.00, "sessions": 4, "messages": 200 },
+        "pi":          { "tokens":  234567, "costUSD":  2.34, "sessions": 1, "messages":  34 }
+      },
+      "byProvider": {
+        "anthropic":   { "tokens": 1234567, "costUSD": 12.34 }
+      },
+      "byModel": [
+        { "tool": "claude-code", "provider": "anthropic", "id": "claude-opus-4-7", "tokens": 1000000, "costUSD": 10.00, "sessions": 4, "messages": 200 }
+      ],
+      "byProject": {
+        "dotfiles":     { "tokens": 800000, "costUSD": 8.00, "sessions": 3 },
+        "nicknisi.com": { "tokens": 434567, "costUSD": 4.34, "sessions": 2 }
       }
     }
   ],
@@ -175,9 +186,26 @@ Single JSON file, single top-level object. Versioned via a `schemaVersion` field
 ### 4.1 Shape conventions
 
 - **Top-level breakdowns** (`byTool`, `byProvider`, `byModel`, `byProject`) are arrays of objects — preserves deterministic sort order for rendering.
-- **Per-day breakdown** (`daily[i].byTool`) is an object keyed by tool id — compact O(1) lookup at render time without re-sorting.
+- **Per-day breakdowns** (`daily[i].byTool`, `byProvider`, `byProject`) are objects keyed by id — compact O(1) lookup at render time without re-sorting.
+- **`daily[i].byModel`** is an array, not an object, because the natural key is a triple `(tool, provider, id)`.
+- Top-level breakdowns are **derived** from `daily[]` by summing per-day entries, so a merge that preserves old `daily[]` rows preserves all higher-level breakdowns automatically.
 
-### 4.2 Invariants
+### 4.2 History preservation & merge semantics
+
+Local agent session jsonl files may rotate or be pruned over time. To prevent the published gist from silently shrinking as old logs age out, every `publish` run merges the freshly-aggregated data with the *existing gist content*:
+
+1. Fetch the existing gist (via `readGist`).
+2. Compute fresh aggregate from current local data → `newDaily[]`.
+3. Merge by `date`: for any date present in both, the new entry wins (re-runs of the same day overwrite). For any date present only in the existing gist, carry it forward.
+4. Re-derive top-level breakdowns and summary stats from the merged `daily[]`.
+5. Re-derive `peakHourLocal` from the sum of `hourCounts` across all merged days.
+6. Replace `weeklyHighlights[]` entirely with fresh PR data (PRs are queried fresh on every run; no merge needed).
+
+A `--reset` flag bypasses the merge step and rebuilds purely from local data — for fixing corrupted gists or after an `exclude.json` change that should retroactively redact already-published basenames.
+
+### 4.3 Invariants
+
+### 4.3 Invariants
 
 - All arrays are sorted deterministically: `byTool` / `byProvider` / `byModel` by `costUSD desc`; `byProject` by `costUSD desc`; `daily` by `date asc`; `weeklyHighlights` by `weekEnding desc`; `pullRequests` within a week by `additions + deletions desc`.
 - All money values are `number` USD with 2 decimal places after rounding.
@@ -220,7 +248,7 @@ Single JSON file, single top-level object. Versioned via a `schemaVersion` field
 | Claude Code | `~/.claude/projects/<encoded-cwd>/<session-id>.jsonl` | Tokens only; cost computed from `pricing.ts`. |
 | Pi | `~/.pi/agent/sessions/<encoded-cwd>/<timestamp>_<id>.jsonl` | Pre-computes cost per message in `usage.cost.total`. Trust it. |
 | Codex | `~/.codex/sessions/**/*.jsonl` | Path verified on first run; if dir missing, parser returns empty. Tokens only; cost computed from `pricing.ts`. |
-| GitHub PRs | `gh search prs --author=<user> --created=<from>..<to> --json url,repository,number,title,state,createdAt,mergedAt,additions,deletions` | Paged in week-sized windows back to oldest local data. |
+| GitHub PRs | `gh search prs --author=<user> --created=<from>..<to>` then `gh pr view` per row | Default: `from = oldest local event date`. With `--all`, `from = 2010-01-01`. |
 
 ### 5.3 Pricing Table
 
@@ -267,11 +295,18 @@ Excluded projects are dropped from `byProject` *and* their tokens are subtracted
 ### 5.6 CLI
 
 ```
-tokenmaxing build              # parse + aggregate, write ./out/tokenmaxing.json (no publish)
-tokenmaxing publish            # build + publish to gist + call deploy hook
-tokenmaxing dry-run            # build + diff against current gist content; no write
-tokenmaxing list-projects      # dump basenames seen in inputs (for exclude.json review)
+tokenmaxing build [--all] [--reset]   # parse + aggregate, write ./out/tokenmaxing.json (no publish)
+tokenmaxing publish [--all] [--reset] # build + publish to gist + call deploy hook
+tokenmaxing dry-run [--all] [--reset] # build + diff against current gist content; no write
+tokenmaxing list-projects             # dump basenames seen in inputs (for exclude.json review)
 ```
+
+**Flags:**
+
+- `--all` — for the PR fetch, use `2010-01-01` as the lower bound instead of the oldest local event date. Useful for first run / backfill. Has no effect on local agent data parsing (parsers always walk everything).
+- `--reset` — bypass the gist merge step (§4.2) and rebuild purely from local data. Use after an `exclude.json` change that should retroactively redact already-published basenames, or when fixing a corrupted gist.
+
+Without `--reset`, `build`/`publish`/`dry-run` perform the merge described in §4.2 — fresh local-data aggregate is unioned with the existing gist by `daily[].date`, with new entries winning on the same date.
 
 Default exit code 0 on success; non-zero on any unrecoverable error (missing config, gh auth failure, deploy hook 5xx).
 
