@@ -76,6 +76,15 @@ src/
 
 # Phase 1 — Generator (`~/Developer/tokenmaxing/`)
 
+> **Plan addendum (mid-implementation revisions, 2026-04-28):**
+> - **T8 data shape extended.** `daily[]` carries full per-day breakdowns (`byTool`, `byProvider`, `byModel`, `byProject`) plus a 24-element `hourCounts` histogram. Top-level views are *derived* from `daily[]` so a date-keyed merge across runs preserves history past local log retention. See spec §4.2.
+> - **T11 gained `--all` and `--reset` flags.** `--all` = fetch PRs from `2010-01-01` (full backfill). `--reset` = skip the gist merge and rebuild from local data only. Default is incremental merge.
+> - **New module `src/project.ts` (`resolveProject`).** Fixes worktree/branch conflation by collapsing any path under `~/Developer/<repo>/...` to `<repo>`. Used by aggregator + `list-projects`.
+> - **`exclude.json` extended with `projectPrefixes`.** Bulk-filters `eval-*`, `agent-*` style scratch dirs.
+> - **New `include.json` (allowlist).** Fail-closed publishing — when present, only listed projects pass through. exclude still applies as subtraction within the allowed set.
+>
+> Original task text below; some snippets show the pre-revision shapes. The committed code under `~/Developer/tokenmaxing/` is the source of truth.
+
 ## Task 1: Bootstrap the Bun project
 
 **Files:**
