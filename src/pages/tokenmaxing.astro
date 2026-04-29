@@ -5,6 +5,7 @@ import StatsGrid from '@/components/tokenmaxing/StatsGrid.astro';
 import StaleBadge from '@/components/tokenmaxing/StaleBadge.astro';
 import MobyDickFooter from '@/components/tokenmaxing/MobyDickFooter.astro';
 import Dashboard from '@/components/tokenmaxing/Dashboard.tsx';
+import WeeklyHighlights from '@/components/tokenmaxing/WeeklyHighlights.astro';
 
 const entry = await getEntry('tokenmaxing', 'current');
 const data = entry?.data;
@@ -48,6 +49,7 @@ const data = entry?.data;
 							}}
 						/>
 					</div>
+					<WeeklyHighlights weeks={data.weeklyHighlights} />
 					<MobyDickFooter totalTokens={data.summary.totalTokens} />
 				</>
 			)

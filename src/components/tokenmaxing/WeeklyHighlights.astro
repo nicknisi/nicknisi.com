@@ -1,0 +1,45 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+	weeks: CollectionEntry<'tokenmaxing'>['data']['weeklyHighlights'];
+}
+const { weeks } = Astro.props;
+
+const stateBadge = {
+	merged: { cls: 'bg-purple-200 text-purple-900 dark:bg-purple-900/40 dark:text-purple-200', label: 'merged' },
+	open: { cls: 'bg-green-200 text-green-900 dark:bg-green-900/40 dark:text-green-200', label: 'open' },
+	closed: { cls: 'bg-gray-200 text-gray-700 dark:bg-gray-800 dark:text-gray-300', label: 'closed' },
+};
+---
+
+<section class="mt-12 space-y-8">
+	<h2 class="font-serif text-2xl font-semibold">Weekly Highlights</h2>
+	{weeks.length === 0 && <p class="text-gray-500 dark:text-gray-400">No public PRs in this period.</p>}
+	{
+		weeks.map(w => (
+			<div>
+				<h3 class="mb-3 font-mono text-sm uppercase tracking-wide text-gray-500 dark:text-gray-400">
+					Week of {w.weekEnding}
+				</h3>
+				<ul class="space-y-2">
+					{w.pullRequests.map(pr => (
+						<li class="flex flex-wrap items-baseline gap-x-3 gap-y-1 border-b border-gray-100 py-2 dark:border-dark-border">
+							<span class={`rounded px-2 py-0.5 text-xs font-medium ${stateBadge[pr.state].cls}`}>
+								{stateBadge[pr.state].label}
+							</span>
+							<a href={pr.url} class="font-mono text-sm hover:underline" target="_blank" rel="noopener">
+								{pr.repo}#{pr.number}
+							</a>
+							<span class="text-gray-700 dark:text-gray-300">{pr.title}</span>
+							<span class="ml-auto whitespace-nowrap font-mono text-xs">
+								<span class="text-green-700 dark:text-green-400">+{pr.additions}</span>{' '}
+								<span class="text-red-700 dark:text-red-400">-{pr.deletions}</span>
+							</span>
+						</li>
+					))}
+				</ul>
+			</div>
+		))
+	}
+</section>
