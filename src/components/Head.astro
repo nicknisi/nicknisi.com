@@ -6,9 +6,10 @@ interface Props {
 	description?: string | undefined;
 	headerImage?: string | undefined;
 	colorscheme?: 'light' | 'dark' | 'light dark';
+	noindex?: boolean | undefined;
 }
 
-const { colorscheme = 'light dark', ...props } = Astro.props;
+const { colorscheme = 'light dark', noindex = false, ...props } = Astro.props;
 const { site, url } = Astro;
 const title = props.title ? `${props.title} | ${metadata.title}` : metadata.title;
 const description = props.description ?? metadata.description;
@@ -34,6 +35,7 @@ const mode = import.meta.env.MODE;
 
 	<meta name="author" content={metadata.author.name} />
 	<meta name="description" content={description} />
+	{noindex && <meta name="robots" content="noindex, nofollow" />}
 	<link rel="canonical" href={url} />
 
 	<!-- Twitter Card -->

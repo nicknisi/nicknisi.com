@@ -19,13 +19,14 @@ interface Props {
 	hideFooter?: boolean | undefined;
 	heroImage?: HeroImage | undefined;
 	fullWidth?: boolean | undefined;
+	noindex?: boolean | undefined;
 }
 
-const { heroImage, title = '', description, hideHeader, hideFooter, headerImage, fullWidth } = Astro.props;
+const { heroImage, title = '', description, hideHeader, hideFooter, headerImage, fullWidth, noindex } = Astro.props;
 ---
 
 <html lang="en">
-	<Head title={title} description={description} headerImage={headerImage} />
+	<Head title={title} description={description} headerImage={headerImage} noindex={noindex} />
 	<ClientRouter />
 	<script is:inline>
 		// Restore theme before paint on every View Transition swap

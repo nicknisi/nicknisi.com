@@ -1,3 +1,5 @@
 # allow bots to scan and index the site
 User-agent: *
 Allow: /
+Disallow: /tokens
+Disallow: /tokens/
