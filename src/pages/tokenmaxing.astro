@@ -4,6 +4,7 @@ import { getEntry } from 'astro:content';
 import StatsGrid from '@/components/tokenmaxing/StatsGrid.astro';
 import StaleBadge from '@/components/tokenmaxing/StaleBadge.astro';
 import MobyDickFooter from '@/components/tokenmaxing/MobyDickFooter.astro';
+import Dashboard from '@/components/tokenmaxing/Dashboard.tsx';
 
 const entry = await getEntry('tokenmaxing', 'current');
 const data = entry?.data;
@@ -35,6 +36,18 @@ const data = entry?.data;
 			data && (
 				<>
 					<StatsGrid summary={data.summary} />
+					<div class="mt-8">
+						<Dashboard
+							client:load
+							daily={data.daily}
+							breakdown={{
+								byTool: data.byTool,
+								byProvider: data.byProvider,
+								byModel: data.byModel,
+								byProject: data.byProject,
+							}}
+						/>
+					</div>
 					<MobyDickFooter totalTokens={data.summary.totalTokens} />
 				</>
 			)
