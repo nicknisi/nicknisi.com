@@ -205,6 +205,7 @@ const tokenmaxing = defineCollection({
 						mergedAt: z.string().nullable(),
 					}),
 				),
+				summary: z.string().nullable().optional(),
 			}),
 		),
 	}),
