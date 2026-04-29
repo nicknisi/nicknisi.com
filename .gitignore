@@ -2,3 +2,6 @@ node_modules/
 .astro/
 dist/
 .wrangler/
+
+# tokenmaxing dev fixture — NEVER commit (contains real aggregate data)
+src/content/data/tokenmaxing.fixture.json

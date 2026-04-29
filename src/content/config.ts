@@ -1,6 +1,7 @@
 import { z, defineCollection } from 'astro:content';
 import { file } from 'astro/loaders';
 import { authorFeedLoader } from '@/loaders/bsky.js';
+import { tokenmaxingLoader } from '@/loaders/tokenmaxing.js';
 import TalkSchema from './schemas/Talk';
 
 const posts = defineCollection({
@@ -79,6 +80,136 @@ const jobs = defineCollection({
 	}),
 });
 
+const tokenmaxing = defineCollection({
+	loader: tokenmaxingLoader({
+		user: 'nicknisi',
+		gistId: import.meta.env['TOKENMAXING_GIST_ID'] ?? '',
+		fixturePath: 'content/data/tokenmaxing.fixture.json',
+	}),
+	schema: z.object({
+		schemaVersion: z.literal(1),
+		generatedAt: z.string(),
+		period: z.object({ from: z.string(), to: z.string() }),
+		summary: z.object({
+			totalCostUSD: z.number(),
+			totalTokens: z.number(),
+			sessions: z.number(),
+			messages: z.number(),
+			activeDays: z.number(),
+			currentStreakDays: z.number(),
+			longestStreakDays: z.number(),
+			peakHourLocal: z.number(),
+			favoriteModel: z.object({
+				tool: z.enum(['claude-code', 'pi', 'codex']),
+				provider: z.string(),
+				id: z.string(),
+				label: z.string(),
+			}),
+		}),
+		byTool: z.array(
+			z.object({
+				id: z.enum(['claude-code', 'pi', 'codex']),
+				label: z.string(),
+				tokens: z.number(),
+				costUSD: z.number(),
+				sessions: z.number(),
+				messages: z.number(),
+			}),
+		),
+		byProvider: z.array(
+			z.object({
+				id: z.string(),
+				label: z.string(),
+				tokens: z.number(),
+				costUSD: z.number(),
+			}),
+		),
+		byModel: z.array(
+			z.object({
+				tool: z.enum(['claude-code', 'pi', 'codex']),
+				provider: z.string(),
+				id: z.string(),
+				label: z.string(),
+				tokens: z.number(),
+				costUSD: z.number(),
+				sessions: z.number(),
+				messages: z.number(),
+			}),
+		),
+		byProject: z.array(
+			z.object({
+				label: z.string(),
+				tokens: z.number(),
+				costUSD: z.number(),
+				sessions: z.number(),
+			}),
+		),
+		daily: z.array(
+			z.object({
+				date: z.string(),
+				tokens: z.number(),
+				costUSD: z.number(),
+				sessions: z.number(),
+				messages: z.number(),
+				hourCounts: z.array(z.number()).length(24),
+				byTool: z.record(
+					z.string(),
+					z.object({
+						tokens: z.number(),
+						costUSD: z.number(),
+						sessions: z.number(),
+						messages: z.number(),
+					}),
+				),
+				byProvider: z.record(
+					z.string(),
+					z.object({
+						tokens: z.number(),
+						costUSD: z.number(),
+					}),
+				),
+				byModel: z.array(
+					z.object({
+						tool: z.enum(['claude-code', 'pi', 'codex']),
+						provider: z.string(),
+						id: z.string(),
+						tokens: z.number(),
+						costUSD: z.number(),
+						sessions: z.number(),
+						messages: z.number(),
+					}),
+				),
+				byProject: z.record(
+					z.string(),
+					z.object({
+						tokens: z.number(),
+						costUSD: z.number(),
+						sessions: z.number(),
+					}),
+				),
+			}),
+		),
+		weeklyHighlights: z.array(
+			z.object({
+				weekEnding: z.string(),
+				pullRequests: z.array(
+					z.object({
+						url: z.string(),
+						repo: z.string(),
+						number: z.number(),
+						title: z.string(),
+						state: z.enum(['open', 'merged', 'closed']),
+						additions: z.number(),
+						deletions: z.number(),
+						createdAt: z.string(),
+						mergedAt: z.string().nullable(),
+					}),
+				),
+			}),
+		),
+	}),
+});
+
 export const collections = {
 	posts,
 	jobs,
@@ -86,4 +217,5 @@ export const collections = {
 	profiles,
 	bluesky,
 	appearances,
+	tokenmaxing,
 };
