@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '@/layouts/Base.astro';
 import { getEntry } from 'astro:content';
-import StatsGrid from '@/components/tokenmaxing/StatsGrid.astro';
 import StaleBadge from '@/components/tokenmaxing/StaleBadge.astro';
 import MobyDickFooter from '@/components/tokenmaxing/MobyDickFooter.astro';
 import Dashboard from '@/components/tokenmaxing/Dashboard.tsx';
@@ -43,19 +42,20 @@ const data = entry?.data;
 		{
 			data && (
 				<>
-					<StatsGrid summary={data.summary} />
-					<div class="mt-8">
-						<Dashboard
-							client:load
-							daily={data.daily}
-							breakdown={{
-								byTool: data.byTool,
-								byProvider: data.byProvider,
-								byModel: data.byModel,
-								byProject: data.byProject,
-							}}
-						/>
-					</div>
+					<Dashboard
+						client:load
+						daily={data.daily}
+						breakdown={{
+							byTool: data.byTool,
+							byProvider: data.byProvider,
+							byModel: data.byModel,
+							byProject: data.byProject,
+						}}
+						staticSummary={{
+							currentStreakDays: data.summary.currentStreakDays,
+							longestStreakDays: data.summary.longestStreakDays,
+						}}
+					/>
 					<WeeklyHighlights weeks={data.weeklyHighlights} />
 					<MobyDickFooter totalTokens={data.summary.totalTokens} />
 				</>

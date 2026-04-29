@@ -42,6 +42,10 @@ export interface Breakdown {
 interface Props {
 	daily: DailyEntry[];
 	breakdown: Breakdown;
+	staticSummary: {
+		currentStreakDays: number;
+		longestStreakDays: number;
+	};
 }
 
 type Range = 'all' | '30d' | '7d';
@@ -65,6 +69,29 @@ const fmtUsd = new Intl.NumberFormat('en-US', {
 	maximumFractionDigits: 2,
 });
 const fmtVal = (m: Metric, n: number) => (m === 'costUSD' ? fmtUsd.format(n) : fmtInt.format(n));
+const fmtCompactTokens = (n: number) => {
+	if (n >= 1e9) return (n / 1e9).toFixed(1) + 'B';
+	if (n >= 1e6) return (n / 1e6).toFixed(1) + 'M';
+	if (n >= 1e3) return (n / 1e3).toFixed(1) + 'K';
+	return String(n);
+};
+const fmtHour = (h: number) => `${h % 12 || 12} ${h < 12 ? 'AM' : 'PM'}`;
+
+function StatsGrid({ tiles }: { tiles: Array<{ label: string; value: string }> }) {
+	return (
+		<div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+			{tiles.map(t => (
+				<div
+					key={t.label}
+					className="rounded-lg border border-gray-200 bg-white/60 p-4 dark:border-dark-border dark:bg-dark-surface/60"
+				>
+					<div className="text-xs text-gray-500 dark:text-gray-400">{t.label}</div>
+					<div className="mt-1 font-mono text-2xl font-semibold">{t.value}</div>
+				</div>
+			))}
+		</div>
+	);
+}
 
 function Heatmap({ daily, metric }: { daily: DailyEntry[]; metric: Metric }) {
 	if (daily.length === 0) {
@@ -154,12 +181,59 @@ function BreakdownTable({
 	);
 }
 
-export default function Dashboard({ daily, breakdown }: Props) {
+export default function Dashboard({ daily, breakdown, staticSummary }: Props) {
 	const [range, setRange] = useState<Range>('all');
 	const [metric, setMetric] = useState<Metric>('tokens');
 	const [view, setView] = useState<View>('overview');
 
 	const filtered = useMemo(() => filterByRange(daily, range), [daily, range]);
+
+	const stats = useMemo(() => {
+		const totalCostUSD = filtered.reduce((s, d) => s + d.costUSD, 0);
+		const totalTokens = filtered.reduce((s, d) => s + d.tokens, 0);
+		const sessions = filtered.reduce((s, d) => s + d.sessions, 0);
+		const messages = filtered.reduce((s, d) => s + d.messages, 0);
+		const activeDays = filtered.filter(d => d.messages > 0).length;
+		const hourCounts = new Array<number>(24).fill(0);
+		for (const d of filtered) for (let h = 0; h < 24; h++) hourCounts[h]! += d.hourCounts[h] ?? 0;
+		let peakHour = 0;
+		for (let h = 1; h < 24; h++) if (hourCounts[h]! > hourCounts[peakHour]!) peakHour = h;
+		const modelMsgs = new Map<
+			string,
+			{ ref: { tool: string; provider: string; id: string }; messages: number }
+		>();
+		for (const d of filtered) {
+			for (const m of d.byModel) {
+				const k = `${m.tool}|${m.provider}|${m.id}`;
+				const slot = modelMsgs.get(k) ?? {
+					ref: { tool: m.tool, provider: m.provider, id: m.id },
+					messages: 0,
+				};
+				slot.messages += m.messages;
+				modelMsgs.set(k, slot);
+			}
+		}
+		const favorite = [...modelMsgs.values()].sort((a, b) => b.messages - a.messages)[0];
+		const favoriteLabel = favorite ? favorite.ref.id : '—';
+		return { totalCostUSD, totalTokens, sessions, messages, activeDays, peakHour, favoriteLabel };
+	}, [filtered]);
+
+	const tiles = useMemo(
+		() => [
+			{ label: 'Total cost', value: fmtUsd.format(stats.totalCostUSD) },
+			{ label: 'Total tokens', value: fmtCompactTokens(stats.totalTokens) },
+			{ label: 'Sessions', value: fmtInt.format(stats.sessions) },
+			{ label: 'Messages', value: fmtInt.format(stats.messages) },
+			{ label: 'Active days', value: fmtInt.format(stats.activeDays) },
+			{ label: 'Current streak', value: `${staticSummary.currentStreakDays}d` },
+			{ label: 'Longest streak', value: `${staticSummary.longestStreakDays}d` },
+			{ label: 'Peak hour', value: fmtHour(stats.peakHour) },
+			{ label: 'Favorite model', value: stats.favoriteLabel },
+		],
+		[stats, staticSummary],
+	);
+
+	const rangeLabel = range === 'all' ? 'All time' : range === '30d' ? 'Last 30 days' : 'Last 7 days';
 
 	const breakdownRows = useMemo(() => {
 		switch (view) {
@@ -189,6 +263,12 @@ export default function Dashboard({ daily, breakdown }: Props) {
 
 	return (
 		<div className="space-y-6">
+			<div className="text-sm text-gray-500 dark:text-gray-400">
+				Showing: <span className="font-medium text-gray-700 dark:text-gray-300">{rangeLabel}</span>
+			</div>
+
+			<StatsGrid tiles={tiles} />
+
 			<div className="flex flex-wrap items-center justify-between gap-3">
 				<div className="flex gap-2">
 					<button className={pillCls(range === 'all')} onClick={() => setRange('all')}>
