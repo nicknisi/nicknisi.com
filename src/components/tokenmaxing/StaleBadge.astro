@@ -1,0 +1,16 @@
+---
+interface Props {
+	generatedAt: string;
+}
+const { generatedAt } = Astro.props;
+const ageMs = Date.now() - new Date(generatedAt).getTime();
+const stale = ageMs > 14 * 24 * 60 * 60 * 1000;
+---
+
+{
+	stale && (
+		<span class="inline-block rounded-full bg-yellow-100 px-3 py-1 text-xs font-medium text-yellow-900 dark:bg-yellow-900/30 dark:text-yellow-200">
+			Data may be stale
+		</span>
+	)
+}

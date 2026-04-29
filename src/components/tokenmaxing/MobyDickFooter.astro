@@ -1,0 +1,12 @@
+---
+interface Props {
+	totalTokens: number;
+}
+const { totalTokens } = Astro.props;
+const MOBY_DICK_TOKENS = 215_000;
+const ratio = Math.round(totalTokens / MOBY_DICK_TOKENS);
+---
+
+<p class="mt-12 text-center text-sm text-gray-500 dark:text-gray-400">
+	You've used ~{ratio.toLocaleString()}× more tokens than Moby-Dick.
+</p>

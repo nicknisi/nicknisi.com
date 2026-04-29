@@ -1,0 +1,41 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+	summary: CollectionEntry<'tokenmaxing'>['data']['summary'];
+}
+const { summary } = Astro.props;
+
+const fmtInt = new Intl.NumberFormat('en-US');
+const fmtUsd = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 2 });
+const fmtCompactTokens = (n: number) => {
+	if (n >= 1e9) return (n / 1e9).toFixed(1) + 'B';
+	if (n >= 1e6) return (n / 1e6).toFixed(1) + 'M';
+	if (n >= 1e3) return (n / 1e3).toFixed(1) + 'K';
+	return String(n);
+};
+const fmtHour = (h: number) => `${h % 12 || 12} ${h < 12 ? 'AM' : 'PM'}`;
+
+const tiles = [
+	{ label: 'Total cost', value: fmtUsd.format(summary.totalCostUSD) },
+	{ label: 'Total tokens', value: fmtCompactTokens(summary.totalTokens) },
+	{ label: 'Sessions', value: fmtInt.format(summary.sessions) },
+	{ label: 'Messages', value: fmtInt.format(summary.messages) },
+	{ label: 'Active days', value: fmtInt.format(summary.activeDays) },
+	{ label: 'Current streak', value: `${summary.currentStreakDays}d` },
+	{ label: 'Longest streak', value: `${summary.longestStreakDays}d` },
+	{ label: 'Peak hour', value: fmtHour(summary.peakHourLocal) },
+	{ label: 'Favorite model', value: summary.favoriteModel.label },
+];
+---
+
+<div class="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+	{
+		tiles.map(t => (
+			<div class="rounded-lg border border-gray-200 bg-white/60 p-4 dark:border-dark-border dark:bg-dark-surface/60">
+				<div class="text-xs text-gray-500 dark:text-gray-400">{t.label}</div>
+				<div class="mt-1 font-mono text-2xl font-semibold">{t.value}</div>
+			</div>
+		))
+	}
+</div>
