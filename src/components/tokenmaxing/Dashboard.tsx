@@ -39,6 +39,12 @@ export interface Breakdown {
 	byProject: Array<{ label: string; tokens: number; costUSD: number; sessions: number }>;
 }
 
+interface PullRequestSummary {
+	createdAt: string;
+	mergedAt: string | null;
+	state: 'open' | 'merged' | 'closed';
+}
+
 interface Props {
 	daily: DailyEntry[];
 	breakdown: Breakdown;
@@ -46,19 +52,35 @@ interface Props {
 		currentStreakDays: number;
 		longestStreakDays: number;
 	};
+	pullRequests: PullRequestSummary[];
 }
 
 type Range = 'all' | '30d' | '7d';
 type Metric = 'tokens' | 'costUSD';
 type View = 'overview' | 'tool' | 'provider' | 'model' | 'project';
 
-function filterByRange(daily: DailyEntry[], range: Range): DailyEntry[] {
-	if (range === 'all') return daily;
+function getCutoffDate(range: Range): string | null {
+	if (range === 'all') return null;
 	const days = range === '7d' ? 7 : 30;
 	const cutoff = new Date();
 	cutoff.setUTCDate(cutoff.getUTCDate() - days);
-	const cutoffYmd = cutoff.toISOString().slice(0, 10);
-	return daily.filter(d => d.date >= cutoffYmd);
+	return cutoff.toISOString().slice(0, 10);
+}
+
+function filterByRange(daily: DailyEntry[], range: Range): DailyEntry[] {
+	const cutoff = getCutoffDate(range);
+	if (!cutoff) return daily;
+	return daily.filter(d => d.date >= cutoff);
+}
+
+function fmtDateRange(first: string, last: string): string {
+	const fmt = (d: string) =>
+		new Date(d + 'T12:00:00Z').toLocaleDateString('en-US', {
+			month: 'short',
+			day: 'numeric',
+			year: 'numeric',
+		});
+	return `${fmt(first)} – ${fmt(last)}`;
 }
 
 const fmtInt = new Intl.NumberFormat('en-US');
@@ -79,14 +101,14 @@ const fmtHour = (h: number) => `${h % 12 || 12} ${h < 12 ? 'AM' : 'PM'}`;
 
 function StatsGrid({ tiles }: { tiles: Array<{ label: string; value: string }> }) {
 	return (
-		<div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+		<div className="grid grid-cols-2 gap-2 sm:gap-3 md:grid-cols-5">
 			{tiles.map(t => (
 				<div
 					key={t.label}
-					className="rounded-lg border border-gray-200 bg-white/60 p-4 dark:border-dark-border dark:bg-dark-surface/60"
+					className="rounded-lg border border-gray-200 bg-white/60 px-3 py-3 sm:p-4 dark:border-dark-border dark:bg-dark-surface/60"
 				>
-					<div className="text-xs text-gray-500 dark:text-gray-400">{t.label}</div>
-					<div className="mt-1 font-mono text-2xl font-semibold">{t.value}</div>
+					<div className="text-[11px] uppercase tracking-wide text-gray-500 dark:text-gray-400">{t.label}</div>
+					<div className="mt-0.5 font-mono text-lg font-semibold sm:mt-1 sm:text-2xl">{t.value}</div>
 				</div>
 			))}
 		</div>
@@ -181,12 +203,25 @@ function BreakdownTable({
 	);
 }
 
-export default function Dashboard({ daily, breakdown, staticSummary }: Props) {
+export default function Dashboard({ daily, breakdown, staticSummary, pullRequests }: Props) {
 	const [range, setRange] = useState<Range>('all');
 	const [metric, setMetric] = useState<Metric>('tokens');
 	const [view, setView] = useState<View>('overview');
 
 	const filtered = useMemo(() => filterByRange(daily, range), [daily, range]);
+
+	const prCount = useMemo(() => {
+		const cutoff = getCutoffDate(range);
+		return pullRequests.filter(pr => {
+			const d = (pr.mergedAt ?? pr.createdAt).slice(0, 10);
+			return !cutoff || d >= cutoff;
+		}).length;
+	}, [pullRequests, range]);
+
+	const dateRange = useMemo(() => {
+		if (filtered.length === 0) return '';
+		return fmtDateRange(filtered[0]!.date, filtered[filtered.length - 1]!.date);
+	}, [filtered]);
 
 	const stats = useMemo(() => {
 		const totalCostUSD = filtered.reduce((s, d) => s + d.costUSD, 0);
@@ -224,16 +259,15 @@ export default function Dashboard({ daily, breakdown, staticSummary }: Props) {
 			{ label: 'Total tokens', value: fmtCompactTokens(stats.totalTokens) },
 			{ label: 'Sessions', value: fmtInt.format(stats.sessions) },
 			{ label: 'Messages', value: fmtInt.format(stats.messages) },
+			{ label: 'PRs shipped', value: fmtInt.format(prCount) },
 			{ label: 'Active days', value: fmtInt.format(stats.activeDays) },
 			{ label: 'Current streak', value: `${staticSummary.currentStreakDays}d` },
 			{ label: 'Longest streak', value: `${staticSummary.longestStreakDays}d` },
 			{ label: 'Peak hour', value: fmtHour(stats.peakHour) },
 			{ label: 'Favorite model', value: stats.favoriteLabel },
 		],
-		[stats, staticSummary],
+		[stats, staticSummary, prCount],
 	);
-
-	const rangeLabel = range === 'all' ? 'All time' : range === '30d' ? 'Last 30 days' : 'Last 7 days';
 
 	const breakdownRows = useMemo(() => {
 		switch (view) {
@@ -264,7 +298,9 @@ export default function Dashboard({ daily, breakdown, staticSummary }: Props) {
 	return (
 		<div className="space-y-6">
 			<div className="text-sm text-gray-500 dark:text-gray-400">
-				Showing: <span className="font-medium text-gray-700 dark:text-gray-300">{rangeLabel}</span>
+				{dateRange && (
+					<span className="font-medium text-gray-700 dark:text-gray-300">{dateRange}</span>
+				)}
 			</div>
 
 			<StatsGrid tiles={tiles} />

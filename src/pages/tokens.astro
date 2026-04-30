@@ -56,6 +56,13 @@ const data = entry?.data;
 							currentStreakDays: data.summary.currentStreakDays,
 							longestStreakDays: data.summary.longestStreakDays,
 						}}
+						pullRequests={data.weeklyHighlights.flatMap(w =>
+							w.pullRequests.map(pr => ({
+								createdAt: pr.createdAt,
+								mergedAt: pr.mergedAt,
+								state: pr.state,
+							})),
+						)}
 					/>
 					<WeeklyHighlights weeks={data.weeklyHighlights} />
 					<MobyDickFooter totalTokens={data.summary.totalTokens} />
