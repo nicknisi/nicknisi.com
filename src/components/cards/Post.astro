@@ -11,18 +11,13 @@ interface Props {
 const { post } = Astro.props;
 const href = post.data.external ?? `/posts/${post.slug}`;
 
-// Deterministic accent per post so the grid varies without being random.
-const accents = ['tomato', 'grape', 'pine', 'sky', 'marigold'] as const;
+// Band color is derived from the active accent: tomato and grape both rebind
+// with the accent switcher, so the whole grid recolors when the accent
+// changes. Deterministic per post so the two-tone rhythm is stable.
+const bandClasses = ['bg-tomato', 'bg-grape'] as const;
 const tag = post.data.tags?.[0];
 const key = (tag ?? post.slug) ?? '';
-const accent = accents[[...key].reduce((a, c) => a + c.charCodeAt(0), 0) % accents.length];
-const bandClass: Record<(typeof accents)[number], string> = {
-	tomato: 'bg-tomato',
-	grape: 'bg-grape',
-	pine: 'bg-pine',
-	sky: 'bg-sky',
-	marigold: 'bg-marigold',
-};
+const band = bandClasses[[...key].reduce((a, c) => a + c.charCodeAt(0), 0) % bandClasses.length];
 ---
 
 <a
@@ -30,7 +25,7 @@ const bandClass: Record<(typeof accents)[number], string> = {
 	transition:name={`post-${post.slug}`}
 	class="tactile group flex flex-col overflow-hidden rounded-[14px] border-2 border-ink bg-card no-underline shadow-hard-sm"
 >
-	<span class:list={['block h-3 border-b-2 border-ink', bandClass[accent]]}></span>
+	<span class:list={['block h-3 border-b-2 border-ink', band]}></span>
 
 	<span class="flex flex-1 flex-col gap-2.5 p-5">
 		<span class="flex items-center gap-2 font-mono text-xs tracking-wide text-ink-soft uppercase">
