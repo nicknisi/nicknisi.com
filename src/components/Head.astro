@@ -7,9 +7,10 @@ interface Props {
 	headerImage?: string | undefined;
 	colorscheme?: 'light' | 'dark' | 'light dark';
 	noindex?: boolean | undefined;
+	markdownPath?: string | undefined;
 }
 
-const { colorscheme = 'light dark', noindex = false, ...props } = Astro.props;
+const { colorscheme = 'light dark', noindex = false, markdownPath, ...props } = Astro.props;
 const { site, url } = Astro;
 const title = props.title ? `${props.title} | ${metadata.title}` : metadata.title;
 const description = props.description ?? metadata.description;
@@ -28,6 +29,7 @@ const mode = import.meta.env.MODE;
 	<meta name="theme-color" content="#240754" />
 
 	<link rel="alternate" href={metadata.feed.path} type="application/atom+xml" title={metadata.title} />
+	{markdownPath && <link rel="alternate" href={markdownPath} type="text/markdown" title={`${title} (Markdown)`} />}
 	<link rel="webmention" href="https://webmention.io/nicknisi.com/webmention" />
 	<link rel="pingback" href="https://webmention.io/nicknisi.com/xmlrpc" />
 

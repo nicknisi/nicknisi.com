@@ -20,13 +20,30 @@ interface Props {
 	heroImage?: HeroImage | undefined;
 	fullWidth?: boolean | undefined;
 	noindex?: boolean | undefined;
+	markdownPath?: string | undefined;
 }
 
-const { heroImage, title = '', description, hideHeader, hideFooter, headerImage, fullWidth, noindex } = Astro.props;
+const {
+	heroImage,
+	title = '',
+	description,
+	hideHeader,
+	hideFooter,
+	headerImage,
+	fullWidth,
+	noindex,
+	markdownPath,
+} = Astro.props;
 ---
 
 <html lang="en">
-	<Head title={title} description={description} headerImage={headerImage} noindex={noindex} />
+	<Head
+		title={title}
+		description={description}
+		headerImage={headerImage}
+		noindex={noindex}
+		markdownPath={markdownPath}
+	/>
 	<ClientRouter />
 	<script is:inline>
 		// Accent default is RANDOM per visit, UNLESS the visitor explicitly
@@ -47,16 +64,14 @@ const { heroImage, title = '', description, hideHeader, hideFooter, headerImage,
 	<script is:inline>
 		// Restore theme before paint on every View Transition swap
 		document.addEventListener('astro:after-swap', () => {
-			const theme = localStorage.getItem('theme') ||
-				(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+			const theme =
+				localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
 			if (theme === 'dark') {
 				document.documentElement.classList.add('dark');
 			} else {
 				document.documentElement.classList.remove('dark');
 			}
-			document.documentElement.dataset.accent = window.__resolveAccent
-				? window.__resolveAccent()
-				: 'grape';
+			document.documentElement.dataset.accent = window.__resolveAccent ? window.__resolveAccent() : 'grape';
 		});
 	</script>
 	<body class:list={['font-sans', 'font-normal', 'bg-paper', 'text-ink', 'flex', 'min-h-screen', 'flex-col']}>
