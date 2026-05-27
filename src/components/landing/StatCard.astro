@@ -2,12 +2,35 @@
 interface Props {
 	value: string;
 	label: string;
+	accent?: 'tomato' | 'grape' | 'pine' | 'sky' | 'marigold';
 }
 
-const { value, label } = Astro.props;
+const { value, label, accent = 'marigold' } = Astro.props;
+
+// Each stat gets its own committed color block on the value, so the row of
+// three reads as varied rather than an identical metric template.
+const valueColor: Record<string, string> = {
+	tomato: 'text-tomato',
+	grape: 'text-grape',
+	pine: 'text-pine',
+	sky: 'text-sky',
+	marigold: 'text-marigold',
+};
+const dotColor: Record<string, string> = {
+	tomato: 'bg-tomato',
+	grape: 'bg-grape',
+	pine: 'bg-pine',
+	sky: 'bg-sky',
+	marigold: 'bg-marigold',
+};
 ---
 
-<div class="hover-glow rounded-2xl bg-white/50 p-8 text-center shadow-purple-500/5 dark:bg-dark-surface">
-	<div class="gradient-text font-serif text-5xl font-bold md:text-6xl">{value}</div>
-	<p class="mt-2 text-sm text-gray-600 dark:text-gray-300">{label}</p>
+<div class="tactile flex items-baseline gap-4 rounded-[14px] border-2 border-ink bg-card p-6 shadow-hard-sm">
+	<div class:list={['font-display text-5xl leading-none font-extrabold md:text-6xl', valueColor[accent]]}>
+		{value}
+	</div>
+	<p class="flex items-start gap-2 text-sm font-medium text-ink-soft">
+		<span class:list={['mt-1 inline-block h-2.5 w-2.5 shrink-0 rounded-full border-[1.5px] border-ink', dotColor[accent]]}></span>
+		{label}
+	</p>
 </div>

@@ -17,30 +17,42 @@ const { events, reverse } = Astro.props;
 if (reverse) {
 	events.reverse();
 }
+
+const dotColors = ['bg-marigold', 'bg-tomato', 'bg-grape', 'bg-pine', 'bg-sky'];
 ---
 
 <style>
-	.time {
+	.timeline-item > .timeline-card {
+		visibility: hidden;
+		opacity: 0;
+		transform: translateY(18px);
+		transition:
+			transform 0.5s cubic-bezier(0.2, 0.7, 0.3, 1),
+			opacity 0.5s cubic-bezier(0.2, 0.7, 0.3, 1);
 	}
 
-	.in-view::after {
-		background-color: var(--color-purple-700);
-	}
-
-	:global(.dark) .in-view::after {
-		background-color: var(--color-purple-300);
-	}
-
-	.in-view div {
+	.timeline-item.in-view > .timeline-card {
 		visibility: visible;
-		transform: none;
 		opacity: 1;
+		transform: translateY(0);
+	}
+
+	.timeline-item.in-view > .timeline-node {
+		transform: translate(-50%, -50%) scale(1.15);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.timeline-item > .timeline-card {
+			visibility: visible;
+			opacity: 1;
+			transform: none;
+		}
 	}
 </style>
 
 <script>
 	(() => {
-		const items = document.querySelectorAll('.timeline li');
+		const items = document.querySelectorAll('.timeline-item');
 
 		const observer = new IntersectionObserver(
 			entries => {
@@ -62,33 +74,44 @@ if (reverse) {
 	})();
 </script>
 
-<section class="timeline not-prose text-purple-50">
-	<ul class="px-0 py-12">
+<section class="timeline not-prose">
+	<ul class="relative mx-auto max-w-2xl list-none px-0 py-8 before:absolute before:top-0 before:bottom-0 before:left-3 before:w-[3px] before:bg-ink before:content-['']">
 		{
 			events.map((event, i) => (
-				<li class="after:content:[''] relative my-0 ml-5 w-[6px] list-none bg-gray-800 pt-12 shadow-lg after:absolute after:bottom-0 after:left-1/2 after:z-10 after:h-8 after:w-8 after:-translate-x-1/2 after:rounded-full after:transition after:duration-500 after:ease-in-out md:mx-auto dark:bg-white">
-					<div
-						class={`before:content:[''] invisible relative bottom-0 w-64 transform-gpu rounded-lg bg-purple-700 p-4 opacity-0 shadow-lg transition-all duration-500 ease-in-out before:absolute before:bottom-2 before:h-0 before:w-0 before:border-solid md:w-96 dark:bg-purple-300 ${
-							(i + 1) % 2 === 0
-								? 'left-12 translate-x-[-200px] before:-left-4 before:border-y-8 before:border-r-[16px] before:border-transparent before:border-r-purple-700 md:-left-[439px] md:before:-right-4 md:before:left-auto md:before:border-r-0 md:before:border-l-[16px] md:before:border-l-purple-700 dark:before:border-r-purple-300 dark:md:before:border-l-purple-300'
-								: 'left-11 translate-x-[200px] before:-left-4 before:border-y-[8px] before:border-r-[16px] before:border-transparent before:border-r-purple-700 before:outline-hidden dark:before:border-r-purple-300'
-						}`}
-					>
-						<time class="mb-2 block text-lg font-bold">{event.time}</time>
-						{event.text && <p>{event.text}</p>}
+				<li class="timeline-item relative my-0 list-none pl-10 pb-10 last:pb-0">
+					<span
+						class:list={[
+							'timeline-node absolute top-3 left-3 z-10 size-4 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-ink transition-transform duration-500 ease-out',
+							dotColors[i % dotColors.length],
+						]}
+					/>
+					<div class="timeline-card rounded-[14px] border-2 border-ink bg-card p-4 shadow-hard-sm">
+						<time class="block font-mono text-sm font-bold tracking-wide text-ink-soft uppercase">
+							{event.time}
+						</time>
+						{event.text && <p class="mt-2 mb-0 font-display font-bold text-ink">{event.text}</p>}
 						{event.image && (
-							<div class="flex items-center justify-center">
-								<img src={event.image} alt={event.text} class="max-h-36 rounded-lg" />
+							<div class="mt-3 flex items-center justify-center">
+								<img
+									src={event.image}
+									alt={event.text}
+									class="max-h-36 rounded-[10px] border-2 border-ink shadow-hard-sm"
+								/>
 							</div>
 						)}
 						{event.link && (
-							<div class="flex items-center justify-center">
-								<a href={event.link} class="font-bold text-purple-50 hover:text-purple-50">
-									Link
-								</a>
+							<a
+								href={event.link}
+								class="mt-3 inline-flex font-display font-bold text-tomato underline decoration-ink decoration-2 underline-offset-2 hover:decoration-tomato"
+							>
+								Link →
+							</a>
+						)}
+						{event.video && (
+							<div class="mt-3">
+								<Video videoId={event.video} />
 							</div>
 						)}
-						{event.video && <Video videoId={event.video} />}
 					</div>
 				</li>
 			))

@@ -3,12 +3,24 @@ import Base from '@/layouts/Base.astro';
 ---
 
 <Base hideFooter>
-	<div class="m-10">
-		<h1 class="text-xl">Oops!</h1>
-		<p class="mt-2 text-xl leading-relaxed font-light text-gray-500">
-			It looks like you've stumbled upon a page that doesn't exist.
+	<section class="mx-auto flex max-w-2xl flex-col items-start gap-6 px-2 py-16 md:py-24">
+		<span class="sticker -rotate-2"><span class="sticker-dot bg-marigold"></span>error 404</span>
+
+		<h1 class="font-display text-7xl leading-[0.9] font-extrabold tracking-tight md:text-8xl">
+			Lost the
+			<span class="text-tomato">thread.</span>
+		</h1>
+
+		<p class="max-w-[42ch] text-lg leading-relaxed text-ink-soft">
+			This page wandered off, or maybe it never existed. Either way, there's nothing to read here.
+			Let's get you back to somewhere real.
 		</p>
-	</div>
+
+		<div class="mt-2 flex flex-wrap gap-3">
+			<a href="/" class="btn btn-primary">Back home →</a>
+			<a href="/posts" class="btn btn-ghost">Read the blog</a>
+		</div>
+	</section>
 </Base>
 
 <script>

@@ -9,17 +9,23 @@ interface Props {
 const { quote, author, role, company } = Astro.props;
 ---
 
-<div class="rounded-2xl bg-white p-10 text-center dark:bg-dark-surface">
-	<div class="mx-auto mb-6 text-4xl text-purple-300">&ldquo;</div>
-	<blockquote class="mx-auto max-w-2xl font-serif text-xl leading-relaxed text-gray-800 italic dark:text-gray-200">
+<figure class="relative rounded-[14px] border-2 border-ink bg-card p-8 shadow-hard">
+	<span
+		class="absolute -top-4 left-6 grid h-9 w-12 -rotate-2 place-items-center rounded-full border-2 border-ink bg-marigold font-display text-2xl leading-none font-extrabold text-ink shadow-hard-sm"
+		aria-hidden="true"
+	>
+		&ldquo;
+	</span>
+	<blockquote class="mt-2 font-display text-xl leading-relaxed font-bold text-ink">
 		{quote}
 	</blockquote>
-	<div class="mt-6">
-		<p class="font-semibold text-gray-900 dark:text-white">{author}</p>
-		{(role || company) && (
-			<p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
-				{[role, company].filter(Boolean).join(' · ')}
-			</p>
-		)}
-	</div>
-</div>
+	<figcaption class="mt-6 flex items-center gap-3">
+		<span class="h-2.5 w-2.5 rounded-full border-[1.5px] border-ink bg-tomato"></span>
+		<span class="font-display font-bold text-ink">{author}</span>
+		{
+			(role || company) && (
+				<span class="font-mono text-xs text-ink-soft">{[role, company].filter(Boolean).join(' · ')}</span>
+			)
+		}
+	</figcaption>
+</figure>

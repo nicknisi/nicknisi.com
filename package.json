@@ -38,6 +38,8 @@
 		"@atproto/api": "0.18.21",
 		"@expressive-code/plugin-collapsible-sections": "^0.41.6",
 		"@expressive-code/plugin-line-numbers": "^0.41.6",
+		"@fontsource-variable/bricolage-grotesque": "^5.2.10",
+		"@fontsource-variable/jetbrains-mono": "^5.2.8",
 		"@fontsource-variable/roboto-slab": "5.2.8",
 		"@fontsource/atkinson-hyperlegible": "5.2.8",
 		"@fontsource/oswald": "5.2.8",

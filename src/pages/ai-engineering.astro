@@ -12,6 +12,214 @@ const profileImage = await getAsset('profile.jpg');
 const email = 'nick@nisi.org';
 const subject = 'AI-Native Training Inquiry';
 const bookingUrl = 'https://calendly.com/nicknisi/ai-engineer';
+
+const modules = [
+	{
+		n: 1,
+		icon: 'mdi:swap-horizontal',
+		accent: 'tomato',
+		title: 'The Mindset Shift',
+		blurb:
+			'Where is your team today? We start with an honest self-assessment, then show, with a live side-by-side demo, what changes when you stop typing and start directing.',
+		points: [
+			'The 5 Levels of AI Coding: give your team a shared vocabulary',
+			'Why experienced engineers have an advantage, not a disadvantage',
+			'The J-curve: why bolting AI onto old workflows makes you slower first',
+			'For leaders: spec quality is the new bottleneck, not implementation speed',
+		],
+	},
+	{
+		n: 2,
+		icon: 'mdi:text-box-search-outline',
+		accent: 'grape',
+		title: 'Context Engineering',
+		blurb:
+			'Agents are only as smart as the environment they operate in. Your team learns to optimize their codebase for machines, not just humans, and audits their own repo live.',
+		points: [
+			'The right amount of context: not more, not less',
+			'Pull tribal knowledge out of Slack and into structured files',
+			'Agent instructions that actually work (and the antipatterns that don’t)',
+			'Ruthless consistency: agents magnify every inconsistency in your codebase',
+		],
+	},
+	{
+		n: 3,
+		icon: 'mdi:rocket-launch-outline',
+		accent: 'sky',
+		title: 'Build It Live',
+		blurb:
+			'The centerpiece of the workshop. We pick a real problem and build it start to finish using agentic workflows. Not slides about best practices. Actual code, actual shipping.',
+		points: [
+			'Direct, iterate, and course-correct in real time',
+			'Everyone codes along with their own tools (Claude Code, Cursor, Copilot, etc.)',
+			'Build agent tooling that removes friction so the agent is faster next time',
+			'See what "fast" actually looks like when you’re working with agents',
+		],
+	},
+	{
+		n: 4,
+		icon: 'mdi:check-decagram-outline',
+		accent: 'pine',
+		title: 'Review, Validate, Ship',
+		blurb:
+			'Reading code is the job now. Your team learns to build automated trust: mechanical guardrails, self-validating agents, and a testing paradigm shift that changes how you think about quality.',
+		points: [
+			'Code review patterns for AI-generated code',
+			'Enforce architecture mechanically with linters and structural tests',
+			'Agents that validate their own work before you ever look',
+			'Scenarios vs. Tests: why external specs beat internal test suites when AI writes both',
+		],
+	},
+	{
+		n: 5,
+		icon: 'mdi:source-branch',
+		accent: 'marigold',
+		title: 'Working at Scale',
+		blurb:
+			'How to work differently starting Monday. Run parallel workstreams, build compound returns into your codebase, and keep AI-generated code from turning into unmaintainable slop.',
+		points: [
+			'Running multiple agents on different tasks simultaneously',
+			'Compound engineering: every automation makes the agent faster tomorrow',
+			'Entropy management: background validation that catches drift early',
+			'The generalist advantage: systems thinking matters at every experience level',
+		],
+	},
+] as const;
+
+const accentBlock: Record<string, string> = {
+	tomato: 'bg-tomato text-paper',
+	grape: 'bg-grape text-paper',
+	sky: 'bg-sky text-ink',
+	pine: 'bg-pine text-ink',
+	marigold: 'bg-marigold text-ink',
+};
+const accentText: Record<string, string> = {
+	tomato: 'text-tomato',
+	grape: 'text-grape',
+	sky: 'text-sky',
+	pine: 'text-pine',
+	marigold: 'text-ink',
+};
+// Explicit dot fills so Tailwind's static scanner keeps these utilities.
+const accentDot: Record<string, string> = {
+	tomato: 'bg-tomato',
+	grape: 'bg-grape',
+	sky: 'bg-sky',
+	pine: 'bg-pine',
+	marigold: 'bg-marigold',
+};
+
+const timeline = [
+	{
+		label: 'First 30 Days',
+		accent: 'tomato',
+		body: 'Team adopts new workflows. You see AI usage shift from autocomplete to agentic coding. PR velocity starts climbing.',
+	},
+	{
+		label: '60 Days',
+		accent: 'sky',
+		body: 'Engineers are self-sufficient with AI tools. Internal conventions are established. The team has a shared language for how they work with AI.',
+	},
+	{
+		label: '90 Days',
+		accent: 'pine',
+		body: 'Shipping velocity is measurably higher. Engineers are tackling projects they would’ve deprioritized before. The team wonders how they worked without this.',
+	},
+] as const;
+
+const addons = [
+	{
+		icon: 'mdi:magnify',
+		title: 'Tool Selection & Evaluation',
+		body: 'Cutting through the noise. Which tools actually work, which are hype, and how to evaluate them for your stack.',
+	},
+	{
+		icon: 'mdi:shield-check-outline',
+		title: 'Internal Conventions & Guardrails',
+		body: 'Setting team standards for AI usage. Style guides, review policies, quality gates.',
+	},
+	{
+		icon: 'mdi:puzzle-outline',
+		title: 'Something Else Entirely',
+		body: 'Have a specific challenge? We’ll scope a custom module together on the intro call.',
+	},
+] as const;
+
+const howItWorks = [
+	{
+		icon: 'mdi:account-group-outline',
+		accent: 'tomato',
+		title: 'Live, Not Pre-Recorded',
+		body: 'Real-time instruction with Q&A and pair programming. Remote or on-site, whatever works for your team.',
+	},
+	{
+		icon: 'mdi:cog-outline',
+		accent: 'sky',
+		title: 'Your Stack, Your Problems',
+		body: 'I adapt the curriculum to your languages, frameworks, and the projects you’re actually working on.',
+	},
+	{
+		icon: 'mdi:calendar-check-outline',
+		accent: 'pine',
+		title: 'Flexible Format',
+		body: 'One intensive day, a series of sessions over a week, or something in between. We scope it on the intro call.',
+	},
+] as const;
+
+const deliverables = [
+	{
+		icon: 'mdi:file-document-outline',
+		title: 'AI Workflow Playbook',
+		body: 'A written guide covering the workflows, patterns, and prompts covered in training, tailored to your stack.',
+	},
+	{
+		icon: 'mdi:code-braces',
+		title: 'Working Examples',
+		body: 'The code your team built during the live session. Real examples to reference, not throwaway demos.',
+	},
+	{
+		icon: 'mdi:clipboard-check-outline',
+		title: 'Team Conventions Template',
+		body: 'A starting point for internal AI usage guidelines: review standards, quality gates, and tool recommendations.',
+	},
+	{
+		icon: 'mdi:video-outline',
+		title: 'Session Recording',
+		body: 'Full recording of the training for team members who couldn’t attend or anyone who wants a refresher.',
+	},
+	{
+		icon: 'mdi:calendar-refresh-outline',
+		title: 'Optional Follow-Up Session',
+		body: '30-60 days after training, we regroup. Address new questions, reinforce what stuck, and troubleshoot what didn’t.',
+	},
+] as const;
+
+const faqs = [
+	{
+		q: 'What makes this different from AI/ML courses?',
+		a: 'We don’t build AI models. We teach engineers how to use AI to ship software faster. No RAG pipelines, no fine-tuning. Just practical workflows you’ll use on Monday.',
+	},
+	{
+		q: 'How long is the training?',
+		a: 'Depends on your team. Could be a day, could be a week. We figure out the right scope together on the intro call.',
+	},
+	{
+		q: 'What’s the ideal team size?',
+		a: '3-15 engineers. Small enough that everyone gets hands-on time, big enough for good discussion.',
+	},
+	{
+		q: 'Do we need AI experience?',
+		a: 'Nope. You need to be a solid engineer. That’s the prerequisite. We handle the AI part.',
+	},
+	{
+		q: 'What tools do you cover?',
+		a: 'Claude Code, Claude Desktop, Cursor, GitHub Copilot, and others. Every team’s toolset is different, so we’ll focus on what your company already has access to and what makes sense for your stack.',
+	},
+	{
+		q: 'Can we customize the curriculum?',
+		a: 'That’s the whole idea. The five core modules are the baseline. We go deeper wherever your team needs it.',
+	},
+] as const;
 ---
 
 <BaseLayout
@@ -21,401 +229,299 @@ const bookingUrl = 'https://calendly.com/nicknisi/ai-engineer';
 	fullWidth
 >
 	{/* Section 1: Hero */}
-	<Section variant="hero" class="text-center">
-		{/* Decorative gradient backdrop */}
-		<div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
-			<div class="absolute -top-1/2 left-1/2 h-[800px] w-[800px] -translate-x-1/2 rounded-full bg-purple-500/15 blur-3xl" />
-			<div class="absolute -bottom-1/2 right-0 h-[600px] w-[600px] rounded-full bg-teal-500/10 blur-3xl" />
-		</div>
-		<div class="relative z-10">
-			<h1 class="font-serif text-6xl leading-tight font-bold tracking-tight md:text-8xl">
-				The AI-Native Engineer
-			</h1>
-			<p class="gradient-text mx-auto mt-6 max-w-2xl text-xl font-semibold md:text-2xl">
-				You're not being replaced. You're being promoted.
-			</p>
-			<p class="mx-auto mt-4 max-w-2xl text-lg text-purple-200">
-				Live training that turns strong engineers into better ones.
-				Your team learns to ship faster with AI, not get replaced by it.
-			</p>
-			<div class="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-				<CTA href={bookingUrl} label="Book a Call" />
-				<CTA email={email} subject={subject} label="Or Email Me" variant="secondary" />
+	<Section variant="hero">
+		<div class="grid items-center gap-10 md:grid-cols-[1.5fr_1fr] md:gap-14">
+			<div>
+				<span class="sticker -rotate-2"><span class="sticker-dot bg-tomato"></span>Live team training</span>
+
+				<h1 class="mt-5 text-5xl leading-[0.95] font-extrabold tracking-tight md:text-7xl">
+					The AI-Native
+					<span class="relative inline-block text-tomato">
+						Engineer
+						<svg class="absolute -bottom-2 left-0 h-3 w-full overflow-visible" viewBox="0 0 200 18" fill="none" aria-hidden="true">
+							<path d="M3 12 C 50 6, 90 14, 130 9 S 188 6, 197 10" stroke="currentColor" stroke-width="5" stroke-linecap="round"></path>
+						</svg>
+					</span>
+				</h1>
+
+				<p class="mt-6 max-w-[24ch] font-display text-2xl leading-snug font-bold text-ink md:text-3xl">
+					You're not being replaced. You're being promoted.
+				</p>
+
+				<p class="mt-4 max-w-[52ch] text-lg text-ink-soft">
+					Live training that turns strong engineers into better ones. Your team learns to ship faster with AI, not get
+					replaced by it.
+				</p>
+
+				<div class="mt-9 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
+					<CTA href={bookingUrl} label="Book a Call" />
+					<CTA email={email} subject={subject} label="Or Email Me" variant="secondary" />
+				</div>
+			</div>
+
+			<div class="justify-self-center md:justify-self-end">
+				<div class="panel grid gap-3 rotate-2 p-6 shadow-hard-lg">
+					<div class="flex flex-wrap gap-2">
+						<span class="sticker -rotate-3"><span class="sticker-dot bg-marigold"></span>Hands-on</span>
+						<span class="sticker rotate-2"><span class="sticker-dot bg-sky"></span>Your codebase</span>
+					</div>
+					<p class="max-w-[26ch] font-display text-lg leading-snug font-bold text-ink">
+						Stop typing. Start directing. Watch what your team can actually ship.
+					</p>
+					<p class="font-mono text-xs text-ink-soft">// remote or on-site · 3-15 engineers</p>
+				</div>
 			</div>
 		</div>
 	</Section>
 
 	{/* Section 2: The Problem */}
-	<Section variant="default" narrow>
-		<h2 class="text-center font-serif text-3xl font-bold md:text-4xl">
-			Your Team Has AI Tools. Now What?
-		</h2>
-		<div class="mt-8 space-y-4 text-lg text-gray-700 dark:text-gray-300">
+	<Section variant="muted" narrow>
+		<span class="sticker -rotate-1"><span class="sticker-dot bg-tomato"></span>The problem</span>
+		<h2 class="mt-4 text-3xl font-extrabold md:text-4xl">Your Team Has AI Tools. Now What?</h2>
+		<div class="mt-6 space-y-4 text-lg text-ink-soft">
 			<p>
-				The ground is shifting under every engineering team. Leadership bought the licenses.
-				Everyone has Copilot. Maybe someone tried Cursor.
-				But the gap between "we have AI tools" and actually shipping faster with them?
-				Bigger than anyone wants to admit.
+				Leadership bought the licenses. Everyone has Copilot. Maybe someone tried Cursor. But research shows experienced
+				developers are actually <strong class="text-ink">19% slower</strong> when they bolt AI onto existing workflows, while
+				<em>believing</em> they got 24% faster. The gap between "we have AI tools" and shipping faster with them is bigger
+				than anyone wants to admit.
 			</p>
 			<p>
-				Most teams are stuck on autocomplete. Meanwhile the engineers who've figured this out
-				are building in a week what used to take a quarter. The difference isn't the tool.
-				It's how you work with it.
+				That's the J-curve. Adding AI to old workflows makes you worse before it makes you better. The breakthrough doesn't
+				come from better tools. It comes from redesigning how your team works.
 			</p>
 		</div>
 	</Section>
 
 	{/* Section 3: The Reframe */}
-	<Section variant="accent" class="border-l-4 border-purple-500">
-		<h2 class="text-center font-serif text-3xl font-bold md:text-4xl">
-			The Job Changed. The Craft Didn't.
-		</h2>
-		<div class="mx-auto mt-8 max-w-3xl space-y-4 text-xl text-gray-700 md:text-2xl dark:text-gray-300">
-			<p>
-				AI writes the code now. So what do <em>you</em> do? The same things that always mattered:
-				decide what to build, design how it fits together, and make sure it actually works.
-				<strong class="gradient-text">That's engineering.</strong>
-			</p>
-			<p>
-				Ten years of experience didn't stop being useful. You just apply it differently.
-				Less typing, more thinking. Less grunt work, more <strong class="gradient-text">building</strong>.
-			</p>
-			<p>
-				Honestly? It's the most fun I've had writing software in years. Your team should be having this much fun too.
-			</p>
+	<Section variant="accent">
+		<div class="mx-auto max-w-3xl">
+			<span class="sticker -rotate-1 bg-paper"><span class="sticker-dot bg-grape"></span>The reframe</span>
+			<h2 class="mt-4 text-3xl font-extrabold md:text-4xl">The Job Changed. The Craft Didn't.</h2>
+			<div class="mt-6 space-y-4 text-xl leading-relaxed text-ink md:text-2xl">
+				<p>
+					AI writes the code now. So what do <em>you</em> do? The same things that always mattered: decide what to build,
+					design how it fits together, and make sure it actually works. <strong>That's engineering.</strong>
+				</p>
+				<p>
+					The bottleneck isn't implementation speed anymore. It's
+					<strong>how precisely you can describe what should exist</strong>. Your ten years of experience? That's the
+					advantage. You know what good looks like. That judgment is exactly what AI doesn't have.
+				</p>
+				<p class="font-display text-lg font-bold">
+					Honestly? It's the most fun I've had writing software in years. Your team should be having this much fun too.
+				</p>
+			</div>
 		</div>
 	</Section>
 
 	{/* Section 4: Social Proof / Stats */}
-	<Section variant="muted" class="scroll-reveal">
-		<div class="fade-up-grid grid grid-cols-1 gap-8 sm:grid-cols-3">
-			<StatCard value="3x" label="GitHub contributions in one year" />
-			<StatCard value="0" label="Lines of code written by hand in 6 months" />
-			<StatCard value="20+" label="Repos maintained solo with AI workflows" />
+	<Section variant="default" class="scroll-reveal">
+		<div class="fade-up-grid grid grid-cols-1 gap-6 sm:grid-cols-3">
+			<StatCard value="3x" accent="tomato" label="GitHub contributions in one year" />
+			<StatCard value="0" accent="sky" label="Lines of code written by hand in 6 months" />
+			<StatCard value="20+" accent="pine" label="Repos maintained solo with AI workflows" />
 		</div>
-		<p class="mx-auto mt-4 max-w-md text-center text-sm text-gray-500 dark:text-gray-400">
+		<p class="mx-auto mt-5 max-w-md text-center font-mono text-sm text-ink-soft">
 			Output tripled. Quality held. Staff Engineer, still shipping every day.
 		</p>
-		<p class="mx-auto mt-8 max-w-2xl text-center text-gray-600 dark:text-gray-300">
-			I built a production AI agent that configures and ships SDK integrations on its own.
-			I maintained 20+ repos as a solo DX engineer using these same workflows.
-			This is how I actually work. I want to show your team how to do it too.
+		<p class="mx-auto mt-8 max-w-2xl text-center text-ink-soft">
+			I built a production AI agent that configures and ships SDK integrations on its own. I maintained 20+ repos as a solo
+			DX engineer using these same workflows. This is how I actually work. I want to show your team how to do it too.
 		</p>
 	</Section>
 
 	{/* Section 5: Curriculum — Core Modules */}
-	<Section variant="default" class="scroll-reveal">
-		<h2 class="text-center font-serif text-3xl font-bold md:text-4xl">
-			What Your Team Will Learn
-		</h2>
-		<p class="mx-auto mt-4 max-w-2xl text-center text-lg text-gray-600 dark:text-gray-300">
-			A baseline curriculum tailored to your team's stack, experience, and goals.
+	<Section variant="muted" class="scroll-reveal">
+		<span class="sticker -rotate-1"><span class="sticker-dot bg-grape"></span>Curriculum</span>
+		<h2 class="mt-4 text-3xl font-extrabold md:text-4xl">What Your Team Will Learn</h2>
+		<p class="mt-4 max-w-2xl text-lg text-ink-soft">
+			Five modules that take your team from autocomplete to agentic engineering, tailored to your stack, your tools, and
+			your actual codebase.
 		</p>
-		<div class="fade-up-grid mx-auto mt-12 max-w-4xl space-y-12">
-			{/* Step 1 */}
-			<div class="flex flex-col items-center gap-6 md:flex-row">
-				<div class="flex shrink-0 items-center gap-4">
-					<div class="flex h-12 w-12 items-center justify-center rounded-full bg-purple-700 text-lg font-bold text-white">1</div>
-					<Icon name="mdi:swap-horizontal" class="size-10 text-purple-700 dark:text-purple-200" />
-				</div>
-				<div>
-					<h3 class="p-0 font-serif text-xl font-semibold text-gray-900 dark:text-white">The AI Mindset</h3>
-					<p class="mt-1 text-gray-600 dark:text-gray-300">Before touching any tools — how to think about working with AI. What changes, what doesn't, and why your engineering experience matters more now, not less.</p>
-					<ul class="mt-3 list-disc space-y-1 pl-5 text-sm text-gray-500 dark:text-gray-400">
-							<li>From writing code to directing agents — mental models that work</li>
-							<li>Addressing the fear and FUD head-on</li>
-							<li>Where AI excels vs. where you still need a human in the loop</li>
-							<li>Why senior engineers have an advantage, not a disadvantage</li>
-						</ul>
-				</div>
-			</div>
-
-			{/* Step 2 */}
-			<div class="flex flex-col items-center gap-6 md:flex-row">
-				<div class="flex shrink-0 items-center gap-4">
-					<div class="flex h-12 w-12 items-center justify-center rounded-full bg-purple-700 text-lg font-bold text-white">2</div>
-					<Icon name="mdi:text-box-search-outline" class="size-10 text-purple-700 dark:text-purple-200" />
-				</div>
-				<div>
-					<h3 class="p-0 font-serif text-xl font-semibold text-gray-900 dark:text-white">Context is Everything</h3>
-					<p class="mt-1 text-gray-600 dark:text-gray-300">The difference between "make this work" and "build this well" is the context you provide. Whirlwind tour of AI coding tools — we focus on whatever your team has access to.</p>
-					<ul class="mt-3 list-disc space-y-1 pl-5 text-sm text-gray-500 dark:text-gray-400">
-							<li>Prompt engineering for real codebases, not toy examples</li>
-							<li>Structuring context so the agent builds what you actually want</li>
-							<li>Hands-on with your team's tools (Claude Code, Copilot, Cursor, etc.)</li>
-							<li>When to use chat, inline, and agentic modes</li>
-						</ul>
-				</div>
-			</div>
-
-			{/* Step 3 */}
-			<div class="flex flex-col items-center gap-6 md:flex-row">
-				<div class="flex shrink-0 items-center gap-4">
-					<div class="flex h-12 w-12 items-center justify-center rounded-full bg-purple-700 text-lg font-bold text-white">3</div>
-					<Icon name="mdi:rocket-launch-outline" class="size-10 text-purple-700 dark:text-purple-200" />
-				</div>
-				<div>
-					<h3 class="p-0 font-serif text-xl font-semibold text-gray-900 dark:text-white">Build It Live</h3>
-					<p class="mt-1 text-gray-600 dark:text-gray-300">We build something complex together, in real-time. Not slides about best practices. Actual code, actual problems, actual shipping.</p>
-					<ul class="mt-3 list-disc space-y-1 pl-5 text-sm text-gray-500 dark:text-gray-400">
-							<li>Pick a real feature or project and build it start to finish</li>
-							<li>Watch the workflow in action — how to direct, iterate, and course-correct</li>
-							<li>Everyone codes along and builds the same thing with their own tools</li>
-							<li>See what "fast" actually looks like when you're working with agents</li>
-						</ul>
-				</div>
-			</div>
-
-			{/* Step 4 */}
-			<div class="flex flex-col items-center gap-6 md:flex-row">
-				<div class="flex shrink-0 items-center gap-4">
-					<div class="flex h-12 w-12 items-center justify-center rounded-full bg-purple-700 text-lg font-bold text-white">4</div>
-					<Icon name="mdi:drawing" class="size-10 text-purple-700 dark:text-purple-200" />
-				</div>
-				<div>
-					<h3 class="p-0 font-serif text-xl font-semibold text-gray-900 dark:text-white">Architecture-First Thinking</h3>
-					<p class="mt-1 text-gray-600 dark:text-gray-300">When code is cheap, design matters more. How to think about systems, tradeoffs, and the decisions that agents can't make for you.</p>
-					<ul class="mt-3 list-disc space-y-1 pl-5 text-sm text-gray-500 dark:text-gray-400">
-						<li>Designing systems when generating code costs nothing</li>
-						<li>Tradeoff analysis and making decisions agents can't</li>
-						<li>How to spec work so agents produce better output</li>
-						<li>Avoiding the "it works but it's a mess" trap</li>
-					</ul>
-				</div>
-			</div>
-
-			{/* Step 5 */}
-			<div class="flex flex-col items-center gap-6 md:flex-row">
-				<div class="flex shrink-0 items-center gap-4">
-					<div class="flex h-12 w-12 items-center justify-center rounded-full bg-purple-700 text-lg font-bold text-white">5</div>
-					<Icon name="mdi:check-decagram-outline" class="size-10 text-purple-700 dark:text-purple-200" />
-				</div>
-				<div>
-					<h3 class="p-0 font-serif text-xl font-semibold text-gray-900 dark:text-white">Review, Verify, Ship</h3>
-					<p class="mt-1 text-gray-600 dark:text-gray-300">Reading code is the job now. How to evaluate what AI wrote, catch the subtle bugs it introduces, and test code you didn't write.</p>
-					<ul class="mt-3 list-disc space-y-1 pl-5 text-sm text-gray-500 dark:text-gray-400">
-						<li>Code review patterns for AI-generated code</li>
-						<li>Common failure modes — what agents get wrong and how to spot it</li>
-						<li>Testing strategies when you didn't write the implementation</li>
-						<li>Building confidence in code you didn't type</li>
-					</ul>
-				</div>
-			</div>
-
-			{/* Step 6 */}
-			<div class="flex flex-col items-center gap-6 md:flex-row">
-				<div class="flex shrink-0 items-center gap-4">
-					<div class="flex h-12 w-12 items-center justify-center rounded-full bg-purple-700 text-lg font-bold text-white">6</div>
-					<Icon name="mdi:source-branch" class="size-10 text-purple-700 dark:text-purple-200" />
-				</div>
-				<div>
-					<h3 class="p-0 font-serif text-xl font-semibold text-gray-900 dark:text-white">Working in Parallel</h3>
-					<p class="mt-1 text-gray-600 dark:text-gray-300">I tripled my GitHub contributions in one year. Here's how to run multiple workstreams at once with agents doing the heavy lifting.</p>
-					<ul class="mt-3 list-disc space-y-1 pl-5 text-sm text-gray-500 dark:text-gray-400">
-						<li>Running multiple agents on different tasks simultaneously</li>
-						<li>Managing context across parallel workstreams</li>
-						<li>When to parallelize and when to focus</li>
-						<li>Practical workflows for juggling projects without losing quality</li>
-					</ul>
-				</div>
-			</div>
+		<div class="fade-up-grid mt-10 space-y-6">
+			{
+				modules.map((m) => (
+					<div class="panel grid gap-5 p-6 md:grid-cols-[auto_1fr] md:p-7">
+						<div class="flex items-center gap-4 md:flex-col md:items-start md:gap-3">
+							<div
+								class:list={[
+									'grid h-14 w-14 -rotate-2 place-items-center rounded-[14px] border-2 border-ink font-display text-2xl font-extrabold shadow-hard-sm',
+									accentBlock[m.accent],
+								]}
+							>
+								{m.n}
+							</div>
+							<Icon name={m.icon} class:list={['size-9', accentText[m.accent]]} />
+						</div>
+						<div>
+							<h3 class="font-display text-xl font-bold text-ink">{m.title}</h3>
+							<p class="mt-2 text-ink-soft">{m.blurb}</p>
+							<ul class="mt-4 space-y-1.5 text-sm text-ink-soft">
+								{m.points.map((pt) => (
+									<li class="flex gap-2.5">
+										<span class:list={['mt-2 inline-block h-1.5 w-1.5 shrink-0 rounded-full', accentDot[m.accent]]} />
+										<span>{pt}</span>
+									</li>
+								))}
+							</ul>
+						</div>
+					</div>
+				))
+			}
 		</div>
 	</Section>
 
 	{/* Section 6: For Engineering Leaders */}
-	<Section variant="accent" class="scroll-reveal border-l-4 border-teal-500">
-		<h2 class="text-center font-serif text-3xl font-bold md:text-4xl">
-			For Engineering Leaders
-		</h2>
-		<div class="mx-auto mt-8 max-w-3xl space-y-4 text-lg text-gray-700 dark:text-gray-300">
+	<Section variant="accent" class="scroll-reveal">
+		<span class="sticker -rotate-1 bg-paper"><span class="sticker-dot bg-pine"></span>For leaders</span>
+		<h2 class="mt-4 text-3xl font-extrabold md:text-4xl">For Engineering Leaders</h2>
+		<div class="mt-6 max-w-3xl space-y-4 text-lg text-ink">
 			<p>
-				You got the mandate: adopt AI. But what does that actually mean for your team?
-				How do you measure it? What does "good" look like? This isn't just training for ICs.
+				You got the mandate: adopt AI. But what does that actually mean for your team? How do you measure it? What does
+				"good" look like? This isn't just training for ICs.
 			</p>
 			<p>
-				We cover how to think about AI adoption as a leader — setting expectations,
-				measuring impact, building conventions that stick, and knowing what to watch out for.
+				We cover how to think about AI adoption as a leader: setting expectations, measuring impact, building conventions
+				that stick, and knowing what to watch out for.
 			</p>
 		</div>
-		<div class="mx-auto mt-10 max-w-3xl grid grid-cols-1 gap-6 md:grid-cols-3">
-			<div class="rounded-xl border border-gray-200 bg-white/80 p-5 dark:border-dark-border dark:bg-dark-surface">
-				<h3 class="p-0 font-serif text-lg font-semibold text-gray-900 dark:text-white">First 30 Days</h3>
-				<p class="mt-2 text-sm text-gray-600 dark:text-gray-300">Team adopts new workflows. You see AI usage shift from autocomplete to agentic coding. PR velocity starts climbing.</p>
-			</div>
-			<div class="rounded-xl border border-gray-200 bg-white/80 p-5 dark:border-dark-border dark:bg-dark-surface">
-				<h3 class="p-0 font-serif text-lg font-semibold text-gray-900 dark:text-white">60 Days</h3>
-				<p class="mt-2 text-sm text-gray-600 dark:text-gray-300">Engineers are self-sufficient with AI tools. Internal conventions are established. The team has a shared language for how they work with AI.</p>
-			</div>
-			<div class="rounded-xl border border-gray-200 bg-white/80 p-5 dark:border-dark-border dark:bg-dark-surface">
-				<h3 class="p-0 font-serif text-lg font-semibold text-gray-900 dark:text-white">90 Days</h3>
-				<p class="mt-2 text-sm text-gray-600 dark:text-gray-300">Shipping velocity is measurably higher. Engineers are tackling projects they would've deprioritized before. The team wonders how they worked without this.</p>
-			</div>
+		<div class="mt-10 grid grid-cols-1 gap-5 md:grid-cols-3">
+			{
+				timeline.map((t) => (
+					<div class="rounded-[14px] border-2 border-ink bg-paper p-5 shadow-hard-sm">
+						<span
+							class:list={[
+								'inline-flex -rotate-1 items-center rounded-full border-2 border-ink px-3 py-1 font-display text-sm font-bold',
+								accentBlock[t.accent],
+							]}
+						>
+							{t.label}
+						</span>
+						<p class="mt-3 text-sm text-ink-soft">{t.body}</p>
+					</div>
+				))
+			}
 		</div>
 	</Section>
 
 	{/* Section 7: Customizable Add-ons */}
-	<Section variant="muted">
-		<h2 class="text-center font-serif text-3xl font-bold md:text-4xl">
-			Go Deeper Where You Need It
-		</h2>
-		<p class="mx-auto mt-4 max-w-2xl text-center text-lg text-gray-600 dark:text-gray-300">
-			Everyone gets the core modules. These are examples of add-ons we've built before —
-			or we can create something new based on what your team actually needs.
+	<Section variant="default">
+		<span class="sticker -rotate-1"><span class="sticker-dot bg-marigold"></span>Add-ons</span>
+		<h2 class="mt-4 text-3xl font-extrabold md:text-4xl">Go Deeper Where You Need It</h2>
+		<p class="mt-4 max-w-2xl text-lg text-ink-soft">
+			Everyone gets the core modules. These are examples of add-ons we've built before, or we can create something new
+			based on what your team actually needs.
 		</p>
-		<div class="mx-auto mt-10 max-w-2xl space-y-4">
-			<div class="flex items-start gap-3">
-				<Icon name="mdi:magnify" class="mt-1 size-6 shrink-0 text-purple-700 dark:text-purple-200" />
-				<div>
-					<h3 class="p-0 font-serif text-lg font-semibold text-gray-900 dark:text-white">Tool Selection & Evaluation</h3>
-					<p class="text-sm text-gray-600 dark:text-gray-300">Cutting through the noise. Which tools actually work, which are hype, and how to evaluate them for your stack.</p>
-				</div>
-			</div>
-			<div class="flex items-start gap-3">
-				<Icon name="mdi:shield-check-outline" class="mt-1 size-6 shrink-0 text-purple-700 dark:text-purple-200" />
-				<div>
-					<h3 class="p-0 font-serif text-lg font-semibold text-gray-900 dark:text-white">Internal Conventions & Guardrails</h3>
-					<p class="text-sm text-gray-600 dark:text-gray-300">Setting team standards for AI usage. Style guides, review policies, quality gates.</p>
-				</div>
-			</div>
-			<div class="flex items-start gap-3">
-				<Icon name="mdi:puzzle-outline" class="mt-1 size-6 shrink-0 text-purple-700 dark:text-purple-200" />
-				<div>
-					<h3 class="p-0 font-serif text-lg font-semibold text-gray-900 dark:text-white">Something Else Entirely</h3>
-					<p class="text-sm text-gray-600 dark:text-gray-300">Have a specific challenge? We'll scope a custom module together on the intro call.</p>
-				</div>
-			</div>
+		<div class="mt-10 grid gap-5 md:grid-cols-3">
+			{
+				addons.map((a) => (
+					<div class="panel flex flex-col gap-3 p-6">
+						<Icon name={a.icon} class="size-7 text-tomato" />
+						<h3 class="font-display text-lg font-bold text-ink">{a.title}</h3>
+						<p class="text-sm text-ink-soft">{a.body}</p>
+					</div>
+				))
+			}
 		</div>
 	</Section>
 
 	{/* Section 9: How It Works */}
-	<Section variant="default">
-		<h2 class="text-center font-serif text-3xl font-bold md:text-4xl">
-			How It Works
-		</h2>
-		<div class="mt-12 grid grid-cols-1 gap-10 md:grid-cols-3">
-			<div class="text-center">
-				<Icon name="mdi:account-group-outline" class="mx-auto mb-4 size-12 text-purple-700 dark:text-purple-200" />
-				<h3 class="p-0 font-serif text-xl font-semibold text-gray-900 dark:text-white">Live, Not Pre-Recorded</h3>
-				<p class="mt-2 text-gray-600 dark:text-gray-300">
-					Real-time instruction with Q&A and pair programming. Remote or on-site — whatever works for your team.
-				</p>
-			</div>
-			<div class="text-center">
-				<Icon name="mdi:cog-outline" class="mx-auto mb-4 size-12 text-purple-700 dark:text-purple-200" />
-				<h3 class="p-0 font-serif text-xl font-semibold text-gray-900 dark:text-white">Your Stack, Your Problems</h3>
-				<p class="mt-2 text-gray-600 dark:text-gray-300">
-					I adapt the curriculum to your languages, frameworks, and the projects you're actually working on.
-				</p>
-			</div>
-			<div class="text-center">
-				<Icon name="mdi:calendar-check-outline" class="mx-auto mb-4 size-12 text-purple-700 dark:text-purple-200" />
-				<h3 class="p-0 font-serif text-xl font-semibold text-gray-900 dark:text-white">Flexible Format</h3>
-				<p class="mt-2 text-gray-600 dark:text-gray-300">
-					One intensive day, a series of sessions over a week, or something in between. We scope it on the intro call.
-				</p>
-			</div>
+	<Section variant="muted">
+		<span class="sticker -rotate-1"><span class="sticker-dot bg-sky"></span>How it works</span>
+		<h2 class="mt-4 text-3xl font-extrabold md:text-4xl">How It Works</h2>
+		<div class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
+			{
+				howItWorks.map((h) => (
+					<div class="rounded-[14px] border-2 border-ink bg-card p-6 shadow-hard-sm">
+						<span
+							class:list={[
+								'grid h-12 w-12 -rotate-3 place-items-center rounded-[12px] border-2 border-ink shadow-hard-sm',
+								accentBlock[h.accent],
+							]}
+						>
+							<Icon name={h.icon} class="size-6" />
+						</span>
+						<h3 class="mt-4 font-display text-xl font-bold text-ink">{h.title}</h3>
+						<p class="mt-2 text-ink-soft">{h.body}</p>
+					</div>
+				))
+			}
 		</div>
 	</Section>
 
 	{/* Section 10: What Your Team Walks Away With */}
-	<Section variant="muted" class="scroll-reveal">
-		<h2 class="text-center font-serif text-3xl font-bold md:text-4xl">
-			What Your Team Walks Away With
-		</h2>
-		<div class="mx-auto mt-10 max-w-2xl space-y-4">
-			<div class="flex items-start gap-3">
-				<Icon name="mdi:file-document-outline" class="mt-1 size-6 shrink-0 text-purple-700 dark:text-purple-200" />
-				<div>
-					<h3 class="p-0 font-serif text-lg font-semibold text-gray-900 dark:text-white">AI Workflow Playbook</h3>
-					<p class="text-sm text-gray-600 dark:text-gray-300">A written guide covering the workflows, patterns, and prompts covered in training — tailored to your stack.</p>
-				</div>
-			</div>
-			<div class="flex items-start gap-3">
-				<Icon name="mdi:code-braces" class="mt-1 size-6 shrink-0 text-purple-700 dark:text-purple-200" />
-				<div>
-					<h3 class="p-0 font-serif text-lg font-semibold text-gray-900 dark:text-white">Working Examples</h3>
-					<p class="text-sm text-gray-600 dark:text-gray-300">The code your team built during the live session — real examples to reference, not throwaway demos.</p>
-				</div>
-			</div>
-			<div class="flex items-start gap-3">
-				<Icon name="mdi:clipboard-check-outline" class="mt-1 size-6 shrink-0 text-purple-700 dark:text-purple-200" />
-				<div>
-					<h3 class="p-0 font-serif text-lg font-semibold text-gray-900 dark:text-white">Team Conventions Template</h3>
-					<p class="text-sm text-gray-600 dark:text-gray-300">A starting point for internal AI usage guidelines — review standards, quality gates, and tool recommendations.</p>
-				</div>
-			</div>
-			<div class="flex items-start gap-3">
-				<Icon name="mdi:video-outline" class="mt-1 size-6 shrink-0 text-purple-700 dark:text-purple-200" />
-				<div>
-					<h3 class="p-0 font-serif text-lg font-semibold text-gray-900 dark:text-white">Session Recording</h3>
-					<p class="text-sm text-gray-600 dark:text-gray-300">Full recording of the training for team members who couldn't attend or anyone who wants a refresher.</p>
-				</div>
-			</div>
-			<div class="flex items-start gap-3">
-				<Icon name="mdi:calendar-refresh-outline" class="mt-1 size-6 shrink-0 text-purple-700 dark:text-purple-200" />
-				<div>
-					<h3 class="p-0 font-serif text-lg font-semibold text-gray-900 dark:text-white">Optional Follow-Up Session</h3>
-					<p class="text-sm text-gray-600 dark:text-gray-300">30-60 days after training, we regroup. Address new questions, reinforce what stuck, and troubleshoot what didn't.</p>
-				</div>
-			</div>
+	<Section variant="default" class="scroll-reveal">
+		<span class="sticker -rotate-1"><span class="sticker-dot bg-pine"></span>Deliverables</span>
+		<h2 class="mt-4 text-3xl font-extrabold md:text-4xl">What Your Team Walks Away With</h2>
+		<div class="mt-10 grid gap-4 md:grid-cols-2">
+			{
+				deliverables.map((d) => (
+					<div class="flex items-start gap-4 rounded-[14px] border-2 border-ink bg-card p-5 shadow-hard-sm">
+						<span class="grid size-10 shrink-0 place-items-center rounded-full border-2 border-ink bg-marigold text-ink">
+							<Icon name={d.icon} class="size-5" />
+						</span>
+						<div>
+							<h3 class="font-display text-lg font-bold text-ink">{d.title}</h3>
+							<p class="mt-1 text-sm text-ink-soft">{d.body}</p>
+						</div>
+					</div>
+				))
+			}
 		</div>
 	</Section>
 
 	{/* Section 11: Instructor */}
-	<Section variant="muted" class="scroll-reveal">
-		<h2 class="text-center font-serif text-3xl font-bold md:text-4xl">
-			Meet Your Instructor
-		</h2>
-		<div class="mt-12 flex flex-col items-center gap-8 md:flex-row md:items-start">
-			<Image
-				src={profileImage}
-				alt="Nick Nisi"
-				width={256}
-				height={256}
-				quality="max"
-				class="h-48 w-48 shrink-0 rounded-full object-cover shadow-lg"
-			/>
+	<Section variant="accent" class="scroll-reveal">
+		<div class="grid items-center gap-8 md:grid-cols-[auto_1fr] md:gap-12">
+			<div class="w-44 -rotate-2 overflow-hidden rounded-2xl border-2 border-ink bg-paper shadow-hard-lg md:w-52">
+				<Image src={profileImage} alt="Nick Nisi" width={256} height={256} quality="max" class="aspect-square h-full w-full object-cover" />
+			</div>
 			<div>
-				<p class="text-lg text-gray-700 dark:text-gray-300">
-					I'm a Staff Engineer. I haven't written a line of code by hand in six months and my
-					output has never been higher. I built the WorkOS CLI AI Installer (a production agent that
-					ships SDK integrations on its own), I've given 50+ conference talks, and I was a host on
-					<a href="https://jsparty.fm" class="font-bold text-purple-700 dark:text-purple-200">JS Party</a>.
+				<span class="sticker -rotate-1 bg-paper"><span class="sticker-dot bg-tomato"></span>Your instructor</span>
+				<h2 class="mt-4 text-3xl font-extrabold md:text-4xl">Meet Your Instructor</h2>
+				<p class="mt-4 text-lg text-ink">
+					I'm a Staff Engineer. I haven't written a line of code by hand in six months and my output has never been higher.
+					I built the WorkOS CLI AI Installer (a production agent that ships SDK integrations on its own), I've given 50+
+					conference talks, and I was a host on
+					<a href="https://jsparty.fm" class="font-bold underline decoration-ink decoration-2 underline-offset-2">JS Party</a>.
 				</p>
-				<div class="mt-6 flex flex-wrap gap-6 text-sm font-semibold text-gray-600 dark:text-gray-300">
-					<span>50+ Conference Talks</span>
-					<span>Staff Engineer</span>
-					<span>JS Party Alum</span>
-					<span>Open Source</span>
+				<div class="mt-6 flex flex-wrap gap-2.5">
+					<span class="sticker rotate-1 bg-paper"><span class="sticker-dot bg-tomato"></span>50+ Conference Talks</span>
+					<span class="sticker -rotate-1 bg-paper"><span class="sticker-dot bg-sky"></span>Staff Engineer</span>
+					<span class="sticker rotate-1 bg-paper"><span class="sticker-dot bg-grape"></span>JS Party Alum</span>
+					<span class="sticker -rotate-1 bg-paper"><span class="sticker-dot bg-pine"></span>Open Source</span>
 				</div>
-				<p class="mt-4">
-					<a href="/about" class="font-bold text-purple-700 dark:text-purple-200">Full bio &rarr;</a>
+				<p class="mt-5">
+					<a href="/about" class="font-display font-bold text-ink underline decoration-ink decoration-2 underline-offset-4">Full bio →</a>
 				</p>
 			</div>
 		</div>
 	</Section>
 
 	{/* Section 12: Who It's For */}
-	<Section variant="default">
-		<h2 class="text-center font-serif text-3xl font-bold md:text-4xl">
-			Is This Right for Your Team?
-		</h2>
-		<div class="mt-12 grid grid-cols-1 gap-10 md:grid-cols-2">
-			<div>
-				<h3 class="p-0 font-serif text-xl font-semibold text-green-700 dark:text-green-400">Great Fit</h3>
-				<ul class="mt-4 space-y-2 text-gray-700 dark:text-gray-300">
-					<li>Teams of 3-50 engineers shipping a product</li>
-					<li>Organizations where leadership said "use AI" but nobody explained how</li>
-					<li>Engineers using Copilot for autocomplete but not much else</li>
-					<li>Eng managers who need to measure and report on AI adoption</li>
+	<Section variant="muted">
+		<span class="sticker -rotate-1"><span class="sticker-dot bg-grape"></span>Fit check</span>
+		<h2 class="mt-4 text-3xl font-extrabold md:text-4xl">Is This Right for Your Team?</h2>
+		<div class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
+			<div class="rounded-[14px] border-2 border-ink bg-card p-6 shadow-hard-sm">
+				<span class="inline-flex items-center gap-2 rounded-full border-2 border-ink bg-pine px-3 py-1 font-display text-sm font-bold text-ink">
+					<Icon name="mdi:check-bold" class="size-4" /> Great Fit
+				</span>
+				<ul class="mt-4 space-y-2.5 text-ink-soft">
+					<li class="flex gap-2.5"><Icon name="mdi:check" class="mt-1 size-4 shrink-0 text-pine" /><span>Teams of 3-50 engineers shipping a product</span></li>
+					<li class="flex gap-2.5"><Icon name="mdi:check" class="mt-1 size-4 shrink-0 text-pine" /><span>Organizations where leadership said "use AI" but nobody explained how</span></li>
+					<li class="flex gap-2.5"><Icon name="mdi:check" class="mt-1 size-4 shrink-0 text-pine" /><span>Engineers using Copilot for autocomplete but not much else</span></li>
+					<li class="flex gap-2.5"><Icon name="mdi:check" class="mt-1 size-4 shrink-0 text-pine" /><span>Eng managers who need to measure and report on AI adoption</span></li>
 				</ul>
 			</div>
-			<div>
-				<h3 class="p-0 font-serif text-xl font-semibold text-red-600 dark:text-red-400">Not a Fit</h3>
-				<ul class="mt-4 space-y-2 text-gray-700 dark:text-gray-300">
-					<li>Looking for a course on building AI/ML models or agents</li>
-					<li>Non-technical teams or individuals looking for 1:1 coaching</li>
-					<li>Teams already shipping with agentic workflows daily</li>
+			<div class="rounded-[14px] border-2 border-ink bg-card p-6 shadow-hard-sm">
+				<span class="inline-flex items-center gap-2 rounded-full border-2 border-ink bg-tomato px-3 py-1 font-display text-sm font-bold text-paper">
+					<Icon name="mdi:close-thick" class="size-4" /> Not a Fit
+				</span>
+				<ul class="mt-4 space-y-2.5 text-ink-soft">
+					<li class="flex gap-2.5"><Icon name="mdi:close" class="mt-1 size-4 shrink-0 text-tomato" /><span>Looking for a course on building AI/ML models or agents</span></li>
+					<li class="flex gap-2.5"><Icon name="mdi:close" class="mt-1 size-4 shrink-0 text-tomato" /><span>Non-technical teams or individuals looking for 1:1 coaching</span></li>
+					<li class="flex gap-2.5"><Icon name="mdi:close" class="mt-1 size-4 shrink-0 text-tomato" /><span>Teams already shipping with agentic workflows daily</span></li>
 				</ul>
 			</div>
 		</div>
@@ -428,73 +534,29 @@ const bookingUrl = 'https://calendly.com/nicknisi/ai-engineer';
 
 	{/* Section 14: FAQ */}
 	<Section variant="muted" narrow>
-		<h2 class="text-center font-serif text-3xl font-bold md:text-4xl">
-			Common Questions
-		</h2>
-		<div class="mt-12 space-y-4">
-			<details class="group rounded-xl border border-gray-200 bg-white p-5 transition-all duration-200 hover:border-purple-300 dark:border-dark-border dark:bg-dark-surface dark:hover:border-purple-700">
-				<summary class="flex cursor-pointer items-center justify-between font-serif text-lg font-semibold text-gray-900 dark:text-white">
-					<span>What makes this different from AI/ML courses?</span>
-					<Icon name="mdi:chevron-down" class="size-5 shrink-0 text-purple-500 transition-transform duration-200 group-open:rotate-180" />
-				</summary>
-				<p class="mt-4 leading-relaxed text-gray-600 dark:text-gray-300">
-					We don't build AI models. We teach engineers how to use AI to ship software faster.
-					No RAG pipelines, no fine-tuning. Just practical workflows you'll use on Monday.
-				</p>
-			</details>
-			<details class="group rounded-xl border border-gray-200 bg-white p-5 transition-all duration-200 hover:border-purple-300 dark:border-dark-border dark:bg-dark-surface dark:hover:border-purple-700">
-				<summary class="flex cursor-pointer items-center justify-between font-serif text-lg font-semibold text-gray-900 dark:text-white">
-					<span>How long is the training?</span>
-					<Icon name="mdi:chevron-down" class="size-5 shrink-0 text-purple-500 transition-transform duration-200 group-open:rotate-180" />
-				</summary>
-				<p class="mt-4 leading-relaxed text-gray-600 dark:text-gray-300">
-					Depends on your team. Could be a day, could be a week. We figure out the right scope together on the intro call.
-				</p>
-			</details>
-			<details class="group rounded-xl border border-gray-200 bg-white p-5 transition-all duration-200 hover:border-purple-300 dark:border-dark-border dark:bg-dark-surface dark:hover:border-purple-700">
-				<summary class="flex cursor-pointer items-center justify-between font-serif text-lg font-semibold text-gray-900 dark:text-white">
-					<span>What's the ideal team size?</span>
-					<Icon name="mdi:chevron-down" class="size-5 shrink-0 text-purple-500 transition-transform duration-200 group-open:rotate-180" />
-				</summary>
-				<p class="mt-4 leading-relaxed text-gray-600 dark:text-gray-300">
-					3-15 engineers. Small enough that everyone gets hands-on time, big enough for good discussion.
-				</p>
-			</details>
-			<details class="group rounded-xl border border-gray-200 bg-white p-5 transition-all duration-200 hover:border-purple-300 dark:border-dark-border dark:bg-dark-surface dark:hover:border-purple-700">
-				<summary class="flex cursor-pointer items-center justify-between font-serif text-lg font-semibold text-gray-900 dark:text-white">
-					<span>Do we need AI experience?</span>
-					<Icon name="mdi:chevron-down" class="size-5 shrink-0 text-purple-500 transition-transform duration-200 group-open:rotate-180" />
-				</summary>
-				<p class="mt-4 leading-relaxed text-gray-600 dark:text-gray-300">
-					Nope. You need to be a solid engineer. That's the prerequisite. We handle the AI part.
-				</p>
-			</details>
-			<details class="group rounded-xl border border-gray-200 bg-white p-5 transition-all duration-200 hover:border-purple-300 dark:border-dark-border dark:bg-dark-surface dark:hover:border-purple-700">
-				<summary class="flex cursor-pointer items-center justify-between font-serif text-lg font-semibold text-gray-900 dark:text-white">
-					<span>What tools do you cover?</span>
-					<Icon name="mdi:chevron-down" class="size-5 shrink-0 text-purple-500 transition-transform duration-200 group-open:rotate-180" />
-				</summary>
-				<p class="mt-4 leading-relaxed text-gray-600 dark:text-gray-300">
-					Claude Code, Claude Desktop, Cursor, GitHub Copilot, and others. Every team's toolset is different —
-					we'll focus on what your company already has access to and what makes sense for your stack.
-				</p>
-			</details>
-			<details class="group rounded-xl border border-gray-200 bg-white p-5 transition-all duration-200 hover:border-purple-300 dark:border-dark-border dark:bg-dark-surface dark:hover:border-purple-700">
-				<summary class="flex cursor-pointer items-center justify-between font-serif text-lg font-semibold text-gray-900 dark:text-white">
-					<span>Can we customize the curriculum?</span>
-					<Icon name="mdi:chevron-down" class="size-5 shrink-0 text-purple-500 transition-transform duration-200 group-open:rotate-180" />
-				</summary>
-				<p class="mt-4 leading-relaxed text-gray-600 dark:text-gray-300">
-					That's the whole idea. The six core modules are the baseline. We go deeper wherever your team needs it.
-				</p>
-			</details>
-			<details class="group rounded-xl border border-gray-200 bg-white p-5 transition-all duration-200 hover:border-purple-300 dark:border-dark-border dark:bg-dark-surface dark:hover:border-purple-700">
-				<summary class="flex cursor-pointer items-center justify-between font-serif text-lg font-semibold text-gray-900 dark:text-white">
+		<span class="sticker -rotate-1"><span class="sticker-dot bg-sky"></span>FAQ</span>
+		<h2 class="mt-4 text-3xl font-extrabold md:text-4xl">Common Questions</h2>
+		<div class="mt-10 space-y-3">
+			{
+				faqs.map((f) => (
+					<details class="group rounded-[14px] border-2 border-ink bg-card p-5 shadow-hard-sm">
+						<summary class="flex cursor-pointer items-center justify-between gap-3 font-display text-lg font-bold text-ink">
+							<span>{f.q}</span>
+							<Icon name="mdi:chevron-down" class="size-5 shrink-0 text-tomato transition-transform duration-200 group-open:rotate-180" />
+						</summary>
+						<p class="mt-4 leading-relaxed text-ink-soft">{f.a}</p>
+					</details>
+				))
+			}
+			<details class="group rounded-[14px] border-2 border-ink bg-card p-5 shadow-hard-sm">
+				<summary class="flex cursor-pointer items-center justify-between gap-3 font-display text-lg font-bold text-ink">
 					<span>What's the investment?</span>
-					<Icon name="mdi:chevron-down" class="size-5 shrink-0 text-purple-500 transition-transform duration-200 group-open:rotate-180" />
+					<Icon name="mdi:chevron-down" class="size-5 shrink-0 text-tomato transition-transform duration-200 group-open:rotate-180" />
 				</summary>
-				<p class="mt-4 leading-relaxed text-gray-600 dark:text-gray-300">
-					There's a <a href="#pricing" class="font-semibold text-purple-700 dark:text-purple-200">pricing calculator</a> on this page for a ballpark. Exact numbers depend on team size and what we cover. Let's talk about it on a call.
+				<p class="mt-4 leading-relaxed text-ink-soft">
+					There's a
+					<a href="#pricing" class="font-bold text-ink underline decoration-tomato decoration-2 underline-offset-2">pricing calculator</a>
+					on this page for a ballpark. Exact numbers depend on team size and what we cover. Let's talk about it on a call.
 				</p>
 			</details>
 		</div>
@@ -502,13 +564,12 @@ const bookingUrl = 'https://calendly.com/nicknisi/ai-engineer';
 
 	{/* Section 15: Final CTA */}
 	<Section variant="dark" class="text-center">
-		<h2 class="font-serif text-3xl font-bold md:text-5xl">
-			Let's Talk About Your Team
-		</h2>
-		<p class="mx-auto mt-4 max-w-xl text-lg text-purple-100">
+		<span class="sticker -rotate-2"><span class="sticker-dot bg-marigold"></span>Let's talk</span>
+		<h2 class="mt-5 text-3xl font-extrabold text-paper md:text-5xl">Let's Talk About Your Team</h2>
+		<p class="mx-auto mt-4 max-w-xl text-lg text-paper/80">
 			30 minutes. No pitch deck. We'll figure out if this is a good fit and what your team actually needs.
 		</p>
-		<div class="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+		<div class="mt-9 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
 			<CTA href={bookingUrl} label="Book a Call" />
 			<CTA email={email} subject={subject} label="Or Email Me" variant="secondary" />
 		</div>

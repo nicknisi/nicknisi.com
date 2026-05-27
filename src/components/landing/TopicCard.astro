@@ -6,20 +6,41 @@ interface Props {
 	title: string;
 	description: string;
 	number?: number;
+	accent?: 'tomato' | 'grape' | 'pine' | 'sky' | 'marigold';
 }
 
-const { icon, title, description, number } = Astro.props;
+const { icon, title, description, number, accent = 'marigold' } = Astro.props;
+
+const fill: Record<string, string> = {
+	tomato: 'bg-tomato text-paper',
+	grape: 'bg-grape text-paper',
+	pine: 'bg-pine text-ink',
+	sky: 'bg-sky text-ink',
+	marigold: 'bg-marigold text-ink',
+};
+const iconColor: Record<string, string> = {
+	tomato: 'text-tomato',
+	grape: 'text-grape',
+	pine: 'text-pine',
+	sky: 'text-sky',
+	marigold: 'text-ink',
+};
 ---
 
-<div
-	class="hover-glow relative rounded-xl border border-gray-200 bg-white p-6 transition-all duration-200 dark:border-dark-border dark:bg-dark-surface"
->
-	{number && (
-		<div class="absolute -top-3 -right-3 flex h-8 w-8 items-center justify-center rounded-full bg-purple-700 text-sm font-bold text-white">
-			{number}
-		</div>
-	)}
-	<Icon name={icon} class="mb-3 size-10 text-purple-700 dark:text-purple-200" />
-	<h3 class="p-0 font-serif text-lg font-semibold text-gray-900 dark:text-white">{title}</h3>
-	<p class="mt-1 text-sm text-gray-600 dark:text-gray-300">{description}</p>
+<div class="tactile relative rounded-[14px] border-2 border-ink bg-card p-6 shadow-hard-sm">
+	{
+		number && (
+			<div
+				class:list={[
+					'absolute -top-3 -right-3 grid h-9 w-9 -rotate-3 place-items-center rounded-full border-2 border-ink font-display text-sm font-extrabold shadow-hard-sm',
+					fill[accent],
+				]}
+			>
+				{number}
+			</div>
+		)
+	}
+	<Icon name={icon} class:list={['mb-3 size-9', iconColor[accent]]} />
+	<h3 class="p-0 font-display text-lg font-bold text-ink">{title}</h3>
+	<p class="mt-1.5 text-sm text-ink-soft">{description}</p>
 </div>

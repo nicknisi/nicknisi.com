@@ -4,7 +4,6 @@ import BaseLayout from '@/layouts/Base.astro';
 import { Icon } from 'astro-icon/components';
 import { toReadableDate, getWordCount } from '@/utils/common';
 import metadata from '@/data/metadata.json';
-import Tag from '@/components/Tag.astro';
 import { getAsset } from '@/utils/image.js';
 import { Image } from 'astro:assets';
 import LikeCount from '@/components/bluesky/LikeCount';
@@ -39,94 +38,108 @@ const profileImg = await getAsset(metadata.profile);
 <div>
 	{
 		draft && (
-			<div class="sticky top-0 z-40 w-full bg-red-800 text-lg font-bold text-white">
-				<div class="container mx-auto py-2">
-					<p class="text-center">DRAFT POST</p>
+			<div class="sticky top-0 z-40 w-full border-b-2 border-ink bg-tomato text-paper">
+				<div class="mx-auto max-w-4xl px-6 py-2">
+					<p class="text-center font-display text-sm font-extrabold tracking-[0.14em] uppercase">Draft post</p>
 				</div>
 			</div>
 		)
 	}
 	<BaseLayout heroImage={hero} title={title} description={description} headerImage={`/posts/${slug}/og.png`}>
-		<div
-			class="prose prose-slate dark:prose-invert lg:prose-xl prose-headings:my-3 prose-headings:text-blue-gray-900 prose-a:text-teal-600 prose-code:font-medium prose-code:text-purple-800 prose-code:before:content-[''] prose-code:after:content-[''] dark:prose-headings:text-gray-200 dark:prose-a:text-teal-400 dark:prose-code:text-purple-100 pt-6 pb-10"
-		>
-			<article class="pt-10">
-				<header class="mb-8">
-					{!hero && (
+		<article class="pt-10 pb-10">
+			<a href="/posts" class="btn btn-ghost mb-8 text-sm">← Back to posts</a>
+
+			<header class="mb-8">
+				{!hero && (
 					<h1
 						transition:name={`post-${slug}`}
-						class="mb-4 text-3xl font-bold tracking-tight md:text-5xl"
+						class="text-4xl font-extrabold tracking-tight text-ink md:text-5xl"
 					>
 						{title}
 					</h1>
 				)}
-					<div class="flex gap-2 text-sm font-light text-gray-600 sm:gap-1">
-						<span class="uppercase">{date}</span>
-						<span class="hidden md:inline">•</span>
-						<span class="uppercase">{wordCount} minute read</span>
-						{
-							postUri && (
-								<>
-									<span class="hidden sm:inline">•</span>
-									<LikeCount client:only="react" post={postUri}>
-										<Icon slot="likeIcon" name="mdi:heart-outline" class="h-6 w-6" />
-									</LikeCount>
-								</>
-							)
-						}
-						<span class="hidden sm:inline">
-							<span class="hidden sm:inline">•</span>
-							<span>
-								{tags.map((tag: string) => <Tag name={tag} />)}
-							</span>
-						</span>
-					</div>
-				</header>
-				<section>
-					<Content />
-				</section>
-				{postUri && <Likes client:only="react" post={postUri} />}
-				{postUri && <Comments client:only="react" post={postUri} />}
-				<div class="flex justify-center py-5 text-center sm:py-5">
-					<Icon name="mdi:star-outline" class="h-12 w-12 font-bold text-purple-600 dark:text-purple-200" />
-					<Icon name="mdi:star-outline" class="h-12 w-12 font-bold text-purple-600 dark:text-purple-200" />
-					<Icon name="mdi:star-outline" class="h-12 w-12 font-bold text-purple-600 dark:text-purple-200" />
+				<div class="mt-5 flex flex-wrap items-center gap-2.5 font-mono text-xs tracking-wide text-ink-soft uppercase">
+					<span>{date}</span>
+					<span class="text-ink-faint">·</span>
+					<span>{wordCount} minute read</span>
+					{
+						postUri && (
+							<>
+								<span class="text-ink-faint">·</span>
+								<LikeCount client:only="react" post={postUri}>
+									<Icon slot="likeIcon" name="mdi:heart-outline" class="h-5 w-5" />
+								</LikeCount>
+							</>
+						)
+					}
 				</div>
 				{
-					prevPost && (
-						<div class="mt-8 mb-4 flex justify-start">
-							<a href={`/posts/${prevPost.slug}`} class="flex items-center space-x-4 font-medium">
-								<Icon name="mdi:arrow-left-bold" class="h-6 w-6" />
-								<span>{prevPost.data.title}</span>
-							</a>
+					tags.length > 0 && (
+						<div class="mt-4 flex flex-wrap gap-2.5">
+							{tags.map((tag: string) => (
+								<a href={`/tags/${tag}`} class="sticker no-underline transition-transform duration-150 hover:-rotate-2">
+									{tag.toLowerCase()}
+								</a>
+							))}
 						</div>
 					)
 				}
-				<div class="mx-auto flex flex-col items-center sm:flex-row">
-					<div
-						class="inline-flex h-32 w-32 shrink-0 items-center justify-center rounded-full text-blue-500 sm:mr-10 sm:h-32 sm:w-32"
+			</header>
+
+			<div class="prose pt-2 pb-10">
+				<Content />
+			</div>
+
+			{postUri && <Likes client:only="react" post={postUri} />}
+			{postUri && <Comments client:only="react" post={postUri} />}
+
+			<div class="flex justify-center gap-3 py-6 text-marigold">
+				<Icon name="mdi:star-outline" class="h-10 w-10" />
+				<Icon name="mdi:star-outline" class="h-10 w-10" />
+				<Icon name="mdi:star-outline" class="h-10 w-10" />
+			</div>
+
+			{
+				prevPost && (
+					<a
+						href={`/posts/${prevPost.slug}`}
+						class="tactile group mt-8 flex items-center gap-4 rounded-[14px] border-2 border-ink bg-card p-5 no-underline shadow-hard-sm"
 					>
-						<Image
-							src={profileImg}
-							alt="author"
-							height={512}
-							width={512}
-							quality="max"
-							class="h-32 w-32 rounded-full drop-shadow-lg"
-						/>
-					</div>
-					<div class="mt-6 grow text-center sm:mt-0 sm:text-left">
-						<h2 class="title-font mb-2 text-lg font-medium text-gray-900">
-							{metadata.author.name}
-						</h2>
-						<p class="text-base leading-relaxed">{metadata.description}</p>
-						<p class="text-base leading-relaxed">
-							Follow me on
-							<a class="primary-link" href={metadata.social.bluesky.url}>Bluesky</a>.
-						</p>
-					</div>
+						<Icon name="mdi:arrow-left-bold" class="h-6 w-6 shrink-0 text-ink" />
+						<span class="flex flex-col gap-0.5">
+							<span class="font-mono text-xs tracking-wide text-ink-faint uppercase">Previous post</span>
+							<span class="font-display font-bold text-ink decoration-marigold decoration-2 underline-offset-4 group-hover:underline">
+								{prevPost.data.title}
+							</span>
+						</span>
+					</a>
+				)
+			}
+
+			<div class="mt-10 flex flex-col items-center gap-6 rounded-2xl border-2 border-ink bg-card p-6 shadow-hard sm:flex-row sm:items-center sm:p-8">
+				<div class="w-24 shrink-0 -rotate-2 overflow-hidden rounded-full border-2 border-ink bg-paper-2 shadow-hard-sm sm:w-28">
+					<Image
+						src={profileImg}
+						alt={metadata.author.name}
+						height={512}
+						width={512}
+						quality="max"
+						class="aspect-square h-full w-full object-cover"
+					/>
 				</div>
-			</article>
-		</div>
+				<div class="grow text-center sm:text-left">
+					<h2 class="font-display text-xl font-extrabold text-ink">{metadata.author.name}</h2>
+					<p class="mt-1 text-ink-soft">{metadata.description}</p>
+					<p class="mt-3">
+						<a
+							href={metadata.social.bluesky.url}
+							class="font-display font-bold text-ink decoration-tomato decoration-2 underline-offset-4 hover:underline"
+						>
+							Follow me on Bluesky →
+						</a>
+					</p>
+				</div>
+			</div>
+		</article>
 	</BaseLayout>
 </div>

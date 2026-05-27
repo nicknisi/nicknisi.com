@@ -11,41 +11,13 @@ interface Props {
 }
 
 const talkTypeMap = {
-	'Conference Talk': {
-		icon: 'mdi:presentation-play',
-		bgClass: 'bg-vivid-light-blue-100 dark:bg-vivid-light-blue-900/20',
-		iconClass: 'text-vivid-light-blue-700 dark:text-vivid-light-blue-300',
-	},
-	Panel: {
-		icon: 'mdi:forum',
-		bgClass: 'bg-teal-100 dark:bg-teal-900/20',
-		iconClass: 'text-teal-800 dark:text-teal-300',
-	},
-	Workshop: {
-		icon: 'mdi:hammer-wrench',
-		bgClass: 'bg-yellow-100 dark:bg-yellow-900/20',
-		iconClass: 'text-yellow-800 dark:text-yellow-300',
-	},
-	Keynote: {
-		icon: 'mdi:star',
-		bgClass: 'bg-vivid-pink-100 dark:bg-vivid-pink-900/20',
-		iconClass: 'text-vivid-pink-800 dark:text-vivid-pink-300',
-	},
-	'Lightning Talk': {
-		icon: 'mdi:flash',
-		bgClass: 'bg-purple-100 dark:bg-purple-900/20',
-		iconClass: 'text-purple-700 dark:text-purple-300',
-	},
-	Podcast: {
-		icon: 'mdi:microphone',
-		bgClass: 'bg-vivid-yellow-100 dark:bg-vivid-yellow-900/20',
-		iconClass: 'text-vivid-yellow-700 dark:text-vivid-yellow-300',
-	},
-	Moderation: {
-		icon: 'mdi:forum',
-		bgClass: 'bg-vivid-pink-100 dark:bg-vivid-pink-900/20',
-		iconClass: 'text-vivid-pink-700 dark:text-vivid-pink-300',
-	},
+	'Conference Talk': { icon: 'mdi:presentation-play', bgClass: 'bg-sky' },
+	Panel: { icon: 'mdi:forum', bgClass: 'bg-pine' },
+	Workshop: { icon: 'mdi:hammer-wrench', bgClass: 'bg-marigold' },
+	Keynote: { icon: 'mdi:star', bgClass: 'bg-tomato' },
+	'Lightning Talk': { icon: 'mdi:flash', bgClass: 'bg-grape' },
+	Podcast: { icon: 'mdi:microphone', bgClass: 'bg-marigold' },
+	Moderation: { icon: 'mdi:forum', bgClass: 'bg-grape' },
 } as const;
 
 const { appearance: talk } = Astro.props;
@@ -54,12 +26,11 @@ const { type, title, instances, detailsUrl } = talk.data;
 const thumbnail = await getThumbnail(talk.data);
 const hasMultipleInstances = instances.length > 1;
 const firstInstance = instances[0]!;
-const { icon, bgClass, iconClass } = talkTypeMap[type as keyof typeof talkTypeMap];
+const { icon, bgClass } = talkTypeMap[type as keyof typeof talkTypeMap];
 const date = toReadableDate(firstInstance.date);
 ---
 
 <Card
-	class="bg-white dark:bg-dark-surface"
 	image={thumbnail}
 	imageWidth={320}
 	imageHeight={180}
@@ -72,37 +43,33 @@ const date = toReadableDate(firstInstance.date);
 >
 	<div>
 		<div class="mb-2">
-			<span class:list={['flex items-center gap-2 text-xs font-bold', iconClass]}>
-				<span class:list={[bgClass, 'inline-block rounded-full p-1']}>
-					<Icon class:list={[iconClass]} name={icon} />
+			<span class="flex items-center gap-2 font-display text-xs font-bold text-ink">
+				<span class:list={[bgClass, 'inline-flex items-center justify-center rounded-full border-2 border-ink p-1']}>
+					<Icon name={icon} class="h-4 w-4 text-ink" />
 				</span>
-				<span class="text-xl font-bold">{type}</span>
+				<span class="text-base font-bold uppercase">{type}</span>
 			</span>
 
 			{
 				hasMultipleInstances ? (
-					<div class="mt-2 space-y-1">
-						<div class="text-md flex items-center justify-between font-medium text-gray-600 dark:text-gray-400">
-							<div class="flex items-center gap-1">
-								<Icon name="mdi:star-circle" />
-								<span>{instances.length} appearances</span>
-							</div>
-						</div>
+					<div class="mt-2 flex items-center gap-1 font-mono text-sm text-ink-soft">
+						<Icon name="mdi:star-circle" />
+						<span>{instances.length} appearances</span>
 					</div>
 				) : (
-					<div class="text-md mt-2 flex flex-col font-medium text-gray-500 dark:text-gray-400">
+					<div class="mt-2 flex flex-col gap-1 font-mono text-sm text-ink-soft">
 						<div class="flex items-center gap-1">
 							<Icon name="mdi:ticket" />
 							{firstInstance.event}
 						</div>
-						<div class="flex gap-2">
+						<div class="flex flex-wrap gap-2">
 							<div class="flex items-center gap-1">
 								<Icon name="mdi:map-marker" />
 								{firstInstance.location}
 							</div>
 							<div class="flex items-center gap-1">
 								<Icon name="mdi:calendar" />
-								<FormattedDate class="flex flex-col items-center justify-center" date={new Date(date)} />
+								<FormattedDate date={new Date(date)} />
 							</div>
 						</div>
 					</div>

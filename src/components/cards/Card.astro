@@ -51,22 +51,22 @@ const {
 
 // Utility mappings
 const paddingVariants = {
-	small: 'p-3',
+	small: 'p-4',
 	normal: 'p-6',
 	large: 'p-8',
 };
 
 const titlePaddingVariants = {
-	small: 'px-3',
-	normal: 'px-6',
-	large: 'px-8',
+	small: 'px-4 pt-4',
+	normal: 'px-6 pt-6',
+	large: 'px-8 pt-8',
 };
 
 const shadowVariants = {
 	none: '',
-	small: 'shadow-xs',
-	normal: 'shadow-md',
-	large: 'shadow-lg',
+	small: 'shadow-hard-sm',
+	normal: 'shadow-hard',
+	large: 'shadow-hard-lg',
 };
 
 const imageFitVariants = {
@@ -77,21 +77,20 @@ const imageFitVariants = {
 
 // Compose classes
 const baseClasses = [
-	'inline-block',
-	'rounded-xl',
-	'transition-all duration-200',
-	'bg-white dark:bg-dark-surface',
+	'block',
+	'rounded-[14px]',
+	'bg-card',
 	'overflow-hidden',
+	'border-2 border-ink',
 	shadowVariants[shadow],
-	'border border-gray-100 dark:border-dark-border',
-	hover && 'hover-glow',
-	featured && 'border-l-4 border-l-transparent bg-gradient-to-r from-purple-50 to-white dark:from-purple-900/10 dark:to-dark-surface',
-	interactive && 'cursor-pointer',
+	hover && 'tactile',
+	featured && 'bg-marigold',
+	interactive && 'cursor-pointer no-underline',
 	className,
 ];
 
-const defaultTitleClasses = 'text-xl font-semibold text-gray-800 dark:text-white my-2';
-const defaultSubtitleClasses = 'text-sm text-gray-600 dark:text-gray-300 mt-1';
+const defaultTitleClasses = 'font-display text-xl font-bold text-ink my-2';
+const defaultSubtitleClasses = 'text-sm text-ink-soft mt-1';
 
 const imageClasses = ['w-full h-full', imageFitVariants[imageFit], hideImageOnMobile && 'hidden sm:block'];
 
@@ -106,7 +105,7 @@ const WrapperElement = href ? 'a' : 'div';
 		{/* Top Image */}
 		{
 			image && imagePosition === 'top' && (
-				<div class={imageWrapperClasses} style={`height: ${imageHeight}px;`}>
+				<div class:list={[imageWrapperClasses, 'border-b-2 border-ink bg-paper-2']} style={`height: ${imageHeight}px;`}>
 					<Image
 						src={image as ImageMetadata}
 						alt={imageAlt}
@@ -130,7 +129,7 @@ const WrapperElement = href ? 'a' : 'div';
 		</div>
 		{
 			image && imagePosition === 'bottom' && (
-				<div class={imageWrapperClasses} style={`height: ${imageHeight}px;`}>
+				<div class:list={[imageWrapperClasses, 'border-t-2 border-ink bg-paper-2']} style={`height: ${imageHeight}px;`}>
 					<Image
 						src={image as ImageMetadata}
 						alt={imageAlt}

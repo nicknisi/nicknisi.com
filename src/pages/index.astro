@@ -1,75 +1,87 @@
 ---
 import BaseLayout from '../layouts/Base.astro';
-import Posts from '@/components/sections//Posts.astro';
+import Posts from '@/components/sections/Posts.astro';
 import { getAsset } from '@/utils/image.js';
 import { Image } from 'astro:assets';
+import metadata from '@/data/metadata.json';
 
-const profileImage = await getAsset('profile.jpg');
+const profileImage = await getAsset(metadata.profile);
 ---
 
 <BaseLayout fullWidth>
 	<!-- Hero -->
-	<section class="relative overflow-hidden bg-gray-50 dark:bg-dark-arsenic">
-		<!-- Subtle gradient blobs -->
-		<div class="absolute inset-0 overflow-hidden">
-			<div class="absolute top-[-20%] left-[10%] h-[500px] w-[500px] rounded-full bg-purple-200/20 blur-3xl dark:bg-purple-700/10"></div>
-			<div class="absolute bottom-[-10%] right-[15%] h-[400px] w-[400px] rounded-full bg-teal-200/20 blur-3xl dark:bg-teal-700/10"></div>
-		</div>
+	<section class="mx-auto max-w-4xl px-6 pt-12 pb-10 md:pt-16">
+		<div class="grid items-center gap-8 md:grid-cols-[1.4fr_1fr] md:gap-12">
+			<div>
+				<p class="font-mono text-xs tracking-[0.14em] text-ink-soft uppercase">
+					developer experience engineer · workos
+				</p>
 
-		<div class="relative z-10 mx-auto flex max-w-5xl flex-col items-center px-6 pt-16 pb-12 md:pt-24 md:pb-16">
-			<!-- Profile image with gradient ring -->
-			<div class="gradient-border rounded-full p-1">
-				<Image
-					src={profileImage}
-					alt="Nick Nisi"
-					width={512}
-					height={512}
-					quality="max"
-					class="h-40 w-40 rounded-full object-cover md:h-56 md:w-56"
-				/>
-			</div>
-
-			<!-- Name with gradient text -->
-			<h1 class="gradient-text mt-8 text-center font-serif text-5xl font-bold tracking-tight md:text-7xl">
-				Nick Nisi
-			</h1>
-
-			<!-- Tagline -->
-			<p class="mt-4 text-center text-xl text-blue-gray-600 dark:text-gray-300 md:text-2xl">
-				Staff Engineer · TypeScript · Developer Experience
-			</p>
-
-			<!-- Social proof chips -->
-			<div class="mt-6 flex flex-wrap justify-center gap-3">
-				{["50+ Conference Talks", "NebraskaJS Organizer", "JS Party Alum"].map(label => (
-					<span class="rounded-full border border-gray-200 bg-white/80 px-4 py-1.5 text-sm font-medium text-gray-700 dark:border-dark-border dark:bg-dark-surface/80 dark:text-gray-300">
-						{label}
+				<h1 class="mt-2 text-6xl leading-[0.95] font-extrabold tracking-tight md:text-7xl">
+					Nick{' '}
+					<span class="relative inline-block text-grape">
+						Nisi
+						<svg class="absolute -bottom-2 left-0 h-3 w-full overflow-visible text-tomato" viewBox="0 0 200 18" fill="none" aria-hidden="true">
+							<path d="M3 12 C 50 6, 90 14, 130 9 S 188 6, 197 10" stroke="currentColor" stroke-width="5" stroke-linecap="round"></path>
+						</svg>
 					</span>
-				))}
+				</h1>
+
+				<p class="mt-5 max-w-[24ch] font-display text-xl leading-snug font-bold text-ink md:text-2xl">
+					I make the web friendlier for the people who build it.
+				</p>
+
+				<p class="mt-3 max-w-[48ch] text-ink-soft">
+					TypeScript enthusiast, conference organizer, and weekly streamer. I write about developer experience,
+					tooling, and the occasional Vim rabbit hole.
+				</p>
+
+				<div class="mt-6 flex flex-wrap gap-2.5">
+					<span class="sticker sticker-solid sticker-grape -rotate-2">TypeScript ♥</span>
+					<span class="sticker sticker-solid sticker-marigold rotate-1">NebraskaJS organizer</span>
+					<a href="https://www.youtube.com/nicknisi" class="sticker sticker-solid sticker-sky -rotate-1 no-underline">Weekly stream ↗</a>
+					<span class="sticker sticker-solid sticker-pine rotate-2">50+ conference talks</span>
+				</div>
+
+				<div class="mt-8 flex flex-wrap gap-3">
+					<a href="/posts" class="btn btn-primary">Read the blog →</a>
+					<a href="/about" class="btn btn-ghost">About me</a>
+				</div>
 			</div>
 
-			<!-- CTAs -->
-			<div class="mt-10 flex gap-4">
-				<a href="/posts" class="hover-glow rounded-xl bg-purple-700 px-6 py-3 font-semibold text-white">
-					Read the Blog
-				</a>
-				<a href="/about" class="hover-glow gradient-border rounded-xl px-6 py-3 font-semibold text-gray-800 dark:text-gray-200">
-					About Me
-				</a>
+			<div class="relative justify-self-center md:justify-self-end">
+				<div class="w-[clamp(220px,26vw,300px)] -rotate-3 overflow-hidden rounded-2xl border-2 border-ink bg-card shadow-hard-lg">
+					<Image
+						src={profileImage}
+						alt="Nick Nisi"
+						width={600}
+						height={600}
+						quality="max"
+						class="aspect-square h-full w-full object-cover"
+					/>
+				</div>
+				<span class="absolute -top-3 -right-2 rotate-6 rounded-full border-2 border-ink bg-marigold px-3 py-1 font-display text-sm font-extrabold text-ink shadow-hard-sm">
+					it me
+				</span>
+				<svg class="absolute -bottom-4 -left-6 h-12 w-12 -rotate-12 text-tomato" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+					<path d="M12 0l2.6 7.4L22 8l-6 5 2 8-6-4.6L6 21l2-8-6-5 7.4-.6z"></path>
+				</svg>
 			</div>
 		</div>
-
-		<!-- Gradient fade to next section -->
-		<div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-white dark:to-dark-arsenic"></div>
 	</section>
 
-	<!-- Latest Posts -->
-	<section class="bg-white px-6 pt-10 pb-16 dark:bg-dark-arsenic md:pt-14 md:pb-24">
-		<div class="mx-auto max-w-5xl">
-			<h2 class="mb-10 text-center font-serif text-3xl font-bold md:text-4xl">
-				Latest Posts
-			</h2>
-			<Posts hideImages featuredFirst limit={6} />
+	<!-- Latest writing -->
+	<section class="mx-auto max-w-4xl px-6 pt-6 pb-14">
+		<div class="mb-7 flex items-baseline gap-3">
+			<h2 class="text-3xl font-extrabold md:text-4xl">Latest writing</h2>
+			<svg class="hidden h-7 w-16 self-center text-tomato sm:block" viewBox="0 0 80 30" fill="none" aria-hidden="true">
+				<path d="M3 20 C 20 8, 45 8, 68 14" stroke="currentColor" stroke-width="4" stroke-linecap="round"></path>
+				<path d="M58 8 L70 15 L58 21" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
+			</svg>
+			<a href="/posts" class="ml-auto font-display font-bold text-ink-soft decoration-tomato decoration-2 underline-offset-4 hover:text-ink hover:underline">
+				all posts →
+			</a>
 		</div>
+		<Posts limit={6} />
 	</section>
 </BaseLayout>

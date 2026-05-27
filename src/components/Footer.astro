@@ -3,62 +3,60 @@ import metadata from '../data/metadata.json';
 import { DateTime } from 'luxon';
 import { Icon } from 'astro-icon/components';
 const year = DateTime.local().year;
+
+const socials = Object.entries(metadata.social).filter(([, { hidden }]) => !hidden);
+const nav = [
+	{ href: '/about', label: 'About' },
+	{ href: '/posts', label: 'Posts' },
+	{ href: '/speaking', label: 'Speaking' },
+	{ href: '/uses', label: 'Uses' },
+	{ href: '/now', label: 'Now' },
+];
 ---
 
-<footer class="border-t border-transparent bg-gray-50 px-6 dark:bg-dark-surface/30">
-	<!-- Gradient border line -->
-	<div class="mx-auto h-px max-w-5xl bg-gradient-to-r from-transparent via-purple-500/50 to-transparent"></div>
-
-	<div class="mx-auto max-w-5xl">
-		<div class="grid grid-cols-1 gap-8 border-gray-200 py-12 sm:grid-cols-3">
-			<div class="sm:pb-8">
-				<div class="pb-3 font-medium">
-					<Icon name="ic:baseline-email" class="inline-block h-5 w-5" /> Drop me an email!
-				</div>
-				<a
-					target="_blank"
-					href={`mailto:${metadata.author.email}`}
-					class="text-gray-500 no-underline hover:text-gray-600 hover:underline">{metadata.author.email}</a
-				>
-				<div class="py-3">© {metadata.author.name} {year}</div>
-			</div>
-			<div class="">
-				<div class="pb-3">
-					<a class="text-gray-500 no-underline hover:text-gray-600 hover:underline" href="/">Home</a>
-				</div>
-				<div class="pb-3">
-					<a class="text-gray-500 no-underline hover:text-gray-600 hover:underline" href="/about">About</a>
-				</div>
-				<div class="pb-3">
-					<a class="text-gray-500 no-underline hover:text-gray-600 hover:underline" href="/posts">Posts</a>
-				</div>
-			</div>
+<footer class="slab-dark mt-16 bg-ink text-paper">
+	<div class="mx-auto max-w-4xl px-6 py-12">
+		<div class="flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
 			<div>
-				<div class="pb-3">
-					<a class="text-gray-500 no-underline hover:text-gray-600 hover:underline" href="/talks">Talks</a>
-				</div>
-				<div class="pb-3">
-					<a class="text-gray-500 no-underline hover:text-gray-600 hover:underline" href="/uses">Uses</a>
-				</div>
-				<div class="flex pt-2">
-					<div class="flex">
-						{
-							Object.entries(metadata.social)
-								.filter(([, { hidden }]) => !hidden)
-								.map(([name, { url }]) => (
-									<div class="px-1">
-										<a target="_blank" href={url} class="hover-glow rounded-md text-gray-500 no-underline transition-colors hover:text-purple-700 dark:hover:text-purple-300">
-											<Icon
-												name={`simple-icons:${name}`}
-												class="inline-block h-5 w-5"
-											/>
-										</a>
-									</div>
-								))
-						}
-					</div>
-				</div>
+				<p class="font-display text-2xl font-extrabold text-paper">Let's build a friendlier web.</p>
+				<a
+					href={`mailto:${metadata.author.email}`}
+					class="mt-3 inline-flex items-center gap-2 font-display font-bold text-paper no-underline underline-offset-4 hover:underline"
+				>
+					<Icon name="ic:baseline-email" class="h-5 w-5" />
+					{metadata.author.email}
+				</a>
 			</div>
+
+			<nav class="flex flex-wrap gap-x-5 gap-y-2">
+				{
+					nav.map(({ href, label }) => (
+						<a href={href} class="font-display text-sm font-bold text-paper/70 no-underline underline-offset-4 hover:text-paper hover:underline">
+							{label}
+						</a>
+					))
+				}
+			</nav>
+		</div>
+
+		<div class="mt-10 flex flex-col gap-5 border-t-2 border-paper/20 pt-6 sm:flex-row sm:items-center sm:justify-between">
+			<div class="flex flex-wrap gap-2.5">
+				{
+					socials.map(([name, { url }]) => (
+						<a
+							href={url}
+							target="_blank"
+							rel="me noopener"
+							aria-label={name}
+							class="inline-flex items-center gap-2 rounded-full border-2 border-paper px-3.5 py-1 font-display text-sm font-bold text-paper no-underline transition-colors hover:border-marigold hover:bg-marigold hover:text-ink"
+						>
+							<Icon name={`simple-icons:${name}`} class="h-4 w-4" />
+							<span class="capitalize">{name}</span>
+						</a>
+					))
+				}
+			</div>
+			<p class="font-mono text-xs text-paper/60">// © {metadata.author.name} {year} · made in Nebraska</p>
 		</div>
 	</div>
 </footer>

@@ -3,43 +3,122 @@ import metadata from '../data/metadata.json';
 import { getAsset } from '@/utils/image.js';
 const avatar = await getAsset(metadata.avatar);
 import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
 import ThemeToggle from '@/components/ThemeToggle.astro';
+import AccentSwitcher from '@/components/AccentSwitcher.astro';
+
+const links = [
+	{ href: '/about', label: 'About' },
+	{ href: '/posts', label: 'Posts' },
+	{ href: '/speaking', label: 'Speaking' },
+	{ href: '/uses', label: 'Uses' },
+	{ href: '/now', label: 'Now' },
+];
+const path = Astro.url.pathname;
 ---
 
-<header class="sticky top-0 z-40 border-b border-gray-200/50 bg-gray-50/80 backdrop-blur-md dark:border-dark-border dark:bg-dark-arsenic/80">
-	<div class="mx-auto max-w-5xl px-6 py-3">
-		<div class="flex flex-col items-center gap-2 sm:flex-row sm:justify-between">
-			<a href="/" class="hover-glow flex items-center gap-2 rounded-lg p-1">
-				<Image loading="eager" src={avatar} alt="nicknisi" width={28} height={28} quality="max" class="rounded-full" />
-				<span class="font-serif text-lg font-semibold">{metadata.title}</span>
-			</a>
+<header class="sticky top-0 z-40 border-b-2 border-ink bg-marigold">
+	<div class="mx-auto flex max-w-4xl items-center justify-between gap-2 px-4 py-3 sm:gap-3 sm:px-6">
+		<a href="/" class="group flex min-w-0 items-center gap-2.5 no-underline">
+			<span class="grid h-9 w-9 shrink-0 -rotate-3 place-items-center overflow-hidden rounded-full border-2 border-ink bg-card shadow-hard-sm transition-transform duration-150 group-hover:rotate-3">
+				<Image loading="eager" src={avatar} alt="" width={36} height={36} quality="max" class="h-full w-full object-cover" />
+			</span>
+			<span class="truncate font-display text-lg font-extrabold tracking-tight text-ink">{metadata.title}</span>
+		</a>
 
-			<div class="flex items-center gap-6">
-				<nav>
-					<ul class="flex list-none gap-6">
-						{[
-							{ href: '/about', label: 'About' },
-							{ href: '/posts', label: 'Posts' },
-							{ href: '/speaking', label: 'Speaking' },
-							{ href: '/uses', label: 'Uses' },
-							{ href: '/now', label: 'Now' },
-						].map(({ href, label }) => (
+		<div class="flex shrink-0 items-center gap-2 sm:gap-4">
+			<!-- Desktop nav -->
+			<nav class="hidden md:block">
+				<ul class="flex list-none gap-4 lg:gap-6">
+					{
+						links.map(({ href, label }) => (
 							<li>
 								<a
 									href={href}
 									class:list={[
-										'nav-underline font-medium transition-colors hover:text-purple-700 dark:hover:text-purple-300',
-										Astro.url.pathname.startsWith(href) && 'active text-purple-700 dark:text-purple-300',
+										'nav-underline font-display text-sm font-bold text-ink transition-opacity lg:text-base',
+										path.startsWith(href) ? 'active' : 'opacity-65 hover:opacity-100',
 									]}
 								>
 									{label}
 								</a>
 							</li>
-						))}
-					</ul>
-				</nav>
-				<ThemeToggle />
-			</div>
+						))
+					}
+				</ul>
+			</nav>
+
+			<AccentSwitcher />
+			<ThemeToggle />
+
+			<!-- Mobile menu button -->
+			<button
+				type="button"
+				id="navToggle"
+				class="grid h-[30px] w-[30px] place-items-center rounded-md border-2 border-ink text-ink md:hidden"
+				aria-label="Toggle navigation menu"
+				aria-expanded="false"
+				aria-controls="mobileNav"
+			>
+				<Icon name="mdi:menu" class="icon-menu h-5 w-5" />
+				<Icon name="mdi:close" class="icon-close hidden h-5 w-5" />
+			</button>
 		</div>
 	</div>
+
+	<!-- Mobile nav panel -->
+	<nav id="mobileNav" class="hidden border-t-2 border-ink bg-marigold md:hidden">
+		<ul class="mx-auto flex max-w-4xl list-none flex-col gap-1 px-4 py-3">
+			{
+				links.map(({ href, label }) => (
+					<li>
+						<a
+							href={href}
+							class:list={[
+								'block rounded-lg px-3 py-2.5 font-display font-bold text-ink',
+								path.startsWith(href) ? 'bg-card shadow-hard-sm' : 'hover:bg-card/60',
+							]}
+						>
+							{label}
+						</a>
+					</li>
+				))
+			}
+		</ul>
+	</nav>
 </header>
+
+<style>
+	#navToggle[aria-expanded='true'] .icon-menu {
+		display: none;
+	}
+	#navToggle[aria-expanded='true'] .icon-close {
+		display: block;
+	}
+</style>
+
+<script is:inline>
+	(function () {
+		function wireNav() {
+			const btn = document.getElementById('navToggle');
+			const panel = document.getElementById('mobileNav');
+			if (!btn || !panel) return;
+			const close = () => {
+				panel.classList.add('hidden');
+				btn.setAttribute('aria-expanded', 'false');
+			};
+			if (!btn.dataset.wired) {
+				btn.dataset.wired = '1';
+				btn.addEventListener('click', () => {
+					const open = panel.classList.toggle('hidden') === false;
+					btn.setAttribute('aria-expanded', String(open));
+				});
+				panel.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+			}
+			// Always start closed on (re)load.
+			close();
+		}
+		document.addEventListener('astro:page-load', wireNav);
+		wireNav();
+	})();
+</script>

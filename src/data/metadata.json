@@ -2,7 +2,7 @@
 	"title": "Nick Nisi",
 	"url": "https://nicknisi.com",
 	"_description": "👋 Hi, I'm Nick. I write and talk about JavaScript and the web.",
-	"description": "A passionate TypeScript enthusiast, podcast host, and dedicated community builder.",
+	"description": "A passionate TypeScript enthusiast, conference organizer, and weekly streamer.",
 	"avatar": "beef_nick.png",
 	"profile": "profile.jpg",
 	"ogImage": "/og-image.png",
@@ -35,9 +35,9 @@
 			"icon": "mdi:calendar"
 		},
 		{
-			"title": "Dysfunctional Podcast",
-			"url": "https://dysfunctional.fm",
-			"icon": "mdi:podcast"
+			"title": "Watch me stream",
+			"url": "https://www.youtube.com/nicknisi",
+			"icon": "mdi:youtube"
 		},
 		{
 			"title": "What I'm doing now",
@@ -51,12 +51,6 @@
 		}
 	],
 	"podcast": [
-		{
-			"name": "Dysfunctional",
-			"url": "https://dysfunctional.fm/",
-			"icon": "mdi:podcast",
-			"studio": "https://riverside.fm/studio/dysfunctional-mogi0?t=e98e3be764f5457b5426"
-		},
 		{
 			"name": "Software Engineering Daily",
 			"url": "https://softwareengineeringdaily.com/",

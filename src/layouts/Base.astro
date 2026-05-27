@@ -4,10 +4,10 @@ import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 import Head from '@/components/Head.astro';
 import Hero from '@/components/Hero.astro';
-import '@fontsource/space-mono';
-import '@fontsource-variable/roboto-slab';
 import '@fontsource/atkinson-hyperlegible';
-import '@fontsource/oswald';
+import '@fontsource/atkinson-hyperlegible/700.css';
+import '@fontsource-variable/bricolage-grotesque';
+import '@fontsource-variable/jetbrains-mono';
 import '../styles/base.css';
 import type { HeroImage } from '@/types';
 
@@ -29,6 +29,22 @@ const { heroImage, title = '', description, hideHeader, hideFooter, headerImage,
 	<Head title={title} description={description} headerImage={headerImage} noindex={noindex} />
 	<ClientRouter />
 	<script is:inline>
+		// Accent default is RANDOM per visit, UNLESS the visitor explicitly
+		// picked one (then localStorage wins). The random pick lives on window
+		// so it stays stable while browsing and is never persisted; a fresh
+		// visit re-rolls it. Resolved here, pre-paint, to avoid a color flash.
+		(function () {
+			const ACCENTS = ['grape', 'iris', 'cobalt', 'teal', 'forest', 'magenta'];
+			window.__resolveAccent = function () {
+				const stored = localStorage.getItem('accent');
+				if (ACCENTS.includes(stored)) return stored;
+				if (!window.__accent) window.__accent = ACCENTS[Math.floor(Math.random() * ACCENTS.length)];
+				return window.__accent;
+			};
+			document.documentElement.dataset.accent = window.__resolveAccent();
+		})();
+	</script>
+	<script is:inline>
 		// Restore theme before paint on every View Transition swap
 		document.addEventListener('astro:after-swap', () => {
 			const theme = localStorage.getItem('theme') ||
@@ -38,22 +54,16 @@ const { heroImage, title = '', description, hideHeader, hideFooter, headerImage,
 			} else {
 				document.documentElement.classList.remove('dark');
 			}
+			document.documentElement.dataset.accent = window.__resolveAccent
+				? window.__resolveAccent()
+				: 'grape';
 		});
 	</script>
-	<body
-		class:list={[
-			'font-normal',
-			'font-sans',
-			'bg-gray-50',
-			'text-blue-gray-800',
-			'dark:text-gray-50',
-			'dark:bg-dark-arsenic',
-		]}
-	>
+	<body class:list={['font-sans', 'font-normal', 'bg-paper', 'text-ink', 'flex', 'min-h-screen', 'flex-col']}>
 		{!hideHeader && <Header transition:persist />}
 		{heroImage && <Hero title={title} alt={heroImage.alt} darkOverlay={heroImage.darkOverlay} image={heroImage.img} />}
 		<main class:list={['z-30 mb-auto', !fullWidth && 'px-6']}>
-			{fullWidth ? <slot /> : <div class="mx-auto max-w-5xl"><slot /></div>}
+			{fullWidth ? <slot /> : <div class="mx-auto max-w-4xl">{<slot />}</div>}
 		</main>
 		{!hideFooter && <Footer />}
 	</body>

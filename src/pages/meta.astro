@@ -23,9 +23,9 @@ const quickConnectLinks = [
 		href: 'https://bsky.app/profile/nicknisi.com',
 	},
 	{
-		label: 'JS Party',
-		icon: 'simple-icons:applepodcasts',
-		href: 'https://jsparty.fm',
+		label: 'Watch me stream',
+		icon: 'simple-icons:youtube',
+		href: 'https://www.youtube.com/nicknisi',
 	},
 ];
 ---
@@ -34,111 +34,101 @@ const quickConnectLinks = [
 <html lang="en">
 	<Head title="Contact Me" description="How to find me after my departure from Meta." headerImage={ogImage} />
 
-	<body class="bg-dark-obsidian">
-		<!-- Hero Section -->
-		<div class="relative h-screen w-full overflow-hidden md:h-[70vh]">
-			<!-- Hero Image -->
-			<Image src={hero} alt="Captain America PSA Meme" class="h-full w-full object-cover object-right sm:object-top" />
-			<!-- Gradient Overlay -->
-			<div class="via-dark-obsidian/70 to-dark-obsidian absolute inset-0 bg-linear-to-b from-transparent"></div>
-
-			<!-- Hero Content -->
-			<div class="absolute inset-0 flex items-center justify-center">
-				<div class="px-4 text-center">
-					<h1 class="mb-4 font-sans text-4xl font-bold text-white md:text-6xl">
-						So... you're looking for my contact info
-					</h1>
-					<p class="text-blue-gray-100 text-xl md:text-2xl">Let's stay connected!</p>
+	<body class="min-h-screen bg-paper font-sans font-normal text-ink">
+		<div class="mx-auto max-w-4xl px-6 py-12">
+			<!-- Hero -->
+			<section class="mb-12 flex flex-col gap-6">
+				<span class="sticker -rotate-2 self-start"><span class="sticker-dot bg-marigold"></span>contact</span>
+				<h1 class="font-display text-4xl leading-[0.95] font-extrabold tracking-tight md:text-6xl">
+					So... you're looking for my
+					<span class="text-tomato">contact info</span>
+				</h1>
+				<p class="max-w-[48ch] text-lg text-ink-soft">Let's stay connected!</p>
+				<div class="overflow-hidden rounded-2xl border-2 border-ink bg-card shadow-hard-lg">
+					<Image src={hero} alt="Captain America PSA Meme" class="h-auto w-full object-cover" />
 				</div>
-			</div>
-		</div>
+			</section>
 
-		<!-- Main Content -->
-		<div class="relative z-10 container mx-auto -mt-20 px-4 py-12">
-			<div class="mx-auto max-w-4xl">
-				<div class="border-cool-gray-700 bg-dark-oxford-blue/50 rounded-lg border p-6 shadow-xl md:p-8">
-					<!-- Contact grid -->
-					<div class="mb-12 grid gap-8 md:grid-cols-2">
-						<!-- Quick contact -->
-						<div class="space-y-6">
-							<h2 class="mb-6 flex items-center font-sans text-2xl font-semibold text-white">
-								<span class="bg-vivid-light-blue-400 mr-3 h-2 w-2 rounded-full"></span>
-								Quick Connect
-							</h2>
-							<div class="space-y-4">
-								{
-									quickConnectLinks.map(({ label, icon, href }) => (
-										<a
-											href={href}
-											class="bg-dark-midnight-blue text-blue-gray-100 hover:bg-dark-jet flex items-center rounded-lg p-4 transition-colors duration-200"
-										>
-											<Icon name={icon} class="text-vivid-light-blue-400 mr-4 h-6 w-6" />
-											<span>{label}</span>
-										</a>
-									))
-								}
-							</div>
-						</div>
-
-						<!-- New Adventure -->
-						<div class="space-y-6">
-							<h2 class="mb-6 flex items-center font-sans text-2xl font-semibold text-white">
-								<span class="bg-vivid-pink-400 mr-3 h-2 w-2 rounded-full"></span>
-								New Adventure
-							</h2>
-							<div class="bg-dark-midnight-blue rounded-lg p-6">
-								<div class="mb-4 flex items-center">
-									<div class="bg-vivid-pink-400/20 mr-4 flex h-12 w-12 items-center justify-center rounded-lg">
-										<svg class="text-vivid-pink-400 h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-											<path
-												stroke-linecap="round"
-												stroke-linejoin="round"
-												stroke-width="2"
-												d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-										</svg>
-									</div>
-									<div>
-										<h3 class="font-semibold text-white">Developer Experienec Engineer</h3>
-										<p class="text-blue-gray-300">at <a href="https://workos.com">WorkOS</a></p>
-									</div>
-								</div>
-								<p class="text-blue-gray-200">I'm excited to join the small team to make a big impact!</p>
-							</div>
-						</div>
+			<!-- Contact grid -->
+			<div class="mb-8 grid gap-6 md:grid-cols-2">
+				<!-- Quick contact -->
+				<div class="panel p-6">
+					<h2 class="mb-5 flex items-center font-display text-2xl font-extrabold text-ink">
+						<span class="sticker-dot mr-3 bg-sky"></span>
+						Quick Connect
+					</h2>
+					<div class="space-y-3">
+						{
+							quickConnectLinks.map(({ label, icon, href }) => (
+								<a
+									href={href}
+									class="tactile flex items-center gap-4 rounded-[10px] border-2 border-ink bg-paper p-4 font-display font-bold text-ink no-underline shadow-hard-sm"
+								>
+									<Icon name={icon} class="h-6 w-6" />
+									<span>{label}</span>
+								</a>
+							))
+						}
 					</div>
+				</div>
 
-					<!-- Footer note -->
-					<div class="border-cool-gray-700 border-t pt-8">
-						<div class="bg-dark-midnight-blue rounded-lg p-6">
-							<h3 class="mb-4 flex items-center font-sans text-xl font-semibold text-white">
-								<span class="mr-3 h-2 w-2 rounded-full bg-teal-300"></span>
-								A Note to My Team
-							</h3>
-							<div class="text-blue-gray-200 space-y-4 leading-relaxed">
-								<p>
-									From racing go-karts to making pottery (with varying degrees of success), and even that time I was the
-									lone warrior at karaoke - our team events were always an adventure.
-								</p>
-
-								<p>
-									Thanks for making complex problems feel manageable, for caring about doing things the right way, and
-									for being the kind of team that could debate implementation details all morning. Whether it was
-									untangling partner integrations or making the onboarding experience better for our users, you made
-									even the most challenging work enjoyable.
-								</p>
-
-								<p>
-									Keep building amazing things, fighting the good fight against technical debt, and maybe sing a little
-									karaoke once in a while 🎤
+				<!-- New Adventure -->
+				<div class="panel p-6">
+					<h2 class="mb-5 flex items-center font-display text-2xl font-extrabold text-ink">
+						<span class="sticker-dot mr-3 bg-tomato"></span>
+						New Adventure
+					</h2>
+					<div class="rounded-[10px] border-2 border-ink bg-marigold p-6 shadow-hard-sm">
+						<div class="mb-4 flex items-center gap-4">
+							<div class="grid size-12 place-items-center rounded-[10px] border-2 border-ink bg-card">
+								<svg class="h-6 w-6 text-ink" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										stroke-width="2"
+										d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+								</svg>
+							</div>
+							<div>
+								<h3 class="font-display font-bold text-ink">Developer Experienec Engineer</h3>
+								<p class="text-ink-soft">
+									at <a href="https://workos.com" class="underline decoration-ink decoration-2 underline-offset-4">WorkOS</a>
 								</p>
 							</div>
 						</div>
+						<p class="text-ink">I'm excited to join the small team to make a big impact!</p>
 					</div>
 				</div>
 			</div>
 
-			<!-- Footer -->
-			<div class="text-blue-gray-300 mt-12 text-center text-sm">
+			<!-- Footer note -->
+			<div class="panel p-6">
+				<h3 class="mb-4 flex items-center font-display text-xl font-extrabold text-ink">
+					<span class="sticker-dot mr-3 bg-pine"></span>
+					A Note to My Team
+				</h3>
+				<div class="space-y-4 leading-relaxed text-ink-soft">
+					<p>
+						From racing go-karts to making pottery (with varying degrees of success), and even that time I was the
+						lone warrior at karaoke - our team events were always an adventure.
+					</p>
+
+					<p>
+						Thanks for making complex problems feel manageable, for caring about doing things the right way, and
+						for being the kind of team that could debate implementation details all morning. Whether it was
+						untangling partner integrations or making the onboarding experience better for our users, you made
+						even the most challenging work enjoyable.
+					</p>
+
+					<p>
+						Keep building amazing things, fighting the good fight against technical debt, and maybe sing a little
+						karaoke once in a while 🎤
+					</p>
+				</div>
+			</div>
+
+			<!-- Closing note -->
+			<div class="mt-10 text-center font-mono text-xs text-ink-faint">
 				<p>
 					The real source of that Laminar state update was the friends we made along the way (just kidding, it's buried
 					in 47 layers of selectors)

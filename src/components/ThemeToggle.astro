@@ -2,13 +2,39 @@
 import { Icon } from 'astro-icon/components';
 ---
 
+{/* Fixed colors: this control always sits on the mint header, so it must
+    read the same in light and dark. Tokens are intentionally NOT used. */}
 <button
 	type="button"
 	id="themeToggle"
-	class="rounded-lg p-2 text-gray-600 transition-colors hover:bg-gray-100 hover:text-purple-700 dark:text-gray-300 dark:hover:bg-dark-surface dark:hover:text-purple-300"
+	role="switch"
+	aria-label="Toggle light and dark mode"
+	class="theme-toggle relative inline-flex h-[30px] w-[58px] shrink-0 cursor-pointer items-center rounded-full border-2 transition-colors"
 >
-	<Icon name="mdi:theme-light-dark" class="h-5 w-5" />
+	<Icon name="mdi:white-balance-sunny" class="pointer-events-none absolute left-[7px] h-3.5 w-3.5 [color:oklch(0.74_0.04_295)]" />
+	<Icon name="mdi:moon-waning-crescent" class="pointer-events-none absolute right-[7px] h-3.5 w-3.5 [color:oklch(0.74_0.04_295)]" />
+	<span class="theme-knob grid h-[22px] w-[22px] place-items-center rounded-full border-2 transition-transform duration-200">
+		<Icon name="mdi:white-balance-sunny" class="h-3.5 w-3.5 dark:hidden" />
+		<Icon name="mdi:moon-waning-crescent" class="hidden h-3.5 w-3.5 dark:block" />
+	</span>
 </button>
+
+<style>
+	.theme-toggle {
+		background: oklch(0.33 0.05 295);
+		border-color: oklch(0.2 0.03 295);
+	}
+	.theme-knob {
+		margin-left: 2px;
+		background: oklch(0.97 0.012 300);
+		border-color: oklch(0.2 0.03 295);
+		color: oklch(0.22 0.04 295);
+		transform: translateX(0);
+	}
+	:global(.dark) .theme-knob {
+		transform: translateX(26px);
+	}
+</style>
 
 <script is:inline>
 	function getTheme() {
@@ -28,6 +54,8 @@ import { Icon } from 'astro-icon/components';
 			document.documentElement.classList.add('dark');
 		}
 		window.localStorage.setItem('theme', theme);
+		const btn = document.querySelector('button#themeToggle');
+		if (btn) btn.setAttribute('aria-checked', String(theme === 'dark'));
 	}
 
 	function toggleTheme() {

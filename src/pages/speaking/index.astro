@@ -6,10 +6,9 @@ import metadata from '@/data/metadata.json';
 ---
 
 <PageLayout title="Speaking">
-	<p class="py-5 text-xl">
-		As a speaker and event facilitator, I bring technical insights and engaging conversations to conferences, meetups,
-		podcasts, and industry events. My experience spans technical presentations, panel moderation, and event hosting,
-		creating memorable experiences for audiences across various formats.
+	<p class="mb-10 max-w-[60ch] font-display text-xl leading-snug font-bold text-ink md:text-2xl">
+		Technical insights and engaging conversations for conferences, meetups, podcasts, and industry events. Spanning
+		technical presentations, panel moderation, and event hosting.
 	</p>
 
 	<Appearances limit={9} />
@@ -24,12 +23,14 @@ import metadata from '@/data/metadata.json';
 		</Callout>
 	</div>
 
-	<div class="pt-8">
-		<h3>Want me at your event?</h3>
-
-		<p>
-			I'm always interested in new speaking opportunities. Whether it's a conference talk, panel moderation, or event
-			hosting, let's discuss how I can contribute to making your event successful.
-		</p>
-	</div>
+	<section class="mt-12">
+		<div class="rounded-2xl border-2 border-ink bg-marigold p-6 shadow-hard md:p-8">
+			<h2 class="mt-0 mb-3 font-display text-2xl font-extrabold text-ink md:text-3xl">Want me at your event?</h2>
+			<p class="m-0 max-w-[56ch] font-display text-lg font-bold text-ink">
+				I'm always interested in new speaking opportunities. Whether it's a conference talk, panel moderation, or event
+				hosting, let's discuss how I can contribute to making your event successful.{' '}
+				<a href="/about" class="whitespace-nowrap underline decoration-ink decoration-2 underline-offset-4">say hi →</a>
+			</p>
+		</div>
+	</section>
 </PageLayout>

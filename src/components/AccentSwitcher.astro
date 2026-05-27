@@ -1,0 +1,177 @@
+---
+// Accent color picker (diff.dad style), as a dropdown. Each option rebinds
+// the brand accent hue via data-accent on <html>; matching CSS is in
+// base.css. Swatch fills use the light-mode hue so they read in any theme.
+const accents = [
+	{ id: 'grape', label: 'Grape', color: 'oklch(0.52 0.18 294)' },
+	{ id: 'iris', label: 'Iris', color: 'oklch(0.52 0.18 278)' },
+	{ id: 'cobalt', label: 'Cobalt', color: 'oklch(0.52 0.17 256)' },
+	{ id: 'teal', label: 'Teal', color: 'oklch(0.5 0.12 195)' },
+	{ id: 'forest', label: 'Forest', color: 'oklch(0.5 0.13 150)' },
+	{ id: 'magenta', label: 'Magenta', color: 'oklch(0.54 0.2 348)' },
+];
+---
+
+<details class="accent-menu" data-accent-menu>
+	<summary class="accent-trigger" aria-label="Choose accent color" title="Accent color">
+		<span class="accent-current" aria-hidden="true"></span>
+		<svg class="accent-caret" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
+			<path d="M2 3.5 5 6.5 8 3.5" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"></path>
+		</svg>
+	</summary>
+	<div class="accent-panel" role="menu" aria-label="Accent colors">
+		{
+			accents.map(a => (
+				<button
+					type="button"
+					class="accent-option"
+					data-accent={a.id}
+					role="menuitemradio"
+					aria-checked="false"
+					style={`--swatch:${a.color}`}
+				>
+					<span class="accent-dot" aria-hidden="true" />
+					<span>{a.label}</span>
+				</button>
+			))
+		}
+	</div>
+</details>
+
+<style>
+	.accent-menu {
+		position: relative;
+	}
+	.accent-menu > summary {
+		list-style: none;
+		cursor: pointer;
+	}
+	.accent-menu > summary::-webkit-details-marker {
+		display: none;
+	}
+	/* Fixed colors so the trigger reads on the tinted header in both themes. */
+	.accent-trigger {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.35rem;
+		height: 30px;
+		padding: 0 0.5rem;
+		border: 2px solid oklch(0.2 0.03 295);
+		border-radius: 999px;
+		background: oklch(0.97 0.012 300);
+		color: oklch(0.35 0.04 295);
+	}
+	.accent-current {
+		width: 14px;
+		height: 14px;
+		border-radius: 999px;
+		background: var(--color-tomato);
+		border: 1.5px solid oklch(0.2 0.03 295);
+	}
+	.accent-menu[open] .accent-caret {
+		transform: rotate(180deg);
+	}
+	/* Panel inherits the header's light-island tokens, so it stays a legible
+	   light card in both themes. */
+	.accent-panel {
+		position: absolute;
+		right: 0;
+		top: calc(100% + 8px);
+		z-index: 50;
+		display: grid;
+		gap: 2px;
+		min-width: 9rem;
+		padding: 4px;
+		background: var(--color-card);
+		border: 2px solid var(--color-ink);
+		border-radius: 12px;
+		box-shadow: var(--shadow-hard-sm);
+	}
+	.accent-option {
+		display: flex;
+		align-items: center;
+		gap: 0.55rem;
+		width: 100%;
+		padding: 0.4rem 0.55rem;
+		border: 0;
+		border-radius: 8px;
+		background: transparent;
+		font-family: var(--font-display);
+		font-weight: 700;
+		font-size: 0.85rem;
+		color: var(--color-ink);
+		text-align: left;
+		cursor: pointer;
+	}
+	.accent-option:hover {
+		background: var(--color-paper-2);
+	}
+	.accent-option .accent-dot {
+		flex: none;
+		width: 16px;
+		height: 16px;
+		border-radius: 999px;
+		background: var(--swatch);
+		border: 2px solid var(--color-ink);
+	}
+	.accent-option[aria-checked='true'] {
+		background: var(--color-paper-2);
+	}
+	.accent-option[aria-checked='true'] .accent-dot {
+		box-shadow:
+			0 0 0 2px var(--color-card),
+			0 0 0 3.5px var(--color-ink);
+	}
+</style>
+
+<script is:inline>
+	(function () {
+		const ACCENTS = ['grape', 'iris', 'cobalt', 'teal', 'forest', 'magenta'];
+		function getAccent() {
+			// Defer to the shared resolver (Base.astro) so the random default is
+			// the same value picked pre-paint, and an explicit choice still wins.
+			if (typeof window.__resolveAccent === 'function') return window.__resolveAccent();
+			const a = typeof localStorage !== 'undefined' ? localStorage.getItem('accent') : null;
+			return ACCENTS.includes(a) ? a : 'grape';
+		}
+		function applyAccent(a) {
+			document.documentElement.dataset.accent = a;
+			try {
+				localStorage.setItem('accent', a);
+			} catch (e) {}
+			document.querySelectorAll('.accent-option').forEach(btn => {
+				btn.setAttribute('aria-checked', String(btn.dataset.accent === a));
+			});
+		}
+		// Apply before paint.
+		document.documentElement.dataset.accent = getAccent();
+		function wire() {
+			const current = getAccent();
+			document.querySelectorAll('.accent-option').forEach(btn => {
+				btn.setAttribute('aria-checked', String(btn.dataset.accent === current));
+				if (btn.dataset.wired) return;
+				btn.dataset.wired = '1';
+				btn.addEventListener('click', () => {
+					applyAccent(btn.dataset.accent);
+					const menu = btn.closest('details');
+					if (menu) menu.open = false;
+				});
+			});
+		}
+		// Close on outside click / Escape.
+		if (!window.__accentMenuGlobal) {
+			window.__accentMenuGlobal = true;
+			document.addEventListener('click', e => {
+				document.querySelectorAll('details[data-accent-menu][open]').forEach(d => {
+					if (!d.contains(e.target)) d.open = false;
+				});
+			});
+			document.addEventListener('keydown', e => {
+				if (e.key === 'Escape')
+					document.querySelectorAll('details[data-accent-menu][open]').forEach(d => (d.open = false));
+			});
+		}
+		document.addEventListener('astro:page-load', wire);
+		wire();
+	})();
+</script>

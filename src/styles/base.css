@@ -3,13 +3,15 @@
 @plugin '@tailwindcss/typography';
 
 @theme {
-	/*--tw-prose-pre-font-family: Space Mono, monospace;*/
-	/*--tw-prose-code-font-family: Space Mono, monospace;*/
-	/*--tw-prose-pre-code-font-family: Space Mono, monospace;*/
-
-	--font-sans: Atkinson Hyperlegible, sans-serif;
-	--font-serif: Oswald, Roboto Slab, serif;
-	--font-mono: Space Mono, monospace;
+	/* ----------------------------------------------------------------
+	   Type — risograph zine. Bricolage display, Atkinson body,
+	   JetBrains mono. (font-serif is aliased to display so legacy
+	   heading usage picks up the new face during migration.)
+	   ---------------------------------------------------------------- */
+	--font-sans: 'Atkinson Hyperlegible', system-ui, sans-serif;
+	--font-display: 'Bricolage Grotesque Variable', system-ui, sans-serif;
+	--font-serif: 'Bricolage Grotesque Variable', system-ui, sans-serif;
+	--font-mono: 'JetBrains Mono Variable', ui-monospace, monospace;
 
 	--text-xs: 0.75rem;
 	--text-sm: 0.9375rem;
@@ -23,6 +25,43 @@
 	--text-6xl: 3.75rem;
 	--text-7xl: 4.5rem;
 
+	/* ----------------------------------------------------------------
+	   Purple + green palette (OKLCH, light-first). Nick's brand identity.
+	   ---------------------------------------------------------------- */
+	/* Cool, purple-tinted neutrals */
+	--color-paper: oklch(0.975 0.006 300);
+	--color-paper-2: oklch(0.95 0.012 298);
+	--color-card: oklch(0.996 0.004 300);
+	--color-ink: oklch(0.23 0.03 295);
+	--color-ink-soft: oklch(0.45 0.026 295);
+	--color-ink-faint: oklch(0.62 0.022 295);
+
+	/* Brand accents: purple + teal/green — Nick's original identity
+	   (#724bb7 purple, #17b897 teal). "marigold" is now a LIGHT lavender
+	   fill (header/notes/accent sections); "tomato" and "grape" are the
+	   purples; "pine" green; "sky" teal. Names kept so markup doesn't churn. */
+	--color-marigold: oklch(0.9 0.052 296);
+	--color-tomato: oklch(0.52 0.18 294);
+	--color-grape: oklch(0.43 0.17 296);
+	--color-pine: oklch(0.62 0.13 166);
+	--color-sky: oklch(0.72 0.11 196);
+
+	/* Fixed text colors for ON colored fills — theme-independent so bands,
+	   buttons, and stickers stay readable in light AND dark. */
+	--text-on-light: oklch(0.21 0.03 295);
+	--text-on-dark: oklch(0.98 0.008 300);
+
+	/* Hard offset shadows — the signature. Never blurred.
+	   Color comes from --hard-shadow-color so dark mode can use a deep
+	   near-black instead of flipping to a glowing cream. */
+	--shadow-hard-sm: 3px 3px 0 var(--hard-shadow-color);
+	--shadow-hard: 5px 5px 0 var(--hard-shadow-color);
+	--shadow-hard-lg: 8px 8px 0 var(--hard-shadow-color);
+
+	/* ----------------------------------------------------------------
+	   Legacy palette — retained so pages mid-migration still compile.
+	   Removed once every page is on the warm tokens above.
+	   ---------------------------------------------------------------- */
 	--color-white: #ffffff;
 	--color-transparent: transparent;
 	--color-purple-50: #eae2f8;
@@ -136,29 +175,7 @@
 	--color-vivid-yellow-800: #b44d12;
 	--color-vivid-yellow-900: #8d2b0b;
 
-	--color-dark-charcoal-gray: #121212;
-	--color-dark-dark-slate-gray: #191919;
-	--color-dark-outer-space: #252525;
-	--color-dark-rich-black: #0a0a0a;
-	--color-dark-coffee-bean: #1b1b1b;
-	--color-dark-dark-gray: #212427;
-	--color-dark-oil-black: #0c0c0c;
-	--color-dark-obsidian: #0b1215;
-	--color-dark-ebony: #222428;
-	--color-dark-black-chocolate: #100d08;
-	--color-dark-gunmetal: #1d1f21;
-	--color-dark-smoky-black: #101720;
-	--color-dark-oxford-blue: #212a37;
-	--color-dark-eerie-black: #232023;
-	--color-dark-jet-black: #161618;
-	--color-dark-iridium: #181818;
 	--color-dark-arsenic: #11181c;
-	--color-dark-charleston-green: #212124;
-	--color-dark-jet: #2a2a2a;
-	--color-dark-black-olive: #242526;
-	--color-dark-midnight-blue: #212121;
-
-	/* Dark surface depth system */
 	--color-dark-surface: #16161f;
 	--color-dark-surface-elevated: #1e1e2a;
 	--color-dark-border: rgba(255, 255, 255, 0.07);
@@ -166,192 +183,293 @@
 }
 
 @layer base {
-	/*
-The default border color has changed to `currentColor` in Tailwind CSS v4,
-so we've added these compatibility styles to make sure everything still
-looks the same as it did with Tailwind CSS v3.
+	/* Hard-shadow color: dark ink in light mode. Dark mode overrides it
+	   to a deep near-black so shadows read as depth, not a cream halo. */
+	:root {
+		--hard-shadow-color: var(--color-ink);
+	}
 
-If we ever want to remove these styles, we need to add an explicit border
-color utility to any element that depends on these defaults.
-*/
+	/* Dark mode — warm espresso, not cold OLED black. Cards lift clearly
+	   off the canvas; cream borders define them; near-black shadows add depth. */
+	:root.dark {
+		--color-paper: oklch(0.205 0.024 295);
+		--color-paper-2: oklch(0.16 0.02 295);
+		--color-card: oklch(0.265 0.028 295);
+		--color-ink: oklch(0.94 0.012 300);
+		--color-ink-soft: oklch(0.78 0.016 296);
+		--color-ink-faint: oklch(0.62 0.018 296);
+		--hard-shadow-color: oklch(0.08 0.014 295);
+
+		/* accents brightened for the dark canvas; lavender stays light */
+		--color-marigold: oklch(0.87 0.05 296);
+		--color-tomato: oklch(0.66 0.16 294);
+		--color-grape: oklch(0.62 0.15 296);
+		--color-pine: oklch(0.74 0.13 166);
+		--color-sky: oklch(0.78 0.11 196);
+	}
+
+	/* "Always dark" slabs (footer, dark landing sections) pin their own
+	   ink/paper so bg-ink/text-paper don't invert in dark mode. */
+	.slab-dark {
+		--color-ink: oklch(0.16 0.018 295);
+		--color-paper: oklch(0.95 0.012 300);
+		--hard-shadow-color: oklch(0.06 0.012 295);
+	}
+
+	/* A guaranteed-light surface: a white card that floats on a dark slab
+	   (e.g. the pricing calculator on the dark "investment" section). Pins
+	   canvas + ink tokens to LIGHT values regardless of theme or slab, so
+	   bg-card/bg-paper-2 stay light and text-ink/-soft stay dark and legible
+	   in BOTH themes. Without this, slab-dark forces ink dark and the card's
+	   own text vanishes against it in dark mode. */
+	.surface-light {
+		--color-paper: oklch(0.975 0.006 300);
+		--color-paper-2: oklch(0.95 0.012 298);
+		--color-card: oklch(0.996 0.004 300);
+		--color-ink: oklch(0.21 0.03 295);
+		--color-ink-soft: oklch(0.45 0.026 295);
+		--color-ink-faint: oklch(0.62 0.022 295);
+	}
+
+	/* Light accent fills (lavender/green/teal) are ALWAYS light, in both
+	   themes. So anything painted with one becomes a "light island": its
+	   interior canvas + ink tokens are pinned to the LIGHT values regardless
+	   of theme. That keeps nested cards, chips, and body copy consistent and
+	   legible inside an accent section even in dark mode (otherwise bg-paper
+	   chips and text-ink-soft would follow the dark theme and vanish). */
+	.bg-marigold,
+	.bg-pine,
+	.bg-sky {
+		--color-paper: oklch(0.975 0.006 300);
+		--color-paper-2: oklch(0.95 0.012 298);
+		--color-card: oklch(0.996 0.004 300);
+		--color-ink: var(--text-on-light);
+		--color-ink-soft: oklch(0.45 0.026 295);
+		--color-ink-faint: oklch(0.62 0.022 295);
+		color: var(--text-on-light);
+	}
+	/* Dark accent fills (the purples) just need light text on themselves. */
+	.bg-tomato,
+	.bg-grape {
+		--color-ink: var(--text-on-dark);
+		color: var(--text-on-dark);
+	}
+
+	/* Tailwind v4 default border color compatibility */
 	*,
 	::after,
 	::before,
 	::backdrop,
 	::file-selector-button {
-		border-color: var(--color-gray-200, currentColor);
+		border-color: var(--color-ink, currentColor);
 	}
 
+	html {
+		scroll-behavior: smooth;
+	}
+
+	body {
+		background-color: var(--color-paper);
+		color: var(--color-ink);
+	}
+
+	::selection {
+		background: var(--color-marigold);
+		color: var(--text-on-light);
+	}
+
+	:focus-visible {
+		outline: 3px solid var(--color-tomato);
+		outline-offset: 2px;
+	}
+
+	/* Headings — Bricolage display, tight, no surprise padding. */
 	h1,
 	h2,
 	h3,
 	h4,
 	h5,
-	h5 {
-		@apply font-serif;
+	h6 {
+		font-family: var(--font-display);
+		letter-spacing: -0.02em;
+		text-wrap: balance;
 	}
-
 	h1 {
-		@apply p-4 text-4xl leading-tight font-bold;
+		@apply text-4xl leading-tight font-extrabold;
 	}
 	h2 {
-		@apply p-3 text-3xl leading-snug font-bold;
+		@apply text-3xl leading-tight font-extrabold;
 	}
 	h3 {
-		@apply p-2 text-2xl leading-normal font-semibold;
+		@apply text-2xl leading-snug font-bold;
 	}
 	h4 {
-		@apply p-2 text-xl leading-normal font-semibold;
+		@apply text-xl leading-snug font-bold;
 	}
 	h5 {
-		@apply p-2 text-lg leading-relaxed font-medium;
+		@apply text-lg leading-normal font-semibold;
 	}
 	h6 {
-		@apply p-1 text-base leading-relaxed font-medium;
+		@apply text-base leading-normal font-semibold;
 	}
 
-	@keyframes gradient-shift {
-		0% { background-position: 0% 50%; }
-		50% { background-position: 100% 50%; }
-		100% { background-position: 0% 50%; }
-	}
+	/* Prose colors live UNLAYERED at the end of this file (see note there)
+	   so they beat the typography plugin, which sits in a later @layer. */
 
-	@keyframes fade-up {
-		from {
-			opacity: 0;
-			transform: translateY(20px);
-		}
-		to {
-			opacity: 1;
-			transform: translateY(0);
+	@media (prefers-reduced-motion: reduce) {
+		*,
+		::before,
+		::after {
+			animation-duration: 0.001ms !important;
+			animation-iteration-count: 1 !important;
+			transition-duration: 0.001ms !important;
+			scroll-behavior: auto !important;
 		}
 	}
+}
 
-	@keyframes reveal {
-		from {
-			opacity: 0;
-			transform: translateY(30px);
-		}
-		to {
-			opacity: 1;
-			transform: translateY(0);
-		}
+/* ====================================================================
+   Component utilities — the warm-maximalist (dialed-back) system.
+   ==================================================================== */
+@layer components {
+	/* Sticker / pill badge */
+	.sticker {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4rem;
+		font-family: var(--font-display);
+		font-weight: 700;
+		font-size: 0.84rem;
+		line-height: 1;
+		padding: 0.32rem 0.7rem;
+		border: 2px solid var(--color-ink);
+		border-radius: 999px;
+		background: var(--color-card);
+		color: var(--color-ink);
+		white-space: nowrap;
+	}
+	.sticker-dot {
+		width: 0.55rem;
+		height: 0.55rem;
+		border-radius: 50%;
+		border: 1.5px solid var(--color-ink);
+		flex: none;
+	}
+	/* Colored sticker fills + a hard shadow for the bolder, screenprinted look.
+	   Use on feature/hero badges; the plain .sticker stays calm for dense lists. */
+	.sticker-solid {
+		box-shadow: var(--shadow-hard-sm);
+	}
+	.sticker-marigold {
+		background: var(--color-marigold);
+		color: var(--text-on-light);
+	}
+	.sticker-tomato {
+		background: var(--color-tomato);
+		color: var(--text-on-dark);
+	}
+	.sticker-grape {
+		background: var(--color-grape);
+		color: var(--text-on-dark);
+	}
+	.sticker-pine {
+		background: var(--color-pine);
+		color: var(--text-on-light);
+	}
+	.sticker-sky {
+		background: var(--color-sky);
+		color: var(--text-on-light);
 	}
 
-	/* Animated gradient text — purple to teal */
+	/* Button — tactile hard-shadow press */
+	.btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		font-family: var(--font-display);
+		font-weight: 700;
+		font-size: 1rem;
+		line-height: 1.1;
+		text-decoration: none;
+		padding: 0.65rem 1.15rem;
+		border: 2px solid var(--color-ink);
+		border-radius: 10px;
+		box-shadow: var(--shadow-hard);
+		transition:
+			transform 0.12s cubic-bezier(0.2, 0.7, 0.3, 1),
+			box-shadow 0.12s cubic-bezier(0.2, 0.7, 0.3, 1);
+	}
+	.btn:hover {
+		transform: translate(-2px, -2px);
+		box-shadow: 7px 7px 0 var(--hard-shadow-color);
+	}
+	.btn:active {
+		transform: translate(2px, 2px);
+		box-shadow: 0 0 0 var(--hard-shadow-color);
+	}
+	.btn-primary {
+		background: var(--color-tomato);
+		color: var(--text-on-dark);
+	}
+	.btn-ghost {
+		background: var(--color-card);
+		color: var(--color-ink);
+	}
+
+	/* Hard-edged surface card */
+	.panel {
+		background: var(--color-card);
+		border: 2px solid var(--color-ink);
+		border-radius: 14px;
+		box-shadow: var(--shadow-hard-sm);
+	}
+
+	/* Reusable tactile lift for interactive hard-shadow surfaces */
+	.tactile {
+		transition:
+			transform 0.14s cubic-bezier(0.2, 0.7, 0.3, 1),
+			box-shadow 0.14s cubic-bezier(0.2, 0.7, 0.3, 1);
+	}
+	.tactile:hover {
+		transform: translate(-3px, -3px);
+		box-shadow: var(--shadow-hard-lg);
+	}
+	.tactile:active {
+		transform: translate(0, 0);
+		box-shadow: var(--shadow-hard-sm);
+	}
+}
+
+@layer base {
+	/* ----------------------------------------------------------------
+	   Legacy effect classes redefined to the new language so pages
+	   still using them shed the old gradient/glow/glass tells for free.
+	   ---------------------------------------------------------------- */
 	.gradient-text {
-		background: linear-gradient(
-			135deg,
-			#653cad,
-			#048271,
-			#0b69a3,
-			#653cad
-		);
-		background-size: 300% 300%;
-		background-clip: text;
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		color: transparent;
-		animation: gradient-shift 6s ease infinite;
-	}
-	:is(.dark, .dark *) .gradient-text {
-		background: linear-gradient(
-			135deg,
-			#8662c7,
-			#5fe3c0,
-			#81defd,
-			#8662c7
-		);
-		background-size: 300% 300%;
-		background-clip: text;
-		-webkit-background-clip: text;
+		background: none;
+		-webkit-text-fill-color: currentColor;
+		color: var(--color-ink);
 	}
 
-	/* Gradient border using mask technique */
 	.gradient-border {
-		position: relative;
+		border: 2px solid var(--color-ink);
+		box-shadow: var(--shadow-hard);
 	}
 	.gradient-border::before {
-		content: '';
-		position: absolute;
-		inset: 0;
-		border-radius: inherit;
-		padding: 1.5px;
-		background: linear-gradient(135deg, #8662c7, #5fe3c0);
-		-webkit-mask:
-			linear-gradient(#fff 0 0) content-box,
-			linear-gradient(#fff 0 0);
-		-webkit-mask-composite: xor;
-		mask-composite: exclude;
-		pointer-events: none;
+		content: none;
 	}
 
-	/* Purple glow on hover */
 	.hover-glow {
-		transition: box-shadow 0.2s ease, transform 0.2s ease;
+		transition:
+			transform 0.14s cubic-bezier(0.2, 0.7, 0.3, 1),
+			box-shadow 0.14s cubic-bezier(0.2, 0.7, 0.3, 1);
 	}
 	.hover-glow:hover {
-		box-shadow:
-			0 0 0 1px rgba(134, 98, 199, 0.4),
-			0 8px 32px rgba(134, 98, 199, 0.15),
-			0 2px 8px rgba(0, 0, 0, 0.3);
-		transform: translateY(-2px);
+		transform: translate(-2px, -2px);
+		box-shadow: var(--shadow-hard);
 	}
 
-	/* Staggered fade-up for grid children */
-	.fade-up-grid > * {
-		animation: fade-up 0.4s ease both;
-	}
-	.fade-up-grid > *:nth-child(1) { animation-delay: 0ms; }
-	.fade-up-grid > *:nth-child(2) { animation-delay: 80ms; }
-	.fade-up-grid > *:nth-child(3) { animation-delay: 100ms; }
-	.fade-up-grid > *:nth-child(4) { animation-delay: 160ms; }
-	.fade-up-grid > *:nth-child(5) { animation-delay: 200ms; }
-	.fade-up-grid > *:nth-child(6) { animation-delay: 240ms; }
-	.fade-up-grid > *:nth-child(7) { animation-delay: 280ms; }
-	.fade-up-grid > *:nth-child(8) { animation-delay: 320ms; }
-	.fade-up-grid > *:nth-child(9) { animation-delay: 360ms; }
-
-	/* Pricing calculator range slider */
-	.pricing-slider {
-		-webkit-appearance: none;
-		appearance: none;
-		height: 6px;
-		background: linear-gradient(to right, #653cad var(--progress), #e5e7eb33 var(--progress));
-		border-radius: 999px;
-		outline: none;
-	}
-	.pricing-slider::-webkit-slider-thumb {
-		-webkit-appearance: none;
-		appearance: none;
-		width: 24px;
-		height: 24px;
-		border-radius: 50%;
-		background: white;
-		border: 3px solid #653cad;
-		cursor: pointer;
-		box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-	}
-	.pricing-slider::-moz-range-thumb {
-		width: 24px;
-		height: 24px;
-		border-radius: 50%;
-		background: white;
-		border: 3px solid #653cad;
-		cursor: pointer;
-		box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-	}
-
-	/* Scroll-driven reveal animation */
-	@supports (animation-timeline: view()) {
-		.scroll-reveal {
-			animation: reveal linear both;
-			animation-timeline: view();
-			animation-range: entry 0% entry 30%;
-		}
-	}
-
-	/* Sliding underline for nav links */
+	/* Sliding nav underline — tomato instead of gradient */
 	.nav-underline {
 		position: relative;
 	}
@@ -360,26 +478,67 @@ color utility to any element that depends on these defaults.
 		position: absolute;
 		bottom: -2px;
 		left: 0;
-		width: 0;
+		width: 100%;
 		height: 2px;
-		background: linear-gradient(90deg, #8662c7, #5fe3c0);
-		transition: width 0.2s ease;
+		background: var(--color-tomato);
+		transform: scaleX(0);
+		transform-origin: left;
+		transition: transform 0.18s cubic-bezier(0.2, 0.7, 0.3, 1);
 	}
-	.nav-underline:hover::after {
-		width: 100%;
-	}
+	.nav-underline:hover::after,
 	.nav-underline.active::after {
-		width: 100%;
+		transform: scaleX(1);
 	}
 
-	/* Custom view transition animations */
+	/* Entrance + scroll reveals (kept) */
+	@keyframes fade-up {
+		from {
+			opacity: 0;
+			transform: translateY(18px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+	@keyframes reveal {
+		from {
+			opacity: 0;
+			transform: translateY(24px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+	.fade-up-grid > * {
+		animation: fade-up 0.45s cubic-bezier(0.2, 0.7, 0.3, 1) both;
+	}
+	.fade-up-grid > *:nth-child(1) { animation-delay: 0ms; }
+	.fade-up-grid > *:nth-child(2) { animation-delay: 70ms; }
+	.fade-up-grid > *:nth-child(3) { animation-delay: 140ms; }
+	.fade-up-grid > *:nth-child(4) { animation-delay: 210ms; }
+	.fade-up-grid > *:nth-child(5) { animation-delay: 280ms; }
+	.fade-up-grid > *:nth-child(6) { animation-delay: 350ms; }
+	.fade-up-grid > *:nth-child(7) { animation-delay: 420ms; }
+	.fade-up-grid > *:nth-child(8) { animation-delay: 490ms; }
+	.fade-up-grid > *:nth-child(9) { animation-delay: 560ms; }
+
+	@supports (animation-timeline: view()) {
+		.scroll-reveal {
+			animation: reveal linear both;
+			animation-timeline: view();
+			animation-range: entry 0% entry 26%;
+		}
+	}
+
+	/* View transitions */
 	::view-transition-old(root) {
 		animation: 0.2s ease-out both fade-out;
 	}
 	::view-transition-new(root) {
 		animation: 0.2s ease-out both fade-in;
 	}
-
 	@keyframes fade-out {
 		to {
 			opacity: 0;
@@ -392,10 +551,129 @@ color utility to any element that depends on these defaults.
 			transform: translateY(8px);
 		}
 	}
-
-	/* Named transition for post titles — morph between card and page */
 	::view-transition-group(post-title) {
 		animation-duration: 0.3s;
-		animation-timing-function: ease;
+		animation-timing-function: cubic-bezier(0.2, 0.7, 0.3, 1);
 	}
+}
+
+/* ====================================================================
+   Prose (blog posts / mdx) — UNLAYERED on purpose.
+   The @tailwindcss/typography plugin registers its .prose styles in a
+   later cascade layer, so layered overrides (even higher-specificity
+   ones) lose. Unlayered rules beat all layered styles, so these win and
+   the body text follows our tokens (light in dark mode, dark in light).
+   ==================================================================== */
+.prose {
+	--tw-prose-body: var(--color-ink-soft);
+	--tw-prose-headings: var(--color-ink);
+	--tw-prose-links: var(--color-tomato);
+	--tw-prose-bold: var(--color-ink);
+	--tw-prose-counters: var(--color-ink-soft);
+	--tw-prose-bullets: var(--color-tomato);
+	--tw-prose-quotes: var(--color-ink);
+	--tw-prose-quote-borders: var(--color-ink);
+	--tw-prose-captions: var(--color-ink-faint);
+	--tw-prose-code: var(--color-ink);
+	--tw-prose-hr: color-mix(in oklch, var(--color-ink) 20%, transparent);
+	--tw-prose-th-borders: var(--color-ink);
+	--tw-prose-td-borders: color-mix(in oklch, var(--color-ink) 20%, transparent);
+	color: var(--color-ink-soft);
+}
+.prose :where(h1, h2, h3, h4, h5, h6) {
+	color: var(--color-ink);
+}
+.prose :where(strong) {
+	color: var(--color-ink);
+}
+.prose :where(a) {
+	color: var(--color-tomato);
+	font-weight: 700;
+	text-decoration-thickness: 2px;
+	text-underline-offset: 2px;
+	text-decoration-color: var(--color-marigold);
+}
+.prose :where(a):hover {
+	text-decoration-color: var(--color-tomato);
+}
+.prose :where(li)::marker {
+	color: var(--color-tomato);
+}
+.prose :where(code):not(:where([class~='not-prose'] *)) {
+	background: var(--color-paper-2);
+	color: var(--color-ink);
+	border: 1px solid color-mix(in oklch, var(--color-ink) 24%, transparent);
+	border-radius: 5px;
+	padding: 0.1em 0.35em;
+	font-weight: 500;
+}
+.prose :where(code):not(:where([class~='not-prose'] *))::before,
+.prose :where(code):not(:where([class~='not-prose'] *))::after {
+	content: none;
+}
+.prose :where(blockquote) {
+	border-inline-start-width: 0;
+	border: 2px solid var(--color-ink);
+	border-radius: 12px;
+	background: var(--color-marigold);
+	color: var(--text-on-light);
+	padding: 0.6rem 1.1rem;
+	font-style: normal;
+	box-shadow: var(--shadow-hard-sm);
+}
+.prose :where(blockquote) :where(p, strong) {
+	color: var(--text-on-light);
+}
+
+/* ====================================================================
+   Accent switcher — visitors pick the brand accent hue (diff.dad style).
+   data-accent on <html> rebinds the purple pair (tomato + grape) to the
+   chosen hue. UNLAYERED so it beats @theme's defaults; the .dark variant
+   carries extra specificity so it wins in dark mode. "grape" is the
+   default brand purple and needs no override.
+   ==================================================================== */
+:root[data-accent='iris'] {
+	--color-tomato: oklch(0.52 0.18 278);
+	--color-grape: oklch(0.43 0.16 280);
+	--color-marigold: oklch(0.9 0.05 280);
+}
+:root.dark[data-accent='iris'] {
+	--color-tomato: oklch(0.66 0.16 278);
+	--color-grape: oklch(0.62 0.15 280);
+}
+:root[data-accent='cobalt'] {
+	--color-tomato: oklch(0.52 0.17 256);
+	--color-grape: oklch(0.44 0.15 258);
+	--color-marigold: oklch(0.9 0.048 258);
+}
+:root.dark[data-accent='cobalt'] {
+	--color-tomato: oklch(0.66 0.15 256);
+	--color-grape: oklch(0.62 0.14 258);
+}
+:root[data-accent='teal'] {
+	--color-tomato: oklch(0.5 0.12 195);
+	--color-grape: oklch(0.42 0.1 197);
+	--color-marigold: oklch(0.93 0.04 195);
+}
+:root.dark[data-accent='teal'] {
+	--color-tomato: oklch(0.7 0.12 195);
+	--color-grape: oklch(0.64 0.11 197);
+}
+:root[data-accent='forest'] {
+	--color-tomato: oklch(0.5 0.13 150);
+	--color-grape: oklch(0.42 0.12 152);
+	--color-marigold: oklch(0.93 0.04 150);
+}
+:root.dark[data-accent='forest'] {
+	--color-tomato: oklch(0.68 0.15 150);
+	--color-grape: oklch(0.62 0.14 152);
+}
+:root[data-accent='magenta'] {
+	--color-tomato: oklch(0.54 0.2 348);
+	--color-grape: oklch(0.45 0.19 350);
+	--color-marigold: oklch(0.91 0.05 348);
+}
+:root.dark[data-accent='magenta'] {
+	--color-tomato: oklch(0.68 0.2 348);
+	--color-grape: oklch(0.62 0.19 350);
 }

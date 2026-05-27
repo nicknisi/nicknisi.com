@@ -25,21 +25,9 @@ const {
 				</div>
 			</div>
 		</div>
-		<div class="flex place-content-baseline">
-			{
-				roles.map(role => (
-					<span class="last mr-1 inline-block rounded-full bg-teal-200 px-2 py-1 text-xs font-semibold text-teal-700 uppercase last:mr-0">
-						{role}
-					</span>
-				))
-			}
-			{
-				status === 'inactive' && (
-					<span class="last mr-1 inline-block rounded-full bg-red-200 px-2 py-1 text-xs font-semibold text-red-700 uppercase last:mr-0">
-						{status}
-					</span>
-				)
-			}
+		<div class="flex flex-wrap gap-1.5 px-2 pb-1">
+			{roles.map(role => <span class="sticker text-[0.7rem] uppercase">{role}</span>)}
+			{status === 'inactive' && <span class="sticker bg-tomato text-[0.7rem] text-paper uppercase">{status}</span>}
 		</div>
 	</a>
 </Card>

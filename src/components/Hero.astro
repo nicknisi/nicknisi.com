@@ -12,27 +12,15 @@ const { title, image, darkOverlay } = Astro.props;
 ---
 
 <section
-	class="relative flex h-[50vh] w-full flex-col items-center justify-center overflow-hidden bg-cover text-center"
-	class:list={['bg-scroll bg-center bg-no-repeat', ``]}
+	class="relative flex h-[42vh] w-full flex-col items-center justify-end overflow-hidden border-b-2 border-ink bg-cover bg-center bg-no-repeat text-center"
 	style={{
-		backgroundImage: darkOverlay
-			? `linear-gradient(to top, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 0%, rgba(0,0,0,0.85) 100%), url(${image.src})`
-			: `linear-gradient(to top, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 100%), url(${image.src})`,
+		backgroundImage: `linear-gradient(to top, rgba(20,16,10,0.85) 0%, rgba(20,16,10,0.15) 60%, rgba(20,16,10,0.05) 100%), url(${image.src})`,
 	}}
 	role="img"
-	aria-label="Image Description"
+	aria-label={title}
 >
-	{/* Optional overlay to ensure text readability in both modes */}
-	<div class="bg-obsidian/20 dark:bg-obsidian/40 absolute inset-0"></div>
-
-	{/* Content wrapper */}
-	<div class="relative z-10">
-		<h1
-			class:list={[
-				'mb-10 text-[11vmin] leading-none font-bold tracking-[0.03em] text-white',
-				'[text-shadow:1px_2px_4px_rgba(0,0,0,0.8)]',
-			]}
-		>
+	<div class="relative z-10 mx-auto w-full max-w-4xl px-6 pb-8">
+		<h1 class="font-display text-5xl leading-none font-extrabold tracking-tight text-white md:text-7xl">
 			{title}
 		</h1>
 	</div>

@@ -16,15 +16,7 @@ const description = frontmatter?.description;
 ---
 
 <Base title={title} description={description}>
-	<div
-		class="prose prose-slate lg:prose-xl dark:prose-invert
-			prose-headings:my-3 prose-headings:text-blue-gray-900 dark:prose-headings:text-gray-200
-			prose-a:text-teal-600 prose-a:transition-colors prose-a:hover:text-purple-600
-			dark:prose-a:text-teal-400 dark:prose-a:hover:text-purple-300
-			prose-code:font-medium prose-code:text-purple-800 prose-code:before:content-[''] prose-code:after:content-['']
-			dark:prose-code:text-purple-100
-			pt-6 pb-10"
-	>
+	<div class="prose lg:prose-lg prose-headings:font-display prose-headings:font-extrabold max-w-none pt-8 pb-12">
 		<slot />
 	</div>
 </Base>

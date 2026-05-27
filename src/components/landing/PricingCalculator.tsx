@@ -59,10 +59,7 @@ export default function PricingCalculator({ bookingUrl }: Props) {
 
 	const base = useMemo(() => getGraduatedTotal(count), [count]);
 	const effectiveRate = useMemo(() => getEffectiveRate(count), [count]);
-	const addOnTotal = PRICING.addOns.reduce(
-		(sum, a) => sum + (addOns[a.id] ? a.price : 0),
-		0,
-	);
+	const addOnTotal = PRICING.addOns.reduce((sum, a) => sum + (addOns[a.id] ? a.price : 0), 0);
 	const total = base + addOnTotal;
 	const progress = ((count - PRICING.min) / (PRICING.max - PRICING.min)) * 100;
 	const fullPrice = count * PRICING.brackets[0].perHead;
@@ -70,15 +67,21 @@ export default function PricingCalculator({ bookingUrl }: Props) {
 
 	return (
 		<div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-2">
+			{/* Scoped styles for the on-brand range slider. The shared
+			    .pricing-slider class was removed, so the track/thumb are
+			    restyled here with the warm palette: a marigold fill on an
+			    ink track, and a hard-bordered card thumb. */}
+			<style>{sliderCss}</style>
+
 			{/* Left column — copy */}
 			<div className="flex flex-col justify-center">
-				<span className="mb-4 inline-block w-fit rounded-full bg-purple-500/20 px-4 py-1.5 text-sm font-semibold text-purple-200">
-					Transparent Pricing
+				<span className="mb-4 inline-flex w-fit -rotate-1 items-center gap-2 rounded-full border-2 border-paper bg-marigold px-3.5 py-1.5 font-display text-sm font-bold text-ink">
+					Transparent pricing
 				</span>
-				<h2 className="font-serif text-3xl font-bold md:text-4xl">
+				<h2 className="font-display text-3xl font-extrabold text-paper md:text-4xl">
 					Calculate Your Training Investment
 				</h2>
-				<p className="mt-4 text-lg text-purple-100">
+				<p className="mt-4 text-lg text-paper/80">
 					Priced based on team size with volume discounts for larger teams.
 				</p>
 				<ul className="mt-8 space-y-5">
@@ -118,17 +121,18 @@ export default function PricingCalculator({ bookingUrl }: Props) {
 				</ul>
 			</div>
 
-			{/* Right column — calculator card */}
-			<div className="rounded-2xl border border-white/10 bg-white/5 p-8 shadow-2xl backdrop-blur-sm">
-				<h3 className="font-serif text-xl font-bold">Training Cost Calculator</h3>
+			{/* Right column — calculator card. surface-light keeps it a light
+			    card with dark text even on the dark slab, in both themes. */}
+			<div className="surface-light rounded-[14px] border-2 border-paper bg-card p-8 text-ink shadow-[6px_6px_0_var(--color-marigold)]">
+				<h3 className="font-display text-xl font-extrabold text-ink">Training Cost Calculator</h3>
 
 				{/* Slider */}
 				<div className="mt-6">
-					<div className="flex items-baseline justify-between">
-						<label htmlFor="engineer-count" className="text-sm font-medium text-purple-200">
-							Number of Engineers: <span className="text-white">{count}</span>
+					<div className="flex items-baseline justify-between gap-3">
+						<label htmlFor="engineer-count" className="text-sm font-medium text-ink-soft">
+							Number of Engineers: <span className="font-display font-bold text-ink">{count}</span>
 						</label>
-						<span className="text-sm font-semibold text-white">{fmt.format(base)}</span>
+						<span className="font-display text-sm font-bold text-ink">{fmt.format(base)}</span>
 					</div>
 					<input
 						id="engineer-count"
@@ -138,15 +142,15 @@ export default function PricingCalculator({ bookingUrl }: Props) {
 						step={1}
 						value={count}
 						onChange={(e) => setCount(Number(e.target.value))}
-						className="pricing-slider mt-3 w-full cursor-pointer"
+						className="riso-slider mt-3 w-full cursor-pointer"
 						style={{ '--progress': `${progress}%` } as React.CSSProperties}
 					/>
-					<div className="mt-1.5 flex justify-between text-xs text-purple-300">
+					<div className="mt-2 flex justify-between font-mono text-xs text-ink-soft">
 						<span>Minimum {PRICING.min} engineers</span>
 						<span>{fmt.format(effectiveRate)} avg per engineer</span>
 					</div>
 					{savings > 0 && (
-						<div className="mt-2 text-xs font-medium text-teal-300">
+						<div className="mt-3 inline-flex -rotate-1 items-center rounded-full border-2 border-ink bg-pine px-3 py-1 font-display text-xs font-bold text-ink">
 							Volume discount: saving {fmt.format(savings)} vs. base rate
 						</div>
 					)}
@@ -154,20 +158,18 @@ export default function PricingCalculator({ bookingUrl }: Props) {
 
 				{/* Add-on */}
 				{PRICING.addOns.map((addon) => (
-					<div key={addon.id} className="mt-6 rounded-xl border border-white/10 bg-white/5 p-4">
-						<div className="flex items-center justify-between">
+					<div key={addon.id} className="mt-6 rounded-[10px] border-2 border-ink bg-paper-2 p-4">
+						<div className="flex items-center justify-between gap-3">
 							<div>
-								<span className="font-medium">{addon.label}</span>
-								<span className="ml-2 text-sm text-purple-300">{fmt.format(addon.price)}</span>
+								<span className="font-display font-bold text-ink">{addon.label}</span>
+								<span className="ml-2 font-mono text-sm text-ink-soft">{fmt.format(addon.price)}</span>
 							</div>
-							<div className="flex gap-3">
+							<div className="flex gap-2">
 								<button
 									type="button"
 									onClick={() => setAddOns((s) => ({ ...s, [addon.id]: true }))}
-									className={`rounded-lg px-3 py-1 text-sm font-medium transition ${
-										addOns[addon.id]
-											? 'bg-purple-600 text-white'
-											: 'bg-white/10 text-purple-200 hover:bg-white/20'
+									className={`rounded-full border-2 border-ink px-3.5 py-1 font-display text-sm font-bold transition-transform active:translate-y-px ${
+										addOns[addon.id] ? 'bg-tomato text-paper' : 'bg-card text-ink hover:bg-paper-2'
 									}`}
 								>
 									Yes
@@ -175,38 +177,40 @@ export default function PricingCalculator({ bookingUrl }: Props) {
 								<button
 									type="button"
 									onClick={() => setAddOns((s) => ({ ...s, [addon.id]: false }))}
-									className={`rounded-lg px-3 py-1 text-sm font-medium transition ${
-										!addOns[addon.id]
-											? 'bg-purple-600 text-white'
-											: 'bg-white/10 text-purple-200 hover:bg-white/20'
+									className={`rounded-full border-2 border-ink px-3.5 py-1 font-display text-sm font-bold transition-transform active:translate-y-px ${
+										!addOns[addon.id] ? 'bg-tomato text-paper' : 'bg-card text-ink hover:bg-paper-2'
 									}`}
 								>
 									No
 								</button>
 							</div>
 						</div>
-						<p className="mt-2 text-sm text-purple-300">{addon.description}</p>
+						<p className="mt-2 text-sm text-ink-soft">{addon.description}</p>
 					</div>
 				))}
 
 				{/* Divider */}
-				<div className="my-6 border-t border-white/10" />
+				<div className="my-6 border-t-2 border-dashed border-ink/30" />
 
 				{/* Total */}
-				<div className="flex items-baseline justify-between">
-					<span className="text-lg font-medium text-purple-200">Total Investment</span>
-					<span className="gradient-text text-4xl font-bold">{fmt.format(total)}</span>
+				<div className="flex items-baseline justify-between gap-3">
+					<span className="font-display text-lg font-bold text-ink">Total Investment</span>
+					<span className="font-display text-4xl font-extrabold text-tomato">{fmt.format(total)}</span>
 				</div>
 
 				{/* Larger teams note */}
-				<p className="mt-4 text-center text-xs text-purple-300">
-					Larger team? <a href={bookingUrl} className="underline hover:text-white">Let's talk</a> — we'll put together custom pricing.
+				<p className="mt-4 text-center text-xs text-ink-soft">
+					Larger team?{' '}
+					<a href={bookingUrl} className="font-bold text-ink underline decoration-tomato decoration-2 underline-offset-2">
+						Let's talk
+					</a>{' '}
+					and we'll put together custom pricing.
 				</p>
 
 				{/* CTA */}
 				<a
 					href={bookingUrl}
-					className="mt-4 block w-full rounded-lg bg-purple-600 py-4 text-center font-serif text-lg font-semibold text-white shadow-lg shadow-purple-500/20 transition-all duration-200 hover:scale-[1.02] hover:bg-purple-500 hover:shadow-xl hover:shadow-purple-500/30"
+					className="btn btn-primary mt-5 w-full justify-center py-4 text-lg"
 				>
 					Schedule a Consultation
 				</a>
@@ -215,31 +219,81 @@ export default function PricingCalculator({ bookingUrl }: Props) {
 	);
 }
 
+// ── On-brand range slider styles ───────────────────────────────────
+const sliderCss = `
+.riso-slider {
+	-webkit-appearance: none;
+	appearance: none;
+	height: 12px;
+	border-radius: 999px;
+	border: 2px solid var(--color-ink);
+	background: linear-gradient(
+		to right,
+		var(--color-marigold) 0%,
+		var(--color-marigold) var(--progress),
+		var(--color-paper-2) var(--progress),
+		var(--color-paper-2) 100%
+	);
+	outline-offset: 3px;
+}
+.riso-slider::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 26px;
+	height: 26px;
+	border-radius: 999px;
+	background: var(--color-card);
+	border: 2px solid var(--color-ink);
+	box-shadow: var(--shadow-hard-sm);
+	cursor: pointer;
+	transition: transform 0.12s cubic-bezier(0.2, 0.7, 0.3, 1), box-shadow 0.12s cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+.riso-slider::-webkit-slider-thumb:hover {
+	transform: translate(-1px, -1px);
+	box-shadow: var(--shadow-hard);
+}
+.riso-slider::-webkit-slider-thumb:active {
+	transform: translate(1px, 1px);
+	box-shadow: 0 0 0 var(--color-ink);
+}
+.riso-slider::-moz-range-thumb {
+	width: 26px;
+	height: 26px;
+	border-radius: 999px;
+	background: var(--color-card);
+	border: 2px solid var(--color-ink);
+	box-shadow: var(--shadow-hard-sm);
+	cursor: pointer;
+}
+.riso-slider::-moz-range-track {
+	height: 12px;
+	border-radius: 999px;
+	background: transparent;
+}
+@media (prefers-reduced-motion: reduce) {
+	.riso-slider::-webkit-slider-thumb { transition: none; }
+}
+`;
+
 // ── Small helper ───────────────────────────────────────────────────
-function Feature({
-	icon,
-	title,
-	desc,
-}: {
-	icon: React.ReactNode;
-	title: string;
-	desc: string;
-}) {
+function Feature({ icon, title, desc }: { icon: React.ReactNode; title: string; desc: string }) {
 	return (
 		<li className="flex gap-4">
-			<svg
-				xmlns="http://www.w3.org/2000/svg"
-				fill="none"
-				viewBox="0 0 24 24"
-				strokeWidth={1.5}
-				stroke="currentColor"
-				className="mt-0.5 size-6 shrink-0 text-purple-300"
-			>
-				{icon}
-			</svg>
+			<span className="grid size-9 shrink-0 place-items-center rounded-full border-2 border-paper bg-paper/10 text-paper">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					fill="none"
+					viewBox="0 0 24 24"
+					strokeWidth={1.75}
+					stroke="currentColor"
+					className="size-5"
+				>
+					{icon}
+				</svg>
+			</span>
 			<div>
-				<h4 className="font-semibold">{title}</h4>
-				<p className="text-sm text-purple-200">{desc}</p>
+				<h4 className="font-display font-bold text-paper">{title}</h4>
+				<p className="text-sm text-paper/70">{desc}</p>
 			</div>
 		</li>
 	);

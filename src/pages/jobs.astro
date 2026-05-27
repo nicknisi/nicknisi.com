@@ -6,9 +6,13 @@ const jobs = await getCollection('jobs');
 ---
 
 <PageLayout title="Jobs">
-	<div class="my-8">
-		<ul>
-			{jobs.map(job => <li>{job.data.position}</li>)}
-		</ul>
+	<div class="my-8 grid gap-4 sm:grid-cols-2">
+		{
+			jobs.map(job => (
+				<div class="panel tactile p-5">
+					<p class="font-display text-lg font-bold text-ink">{job.data.position}</p>
+				</div>
+			))
+		}
 	</div>
 </PageLayout>

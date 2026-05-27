@@ -1,10 +1,50 @@
 ---
+import BaseLayout from '@/layouts/Base.astro';
 import Posts from '@/components/sections/Posts.astro';
-import PageLayout from '@/layouts/Page.astro';
+import { getPosts } from '@/utils/common';
+
+const posts = await getPosts();
+
+// Most-used tags for a lightweight filter row.
+const tagCounts = new Map<string, number>();
+for (const post of posts) {
+	for (const tag of post.data.tags ?? []) {
+		tagCounts.set(tag, (tagCounts.get(tag) ?? 0) + 1);
+	}
+}
+const tags = [...tagCounts.entries()]
+	.sort((a, b) => b[1] - a[1])
+	.slice(0, 8)
+	.map(([tag]) => tag);
+
+const dots = ['bg-tomato', 'bg-grape', 'bg-pine', 'bg-sky', 'bg-marigold'] as const;
 ---
 
-<PageLayout title="Posts">
-	<div class="my-8">
+<BaseLayout title="Posts" description="Writing on developer experience, tooling, TypeScript, and the occasional Vim rabbit hole.">
+	<section class="pt-12 pb-8 md:pt-16">
+		<p class="font-mono text-xs tracking-[0.14em] text-ink-soft uppercase">the blog</p>
+		<h1 class="mt-2 text-5xl font-extrabold tracking-tight md:text-6xl">
+			Writing
+		</h1>
+		<p class="mt-4 max-w-[52ch] text-lg text-ink-soft">
+			Notes on developer experience, tooling, and TypeScript, plus the occasional Vim rabbit hole and conference story.
+		</p>
+
+		{
+			tags.length > 0 && (
+				<div class="mt-7 flex flex-wrap gap-2.5">
+					{tags.map((tag, i) => (
+						<a href={`/tags/${tag}`} class="sticker no-underline transition-transform duration-150 hover:-rotate-2">
+							<span class:list={['sticker-dot', dots[i % dots.length]]} />
+							{tag}
+						</a>
+					))}
+				</div>
+			)
+		}
+	</section>
+
+	<section class="pb-16">
 		<Posts list />
-	</div>
-</PageLayout>
+	</section>
+</BaseLayout>

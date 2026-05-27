@@ -9,9 +9,9 @@ const { name, size = 'small' } = Astro.props;
 <a
 	href={`/tags/${name}`}
 	class:list={[
-		'not-prose inline-flex items-center rounded-full border border-gray-200 bg-gray-50 px-2.5 py-0.5 font-medium text-gray-600 transition-colors hover:border-purple-300 hover:bg-purple-50 hover:text-purple-700 dark:border-dark-border dark:bg-dark-surface dark:text-gray-400 dark:hover:border-purple-500/40 dark:hover:bg-purple-900/20 dark:hover:text-purple-300',
+		'not-prose inline-flex items-center gap-1.5 rounded-full border-2 border-ink bg-card px-2.5 py-0.5 font-display font-bold text-ink no-underline transition-colors hover:bg-marigold',
 		size === 'small' ? 'text-xs' : size === 'base' ? 'text-sm' : 'text-base',
 	]}
 >
-	{name.toLowerCase()}
+	<span class="opacity-50">#</span>{name.toLowerCase()}
 </a>

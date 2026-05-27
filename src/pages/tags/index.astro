@@ -1,21 +1,32 @@
 ---
 import BaseLayout from '@/layouts/Base.astro';
-import Tag from '@/components/Tag.astro';
 const allPosts = await Astro.glob('../../content/posts/*.md');
-const tags: string[] = [...new Set(allPosts.map(post => post.frontmatter.tags).flat())];
+const tags: string[] = [...new Set(allPosts.map(post => post.frontmatter.tags).flat())].filter(Boolean).sort();
+
+const accents = ['bg-tomato', 'bg-grape', 'bg-pine', 'bg-sky', 'bg-marigold'] as const;
+const dotFor = (tag: string) => accents[[...tag].reduce((a, c) => a + c.charCodeAt(0), 0) % accents.length];
+
+const countFor = (tag: string) => allPosts.filter(post => post.frontmatter.tags?.includes(tag)).length;
 ---
 
-<BaseLayout>
-	<div class="my-8 mb-8">
-		<h2 class="mb-3 text-3xl">Tags</h2>
-		<ul class="flex list-none items-baseline gap-2 space-y-3">
+<BaseLayout title="Tags">
+	<section class="py-10 md:py-14">
+		<p class="font-mono text-xs tracking-[0.14em] text-ink-soft uppercase">browse the archive</p>
+		<h1 class="mt-2 text-5xl font-extrabold tracking-tight md:text-6xl">Tags</h1>
+		<p class="mt-3 max-w-[52ch] text-ink-soft">Every topic I've written about, sorted by name.</p>
+
+		<ul class="mt-8 flex list-none flex-wrap gap-3">
 			{
 				tags.map(tag => (
 					<li>
-						<Tag size="large" name={tag} />
+						<a href={`/tags/${tag}`} class="sticker tactile no-underline shadow-hard-sm">
+							<span class:list={['sticker-dot', dotFor(tag)]} />
+							{tag.toLowerCase()}
+							<span class="font-mono text-xs text-ink-faint">{countFor(tag)}</span>
+						</a>
 					</li>
 				))
 			}
 		</ul>
-	</div>
+	</section>
 </BaseLayout>

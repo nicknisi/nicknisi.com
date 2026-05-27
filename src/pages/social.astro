@@ -5,7 +5,6 @@ import metadata from '@/data/metadata.json';
 import profileImage from '@/assets/profile.jpg';
 import { Icon } from 'astro-icon/components';
 import LinkButton from '@/components/LinkButton.astro';
-import backgroundImage from '@/assets/backgrounds/watercolor.png?url';
 import '../styles/base.css';
 import { getUTM, setUTM } from '@/utils/utm';
 
@@ -17,66 +16,42 @@ const utm = {
 
 <html lang="en">
 	<Head title="Social Links | Nick Nisi" description="A collection of social links for Nick Nisi" />
-	<body
-		style={{
-			backgroundColor: '#f0f0f0',
-			backgroundImage: `url(${backgroundImage})`,
-			backgroundSize: 'cover',
-			backgroundRepeat: 'no-repeat',
-			backgroundPosition: 'center center',
-		}}
-		class:list={[
-			'min-h-screen',
-			'font-normal',
-			'font-sans',
-			'bg-gray-50',
-			'text-blue-gray-800',
-			'dark:text-gray-50',
-			'dark:bg-linear-to-b',
-			'dark:from-dark-smoky-black',
-			'dark:via-dark-eerie-black',
-			'dark:to-dark-obsidian',
-		]}
-	>
-		<div class="mx-auto px-4 py-8 sm:max-w-xl md:max-w-2xl lg:max-w-3xl xl:max-w-4xl">
-			<main class="container mx-auto flex flex-col gap-4">
+	<body class="min-h-screen bg-paper font-sans text-ink">
+		<div class="mx-auto px-4 py-10 sm:max-w-xl md:max-w-2xl">
+			<main class="mx-auto flex flex-col gap-6">
 				<!-- Profile -->
 				<div class="flex flex-col items-center justify-center text-center">
-					<a href="/">
+					<a href="/" class="tactile rounded-full">
 						<Image
 							alt="Nick Nisi"
 							src={profileImage}
 							width={256}
 							height={256}
-							class="mb-4 size-36 rounded-full border-2 border-solid border-purple-300 shadow-xs"
+							class="mb-4 size-36 rounded-full border-2 border-ink object-cover shadow-hard"
 						/>
 					</a>
-					<h1 class="font-sans text-4xl font-extrabold tracking-wide">{metadata.author.name}</h1>
-					<p class="font-semibold tracking-wide text-gray-700">{metadata.description}</p>
+					<h1 class="font-display text-5xl font-extrabold tracking-tight text-ink">{metadata.author.name}</h1>
+					<p class="mt-2 max-w-[36ch] font-display font-bold text-ink-soft">{metadata.description}</p>
 				</div>
 
 				<!-- Social Links -->
-				<div class="flex justify-center space-x-4 md:space-x-8">
+				<div class="flex flex-wrap justify-center gap-4">
 					{
 						Object.entries(metadata.social)
 							.filter(([, { hidden }]) => !hidden)
 							.map(([type, { url }]) => (
 								<a
 									href={url}
-									class="hover:animate-wiggle text-2xl text-gray-600 transition-colors duration-300 hover:text-gray-800 sm:text-3xl md:text-4xl"
+									class="tactile inline-flex size-12 items-center justify-center rounded-full border-2 border-ink bg-card text-ink shadow-hard-sm"
 								>
-									<Icon
-										aria-label={type}
-										name={`simple-icons:${type}`}
-										class="inline-block size-8 text-gray-500 hover:text-gray-600"
-									/>
+									<Icon aria-label={type} name={`simple-icons:${type}`} class="inline-block size-6" />
 								</a>
 							))
 					}
 				</div>
 
 				<!-- Links -->
-				<div class="flex w-full flex-col items-center space-y-4 p-4">
+				<div class="flex w-full flex-col items-center gap-4">
 					{
 						metadata.links.map(({ title, url, icon }) => (
 							<LinkButton title={title} url={setUTM(url, utm).toString()} icon={icon} />

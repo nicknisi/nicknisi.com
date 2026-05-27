@@ -6,92 +6,27 @@ interface Props {
 }
 
 const variants = {
-	default: {
-		icon: 'mdi:message-outline',
-		accent: 'from-purple-400 to-teal-400',
-		bg: 'bg-gray-50/80 dark:bg-dark-surface/60',
-		glow: 'shadow-[0_0_20px_-4px_rgba(134,98,199,0.15)] dark:shadow-[0_0_20px_-4px_rgba(134,98,199,0.25)]',
-		iconBg: 'bg-purple-100 dark:bg-purple-900/30',
-		text: 'text-gray-600 dark:text-gray-300',
-		title: 'text-gray-900 dark:text-gray-100',
-		iconColor: 'text-purple-500 dark:text-purple-400',
-		gradientWash: 'from-purple-500/5 via-transparent to-teal-500/5',
-	},
-	info: {
-		icon: 'mdi:information-slab-circle-outline',
-		accent: 'from-vivid-light-blue-400 to-teal-400',
-		bg: 'bg-vivid-light-blue-50/60 dark:bg-vivid-light-blue-900/10',
-		glow: 'shadow-[0_0_20px_-4px_rgba(43,176,237,0.15)] dark:shadow-[0_0_20px_-4px_rgba(43,176,237,0.25)]',
-		iconBg: 'bg-vivid-light-blue-100 dark:bg-vivid-light-blue-900/30',
-		text: 'text-vivid-light-blue-900 dark:text-vivid-light-blue-300',
-		title: 'text-vivid-light-blue-950 dark:text-vivid-light-blue-100',
-		iconColor: 'text-vivid-light-blue-500 dark:text-vivid-light-blue-400',
-		gradientWash: 'from-vivid-light-blue-500/5 via-transparent to-teal-500/5',
-	},
-	warning: {
-		icon: 'mdi:alert-outline',
-		accent: 'from-yellow-400 to-yellow-600',
-		bg: 'bg-yellow-50/60 dark:bg-yellow-900/10',
-		glow: 'shadow-[0_0_20px_-4px_rgba(240,180,41,0.15)] dark:shadow-[0_0_20px_-4px_rgba(240,180,41,0.25)]',
-		iconBg: 'bg-yellow-100 dark:bg-yellow-900/30',
-		text: 'text-yellow-700 dark:text-yellow-300',
-		title: 'text-yellow-900 dark:text-yellow-100',
-		iconColor: 'text-yellow-500 dark:text-yellow-400',
-		gradientWash: 'from-yellow-500/5 via-transparent to-yellow-400/5',
-	},
-	success: {
-		icon: 'mdi:check-circle-outline',
-		accent: 'from-teal-400 to-teal-600',
-		bg: 'bg-teal-50/60 dark:bg-teal-900/10',
-		glow: 'shadow-[0_0_20px_-4px_rgba(23,184,151,0.15)] dark:shadow-[0_0_20px_-4px_rgba(23,184,151,0.25)]',
-		iconBg: 'bg-teal-100 dark:bg-teal-900/30',
-		text: 'text-teal-700 dark:text-teal-300',
-		title: 'text-teal-900 dark:text-teal-100',
-		iconColor: 'text-teal-500 dark:text-teal-400',
-		gradientWash: 'from-teal-500/5 via-transparent to-teal-400/5',
-	},
-	error: {
-		icon: 'mdi:x-circle-outline',
-		accent: 'from-red-400 to-red-600',
-		bg: 'bg-red-50/60 dark:bg-red-900/10',
-		glow: 'shadow-[0_0_20px_-4px_rgba(225,45,57,0.15)] dark:shadow-[0_0_20px_-4px_rgba(225,45,57,0.25)]',
-		iconBg: 'bg-red-100 dark:bg-red-900/30',
-		text: 'text-red-700 dark:text-red-300',
-		title: 'text-red-900 dark:text-red-100',
-		iconColor: 'text-red-500 dark:text-red-400',
-		gradientWash: 'from-red-500/5 via-transparent to-red-400/5',
-	},
+	default: { icon: 'mdi:message-outline', fill: 'bg-marigold', badge: 'bg-card' },
+	info: { icon: 'mdi:information-slab-circle-outline', fill: 'bg-sky', badge: 'bg-card' },
+	warning: { icon: 'mdi:alert-outline', fill: 'bg-marigold', badge: 'bg-card' },
+	success: { icon: 'mdi:check-circle-outline', fill: 'bg-pine', badge: 'bg-card' },
+	error: { icon: 'mdi:x-circle-outline', fill: 'bg-tomato', badge: 'bg-card' },
 } as const;
 
 const { title, variant = 'default' } = Astro.props;
-const { icon, accent, bg, glow, iconBg, text, title: titleStyles, iconColor, gradientWash } = variants[variant];
+const { icon, fill, badge } = variants[variant];
 ---
 
-<div class:list={['not-prose relative overflow-hidden rounded-xl border border-white/10 backdrop-blur-sm px-4 py-3.5', bg, glow, text]}>
-	{/* Gradient left accent bar */}
-	<div class:list={['absolute top-0 left-0 h-full w-1 bg-gradient-to-b', accent]} />
-	{/* Subtle gradient wash across background */}
-	<div class:list={['pointer-events-none absolute inset-0 bg-gradient-to-r', gradientWash]} />
-	<div class="relative flex items-start gap-3">
-		{/* Icon badge */}
-		<span class:list={['mt-0.5 inline-flex shrink-0 rounded-lg p-1.5', iconBg]}>
-			<Icon name={icon} class:list={['h-4 w-4', iconColor]} />
+<div class:list={['not-prose rounded-[14px] border-2 border-ink p-4 text-ink shadow-hard-sm', fill]}>
+	<div class="flex items-start gap-3">
+		<span class:list={['mt-0.5 inline-flex shrink-0 rounded-lg border-2 border-ink p-1.5', badge]}>
+			<Icon name={icon} class="h-4 w-4 text-ink" />
 		</span>
-		<div class="min-w-0 flex-1">
-			{
-				title ? (
-					<div>
-						<p class:list={['m-0 p-0 text-lg font-semibold', titleStyles]}>{title}</p>
-						<div class="mt-1.5 font-sans text-base leading-relaxed [&_a]:underline [&_a]:decoration-current/40 [&_a:hover]:decoration-current">
-							<slot />
-						</div>
-					</div>
-				) : (
-					<div class:list={['font-sans text-base leading-relaxed [&_a]:underline [&_a]:decoration-current/40 [&_a:hover]:decoration-current', text]}>
-						<slot />
-					</div>
-				)
-			}
+		<div class="min-w-0 flex-1 [&_a:hover]:decoration-tomato [&_a]:font-bold [&_a]:underline [&_a]:decoration-ink [&_a]:decoration-2 [&_a]:underline-offset-2">
+			{title && <p class="m-0 p-0 font-display text-lg font-bold text-ink">{title}</p>}
+			<div class:list={['font-sans text-base leading-relaxed', title && 'mt-1.5']}>
+				<slot />
+			</div>
 		</div>
 	</div>
 </div>

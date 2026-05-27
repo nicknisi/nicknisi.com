@@ -10,21 +10,8 @@ interface Props {
 const { email, subject, label, variant = 'primary', href: hrefProp } = Astro.props;
 
 const href = hrefProp ?? `mailto:${email}${subject ? `?subject=${encodeURIComponent(subject)}` : ''}`;
-
-const styles: Record<string, string> = {
-	primary:
-		'bg-purple-700 text-white hover:bg-purple-800 shadow-lg shadow-purple-500/20 hover:shadow-xl hover:shadow-purple-500/30',
-	secondary:
-		'border-2 border-purple-200 text-purple-200 hover:bg-white/10',
-};
 ---
 
-<a
-	href={href}
-	class:list={[
-		'inline-block rounded-lg font-serif text-lg px-10 py-5 transition-all duration-200 hover:scale-105',
-		styles[variant],
-	]}
->
+<a href={href} class:list={['btn px-6 py-3.5 text-lg', variant === 'primary' ? 'btn-primary' : 'btn-ghost']}>
 	{label}
 </a>
