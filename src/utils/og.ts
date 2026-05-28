@@ -203,11 +203,16 @@ export const photoCard = (
 	);
 };
 
+/** Render a satori node to raw PNG bytes. */
+export async function renderOgPng(node: ReactNode): Promise<Uint8Array> {
+	const svg = await satori(node, { width: OG_WIDTH, height: OG_HEIGHT, fonts: FONTS });
+	return new Uint8Array(new Resvg(svg).render().asPng());
+}
+
 /** Render a satori node to a PNG response with the shared brand fonts. */
 export async function renderOgResponse(node: ReactNode): Promise<Response> {
-	const svg = await satori(node, { width: OG_WIDTH, height: OG_HEIGHT, fonts: FONTS });
-	const png = new Uint8Array(new Resvg(svg).render().asPng());
-	return new Response(png, {
+	const png = await renderOgPng(node);
+	return new Response(png as BodyInit, {
 		headers: {
 			'Content-Type': 'image/png',
 			// URLs aren't content-hashed, so avoid `immutable`: a day lets feeds

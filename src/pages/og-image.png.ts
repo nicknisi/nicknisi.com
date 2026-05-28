@@ -1,12 +1,16 @@
 import metadata from '@/data/metadata.json';
 import { jsx } from '@/utils/jsx-factory';
 import { PALETTE, brandFooter, photoCard, pngDataUri, renderOgResponse, sparkle, squiggle, sticker } from '@/utils/og';
+import { buildCutoutOgNode, productionHalo, titleSize } from '@/utils/og-cutout';
 import type { APIRoute } from 'astro';
 import { type CollectionEntry } from 'astro:content';
 import { readFile } from 'node:fs/promises';
 import type { ReactNode } from 'react';
 
-import headshotImage from '@/assets/headshot.png?buffer';
+// Feathered + drop-shadowed cutout. The figure inside this PNG sits with 60px
+// of padding on every side so the shadow has room; positioning math in
+// og-cutout.ts accounts for the padding.
+import cutoutImage from '@/assets/nick-cutout-hires-torso-shadow.png?buffer';
 
 interface Props {
 	post?: CollectionEntry<'posts'>;
@@ -53,26 +57,8 @@ const resolveHero = async (hero: unknown): Promise<string | null> => {
 	}
 };
 
-// Title sizing: bigger for short titles, smaller as length grows.
-const titleSize = (title: string): number => {
-	const len = title.length;
-	if (len <= 22) return 86;
-	if (len <= 38) return 72;
-	if (len <= 58) return 60;
-	return 50;
-};
-
-export const GET: APIRoute<Props> = async ({ props }) => {
-	const post = props.post;
-	const title = post?.data.title ?? metadata.description;
-	const kicker = post ? 'Blog' : 'Developer Experience Engineer';
-	const hero = post ? await resolveHero(post.data.hero) : null;
-
-	const photo = hero
-		? photoCard(hero, { width: 430, height: 270, rotate: -2, shadow: PALETTE.tomato })
-		: photoCard(await pngDataUri(headshotImage), { width: 300, height: 300, rotate: -3, shadow: PALETTE.marigold });
-
-	const node: ReactNode = jsx(
+const buildHeroOgNode = ({ title, kicker, hero }: { title: string; kicker: string; hero: string }): ReactNode =>
+	jsx(
 		'div',
 		{
 			style: {
@@ -86,15 +72,12 @@ export const GET: APIRoute<Props> = async ({ props }) => {
 				position: 'relative',
 			},
 		},
-		// Decorative sparkle, top-right
 		jsx(
 			'div',
 			{ style: { position: 'absolute', top: '52px', right: '74px', display: 'flex' } },
 			sparkle(PALETTE.tomato, 66),
 		),
-		// Kicker
 		sticker(kicker, { bg: PALETTE.grape, rotate: -2 }),
-		// Title + photo
 		jsx(
 			'div',
 			{
@@ -127,11 +110,29 @@ export const GET: APIRoute<Props> = async ({ props }) => {
 				),
 				jsx('div', { style: { display: 'flex', marginTop: '18px' } }, squiggle(PALETTE.tomato, 260, 22)),
 			),
-			jsx('div', { style: { display: 'flex', flexShrink: 0 } }, photo),
+			jsx(
+				'div',
+				{ style: { display: 'flex', flexShrink: 0 } },
+				photoCard(hero, { width: 430, height: 270, rotate: -2, shadow: PALETTE.tomato }),
+			),
 		),
-		// Footer
 		brandFooter(),
 	);
+
+export const GET: APIRoute<Props> = async ({ props }) => {
+	const post = props.post;
+	const title = post?.data.title ?? metadata.description;
+	const kicker = post ? 'Blog' : 'Developer Experience Engineer';
+	const hero = post ? await resolveHero(post.data.hero) : null;
+
+	const node = hero
+		? buildHeroOgNode({ title, kicker, hero })
+		: buildCutoutOgNode({
+				title,
+				kicker,
+				cutoutDataUri: await pngDataUri(cutoutImage),
+				background: productionHalo(),
+			});
 
 	return renderOgResponse(node);
 };

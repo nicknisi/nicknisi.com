@@ -40,7 +40,8 @@ export default defineConfig({
 		react(),
 		mdx(),
 		sitemap({
-			filter: page => !['https://nicknisi.com/resume', 'https://nicknisi.com/tokens'].some(p => page === p || page === p + '/'),
+			filter: page =>
+				!['https://nicknisi.com/resume', 'https://nicknisi.com/tokens'].some(p => page === p || page === p + '/'),
 		}),
 	],
 
