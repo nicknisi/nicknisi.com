@@ -1,13 +1,17 @@
 ---
 title: 'Fleet: A Control Tower for Claude Code'
 pubDate: 2026-05-28
-description: 'When you run a dozen Claude Code sessions at once, the hard part stops being the code and becomes attention: which agent needs you, right now? Fleet is a tmux dashboard that answers that question — and the story of building it is a story about not trusting a single signal.'
+description: 'A tmux dashboard for running many Claude Code agents at once — it shows which one needs you, sorted by urgency, so you stop polling and start responding.'
 tags:
   - claude-code
   - developer-tools
   - tmux
   - ai
   - agents
+hero:
+  img: '@/assets/posts/fleet-hero.png'
+  alt: 'A darkened control tower overlooking a fleet of glowing terminal windows arranged like aircraft across a radar field, in deep purple and teal'
+  darkOverlay: true
 ---
 
 import Callout from '@/components/Callout.astro';
@@ -22,7 +26,7 @@ This post is about the other side. The human side. The part the harness doesn't 
 
 Because even with a harness, I still end up with a tmux session full of Claude Code panes — one fixing a bug, one implementing a spec, one I started an hour ago and forgot about. And the question that eats my day isn't _how do I run these agents_. It's _which one needs me right now?_
 
-## The problem with N agents
+## When one agent becomes six
 
 One agent is easy. You watch it. You answer its questions, approve its tool calls, read its output. You're in a rhythm.
 
@@ -44,9 +48,11 @@ fleet install   # registers the Claude Code plugin + tmux integration
 fleet           # launch the dashboard
 ```
 
+![The Fleet dashboard: agents grouped by urgency on the left (one waiting on a permission prompt, one ready, the rest idle), a live preview of the selected agent's prompt on the right, and a second status row up top showing just the two that need attention.](@/assets/posts/fleet-dashboard.png)
+
 That's the whole pitch. But the entire thing lives or dies on one question: can you trust the state it shows you? Everything else is presentation.
 
-## The hard part is knowing what's true
+## Three signals, none trustworthy alone
 
 Here's what I learned the first time around: there is no single source of truth for "what is this agent doing."
 
@@ -66,37 +72,39 @@ The fusion is where the judgment lives, and the rule I landed on is the whole le
 
 The scraper wins for the things it can read unambiguously — a permission prompt or a question dialog is right there on the screen, no inference required. But for working-versus-idle, the scraper _defers to the hooks_. A scraper miss (it captured between spinner frames and saw what looked like an idle prompt) must not be allowed to downgrade a fresh `working` hook to idle. That exact bug — the scraper, acting as supreme arbiter, overriding a perfectly good "this agent is working" signal because it blinked at the wrong moment — is why my active session kept showing as idle while it was clearly thinking.
 
-The fix wasn't better detection. It was _narrower authority_. Let each signal speak only where it's reliable, and let a freshness rule (never accept a state older than the one you have) and a decay rule (`done` falls back to `idle` after a minute; `working` times out after three) handle the rest.
+The fix wasn't better detection. It was _narrower authority_. Let each signal speak only where it's reliable, and let a freshness rule — never accept a state older than the one you already have — settle the rest. The one timeout I kept: a `working` agent that's gone quiet for three minutes falls back to idle, so a crashed turn doesn't spin forever.
 
-## Sorting by what you owe it
+## Seven states, sorted by urgency
 
 Fleet tracks seven states, and the order is the point:
 
-| Icon | State       | Meaning                               |
-| ---- | ----------- | ------------------------------------- |
-| `⚠`  | **waiting** | Tool approval needed (`[y/n]` prompt) |
-| `?`  | **asking**  | Agent asked you a question            |
-| `✓`  | **done**    | Task finished, needs your next prompt |
-| `◉`  | **working** | Thinking or running tools             |
-| `●`  | **idle**    | Up but no recent activity             |
-| `■`  | **shell**   | No agent running                      |
-| `○`  | **down**    | No live process                       |
+| Icon | State       | Meaning                                        |
+| ---- | ----------- | ---------------------------------------------- |
+| `⚠`  | **waiting** | Tool approval needed (`[y/n]` prompt)          |
+| `?`  | **asking**  | Asked you a question via the question tool     |
+| `◉`  | **working** | Thinking or running tools                      |
+| `●`  | **ready**   | Turn ended — your move (green dot)             |
+| `●`  | **idle**    | Seen it, nothing pending (blue dot)            |
+| `■`  | **shell**   | No agent running                               |
+| `○`  | **down**    | No live process                                |
 
-It sorts by urgency, not by name or recency. The agent that's blocked on a permission prompt is at the top because it's the one burning the most of your time by waiting. The one that's happily working is near the bottom — it doesn't need you, so it shouldn't pull your eye.
+It sorts by urgency, not by name or recency. Anything blocked on you — a permission prompt, a question — sits at the top, because that's where your time is leaking. Working agents come next, so live work stays in view; then the ones that have finished and are waiting on your next move; then idle. The agent that needs a decision from you is never more than a glance away.
+
+A finished turn stays **ready** until you actually deal with it — there's no timer quietly downgrading it to idle behind your back. It clears when you _acknowledge_ it: switch to it, or click it. That distinction matters more than it sounds, and it's where I burned the most time getting the behavior honest.
 
 This reframes the job. You're no longer managing _agents_. You're managing a _queue of things you owe attention to_, sorted worst-first. Press `n` to jump straight to the next one that needs you and cycle through them. The dashboard becomes a to-do list that builds itself.
 
-## The discipline of showing less
+## Keeping the status bar quiet
 
-Fleet adds a second tmux status row — a thin bar above your normal status line that's always visible, even when the dashboard is closed. My first instinct was to put everything there: a little tally of working, idle, done, waiting. A cockpit.
+Fleet adds a second tmux status row — a thin bar above your normal status line that's always visible, even when the dashboard is closed. My first instinct was to put everything there: a little tally of working, idle, ready, waiting. A cockpit.
 
 It was noise. A bar that's always lit up is a bar you stop reading.
 
-So I cut it down to the only two states that mean _stop what you're doing_: an agent waiting on a permission prompt, and an agent asking you a question. Working, done, idle — none of those go in the bar. They don't need you to act this second, so showing them just trains you to ignore the bar entirely. If the bar is empty, every agent is either working or waiting patiently and you can stay heads-down. If something's in the bar, it's real, and you can click it to jump straight there.
+So I cut it down to the states where it's genuinely your turn: an agent waiting on a permission prompt, one asking a question, and one that's finished and waiting on your next move. Working and idle agents stay out — they don't need you this second, so putting them there just trains you to ignore the bar. If the bar is empty, every agent is either working away or already dealt with, and you can stay heads-down. If something's in it, it's real — click it to jump straight there, which also marks it acknowledged so it drops back off.
 
 The restraint is the feature. A notifier that only fires when it matters is one you'll actually trust.
 
-## Acting without leaving
+## Acting without switching panes
 
 Knowing which agent needs you is half of it. The other half is doing something about it without breaking flow.
 
@@ -112,7 +120,7 @@ Two halves that talk through the filesystem. The hooks are bash — they have to
 
 `fleet install` wires up the plugin and the tmux row in one shot. No editing `settings.json`, no hand-managing your tmux config — it drops in a marked line and `fleet uninstall` takes it back out cleanly. The thing I most wanted from the rewrite was for setup to be a single command, because a tool you have to fiddle with is a tool you stop using.
 
-## Attention is the scarce resource
+## Managing attention, not agents
 
 The harness post ended on a realization: managing agents is like managing a team, and you're judged on their output, not yours. Fleet is the tool I needed to actually do that.
 
