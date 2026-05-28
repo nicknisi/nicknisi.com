@@ -1,0 +1,121 @@
+---
+title: 'Fleet: A Control Tower for Claude Code'
+pubDate: 2026-05-28
+description: 'When you run a dozen Claude Code sessions at once, the hard part stops being the code and becomes attention: which agent needs you, right now? Fleet is a tmux dashboard that answers that question — and the story of building it is a story about not trusting a single signal.'
+tags:
+  - claude-code
+  - developer-tools
+  - tmux
+  - ai
+  - agents
+---
+
+import Callout from '@/components/Callout.astro';
+
+<Callout title="TL;DR" variant="info">
+	<a href="https://github.com/nicknisi/fleet" class="text-vivid-light-blue-950 dark:text-vivid-light-blue-100 font-medium underline hover:text-vivid-light-blue-700 dark:hover:text-white">Fleet</a> is a terminal dashboard for managing many Claude Code sessions in tmux. It watches every agent, sorts the ones that need you to the top, and lets you approve prompts or send work without leaving the dashboard. It's a compiled Bun binary plus a Claude Code plugin that hooks into the event system automatically — no config editing.
+</Callout>
+
+I [wrote a few months ago](/posts/case-statement) about building a harness to dispatch AI agents through a pipeline. That post was about the machine side: how a system orchestrates six agents so I'm not the one shuttling context between them.
+
+This post is about the other side. The human side. The part the harness doesn't solve.
+
+Because even with a harness, I still end up with a tmux session full of Claude Code panes — one fixing a bug, one implementing a spec, one I started an hour ago and forgot about. And the question that eats my day isn't _how do I run these agents_. It's _which one needs me right now?_
+
+## The problem with N agents
+
+One agent is easy. You watch it. You answer its questions, approve its tool calls, read its output. You're in a rhythm.
+
+Two agents is fine. Three is where it starts to fray. By the time I'm running five or six, I've lost the thread. One is blocked on a permission prompt I haven't seen. One finished ten minutes ago and is sitting idle, waiting for my next instruction, wasting wall-clock time. One is genuinely working and doesn't need me at all — but I keep checking it anyway because I can't remember which is which.
+
+The bottleneck moved. It used to be the agent's speed. Now it's my attention. I was spending my time _polling_ — tabbing through panes to find the one that needed something — instead of _responding_.
+
+I had a fzf-based dashboard for this. A pile of bash scripts that listed my sessions and let me jump between them. The problem was I didn't trust it. It would tell me a session was idle when it was actually waiting on a prompt. It would say an agent was working when it had finished. A status display you can't trust is worse than no display — you check it, doubt it, and then go look at the pane anyway.
+
+So I rebuilt it. Properly this time.
+
+## What Fleet is
+
+[Fleet](https://github.com/nicknisi/fleet) is a TUI that shows every Claude Code session in your tmux server, grouped by urgency. Agents that need you sort to the top. Plain shell panes are hidden — you're here for the agents, not your editor.
+
+```bash
+brew install nicknisi/formulae/fleet
+fleet install   # registers the Claude Code plugin + tmux integration
+fleet           # launch the dashboard
+```
+
+That's the whole pitch. But the entire thing lives or dies on one question: can you trust the state it shows you? Everything else is presentation.
+
+## The hard part is knowing what's true
+
+Here's what I learned the first time around: there is no single source of truth for "what is this agent doing."
+
+You might think the hooks would be enough. Claude Code fires events — a tool is about to run, the agent stopped, a notification fired — and a hook can write that to a file. Fast and structured. But hooks lie. Not maliciously; they just arrive out of order, or a `Stop` event fires when the agent is actually about to run another tool, or a hook never fires because the session crashed. If you trust the hook blindly, you get exactly the dashboard I didn't trust.
+
+You might think you could just scrape the screen. Run `tmux capture-pane` and look for a `[y/n]` prompt or a spinner. That sees what's actually on screen — but Claude's working indicator _animates_. The spinner glyph and the verb cycle between frames (`✻ Conjuring…` becomes `✢ Noodling…` a moment later). Match on a fixed glyph and you miss it half the time. And a screen scrape is expensive — you can't do it sixty times a second.
+
+So Fleet doesn't trust any single signal. It fuses three layers:
+
+| Layer            | Source                       | Good at                         | Bad at                       |
+| ---------------- | ---------------------------- | ------------------------------- | ---------------------------- |
+| **Hooks**        | Claude Code events → files   | Speed, structure (~0ms)         | Ordering, missed events      |
+| **Event log**    | Per-pane JSONL stream        | Intent (`tool_use` vs `end_turn`) | Lag                          |
+| **Pane scrape**  | `tmux capture-pane`          | Ground truth — what's on screen | Cost (~50ms), animated UI    |
+
+The fusion is where the judgment lives, and the rule I landed on is the whole lesson of the project: **each layer is authoritative only for what it can actually be trusted on.**
+
+The scraper wins for the things it can read unambiguously — a permission prompt or a question dialog is right there on the screen, no inference required. But for working-versus-idle, the scraper _defers to the hooks_. A scraper miss (it captured between spinner frames and saw what looked like an idle prompt) must not be allowed to downgrade a fresh `working` hook to idle. That exact bug — the scraper, acting as supreme arbiter, overriding a perfectly good "this agent is working" signal because it blinked at the wrong moment — is why my active session kept showing as idle while it was clearly thinking.
+
+The fix wasn't better detection. It was _narrower authority_. Let each signal speak only where it's reliable, and let a freshness rule (never accept a state older than the one you have) and a decay rule (`done` falls back to `idle` after a minute; `working` times out after three) handle the rest.
+
+## Sorting by what you owe it
+
+Fleet tracks seven states, and the order is the point:
+
+| Icon | State       | Meaning                               |
+| ---- | ----------- | ------------------------------------- |
+| `⚠`  | **waiting** | Tool approval needed (`[y/n]` prompt) |
+| `?`  | **asking**  | Agent asked you a question            |
+| `✓`  | **done**    | Task finished, needs your next prompt |
+| `◉`  | **working** | Thinking or running tools             |
+| `●`  | **idle**    | Up but no recent activity             |
+| `■`  | **shell**   | No agent running                      |
+| `○`  | **down**    | No live process                       |
+
+It sorts by urgency, not by name or recency. The agent that's blocked on a permission prompt is at the top because it's the one burning the most of your time by waiting. The one that's happily working is near the bottom — it doesn't need you, so it shouldn't pull your eye.
+
+This reframes the job. You're no longer managing _agents_. You're managing a _queue of things you owe attention to_, sorted worst-first. Press `n` to jump straight to the next one that needs you and cycle through them. The dashboard becomes a to-do list that builds itself.
+
+## The discipline of showing less
+
+Fleet adds a second tmux status row — a thin bar above your normal status line that's always visible, even when the dashboard is closed. My first instinct was to put everything there: a little tally of working, idle, done, waiting. A cockpit.
+
+It was noise. A bar that's always lit up is a bar you stop reading.
+
+So I cut it down to the only two states that mean _stop what you're doing_: an agent waiting on a permission prompt, and an agent asking you a question. Working, done, idle — none of those go in the bar. They don't need you to act this second, so showing them just trains you to ignore the bar entirely. If the bar is empty, every agent is either working or waiting patiently and you can stay heads-down. If something's in the bar, it's real, and you can click it to jump straight there.
+
+The restraint is the feature. A notifier that only fires when it matters is one you'll actually trust.
+
+## Acting without leaving
+
+Knowing which agent needs you is half of it. The other half is doing something about it without breaking flow.
+
+Press `p` and Fleet opens a live preview of the selected pane — actual terminal output, ANSI colors intact, updating in place. You can drag the divider to resize it like a tmux pane border. From the preview you get context-aware actions: `y` to approve a permission prompt, `s` to send the next instruction, `i` to drop into _passthrough mode_ where every keystroke forwards straight to the agent's pane and you watch the result live.
+
+That's the power feature. Approve a prompt, answer a question, type a follow-up — across half a dozen agents — without ever switching tmux panes. The footer shows `● LIVE` when you're wired directly into a session. You sit in one place and conduct.
+
+There's a safety rail, too: Fleet refuses to send to a session sitting on a permission prompt (you might accidentally approve something) or one that's asking a question (it won't answer for you). The whole point is to be _more_ careful with many agents than you'd be with one, not less.
+
+## How it's built
+
+Two halves that talk through the filesystem. The hooks are bash — they have to be instant, firing on every Claude Code event and writing a tiny status file. The dashboard is a compiled Bun binary with zero runtime dependencies and a hand-rolled ANSI renderer (no framework, no flicker — every frame is a single string). They never call each other directly; the hooks write, the TUI reads. That separation is why the hooks can be dumb and fast while the fusion logic stays in one testable place.
+
+`fleet install` wires up the plugin and the tmux row in one shot. No editing `settings.json`, no hand-managing your tmux config — it drops in a marked line and `fleet uninstall` takes it back out cleanly. The thing I most wanted from the rewrite was for setup to be a single command, because a tool you have to fiddle with is a tool you stop using.
+
+## Attention is the scarce resource
+
+The harness post ended on a realization: managing agents is like managing a team, and you're judged on their output, not yours. Fleet is the tool I needed to actually do that.
+
+The scarce resource in agentic work isn't compute or even the agent's time. It's my attention — knowing where to point it, and not wasting it polling. Fleet is a small bet that the right interface for many agents isn't more dashboards or more notifications. It's _less_: a single pane that surfaces only what's blocked on you, sorted worst-first, with the controls to clear it right there.
+
+It's open source. `brew install nicknisi/formulae/fleet`, or grab it [on GitHub](https://github.com/nicknisi/fleet).
