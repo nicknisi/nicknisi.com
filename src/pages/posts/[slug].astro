@@ -1,5 +1,5 @@
 ---
-import { type CollectionEntry, getCollection } from 'astro:content';
+import { type CollectionEntry, getCollection, render } from 'astro:content';
 import BaseLayout from '@/layouts/Base.astro';
 import { Icon } from 'astro-icon/components';
 import { toReadableDate, getWordCount } from '@/utils/common';
@@ -19,17 +19,17 @@ export async function getStaticPaths() {
 	const mode = import.meta.env.MODE;
 	const posts = await getCollection('posts', post => (mode === 'production' ? !post.data.draft : true));
 	return posts.map((post, i) => ({
-		params: { slug: post.slug },
+		params: { slug: post.id },
 		props: { post, prevPost: i > 0 ? posts[i - 1] : null },
 	}));
 }
 
 const { post, prevPost } = Astro.props;
 const {
-	slug,
+	id,
 	data: { hero, title, description, pubDate, tags = [], draft, post: postUri },
 } = post;
-const { Content } = await post.render();
+const { Content } = await render(post);
 const date = toReadableDate(pubDate);
 const wordCount = getWordCount(post?.body);
 const profileImg = await getAsset(metadata.profile);
@@ -49,8 +49,8 @@ const profileImg = await getAsset(metadata.profile);
 		heroImage={hero}
 		title={title}
 		description={description}
-		headerImage={`/posts/${slug}/og.png`}
-		markdownPath={`/posts/${slug}.md`}
+		headerImage={`/posts/${id}/og.png`}
+		markdownPath={`/posts/${id}.md`}
 	>
 		<article class="pt-10 pb-10">
 			<a href="/posts" class="btn btn-ghost mb-8 text-sm">← Back to posts</a>
@@ -58,7 +58,7 @@ const profileImg = await getAsset(metadata.profile);
 			<header class="mb-8">
 				{
 					!hero && (
-						<h1 transition:name={`post-${slug}`} class="text-ink text-4xl font-extrabold tracking-tight md:text-5xl">
+						<h1 transition:name={`post-${id}`} class="text-ink text-4xl font-extrabold tracking-tight md:text-5xl">
 							{title}
 						</h1>
 					)
@@ -107,7 +107,7 @@ const profileImg = await getAsset(metadata.profile);
 			{
 				prevPost && (
 					<a
-						href={`/posts/${prevPost.slug}`}
+						href={`/posts/${prevPost.id}`}
 						class="tactile group border-ink bg-card shadow-hard-sm mt-8 flex items-center gap-4 rounded-[14px] border-2 p-5 no-underline"
 					>
 						<Icon name="mdi:arrow-left-bold" class="text-ink h-6 w-6 shrink-0" />

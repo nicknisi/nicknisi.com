@@ -8,7 +8,7 @@ interface Props {
 export async function getStaticPaths() {
 	const mode = import.meta.env.MODE;
 	const posts = await getCollection('posts', post => (mode === 'production' ? !post.data.draft : true));
-	return posts.map(post => ({ params: { slug: post.slug }, props: { post } }));
+	return posts.map(post => ({ params: { slug: post.id }, props: { post } }));
 }
 
 // Serialize a value as a YAML scalar, quoting only when needed.
@@ -39,7 +39,7 @@ const stripMdxStatements = (body: string): string => {
 export const GET: APIRoute<Props> = ({ props }) => {
 	const { post } = props;
 	const { title, description, pubDate, tags = [], external } = post.data;
-	const canonical = external ?? `https://nicknisi.com/posts/${post.slug}`;
+	const canonical = external ?? `https://nicknisi.com/posts/${post.id}`;
 
 	const frontmatter = [
 		'---',

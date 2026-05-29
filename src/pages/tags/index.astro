@@ -1,12 +1,13 @@
 ---
 import BaseLayout from '@/layouts/Base.astro';
-const allPosts = await Astro.glob('../../content/posts/*.md');
-const tags: string[] = [...new Set(allPosts.map(post => post.frontmatter.tags).flat())].filter(Boolean).sort();
+import { getCollection } from 'astro:content';
+const allPosts = await getCollection('posts');
+const tags: string[] = [...new Set(allPosts.flatMap(post => post.data.tags))].filter(Boolean).sort();
 
 const accents = ['bg-tomato', 'bg-grape', 'bg-pine', 'bg-sky', 'bg-marigold'] as const;
 const dotFor = (tag: string) => accents[[...tag].reduce((a, c) => a + c.charCodeAt(0), 0) % accents.length];
 
-const countFor = (tag: string) => allPosts.filter(post => post.frontmatter.tags?.includes(tag)).length;
+const countFor = (tag: string) => allPosts.filter(post => post.data.tags?.includes(tag)).length;
 ---
 
 <BaseLayout title="Tags">

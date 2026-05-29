@@ -1,10 +1,12 @@
-import { z, defineCollection } from 'astro:content';
-import { file } from 'astro/loaders';
+import { defineCollection } from 'astro:content';
+import { z } from 'astro/zod';
+import { glob, file } from 'astro/loaders';
 import { authorFeedLoader } from '@/loaders/bsky.js';
 import { tokenmaxingLoader } from '@/loaders/tokenmaxing.js';
-import TalkSchema from './schemas/Talk';
+import TalkSchema from './content/schemas/Talk';
 
 const posts = defineCollection({
+	loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/posts' }),
 	schema: ({ image }) =>
 		z.object({
 			title: z.string(),
@@ -14,7 +16,7 @@ const posts = defineCollection({
 			pubDate: z.coerce.date(),
 			external: z.string().optional(),
 			draft: z.boolean().optional(),
-			post: z.string().url().optional(),
+			post: z.url().optional(),
 			hero: z
 				.object({
 					img: image(),
@@ -34,7 +36,7 @@ const profiles = defineCollection({
 	schema: z.object({
 		network: z.string(),
 		username: z.string(),
-		url: z.string().url(),
+		url: z.url(),
 		hidden: z.optional(z.boolean()),
 	}),
 });
@@ -53,7 +55,7 @@ const projects = defineCollection({
 			startDate: z.string().date(),
 			endDate: z.optional(z.string().date()),
 			description: z.optional(z.string()),
-			url: z.string().url(),
+			url: z.url(),
 			roles: z.array(z.string()),
 			entity: z.optional(z.string()),
 			highlights: z.array(z.string()),

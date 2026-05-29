@@ -1,4 +1,4 @@
-import { z } from 'astro:content';
+import { z } from 'astro/zod';
 
 const TalkType = z.enum(['Conference Talk', 'Panel', 'Podcast', 'Moderation', 'Workshop', 'Keynote', 'Lightning Talk']);
 
@@ -6,7 +6,7 @@ const TalkInstance = z.object({
 	event: z.string(),
 	location: z.string(),
 	date: z.coerce.date(),
-	url: z.string().url().optional(),
+	url: z.url().optional(),
 	videoId: z.string().optional(),
 	remote: z.boolean().optional(),
 });

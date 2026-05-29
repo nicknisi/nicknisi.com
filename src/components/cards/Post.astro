@@ -9,20 +9,20 @@ interface Props {
 }
 
 const { post } = Astro.props;
-const href = post.data.external ?? `/posts/${post.slug}`;
+const href = post.data.external ?? `/posts/${post.id}`;
 
 // Band color is derived from the active accent: tomato and grape both rebind
 // with the accent switcher, so the whole grid recolors when the accent
 // changes. Deterministic per post so the two-tone rhythm is stable.
 const bandClasses = ['bg-tomato', 'bg-grape'] as const;
 const tag = post.data.tags?.[0];
-const key = (tag ?? post.slug) ?? '';
+const key = (tag ?? post.id) ?? '';
 const band = bandClasses[[...key].reduce((a, c) => a + c.charCodeAt(0), 0) % bandClasses.length];
 ---
 
 <a
 	href={href}
-	transition:name={`post-${post.slug}`}
+	transition:name={`post-${post.id}`}
 	class="tactile group flex flex-col overflow-hidden rounded-[14px] border-2 border-ink bg-card no-underline shadow-hard-sm"
 >
 	<span class:list={['block h-3 border-b-2 border-ink', band]}></span>

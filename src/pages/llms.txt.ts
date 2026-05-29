@@ -11,7 +11,7 @@ export const GET: APIRoute = async () => {
 	posts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 
 	const lines = posts.map(post => {
-		const href = post.data.external ?? `https://nicknisi.com/posts/${post.slug}.md`;
+		const href = post.data.external ?? `https://nicknisi.com/posts/${post.id}.md`;
 		const desc = post.data.description ? `: ${post.data.description}` : '';
 		return `- [${post.data.title}](${href})${desc}`;
 	});

@@ -1,0 +1,56 @@
+# Keeps dependencies on the latest versions. Dependabot opens grouped PRs;
+# the CI workflow (.github/workflows/ci.yml) typechecks + builds each one, so a
+# bump only merges if the site still compiles. The "astro" group bumps Astro and
+# every integration together — they share peer-dependency constraints and MUST
+# move in lockstep (e.g. @astrojs/mdx requires a matching astro major).
+version: 2
+updates:
+  - package-ecosystem: npm # also handles pnpm-lock.yaml
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 10
+    labels:
+      - dependencies
+    groups:
+      astro:
+        patterns:
+          - astro
+          - "@astrojs/*"
+          - astro-* # astro-icon, astro-expressive-code
+          - "@astro-community/*"
+          - "@expressive-code/*"
+          - expressive-code*
+      tailwind:
+        patterns:
+          - tailwindcss
+          - "@tailwindcss/*"
+      react:
+        patterns:
+          - react
+          - react-dom
+          - "@types/react"
+          - "@types/react-dom"
+      types:
+        patterns:
+          - "@types/*"
+        exclude-patterns:
+          - "@types/react"
+          - "@types/react-dom"
+      dev-tooling:
+        patterns:
+          - prettier
+          - prettier-plugin-*
+          - wrangler
+          - "@iconify-json/*"
+          - "@nicknisi/standard"
+
+  # Keep the GitHub Actions used by CI current too.
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    labels:
+      - dependencies

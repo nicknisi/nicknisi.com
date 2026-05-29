@@ -18,8 +18,8 @@ export async function GET({ site }: { site: URL }) {
 				title: post.data.title,
 				description: post.data.description,
 				pubDate: post.data.pubDate,
-				link: `/posts/${post.slug}`,
-				content: sanitizeHtml(markdownIt().render(post.body)),
+				link: `/posts/${post.id}`,
+				content: sanitizeHtml(markdownIt().render(post.body ?? '')),
 			})),
 	});
 }

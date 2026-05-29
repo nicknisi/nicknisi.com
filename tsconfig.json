@@ -2,10 +2,9 @@
 	"$schema": "http://json.schemastore.org/tsconfig",
 	"extends": "astro/tsconfigs/strictest",
 	"compilerOptions": {
-		"baseUrl": ".",
 		"paths": {
-			"@/*": ["src/*"],
-			"@@/*": ["*"]
+			"@/*": ["./src/*"],
+			"@@/*": ["./*"]
 		},
 		"jsx": "react-jsx",
 		"jsxImportSource": "react"

@@ -5,7 +5,7 @@ export { GET } from '@/pages/og-image.png.js';
 export async function getStaticPaths() {
 	const posts = await getCollection('posts');
 	return posts.map(post => ({
-		params: { slug: post.slug },
+		params: { slug: post.id },
 		props: { post },
 	}));
 }

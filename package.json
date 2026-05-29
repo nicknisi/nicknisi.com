@@ -4,7 +4,7 @@
 	"version": "3.0.0",
 	"description": "The home of Nick Nisi on the Internet.",
 	"engines": {
-		"node": ">=16.0.0"
+		"node": ">=22.12.0"
 	},
 	"scripts": {
 		"dev": "astro dev",
@@ -28,16 +28,14 @@
 	"license": "MIT",
 	"packageManager": "pnpm@10.12.1",
 	"dependencies": {
-		"@astro-community/astro-embed-bluesky": "0.1.6",
-		"@astrojs/cloudflare": "12.6.12",
-		"@astrojs/mdx": "4.3.13",
-		"@astrojs/react": "4.4.2",
-		"@astrojs/rss": "4.0.15",
-		"@astrojs/sitemap": "3.7.0",
-		"@astrojs/tailwind": "6.0.2",
+		"@astro-community/astro-embed-bluesky": "0.2.1",
+		"@astrojs/mdx": "6.0.1",
+		"@astrojs/react": "5.0.6",
+		"@astrojs/rss": "4.0.18",
+		"@astrojs/sitemap": "3.7.3",
 		"@atproto/api": "0.18.21",
-		"@expressive-code/plugin-collapsible-sections": "^0.41.6",
-		"@expressive-code/plugin-line-numbers": "^0.41.6",
+		"@expressive-code/plugin-collapsible-sections": "^0.41.7",
+		"@expressive-code/plugin-line-numbers": "^0.41.7",
 		"@fontsource-variable/bricolage-grotesque": "^5.2.10",
 		"@fontsource-variable/jetbrains-mono": "^5.2.8",
 		"@fontsource-variable/roboto-slab": "5.2.8",
@@ -46,10 +44,10 @@
 		"@fontsource/space-mono": "5.2.9",
 		"@resvg/resvg-js": "^2.6.2",
 		"@tailwindcss/typography": "0.5.19",
-		"astro": "5.17.3",
-		"astro-expressive-code": "^0.41.6",
+		"astro": "6.4.2",
+		"astro-expressive-code": "^0.41.7",
 		"astro-icon": "1.1.5",
-		"expressive-code-twoslash": "^0.5.3",
+		"expressive-code-twoslash": "^0.6.1",
 		"luxon": "3.7.2",
 		"markdown-it": "14.1.1",
 		"react": "19.2.4",
@@ -57,7 +55,7 @@
 		"sanitize-html": "2.17.1",
 		"satori": "0.19.2",
 		"sharp": "^0.34.5",
-		"tailwindcss": "4.2.0"
+		"tailwindcss": "4.3.0"
 	},
 	"devDependencies": {
 		"@iconify-json/ic": "1.2.4",
@@ -65,8 +63,9 @@
 		"@iconify-json/raphael": "1.2.1",
 		"@iconify-json/simple-icons": "1.2.71",
 		"@nicknisi/standard": "0.1.0",
-		"@tailwindcss/vite": "^4.2.0",
+		"@tailwindcss/vite": "^4.3.0",
 		"@types/luxon": "3.7.1",
+		"@types/node": "^22",
 		"@types/markdown-it": "14.1.2",
 		"@types/react": "19.2.14",
 		"@types/react-dom": "19.2.3",
@@ -74,7 +73,7 @@
 		"prettier": "3.8.1",
 		"prettier-plugin-astro": "0.14.1",
 		"prettier-plugin-tailwindcss": "0.7.2",
-		"typescript": "5.9.3",
-		"wrangler": "4.67.0"
+		"typescript": "6.0.3",
+		"wrangler": "4.95.0"
 	}
 }
