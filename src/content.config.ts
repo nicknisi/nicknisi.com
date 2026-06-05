@@ -89,7 +89,7 @@ const tokenmaxing = defineCollection({
 		fixturePath: 'content/data/tokenmaxing.fixture.json',
 	}),
 	schema: z.object({
-		schemaVersion: z.literal(1),
+		schemaVersion: z.union([z.literal(1), z.literal(2)]),
 		generatedAt: z.string(),
 		period: z.object({ from: z.string(), to: z.string() }),
 		summary: z.object({
@@ -210,6 +210,25 @@ const tokenmaxing = defineCollection({
 				summary: z.string().nullable().optional(),
 			}),
 		),
+		insights: z
+			.object({
+				weekly: z.array(
+					z.object({
+						weekEnding: z.string(),
+						tokens: z.number(),
+						costUSD: z.number(),
+						sessions: z.number(),
+						messages: z.number(),
+						byTool: z.record(z.string(), z.object({ tokens: z.number(), costUSD: z.number() })),
+						prsMerged: z.number(),
+						additions: z.number(),
+						deletions: z.number(),
+					}),
+				),
+				hourCounts: z.array(z.number()).length(24),
+				weekdayCounts: z.array(z.number()).length(7),
+			})
+			.optional(),
 	}),
 });
 

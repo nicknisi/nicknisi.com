@@ -63,6 +63,7 @@ const data = entry?.data;
 								state: pr.state,
 							})),
 						)}
+						insights={data.insights}
 					/>
 					<WeeklyHighlights weeks={data.weeklyHighlights} />
 					<MobyDickFooter totalTokens={data.summary.totalTokens} />

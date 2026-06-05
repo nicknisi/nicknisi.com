@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import Insights, { type InsightsData } from './Insights';
 
 type ToolId = 'claude-code' | 'pi' | 'codex';
 
@@ -53,6 +54,7 @@ interface Props {
 		longestStreakDays: number;
 	};
 	pullRequests: PullRequestSummary[];
+	insights?: InsightsData;
 }
 
 type Range = 'all' | '30d' | '7d';
@@ -105,9 +107,9 @@ function StatsGrid({ tiles }: { tiles: Array<{ label: string; value: string }> }
 			{tiles.map(t => (
 				<div
 					key={t.label}
-					className="rounded-lg border border-gray-200 bg-white/60 px-3 py-3 sm:p-4 dark:border-dark-border dark:bg-dark-surface/60"
+					className="dark:border-dark-border dark:bg-dark-surface/60 rounded-lg border border-gray-200 bg-white/60 px-3 py-3 sm:p-4"
 				>
-					<div className="text-[11px] uppercase tracking-wide text-gray-500 dark:text-gray-400">{t.label}</div>
+					<div className="text-[11px] tracking-wide text-gray-500 uppercase dark:text-gray-400">{t.label}</div>
 					<div className="mt-0.5 font-mono text-lg font-semibold sm:mt-1 sm:text-2xl">{t.value}</div>
 				</div>
 			))}
@@ -176,7 +178,7 @@ function BreakdownTable({
 	const total = rows.reduce((s, r) => s + r[metric], 0) || 1;
 	return (
 		<table className="w-full text-sm">
-			<thead className="text-left text-xs uppercase tracking-wide text-gray-500">
+			<thead className="text-left text-xs tracking-wide text-gray-500 uppercase">
 				<tr>
 					<th className="py-2">Name</th>
 					<th className="py-2 text-right">{metric === 'costUSD' ? 'Cost' : 'Tokens'}</th>
@@ -185,15 +187,12 @@ function BreakdownTable({
 			</thead>
 			<tbody>
 				{rows.map(r => (
-					<tr key={r.label} className="border-t border-gray-100 dark:border-dark-border">
+					<tr key={r.label} className="dark:border-dark-border border-t border-gray-100">
 						<td className="py-2 font-mono">{r.label}</td>
 						<td className="py-2 text-right font-mono">{fmtVal(metric, r[metric])}</td>
 						<td className="py-2">
-							<div className="h-2 rounded bg-gray-100 dark:bg-dark-surface">
-								<div
-									className="h-2 rounded bg-blue-500"
-									style={{ width: `${(r[metric] / total) * 100}%` }}
-								/>
+							<div className="dark:bg-dark-surface h-2 rounded bg-gray-100">
+								<div className="h-2 rounded bg-blue-500" style={{ width: `${(r[metric] / total) * 100}%` }} />
 							</div>
 						</td>
 					</tr>
@@ -203,7 +202,7 @@ function BreakdownTable({
 	);
 }
 
-export default function Dashboard({ daily, breakdown, staticSummary, pullRequests }: Props) {
+export default function Dashboard({ daily, breakdown, staticSummary, pullRequests, insights }: Props) {
 	const [range, setRange] = useState<Range>('all');
 	const [metric, setMetric] = useState<Metric>('tokens');
 	const [view, setView] = useState<View>('overview');
@@ -233,10 +232,7 @@ export default function Dashboard({ daily, breakdown, staticSummary, pullRequest
 		for (const d of filtered) for (let h = 0; h < 24; h++) hourCounts[h]! += d.hourCounts[h] ?? 0;
 		let peakHour = 0;
 		for (let h = 1; h < 24; h++) if (hourCounts[h]! > hourCounts[peakHour]!) peakHour = h;
-		const modelMsgs = new Map<
-			string,
-			{ ref: { tool: string; provider: string; id: string }; messages: number }
-		>();
+		const modelMsgs = new Map<string, { ref: { tool: string; provider: string; id: string }; messages: number }>();
 		for (const d of filtered) {
 			for (const m of d.byModel) {
 				const k = `${m.tool}|${m.provider}|${m.id}`;
@@ -298,59 +294,64 @@ export default function Dashboard({ daily, breakdown, staticSummary, pullRequest
 	return (
 		<div className="space-y-6">
 			<div className="text-sm text-gray-500 dark:text-gray-400">
-				{dateRange && (
-					<span className="font-medium text-gray-700 dark:text-gray-300">{dateRange}</span>
-				)}
+				{dateRange && <span className="font-medium text-gray-700 dark:text-gray-300">{dateRange}</span>}
 			</div>
 
 			<StatsGrid tiles={tiles} />
 
-			<div className="flex flex-wrap items-center justify-between gap-3">
-				<div className="flex gap-2">
-					<button className={pillCls(range === 'all')} onClick={() => setRange('all')}>
-						All
-					</button>
-					<button className={pillCls(range === '30d')} onClick={() => setRange('30d')}>
-						30d
-					</button>
-					<button className={pillCls(range === '7d')} onClick={() => setRange('7d')}>
-						7d
-					</button>
-				</div>
-				<div className="flex gap-2">
-					<button className={pillCls(view === 'overview')} onClick={() => setView('overview')}>
-						Overview
-					</button>
-					<button className={pillCls(view === 'tool')} onClick={() => setView('tool')}>
-						By Tool
-					</button>
-					<button className={pillCls(view === 'provider')} onClick={() => setView('provider')}>
-						By Provider
-					</button>
-					<button className={pillCls(view === 'model')} onClick={() => setView('model')}>
-						By Model
-					</button>
-					<button className={pillCls(view === 'project')} onClick={() => setView('project')}>
-						Projects
-					</button>
-				</div>
-				<div className="flex gap-2">
-					<button className={pillCls(metric === 'tokens')} onClick={() => setMetric('tokens')}>
-						Tokens
-					</button>
-					<button className={pillCls(metric === 'costUSD')} onClick={() => setMetric('costUSD')}>
-						Cost
-					</button>
-				</div>
+			{/* Metric toggle governs the trends below AND the heatmap/breakdown. */}
+			<div className="flex justify-end gap-2">
+				<button className={pillCls(metric === 'tokens')} onClick={() => setMetric('tokens')}>
+					Tokens
+				</button>
+				<button className={pillCls(metric === 'costUSD')} onClick={() => setMetric('costUSD')}>
+					Cost
+				</button>
 			</div>
 
-			<Heatmap daily={filtered} metric={metric} />
+			{insights && <Insights insights={insights} metric={metric} />}
 
-			{view !== 'overview' && (
-				<div className="rounded-lg border border-gray-200 p-4 dark:border-dark-border">
-					<BreakdownTable rows={breakdownRows} metric={metric} />
+			<section className="space-y-3">
+				<h2 className="font-serif text-2xl font-semibold">Daily activity</h2>
+				<div className="flex flex-wrap items-center justify-between gap-3">
+					<div className="flex gap-2">
+						<button className={pillCls(range === 'all')} onClick={() => setRange('all')}>
+							All
+						</button>
+						<button className={pillCls(range === '30d')} onClick={() => setRange('30d')}>
+							30d
+						</button>
+						<button className={pillCls(range === '7d')} onClick={() => setRange('7d')}>
+							7d
+						</button>
+					</div>
+					<div className="flex gap-2">
+						<button className={pillCls(view === 'overview')} onClick={() => setView('overview')}>
+							Overview
+						</button>
+						<button className={pillCls(view === 'tool')} onClick={() => setView('tool')}>
+							By Tool
+						</button>
+						<button className={pillCls(view === 'provider')} onClick={() => setView('provider')}>
+							By Provider
+						</button>
+						<button className={pillCls(view === 'model')} onClick={() => setView('model')}>
+							By Model
+						</button>
+						<button className={pillCls(view === 'project')} onClick={() => setView('project')}>
+							Projects
+						</button>
+					</div>
 				</div>
-			)}
+
+				<Heatmap daily={filtered} metric={metric} />
+
+				{view !== 'overview' && (
+					<div className="dark:border-dark-border rounded-lg border border-gray-200 p-4">
+						<BreakdownTable rows={breakdownRows} metric={metric} />
+					</div>
+				)}
+			</section>
 		</div>
 	);
 }
