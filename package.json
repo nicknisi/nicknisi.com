@@ -61,7 +61,7 @@
 		"@iconify-json/ic": "1.2.4",
 		"@iconify-json/mdi": "1.2.3",
 		"@iconify-json/raphael": "1.2.1",
-		"@iconify-json/simple-icons": "1.2.71",
+		"@iconify-json/simple-icons": "1.2.86",
 		"@nicknisi/standard": "0.1.0",
 		"@tailwindcss/vite": "^4.3.0",
 		"@types/luxon": "3.7.1",
@@ -70,10 +70,10 @@
 		"@types/react": "19.2.14",
 		"@types/react-dom": "19.2.3",
 		"@types/sanitize-html": "2.16.0",
-		"prettier": "3.8.1",
+		"prettier": "3.8.3",
 		"prettier-plugin-astro": "0.14.1",
-		"prettier-plugin-tailwindcss": "0.7.2",
+		"prettier-plugin-tailwindcss": "0.8.0",
 		"typescript": "6.0.3",
-		"wrangler": "4.95.0"
+		"wrangler": "4.98.0"
 	}
 }
