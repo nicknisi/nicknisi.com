@@ -28,7 +28,7 @@ const nav = [
 				</a>
 			</div>
 
-			<nav class="flex flex-wrap gap-x-5 gap-y-2">
+			<nav class="flex flex-wrap items-center gap-x-5 gap-y-2">
 				{
 					nav.map(({ href, label }) => (
 						<a href={href} class="font-display text-sm font-bold text-paper/70 no-underline underline-offset-4 hover:text-paper hover:underline">
@@ -36,6 +36,13 @@ const nav = [
 						</a>
 					))
 				}
+				<a
+					href="/ai-engineering"
+					class="inline-flex items-center gap-1.5 rounded-full border-2 border-marigold bg-marigold px-3 py-1 font-display text-sm font-bold text-ink no-underline transition-colors hover:bg-transparent hover:text-marigold"
+				>
+					<Icon name="mdi:rocket-launch-outline" class="h-4 w-4" />
+					Training
+				</a>
 			</nav>
 		</div>
 

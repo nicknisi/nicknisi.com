@@ -29,7 +29,7 @@ const path = Astro.url.pathname;
 		<div class="flex shrink-0 items-center gap-2 sm:gap-4">
 			<!-- Desktop nav -->
 			<nav class="hidden md:block">
-				<ul class="flex list-none gap-4 lg:gap-6">
+				<ul class="flex list-none items-center gap-4 lg:gap-6">
 					{
 						links.map(({ href, label }) => (
 							<li>
@@ -45,6 +45,18 @@ const path = Astro.url.pathname;
 							</li>
 						))
 					}
+					<li>
+						<a
+							href="/ai-engineering"
+							class:list={[
+								'inline-flex -rotate-1 items-center gap-1.5 rounded-full border-2 border-ink bg-tomato px-3 py-1 font-display text-sm font-bold text-paper shadow-hard-sm transition-transform duration-150 hover:rotate-0 lg:text-base',
+								path.startsWith('/ai-engineering') && 'rotate-0',
+							]}
+						>
+							<Icon name="mdi:rocket-launch-outline" class="h-4 w-4" />
+							Training
+						</a>
+					</li>
 				</ul>
 			</nav>
 
@@ -69,6 +81,18 @@ const path = Astro.url.pathname;
 	<!-- Mobile nav panel -->
 	<nav id="mobileNav" class="hidden border-t-2 border-ink bg-marigold md:hidden">
 		<ul class="mx-auto flex max-w-4xl list-none flex-col gap-1 px-4 py-3">
+			<li>
+				<a
+					href="/ai-engineering"
+					class:list={[
+						'flex items-center gap-2 rounded-lg border-2 border-ink bg-tomato px-3 py-2.5 font-display font-bold text-paper shadow-hard-sm',
+						path.startsWith('/ai-engineering') && 'shadow-none',
+					]}
+				>
+					<Icon name="mdi:rocket-launch-outline" class="h-5 w-5" />
+					Training
+				</a>
+			</li>
 			{
 				links.map(({ href, label }) => (
 					<li>
