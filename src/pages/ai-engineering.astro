@@ -7,6 +7,12 @@ import PricingCalculator from '@/components/landing/PricingCalculator';
 import { Icon } from 'astro-icon/components';
 import { getAsset } from '@/utils/image';
 import { Image } from 'astro:assets';
+import metadata from '../data/metadata.json';
+
+// Typed Void is the authoritative home for this offer; point the canonical there
+// once that page is live (flip metadata.trainingCanonical.active). Until then we
+// keep the self-referential canonical so we never point at a 404.
+const trainingCanonical = metadata.trainingCanonical.active ? metadata.trainingCanonical.url : undefined;
 
 const profileImage = await getAsset('profile.jpg');
 const email = 'nick@nisi.org';
@@ -226,6 +232,7 @@ const faqs = [
 	title="The AI-Native Engineer | Nick Nisi"
 	description="Live training that teaches engineering teams to ship faster with AI. Not a course on building AI. A course on being a better engineer with it."
 	headerImage="/ai-engineering-og.png"
+	canonical={trainingCanonical}
 	fullWidth
 >
 	{/* Section 1: Hero */}

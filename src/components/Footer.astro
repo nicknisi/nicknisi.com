@@ -5,6 +5,7 @@ import { Icon } from 'astro-icon/components';
 const year = DateTime.local().year;
 
 const socials = Object.entries(metadata.social).filter(([, { hidden }]) => !hidden);
+const ventures = (metadata.ventures ?? []).filter((v) => v.url);
 const nav = [
 	{ href: '/about', label: 'About' },
 	{ href: '/posts', label: 'Posts' },
@@ -45,6 +46,23 @@ const nav = [
 				</a>
 			</nav>
 		</div>
+
+		{
+			ventures.length > 0 && (
+				<div class="mt-8 flex flex-wrap items-center gap-x-4 gap-y-2">
+					<span class="font-mono text-xs tracking-wider text-paper/50 uppercase">// Ventures</span>
+					{ventures.map((v) => (
+						<a
+							href={v.url}
+							title={v.tagline}
+							class="font-display text-sm font-bold text-paper/70 no-underline underline-offset-4 hover:text-paper hover:underline"
+						>
+							{v.name}
+						</a>
+					))}
+				</div>
+			)
+		}
 
 		<div class="mt-10 flex flex-col gap-5 border-t-2 border-paper/20 pt-6 sm:flex-row sm:items-center sm:justify-between">
 			<div class="flex flex-wrap gap-2.5">

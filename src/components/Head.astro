@@ -8,9 +8,10 @@ interface Props {
 	colorscheme?: 'light' | 'dark' | 'light dark';
 	noindex?: boolean | undefined;
 	markdownPath?: string | undefined;
+	canonical?: string | undefined;
 }
 
-const { colorscheme = 'light dark', noindex = false, markdownPath, ...props } = Astro.props;
+const { colorscheme = 'light dark', noindex = false, markdownPath, canonical, ...props } = Astro.props;
 const { site, url } = Astro;
 const title = props.title ? `${props.title} | ${metadata.title}` : metadata.title;
 const description = props.description ?? metadata.description;
@@ -38,7 +39,7 @@ const mode = import.meta.env.MODE;
 	<meta name="author" content={metadata.author.name} />
 	<meta name="description" content={description} />
 	{noindex && <meta name="robots" content="noindex, nofollow" />}
-	<link rel="canonical" href={url} />
+	<link rel="canonical" href={canonical ?? url} />
 
 	<!-- Twitter Card -->
 	<meta name="twitter:card" content="summary_large_image" />

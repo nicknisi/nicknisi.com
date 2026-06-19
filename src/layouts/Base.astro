@@ -21,6 +21,7 @@ interface Props {
 	fullWidth?: boolean | undefined;
 	noindex?: boolean | undefined;
 	markdownPath?: string | undefined;
+	canonical?: string | undefined;
 }
 
 const {
@@ -33,6 +34,7 @@ const {
 	fullWidth,
 	noindex,
 	markdownPath,
+	canonical,
 } = Astro.props;
 ---
 
@@ -43,6 +45,7 @@ const {
 		headerImage={headerImage}
 		noindex={noindex}
 		markdownPath={markdownPath}
+		canonical={canonical}
 	/>
 	<ClientRouter />
 	<script is:inline>

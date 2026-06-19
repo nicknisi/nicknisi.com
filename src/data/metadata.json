@@ -50,6 +50,17 @@
 			"icon": "mdi:console"
 		}
 	],
+	"ventures": [
+		{
+			"name": "Typed Void",
+			"url": "https://typedvoid.com",
+			"tagline": "AI-native engineering training & consulting"
+		}
+	],
+	"trainingCanonical": {
+		"url": "https://typedvoid.com/ai-native-engineer",
+		"active": false
+	},
 	"podcast": [
 		{
 			"name": "Software Engineering Daily",
