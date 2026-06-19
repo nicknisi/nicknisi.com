@@ -55,6 +55,11 @@
 			"name": "Typed Void",
 			"url": "https://typedvoid.com",
 			"tagline": "AI-native engineering training & consulting"
+		},
+		{
+			"name": "Side Effects",
+			"url": "https://sideeffects.dev",
+			"tagline": "Fractional CTO, contracting & training, with John Christopher"
 		}
 	],
 	"trainingCanonical": {
