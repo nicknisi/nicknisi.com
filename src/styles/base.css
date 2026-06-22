@@ -586,14 +586,14 @@
 .prose :where(strong) {
 	color: var(--color-ink);
 }
-.prose :where(a) {
+.prose :where(a):not(:where([class~='not-prose'] *)) {
 	color: var(--color-tomato);
 	font-weight: 700;
 	text-decoration-thickness: 2px;
 	text-underline-offset: 2px;
 	text-decoration-color: var(--color-marigold);
 }
-.prose :where(a):hover {
+.prose :where(a):not(:where([class~='not-prose'] *)):hover {
 	text-decoration-color: var(--color-tomato);
 }
 .prose :where(li)::marker {
