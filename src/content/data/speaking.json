@@ -372,5 +372,69 @@
 				"videoId": "5r6yzFEXajQ"
 			}
 		]
+	},
+	{
+		"id": "skills-at-scale",
+		"title": "Skills at Scale",
+		"type": "Workshop",
+		"description": "Resources for my workshop on writing portable AI skills that run across Claude, Codex, Cursor, and your own agents.",
+		"detailsUrl": "/speaking/skills-at-scale",
+		"instances": [
+			{
+				"event": "AI Engineer Europe",
+				"location": "London, UK",
+				"date": "2026-04-08",
+				"url": "https://www.youtube.com/watch?v=pFsfax19yOM&t=1221s",
+				"videoId": "pFsfax19yOM"
+			}
+		]
+	},
+	{
+		"id": "building-ai-systems-that-ship",
+		"title": "Building AI Systems that Ship",
+		"type": "Conference Talk",
+		"description": "Resources for my talk on why AI agent systems break outside controlled environments, and how to make them ship.",
+		"detailsUrl": "/speaking/building-ai-systems-that-ship",
+		"instances": [
+			{
+				"event": "AI Engineer Europe",
+				"location": "London, UK",
+				"date": "2026-04-10",
+				"url": "https://www.youtube.com/watch?v=vy7o1g2iHY8&t=110s",
+				"videoId": "vy7o1g2iHY8"
+			}
+		]
+	},
+	{
+		"id": "ai-pipelines-with-mastra",
+		"title": "AI Pipelines in Pure TypeScript with Mastra.ai",
+		"type": "Workshop",
+		"description": "Resources for my workshop on building AI pipelines and agents in pure TypeScript with Mastra.ai.",
+		"detailsUrl": "/speaking/ai-pipelines-with-mastra",
+		"instances": [
+			{
+				"event": "AI Engineer World's Fair",
+				"location": "San Francisco, CA",
+				"date": "2025-06-03",
+				"url": "https://www.youtube.com/watch?v=FWlRHPZWyHE&t=3071s",
+				"videoId": "FWlRHPZWyHE"
+			}
+		]
+	},
+	{
+		"id": "case-agent-harness",
+		"title": "Case: An Autonomous Agent Harness CLI",
+		"type": "Conference Talk",
+		"description": "Resources for my talk on Case, an autonomous agent harness CLI that orchestrates AI agents across WorkOS open source repos.",
+		"detailsUrl": "/speaking/case-agent-harness",
+		"instances": [
+			{
+				"event": "WorkOS Applied AI Showcase",
+				"location": "San Francisco, CA",
+				"date": "2026-05-19",
+				"url": "https://www.youtube.com/watch?v=V2PuEAeNXUU&t=1963s",
+				"videoId": "V2PuEAeNXUU"
+			}
+		]
 	}
 ]

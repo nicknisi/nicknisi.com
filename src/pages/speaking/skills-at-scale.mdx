@@ -1,0 +1,44 @@
+---
+layout: '@/layouts/Markdown.astro'
+title: Skills at Scale
+description: Resources for my workshop on writing portable AI skills that run across Claude, Codex, Cursor, and your own agents.
+---
+
+import Video from '@/components/Video.astro';
+
+# Skills at Scale
+
+<Video class="my-4" videoId="pFsfax19yOM" time={1221} />
+
+Resources from the hands-on workshop [Zack Proser](https://zackproser.com/) and I ran on writing portable AI skills. Let's connect on [LinkedIn](https://linkedin.com/in/nicknisi) and [BlueSky](https://bsky.app/profile/nicknisi.com).
+
+## Presented at AI Engineer Europe 2026
+
+<div class="not-prose flex flex-wrap items-center gap-3">
+	<a href="https://www.ai.engineer/europe" target="_blank" class="btn btn-ghost">Conference Web Site</a>
+	<a href="https://talks.nicknisi.com/skills-at-scale/" target="_blank" class="btn btn-primary">View Slides →</a>
+	<a href="https://github.com/workos/aie-europe-skills-at-scale" target="_blank" class="btn btn-ghost">Workshop Repo</a>
+</div>
+
+## Abstract
+
+Write once, run in Claude, Codex, Cursor, and your own agents.
+
+Every developer using AI tools has the same problem: they prompt the same way, for the same tasks, over and over. Skills fix this. A skill is a portable unit of agent behavior — a markdown file that teaches any AI tool how to do a specific job. Write one, drop it into your editor, and it just works. Across tools. Across teams.
+
+Most people don't know this primitive exists. In this hands-on workshop, you'll write real skills, test them live, and see how one file can power Claude.ai, Claude Code, Cursor, and Codex without changing a line.
+
+Then we'll go deeper. You'll see how the WorkOS CLI uses this same pattern to power 15 framework integrations — each one a skill composed with others, wired into an agent that installs and configures AuthKit in under 60 seconds. That's not a demo. That's production code, shipping today.
+
+### What you'll do
+
+- Write 2+ skills for tasks you actually do at work
+- Install and test them across AI tools in real time
+- Learn the craft of good skill writing — specificity, constraints, composability
+- See how skills compose and scale inside a real CLI powered by the Claude Agent SDK
+
+### What you'll leave with
+
+- Working skills installed in your AI tools, ready to use Monday morning
+- A repeatable pattern for turning any recurring task into a portable skill
+- The mental model for when a skill is enough and when you need a full agent
