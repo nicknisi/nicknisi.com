@@ -43,7 +43,7 @@
 		"@fontsource/oswald": "5.2.8",
 		"@fontsource/space-mono": "5.2.9",
 		"@resvg/resvg-js": "^2.6.2",
-		"@tailwindcss/typography": "0.5.19",
+		"@tailwindcss/typography": "0.5.20",
 		"astro": "6.4.2",
 		"astro-expressive-code": "^0.41.7",
 		"astro-icon": "1.1.5",
@@ -55,7 +55,7 @@
 		"sanitize-html": "2.17.1",
 		"satori": "0.19.2",
 		"sharp": "^0.34.5",
-		"tailwindcss": "4.3.0"
+		"tailwindcss": "4.3.1"
 	},
 	"devDependencies": {
 		"@iconify-json/ic": "1.2.4",
@@ -63,7 +63,7 @@
 		"@iconify-json/raphael": "1.2.1",
 		"@iconify-json/simple-icons": "1.2.71",
 		"@nicknisi/standard": "0.1.0",
-		"@tailwindcss/vite": "^4.3.0",
+		"@tailwindcss/vite": "^4.3.1",
 		"@types/luxon": "3.7.1",
 		"@types/node": "^22",
 		"@types/markdown-it": "14.1.2",
