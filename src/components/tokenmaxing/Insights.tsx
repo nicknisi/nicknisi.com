@@ -1,6 +1,6 @@
 import { AreaChart, BarChart, StackedAreaChart, DivergingBars, type Pt, type Series } from './charts';
 
-type ToolId = 'claude-code' | 'pi' | 'codex';
+type ToolId = 'claude-code' | 'pi' | 'codex' | 'opencode';
 type Metric = 'tokens' | 'costUSD';
 
 export interface InsightsWeek {
@@ -42,6 +42,7 @@ const TOOL_META: Record<ToolId, { label: string; colorClass: string }> = {
 	'claude-code': { label: 'Claude Code', colorClass: 'text-orange-500 dark:text-orange-400' },
 	codex: { label: 'Codex', colorClass: 'text-emerald-500 dark:text-emerald-400' },
 	pi: { label: 'Pi', colorClass: 'text-violet-500 dark:text-violet-400' },
+	opencode: { label: 'opencode', colorClass: 'text-sky-500 dark:text-sky-400' },
 };
 const WEEKDAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
@@ -82,7 +83,9 @@ export default function Insights({ insights, metric }: { insights: InsightsData;
 	const peakHour = hourCounts.reduce((best, v, i, a) => (v > a[best]! ? i : best), 0);
 	const weekdayPts: Pt[] = weekdayCounts.map((v, i) => ({ label: WEEKDAYS[i]!, value: v }));
 
-	const presentTools = (['claude-code', 'codex', 'pi'] as ToolId[]).filter(t => weekly.some(w => w.byTool[t]));
+	const presentTools = (['claude-code', 'codex', 'pi', 'opencode'] as ToolId[]).filter(t =>
+		weekly.some(w => w.byTool[t]),
+	);
 	const toolSeries: Series[] = presentTools.map(t => ({
 		name: TOOL_META[t].label,
 		colorClass: TOOL_META[t].colorClass,

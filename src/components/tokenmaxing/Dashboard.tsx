@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import Insights, { type InsightsData } from './Insights';
 
-type ToolId = 'claude-code' | 'pi' | 'codex';
+type ToolId = 'claude-code' | 'pi' | 'codex' | 'opencode';
 
 export interface DailyEntry {
 	date: string;

@@ -82,6 +82,11 @@ const jobs = defineCollection({
 	}),
 });
 
+// Must cover every tool id the tokenmaxing gist can emit (it follows
+// `sessions report`); an unknown id fails validation and the loader
+// skips the whole document, deploying an empty /tokens page.
+const tokenmaxingToolId = z.enum(['claude-code', 'pi', 'codex', 'opencode']);
+
 const tokenmaxing = defineCollection({
 	loader: tokenmaxingLoader({
 		user: 'nicknisi',
@@ -102,7 +107,7 @@ const tokenmaxing = defineCollection({
 			longestStreakDays: z.number(),
 			peakHourLocal: z.number(),
 			favoriteModel: z.object({
-				tool: z.enum(['claude-code', 'pi', 'codex']),
+				tool: tokenmaxingToolId,
 				provider: z.string(),
 				id: z.string(),
 				label: z.string(),
@@ -110,7 +115,7 @@ const tokenmaxing = defineCollection({
 		}),
 		byTool: z.array(
 			z.object({
-				id: z.enum(['claude-code', 'pi', 'codex']),
+				id: tokenmaxingToolId,
 				label: z.string(),
 				tokens: z.number(),
 				costUSD: z.number(),
@@ -128,7 +133,7 @@ const tokenmaxing = defineCollection({
 		),
 		byModel: z.array(
 			z.object({
-				tool: z.enum(['claude-code', 'pi', 'codex']),
+				tool: tokenmaxingToolId,
 				provider: z.string(),
 				id: z.string(),
 				label: z.string(),
@@ -172,7 +177,7 @@ const tokenmaxing = defineCollection({
 				),
 				byModel: z.array(
 					z.object({
-						tool: z.enum(['claude-code', 'pi', 'codex']),
+						tool: tokenmaxingToolId,
 						provider: z.string(),
 						id: z.string(),
 						tokens: z.number(),
