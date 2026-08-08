@@ -13,210 +13,168 @@ import atkinsonBold from '@@/public/fonts/Atkinson/Atkinson-Bold.woff?buffer';
 
 import beefImage from '@/assets/beef_nick.png?buffer';
 
-/**
- * Brand palette, in hex, mirrored from the OKLCH design tokens in base.css
- * (light theme). OG cards are always rendered light so the brand reads the
- * same in every feed regardless of the viewer's theme.
- */
+/** Hex equivalents of the light-theme Field Evidence tokens. */
 export const PALETTE = {
-	paper: '#F7F6FA',
-	paper2: '#EFEDF6',
-	card: '#FEFDFF',
-	ink: '#1E1A2A',
-	inkSoft: '#565363',
-	inkFaint: '#878492',
-	marigold: '#E0D8FD',
-	tomato: '#724BC4',
-	grape: '#5B31A0',
-	pine: '#009E74',
-	sky: '#36BABB',
-	onLight: '#191525',
-	onDark: '#F9F7FD',
+	paper: '#f8f7fa',
+	paper2: '#efedf4',
+	card: '#fefdff',
+	ink: '#211c2d',
+	inkSoft: '#5b5766',
+	inkFaint: '#74707e',
+	line: '#d5d0de',
+	darkMuted: '#c9c1d4',
+	darkFaint: '#a99fb8',
+	darkRule: '#59466f',
+	purple: '#724bb7',
+	purpleDark: '#2a183f',
+	teal: '#17b897',
+	white: '#ffffff',
 } as const;
 
 export const OG_WIDTH = 1200;
 export const OG_HEIGHT = 630;
 
 const FONTS: SatoriOptions['fonts'] = [
-	{ name: 'Bricolage', data: bricolageExtraBold, weight: 800, style: 'normal' },
-	{ name: 'Bricolage', data: bricolageBold, weight: 700, style: 'normal' },
-	{ name: 'Atkinson', data: atkinsonRegular, weight: 400, style: 'normal' },
-	{ name: 'Atkinson', data: atkinsonBold, weight: 700, style: 'normal' },
-	{ name: 'JetBrains Mono', data: monoSemiBold, weight: 600, style: 'normal' },
-	{ name: 'JetBrains Mono', data: monoMedium, weight: 500, style: 'normal' },
+	{ name: 'Bricolage Grotesque Variable', data: bricolageExtraBold, weight: 800, style: 'normal' },
+	{ name: 'Bricolage Grotesque Variable', data: bricolageBold, weight: 700, style: 'normal' },
+	{ name: 'Atkinson Hyperlegible', data: atkinsonRegular, weight: 400, style: 'normal' },
+	{ name: 'Atkinson Hyperlegible', data: atkinsonBold, weight: 700, style: 'normal' },
+	{ name: 'JetBrains Mono Variable', data: monoSemiBold, weight: 600, style: 'normal' },
+	{ name: 'JetBrains Mono Variable', data: monoMedium, weight: 500, style: 'normal' },
 ];
 
-export const beefDataUri = `data:image/png;base64,${Buffer.from(beefImage).toString('base64')}`;
+const beefDataUri = `data:image/png;base64,${Buffer.from(beefImage).toString('base64')}`;
 
-/**
- * Normalize an image buffer to an RGBA PNG data URI. satori's PNG decoder
- * fails silently on color-type-2 (RGB, no alpha) PNGs, so every photo is run
- * through sharp first to guarantee an alpha channel.
- */
+/** Normalize source imagery to the RGBA PNG representation Satori renders reliably. */
 export async function pngDataUri(input: ArrayBuffer | Uint8Array | Buffer): Promise<string> {
-	const png = await sharp(Buffer.from(input as ArrayBuffer))
-		.ensureAlpha()
-		.png()
-		.toBuffer();
+	const png = await sharp(Buffer.from(input as ArrayBuffer)).ensureAlpha().png().toBuffer();
 	return `data:image/png;base64,${png.toString('base64')}`;
 }
 
-const svgDataUri = (svg: string): string => `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
-
-/** Hand-drawn underline squiggle, echoing the one under "Nisi" on the homepage. */
-export const squiggle = (color: string = PALETTE.tomato, width = 240, height = 22): ReactNode =>
-	jsx('div', {
-		style: {
-			display: 'flex',
-			width: `${width}px`,
-			height: `${height}px`,
-			backgroundImage: `url("${svgDataUri(
-				`<svg xmlns='http://www.w3.org/2000/svg' width='${width}' height='${height}' viewBox='0 0 200 18' fill='none'><path d='M3 12 C 50 6, 90 14, 130 9 S 188 6, 197 10' stroke='${color}' stroke-width='5' stroke-linecap='round'/></svg>`,
-			)}")`,
-			backgroundRepeat: 'no-repeat',
-			backgroundSize: '100% 100%',
-		},
-	});
-
-/** Five-point star sparkle, the same shape used as a decorative accent on the site. */
-export const sparkle = (color: string = PALETTE.tomato, size = 64): ReactNode =>
-	jsx('div', {
-		style: {
-			display: 'flex',
-			width: `${size}px`,
-			height: `${size}px`,
-			backgroundImage: `url("${svgDataUri(
-				`<svg xmlns='http://www.w3.org/2000/svg' width='${size}' height='${size}' viewBox='0 0 24 24' fill='${color}'><path d='M12 0l2.6 7.4L22 8l-6 5 2 8-6-4.6L6 21l2-8-6-5 7.4-.6z'/></svg>`,
-			)}")`,
-			backgroundRepeat: 'no-repeat',
-			backgroundSize: '100% 100%',
-		},
-	});
-
-interface StickerOpts {
-	bg?: string;
-	color?: string;
-	rotate?: number;
-	fontSize?: number;
-}
-
-/** A bordered, hard-shadowed, slightly rotated pill, like the homepage stickers. */
-export const sticker = (label: string, opts: StickerOpts = {}): ReactNode => {
-	const { bg = PALETTE.grape, color = PALETTE.onDark, rotate = -2, fontSize = 22 } = opts;
-	return jsx(
-		'div',
-		{
-			style: {
-				display: 'flex',
-				alignItems: 'center',
-				alignSelf: 'flex-start',
-				padding: '9px 20px',
-				background: bg,
-				color,
-				border: `3px solid ${PALETTE.ink}`,
-				borderRadius: '999px',
-				boxShadow: `4px 4px 0 ${PALETTE.ink}`,
-				fontFamily: 'JetBrains Mono',
-				fontWeight: 600,
-				fontSize,
-				letterSpacing: 1,
-				textTransform: 'uppercase',
-				transform: `rotate(${rotate}deg)`,
-			},
-		},
-		label,
-	);
+const titleSize = (title: string, hasPhoto: boolean): number => {
+	if (hasPhoto) {
+		if (title.length <= 26) return 78;
+		if (title.length <= 42) return 68;
+		if (title.length <= 58) return 59;
+		return 52;
+	}
+	if (title.length <= 28) return 92;
+	if (title.length <= 50) return 78;
+	if (title.length <= 72) return 68;
+	return 60;
 };
 
-/** beef logo + name + domain, anchored bottom-left on every card. */
-export const brandFooter = (): ReactNode =>
+const brandFooter = (inverse = false): ReactNode =>
 	jsx(
 		'div',
-		{
-			style: { display: 'flex', alignItems: 'center', gap: '14px' },
-		},
-		jsx('div', {
-			style: {
-				display: 'flex',
-				width: '46px',
-				height: '46px',
-				backgroundImage: `url('${beefDataUri}')`,
-				backgroundRepeat: 'no-repeat',
-				backgroundSize: '100% 100%',
-				flexShrink: 0,
-			},
-		}),
-		jsx(
-			'div',
-			{ style: { display: 'flex', fontFamily: 'Bricolage', fontWeight: 800, fontSize: 30, color: PALETTE.ink } },
-			'Nick Nisi',
-		),
-		jsx('div', {
-			style: { display: 'flex', width: '8px', height: '8px', borderRadius: '999px', background: PALETTE.tomato },
-		}),
-		jsx(
-			'div',
-			{
-				style: { display: 'flex', fontFamily: 'JetBrains Mono', fontWeight: 500, fontSize: 24, color: PALETTE.inkSoft },
-			},
-			'nicknisi.com',
-		),
+		{ style: { display: 'flex', alignItems: 'center', gap: '13px', color: inverse ? PALETTE.white : PALETTE.ink } },
+		jsx('img', { src: beefDataUri, width: 44, height: 44, style: { width: '44px', height: '44px' } }),
+		jsx('div', { style: { display: 'flex', fontFamily: 'Bricolage Grotesque Variable', fontWeight: 800, fontSize: 29 } }, 'Nick Nisi'),
+		jsx('div', { style: { display: 'flex', width: '7px', height: '7px', borderRadius: '999px', background: inverse ? PALETTE.teal : PALETTE.purple } }),
+		jsx('div', { style: { display: 'flex', fontFamily: 'JetBrains Mono Variable', fontWeight: 500, fontSize: 22, color: inverse ? PALETTE.darkMuted : PALETTE.inkSoft } }, 'nicknisi.com'),
 	);
 
+const evidenceLabel = (label: string, detail?: string, inverse = false): ReactNode =>
+	jsx(
+		'div',
+		{ style: { display: 'flex', alignItems: 'center', gap: '13px', fontFamily: 'JetBrains Mono Variable', fontSize: 16, fontWeight: 600, letterSpacing: 2.2, textTransform: 'uppercase', color: inverse ? PALETTE.darkMuted : PALETTE.inkFaint } },
+		jsx('div', { style: { display: 'flex', width: '11px', height: '11px', borderRadius: '999px', background: PALETTE.teal } }),
+		label,
+		detail ? jsx('div', { style: { display: 'flex', color: inverse ? PALETTE.darkFaint : PALETTE.inkFaint } }, `· ${detail}`) : null,
+	);
+
+const signalRule = (): ReactNode =>
+	jsx(
+		'div',
+		{ style: { display: 'flex', alignItems: 'center', width: '190px' } },
+		jsx('div', { style: { display: 'flex', width: '174px', height: '2px', background: PALETTE.teal } }),
+		jsx('div', { style: { display: 'flex', width: '12px', height: '12px', marginLeft: '4px', borderRadius: '999px', background: PALETTE.purple } }),
+	);
+
+const eventDiagram = (): ReactNode =>
+	jsx(
+		'div',
+		{ style: { position: 'relative', display: 'flex', width: '330px', height: '330px', alignItems: 'center', justifyContent: 'center' } },
+		...([310, 224, 138] as const).map((size) =>
+			jsx('div', { style: { position: 'absolute', display: 'flex', width: `${size}px`, height: `${size}px`, border: `1px solid ${PALETTE.darkRule}`, borderRadius: '999px' } }),
+		),
+		jsx('div', { style: { display: 'flex', width: '18px', height: '18px', borderRadius: '999px', background: PALETTE.teal } }),
+		jsx('div', { style: { position: 'absolute', display: 'flex', width: '92px', height: '2px', background: PALETTE.purple, right: '0px', top: '164px' } }),
+	);
+
+interface FieldOgOptions {
+	title: string;
+	label: string;
+	detail?: string;
+	image?: string;
+	description?: string;
+	imagePosition?: string;
+}
+
 /**
- * A bordered, rotated "taped-in photo" frame with a hard offset shadow.
- *
- * The photo is an <img>, not a background-image: satori silently drops a
- * background-image on an element whose size is resolved by a flex row with a
- * sibling (the title column here), but renders an <img> with explicit
- * dimensions reliably.
+ * Shared social-card composition for the Field Evidence visual world.
+ * Real documentary imagery gets an editorial split. Surfaces without evidence
+ * use abstract event geometry so a generic portrait is never presented as proof.
  */
-export const photoCard = (
-	imageDataUri: string,
-	opts: { width: number; height: number; rotate?: number; shadow?: string } = { width: 300, height: 300 },
-): ReactNode => {
-	const { width, height, rotate = -3, shadow = PALETTE.marigold } = opts;
-	const border = 4;
-	const innerW = width - border * 2;
-	const innerH = height - border * 2;
+export const fieldOgNode = ({ title, label, detail, image, description, imagePosition = 'center' }: FieldOgOptions): ReactNode => {
+	if (image) {
+		return jsx(
+			'div',
+			{ style: { display: 'flex', width: '100%', height: '100%', background: PALETTE.paper, color: PALETTE.ink } },
+			jsx(
+				'div',
+				{ style: { display: 'flex', width: '46%', height: '100%', overflow: 'hidden', borderRight: `1px solid ${PALETTE.line}` } },
+				jsx('img', { src: image, width: 552, height: 630, style: { width: '552px', height: '630px', objectFit: 'cover', objectPosition: imagePosition } }),
+			),
+			jsx(
+				'div',
+				{ style: { display: 'flex', flexDirection: 'column', justifyContent: 'space-between', width: '54%', padding: '48px 54px 42px' } },
+				evidenceLabel(label, detail),
+				jsx(
+					'div',
+					{ style: { display: 'flex', flexDirection: 'column' } },
+					jsx('div', { style: { display: 'flex', fontFamily: 'Bricolage Grotesque Variable', fontWeight: 800, fontSize: titleSize(title, true), lineHeight: 0.92, letterSpacing: -2.2, color: PALETTE.ink } }, title),
+					description ? jsx('div', { style: { display: 'flex', marginTop: '24px', maxWidth: '500px', fontFamily: 'Atkinson Hyperlegible', fontSize: 25, lineHeight: 1.3, color: PALETTE.inkSoft } }, description) : null,
+				),
+				signalRule(),
+				brandFooter(),
+			),
+		);
+	}
+
 	return jsx(
 		'div',
-		{
-			style: {
-				display: 'flex',
-				width: `${width}px`,
-				height: `${height}px`,
-				flexShrink: 0,
-				overflow: 'hidden',
-				border: `${border}px solid ${PALETTE.ink}`,
-				borderRadius: '18px',
-				boxShadow: `10px 10px 0 ${shadow}`,
-				transform: `rotate(${rotate}deg)`,
-			},
-		},
-		jsx('img', {
-			src: imageDataUri,
-			width: innerW,
-			height: innerH,
-			style: { width: `${innerW}px`, height: `${innerH}px`, objectFit: 'cover' },
-		}),
+		{ style: { display: 'flex', width: '100%', height: '100%', background: PALETTE.paper, color: PALETTE.ink } },
+		jsx(
+			'div',
+			{ style: { display: 'flex', flexDirection: 'column', justifyContent: 'space-between', width: '34%', height: '100%', padding: '48px 42px 42px', overflow: 'hidden', background: PALETTE.purpleDark, color: PALETTE.white } },
+			evidenceLabel(label, detail, true),
+			eventDiagram(),
+			jsx('div', { style: { display: 'flex', fontFamily: 'JetBrains Mono Variable', fontSize: 15, fontWeight: 500, letterSpacing: 1.5, color: PALETTE.darkFaint, textTransform: 'uppercase' } }, 'Build · Teach · Write · Speak'),
+		),
+		jsx(
+			'div',
+			{ style: { display: 'flex', flexDirection: 'column', justifyContent: 'space-between', width: '66%', padding: '54px 58px 42px' } },
+			jsx('div', { style: { display: 'flex', width: '100%', height: '1px', background: PALETTE.line } }),
+			jsx('div', { style: { display: 'flex', fontFamily: 'Bricolage Grotesque Variable', fontWeight: 800, fontSize: titleSize(title, false), lineHeight: 0.92, letterSpacing: -2.4, color: PALETTE.ink } }, title),
+			signalRule(),
+			brandFooter(),
+		),
 	);
 };
 
-/** Render a satori node to raw PNG bytes. */
+/** Render a Satori node to raw PNG bytes. */
 export async function renderOgPng(node: ReactNode): Promise<Uint8Array> {
 	const svg = await satori(node, { width: OG_WIDTH, height: OG_HEIGHT, fonts: FONTS });
 	return new Uint8Array(new Resvg(svg).render().asPng());
 }
 
-/** Render a satori node to a PNG response with the shared brand fonts. */
+/** Render a Satori node to a PNG response with the shared brand fonts. */
 export async function renderOgResponse(node: ReactNode): Promise<Response> {
 	const png = await renderOgPng(node);
 	return new Response(png as BodyInit, {
 		headers: {
 			'Content-Type': 'image/png',
-			// URLs aren't content-hashed, so avoid `immutable`: a day lets feeds
-			// refetch within reason if the card design changes.
 			'Cache-Control': 'public, max-age=86400',
 		},
 	});

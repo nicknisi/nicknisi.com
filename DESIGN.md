@@ -14,6 +14,8 @@ colors:
   dark-surface: "oklch(0.225 0.026 294)"
   dark-ink: "oklch(0.95 0.01 300)"
   dark-muted: "oklch(0.77 0.018 294)"
+  dark-faint: "#a99fb8"
+  dark-rule: "#59466f"
 typography:
   display:
     fontFamily: "Bricolage Grotesque Variable, system-ui, sans-serif"
@@ -41,6 +43,7 @@ typography:
 rounded:
   control: "0.35rem"
   media: "0.5rem"
+  circle: "999px"
 spacing:
   xs: "0.5rem"
   sm: "0.75rem"

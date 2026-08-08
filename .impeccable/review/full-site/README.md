@@ -1,6 +1,6 @@
 # Full-site redesign verification
 
-- 97 visible built routes audited in light and dark themes.
+- 101 visible built routes audited in light and dark themes.
 - Computed audit: zero contrast, accessible-name, target-size, overflow, navigation, or empty-route findings.
 - 20 representative route families captured at desktop/mobile in light/dark; retained as four contact sheets.
 - `pnpm run typecheck` passes.

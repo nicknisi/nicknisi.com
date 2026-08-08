@@ -3,7 +3,6 @@ import BaseLayout from '@/layouts/Base.astro';
 import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
 import hero from '@/assets/meta/hero.png';
-import ogImage from '@/assets/meta/og-image.png?url';
 const links=[
 	{label:'nick@nisi.org',icon:'mdi:email',href:'mailto:nick@nisi.org'},
 	{label:'/in/nicknisi',icon:'simple-icons:linkedin',href:'https://linkedin.com/in/nicknisi'},
@@ -11,7 +10,7 @@ const links=[
 	{label:'Watch the weekly stream',icon:'simple-icons:youtube',href:'https://www.youtube.com/nicknisi'},
 ];
 ---
-<BaseLayout title="Contact Nick" description="How to find Nick Nisi." headerImage={ogImage} fullWidth>
+<BaseLayout title="Contact Nick" description="How to find Nick Nisi." headerImage="/contact-og.png" fullWidth>
 	<section class="mx-auto max-w-5xl px-5 py-12 md:px-8 md:py-20">
 		<div class="grid gap-10 lg:grid-cols-[1fr_.9fr] lg:items-end"><div><h1 class="text-6xl md:text-8xl">Let’s stay connected.</h1><p class="mt-5 max-w-[44ch] text-lg text-ink-soft">Email is best for direct conversations. The rest of the field notes continue elsewhere.</p></div><Image src={hero} alt="Captain America public service announcement meme" class="w-full rounded-lg border border-line"/></div>
 		<div class="mt-16 grid border-t border-line md:grid-cols-2"><section class="border-b border-line py-8 md:border-r md:border-b-0 md:pr-8"><h2 class="text-3xl">Quick connect</h2><div class="mt-6">{links.map(({label,icon,href})=><a href={href} class="group flex min-h-14 items-center gap-4 border-b border-line py-4 font-bold text-ink no-underline hover:border-purple-500"><Icon name={icon} class="size-5 text-teal-600 dark:text-teal-300"/><span>{label}</span><Icon name="mdi:arrow-top-right" class="ml-auto size-4 text-purple-600 dark:text-purple-300"/></a>)}</div></section>
