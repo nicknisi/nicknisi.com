@@ -122,7 +122,7 @@ const buildHeroOgNode = ({ title, kicker, hero }: { title: string; kicker: strin
 export const GET: APIRoute<Props> = async ({ props }) => {
 	const post = props.post;
 	const title = post?.data.title ?? metadata.description;
-	const kicker = post ? 'Blog' : 'Developer Experience Engineer';
+	const kicker = post ? 'Field note' : 'AI-native developer experience';
 	const hero = post ? await resolveHero(post.data.hero) : null;
 
 	const node = hero

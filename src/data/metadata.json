@@ -1,8 +1,8 @@
 {
 	"title": "Nick Nisi",
 	"url": "https://nicknisi.com",
-	"_description": "👋 Hi, I'm Nick. I write and talk about JavaScript and the web.",
-	"description": "A passionate TypeScript enthusiast, conference organizer, and weekly streamer.",
+	"_description": "Nick Nisi builds and teaches AI-native developer experience.",
+	"description": "Staff engineer and engineering manager building the systems and practices that help technical teams work differently with AI.",
 	"avatar": "beef_nick.png",
 	"profile": "profile.jpg",
 	"ogImage": "/og-image.png",
@@ -52,20 +52,11 @@
 	],
 	"ventures": [
 		{
-			"name": "Typed Void",
-			"url": "https://typedvoid.com",
-			"tagline": "AI-native engineering training & consulting"
-		},
-		{
 			"name": "Side Effects",
 			"url": "https://sideeffects.dev",
 			"tagline": "Fractional CTO, contracting & training, with John Christopher"
 		}
 	],
-	"trainingCanonical": {
-		"url": "https://typedvoid.com/ai-native-engineer",
-		"active": false
-	},
 	"podcast": [
 		{
 			"name": "Software Engineering Daily",

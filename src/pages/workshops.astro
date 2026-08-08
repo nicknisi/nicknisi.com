@@ -1,0 +1,98 @@
+---
+import BaseLayout from '@/layouts/Base.astro';
+import { getAsset } from '@/utils/image.js';
+import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
+
+const hero = await getAsset('posts/2026-aie-europe-workshop.jpg');
+const talk = await getAsset('posts/nick-presenting-workos-claude-skills.jpg');
+const bookingUrl = 'https://zackproser.com/workshops/claude-cowork#book';
+const principles = [
+	{ icon: 'mdi:account-group-outline', title: 'Mixed-skill, on purpose', body: 'Engineers, leaders, operations, and curious teammates work in small pods. Expertise moves around the room instead of staying on stage.' },
+	{ icon: 'mdi:keyboard-outline', title: 'The keyboard rotates', body: 'People build, watch, and build again. The session is designed to make trying something new feel safe, not performative.' },
+	{ icon: 'mdi:source-branch', title: 'Your work becomes the material', body: 'Teams use their own workflows, codebases, docs, and constraints. The goal is useful practice that can continue on Monday.' },
+];
+const arc = [
+	{ title: 'Calibrate', body: 'Create a shared language for where the organization is today and what meaningful adoption looks like.' },
+	{ title: 'Cross the bridge', body: 'Move from chatting with AI to directing tools that can produce, inspect, and revise real work.' },
+	{ title: 'Ship together', body: 'Each pod tackles a workflow from its own job, with practitioners embedded where the work gets stuck.' },
+	{ title: 'Make it repeatable', body: 'Turn what worked into reusable skills, conventions, and internal champions who can carry it forward.' },
+];
+---
+
+<BaseLayout title="Hands-on AI workshops" description="Hands-on Claude and AI-native developer experience workshops with Nick Nisi and a crew of practitioners who ship with these tools every day." headerImage="/ai-engineering-og.png" fullWidth>
+	<section data-surface="workshops" class="mx-auto max-w-7xl px-5 pt-10 md:px-8 md:pt-16">
+		<div class="grid items-end gap-12 lg:grid-cols-[1.08fr_.92fr] lg:gap-20">
+			<div>
+				<h1 class="max-w-[10ch] text-[clamp(4.7rem,9vw,9rem)] leading-[.82] tracking-[-.045em]">Make AI how your team works.</h1>
+				<p class="mt-8 max-w-[52ch] text-xl leading-relaxed text-ink-soft">Hands-on workshops for organizations moving from scattered experiments to shared, repeatable practice. You bring the real work. We build alongside your team.</p>
+				<div class="mt-8 flex flex-wrap gap-3">
+					<a href={bookingUrl} class="btn btn-primary" target="_blank" rel="noopener">Book through the shared crew →</a>
+					<a href="#how-it-runs" class="btn btn-ghost">See how it runs</a>
+				</div>
+				<p class="mt-4 text-sm text-ink-faint">Booking continues on Zack Proser’s shared workshop contact page.</p>
+			</div>
+			<div class="relative overflow-hidden rounded-xl border border-line bg-card shadow-soft">
+				<Image src={hero} alt="Nick Nisi teaching an AI engineering workshop in London" width={1200} height={900} quality="max" class="aspect-[4/3] w-full object-cover" />
+				<div class="grid grid-cols-3 border-t border-line bg-card text-center">
+					<div class="p-4"><span class="evidence-label">Format</span><strong class="mt-1 block">Hands-on</strong></div>
+					<div class="border-x border-line p-4"><span class="evidence-label">Crew</span><strong class="mt-1 block">1–3 practitioners</strong></div>
+					<div class="p-4"><span class="evidence-label">Shape</span><strong class="mt-1 block">½–2 days</strong></div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="mx-auto max-w-7xl px-5 py-24 md:px-8">
+		<div class="grid gap-12 lg:grid-cols-[.68fr_1.32fr] lg:gap-24">
+			<h2 class="max-w-[9ch] text-5xl md:text-7xl">Adoption is a practice problem.</h2>
+			<div class="space-y-6 text-xl leading-relaxed text-ink-soft">
+				<p>The tools may already be licensed. A few people may already be moving quickly. But the organization still has to cross the gap from “AI is something some engineers do” to “this is how work happens here.”</p>
+				<p>A lecture does not close that gap. A room of peers shipping something together—with experienced practitioners close enough to unblock the awkward moments—can.</p>
+			</div>
+		</div>
+	</section>
+
+	<section id="how-it-runs" class="border-y border-line bg-paper-2">
+		<div class="mx-auto max-w-7xl px-5 py-24 md:px-8">
+			<h2 class="max-w-[12ch] text-5xl md:text-7xl">Workshop-shaped, not classroom-shaped.</h2>
+			<div class="mt-12 grid border-y border-line md:grid-cols-3">
+				{principles.map((item) => <article class="border-b border-line py-8 md:border-r md:border-b-0 md:px-8 md:first:pl-0 md:last:border-r-0 md:last:pr-0"><Icon name={item.icon} class="h-7 w-7 text-teal-500" /><h3 class="mt-10">{item.title}</h3><p class="mt-3 leading-relaxed text-ink-soft">{item.body}</p></article>)}
+			</div>
+			<div class="mt-16 grid gap-px overflow-hidden border-y border-line bg-line md:grid-cols-4">
+				{arc.map((step,index) => <article class="bg-paper-2 py-8 pr-7 md:px-7"><span class="evidence-label">Phase {String(index+1).padStart(2,'0')}</span><h3 class="mt-3">{step.title}</h3><p class="mt-3 text-sm leading-relaxed text-ink-soft">{step.body}</p></article>)}
+			</div>
+		</div>
+	</section>
+
+	<section class="mx-auto grid max-w-7xl gap-12 px-5 py-24 md:px-8 lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-20">
+		<div class="overflow-hidden rounded-xl border border-line"><Image src={talk} alt="Nick Nisi presenting Claude Skills at a WorkOS company onsite in San Francisco" width={1200} height={900} quality="max" class="aspect-[4/3] w-full object-cover" /></div>
+		<div>
+			<h2 class="text-5xl md:text-7xl">I’m still doing the work.</h2>
+			<p class="mt-6 text-lg leading-relaxed text-ink-soft">I lead DX / AI work at WorkOS and build the internal systems other teams use. The workshop translates daily practice into something a whole room can try, question, and carry forward.</p>
+			<ul class="mt-8 space-y-4 border-t border-line pt-6 text-ink-soft">
+				<li class="flex gap-4"><span class="evidence-label mt-1">01</span><span>Staff engineer and AI practitioner</span></li>
+				<li class="flex gap-4"><span class="evidence-label mt-1">02</span><span>EM · DX / AI · WorkOS</span></li>
+				<li class="flex gap-4"><span class="evidence-label mt-1">03</span><span>Co-instructor at AI Engineer New York and London</span></li>
+				<li class="flex gap-4"><span class="evidence-label mt-1">04</span><span>Long-time JavaScript, tooling, and community voice</span></li>
+			</ul>
+		</div>
+	</section>
+
+	<section class="border-y border-line bg-purple-950 text-white">
+		<div class="mx-auto max-w-7xl px-5 py-24 md:px-8">
+			<h2 class="max-w-[11ch] text-5xl text-white md:text-7xl">Three practitioners. One shipping crew.</h2>
+			<div class="mt-12 grid gap-10 md:grid-cols-3">
+				<article><span class="font-mono text-xs tracking-wider text-teal-300 uppercase">Applied AI · WorkOS</span><h3 class="mt-3 text-white">Zack Proser</h3><p class="mt-3 text-white/70">Full-stack engineer, writer, trainer, and applied-AI practitioner with fifteen years across the stack.</p></article>
+				<article><span class="font-mono text-xs tracking-wider text-teal-300 uppercase">DX / AI · WorkOS</span><h3 class="mt-3 text-white">Nick Nisi</h3><p class="mt-3 text-white/70">Staff engineer and engineering manager building AI-native developer systems and teaching the practices behind them.</p></article>
+				<article><span class="font-mono text-xs tracking-wider text-teal-300 uppercase">Solutions · WorkOS</span><h3 class="mt-3 text-white">Nick Cannariato</h3><p class="mt-3 text-white/70">Senior solutions engineer with deep experience in developer tools and enterprise adoption.</p></article>
+			</div>
+		</div>
+	</section>
+
+	<section class="mx-auto max-w-4xl px-5 py-24 text-center md:px-8">
+		<h2 class="text-5xl md:text-7xl">Ready to scope the room?</h2>
+		<p class="mx-auto mt-6 max-w-[55ch] text-lg text-ink-soft">Share your headcount, team mix, timing, and what has already been rolled out. The shared crew will take it from there.</p>
+		<a href={bookingUrl} class="btn btn-primary mt-8" target="_blank" rel="noopener">Book a 30-minute scoping call →</a>
+	</section>
+</BaseLayout>

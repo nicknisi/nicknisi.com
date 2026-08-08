@@ -1,87 +1,81 @@
 ---
 import BaseLayout from '../layouts/Base.astro';
 import Posts from '@/components/sections/Posts.astro';
+import Appearances from '@/components/sections/Appearances.astro';
 import { getAsset } from '@/utils/image.js';
 import { Image } from 'astro:assets';
-import metadata from '@/data/metadata.json';
 
-const profileImage = await getAsset(metadata.profile);
+const workshopImage = await getAsset('posts/nick-presenting-workos-claude-skills.jpg');
+const evidence = [
+	{ label: 'Build', title: 'DX / AI at WorkOS', body: 'Internal systems and harnesses other teams build on.', href: '/about' },
+	{ label: 'Teach', title: 'Hands-on workshops', body: 'Move teams from AI experiments to repeatable practice.', href: '/workshops', active: true },
+	{ label: 'Write', title: 'Field notes', body: 'AI tooling, workflows, TypeScript, and software craft.', href: '/posts' },
+	{ label: 'Speak', title: '50+ talks', body: 'From JavaScript and tooling to AI-native engineering.', href: '/speaking' },
+];
 ---
 
-<BaseLayout fullWidth>
-	<!-- Hero -->
-	<section class="mx-auto max-w-4xl px-6 pt-12 pb-10 md:pt-16">
-		<div class="grid items-center gap-8 md:grid-cols-[1.4fr_1fr] md:gap-12">
-			<div>
-				<p class="font-mono text-xs tracking-[0.14em] text-ink-soft uppercase">
-					developer experience engineer · workos
-				</p>
-
-				<h1 class="mt-2 text-6xl leading-[0.95] font-extrabold tracking-tight md:text-7xl">
-					Nick{' '}
-					<span class="relative inline-block text-grape">
-						Nisi
-						<svg class="absolute -bottom-2 left-0 h-3 w-full overflow-visible text-tomato" viewBox="0 0 200 18" fill="none" aria-hidden="true">
-							<path d="M3 12 C 50 6, 90 14, 130 9 S 188 6, 197 10" stroke="currentColor" stroke-width="5" stroke-linecap="round"></path>
-						</svg>
-					</span>
-				</h1>
-
-				<p class="mt-5 max-w-[24ch] font-display text-xl leading-snug font-bold text-ink md:text-2xl">
-					I make the web friendlier for the people who build it.
-				</p>
-
-				<p class="mt-3 max-w-[48ch] text-ink-soft">
-					TypeScript enthusiast, conference organizer, and weekly streamer. I write about developer experience,
-					tooling, and the occasional Vim rabbit hole.
-				</p>
-
-				<div class="mt-6 flex flex-wrap gap-2.5">
-					<span class="sticker sticker-solid sticker-grape -rotate-2">TypeScript ♥</span>
-					<span class="sticker sticker-solid sticker-marigold rotate-1">NebraskaJS organizer</span>
-					<a href="https://www.youtube.com/nicknisi" class="sticker sticker-solid sticker-sky -rotate-1 no-underline">Weekly stream ↗</a>
-					<span class="sticker sticker-solid sticker-pine rotate-2">50+ conference talks</span>
+<BaseLayout
+	title="AI-native developer experience"
+	description="Nick Nisi builds the systems and teaches the practices that help technical teams work differently with AI."
+	fullWidth
+>
+	<section data-surface="homepage-authority" class="mx-auto max-w-7xl px-5 pt-7 md:px-8 md:pt-12">
+		<div class="overflow-hidden border-y border-line bg-card lg:border lg:border-x-line">
+			<div class="grid min-h-[min(720px,calc(100vh-112px))] lg:grid-cols-[.9fr_1.1fr]">
+				<div class="relative min-h-[290px] overflow-hidden border-b border-line sm:min-h-[360px] lg:min-h-0 lg:border-r lg:border-b-0">
+					<Image src={workshopImage} alt="Nick Nisi presenting Claude Skills at a WorkOS company onsite in San Francisco" width={1300} height={1100} quality="max" class="absolute inset-0 h-full w-full object-cover object-[55%_31%]" />
+					<div class="absolute inset-0 bg-gradient-to-t from-purple-950/50 via-transparent to-transparent"></div>
+					<div class="absolute right-5 bottom-5 left-5 flex items-end justify-between gap-4 text-white">
+						<p class="max-w-[32ch] text-sm font-bold">Presenting Claude Skills at a WorkOS company onsite</p>
+						<span class="font-mono text-xs tracking-wider uppercase">San Francisco · 2025</span>
+					</div>
 				</div>
 
-				<div class="mt-8 flex flex-wrap gap-3">
-					<a href="/ai-engineering" class="btn bg-marigold text-ink">Team AI training →</a>
-					<a href="/posts" class="btn btn-primary">Read the blog</a>
-				</div>
-			</div>
+				<div class="flex flex-col px-6 py-7 md:px-12 md:py-14 lg:px-16 lg:py-16">
+					<h1 class="max-w-[9ch] text-[clamp(3.65rem,8vw,8rem)] leading-[.82] tracking-[-.045em]">
+						AI-native DX. <span class="text-teal-600 dark:text-teal-400">In practice.</span>
+					</h1>
+					<p class="mt-5 max-w-[48ch] text-base leading-relaxed text-ink-soft md:mt-8 md:text-xl">
+						I build the systems and teach the workflows that help technical teams turn AI from an experiment into how work gets done.
+					</p>
+					<div class="mt-5 flex flex-wrap gap-3 md:mt-8">
+						<a href="/workshops" class="btn btn-primary">Explore workshops →</a>
+						<a href="/about" class="btn btn-ghost">About Nick</a>
+					</div>
 
-			<div class="relative justify-self-center md:justify-self-end">
-				<div class="w-[clamp(220px,26vw,300px)] -rotate-3 overflow-hidden rounded-2xl border-2 border-ink bg-card shadow-hard-lg">
-					<Image
-						src={profileImage}
-						alt="Nick Nisi"
-						width={600}
-						height={600}
-						quality="max"
-						class="aspect-square h-full w-full object-cover"
-					/>
+					<div class="mt-auto grid grid-cols-1 border-t border-line pt-5 sm:grid-cols-2">
+						{
+							evidence.map((item) => (
+								<a href={item.href} class:list={['group relative border-b border-line py-4 pr-5 pl-7 text-ink no-underline sm:odd:border-r sm:nth-last-[-n+2]:border-b-0', item.active && 'bg-purple-50 dark:bg-purple-950/25']}>
+									<span class:list={['absolute top-[1.65rem] left-0 h-px w-4', item.active ? 'bg-purple-500' : 'bg-teal-500']}></span>
+									<span class="evidence-label">{item.label}</span>
+									<strong class="mt-1 block text-sm">{item.title}</strong>
+									<span class="mt-1 block text-xs leading-relaxed text-ink-soft">{item.body}</span>
+								</a>
+							))
+						}
+					</div>
 				</div>
-				<span class="absolute -top-3 -right-2 rotate-6 rounded-full border-2 border-ink bg-marigold px-3 py-1 font-display text-sm font-extrabold text-ink shadow-hard-sm">
-					it me
-				</span>
-				<svg class="absolute -bottom-4 -left-6 h-12 w-12 -rotate-12 text-tomato" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-					<path d="M12 0l2.6 7.4L22 8l-6 5 2 8-6-4.6L6 21l2-8-6-5 7.4-.6z"></path>
-				</svg>
 			</div>
 		</div>
 	</section>
 
-	<!-- Latest writing -->
-	<section class="mx-auto max-w-4xl px-6 pt-6 pb-14">
-		<div class="mb-7 flex items-baseline gap-3">
-			<h2 class="text-3xl font-extrabold md:text-4xl">Latest writing</h2>
-			<svg class="hidden h-7 w-16 self-center text-tomato sm:block" viewBox="0 0 80 30" fill="none" aria-hidden="true">
-				<path d="M3 20 C 20 8, 45 8, 68 14" stroke="currentColor" stroke-width="4" stroke-linecap="round"></path>
-				<path d="M58 8 L70 15 L58 21" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
-			</svg>
-			<a href="/posts" class="ml-auto font-display font-bold text-ink-soft decoration-tomato decoration-2 underline-offset-4 hover:text-ink hover:underline">
-				all posts →
-			</a>
+	<section class="mx-auto grid max-w-7xl gap-10 px-5 py-24 md:px-8 lg:grid-cols-[.72fr_1.28fr] lg:gap-20">
+		<div>
+			<h2 class="max-w-[10ch] text-5xl md:text-6xl">Work from the field.</h2>
+			<p class="mt-5 max-w-[42ch] text-lg text-ink-soft">Notes from building with AI daily, designing the systems around it, and teaching teams what survives contact with real work.</p>
+			<a href="/posts" class="mt-7 inline-flex font-bold text-purple-600 underline decoration-teal-500 decoration-1 dark:text-purple-300">Browse all writing →</a>
 		</div>
-		<Posts limit={6} />
+		<div><Posts limit={6} /></div>
+	</section>
+
+	<section class="border-y border-line bg-paper-2">
+		<div class="mx-auto max-w-7xl px-5 py-24 md:px-8">
+			<div class="mb-10 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+				<div><h2 class="text-5xl md:text-6xl">On stage and in the room.</h2><p class="mt-4 max-w-[58ch] text-lg text-ink-soft">Talks, workshops, and live demonstrations from a long-running public practice.</p></div>
+				<a href="/speaking" class="font-bold text-purple-600 dark:text-purple-300">All appearances →</a>
+			</div>
+			<Appearances promoted limit={3} />
+		</div>
 	</section>
 </BaseLayout>

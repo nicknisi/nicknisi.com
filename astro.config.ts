@@ -59,6 +59,7 @@ export default defineConfig({
 		'/talks/about-my-coworkers': '/speaking/about-my-coworkers',
 		// rename /talks to /speaking
 		'/talks': '/speaking',
+		'/ai-engineering': '/workshops',
 	},
 
 	vite: {
