@@ -1,34 +1,10 @@
 ---
 import Project from '@/components/cards/Project.astro';
-import { getAppearances } from '@/utils/common';
 import { getCollection } from 'astro:content';
-
-interface Props {
-	limit?: number | undefined;
-	promoted?: boolean | undefined;
-}
-
+interface Props { limit?: number; promoted?: boolean; }
 const { limit, promoted } = Astro.props;
 let projects = await getCollection('projects');
-let isTruncated = limit !== undefined || promoted !== undefined;
-
-if (promoted) {
-	projects = projects.filter(project => project.data.promote).slice(0, limit);
-}
+if (promoted) projects = projects.filter(project=>project.data.promote).slice(0,limit);
+else if (limit) projects = projects.slice(0,limit);
 ---
-
-<div class="flex flex-col gap-5">
-	<div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-		{projects.map(project => <Project project={project} />)}
-	</div>
-	{
-		// currently never show this.
-		false && isTruncated && (
-			<div class="mt-8 flex justify-end">
-				<a href="/speaking/all" class="font-bold hover:underline">
-					View all projects →
-				</a>
-			</div>
-		)
-	}
-</div>
+<div class="grid grid-cols-1 gap-x-8 sm:grid-cols-2 lg:grid-cols-3">{projects.map(project=><Project project={project} />)}</div>

@@ -82,8 +82,8 @@ const profileImg = await getAsset(metadata.profile);
 					tags.length > 0 && (
 						<div class="mt-4 flex flex-wrap gap-2.5">
 							{tags.map((tag: string) => (
-								<a href={`/tags/${tag}`} class="sticker no-underline transition-transform duration-150 hover:-rotate-2">
-									{tag.toLowerCase()}
+								<a href={`/tags/${tag}`} class="border-b border-line py-1 font-mono text-xs tracking-wide text-ink-soft uppercase no-underline hover:border-teal-500 hover:text-ink">
+									<span class="text-purple-600 dark:text-purple-300">#</span>{tag.toLowerCase()}
 								</a>
 							))}
 						</div>
@@ -98,17 +98,13 @@ const profileImg = await getAsset(metadata.profile);
 			{postUri && <Likes client:only="react" post={postUri} />}
 			{postUri && <Comments client:only="react" post={postUri} />}
 
-			<div class="text-marigold flex justify-center gap-3 py-6">
-				<Icon name="mdi:star-outline" class="h-10 w-10" />
-				<Icon name="mdi:star-outline" class="h-10 w-10" />
-				<Icon name="mdi:star-outline" class="h-10 w-10" />
-			</div>
+			<div class="signal-rule my-10"></div>
 
 			{
 				prevPost && (
 					<a
 						href={`/posts/${prevPost.id}`}
-						class="tactile group border-ink bg-card shadow-hard-sm mt-8 flex items-center gap-4 rounded-[14px] border-2 p-5 no-underline"
+						class="group mt-8 flex items-center gap-4 border-y border-line py-5 text-ink no-underline"
 					>
 						<Icon name="mdi:arrow-left-bold" class="text-ink h-6 w-6 shrink-0" />
 						<span class="flex flex-col gap-0.5">
@@ -121,12 +117,8 @@ const profileImg = await getAsset(metadata.profile);
 				)
 			}
 
-			<div
-				class="border-ink bg-card shadow-hard mt-10 flex flex-col items-center gap-6 rounded-2xl border-2 p-6 sm:flex-row sm:items-center sm:p-8"
-			>
-				<div
-					class="border-ink bg-paper-2 shadow-hard-sm w-24 shrink-0 -rotate-2 overflow-hidden rounded-full border-2 sm:w-28"
-				>
+			<div class="mt-10 flex flex-col items-center gap-6 border-t border-line pt-8 sm:flex-row sm:items-center">
+				<div class="w-24 shrink-0 overflow-hidden rounded-lg border border-line sm:w-28">
 					<Image
 						src={profileImg}
 						alt={metadata.author.name}

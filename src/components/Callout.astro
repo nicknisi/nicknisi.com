@@ -1,32 +1,23 @@
 ---
 import { Icon } from 'astro-icon/components';
-interface Props {
-	title?: string | undefined;
-	variant?: keyof typeof variants | undefined;
-}
-
+interface Props { title?: string; variant?: keyof typeof variants; }
 const variants = {
-	default: { icon: 'mdi:message-outline', fill: 'bg-marigold', badge: 'bg-card' },
-	info: { icon: 'mdi:information-slab-circle-outline', fill: 'bg-sky', badge: 'bg-card' },
-	warning: { icon: 'mdi:alert-outline', fill: 'bg-marigold', badge: 'bg-card' },
-	success: { icon: 'mdi:check-circle-outline', fill: 'bg-pine', badge: 'bg-card' },
-	error: { icon: 'mdi:x-circle-outline', fill: 'bg-tomato', badge: 'bg-card' },
+	default: { icon: 'mdi:message-outline', line: 'border-purple-500' },
+	info: { icon: 'mdi:information-slab-circle-outline', line: 'border-teal-500' },
+	warning: { icon: 'mdi:alert-outline', line: 'border-purple-500' },
+	success: { icon: 'mdi:check-circle-outline', line: 'border-teal-500' },
+	error: { icon: 'mdi:x-circle-outline', line: 'border-purple-500' },
 } as const;
-
 const { title, variant = 'default' } = Astro.props;
-const { icon, fill, badge } = variants[variant];
+const { icon, line } = variants[variant];
 ---
 
-<div class:list={['not-prose rounded-[14px] border-2 border-ink p-4 text-ink shadow-hard-sm', fill]}>
+<aside class:list={['not-prose border-y border-line border-l py-5 pr-5 pl-6 text-ink', line]}>
 	<div class="flex items-start gap-3">
-		<span class:list={['mt-0.5 inline-flex shrink-0 rounded-lg border-2 border-ink p-1.5', badge]}>
-			<Icon name={icon} class="h-4 w-4 text-ink" />
-		</span>
-		<div class="min-w-0 flex-1 [&_a:hover]:decoration-tomato [&_a]:font-bold [&_a]:underline [&_a]:decoration-ink [&_a]:decoration-2 [&_a]:underline-offset-2">
-			{title && <p class="m-0 p-0 font-display text-lg font-bold text-ink">{title}</p>}
-			<div class:list={['font-sans text-base leading-relaxed', title && 'mt-1.5']}>
-				<slot />
-			</div>
+		<Icon name={icon} class="mt-0.5 h-5 w-5 shrink-0 text-teal-600 dark:text-teal-400" />
+		<div class="min-w-0 flex-1 [&_a]:font-bold [&_a]:text-purple-600 [&_a]:underline [&_a]:decoration-teal-500 [&_a]:decoration-1 [&_a]:underline-offset-2 dark:[&_a]:text-purple-300">
+			{title && <p class="m-0 font-display text-lg font-bold text-ink">{title}</p>}
+			<div class:list={['font-sans text-base leading-relaxed text-ink-soft', title && 'mt-1.5']}><slot /></div>
 		</div>
 	</div>
-</div>
+</aside>

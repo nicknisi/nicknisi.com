@@ -1,17 +1,5 @@
 ---
-interface Props {
-	name: string;
-	size?: 'small' | 'large' | 'base' | undefined;
-}
+interface Props { name: string; size?: 'small'|'large'|'base'; }
 const { name, size = 'small' } = Astro.props;
 ---
-
-<a
-	href={`/tags/${name}`}
-	class:list={[
-		'not-prose inline-flex items-center gap-1.5 rounded-full border-2 border-ink bg-card px-2.5 py-0.5 font-display font-bold text-ink no-underline transition-colors hover:bg-marigold',
-		size === 'small' ? 'text-xs' : size === 'base' ? 'text-sm' : 'text-base',
-	]}
->
-	<span class="opacity-50">#</span>{name.toLowerCase()}
-</a>
+<a href={`/tags/${name}`} class:list={['not-prose inline-flex items-center gap-1 border-b border-line py-1 font-mono tracking-wide text-ink-soft uppercase no-underline hover:border-teal-500 hover:text-ink',size==='small'?'text-xs':size==='base'?'text-sm':'text-base']}><span class="text-purple-600 dark:text-purple-300">#</span>{name.toLowerCase()}</a>
