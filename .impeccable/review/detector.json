@@ -1,0 +1,22 @@
+[
+  {
+    "antipattern": "ai-color-palette",
+    "name": "AI color palette",
+    "description": "Purple/violet gradients and cyan-on-dark are the most recognizable tells of AI-generated UIs. Choose a distinctive, intentional palette.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "/Users/nicknisi/Developer/nicknisi.com/src/components/cards/Appearance.astro",
+    "line": 20,
+    "snippet": "text-purple-600 on heading"
+  },
+  {
+    "antipattern": "ai-color-palette",
+    "name": "AI color palette",
+    "description": "Purple/violet gradients and cyan-on-dark are the most recognizable tells of AI-generated UIs. Choose a distinctive, intentional palette.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "/Users/nicknisi/Developer/nicknisi.com/src/components/cards/Appearance.astro",
+    "line": 20,
+    "snippet": "text-purple-300 on heading"
+  }
+]

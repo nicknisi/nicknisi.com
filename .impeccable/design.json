@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-07T23:05:00-05:00",
+  "title": "Design System: Nick Nisi",
+  "extensions": {
+    "colorMeta": {
+      "signal-purple": { "role": "primary", "displayName": "Signal Purple", "canonical": "#724bb7", "tonalRamp": ["#240754", "#34126f", "#421987", "#51279b", "#724bb7", "#a081d9", "#cfbcf2", "#f6f2fb"] },
+      "signal-teal": { "role": "secondary", "displayName": "Signal Teal", "canonical": "#17b897", "tonalRamp": ["#004440", "#016457", "#048271", "#079a82", "#17b897", "#5fe3c0", "#c6f7e9", "#f0fcf9"] },
+      "light-paper": { "role": "neutral", "displayName": "Cool Paper", "canonical": "oklch(0.975 0.008 300)", "tonalRamp": ["oklch(0.18 0.008 300)", "oklch(0.3 0.008 300)", "oklch(0.42 0.008 300)", "oklch(0.56 0.008 300)", "oklch(0.68 0.008 300)", "oklch(0.8 0.008 300)", "oklch(0.9 0.008 300)", "oklch(0.975 0.008 300)"] },
+      "dark-paper": { "role": "neutral", "displayName": "Violet-Black Paper", "canonical": "oklch(0.165 0.02 294)", "tonalRamp": ["oklch(0.15 0.02 294)", "oklch(0.26 0.02 294)", "oklch(0.38 0.02 294)", "oklch(0.5 0.02 294)", "oklch(0.62 0.02 294)", "oklch(0.74 0.02 294)", "oklch(0.86 0.02 294)", "oklch(0.95 0.02 294)"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Compressed Thesis", "purpose": "First-view and major section statements." },
+      "body": { "displayName": "Readable Field Copy", "purpose": "Body copy and long-form reading." },
+      "label": { "displayName": "Evidence Coordinate", "purpose": "Dates, categories, and factual metadata only." }
+    },
+    "shadows": [
+      { "name": "ambient-small", "value": "0 8px 24px color-mix(in oklch, var(--color-ink) 8%, transparent)", "purpose": "Optional lifted media or utility surface." },
+      { "name": "ambient-field", "value": "0 18px 52px color-mix(in oklch, var(--color-ink) 12%, transparent)", "purpose": "Rare emphasis for a major contained field." }
+    ],
+    "motion": [
+      { "name": "ease-out", "value": "cubic-bezier(.16,1,.3,1)", "purpose": "Hover lifts, active tracks, and the single trace reveal." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The sole filled action on a surface.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\">EXPLORE WORKSHOPS →</a>",
+      "css": ".ds-btn-primary{display:inline-flex;align-items:center;min-height:44px;padding:.72rem 1.1rem;border:1px solid var(--color-purple-500);border-radius:.35rem;background:var(--color-purple-500);color:#fff;font:750 .92rem/1 var(--font-sans);text-decoration:none;transition:transform .18s cubic-bezier(.16,1,.3,1),background .18s}.ds-btn-primary:hover{transform:translateY(-2px);background:var(--color-purple-600)}.ds-btn-primary:focus-visible{outline:2px solid var(--color-teal-500);outline-offset:4px}"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Secondary action that stays in the paper field.",
+      "html": "<a class=\"ds-btn-ghost\" href=\"#\">ABOUT NICK</a>",
+      "css": ".ds-btn-ghost{display:inline-flex;align-items:center;min-height:44px;padding:.72rem 1.1rem;border:1px solid var(--color-line);border-radius:.35rem;background:transparent;color:var(--color-ink);font:750 .92rem/1 var(--font-sans);text-decoration:none;transition:transform .18s cubic-bezier(.16,1,.3,1),border-color .18s}.ds-btn-ghost:hover{transform:translateY(-2px);border-color:var(--color-purple-500)}.ds-btn-ghost:focus-visible{outline:2px solid var(--color-teal-500);outline-offset:4px}"
+    },
+    {
+      "name": "Evidence Track",
+      "kind": "custom",
+      "description": "One source-backed path through Nick's practice.",
+      "html": "<a class=\"ds-track\" href=\"#\"><span>TEACH</span><strong>Hands-on workshops</strong><small>Move teams from experiments to repeatable practice.</small></a>",
+      "css": ".ds-track{position:relative;display:block;padding:1rem 1.25rem 1rem 1.75rem;border-bottom:1px solid var(--color-line);color:var(--color-ink);text-decoration:none}.ds-track:before{content:'';position:absolute;left:0;top:1.65rem;width:1rem;border-top:1px solid var(--color-teal-500)}.ds-track span{display:block;font:500 .7rem/1 var(--font-mono);letter-spacing:.12em;color:var(--color-ink-faint)}.ds-track strong{display:block;margin-top:.25rem;font-size:.875rem}.ds-track small{display:block;margin-top:.25rem;color:var(--color-ink-soft);line-height:1.45}"
+    },
+    {
+      "name": "Primary Navigation",
+      "kind": "nav",
+      "description": "Beef-guy signature, quiet evidence routes, one workshop action.",
+      "html": "<nav class=\"ds-nav\"><span class=\"ds-mark\">N</span><strong>Nick Nisi</strong><a href=\"#\">Writing</a><a href=\"#\">Speaking</a><a href=\"#\">About</a><a class=\"ds-nav-cta\" href=\"#\">Workshops</a></nav>",
+      "css": ".ds-nav{display:flex;align-items:center;gap:1.5rem;height:68px;color:var(--color-ink);font-family:var(--font-sans)}.ds-nav strong{margin-right:auto}.ds-nav a{color:inherit;font-size:.875rem;font-weight:700;text-decoration:none}.ds-mark{display:grid;place-items:center;width:40px;height:40px;border:1px solid var(--color-line);border-radius:.35rem;background:var(--color-card)}.ds-nav-cta{padding:.72rem 1.1rem;border-radius:.35rem;background:var(--color-purple-500);color:#fff!important}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Single Event",
+    "overview": "Nick's current practice appears as one human event with four evidence paths. Documentary photography and plain-language claims lead; purple and teal connect the work without turning the interface into a dashboard. Light mode is cool paper, dark mode the same publication after hours.",
+    "keyCharacteristics": ["Large documentary fields", "Compressed editorial headlines", "Four sparse evidence paths", "Purple and teal used as signals", "Subordinate beef-guy signature"],
+    "rules": [
+      { "name": "The Signal Rarity Rule", "body": "Purple and teal identify action or relationship; they do not decorate every heading.", "section": "colors" },
+      { "name": "The Plain Thesis Rule", "body": "The main heading carries the idea without an eyebrow or kicker.", "section": "typography" },
+      { "name": "The Flat Evidence Rule", "body": "Evidence uses rules and whitespace rather than card elevation.", "section": "elevation" }
+    ],
+    "dos": ["Do lead persuasive surfaces with real Nick photography and source-backed claims.", "Do keep the beef guy visible but subordinate.", "Do verify light and dark scenes independently."],
+    "donts": ["Don't imitate Zack Proser's fire metaphor or page topology.", "Don't build icon-card grids as the page structure.", "Don't use generated people as documentary evidence.", "Don't revive hard shadows, random accent colors, or background patterns."]
+  }
+}
