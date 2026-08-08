@@ -33,7 +33,7 @@
 		"@astrojs/react": "5.0.6",
 		"@astrojs/rss": "4.0.18",
 		"@astrojs/sitemap": "3.7.3",
-		"@atproto/api": "0.18.21",
+		"@atproto/api": "0.20.15",
 		"@expressive-code/plugin-collapsible-sections": "^0.41.7",
 		"@expressive-code/plugin-line-numbers": "^0.41.7",
 		"@fontsource-variable/bricolage-grotesque": "^5.2.10",
