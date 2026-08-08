@@ -1,0 +1,70 @@
+{
+  "title": "Choose Nick’s visual world",
+  "question": "Which world should make AI-native DX feel unmistakably Nick? The first card is the assigned direction; the others are outside challengers that survived the clarity test.",
+  "options": [
+    {
+      "id": "trace-room",
+      "label": "The Trace Room",
+      "kicker": "THE ROLL",
+      "lineage": "observability traces · systems maps · human evidence",
+      "thesis": "Nick’s work becomes a living trace from practice to proof to workshop.",
+      "palette": ["#17131f", "#f5f3f8", "#724bb7", "#17b897"],
+      "materials": ["crisp trace paths", "documentary workshop media", "instrument labels"],
+      "viewport": "A large human portrait and AI-native DX thesis anchor the fold while one trace connects current role, shipped work, teaching evidence, and the Workshops destination.",
+      "risk": "Could slip into developer-tool cosplay if traces become terminal chrome; the human portrait and plain-language proof must dominate."
+    },
+    {
+      "id": "swiss-proof-grid",
+      "label": "The Proof Grid",
+      "kicker": "CHALLENGER",
+      "lineage": "Swiss poster systems · conference programs · documentary fragments",
+      "thesis": "One rigorous grid turns a varied career into calm, undeniable evidence.",
+      "case": "Best raw clarity: technical leaders scan role, work, talks, and workshops instantly, but it identifies Nick less strongly than the assigned world.",
+      "palette": ["#f6f5f1", "#18171c", "#17b897", "#724bb7"],
+      "materials": ["modular grid", "objective grotesk", "cropped event photography"],
+      "viewport": "An oversized flush-left thesis occupies two-thirds of the grid; portrait, current role, and Workshops action lock into the remaining modules, with proof fragments beginning below.",
+      "risk": "High clarity but easy to become an excellent generic designer portfolio unless Nick’s voice and photography carry the system.",
+      "hero": "https://impeccable.style/worlds/cards/design-canon-swiss-grid-poster-wall-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/design-canon-swiss-grid-poster-wall.webp"
+    },
+    {
+      "id": "shared-ink-kit",
+      "label": "The Shared Ink Kit",
+      "kicker": "CHALLENGER",
+      "lineage": "workshop field manuals · three-ink kits · collaborative artifacts",
+      "thesis": "The site feels like the kit a room of practitioners leaves with after the work ships.",
+      "case": "Strongest Nick-specific tactility and workshop connection; it identifies the teaching practice well but needs restraint to avoid repeating the current zine language.",
+      "palette": ["#ececf0", "#24212b", "#724bb7", "#17b897"],
+      "materials": ["gray stock", "three registered inks", "precise shared marks"],
+      "viewport": "A modern field-manual cover opens into a human portrait, AI-native DX thesis, and one clear Workshops tab; writing and speaking appear as indexed evidence, not stickers.",
+      "risk": "Could regress into cute badges, hard shadows, and nostalgic print effects; geometry must stay precise and contemporary.",
+      "hero": "https://impeccable.style/worlds/cards/vernacular-ephemera-socialist-kiosk-print-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/vernacular-ephemera-socialist-kiosk-print.webp"
+    },
+    {
+      "id": "split-flap-rundown",
+      "label": "The Live Rundown",
+      "kicker": "CHALLENGER",
+      "lineage": "split-flap concourses · workshop run-of-show · live system state",
+      "thesis": "Nick’s current work reads as a live rundown: building, teaching, writing, and what departs next.",
+      "case": "Memorable and structurally clear, with natural motion and state; it loses some warmth and risks making the interface more famous than Nick.",
+      "palette": ["#15141a", "#f1f0ed", "#17b897", "#724bb7"],
+      "materials": ["matte fixed cells", "condensed labels", "one active signal row"],
+      "viewport": "A large portrait breaks a disciplined departure board; the active row is Workshops while role, writing, and talks remain legible semantic rows.",
+      "risk": "The conceit can become airport kitsch or motion theater; it must collapse to a calm semantic table under reduced motion.",
+      "hero": "https://impeccable.style/worlds/cards/signals-instruments-split-flap-concourse-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/signals-instruments-split-flap-concourse.webp"
+    }
+  ],
+  "reroll": true,
+  "canon": true,
+  "canonCard": {
+    "label": "The category standard",
+    "thesis": "A polished technical personal site with a two-column portrait hero, selected work, and a clear workshops button.",
+    "palette": ["#f7f7f8", "#19181d", "#724bb7", "#17b897"],
+    "materials": ["clean surfaces", "workhorse typography", "restrained photography"],
+    "viewport": "Familiar navigation, portrait and thesis side by side, primary workshop action, then selected writing and talks.",
+    "risk": "Easy to understand and easy to forget; choose this only if familiarity matters more than a distinctive authored world."
+  },
+  "steer": true
+}

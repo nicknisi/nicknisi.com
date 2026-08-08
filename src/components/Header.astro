@@ -1,148 +1,72 @@
 ---
 import metadata from '../data/metadata.json';
 import { getAsset } from '@/utils/image.js';
-const avatar = await getAsset(metadata.avatar);
 import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
 import ThemeToggle from '@/components/ThemeToggle.astro';
-import AccentSwitcher from '@/components/AccentSwitcher.astro';
 
+const beef = await getAsset(metadata.avatar);
 const links = [
-	{ href: '/about', label: 'About' },
-	{ href: '/posts', label: 'Posts' },
+	{ href: '/posts', label: 'Writing' },
 	{ href: '/speaking', label: 'Speaking' },
-	{ href: '/uses', label: 'Uses' },
-	{ href: '/now', label: 'Now' },
+	{ href: '/about', label: 'About' },
 ];
 const path = Astro.url.pathname;
 ---
 
-<header class="sticky top-0 z-40 border-b-2 border-ink bg-marigold">
-	<div class="mx-auto flex max-w-4xl items-center justify-between gap-2 px-4 py-3 sm:gap-3 sm:px-6">
-		<a href="/" class="group flex min-w-0 items-center gap-2.5 no-underline">
-			<span class="grid h-9 w-9 shrink-0 -rotate-3 place-items-center overflow-hidden rounded-full border-2 border-ink bg-card shadow-hard-sm transition-transform duration-150 group-hover:rotate-3">
-				<Image loading="eager" src={avatar} alt="" width={36} height={36} quality="max" class="h-full w-full object-cover" />
+<header class="sticky top-0 z-40 border-b border-line bg-paper/92 backdrop-blur-md">
+	<div class="mx-auto flex h-[68px] max-w-7xl items-center gap-4 px-5 md:px-8">
+		<a href="/" class="group flex min-w-0 items-center gap-3 no-underline" aria-label="Nick Nisi, home">
+			<span class="grid h-10 w-10 shrink-0 place-items-center overflow-hidden rounded-md border border-line bg-card transition-transform duration-200 group-hover:-translate-y-0.5">
+				<Image src={beef} alt="" width={40} height={40} quality="max" class="pixelated h-9 w-9 object-contain" />
 			</span>
-			<span class="truncate font-display text-lg font-extrabold tracking-tight text-ink">{metadata.title}</span>
+			<span class="truncate font-display text-lg font-extrabold tracking-[-0.035em] text-ink">Nick Nisi</span>
 		</a>
 
-		<div class="flex shrink-0 items-center gap-2 sm:gap-4">
-			<!-- Desktop nav -->
-			<nav class="hidden md:block">
-				<ul class="flex list-none items-center gap-4 lg:gap-6">
-					{
-						links.map(({ href, label }) => (
-							<li>
-								<a
-									href={href}
-									class:list={[
-										'nav-underline font-display text-sm font-bold text-ink transition-opacity lg:text-base',
-										path.startsWith(href) ? 'active' : 'opacity-65 hover:opacity-100',
-									]}
-								>
-									{label}
-								</a>
-							</li>
-						))
-					}
-					<li>
-						<a
-							href="/ai-engineering"
-							class:list={[
-								'inline-flex -rotate-1 items-center gap-1.5 rounded-full border-2 border-ink bg-tomato px-3 py-1 font-display text-sm font-bold text-paper shadow-hard-sm transition-transform duration-150 hover:rotate-0 lg:text-base',
-								path.startsWith('/ai-engineering') && 'rotate-0',
-							]}
-						>
-							<Icon name="mdi:rocket-launch-outline" class="h-4 w-4" />
-							Training
-						</a>
-					</li>
-				</ul>
-			</nav>
-
-			<AccentSwitcher />
-			<ThemeToggle />
-
-			<!-- Mobile menu button -->
-			<button
-				type="button"
-				id="navToggle"
-				class="grid h-[30px] w-[30px] place-items-center rounded-md border-2 border-ink text-ink md:hidden"
-				aria-label="Toggle navigation menu"
-				aria-expanded="false"
-				aria-controls="mobileNav"
-			>
-				<Icon name="mdi:menu" class="icon-menu h-5 w-5" />
-				<Icon name="mdi:close" class="icon-close hidden h-5 w-5" />
-			</button>
-		</div>
-	</div>
-
-	<!-- Mobile nav panel -->
-	<nav id="mobileNav" class="hidden border-t-2 border-ink bg-marigold md:hidden">
-		<ul class="mx-auto flex max-w-4xl list-none flex-col gap-1 px-4 py-3">
-			<li>
-				<a
-					href="/ai-engineering"
-					class:list={[
-						'flex items-center gap-2 rounded-lg border-2 border-ink bg-tomato px-3 py-2.5 font-display font-bold text-paper shadow-hard-sm',
-						path.startsWith('/ai-engineering') && 'shadow-none',
-					]}
-				>
-					<Icon name="mdi:rocket-launch-outline" class="h-5 w-5" />
-					Training
-				</a>
-			</li>
+		<nav class="ml-auto hidden items-center gap-7 md:flex" aria-label="Primary navigation">
 			{
 				links.map(({ href, label }) => (
-					<li>
-						<a
-							href={href}
-							class:list={[
-								'block rounded-lg px-3 py-2.5 font-display font-bold text-ink',
-								path.startsWith(href) ? 'bg-card shadow-hard-sm' : 'hover:bg-card/60',
-							]}
-						>
-							{label}
-						</a>
-					</li>
+					<a href={href} class:list={['nav-underline text-sm font-bold text-ink no-underline', path.startsWith(href) && 'active']}>
+						{label}
+					</a>
 				))
 			}
-		</ul>
+			<a href="/workshops" class="btn btn-primary">Workshops</a>
+		</nav>
+
+		<ThemeToggle />
+		<button id="navToggle" type="button" class="grid h-10 w-10 place-items-center rounded-md border border-line text-ink md:hidden" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mobileNav">
+			<Icon name="mdi:menu" class="menu-icon h-5 w-5" />
+			<Icon name="mdi:close" class="close-icon hidden h-5 w-5" />
+		</button>
+	</div>
+	<nav id="mobileNav" class="hidden border-t border-line bg-paper px-5 py-4 md:hidden" aria-label="Mobile navigation">
+		<div class="mx-auto flex max-w-7xl flex-col gap-1">
+			<a href="/workshops" class="mb-2 btn btn-primary">Explore workshops</a>
+			{links.map(({ href, label }) => <a href={href} class="rounded-md px-3 py-3 font-bold text-ink no-underline hover:bg-paper-2">{label}</a>)}
+		</div>
 	</nav>
 </header>
 
 <style>
-	#navToggle[aria-expanded='true'] .icon-menu {
-		display: none;
-	}
-	#navToggle[aria-expanded='true'] .icon-close {
-		display: block;
-	}
+	.pixelated { image-rendering: pixelated; }
+	#navToggle[aria-expanded='true'] .menu-icon { display:none; }
+	#navToggle[aria-expanded='true'] .close-icon { display:block; }
 </style>
 
 <script is:inline>
-	(function () {
-		function wireNav() {
-			const btn = document.getElementById('navToggle');
-			const panel = document.getElementById('mobileNav');
-			if (!btn || !panel) return;
-			const close = () => {
-				panel.classList.add('hidden');
-				btn.setAttribute('aria-expanded', 'false');
-			};
-			if (!btn.dataset.wired) {
-				btn.dataset.wired = '1';
-				btn.addEventListener('click', () => {
-					const open = panel.classList.toggle('hidden') === false;
-					btn.setAttribute('aria-expanded', String(open));
-				});
-				panel.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
-			}
-			// Always start closed on (re)load.
-			close();
-		}
-		document.addEventListener('astro:page-load', wireNav);
-		wireNav();
-	})();
+	function wireNav() {
+		const button = document.getElementById('navToggle');
+		const nav = document.getElementById('mobileNav');
+		if (!button || !nav || button.dataset.wired) return;
+		button.dataset.wired = 'true';
+		const close = () => { nav.classList.add('hidden'); button.setAttribute('aria-expanded','false'); };
+		button.addEventListener('click', () => {
+			const open = nav.classList.toggle('hidden') === false;
+			button.setAttribute('aria-expanded', String(open));
+		});
+		nav.querySelectorAll('a').forEach(link => link.addEventListener('click', close));
+	}
+	document.addEventListener('astro:page-load', wireNav);
+	wireNav();
 </script>

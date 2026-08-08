@@ -1,87 +1,52 @@
 ---
 import metadata from '../data/metadata.json';
 import { DateTime } from 'luxon';
+import { getAsset } from '@/utils/image.js';
+import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
-const year = DateTime.local().year;
 
+const year = DateTime.local().year;
+const beef = await getAsset(metadata.avatar);
 const socials = Object.entries(metadata.social).filter(([, { hidden }]) => !hidden);
-const ventures = (metadata.ventures ?? []).filter((v) => v.url);
-const nav = [
-	{ href: '/about', label: 'About' },
-	{ href: '/posts', label: 'Posts' },
-	{ href: '/speaking', label: 'Speaking' },
-	{ href: '/uses', label: 'Uses' },
-	{ href: '/now', label: 'Now' },
-];
 ---
 
-<footer class="slab-dark mt-16 bg-ink text-paper">
-	<div class="mx-auto max-w-4xl px-6 py-12">
-		<div class="flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
+<footer class="mt-24 border-t border-line bg-paper-2">
+	<div class="mx-auto max-w-7xl px-5 py-14 md:px-8 md:py-20">
+		<div class="grid gap-12 md:grid-cols-[1.2fr_.8fr] md:items-end">
 			<div>
-				<p class="font-display text-2xl font-extrabold text-paper">Let's build a friendlier web.</p>
-				<a
-					href={`mailto:${metadata.author.email}`}
-					class="mt-3 inline-flex items-center gap-2 font-display font-bold text-paper no-underline underline-offset-4 hover:underline"
-				>
-					<Icon name="ic:baseline-email" class="h-5 w-5" />
-					{metadata.author.email}
-				</a>
-			</div>
-
-			<nav class="flex flex-wrap items-center gap-x-5 gap-y-2">
-				{
-					nav.map(({ href, label }) => (
-						<a href={href} class="font-display text-sm font-bold text-paper/70 no-underline underline-offset-4 hover:text-paper hover:underline">
-							{label}
-						</a>
-					))
-				}
-				<a
-					href="/ai-engineering"
-					class="inline-flex items-center gap-1.5 rounded-full border-2 border-marigold bg-marigold px-3 py-1 font-display text-sm font-bold text-ink no-underline transition-colors hover:bg-transparent hover:text-marigold"
-				>
-					<Icon name="mdi:rocket-launch-outline" class="h-4 w-4" />
-					Training
-				</a>
-			</nav>
-		</div>
-
-		{
-			ventures.length > 0 && (
-				<div class="mt-8 flex flex-wrap items-center gap-x-4 gap-y-2">
-					<span class="font-mono text-xs tracking-wider text-paper/50 uppercase">// Ventures</span>
-					{ventures.map((v) => (
-						<a
-							href={v.url}
-							title={v.tagline}
-							class="font-display text-sm font-bold text-paper/70 no-underline underline-offset-4 hover:text-paper hover:underline"
-						>
-							{v.name}
-						</a>
-					))}
+				<div class="mb-5 flex items-center gap-3">
+					<Image src={beef} alt="Nick's pixel-art beef guy" width={48} height={48} quality="max" class="pixelated h-12 w-12 object-contain" />
+					<span class="evidence-label">Field note complete</span>
 				</div>
-			)
-		}
-
-		<div class="mt-10 flex flex-col gap-5 border-t-2 border-paper/20 pt-6 sm:flex-row sm:items-center sm:justify-between">
-			<div class="flex flex-wrap gap-2.5">
-				{
-					socials.map(([name, { url }]) => (
-						<a
-							href={url}
-							target="_blank"
-							rel="me noopener"
-							aria-label={name}
-							class="inline-flex items-center gap-2 rounded-full border-2 border-paper px-3.5 py-1 font-display text-sm font-bold text-paper no-underline transition-colors hover:border-marigold hover:bg-marigold hover:text-ink"
-						>
-							<Icon name={`simple-icons:${name}`} class="h-4 w-4" />
-							<span class="capitalize">{name}</span>
-						</a>
-					))
-				}
+				<h2 class="max-w-[13ch] text-4xl md:text-6xl">Help your team build differently with AI.</h2>
+				<div class="mt-7 flex flex-wrap gap-3">
+					<a href="/workshops" class="btn btn-primary">Explore workshops →</a>
+					<a href={`mailto:${metadata.author.email}`} class="btn btn-ghost">Email Nick</a>
+				</div>
 			</div>
-			<p class="font-mono text-xs text-paper/60">// © {metadata.author.name} {year} · made in Nebraska</p>
+			<div class="grid grid-cols-2 gap-7 text-sm sm:grid-cols-3 md:justify-self-end">
+				<nav class="flex flex-col gap-3" aria-label="Footer navigation">
+					<strong>Explore</strong>
+					<a href="/posts" class="text-ink-soft no-underline hover:text-ink">Writing</a>
+					<a href="/speaking" class="text-ink-soft no-underline hover:text-ink">Speaking</a>
+					<a href="/about" class="text-ink-soft no-underline hover:text-ink">About</a>
+				</nav>
+				<div class="flex flex-col gap-3">
+					<strong>Elsewhere</strong>
+					{socials.slice(0,4).map(([name,{url}]) => <a href={url} target="_blank" rel="me noopener" class="capitalize text-ink-soft no-underline hover:text-ink">{name}</a>)}
+				</div>
+				<div class="flex flex-col gap-3">
+					<strong>Business</strong>
+					<span class="text-ink-soft">Typed Void LLC</span>
+					<a href="https://sideeffects.dev" class="text-ink-soft no-underline hover:text-ink">Side Effects ↗</a>
+				</div>
+			</div>
+		</div>
+		<div class="mt-14 flex flex-col gap-3 border-t border-line pt-6 text-sm text-ink-faint sm:flex-row sm:items-center sm:justify-between">
+			<p>© {year} Nick Nisi · Made in Nebraska</p>
+			<p class="flex items-center gap-2"><Icon name="mdi:signal" class="h-4 w-4 text-teal-500" /> AI-native DX, in practice.</p>
 		</div>
 	</div>
 </footer>
+
+<style>.pixelated{image-rendering:pixelated}</style>

@@ -49,35 +49,26 @@ const {
 	/>
 	<ClientRouter />
 	<script is:inline>
-		// Accent default is RANDOM per visit, UNLESS the visitor explicitly
-		// picked one (then localStorage wins). The random pick lives on window
-		// so it stays stable while browsing and is never persisted; a fresh
-		// visit re-rolls it. Resolved here, pre-paint, to avoid a color flash.
 		(function () {
-			const ACCENTS = ['grape', 'iris', 'cobalt', 'teal', 'forest', 'magenta'];
-			window.__resolveAccent = function () {
-				const stored = localStorage.getItem('accent');
-				if (ACCENTS.includes(stored)) return stored;
-				if (!window.__accent) window.__accent = ACCENTS[Math.floor(Math.random() * ACCENTS.length)];
-				return window.__accent;
-			};
-			document.documentElement.dataset.accent = window.__resolveAccent();
+			function resolveTheme() {
+				return localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+			}
+			function applyTheme() {
+				document.documentElement.classList.toggle('dark', resolveTheme() === 'dark');
+			}
+			applyTheme();
+			document.addEventListener('astro:after-swap', applyTheme);
 		})();
 	</script>
-	<script is:inline>
-		// Restore theme before paint on every View Transition swap
-		document.addEventListener('astro:after-swap', () => {
-			const theme =
-				localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-			if (theme === 'dark') {
-				document.documentElement.classList.add('dark');
-			} else {
-				document.documentElement.classList.remove('dark');
-			}
-			document.documentElement.dataset.accent = window.__resolveAccent ? window.__resolveAccent() : 'grape';
-		});
-	</script>
 	<body class:list={['font-sans', 'font-normal', 'bg-paper', 'text-ink', 'flex', 'min-h-screen', 'flex-col']}>
+		<!--
+		THESIS: One human practice radiates into four evidence paths; refuse the generic portfolio grid and the sci-fi dashboard.
+		OWN-WORLD: Cool paper or violet-black fields, documentary photography, precise hairline tracks, and purple/teal signals.
+		STORY: Meet Nick, understand AI-native DX, verify it through Build/Teach/Write/Speak, then explore workshops.
+		FIRST VIEWPORT: Documentary field evidence owns the left field; an oversized thesis and four sparse evidence tracks occupy the right, with Workshops as the primary action.
+		FORM: The Single Event, composition C “Field Evidence”; seed 74d60bf5.
+		FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
+		-->
 		{!hideHeader && <Header transition:persist />}
 		{heroImage && <Hero title={title} alt={heroImage.alt} darkOverlay={heroImage.darkOverlay} image={heroImage.img} />}
 		<main class:list={['z-30 mb-auto', !fullWidth && 'px-6']}>

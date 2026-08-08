@@ -1,0 +1,71 @@
+{
+  "title": "Authority with room to breathe",
+  "question": "This hand keeps confident positioning and proof, but reduces density: fewer sections, larger moments, and quieter evidence. Every direction has equal light and dark themes.",
+  "options": [
+    {
+      "id": "clear-frame",
+      "label": "The Clear Frame",
+      "kicker": "STEERED ROLL",
+      "lineage": "speaker portraits · technical essays · quiet studio portfolios",
+      "thesis": "One clear portrait, one strong idea, and a small set of well-chosen proof make Nick’s authority feel immediate rather than exhaustive.",
+      "palette": ["#f5f4f7", "#17151c", "#724bb7", "#17b897"],
+      "materials": ["large portraiture", "quiet rules", "generous editorial fields"],
+      "viewport": "Nick’s portrait and AI-native DX thesis own the first screen; a concise role line and Workshops action sit nearby, with only three proof paths beginning below: Build, Teach, Write.",
+      "risk": "Restraint can become bland if the portrait scale, type character, and purple/teal field are timid; the page needs one memorable transition, not many widgets.",
+      "case": "Closest to your steer: Zack-level confidence, much less catalog density, and enough space for Nick’s personality to lead."
+    },
+    {
+      "id": "type-in-motion",
+      "label": "Type in Motion",
+      "kicker": "CHALLENGER",
+      "lineage": "variable-type specimens · modern editorial covers · responsive practice",
+      "thesis": "A single expressive headline subtly changes weight as the visitor moves from Nick’s thesis to the work that proves it.",
+      "case": "Spacious and technically distinctive without being busy; stronger personal signature than the category standard, but typography must not become the subject.",
+      "palette": ["#faf9fb", "#151419", "#724bb7", "#17b897"],
+      "materials": ["enormous variable type", "tiny precise labels", "clean documentary media"],
+      "viewport": "A huge AI-native DX headline, calm portrait, and one Workshops action fill the screen; the next fold contains three large evidence statements rather than a grid of cards.",
+      "risk": "Can read like a type-foundry demo; motion must stay subtle, reduced-motion must be complete, and body reading must remain conventional.",
+      "hero": "https://impeccable.style/worlds/cards/variable-font-specimen-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/variable-font-specimen.webp"
+    },
+    {
+      "id": "depth-planes",
+      "label": "The Depth Planes",
+      "kicker": "CHALLENGER",
+      "lineage": "multiplane composition · photographic depth · calm narrative reveals",
+      "thesis": "Nick’s practice gains depth through three slowly separated planes: current work, public teaching, and the archive behind both.",
+      "case": "Most visual while remaining sparse; useful if the site should feel more experiential than editorial, with genuine photography carrying the depth.",
+      "palette": ["#f3f4f5", "#15151b", "#724bb7", "#17b897"],
+      "materials": ["layered real photography", "clear text plane", "soft spatial transitions"],
+      "viewport": "A large portrait plane, thesis plane, and restrained evidence plane overlap without cards; scrolling separates them and lands naturally on Workshops.",
+      "risk": "Parallax can feel decorative or impair reading; the still fallback must remain a complete composition and dark mode cannot become cinematic black-on-black.",
+      "hero": "https://impeccable.style/worlds/cards/cinema-cinematography-editing-multiplane-cel-dawn-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/cinema-cinematography-editing-multiplane-cel-dawn.webp"
+    },
+    {
+      "id": "single-event",
+      "label": "The Single Event",
+      "kicker": "CHALLENGER",
+      "lineage": "particle event displays · one source with a few meaningful paths",
+      "thesis": "One central idea radiates into only the evidence that matters: systems, workshops, writing, and speaking.",
+      "case": "Distinctive technical metaphor with lots of negative space; it works only if the paths stay few and are built as precise SVG, not decorative particles.",
+      "palette": ["#f6f5f8", "#121117", "#724bb7", "#17b897"],
+      "materials": ["one authored SVG event", "sparse evidence labels", "human portraiture"],
+      "viewport": "Nick and the AI-native DX thesis sit at the event’s center; four quiet paths lead to the work, with Workshops carrying the active purple/teal signal.",
+      "risk": "The scientific metaphor can overshadow Nick or become generic particle decoration; no WebGL spectacle and no unverified metrics.",
+      "hero": "https://impeccable.style/worlds/cards/scientific-notation-particle-detector-event-display-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/scientific-notation-particle-detector-event-display.webp"
+    }
+  ],
+  "reroll": true,
+  "canon": true,
+  "canonCard": {
+    "label": "Spacious personal-site canon",
+    "thesis": "A refined portrait hero, concise authority statement, workshops action, and three generous proof sections.",
+    "palette": ["#f7f7f8", "#18171c", "#724bb7", "#17b897"],
+    "materials": ["clean typography", "large photography", "quiet surfaces"],
+    "viewport": "Portrait and thesis side by side, one primary action, selected writing and talks spaced generously below.",
+    "risk": "Clear and durable but less memorable; choose it if the authored concepts still feel like too much."
+  },
+  "steer": true
+}

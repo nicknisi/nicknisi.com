@@ -1,0 +1,70 @@
+{
+  "title": "Visual world · new hand",
+  "question": "Everything from the first round is eliminated. This hand approaches Nick through different working rituals and visual traditions.",
+  "options": [
+    {
+      "id": "patch-set",
+      "label": "The Patch Set",
+      "kicker": "NEW ROLL",
+      "lineage": "code review · annotated diffs · changes that earn trust",
+      "thesis": "Nick’s authority appears as a legible patch: what changed, why it matters, and the evidence that makes it safe to ship.",
+      "palette": ["#f4f2f7", "#1b1820", "#724bb7", "#17b897"],
+      "materials": ["editorial margin notes", "change rules", "documentary proof"],
+      "viewport": "A large plain-language AI-native DX thesis sits beside Nick’s portrait; precise change marks connect current role, shipped systems, teaching, and the Workshops action without resembling a code editor.",
+      "risk": "Could become terminal cosplay or a novelty diff if plus/minus symbols replace real hierarchy; the system must feel editorial and human."
+    },
+    {
+      "id": "claim-and-proof",
+      "label": "Claim / Proof",
+      "kicker": "CHALLENGER",
+      "lineage": "monochrome product publishing · interface evidence · rigorous restraint",
+      "thesis": "Every claim about Nick is immediately followed by the work that proves it.",
+      "case": "Strongest pure product clarity, but the most conventional and least personally identifiable direction in this hand.",
+      "palette": ["#fafafa", "#151419", "#724bb7", "#17b897"],
+      "materials": ["neutral scale", "large documentary images", "hairline evidence frames"],
+      "viewport": "A restrained portrait and thesis lead directly into a workshop action; each following statement pairs with a talk, article, system, or workshop image.",
+      "risk": "Its discipline can become tasteful generic software marketing unless Nick’s voice and evidence dominate every section.",
+      "hero": "https://impeccable.style/worlds/cards/digital-design-canon-monochrome-product-marketing-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/digital-design-canon-monochrome-product-marketing.webp"
+    },
+    {
+      "id": "sixteen-steps",
+      "label": "Sixteen Steps",
+      "kicker": "CHALLENGER",
+      "lineage": "rhythm-machine sequences · iterative engineering · live teaching",
+      "thesis": "The site has a pulse: build, inspect, teach, and compound repeat as one visible sequence.",
+      "case": "Most memorable interaction and a natural workshop arc, but it identifies an instrument before it identifies Nick unless used with restraint.",
+      "palette": ["#1c1a21", "#f2f0f4", "#724bb7", "#17b897"],
+      "materials": ["matte control surface", "fixed sequence", "active chase signal"],
+      "viewport": "Nick’s portrait and thesis sit above one unbroken semantic sequence; the active step lands on Workshops while writing, speaking, and systems remain readable stages.",
+      "risk": "Can become a playful sequencer demo that distracts technical leaders; reduced motion must preserve a calm, useful document.",
+      "hero": "https://impeccable.style/worlds/cards/signals-instruments-drum-machine-step-row-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/signals-instruments-drum-machine-step-row.webp"
+    },
+    {
+      "id": "stage-cue",
+      "label": "The Stage Cue",
+      "kicker": "CHALLENGER",
+      "lineage": "conference lighting plots · cue states · the room before a live session",
+      "thesis": "Nick’s work moves from preparation to live practice to the moment a room starts shipping differently.",
+      "case": "Connects speaking and workshop leadership with a strong light/dark system; weaker for the writing archive than the assigned direction.",
+      "palette": ["#111018", "#f5f3f5", "#3156a6", "#724bb7"],
+      "materials": ["horizon bands", "cue labels", "stage photography"],
+      "viewport": "A portrait emerges across a crisp dark-to-light horizon while the thesis, verified role, and Workshops cue remain fully semantic and immediately readable.",
+      "risk": "Color bands can become a decorative gradient and over-romanticize speaking; the cue structure must carry real content and accessible named states.",
+      "hero": "https://impeccable.style/worlds/cards/stagecraft-theater-lighting-cyclorama-dawn-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/stagecraft-theater-lighting-cyclorama-dawn.webp"
+    }
+  ],
+  "reroll": true,
+  "canon": true,
+  "canonCard": {
+    "label": "The category standard",
+    "thesis": "A polished technical personal site with a portrait hero, selected work, and a clear workshops button.",
+    "palette": ["#f7f7f8", "#19181d", "#724bb7", "#17b897"],
+    "materials": ["clean surfaces", "workhorse typography", "restrained photography"],
+    "viewport": "Familiar navigation, portrait and thesis side by side, primary workshop action, then selected writing and talks.",
+    "risk": "Easy to understand and easy to forget; choose this only if familiarity matters more than a distinctive authored world."
+  },
+  "steer": true
+}

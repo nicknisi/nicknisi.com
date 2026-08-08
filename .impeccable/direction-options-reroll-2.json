@@ -1,0 +1,71 @@
+{
+  "title": "Editorial authority · subtly Nick",
+  "question": "This hand follows your steer: Zack-like density and confidence, without copying his visual identity. Every option includes intentional light and dark themes.",
+  "options": [
+    {
+      "id": "working-index",
+      "label": "The Working Index",
+      "kicker": "STEERED ROLL",
+      "lineage": "technical journals · studio indexes · living bodies of work",
+      "thesis": "A dense editorial index makes Nick’s writing, systems, talks, and workshops feel like one continuously evolving practice.",
+      "palette": ["#f4f3f6", "#18161d", "#724bb7", "#17b897"],
+      "materials": ["editorial folios", "precise index marks", "large documentary media"],
+      "viewport": "A confident AI-native DX thesis and portrait lead immediately into a living index of current work; Workshops is the primary numbered destination, while writing and talks begin in the first fold.",
+      "risk": "Closest to the quality you like in Zack’s site, so originality must come from Nick’s purple/teal system, voice, portraiture, and a different index grammar rather than copied section numbering.",
+      "case": "Best balance: Zack-like authority and density, but grounded in Nick’s own archive and identity. Light reads as a technical journal; dark reads as the same publication after hours."
+    },
+    {
+      "id": "bitmap-journal",
+      "label": "The Bitmap Journal",
+      "kicker": "CHALLENGER",
+      "lineage": "Emigre specimens · early digital publishing · modern engineering journals",
+      "thesis": "Visible pixels in the display type connect Nick’s web-tooling history to the AI-native present without turning the page into a terminal.",
+      "case": "More distinctive than Zack while retaining editorial density; strongest if the bitmap voice stays in headlines and indexing, never body copy.",
+      "palette": ["#f5f4f1", "#17161b", "#724bb7", "#17b897"],
+      "materials": ["pixel-honest display type", "fine reading grotesk", "documentary image spreads"],
+      "viewport": "A poster-scale pixel headline meets a crisp portrait and compact role proof; a specimen-like index previews workshops, current writing, and talks at multiple scales.",
+      "risk": "Can feel retro or overly designed if pixels spread into controls and prose; both themes must keep long-form reading quiet.",
+      "hero": "https://impeccable.style/worlds/cards/emigre-bitmap-specimen-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/emigre-bitmap-specimen.webp"
+    },
+    {
+      "id": "field-edition",
+      "label": "The Field Edition",
+      "kicker": "CHALLENGER",
+      "lineage": "expedition newspapers · technical field reports · issue-based publishing",
+      "thesis": "Nick’s site reads like a field edition produced from the front of a fast-moving engineering practice.",
+      "case": "Carries a strong authored voice and body-of-work feeling; less visually adjacent to Zack, but equally confident and editorial.",
+      "palette": ["#eeece7", "#1b1920", "#724bb7", "#17b897"],
+      "materials": ["cool rag stock", "issue folios", "full-width field photography"],
+      "viewport": "A modern masthead, large thesis, current issue note, and portrait establish Nick; Workshops appears as the lead field assignment with recent dispatches beginning below.",
+      "risk": "Could become faux-vintage or newspaper cosplay; use contemporary type, cool neutrals, and clean digital behavior rather than distressed effects.",
+      "hero": "https://impeccable.style/worlds/cards/graphic-worlds-publishing-expedition-ice-press-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/graphic-worlds-publishing-expedition-ice-press.webp"
+    },
+    {
+      "id": "instrument-editorial",
+      "label": "The Instrument Editorial",
+      "kicker": "CHALLENGER",
+      "lineage": "night-flight instruments · editorial dashboards · practiced cross-checks",
+      "thesis": "A calm editorial surface lets technical leaders cross-check the few signals that establish Nick’s authority.",
+      "case": "Most technical and strongest dark theme; the instrument detail stays subtle around an otherwise editorial page.",
+      "palette": ["#f3f2f5", "#121117", "#724bb7", "#17b897"],
+      "materials": ["calm signal readouts", "large portraiture", "editorial columns"],
+      "viewport": "A human portrait and thesis dominate; three quiet signal readouts show current role, years of practice, and teaching evidence, then lead into Workshops and the archive.",
+      "risk": "Could resemble a dashboard or rely on invented metrics; every signal must be a verified fact and the editorial story must remain primary.",
+      "hero": "https://impeccable.style/worlds/cards/signals-instruments-night-flight-six-pack-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/signals-instruments-night-flight-six-pack.webp"
+    }
+  ],
+  "reroll": true,
+  "canon": true,
+  "canonCard": {
+    "label": "Zack-adjacent canon",
+    "thesis": "A dense, polished personal editorial site with numbered sections, abundant proof, and dark/light themes.",
+    "palette": ["#f6f5f3", "#151419", "#724bb7", "#17b897"],
+    "materials": ["large type", "section ledger", "documentary media"],
+    "viewport": "Personal thesis and current role above writing, workshops, speaking, and a compact proof ledger.",
+    "risk": "It directly answers the reference but offers the least separation from Zack; choose only if familiarity matters more than a new authored system."
+  },
+  "steer": true
+}

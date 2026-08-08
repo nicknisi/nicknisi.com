@@ -25,9 +25,9 @@ const mode = import.meta.env.MODE;
 	<title>{title}</title>
 
 	<meta name="color-scheme" content={colorscheme} />
-	<meta name="theme-color" media="(prefers-color-scheme: light)" content="#240754" />
-	<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#240754" />
-	<meta name="theme-color" content="#240754" />
+	<meta name="theme-color" media="(prefers-color-scheme: light)" content="#f6f4f8" />
+	<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#17131d" />
+	<meta name="theme-color" content="#17131d" />
 
 	<link rel="alternate" href={metadata.feed.path} type="application/atom+xml" title={metadata.title} />
 	{markdownPath && <link rel="alternate" href={markdownPath} type="text/markdown" title={`${title} (Markdown)`} />}
@@ -59,7 +59,7 @@ const mode = import.meta.env.MODE;
 	<meta property="og:image" content={headerImage ?? '/og-image.png'} />
 	<meta property="og:image:url" content={headerImage ?? '/og-image.png'} />
 	<meta property="og:image:type" content="image/png" />
-	<meta property="og:image:seceure_url" content={headerImage ?? '/og-image.png'} />
+	<meta property="og:image:secure_url" content={headerImage ?? '/og-image.png'} />
 	<meta property="og:image:width" content="1200" />
 	<meta property="og:image:height" content="630" />
 

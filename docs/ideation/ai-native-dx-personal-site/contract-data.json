@@ -1,0 +1,279 @@
+{
+  "projectName": "AI-Native DX Personal Site",
+  "slug": "ai-native-dx-personal-site",
+  "date": "2026-08-07",
+  "status": "Approved",
+  "supersedes": null,
+  "gates": {
+    "dimensions": [
+      {
+        "key": "problem",
+        "label": "Problem Clarity",
+        "status": "ready",
+        "evidence": "The current site presents Nick primarily as a general TypeScript/DX community figure, so technical leaders cannot quickly see his current AI-native DX leadership or a credible path to workshops."
+      },
+      {
+        "key": "goals",
+        "label": "Goal Definition",
+        "status": "ready",
+        "evidence": "The redesign must establish AI-native DX authority within the first viewport, make workshops the primary next step, unify the perception-shaping pages, and preserve the public archive."
+      },
+      {
+        "key": "criteria",
+        "label": "Success Criteria",
+        "status": "ready",
+        "evidence": "Success is defined by runnable typecheck/build/route checks plus named human review of the five-second message, visual authorship, theme readability, and responsive hierarchy."
+      },
+      {
+        "key": "scope",
+        "label": "Scope Boundaries",
+        "status": "ready",
+        "evidence": "Scope includes the shared system and key perception-shaping pages while explicitly excluding article rewrites, every experimental route, a CMS, fabricated claims, and a visual clone of Zack Proser’s site."
+      },
+      {
+        "key": "consistency",
+        "label": "Consistency",
+        "status": "ready",
+        "evidence": "AI-native DX authority is the primary message, workshops are the primary action, and writing, speaking, projects, streaming, and prior community work consistently serve as evidence rather than competing identities."
+      }
+    ]
+  },
+  "problem": [
+    "Technical leaders arriving at nicknisi.com encounter a visually energetic but dated positioning system that still describes Nick mainly as a TypeScript enthusiast, conference organizer, streamer, and developer experience engineer. That framing understates his current leadership and hands-on work in AI-native developer experience, so visitors evaluating workshops, speaking, or collaboration must assemble the relevant story themselves.",
+    "The site already contains substantial proof through writing, talks, projects, conference material, and workshop participation, but the homepage and key routes do not organize that evidence into a clear authority narrative or provide a Nick-owned workshop destination. A fresh visual system must change that perception without sacrificing the archive, readability, personality, or existing URLs."
+  ],
+  "goals": [
+    "Make a first-time technical leader understand within one viewport that Nick Nisi works at the intersection of AI adoption, developer experience, and engineering practice.",
+    "Make exploring workshops the homepage’s primary next step while keeping writing, speaking, projects, and community work visible as authority evidence.",
+    "Create a Nick-centered workshops page that accurately explains his role in the shared Claude workshop collaboration and routes qualified visitors to the verified shared booking destination.",
+    "Replace the shared visual system and perception-shaping routes with one responsive, accessible, unmistakably Nick design selected and executed through the Impeccable workflow.",
+    "Preserve the existing Astro content archive, public URLs, and long-form readability while updating stale positioning and metadata."
+  ],
+  "successCriteria": [
+    {
+      "criterion": "The project typechecks after the redesign.",
+      "check": {
+        "cmd": "pnpm run typecheck",
+        "expect": "exits 0"
+      }
+    },
+    {
+      "criterion": "The production site builds after the redesign.",
+      "check": {
+        "cmd": "pnpm run build",
+        "expect": "exits 0"
+      }
+    },
+    {
+      "criterion": "The production build includes the redesigned homepage, workshops page, about page, speaking page, writing index, and a representative article.",
+      "check": {
+        "cmd": "test -f dist/index.html && test -f dist/workshops/index.html && test -f dist/about/index.html && test -f dist/speaking/index.html && test -f dist/posts/index.html && test -f dist/posts/ai-tooling/index.html",
+        "expect": "exits 0"
+      }
+    },
+    {
+      "criterion": "The homepage and workshops page expose stable structural markers for their primary jobs rather than relying on copy-sensitive verification.",
+      "check": {
+        "cmd": "grep -q 'data-surface=\"homepage-authority\"' dist/index.html && grep -q 'data-surface=\"workshops\"' dist/workshops/index.html",
+        "expect": "exits 0"
+      }
+    },
+    {
+      "criterion": "The legacy AI engineering route continues to resolve to the new workshop destination.",
+      "check": {
+        "cmd": "grep -q \"'/ai-engineering': '/workshops'\" astro.config.ts",
+        "expect": "exits 0"
+      }
+    },
+    {
+      "criterion": "A five-second review communicates Nick’s name, AI-native DX focus, credible evidence, and the workshops path without requiring scrolling.",
+      "check": {
+        "judgment": "Nick reviews the desktop and mobile first viewports and can identify all four elements within five seconds."
+      }
+    },
+    {
+      "criterion": "The visual system feels specifically authored for Nick rather than like a generic AI/SaaS portfolio or a visual imitation of Zack Proser’s site.",
+      "check": {
+        "judgment": "Nick compares the final desktop and mobile screenshots against the approved Impeccable direction and the Zack reference, confirming distinct authorship."
+      }
+    },
+    {
+      "criterion": "Light and dark themes remain readable and intentional across the homepage, workshops page, article index, and representative article at desktop and mobile widths.",
+      "check": {
+        "judgment": "The Impeccable finish review inspects paired light/dark desktop/mobile screenshots and reports no unresolved material contrast, hierarchy, overflow, or theme-inversion defects."
+      }
+    },
+    {
+      "criterion": "The workshops page makes only source-backed claims about Nick, the crew, workshop format, and booking path.",
+      "check": {
+        "judgment": "Nick verifies the page against the existing site content and Zack Proser workshop source before approval; no invented clients, outcomes, pricing, availability, or testimonials remain."
+      }
+    }
+  ],
+  "scope": {
+    "mvp": [
+      {
+        "item": "Durable product record and Impeccable visual-direction process",
+        "reason": "The redesign needs confirmed product truth and an approved visual world before implementation; competitor imitation or another arbitrary reskin would repeat the current problem."
+      },
+      {
+        "item": "Shared visual foundation and global chrome",
+        "reason": "Typography, color, spacing, surfaces, navigation, footer, theme behavior, focus states, and responsive rules must establish one coherent system across the archive."
+      },
+      {
+        "item": "Authority-led homepage",
+        "reason": "The homepage is the main perception problem and must establish AI-native DX authority, proof, and workshops as the primary action."
+      },
+      {
+        "item": "Nick-centered workshops page",
+        "reason": "Nick needs a durable home for his role in the shared workshop offer and a clear route to the verified booking flow."
+      },
+      {
+        "item": "Preserved archive and legacy route continuity",
+        "reason": "The redesign cannot break existing article URLs or the current AI engineering entry point."
+      }
+    ],
+    "full": [
+      {
+        "item": "About page and reusable press-kit repositioning",
+        "reason": "Bios and personal context must align with current AI-native DX leadership while keeping past podcast and wedding details appropriately secondary."
+      },
+      {
+        "item": "Speaking page and core content indexes",
+        "reason": "These routes provide the strongest supporting evidence and should inherit the new hierarchy rather than read as disconnected archives."
+      },
+      {
+        "item": "Shared long-form article layout",
+        "reason": "Articles are major entry points and need the new typography, navigation, themes, and authority context without rewriting individual posts."
+      },
+      {
+        "item": "Metadata, descriptions, navigation, and social-preview positioning",
+        "reason": "Search and shared links must communicate the same current identity as the rendered pages."
+      },
+      {
+        "item": "Typed Void redirect destination update",
+        "reason": "Typed Void should remain the legal/business vehicle and send visitors to Nick’s canonical workshop destination rather than maintain a competing public brand."
+      }
+    ],
+    "stretch": [
+      {
+        "item": "Selective motion or signature interaction from the approved Impeccable direction",
+        "reason": "A memorable interaction can strengthen authorship only after clarity, accessibility, responsiveness, and performance are proven."
+      },
+      {
+        "item": "Additional recent workshop and conference media curation",
+        "reason": "Existing assets may support richer proof, but only verified, high-quality media that improves the narrative should be added."
+      }
+    ],
+    "outOfScope": [
+      {
+        "item": "Rewriting the historical article archive",
+        "reason": "The archive is evidence and should inherit the new system; individual editorial rewrites do not serve the positioning goal."
+      },
+      {
+        "item": "Individually redesigning every experiment, utility, résumé, and specialty route",
+        "reason": "Core-system inheritance is sufficient; bespoke work on every route would expand cost without improving the primary audience journey."
+      },
+      {
+        "item": "A separate Typed Void visual identity or full website",
+        "reason": "Nick is the public brand; maintaining two full brand systems would split attention and credibility."
+      },
+      {
+        "item": "A visual clone of Zack Proser’s site",
+        "reason": "His hierarchy and proof strategy are useful references, but the result must be unmistakably Nick and use an independently chosen Impeccable direction."
+      },
+      {
+        "item": "A CMS, newsletter platform, analytics program, or lead-management system",
+        "reason": "None is required to solve the current positioning and design problem."
+      },
+      {
+        "item": "Invented testimonials, clients, outcomes, prices, availability, or performance claims",
+        "reason": "Commercial credibility must come from verified evidence, not placeholder social proof."
+      }
+    ],
+    "future": [
+      "Measure workshop-path usage after launch and decide whether a newsletter or broader work-with-me funnel earns prominence.",
+      "Revisit specialty routes only when traffic or content importance justifies bespoke treatment.",
+      "Add case studies when verified client or workshop outcomes are available and approved for publication."
+    ]
+  },
+  "decisions": [
+    {
+      "decision": "Use nicknisi.com as the canonical public brand and keep Typed Void LLC as the legal/business vehicle.",
+      "rejected": "Maintain and redesign separate Nick Nisi and Typed Void public brands.",
+      "reason": "Clients hire Nick’s reputation and expertise; two public brands would split maintenance, SEO, and credibility."
+    },
+    {
+      "decision": "Establish authority before selling.",
+      "rejected": "Turn the homepage into a workshop-first sales funnel.",
+      "reason": "The site must remain a durable personal authority hub whose commercial path is credible because of the work around it."
+    },
+    {
+      "decision": "Position Nick around AI-native developer experience for technical leaders.",
+      "rejected": "Lead with generic AI expertise, developer tooling alone, or technical education alone.",
+      "reason": "AI-native DX connects Nick’s current leadership, engineering systems, tooling history, and teaching without erasing the foundation that differentiates him."
+    },
+    {
+      "decision": "Create a Nick-centered workshops page with a shared booking handoff.",
+      "rejected": "Only link to Zack’s page or duplicate its complete sales page.",
+      "reason": "Nick needs durable ownership of his role and evidence without creating two competing canonical descriptions of the offer."
+    },
+    {
+      "decision": "Redesign the core system and perception-shaping pages.",
+      "rejected": "Redesign every generated route or limit work to homepage styling.",
+      "reason": "This changes the visitor’s perception coherently while preserving the archive and avoiding another expensive whole-site churn."
+    },
+    {
+      "decision": "Use Impeccable to select and execute the visual world.",
+      "rejected": "Copy Zack Proser’s visual identity or silently continue the incumbent zine system.",
+      "reason": "The result must meet a high craft bar and feel specifically authored for Nick rather than competitor-derived or merely polished."
+    }
+  ],
+  "execution": {
+    "strategy": "Sequential design lock followed by coordinated implementation and bounded finish review",
+    "phases": [
+      {
+        "title": "Visual Direction and System",
+        "risk": "high",
+        "blocking": true,
+        "specPath": "docs/ideation/ai-native-dx-personal-site/spec-phase-1.md",
+        "notes": "Run the Impeccable direction and composition process, approve the visual world, and implement the shared foundation, chrome, themes, and responsive rules."
+      },
+      {
+        "title": "Authority and Workshops Journey",
+        "risk": "high",
+        "blocking": true,
+        "prereqs": [
+          "Visual Direction and System"
+        ],
+        "specPath": "docs/ideation/ai-native-dx-personal-site/spec-phase-2.md",
+        "notes": "Build the authority-led homepage, Nick-centered workshops page, verified booking handoff, legacy route continuity, and supporting media."
+      },
+      {
+        "title": "Evidence Surfaces and Archive Integration",
+        "risk": "medium",
+        "blocking": true,
+        "prereqs": [
+          "Authority and Workshops Journey"
+        ],
+        "specPath": "docs/ideation/ai-native-dx-personal-site/spec-phase-3.md",
+        "notes": "Align about, press kit, speaking, indexes, article layout, metadata, navigation, and Typed Void redirect destination with the approved positioning and system."
+      },
+      {
+        "title": "Impeccable Finish Review",
+        "risk": "medium",
+        "blocking": true,
+        "prereqs": [
+          "Evidence Surfaces and Archive Integration"
+        ],
+        "specPath": "docs/ideation/ai-native-dx-personal-site/spec-phase-4.md",
+        "notes": "Inspect desktop/mobile and light/dark in bounded passes, run the design detector, complete an independent finish review, resolve material findings, and record DESIGN.md from the shipped system."
+      }
+    ]
+  },
+  "approvedOn": "2026-08-07",
+  "approvedBy": "Nick Nisi",
+  "approvalMode": "express",
+  "branch": "ideation/ai-native-dx-personal-site",
+  "selectedTier": "stretch"
+}

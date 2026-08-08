@@ -3,11 +3,6 @@
 @plugin '@tailwindcss/typography';
 
 @theme {
-	/* ----------------------------------------------------------------
-	   Type — risograph zine. Bricolage display, Atkinson body,
-	   JetBrains mono. (font-serif is aliased to display so legacy
-	   heading usage picks up the new face during migration.)
-	   ---------------------------------------------------------------- */
 	--font-sans: 'Atkinson Hyperlegible', system-ui, sans-serif;
 	--font-display: 'Bricolage Grotesque Variable', system-ui, sans-serif;
 	--font-serif: 'Bricolage Grotesque Variable', system-ui, sans-serif;
@@ -25,77 +20,26 @@
 	--text-6xl: 3.75rem;
 	--text-7xl: 4.5rem;
 
-	/* ----------------------------------------------------------------
-	   Purple + green palette (OKLCH, light-first). Nick's brand identity.
-	   ---------------------------------------------------------------- */
-	/* Cool, purple-tinted neutrals */
-	--color-paper: oklch(0.975 0.006 300);
-	--color-paper-2: oklch(0.95 0.012 298);
-	--color-card: oklch(0.996 0.004 300);
-	--color-ink: oklch(0.23 0.03 295);
-	--color-ink-soft: oklch(0.45 0.026 295);
-	--color-ink-faint: oklch(0.62 0.022 295);
+	/* Field Evidence: cool paper, violet-black ink, two signal colors. */
+	--color-paper: oklch(0.975 0.008 300);
+	--color-paper-2: oklch(0.945 0.014 300);
+	--color-card: oklch(0.995 0.004 300);
+	--color-ink: oklch(0.22 0.025 294);
+	--color-ink-soft: oklch(0.45 0.025 294);
+	--color-ink-faint: oklch(0.52 0.025 294);
+	--color-line: oklch(0.84 0.02 294);
 
-	/* Brand accents: purple + teal/green — Nick's original identity
-	   (#724bb7 purple, #17b897 teal). "marigold" is now a LIGHT lavender
-	   fill (header/notes/accent sections); "tomato" and "grape" are the
-	   purples; "pine" green; "sky" teal. Names kept so markup doesn't churn. */
-	--color-marigold: oklch(0.9 0.052 296);
-	--color-tomato: oklch(0.52 0.18 294);
-	--color-grape: oklch(0.43 0.17 296);
-	--color-pine: oklch(0.62 0.13 166);
-	--color-sky: oklch(0.72 0.11 196);
-
-	/* Fixed text colors for ON colored fills — theme-independent so bands,
-	   buttons, and stickers stay readable in light AND dark. */
-	--text-on-light: oklch(0.21 0.03 295);
-	--text-on-dark: oklch(0.98 0.008 300);
-
-	/* Hard offset shadows — the signature. Never blurred.
-	   Color comes from --hard-shadow-color so dark mode can use a deep
-	   near-black instead of flipping to a glowing cream. */
-	--shadow-hard-sm: 3px 3px 0 var(--hard-shadow-color);
-	--shadow-hard: 5px 5px 0 var(--hard-shadow-color);
-	--shadow-hard-lg: 8px 8px 0 var(--hard-shadow-color);
-
-	/* ----------------------------------------------------------------
-	   Legacy palette — retained so pages mid-migration still compile.
-	   Removed once every page is on the warm tokens above.
-	   ---------------------------------------------------------------- */
-	--color-white: #ffffff;
-	--color-transparent: transparent;
-	--color-purple-50: #eae2f8;
-	--color-purple-100: #cfbcf2;
-	--color-purple-200: #a081d9;
-	--color-purple-300: #8662c7;
-	--color-purple-400: #724bb7;
-	--color-purple-500: #653cad;
-	--color-purple-600: #51279b;
-	--color-purple-700: #421987;
-	--color-purple-800: #34126f;
-	--color-purple-900: #240754;
-
-	--color-red-50: #ffe3e3;
-	--color-red-100: #ffbdbd;
-	--color-red-200: #ff9b9b;
-	--color-red-300: #f86a6a;
-	--color-red-400: #ef4e4e;
-	--color-red-500: #e12d39;
-	--color-red-600: #cf1124;
-	--color-red-700: #ab091e;
-	--color-red-800: #8a041a;
-	--color-red-900: #610316;
-
-	--color-blue-gray-50: #f0f4f8;
-	--color-blue-gray-100: #d9e2ec;
-	--color-blue-gray-200: #bcccdc;
-	--color-blue-gray-300: #9fb3c8;
-	--color-blue-gray-400: #829ab1;
-	--color-blue-gray-500: #627d98;
-	--color-blue-gray-600: #486581;
-	--color-blue-gray-700: #334e68;
-	--color-blue-gray-800: #243b53;
-	--color-blue-gray-900: #102a43;
+	--color-purple-50: #f6f2fb;
+	--color-purple-100: #e9e0f6;
+	--color-purple-200: #cfbcf2;
+	--color-purple-300: #a081d9;
+	--color-purple-400: #8662c7;
+	--color-purple-500: #724bb7;
+	--color-purple-600: #653cad;
+	--color-purple-700: #51279b;
+	--color-purple-800: #421987;
+	--color-purple-900: #34126f;
+	--color-purple-950: #240754;
 
 	--color-teal-50: #f0fcf9;
 	--color-teal-100: #c6f7e9;
@@ -108,572 +52,111 @@
 	--color-teal-800: #016457;
 	--color-teal-900: #004440;
 
-	--color-yellow-50: #fffbea;
+	/* Compatibility aliases while leaf routes inherit the new world. */
+	--color-marigold: oklch(0.92 0.04 294);
+	--color-tomato: oklch(0.52 0.18 294);
+	--color-grape: oklch(0.43 0.17 296);
+	--color-pine: oklch(0.62 0.13 166);
+	--color-sky: oklch(0.72 0.11 196);
+	--color-white: #fff;
+	--color-transparent: transparent;
+	--color-red-400: #ef4e4e;
+	--color-red-700: #ab091e;
 	--color-yellow-100: #fff3c4;
 	--color-yellow-200: #fce588;
-	--color-yellow-300: #fadb5f;
-	--color-yellow-400: #f7c948;
-	--color-yellow-500: #f0b429;
-	--color-yellow-600: #de911d;
-	--color-yellow-700: #cb6e17;
-	--color-yellow-800: #b44d12;
 	--color-yellow-900: #8d2b0b;
-
-	--color-vivid-light-blue-50: #e3f8ff;
-	--color-vivid-light-blue-100: #b3ecff;
-	--color-vivid-light-blue-200: #81defd;
-	--color-vivid-light-blue-300: #5ed0fa;
-	--color-vivid-light-blue-400: #40c3f7;
-	--color-vivid-light-blue-500: #2bb0ed;
-	--color-vivid-light-blue-600: #1992d4;
-	--color-vivid-light-blue-700: #127fbf;
-	--color-vivid-light-blue-800: #0b69a3;
-	--color-vivid-light-blue-900: #035388;
-
 	--color-gray-50: #f6f6f6;
 	--color-gray-100: #e7e7e7;
 	--color-gray-200: #d1d1d1;
 	--color-gray-300: #b0b0b0;
-	--color-gray-400: #888888;
+	--color-gray-400: #888;
 	--color-gray-500: #6d6d6d;
 	--color-gray-600: #5d5d5d;
 	--color-gray-700: #4f4f4f;
 	--color-gray-800: #454545;
 	--color-gray-900: #3d3d3d;
-	--color-gray-950: #0c0c0c;
+	--color-vivid-light-blue-100: #b3ecff;
+	--color-vivid-light-blue-700: #127fbf;
+	--color-vivid-light-blue-950: #052f48;
 
-	--color-cool-gray-50: #f5f7fa;
-	--color-cool-gray-100: #e4e7eb;
-	--color-cool-gray-200: #cbd2d9;
-	--color-cool-gray-300: #9aa5b1;
-	--color-cool-gray-400: #7b8794;
-	--color-cool-gray-500: #616e7c;
-	--color-cool-gray-600: #52606d;
-	--color-cool-gray-700: #3e4c59;
-	--color-cool-gray-800: #323f4b;
-	--color-cool-gray-900: #1f2933;
-
-	--color-vivid-pink-50: #ffe3ec;
-	--color-vivid-pink-100: #ffb8d2;
-	--color-vivid-pink-200: #ff8cba;
-	--color-vivid-pink-300: #f364a2;
-	--color-vivid-pink-400: #e8368f;
-	--color-vivid-pink-500: #da127d;
-	--color-vivid-pink-600: #bc0a6f;
-	--color-vivid-pink-700: #a30664;
-	--color-vivid-pink-800: #870557;
-	--color-vivid-pink-900: #620042;
-
-	--color-vivid-yellow-50: #fffbea;
-	--color-vivid-yellow-100: #fff3c4;
-	--color-vivid-yellow-200: #fce588;
-	--color-vivid-yellow-300: #fadb5f;
-	--color-vivid-yellow-400: #f7c948;
-	--color-vivid-yellow-500: #f0b429;
-	--color-vivid-yellow-600: #de911d;
-	--color-vivid-yellow-700: #cb6e17;
-	--color-vivid-yellow-800: #b44d12;
-	--color-vivid-yellow-900: #8d2b0b;
-
-	--color-dark-arsenic: #11181c;
-	--color-dark-surface: #16161f;
-	--color-dark-surface-elevated: #1e1e2a;
-	--color-dark-border: rgba(255, 255, 255, 0.07);
-	--color-dark-border-hover: rgba(134, 98, 199, 0.4);
+	--shadow-soft-sm: 0 8px 24px color-mix(in oklch, var(--color-ink) 8%, transparent);
+	--shadow-soft: 0 18px 52px color-mix(in oklch, var(--color-ink) 12%, transparent);
+	--shadow-hard-sm: var(--shadow-soft-sm);
+	--shadow-hard: var(--shadow-soft);
+	--shadow-hard-lg: 0 28px 74px color-mix(in oklch, var(--color-ink) 16%, transparent);
 }
 
 @layer base {
-	/* Hard-shadow color: dark ink in light mode. Dark mode overrides it
-	   to a deep near-black so shadows read as depth, not a cream halo. */
-	:root {
-		--hard-shadow-color: var(--color-ink);
-	}
-
-	/* Dark mode — warm espresso, not cold OLED black. Cards lift clearly
-	   off the canvas; cream borders define them; near-black shadows add depth. */
 	:root.dark {
-		--color-paper: oklch(0.205 0.024 295);
-		--color-paper-2: oklch(0.16 0.02 295);
-		--color-card: oklch(0.265 0.028 295);
-		--color-ink: oklch(0.94 0.012 300);
-		--color-ink-soft: oklch(0.78 0.016 296);
-		--color-ink-faint: oklch(0.62 0.018 296);
-		--hard-shadow-color: oklch(0.08 0.014 295);
-
-		/* accents brightened for the dark canvas; lavender stays light */
-		--color-marigold: oklch(0.87 0.05 296);
-		--color-tomato: oklch(0.66 0.16 294);
-		--color-grape: oklch(0.62 0.15 296);
-		--color-pine: oklch(0.74 0.13 166);
-		--color-sky: oklch(0.78 0.11 196);
+		--color-paper: oklch(0.165 0.02 294);
+		--color-paper-2: oklch(0.205 0.026 294);
+		--color-card: oklch(0.225 0.026 294);
+		--color-ink: oklch(0.95 0.01 300);
+		--color-ink-soft: oklch(0.77 0.018 294);
+		--color-ink-faint: oklch(0.68 0.018 294);
+		--color-line: oklch(0.34 0.026 294);
+		--color-marigold: oklch(0.28 0.05 294);
+		--color-tomato: oklch(0.7 0.15 294);
+		--color-grape: oklch(0.7 0.14 296);
+		--color-pine: oklch(0.75 0.12 166);
+		--color-sky: oklch(0.78 0.1 196);
 	}
 
-	/* "Always dark" slabs (footer, dark landing sections) pin their own
-	   ink/paper so bg-ink/text-paper don't invert in dark mode. */
-	.slab-dark {
-		--color-ink: oklch(0.16 0.018 295);
-		--color-paper: oklch(0.95 0.012 300);
-		--hard-shadow-color: oklch(0.06 0.012 295);
-	}
-
-	/* A guaranteed-light surface: a white card that floats on a dark slab
-	   (e.g. the pricing calculator on the dark "investment" section). Pins
-	   canvas + ink tokens to LIGHT values regardless of theme or slab, so
-	   bg-card/bg-paper-2 stay light and text-ink/-soft stay dark and legible
-	   in BOTH themes. Without this, slab-dark forces ink dark and the card's
-	   own text vanishes against it in dark mode. */
-	.surface-light {
-		--color-paper: oklch(0.975 0.006 300);
-		--color-paper-2: oklch(0.95 0.012 298);
-		--color-card: oklch(0.996 0.004 300);
-		--color-ink: oklch(0.21 0.03 295);
-		--color-ink-soft: oklch(0.45 0.026 295);
-		--color-ink-faint: oklch(0.62 0.022 295);
-	}
-
-	/* Light accent fills (lavender/green/teal) are ALWAYS light, in both
-	   themes. So anything painted with one becomes a "light island": its
-	   interior canvas + ink tokens are pinned to the LIGHT values regardless
-	   of theme. That keeps nested cards, chips, and body copy consistent and
-	   legible inside an accent section even in dark mode (otherwise bg-paper
-	   chips and text-ink-soft would follow the dark theme and vanish). */
-	.bg-marigold,
-	.bg-pine,
-	.bg-sky {
-		--color-paper: oklch(0.975 0.006 300);
-		--color-paper-2: oklch(0.95 0.012 298);
-		--color-card: oklch(0.996 0.004 300);
-		--color-ink: var(--text-on-light);
-		--color-ink-soft: oklch(0.45 0.026 295);
-		--color-ink-faint: oklch(0.62 0.022 295);
-		color: var(--text-on-light);
-	}
-	/* Dark accent fills (the purples) just need light text on themselves. */
-	.bg-tomato,
-	.bg-grape {
-		--color-ink: var(--text-on-dark);
-		color: var(--text-on-dark);
-	}
-
-	/* Tailwind v4 default border color compatibility */
-	*,
-	::after,
-	::before,
-	::backdrop,
-	::file-selector-button {
-		border-color: var(--color-ink, currentColor);
-	}
-
-	html {
-		scroll-behavior: smooth;
-	}
-
-	body {
-		background-color: var(--color-paper);
-		color: var(--color-ink);
-	}
-
-	::selection {
-		background: var(--color-marigold);
-		color: var(--text-on-light);
-	}
-
-	:focus-visible {
-		outline: 3px solid var(--color-tomato);
-		outline-offset: 2px;
-	}
-
-	/* Headings — Bricolage display, tight, no surprise padding. */
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6 {
-		font-family: var(--font-display);
-		letter-spacing: -0.02em;
-		text-wrap: balance;
-	}
-	h1 {
-		@apply text-4xl leading-tight font-extrabold;
-	}
-	h2 {
-		@apply text-3xl leading-tight font-extrabold;
-	}
-	h3 {
-		@apply text-2xl leading-snug font-bold;
-	}
-	h4 {
-		@apply text-xl leading-snug font-bold;
-	}
-	h5 {
-		@apply text-lg leading-normal font-semibold;
-	}
-	h6 {
-		@apply text-base leading-normal font-semibold;
-	}
-
-	/* Prose colors live UNLAYERED at the end of this file (see note there)
-	   so they beat the typography plugin, which sits in a later @layer. */
-
+	*, ::before, ::after, ::backdrop, ::file-selector-button { border-color: var(--color-line, currentColor); }
+	html { scroll-behavior: smooth; }
+	body { margin: 0; background: var(--color-paper); color: var(--color-ink); text-rendering: optimizeLegibility; }
+	::selection { background: color-mix(in oklch, var(--color-purple-500) 32%, transparent); color: var(--color-ink); }
+	:focus-visible { outline: 2px solid var(--color-teal-500); outline-offset: 4px; }
+	h1,h2,h3,h4,h5,h6 { font-family: var(--font-display); letter-spacing: -0.035em; text-wrap: balance; }
+	h1 { @apply text-5xl leading-[0.95] font-extrabold; }
+	h2 { @apply text-4xl leading-[1] font-extrabold; }
+	h3 { @apply text-2xl leading-tight font-bold; }
+	h4 { @apply text-xl leading-snug font-bold; }
+	a { text-underline-offset: 0.2em; }
 	@media (prefers-reduced-motion: reduce) {
-		*,
-		::before,
-		::after {
-			animation-duration: 0.001ms !important;
-			animation-iteration-count: 1 !important;
-			transition-duration: 0.001ms !important;
-			scroll-behavior: auto !important;
-		}
+		*,::before,::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
 	}
 }
 
-/* ====================================================================
-   Component utilities — the warm-maximalist (dialed-back) system.
-   ==================================================================== */
 @layer components {
-	/* Sticker / pill badge */
-	.sticker {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.4rem;
-		font-family: var(--font-display);
-		font-weight: 700;
-		font-size: 0.84rem;
-		line-height: 1;
-		padding: 0.32rem 0.7rem;
-		border: 2px solid var(--color-ink);
-		border-radius: 999px;
-		background: var(--color-card);
-		color: var(--color-ink);
-		white-space: nowrap;
-	}
-	.sticker-dot {
-		width: 0.55rem;
-		height: 0.55rem;
-		border-radius: 50%;
-		border: 1.5px solid var(--color-ink);
-		flex: none;
-	}
-	/* Colored sticker fills + a hard shadow for the bolder, screenprinted look.
-	   Use on feature/hero badges; the plain .sticker stays calm for dense lists. */
-	.sticker-solid {
-		box-shadow: var(--shadow-hard-sm);
-	}
-	.sticker-marigold {
-		background: var(--color-marigold);
-		color: var(--text-on-light);
-	}
-	.sticker-tomato {
-		background: var(--color-tomato);
-		color: var(--text-on-dark);
-	}
-	.sticker-grape {
-		background: var(--color-grape);
-		color: var(--text-on-dark);
-	}
-	.sticker-pine {
-		background: var(--color-pine);
-		color: var(--text-on-light);
-	}
-	.sticker-sky {
-		background: var(--color-sky);
-		color: var(--text-on-light);
-	}
-
-	/* Button — tactile hard-shadow press */
-	.btn {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.5rem;
-		font-family: var(--font-display);
-		font-weight: 700;
-		font-size: 1rem;
-		line-height: 1.1;
-		text-decoration: none;
-		padding: 0.65rem 1.15rem;
-		border: 2px solid var(--color-ink);
-		border-radius: 10px;
-		box-shadow: var(--shadow-hard);
-		transition:
-			transform 0.12s cubic-bezier(0.2, 0.7, 0.3, 1),
-			box-shadow 0.12s cubic-bezier(0.2, 0.7, 0.3, 1);
-	}
-	.btn:hover {
-		transform: translate(-2px, -2px);
-		box-shadow: 7px 7px 0 var(--hard-shadow-color);
-	}
-	.btn:active {
-		transform: translate(2px, 2px);
-		box-shadow: 0 0 0 var(--hard-shadow-color);
-	}
-	.btn-primary {
-		background: var(--color-tomato);
-		color: var(--text-on-dark);
-	}
-	.btn-ghost {
-		background: var(--color-card);
-		color: var(--color-ink);
-	}
-
-	/* Hard-edged surface card */
-	.panel {
-		background: var(--color-card);
-		border: 2px solid var(--color-ink);
-		border-radius: 14px;
-		box-shadow: var(--shadow-hard-sm);
-	}
-
-	/* Reusable tactile lift for interactive hard-shadow surfaces */
-	.tactile {
-		transition:
-			transform 0.14s cubic-bezier(0.2, 0.7, 0.3, 1),
-			box-shadow 0.14s cubic-bezier(0.2, 0.7, 0.3, 1);
-	}
-	.tactile:hover {
-		transform: translate(-3px, -3px);
-		box-shadow: var(--shadow-hard-lg);
-	}
-	.tactile:active {
-		transform: translate(0, 0);
-		box-shadow: var(--shadow-hard-sm);
-	}
+	.btn { display:inline-flex;align-items:center;justify-content:center;gap:.55rem;min-height:44px;padding:.72rem 1.1rem;border:1px solid var(--color-line);border-radius:.35rem;background:var(--color-card);color:var(--color-ink);font-family:var(--font-sans);font-size:.92rem;font-weight:750;line-height:1;text-decoration:none;transition:transform .18s cubic-bezier(.16,1,.3,1),border-color .18s,background .18s,color .18s; }
+	.btn:hover { transform:translateY(-2px);border-color:var(--color-purple-500); }
+	.btn:active { transform:translateY(0); }
+	.btn-primary { background:var(--color-purple-500);border-color:var(--color-purple-500);color:#fff; }
+	.btn-primary:hover { background:var(--color-purple-600); }
+	.btn-ghost { background:transparent; }
+	.panel { background:var(--color-card);border:1px solid var(--color-line);border-radius:.7rem;box-shadow:var(--shadow-soft-sm); }
+	.tactile { transition:transform .18s cubic-bezier(.16,1,.3,1),border-color .18s,box-shadow .18s; }
+	.tactile:hover { transform:translateY(-3px);border-color:var(--color-purple-500);box-shadow:var(--shadow-soft); }
+	.sticker { display:inline-flex;align-items:center;gap:.45rem;border:1px solid var(--color-line);border-radius:999px;padding:.34rem .7rem;background:var(--color-card);color:var(--color-ink);font-size:.78rem;font-weight:700;line-height:1; }
+	.sticker-dot { width:.45rem;height:.45rem;border-radius:50%;background:var(--color-teal-500); }
+	.sticker-solid { box-shadow:none; }
+	.sticker-marigold,.sticker-pine,.sticker-sky { background:var(--color-teal-100);color:#163d35; }
+	.sticker-tomato,.sticker-grape { background:var(--color-purple-500);color:#fff; }
+	.nav-underline { position:relative; }
+	.nav-underline::after { content:'';position:absolute;left:0;right:0;bottom:-.35rem;height:1px;background:var(--color-teal-500);transform:scaleX(0);transform-origin:left;transition:transform .2s cubic-bezier(.16,1,.3,1); }
+	.nav-underline:hover::after,.nav-underline.active::after { transform:scaleX(1); }
+	.gradient-text { background:none;-webkit-text-fill-color:currentColor;color:var(--color-ink); }
+	.gradient-border { border:1px solid var(--color-line); }
+	.gradient-border::before { content:none; }
+	.hover-glow { transition:transform .18s; }
+	.hover-glow:hover { transform:translateY(-2px); }
+	.signal-rule { height:1px;background:linear-gradient(90deg,var(--color-teal-500),var(--color-purple-500),transparent); }
+	.evidence-label { font-family:var(--font-mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--color-ink-faint); }
 }
 
-@layer base {
-	/* ----------------------------------------------------------------
-	   Legacy effect classes redefined to the new language so pages
-	   still using them shed the old gradient/glow/glass tells for free.
-	   ---------------------------------------------------------------- */
-	.gradient-text {
-		background: none;
-		-webkit-text-fill-color: currentColor;
-		color: var(--color-ink);
-	}
+@keyframes trace-in { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+.trace-path { stroke-dasharray:1;stroke-dashoffset:1;animation:trace-in 1.1s cubic-bezier(.16,1,.3,1) .2s forwards; }
 
-	.gradient-border {
-		border: 2px solid var(--color-ink);
-		box-shadow: var(--shadow-hard);
-	}
-	.gradient-border::before {
-		content: none;
-	}
+::view-transition-old(root) { animation:.16s ease-out both fade-out; }
+::view-transition-new(root) { animation:.2s ease-out both fade-in; }
+@keyframes fade-out { to { opacity:0; } }
+@keyframes fade-in { from { opacity:0; } }
 
-	.hover-glow {
-		transition:
-			transform 0.14s cubic-bezier(0.2, 0.7, 0.3, 1),
-			box-shadow 0.14s cubic-bezier(0.2, 0.7, 0.3, 1);
-	}
-	.hover-glow:hover {
-		transform: translate(-2px, -2px);
-		box-shadow: var(--shadow-hard);
-	}
-
-	/* Sliding nav underline — tomato instead of gradient */
-	.nav-underline {
-		position: relative;
-	}
-	.nav-underline::after {
-		content: '';
-		position: absolute;
-		bottom: -2px;
-		left: 0;
-		width: 100%;
-		height: 2px;
-		background: var(--color-tomato);
-		transform: scaleX(0);
-		transform-origin: left;
-		transition: transform 0.18s cubic-bezier(0.2, 0.7, 0.3, 1);
-	}
-	.nav-underline:hover::after,
-	.nav-underline.active::after {
-		transform: scaleX(1);
-	}
-
-	/* Entrance + scroll reveals (kept) */
-	@keyframes fade-up {
-		from {
-			opacity: 0;
-			transform: translateY(18px);
-		}
-		to {
-			opacity: 1;
-			transform: translateY(0);
-		}
-	}
-	@keyframes reveal {
-		from {
-			opacity: 0;
-			transform: translateY(24px);
-		}
-		to {
-			opacity: 1;
-			transform: translateY(0);
-		}
-	}
-	.fade-up-grid > * {
-		animation: fade-up 0.45s cubic-bezier(0.2, 0.7, 0.3, 1) both;
-	}
-	.fade-up-grid > *:nth-child(1) { animation-delay: 0ms; }
-	.fade-up-grid > *:nth-child(2) { animation-delay: 70ms; }
-	.fade-up-grid > *:nth-child(3) { animation-delay: 140ms; }
-	.fade-up-grid > *:nth-child(4) { animation-delay: 210ms; }
-	.fade-up-grid > *:nth-child(5) { animation-delay: 280ms; }
-	.fade-up-grid > *:nth-child(6) { animation-delay: 350ms; }
-	.fade-up-grid > *:nth-child(7) { animation-delay: 420ms; }
-	.fade-up-grid > *:nth-child(8) { animation-delay: 490ms; }
-	.fade-up-grid > *:nth-child(9) { animation-delay: 560ms; }
-
-	@supports (animation-timeline: view()) {
-		.scroll-reveal {
-			animation: reveal linear both;
-			animation-timeline: view();
-			animation-range: entry 0% entry 26%;
-		}
-	}
-
-	/* View transitions */
-	::view-transition-old(root) {
-		animation: 0.2s ease-out both fade-out;
-	}
-	::view-transition-new(root) {
-		animation: 0.2s ease-out both fade-in;
-	}
-	@keyframes fade-out {
-		to {
-			opacity: 0;
-			transform: translateY(-8px);
-		}
-	}
-	@keyframes fade-in {
-		from {
-			opacity: 0;
-			transform: translateY(8px);
-		}
-	}
-	::view-transition-group(post-title) {
-		animation-duration: 0.3s;
-		animation-timing-function: cubic-bezier(0.2, 0.7, 0.3, 1);
-	}
-}
-
-/* ====================================================================
-   Prose (blog posts / mdx) — UNLAYERED on purpose.
-   The @tailwindcss/typography plugin registers its .prose styles in a
-   later cascade layer, so layered overrides (even higher-specificity
-   ones) lose. Unlayered rules beat all layered styles, so these win and
-   the body text follows our tokens (light in dark mode, dark in light).
-   ==================================================================== */
-.prose {
-	--tw-prose-body: var(--color-ink-soft);
-	--tw-prose-headings: var(--color-ink);
-	--tw-prose-links: var(--color-tomato);
-	--tw-prose-bold: var(--color-ink);
-	--tw-prose-counters: var(--color-ink-soft);
-	--tw-prose-bullets: var(--color-tomato);
-	--tw-prose-quotes: var(--color-ink);
-	--tw-prose-quote-borders: var(--color-ink);
-	--tw-prose-captions: var(--color-ink-faint);
-	--tw-prose-code: var(--color-ink);
-	--tw-prose-hr: color-mix(in oklch, var(--color-ink) 20%, transparent);
-	--tw-prose-th-borders: var(--color-ink);
-	--tw-prose-td-borders: color-mix(in oklch, var(--color-ink) 20%, transparent);
-	color: var(--color-ink-soft);
-}
-.prose :where(h1, h2, h3, h4, h5, h6) {
-	color: var(--color-ink);
-}
-.prose :where(strong) {
-	color: var(--color-ink);
-}
-.prose :where(a):not(:where([class~='not-prose'] *)) {
-	color: var(--color-tomato);
-	font-weight: 700;
-	text-decoration-thickness: 2px;
-	text-underline-offset: 2px;
-	text-decoration-color: var(--color-marigold);
-}
-.prose :where(a):not(:where([class~='not-prose'] *)):hover {
-	text-decoration-color: var(--color-tomato);
-}
-.prose :where(li)::marker {
-	color: var(--color-tomato);
-}
-.prose :where(code):not(:where([class~='not-prose'] *)) {
-	background: var(--color-paper-2);
-	color: var(--color-ink);
-	border: 1px solid color-mix(in oklch, var(--color-ink) 24%, transparent);
-	border-radius: 5px;
-	padding: 0.1em 0.35em;
-	font-weight: 500;
-}
-.prose :where(code):not(:where([class~='not-prose'] *))::before,
-.prose :where(code):not(:where([class~='not-prose'] *))::after {
-	content: none;
-}
-.prose :where(blockquote) {
-	border-inline-start-width: 0;
-	border: 2px solid var(--color-ink);
-	border-radius: 12px;
-	background: var(--color-marigold);
-	color: var(--text-on-light);
-	padding: 0.6rem 1.1rem;
-	font-style: normal;
-	box-shadow: var(--shadow-hard-sm);
-}
-.prose :where(blockquote) :where(p, strong) {
-	color: var(--text-on-light);
-}
-
-/* ====================================================================
-   Accent switcher — visitors pick the brand accent hue (diff.dad style).
-   data-accent on <html> rebinds the purple pair (tomato + grape) to the
-   chosen hue. UNLAYERED so it beats @theme's defaults; the .dark variant
-   carries extra specificity so it wins in dark mode. "grape" is the
-   default brand purple and needs no override.
-   ==================================================================== */
-:root[data-accent='iris'] {
-	--color-tomato: oklch(0.52 0.18 278);
-	--color-grape: oklch(0.43 0.16 280);
-	--color-marigold: oklch(0.9 0.05 280);
-}
-:root.dark[data-accent='iris'] {
-	--color-tomato: oklch(0.66 0.16 278);
-	--color-grape: oklch(0.62 0.15 280);
-}
-:root[data-accent='cobalt'] {
-	--color-tomato: oklch(0.52 0.17 256);
-	--color-grape: oklch(0.44 0.15 258);
-	--color-marigold: oklch(0.9 0.048 258);
-}
-:root.dark[data-accent='cobalt'] {
-	--color-tomato: oklch(0.66 0.15 256);
-	--color-grape: oklch(0.62 0.14 258);
-}
-:root[data-accent='teal'] {
-	--color-tomato: oklch(0.5 0.12 195);
-	--color-grape: oklch(0.42 0.1 197);
-	--color-marigold: oklch(0.93 0.04 195);
-}
-:root.dark[data-accent='teal'] {
-	--color-tomato: oklch(0.7 0.12 195);
-	--color-grape: oklch(0.64 0.11 197);
-}
-:root[data-accent='forest'] {
-	--color-tomato: oklch(0.5 0.13 150);
-	--color-grape: oklch(0.42 0.12 152);
-	--color-marigold: oklch(0.93 0.04 150);
-}
-:root.dark[data-accent='forest'] {
-	--color-tomato: oklch(0.68 0.15 150);
-	--color-grape: oklch(0.62 0.14 152);
-}
-:root[data-accent='magenta'] {
-	--color-tomato: oklch(0.54 0.2 348);
-	--color-grape: oklch(0.45 0.19 350);
-	--color-marigold: oklch(0.91 0.05 348);
-}
-:root.dark[data-accent='magenta'] {
-	--color-tomato: oklch(0.68 0.2 348);
-	--color-grape: oklch(0.62 0.19 350);
-}
+/* Typography plugin overrides must remain unlayered. */
+.prose { --tw-prose-body:var(--color-ink-soft);--tw-prose-headings:var(--color-ink);--tw-prose-links:var(--color-purple-500);--tw-prose-bold:var(--color-ink);--tw-prose-counters:var(--color-ink-soft);--tw-prose-bullets:var(--color-teal-500);--tw-prose-quotes:var(--color-ink);--tw-prose-quote-borders:var(--color-purple-500);--tw-prose-captions:var(--color-ink-faint);--tw-prose-code:var(--color-ink);--tw-prose-hr:var(--color-line);--tw-prose-th-borders:var(--color-line);--tw-prose-td-borders:var(--color-line);color:var(--color-ink-soft);max-width:72ch; }
+.prose :where(h1,h2,h3,h4,h5,h6,strong) { color:var(--color-ink); }
+.prose :where(a) { color:var(--color-purple-500);font-weight:700;text-decoration-color:color-mix(in oklch,var(--color-teal-500) 70%,transparent);text-decoration-thickness:1px; }
+.prose :where(code):not(:where([class~='not-prose'] *)) { background:var(--color-paper-2);color:var(--color-ink);border:1px solid var(--color-line);border-radius:.25rem;padding:.12em .34em;font-weight:500; }
+.prose :where(code):not(:where([class~='not-prose'] *))::before,.prose :where(code):not(:where([class~='not-prose'] *))::after { content:none; }
+.prose :where(blockquote) { border-left:1px solid var(--color-purple-500);color:var(--color-ink);font-style:normal;padding-left:1.3rem; }
