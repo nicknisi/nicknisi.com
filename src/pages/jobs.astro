@@ -1,18 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
-import PageLayout from '@/layouts/Page.astro';
-
-const jobs = await getCollection('jobs');
+import {getCollection} from 'astro:content';import PageLayout from '@/layouts/Page.astro';
+const jobs=await getCollection('jobs');
 ---
-
-<PageLayout title="Jobs">
-	<div class="my-8 grid gap-4 sm:grid-cols-2">
-		{
-			jobs.map(job => (
-				<div class="panel tactile p-5">
-					<p class="font-display text-lg font-bold text-ink">{job.data.position}</p>
-				</div>
-			))
-		}
-	</div>
-</PageLayout>
+<PageLayout title="Jobs"><p class="mb-10 max-w-[56ch] text-lg text-ink-soft">Open roles from the archive.</p><div class="border-t border-line">{jobs.map(job=><article class="grid gap-2 border-b border-line py-5 sm:grid-cols-[1fr_auto] sm:items-baseline"><h2 class="text-2xl">{job.data.position}</h2><span class="font-mono text-xs text-ink-faint">{job.data.name}</span></article>)}</div></PageLayout>

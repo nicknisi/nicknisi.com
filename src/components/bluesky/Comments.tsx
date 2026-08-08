@@ -22,12 +22,12 @@ function Comment({ comment }: CommentProps) {
 					rel="noreferrer noopener"
 				>
 					{author.avatar ? (
-						<img src={comment.post.author.avatar} alt="avatar" className="size-8 shrink-0 rounded-full bg-gray-300" />
+						<img src={comment.post.author.avatar} alt="avatar" className="size-8 shrink-0 rounded-full bg-paper-2" />
 					) : (
-						<div className="h-4 w-4 shrink-0 rounded-full bg-gray-300" />
+						<div className="h-4 w-4 shrink-0 rounded-full bg-paper-2" />
 					)}
 					<p className="line-clamp-1 text-lg font-bold">
-						{author.displayName ?? author.handle} <span className="text-gray-500">@{author.handle}</span>
+						{author.displayName ?? author.handle} <span className="text-ink-faint">@{author.handle}</span>
 					</p>
 				</a>
 				<a
@@ -40,7 +40,7 @@ function Comment({ comment }: CommentProps) {
 				</a>
 			</div>
 			{comment.replies && comment.replies.length > 0 && (
-				<div className="border-l-2 border-gray-600 pl-2">
+				<div className="border-l-2 border-line pl-2">
 					{comment.replies.sort(sortByLikes).map(reply => {
 						if (!AppBskyFeedDefs.isThreadViewPost(reply)) return null;
 						return <Comment key={reply.post.uri} comment={reply} />;

@@ -1,57 +1,16 @@
 ---
-import Head from '@/components/Head.astro';
+import BaseLayout from '@/layouts/Base.astro';
 import { Image } from 'astro:assets';
 import metadata from '@/data/metadata.json';
 import profileImage from '@/assets/profile.jpg';
 import LinkButton from '@/components/LinkButton.astro';
-import '../styles/base.css';
 ---
-
-<html lang="en">
-	<Head title="Social Links | Nick Nisi" description="A collection of social links for Nick Nisi" />
-	<body class="min-h-screen bg-paper font-sans font-normal text-ink">
-		<div class="mx-auto px-4 py-12 sm:max-w-xl md:max-w-2xl">
-			<main class="container mx-auto flex flex-col gap-8">
-				<!-- Profile -->
-				<div class="flex flex-col items-center justify-center gap-5 text-center">
-					<a href="/" class="no-underline">
-						<Image
-							alt="Nick Nisi"
-							src={profileImage}
-							width={256}
-							height={256}
-							class="size-36 -rotate-2 rounded-full border-2 border-ink bg-card object-cover shadow-hard-lg"
-						/>
-					</a>
-					<h1 class="font-display text-5xl font-extrabold tracking-tight">Studio Links</h1>
-					<section class="max-w-[48ch] space-y-3 text-ink-soft">
-						<p class="font-display text-lg font-bold text-ink">Thank you for being a guest on our podcast!</p>
-
-						<p>
-							To join your scheduled recording session, simply click on the appropriate studio link below. The virtual
-							studio will open in your browser, so no additional software is required.
-						</p>
-					</section>
-				</div>
-
-				<!-- Links -->
-				<div class="flex w-full flex-col items-center space-y-4">
-					{metadata.podcast.map(({ name, studio, icon }) => <LinkButton title={name} url={studio} icon={icon} />)}
-				</div>
-
-				<section class="text-center text-ink-soft">
-					<p>{`If you encounter any technical difficulties, please contact me at ${metadata.author.email}`}.</p>
-				</section>
-			</main>
-		</div>
-	</body>
-</html>
-
-<script>
-	const links = document.querySelectorAll<HTMLAnchorElement>('a[data-type="social-link"]');
-	links.forEach(link => {
-		link.addEventListener('click', () => {
-			fathom.trackEvent(`social: ${link.href}`);
-		});
-	});
-</script>
+<BaseLayout title="Studio links" description="Recording links for Nick Nisi podcast guests." hideFooter>
+	<section class="mx-auto max-w-2xl py-16 text-center md:py-24">
+		<Image alt="Nick Nisi" src={profileImage} width={256} height={256} class="mx-auto size-36 rounded-lg border border-line object-cover"/>
+		<h1 class="mt-7 text-6xl">Studio links</h1>
+		<p class="mx-auto mt-5 max-w-[46ch] text-lg text-ink-soft">Thank you for being a guest. Choose the studio link from your invitation; it opens directly in your browser.</p>
+		<div class="mt-10 space-y-2">{metadata.podcast.map(({name,studio,icon})=><LinkButton title={name} url={studio} icon={icon}/>)}</div>
+		<p class="mt-10 text-sm text-ink-faint">Technical trouble? Email {metadata.author.email}.</p>
+	</section>
+</BaseLayout>

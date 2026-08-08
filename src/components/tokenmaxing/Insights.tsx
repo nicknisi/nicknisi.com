@@ -39,18 +39,18 @@ const weekLabel = (weekEnding: string) =>
 	new Date(weekEnding + 'T12:00:00Z').toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
 
 const TOOL_META: Record<ToolId, { label: string; colorClass: string }> = {
-	'claude-code': { label: 'Claude Code', colorClass: 'text-orange-500 dark:text-orange-400' },
-	codex: { label: 'Codex', colorClass: 'text-emerald-500 dark:text-emerald-400' },
-	pi: { label: 'Pi', colorClass: 'text-violet-500 dark:text-violet-400' },
-	opencode: { label: 'opencode', colorClass: 'text-sky-500 dark:text-sky-400' },
+	'claude-code': { label: 'Claude Code', colorClass: 'text-purple-500 dark:text-purple-300' },
+	codex: { label: 'Codex', colorClass: 'text-teal-600 dark:text-teal-300' },
+	pi: { label: 'Pi', colorClass: 'text-ink-soft' },
+	opencode: { label: 'opencode', colorClass: 'text-purple-400 dark:text-purple-200' },
 };
 const WEEKDAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
 function ChartCard({ title, subtitle, children }: { title: string; subtitle?: string; children: React.ReactNode }) {
 	return (
-		<div className="dark:border-dark-border dark:bg-dark-surface/40 rounded-lg border border-gray-200 p-4">
+		<div className="rounded-md border border-line bg-card p-4">
 			<h3 className="text-sm font-semibold">{title}</h3>
-			{subtitle && <p className="mb-1 text-xs text-gray-500 dark:text-gray-400">{subtitle}</p>}
+			{subtitle && <p className="mb-1 text-xs text-ink-faint">{subtitle}</p>}
 			<div className="mt-2">{children}</div>
 		</div>
 	);
@@ -59,8 +59,8 @@ function ChartCard({ title, subtitle, children }: { title: string; subtitle?: st
 function SectionHeading({ title, subtitle }: { title: string; subtitle?: string }) {
 	return (
 		<div>
-			<h2 className="font-serif text-2xl font-semibold">{title}</h2>
-			{subtitle && <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">{subtitle}</p>}
+			<h2 className="font-display text-3xl font-bold">{title}</h2>
+			{subtitle && <p className="mt-1 text-sm text-ink-faint">{subtitle}</p>}
 		</div>
 	);
 }
@@ -107,16 +107,16 @@ export default function Insights({ insights, metric }: { insights: InsightsData;
 				<SectionHeading title="Trends over time" subtitle="Weekly activity across the full history." />
 				<div className="grid gap-3 md:grid-cols-2">
 					<ChartCard title={isCost ? 'Cost per week' : 'Tokens per week'}>
-						<AreaChart points={tokensOrCost} format={metricFmt} colorClass="text-blue-500 dark:text-blue-400" />
+						<AreaChart points={tokensOrCost} format={metricFmt} colorClass="text-purple-500 dark:text-purple-300" />
 					</ChartCard>
 					<ChartCard title="PRs merged per week" subtitle={`${fmtInt.format(totalPrs)} total`}>
-						<AreaChart points={prsPts} format={fmtInt.format} colorClass="text-amber-500 dark:text-amber-400" />
+						<AreaChart points={prsPts} format={fmtInt.format} colorClass="text-teal-600 dark:text-teal-300" />
 					</ChartCard>
 					<ChartCard title="Sessions per week">
-						<AreaChart points={sessionsPts} format={fmtInt.format} colorClass="text-indigo-500 dark:text-indigo-400" />
+						<AreaChart points={sessionsPts} format={fmtInt.format} colorClass="text-purple-400 dark:text-purple-200" />
 					</ChartCard>
 					<ChartCard title="Messages per week">
-						<AreaChart points={messagesPts} format={fmtInt.format} colorClass="text-teal-500 dark:text-teal-400" />
+						<AreaChart points={messagesPts} format={fmtInt.format} colorClass="text-teal-600 dark:text-teal-300" />
 					</ChartCard>
 				</div>
 			</section>
@@ -126,7 +126,7 @@ export default function Insights({ insights, metric }: { insights: InsightsData;
 					title="Tool mix over time"
 					subtitle={isCost ? 'Cost split per week' : 'Tokens split per week'}
 				/>
-				<div className="dark:border-dark-border dark:bg-dark-surface/40 rounded-lg border border-gray-200 p-4">
+				<div className="rounded-md border border-line bg-card p-4">
 					<StackedAreaChart labels={weekLabels} series={toolSeries} format={metricFmt} />
 				</div>
 			</section>
@@ -140,11 +140,11 @@ export default function Insights({ insights, metric }: { insights: InsightsData;
 							format={fmtInt.format}
 							highlightIndex={peakHour}
 							maxLabels={8}
-							colorClass="text-blue-500 dark:text-blue-400"
+							colorClass="text-purple-500 dark:text-purple-300"
 						/>
 					</ChartCard>
 					<ChartCard title="By day of week">
-						<BarChart points={weekdayPts} format={fmtInt.format} colorClass="text-blue-500 dark:text-blue-400" />
+						<BarChart points={weekdayPts} format={fmtInt.format} colorClass="text-purple-500 dark:text-purple-300" />
 					</ChartCard>
 				</div>
 			</section>
@@ -152,20 +152,20 @@ export default function Insights({ insights, metric }: { insights: InsightsData;
 			<section className="space-y-3">
 				<SectionHeading title="Lines changed" subtitle="Across merged public PRs." />
 				<div className="grid grid-cols-2 gap-3 sm:max-w-sm">
-					<div className="dark:border-dark-border dark:bg-dark-surface/40 rounded-lg border border-gray-200 px-3 py-3">
-						<div className="text-[11px] tracking-wide text-gray-500 uppercase dark:text-gray-400">Additions</div>
+					<div className="rounded-md border border-line bg-card px-3 py-3">
+						<div className="evidence-label">Additions</div>
 						<div className="mt-0.5 font-mono text-xl font-semibold text-emerald-600 dark:text-emerald-400">
 							+{fmtInt.format(totalAdds)}
 						</div>
 					</div>
-					<div className="dark:border-dark-border dark:bg-dark-surface/40 rounded-lg border border-gray-200 px-3 py-3">
-						<div className="text-[11px] tracking-wide text-gray-500 uppercase dark:text-gray-400">Deletions</div>
+					<div className="rounded-md border border-line bg-card px-3 py-3">
+						<div className="evidence-label">Deletions</div>
 						<div className="mt-0.5 font-mono text-xl font-semibold text-rose-600 dark:text-rose-400">
 							−{fmtInt.format(totalDels)}
 						</div>
 					</div>
 				</div>
-				<div className="dark:border-dark-border dark:bg-dark-surface/40 rounded-lg border border-gray-200 p-4">
+				<div className="rounded-md border border-line bg-card p-4">
 					<DivergingBars weeks={divergingWeeks} format={fmtCompact} />
 				</div>
 			</section>

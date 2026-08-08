@@ -55,7 +55,7 @@ const socials = Object.entries(metadata.social).filter(([, { hidden }]) => !hidd
 
 	<!-- Story -->
 	<section class="mx-auto max-w-4xl px-6 pb-14">
-		<div class="max-w-[60ch] space-y-4 text-lg leading-relaxed text-ink-soft [&_a:hover]:decoration-tomato [&_a]:font-bold [&_a]:text-ink [&_a]:underline [&_a]:decoration-marigold [&_a]:decoration-2 [&_a]:underline-offset-4">
+		<div class="max-w-[60ch] space-y-4 text-lg leading-relaxed text-ink-soft [&_a:hover]:decoration-purple-500 [&_a]:font-bold [&_a]:text-ink [&_a]:underline [&_a]:decoration-teal-500 [&_a]:decoration-1 [&_a]:underline-offset-4">
 			<p>
 				Hi! I'm Nick Nisi, dad of two, husband, and an engineering manager on the DX / AI team at <a href="https://workos.com">WorkOS</a>. I build internal harnesses and developer systems that help teams put AI to work safely and repeatably.
 			</p>
@@ -87,7 +87,7 @@ const socials = Object.entries(metadata.social).filter(([, { hidden }]) => !hidd
 	<section class="mx-auto max-w-4xl px-6 pb-14">
 		<div class="mb-7 flex items-baseline gap-4">
 			<h2 class="text-3xl font-extrabold md:text-4xl">Speaking</h2>
-			<a href="/speaking/all" class="ml-auto font-display font-bold text-ink-soft decoration-tomato decoration-2 underline-offset-4 hover:text-ink hover:underline">
+			<a href="/speaking/all" class="ml-auto font-display font-bold text-ink-soft decoration-teal-500 decoration-1 underline-offset-4 hover:text-ink hover:underline">
 				all talks →
 			</a>
 		</div>
@@ -107,10 +107,7 @@ const socials = Object.entries(metadata.social).filter(([, { hidden }]) => !hidd
 
 		<div class="mt-7 grid gap-6 md:grid-cols-2">
 			<div>
-				<h3 class="mb-3 flex items-center gap-2 font-mono text-xs tracking-wide text-ink-soft uppercase">
-					<span class="inline-block h-2.5 w-2.5 rounded-full border-[1.5px] border-ink bg-marigold"></span>
-					First person
-				</h3>
+				<h3 class="mb-3 font-mono text-xs tracking-wide text-ink-soft uppercase">First person</h3>
 				<CopyableContent padding border>
 					<p>
 						Hey, I'm Nick! I'm a staff engineer and engineering manager on the DX / AI team at <a href="https://workos.com">WorkOS</a>. I build internal harnesses, tools, and workflows that help teams work effectively with AI, then teach those practices through hands-on workshops, talks, writing, and a weekly stream.
@@ -122,10 +119,7 @@ const socials = Object.entries(metadata.social).filter(([, { hidden }]) => !hidd
 			</div>
 
 			<div>
-				<h3 class="mb-3 flex items-center gap-2 font-mono text-xs tracking-wide text-ink-soft uppercase">
-					<span class="inline-block h-2.5 w-2.5 rounded-full border-[1.5px] border-ink bg-sky"></span>
-					Third person
-				</h3>
+				<h3 class="mb-3 font-mono text-xs tracking-wide text-ink-soft uppercase">Third person</h3>
 				<CopyableContent padding border>
 					<p>
 						Nick Nisi is a staff engineer and engineering manager on the DX / AI team at <a href="https://workos.com">WorkOS</a>, where he builds internal harnesses and developer systems for AI-native work. He teaches these practices through hands-on workshops, technical talks, writing, and a weekly stream. A long-time TypeScript advocate and community builder, Nick has organized NEJS Conf and TypeScript Conf, emcee'd more than a dozen conferences, and previously co-hosted the JS Party podcast.
@@ -145,7 +139,7 @@ const socials = Object.entries(metadata.social).filter(([, { hidden }]) => !hidd
 						href={url}
 						target="_blank"
 						rel="me noopener"
-						class="tactile inline-flex items-center gap-2.5 rounded-full border-2 border-ink bg-card px-4 py-2 font-display font-bold text-ink no-underline shadow-hard-sm"
+						class="inline-flex min-h-11 items-center gap-2.5 rounded-md border border-line bg-card px-4 py-2 font-bold text-ink no-underline transition-colors hover:border-purple-500"
 					>
 						<Icon name={`simple-icons:${name}`} class="h-5 w-5" />
 						<span class="capitalize">{name}</span>

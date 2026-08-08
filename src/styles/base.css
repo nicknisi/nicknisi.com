@@ -1,3 +1,7 @@
+@import '@fontsource/atkinson-hyperlegible';
+@import '@fontsource/atkinson-hyperlegible/700.css';
+@import '@fontsource-variable/bricolage-grotesque';
+@import '@fontsource-variable/jetbrains-mono';
 @import 'tailwindcss';
 @custom-variant dark (&:where(.dark, .dark *));
 @plugin '@tailwindcss/typography';
@@ -52,12 +56,6 @@
 	--color-teal-800: #016457;
 	--color-teal-900: #004440;
 
-	/* Compatibility aliases while leaf routes inherit the new world. */
-	--color-marigold: oklch(0.92 0.04 294);
-	--color-tomato: oklch(0.52 0.18 294);
-	--color-grape: oklch(0.43 0.17 296);
-	--color-pine: oklch(0.62 0.13 166);
-	--color-sky: oklch(0.72 0.11 196);
 	--color-white: #fff;
 	--color-transparent: transparent;
 	--color-red-400: #ef4e4e;
@@ -81,9 +79,6 @@
 
 	--shadow-soft-sm: 0 8px 24px color-mix(in oklch, var(--color-ink) 8%, transparent);
 	--shadow-soft: 0 18px 52px color-mix(in oklch, var(--color-ink) 12%, transparent);
-	--shadow-hard-sm: var(--shadow-soft-sm);
-	--shadow-hard: var(--shadow-soft);
-	--shadow-hard-lg: 0 28px 74px color-mix(in oklch, var(--color-ink) 16%, transparent);
 }
 
 @layer base {
@@ -95,11 +90,6 @@
 		--color-ink-soft: oklch(0.77 0.018 294);
 		--color-ink-faint: oklch(0.68 0.018 294);
 		--color-line: oklch(0.34 0.026 294);
-		--color-marigold: oklch(0.28 0.05 294);
-		--color-tomato: oklch(0.7 0.15 294);
-		--color-grape: oklch(0.7 0.14 296);
-		--color-pine: oklch(0.75 0.12 166);
-		--color-sky: oklch(0.78 0.1 196);
 	}
 
 	*, ::before, ::after, ::backdrop, ::file-selector-button { border-color: var(--color-line, currentColor); }
@@ -107,7 +97,7 @@
 	body { margin: 0; background: var(--color-paper); color: var(--color-ink); text-rendering: optimizeLegibility; }
 	::selection { background: color-mix(in oklch, var(--color-purple-500) 32%, transparent); color: var(--color-ink); }
 	:focus-visible { outline: 2px solid var(--color-teal-500); outline-offset: 4px; }
-	h1,h2,h3,h4,h5,h6 { font-family: var(--font-display); letter-spacing: -0.035em; text-wrap: balance; }
+	h1,h2,h3,h4,h5,h6 { font-family: var(--font-display); letter-spacing: -0.035em; text-wrap: balance; overflow-wrap: anywhere; }
 	h1 { @apply text-5xl leading-[0.95] font-extrabold; }
 	h2 { @apply text-4xl leading-[1] font-extrabold; }
 	h3 { @apply text-2xl leading-tight font-bold; }
@@ -128,8 +118,6 @@
 	.panel { background:var(--color-card);border:1px solid var(--color-line);border-radius:.7rem;box-shadow:var(--shadow-soft-sm); }
 	.tactile { transition:transform .18s cubic-bezier(.16,1,.3,1),border-color .18s,box-shadow .18s; }
 	.tactile:hover { transform:translateY(-3px);border-color:var(--color-purple-500);box-shadow:var(--shadow-soft); }
-	.sticker { display:inline-flex;align-items:center;gap:.45rem;border:1px solid var(--color-line);border-radius:999px;padding:.34rem .7rem;background:var(--color-card);color:var(--color-ink);font-size:.78rem;font-weight:700;line-height:1; }
-	.sticker-dot { width:.45rem;height:.45rem;border-radius:50%;background:var(--color-teal-500); }
 	.nav-underline { position:relative; }
 	.nav-underline::after { content:'';position:absolute;left:0;right:0;bottom:-.35rem;height:1px;background:var(--color-teal-500);transform:scaleX(0);transform-origin:left;transition:transform .2s cubic-bezier(.16,1,.3,1); }
 	.nav-underline:hover::after,.nav-underline.active::after { transform:scaleX(1); }
@@ -148,7 +136,8 @@
 /* Typography plugin overrides must remain unlayered. */
 .prose { --tw-prose-body:var(--color-ink-soft);--tw-prose-headings:var(--color-ink);--tw-prose-links:var(--color-purple-500);--tw-prose-bold:var(--color-ink);--tw-prose-counters:var(--color-ink-soft);--tw-prose-bullets:var(--color-teal-500);--tw-prose-quotes:var(--color-ink);--tw-prose-quote-borders:var(--color-purple-500);--tw-prose-captions:var(--color-ink-faint);--tw-prose-code:var(--color-ink);--tw-prose-hr:var(--color-line);--tw-prose-th-borders:var(--color-line);--tw-prose-td-borders:var(--color-line);color:var(--color-ink-soft);max-width:72ch; }
 .prose :where(h1,h2,h3,h4,h5,h6,strong) { color:var(--color-ink); }
-.prose :where(a) { color:var(--color-purple-500);font-weight:700;text-decoration-color:color-mix(in oklch,var(--color-teal-500) 70%,transparent);text-decoration-thickness:1px; }
+.prose :where(a):not(:where([class~='not-prose'] *)) { color:var(--color-purple-600);font-weight:700;text-decoration-color:color-mix(in oklch,var(--color-teal-500) 70%,transparent);text-decoration-thickness:1px; }
+.dark .prose :where(a):not(:where([class~='not-prose'] *)) { color:var(--color-purple-300); }
 .prose :where(code):not(:where([class~='not-prose'] *)) { background:var(--color-paper-2);color:var(--color-ink);border:1px solid var(--color-line);border-radius:.25rem;padding:.12em .34em;font-weight:500; }
 .prose :where(code):not(:where([class~='not-prose'] *))::before,.prose :where(code):not(:where([class~='not-prose'] *))::after { content:none; }
 .prose :where(blockquote) { border-left:1px solid var(--color-purple-500);color:var(--color-ink);font-style:normal;padding-left:1.3rem; }

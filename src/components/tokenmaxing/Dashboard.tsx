@@ -107,9 +107,9 @@ function StatsGrid({ tiles }: { tiles: Array<{ label: string; value: string }> }
 			{tiles.map(t => (
 				<div
 					key={t.label}
-					className="dark:border-dark-border dark:bg-dark-surface/60 rounded-lg border border-gray-200 bg-white/60 px-3 py-3 sm:p-4"
+					className="rounded-md border border-line bg-card px-3 py-3 sm:p-4"
 				>
-					<div className="text-[11px] tracking-wide text-gray-500 uppercase dark:text-gray-400">{t.label}</div>
+					<div className="evidence-label">{t.label}</div>
 					<div className="mt-0.5 font-mono text-lg font-semibold sm:mt-1 sm:text-2xl">{t.value}</div>
 				</div>
 			))}
@@ -119,7 +119,7 @@ function StatsGrid({ tiles }: { tiles: Array<{ label: string; value: string }> }
 
 function Heatmap({ daily, metric }: { daily: DailyEntry[]; metric: Metric }) {
 	if (daily.length === 0) {
-		return <div className="py-8 text-center text-gray-500 dark:text-gray-400">No activity in this range.</div>;
+		return <div className="py-8 text-center text-ink-soft">No activity in this range.</div>;
 	}
 	const start = new Date(daily[0]!.date + 'T00:00:00Z');
 	const end = new Date(daily[daily.length - 1]!.date + 'T00:00:00Z');
@@ -135,11 +135,11 @@ function Heatmap({ daily, metric }: { daily: DailyEntry[]; metric: Metric }) {
 		return Math.min(4, Math.ceil((v / max) * 4));
 	};
 	const cls = [
-		'bg-gray-200 dark:bg-dark-surface',
-		'bg-blue-200 dark:bg-blue-900/40',
-		'bg-blue-300 dark:bg-blue-700/60',
-		'bg-blue-400 dark:bg-blue-500/80',
-		'bg-blue-500 dark:bg-blue-400',
+		'bg-paper-2',
+		'bg-purple-100 dark:bg-purple-950',
+		'bg-purple-200 dark:bg-purple-900',
+		'bg-purple-400 dark:bg-purple-700',
+		'bg-teal-500 dark:bg-teal-400',
 	];
 	const startDow = new Date(days[0]!.date + 'T00:00:00Z').getUTCDay();
 	const padded = [...new Array<null>(startDow).fill(null), ...days];
@@ -178,7 +178,7 @@ function BreakdownTable({
 	const total = rows.reduce((s, r) => s + r[metric], 0) || 1;
 	return (
 		<table className="w-full text-sm">
-			<thead className="text-left text-xs tracking-wide text-gray-500 uppercase">
+			<thead className="text-left evidence-label">
 				<tr>
 					<th className="py-2">Name</th>
 					<th className="py-2 text-right">{metric === 'costUSD' ? 'Cost' : 'Tokens'}</th>
@@ -187,12 +187,12 @@ function BreakdownTable({
 			</thead>
 			<tbody>
 				{rows.map(r => (
-					<tr key={r.label} className="dark:border-dark-border border-t border-gray-100">
+					<tr key={r.label} className="border-t border-line">
 						<td className="py-2 font-mono">{r.label}</td>
 						<td className="py-2 text-right font-mono">{fmtVal(metric, r[metric])}</td>
 						<td className="py-2">
-							<div className="dark:bg-dark-surface h-2 rounded bg-gray-100">
-								<div className="h-2 rounded bg-blue-500" style={{ width: `${(r[metric] / total) * 100}%` }} />
+							<div className="h-2 rounded bg-paper-2">
+								<div className="h-2 rounded bg-purple-500" style={{ width: `${(r[metric] / total) * 100}%` }} />
 							</div>
 						</td>
 					</tr>
@@ -285,16 +285,16 @@ export default function Dashboard({ daily, breakdown, staticSummary, pullRequest
 	}, [view, breakdown]);
 
 	const pillCls = (active: boolean) =>
-		`rounded-md px-3 py-1 text-sm transition ${
+		`min-h-11 rounded-md px-3 py-2 text-sm font-bold transition ${
 			active
-				? 'bg-gray-900 text-white dark:bg-white dark:text-gray-900'
-				: 'border border-gray-300 hover:bg-gray-50 dark:border-dark-border dark:hover:bg-dark-surface'
+				? 'bg-purple-500 text-white'
+				: 'border border-line bg-card text-ink hover:border-purple-500 hover:bg-paper-2'
 		}`;
 
 	return (
 		<div className="space-y-6">
-			<div className="text-sm text-gray-500 dark:text-gray-400">
-				{dateRange && <span className="font-medium text-gray-700 dark:text-gray-300">{dateRange}</span>}
+			<div className="text-sm text-ink-faint">
+				{dateRange && <span className="font-medium text-ink-soft">{dateRange}</span>}
 			</div>
 
 			<StatsGrid tiles={tiles} />
@@ -312,7 +312,7 @@ export default function Dashboard({ daily, breakdown, staticSummary, pullRequest
 			{insights && <Insights insights={insights} metric={metric} />}
 
 			<section className="space-y-3">
-				<h2 className="font-serif text-2xl font-semibold">Daily activity</h2>
+				<h2 className="font-display text-3xl font-bold">Daily activity</h2>
 				<div className="flex flex-wrap items-center justify-between gap-3">
 					<div className="flex gap-2">
 						<button className={pillCls(range === 'all')} onClick={() => setRange('all')}>
@@ -347,7 +347,7 @@ export default function Dashboard({ daily, breakdown, staticSummary, pullRequest
 				<Heatmap daily={filtered} metric={metric} />
 
 				{view !== 'overview' && (
-					<div className="dark:border-dark-border rounded-lg border border-gray-200 p-4">
+					<div className="rounded-md border border-line bg-card p-4">
 						<BreakdownTable rows={breakdownRows} metric={metric} />
 					</div>
 				)}

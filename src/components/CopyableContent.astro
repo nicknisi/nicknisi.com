@@ -10,7 +10,7 @@ const { border = false, padding = false } = Astro.props;
 <div
 	class:list={[
 		'copyable-content relative',
-		border && 'rounded-lg border border-gray-200 dark:border-gray-800',
+		border && 'rounded-lg border border-line bg-card',
 		padding && 'p-4',
 	]}
 >
@@ -19,7 +19,7 @@ const { border = false, padding = false } = Astro.props;
 	</div>
 	<div class="absolute top-3 right-3 flex gap-1">
 		<button
-			class="copy-button-plain rounded-md p-2 text-gray-500 transition-colors hover:bg-gray-100/75 hover:text-gray-700 dark:hover:bg-gray-700/75 dark:hover:text-gray-100"
+			class="copy-button-plain grid size-11 place-items-center rounded-md border border-line bg-card text-ink-soft transition-colors hover:border-purple-500 hover:text-ink"
 			aria-label="Copy as plain text"
 			title="Copy as plain text"
 		>
@@ -27,7 +27,7 @@ const { border = false, padding = false } = Astro.props;
 			<Icon name="mdi:check" class="check-icon hidden h-5 w-5 text-teal-500 dark:text-teal-400" />
 		</button>
 		<button
-			class="copy-button-markdown rounded-md p-2 text-gray-500 transition-colors hover:bg-gray-100/75 hover:text-gray-700 dark:hover:bg-gray-700/75 dark:hover:text-gray-100"
+			class="copy-button-markdown grid size-11 place-items-center rounded-md border border-line bg-card text-ink-soft transition-colors hover:border-purple-500 hover:text-ink"
 			aria-label="Copy as markdown"
 			title="Copy as markdown"
 		>

@@ -49,7 +49,7 @@ function YAxis({ max, height, format }: { max: number; height: number; format: (
 	const plotBottom = height - PAD.bottom;
 	const ticks = [max, max / 2, 0];
 	return (
-		<g className="text-gray-400 dark:text-gray-500">
+		<g className="text-ink-faint">
 			{ticks.map((t, i) => {
 				const y = plotBottom - (t / (max || 1)) * (plotBottom - plotTop);
 				return (
@@ -85,7 +85,7 @@ export function AreaChart({
 	colorClass?: string;
 }) {
 	if (points.length === 0) {
-		return <div className="py-8 text-center text-sm text-gray-500 dark:text-gray-400">No data.</div>;
+		return <div className="py-8 text-center text-sm text-ink-faint">No data.</div>;
 	}
 	const plotL = PAD.left;
 	const plotR = VB_W - PAD.right;
@@ -115,7 +115,7 @@ export function AreaChart({
 					) : null,
 				)}
 			</g>
-			<g className="text-gray-500 dark:text-gray-400">
+			<g className="text-ink-faint">
 				{points.map((p, i) =>
 					labelsToShow.has(i) ? (
 						<text key={i} x={xOf(i)} y={height - 7} textAnchor="middle" fontSize={10} fill="currentColor">
@@ -144,7 +144,7 @@ export function BarChart({
 	maxLabels?: number;
 }) {
 	if (points.length === 0) {
-		return <div className="py-8 text-center text-sm text-gray-500 dark:text-gray-400">No data.</div>;
+		return <div className="py-8 text-center text-sm text-ink-faint">No data.</div>;
 	}
 	const plotL = PAD.left;
 	const plotR = VB_W - PAD.right;
@@ -180,7 +180,7 @@ export function BarChart({
 					);
 				})}
 			</g>
-			<g className="text-gray-500 dark:text-gray-400">
+			<g className="text-ink-faint">
 				{points.map((p, i) =>
 					labelsToShow.has(i) ? (
 						<text
@@ -221,7 +221,7 @@ export function StackedAreaChart({
 }) {
 	const n = labels.length;
 	if (n === 0 || series.length === 0) {
-		return <div className="py-8 text-center text-sm text-gray-500 dark:text-gray-400">No data.</div>;
+		return <div className="py-8 text-center text-sm text-ink-faint">No data.</div>;
 	}
 	const plotL = PAD.left;
 	const plotR = VB_W - PAD.right;
@@ -251,7 +251,7 @@ export function StackedAreaChart({
 				{bands.map((b, i) => (
 					<path key={i} className={b.colorClass} d={b.d} fill="currentColor" fillOpacity={0.6} stroke="none" />
 				))}
-				<g className="text-gray-500 dark:text-gray-400">
+				<g className="text-ink-faint">
 					{labels.map((l, i) =>
 						labelsToShow.has(i) ? (
 							<text key={i} x={xOf(i)} y={height - 7} textAnchor="middle" fontSize={10} fill="currentColor">
@@ -261,7 +261,7 @@ export function StackedAreaChart({
 					)}
 				</g>
 			</svg>
-			<div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs text-gray-600 dark:text-gray-400">
+			<div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs text-ink-soft">
 				{series.map(s => (
 					<span key={s.name} className="inline-flex items-center gap-1.5">
 						<span className={`inline-block h-2.5 w-2.5 rounded-sm ${s.colorClass}`}>
@@ -288,7 +288,7 @@ export function DivergingBars({
 	format?: (n: number) => string;
 }) {
 	if (weeks.length === 0) {
-		return <div className="py-8 text-center text-sm text-gray-500 dark:text-gray-400">No data.</div>;
+		return <div className="py-8 text-center text-sm text-ink-faint">No data.</div>;
 	}
 	const plotL = PAD.left;
 	const plotR = VB_W - PAD.right;
@@ -310,7 +310,7 @@ export function DivergingBars({
 				y2={mid}
 				stroke="currentColor"
 				strokeOpacity={0.2}
-				className="text-gray-400"
+				className="text-ink-faint"
 			/>
 			{weeks.map((w, i) => {
 				const x = plotL + i * slot + (slot - barW) / 2;
@@ -345,7 +345,7 @@ export function DivergingBars({
 					</g>
 				);
 			})}
-			<g className="text-gray-500 dark:text-gray-400">
+			<g className="text-ink-faint">
 				{weeks.map((w, i) =>
 					labelsToShow.has(i) ? (
 						<text

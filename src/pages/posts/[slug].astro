@@ -38,7 +38,7 @@ const profileImg = await getAsset(metadata.profile);
 <div>
 	{
 		draft && (
-			<div class="border-ink bg-tomato text-paper sticky top-0 z-40 w-full border-b-2">
+			<div class="sticky top-0 z-40 w-full border-b border-purple-500 bg-purple-950 text-white">
 				<div class="mx-auto max-w-4xl px-6 py-2">
 					<p class="font-display text-center text-sm font-extrabold tracking-[0.14em] uppercase">Draft post</p>
 				</div>
@@ -109,7 +109,7 @@ const profileImg = await getAsset(metadata.profile);
 						<Icon name="mdi:arrow-left-bold" class="text-ink h-6 w-6 shrink-0" />
 						<span class="flex flex-col gap-0.5">
 							<span class="text-ink-faint font-mono text-xs tracking-wide uppercase">Previous post</span>
-							<span class="font-display text-ink decoration-marigold font-bold decoration-2 underline-offset-4 group-hover:underline">
+							<span class="font-display text-ink decoration-teal-500 font-bold decoration-1 underline-offset-4 group-hover:underline">
 								{prevPost.data.title}
 							</span>
 						</span>
@@ -134,7 +134,7 @@ const profileImg = await getAsset(metadata.profile);
 					<p class="mt-3">
 						<a
 							href={metadata.social.bluesky.url}
-							class="font-display text-ink decoration-tomato font-bold decoration-2 underline-offset-4 hover:underline"
+							class="font-display text-ink decoration-teal-500 font-bold decoration-1 underline-offset-4 hover:underline"
 						>
 							Follow me on Bluesky →
 						</a>

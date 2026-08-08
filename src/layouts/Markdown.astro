@@ -10,8 +10,7 @@ const description = frontmatter?.description;
 <Base title={title} description={description}>
 	<article class="pt-12 pb-20 md:pt-20">
 		<header class="mb-12 border-b border-line pb-10">
-			<a href="/posts" class="evidence-label no-underline hover:text-purple-600">Writing / Field notes</a>
-			{title && <h1 class="mt-4 max-w-[15ch] text-5xl md:text-7xl">{title}</h1>}
+			{title && <h1 class="max-w-[15ch] text-5xl md:text-7xl">{title}</h1>}
 			{description && <p class="mt-5 max-w-[62ch] text-lg leading-relaxed text-ink-soft">{description}</p>}
 		</header>
 		<div class="prose lg:prose-lg mx-auto pb-12"><slot /></div>

@@ -1,73 +1,18 @@
 ---
-import Head from '@/components/Head.astro';
+import BaseLayout from '@/layouts/Base.astro';
 import { Image } from 'astro:assets';
 import metadata from '@/data/metadata.json';
 import profileImage from '@/assets/profile.jpg';
 import { Icon } from 'astro-icon/components';
 import LinkButton from '@/components/LinkButton.astro';
-import '../styles/base.css';
-import { getUTM, setUTM } from '@/utils/utm';
-
-const utm = {
-	...getUTM(Astro.url),
-	content: 'social_linkroll',
-};
+import { getUTM,setUTM } from '@/utils/utm';
+const utm={...getUTM(Astro.url),content:'social_linkroll'};
 ---
-
-<html lang="en">
-	<Head title="Social Links | Nick Nisi" description="A collection of social links for Nick Nisi" />
-	<body class="min-h-screen bg-paper font-sans text-ink">
-		<div class="mx-auto px-4 py-10 sm:max-w-xl md:max-w-2xl">
-			<main class="mx-auto flex flex-col gap-6">
-				<!-- Profile -->
-				<div class="flex flex-col items-center justify-center text-center">
-					<a href="/" class="tactile rounded-full">
-						<Image
-							alt="Nick Nisi"
-							src={profileImage}
-							width={256}
-							height={256}
-							class="mb-4 size-36 rounded-full border-2 border-ink object-cover shadow-hard"
-						/>
-					</a>
-					<h1 class="font-display text-5xl font-extrabold tracking-tight text-ink">{metadata.author.name}</h1>
-					<p class="mt-2 max-w-[36ch] font-display font-bold text-ink-soft">{metadata.description}</p>
-				</div>
-
-				<!-- Social Links -->
-				<div class="flex flex-wrap justify-center gap-4">
-					{
-						Object.entries(metadata.social)
-							.filter(([, { hidden }]) => !hidden)
-							.map(([type, { url }]) => (
-								<a
-									href={url}
-									class="tactile inline-flex size-12 items-center justify-center rounded-full border-2 border-ink bg-card text-ink shadow-hard-sm"
-								>
-									<Icon aria-label={type} name={`simple-icons:${type}`} class="inline-block size-6" />
-								</a>
-							))
-					}
-				</div>
-
-				<!-- Links -->
-				<div class="flex w-full flex-col items-center gap-4">
-					{
-						metadata.links.map(({ title, url, icon }) => (
-							<LinkButton title={title} url={setUTM(url, utm).toString()} icon={icon} />
-						))
-					}
-				</div>
-			</main>
-		</div>
-	</body>
-</html>
-
-<script>
-	const links = document.querySelectorAll<HTMLAnchorElement>('a[data-type="social-link"]');
-	links.forEach(link => {
-		link.addEventListener('click', () => {
-			fathom.trackEvent(`social: ${link.href}`);
-		});
-	});
-</script>
+<BaseLayout title="Links" description="Find Nick Nisi around the web." hideFooter>
+	<section class="mx-auto max-w-2xl py-16 text-center md:py-24">
+		<a href="/" class="inline-flex rounded-lg"><Image alt="Nick Nisi" src={profileImage} width={256} height={256} class="size-36 rounded-lg border border-line object-cover"/></a>
+		<h1 class="mt-6 text-6xl">Nick Nisi</h1><p class="mx-auto mt-4 max-w-[40ch] text-lg text-ink-soft">{metadata.description}</p>
+		<div class="mt-7 flex flex-wrap justify-center gap-3">{Object.entries(metadata.social).filter(([,v])=>!v.hidden).map(([type,{url}])=><a href={url} aria-label={type} class="grid size-11 place-items-center rounded-md border border-line bg-card text-ink transition-colors hover:border-purple-500"><Icon name={`simple-icons:${type}`} class="size-5"/></a>)}</div>
+		<div class="mt-10 space-y-2">{metadata.links.map(({title,url,icon})=><LinkButton title={title} url={setUTM(url,utm).toString()} icon={icon}/>)}</div>
+	</section>
+</BaseLayout>

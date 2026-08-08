@@ -7,12 +7,12 @@
 	},
 	"basics": {
 		"name": "Nick Nisi",
-		"label": "Staff Software Engineer",
+		"label": "Engineering Manager · DX / AI",
 		"image": "resume/nicknisi.jpg",
 		"email": "nick@nisi.org",
 		"phone": "+14022161612",
 		"url": "https://nicknisi.com",
-		"summary": "With more than 15 years in the industry as a dedicated JavaScript and TypeScript specialist, I actively advocate for community through teaching and enhancing developer tooling. I'm a panelist on the JS Party podcast and I proudly organized Nebraska's sole JavaScript conference.",
+		"summary": "Staff engineer and engineering manager building internal harnesses, tools, and workflows for AI-native developer experience. Long-time TypeScript advocate, technical educator, conference organizer, and community builder.",
 		"location": {
 			"address": "",
 			"postalCode": "",

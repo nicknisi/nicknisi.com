@@ -1,139 +1,20 @@
 ---
-import Head from '@/components/Head.astro';
+import BaseLayout from '@/layouts/Base.astro';
 import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
-import '../styles/base.css';
 import hero from '@/assets/meta/hero.png';
 import ogImage from '@/assets/meta/og-image.png?url';
-
-const quickConnectLinks = [
-	{
-		label: 'nick@nisi.org',
-		icon: 'mdi:email',
-		href: 'mailto:nick@nisi.org',
-	},
-	{
-		label: '/in/nicknisi',
-		icon: 'simple-icons:linkedin',
-		href: 'https://linkedin.com/in/nicknisi',
-	},
-	{
-		label: '@nicknisi.com',
-		icon: 'simple-icons:bluesky',
-		href: 'https://bsky.app/profile/nicknisi.com',
-	},
-	{
-		label: 'Watch me stream',
-		icon: 'simple-icons:youtube',
-		href: 'https://www.youtube.com/nicknisi',
-	},
+const links=[
+	{label:'nick@nisi.org',icon:'mdi:email',href:'mailto:nick@nisi.org'},
+	{label:'/in/nicknisi',icon:'simple-icons:linkedin',href:'https://linkedin.com/in/nicknisi'},
+	{label:'@nicknisi.com',icon:'simple-icons:bluesky',href:'https://bsky.app/profile/nicknisi.com'},
+	{label:'Watch the weekly stream',icon:'simple-icons:youtube',href:'https://www.youtube.com/nicknisi'},
 ];
 ---
-
-<!doctype html>
-<html lang="en">
-	<Head title="Contact Me" description="How to find me after my departure from Meta." headerImage={ogImage} />
-
-	<body class="min-h-screen bg-paper font-sans font-normal text-ink">
-		<div class="mx-auto max-w-4xl px-6 py-12">
-			<!-- Hero -->
-			<section class="mb-12 flex flex-col gap-6">
-				<span class="sticker -rotate-2 self-start"><span class="sticker-dot bg-marigold"></span>contact</span>
-				<h1 class="font-display text-4xl leading-[0.95] font-extrabold tracking-tight md:text-6xl">
-					So... you're looking for my
-					<span class="text-tomato">contact info</span>
-				</h1>
-				<p class="max-w-[48ch] text-lg text-ink-soft">Let's stay connected!</p>
-				<div class="overflow-hidden rounded-2xl border-2 border-ink bg-card shadow-hard-lg">
-					<Image src={hero} alt="Captain America PSA Meme" class="h-auto w-full object-cover" />
-				</div>
-			</section>
-
-			<!-- Contact grid -->
-			<div class="mb-8 grid gap-6 md:grid-cols-2">
-				<!-- Quick contact -->
-				<div class="panel p-6">
-					<h2 class="mb-5 flex items-center font-display text-2xl font-extrabold text-ink">
-						<span class="sticker-dot mr-3 bg-sky"></span>
-						Quick Connect
-					</h2>
-					<div class="space-y-3">
-						{
-							quickConnectLinks.map(({ label, icon, href }) => (
-								<a
-									href={href}
-									class="tactile flex items-center gap-4 rounded-[10px] border-2 border-ink bg-paper p-4 font-display font-bold text-ink no-underline shadow-hard-sm"
-								>
-									<Icon name={icon} class="h-6 w-6" />
-									<span>{label}</span>
-								</a>
-							))
-						}
-					</div>
-				</div>
-
-				<!-- New Adventure -->
-				<div class="panel p-6">
-					<h2 class="mb-5 flex items-center font-display text-2xl font-extrabold text-ink">
-						<span class="sticker-dot mr-3 bg-tomato"></span>
-						New Adventure
-					</h2>
-					<div class="rounded-[10px] border-2 border-ink bg-marigold p-6 shadow-hard-sm">
-						<div class="mb-4 flex items-center gap-4">
-							<div class="grid size-12 place-items-center rounded-[10px] border-2 border-ink bg-card">
-								<svg class="h-6 w-6 text-ink" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-									<path
-										stroke-linecap="round"
-										stroke-linejoin="round"
-										stroke-width="2"
-										d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-								</svg>
-							</div>
-							<div>
-								<h3 class="font-display font-bold text-ink">Developer Experienec Engineer</h3>
-								<p class="text-ink-soft">
-									at <a href="https://workos.com" class="underline decoration-ink decoration-2 underline-offset-4">WorkOS</a>
-								</p>
-							</div>
-						</div>
-						<p class="text-ink">I'm excited to join the small team to make a big impact!</p>
-					</div>
-				</div>
-			</div>
-
-			<!-- Footer note -->
-			<div class="panel p-6">
-				<h3 class="mb-4 flex items-center font-display text-xl font-extrabold text-ink">
-					<span class="sticker-dot mr-3 bg-pine"></span>
-					A Note to My Team
-				</h3>
-				<div class="space-y-4 leading-relaxed text-ink-soft">
-					<p>
-						From racing go-karts to making pottery (with varying degrees of success), and even that time I was the
-						lone warrior at karaoke - our team events were always an adventure.
-					</p>
-
-					<p>
-						Thanks for making complex problems feel manageable, for caring about doing things the right way, and
-						for being the kind of team that could debate implementation details all morning. Whether it was
-						untangling partner integrations or making the onboarding experience better for our users, you made
-						even the most challenging work enjoyable.
-					</p>
-
-					<p>
-						Keep building amazing things, fighting the good fight against technical debt, and maybe sing a little
-						karaoke once in a while 🎤
-					</p>
-				</div>
-			</div>
-
-			<!-- Closing note -->
-			<div class="mt-10 text-center font-mono text-xs text-ink-faint">
-				<p>
-					The real source of that Laminar state update was the friends we made along the way (just kidding, it's buried
-					in 47 layers of selectors)
-				</p>
-			</div>
-		</div>
-	</body>
-</html>
+<BaseLayout title="Contact Nick" description="How to find Nick Nisi." headerImage={ogImage} fullWidth>
+	<section class="mx-auto max-w-5xl px-5 py-12 md:px-8 md:py-20">
+		<div class="grid gap-10 lg:grid-cols-[1fr_.9fr] lg:items-end"><div><h1 class="text-6xl md:text-8xl">Let’s stay connected.</h1><p class="mt-5 max-w-[44ch] text-lg text-ink-soft">Email is best for direct conversations. The rest of the field notes continue elsewhere.</p></div><Image src={hero} alt="Captain America public service announcement meme" class="w-full rounded-lg border border-line"/></div>
+		<div class="mt-16 grid border-t border-line md:grid-cols-2"><section class="border-b border-line py-8 md:border-r md:border-b-0 md:pr-8"><h2 class="text-3xl">Quick connect</h2><div class="mt-6">{links.map(({label,icon,href})=><a href={href} class="group flex min-h-14 items-center gap-4 border-b border-line py-4 font-bold text-ink no-underline hover:border-purple-500"><Icon name={icon} class="size-5 text-teal-600 dark:text-teal-300"/><span>{label}</span><Icon name="mdi:arrow-top-right" class="ml-auto size-4 text-purple-600 dark:text-purple-300"/></a>)}</div></section>
+		<section class="py-8 md:pl-8"><h2 class="text-3xl">Current work</h2><p class="mt-6 text-lg leading-relaxed text-ink-soft">I’m an engineering manager on the DX / AI team at <a href="https://workos.com" class="font-bold text-purple-600 dark:text-purple-300">WorkOS</a>, building internal harnesses and developer systems for AI-native work.</p><a href="/workshops" class="btn btn-primary mt-7">Explore workshops →</a></section></div>
+	</section>
+</BaseLayout>

@@ -1,5 +1,7 @@
 ---
 import Head from '@/components/Head.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
 import data from './_data.json';
 import { Icon } from 'astro-icon/components';
 import AssetImage from '@/components/AssetImage.astro';
@@ -27,14 +29,18 @@ function getVideoThumbnail(videoId: string) {
 ---
 
 <html lang="en">
-	<Head title="Resume - Nicholas Nisi" description="Nick Nisi's Resume" colorscheme="light" />
-	<body>
+	<Head title="Resume - Nicholas Nisi" description="Nick Nisi's Resume" colorscheme="light dark" />
+	<script is:inline>
+		(function(){const apply=()=>document.documentElement.classList.toggle('dark',(localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'))==='dark');apply();document.addEventListener('astro:after-swap',apply)})();
+	</script>
+	<body class="bg-paper font-sans text-ink">
+		<div class="print:hidden"><Header /></div>
 		<main class="relative container mx-auto scroll-my-12 overflow-auto p-4 md:p-16 print:p-12">
-			<section class="print:spacey-y-6 mx-auto max-w-2xl space-y-8 bg-card font-sans text-ink print:bg-white">
+			<section class="print:spacey-y-6 mx-auto max-w-3xl space-y-10 bg-paper text-ink print:max-w-2xl print:space-y-6 print:bg-white">
 				<div class="flex flex-col-reverse items-center justify-between sm:flex-row">
 					<div class="flex-1 space-y-1.5">
 						<h1 class="font-display text-3xl font-extrabold tracking-tight">{data.basics.name}</h1>
-						<p class="max-w-md font-mono text-sm text-pretty">
+						<p class="max-w-xl text-base leading-relaxed text-pretty text-ink-soft">
 							{data.basics.summary}
 						</p>
 						<p class="text-xs text-ink-soft">
@@ -53,18 +59,16 @@ function getVideoThumbnail(videoId: string) {
 						<div class="flex pt-2 print:hidden">
 							<div>
 								<a
-									class="mr-2 inline-block text-xs text-ink-faint hover:text-ink"
+									class="mr-2 inline-grid size-11 place-items-center rounded-md border border-line text-ink-soft hover:border-purple-500 hover:text-ink"
 									href={'mailto:' + data.basics.email}
-									target="_blank"
-									rel="noopener noreferrer"
+									aria-label="Email Nick"
 								>
 									<Icon name="mdi:envelope-outline" class="mr-1 inline-block size-4 border-0" />
 								</a>
 								<a
-									class="mr-2 inline-block text-xs text-ink-faint hover:text-ink"
+									class="mr-2 inline-grid size-11 place-items-center rounded-md border border-line text-ink-soft hover:border-purple-500 hover:text-ink"
 									href={'tel:' + data.basics.phone}
-									target="_blank"
-									rel="noopener noreferrer"
+									aria-label="Call Nick"
 								>
 									<Icon name="ic:round-phone-iphone" class="mr-1 inline-block size-4 border-0" />
 								</a>
@@ -73,10 +77,11 @@ function getVideoThumbnail(videoId: string) {
 								{
 									profiles.map(profile => (
 										<a
-											class="mr-2 inline-block text-xs text-ink-faint hover:text-ink"
+											class="mr-2 inline-grid size-11 place-items-center rounded-md border border-line text-ink-soft hover:border-purple-500 hover:text-ink"
 											href={profile.url}
 											target="_blank"
 											rel="noopener noreferrer"
+											aria-label={profile.network}
 										>
 											<Icon
 												name={`simple-icons:` + profile.network.toLowerCase()}
@@ -126,10 +131,10 @@ function getVideoThumbnail(videoId: string) {
 												<div>{job.endDate ? dateToYear(job.endDate) : 'Present'}</div>
 											</div>
 										</div>
-										<div class="font-mono">{job.position}</div>
+										<div class="font-semibold text-ink">{job.position}</div>
 									</div>
 									<div class="border-b border-ink/20 sm:hidden" />
-									<div class="font-mono text-sm">
+									<div class="text-sm leading-relaxed text-ink-soft">
 										<ul class="list-disc gap-2 space-y-1">
 											{job.highlights?.map(highlight => (
 												<li>{highlight}</li>
@@ -147,7 +152,7 @@ function getVideoThumbnail(videoId: string) {
 					<div class="flex flex-1 flex-col flex-wrap gap-4 sm:flex-row print:hidden">
 						{
 							projects.map(project => (
-								<div class="basis-52 space-y-2 rounded-md border-2 border-ink p-4">
+								<div class="basis-52 space-y-2 rounded-md border border-line p-4">
 									<h3 class="font-display font-bold">
 										<a href={project.url} class="cursor-pointer" target="_blank" rel="noopener noreferrer">
 											{project.image && (
@@ -183,8 +188,8 @@ function getVideoThumbnail(videoId: string) {
 											{project.name}
 										</a>
 									</h3>
-									<p class="p-0 font-mono">{project.description}</p>
-									<div class="font-mono text-sm">
+									<p class="p-0 text-ink-soft">{project.description}</p>
+									<div class="text-sm leading-relaxed text-ink-soft">
 										<ul class="list-disc gap-2 space-y-1">
 											{project.highlights?.map(highlight => (
 												<li>{highlight}</li>
@@ -211,7 +216,7 @@ function getVideoThumbnail(videoId: string) {
 					<div class="flex flex-1 flex-col flex-wrap gap-4 sm:flex-row print:hidden">
 						{
 							appearances.map(appearance => (
-								<div class="basis-44 rounded-lg border-2 border-ink p-4">
+								<div class="basis-44 rounded-lg border border-line p-4">
 									<a href={appearance.instances[0]!.url} target="_blank" class="no-underline">
 										<div class="flex flex-col items-center space-y-2 px-2 pt-1 pb-4 text-center">
 											<h3 class="text-center font-display text-xs leading-tight font-bold text-ink">{appearance.title}</h3>
@@ -282,7 +287,7 @@ function getVideoThumbnail(videoId: string) {
 											>
 												{`youtu.be/${talk.instances[0]!.videoId}`}
 											</a>
-											<p class="font-mono text-xs">{talk.description}</p>
+											<p class="text-xs leading-relaxed text-ink-soft">{talk.description}</p>
 										</div>
 									</div>
 								</div>
@@ -319,7 +324,7 @@ function getVideoThumbnail(videoId: string) {
 												</div>
 											)}
 										</div>
-										<div class="font-mono">
+										<div class="text-ink-soft">
 											{school.studyType}, {school.area}
 										</div>
 									</div>
@@ -331,5 +336,6 @@ function getVideoThumbnail(videoId: string) {
 				</div>
 			</section>
 		</main>
+		<div class="print:hidden"><Footer /></div>
 	</body>
 </html>
