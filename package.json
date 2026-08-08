@@ -31,7 +31,7 @@
 		"@astro-community/astro-embed-bluesky": "0.2.1",
 		"@astrojs/mdx": "6.0.1",
 		"@astrojs/react": "5.0.6",
-		"@astrojs/rss": "4.0.18",
+		"@astrojs/rss": "4.0.19",
 		"@astrojs/sitemap": "3.7.3",
 		"@atproto/api": "0.18.21",
 		"@expressive-code/plugin-collapsible-sections": "^0.41.7",
