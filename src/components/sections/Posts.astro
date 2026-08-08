@@ -2,32 +2,14 @@
 import { getPosts } from '@/utils/common';
 import Post from '@/components/cards/Post.astro';
 
-interface Props {
-	hideImages?: boolean;
-	limit?: number | undefined;
-	tag?: string | undefined;
-	featuredFirst?: boolean | undefined;
-	list?: boolean | undefined;
-}
-
-const { limit, tag } = Astro.props;
+interface Props { hideImages?: boolean; limit?: number; tag?: string; featuredFirst?: boolean; list?: boolean; }
+const { limit, tag, list = false } = Astro.props;
 let posts = await getPosts(tag ? undefined : limit);
-
-if (tag) {
-	posts = posts.filter(post => post.data.tags?.includes(tag)).slice(0, limit);
-}
-
+if (tag) posts = posts.filter(post => post.data.tags?.includes(tag)).slice(0, limit);
 const isTruncated = limit !== undefined || !!tag;
 ---
 
-<div class="fade-up-grid grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+<div class:list={['grid grid-cols-1 gap-x-8', list ? 'lg:grid-cols-1' : 'sm:grid-cols-2 lg:grid-cols-3']}>
 	{posts.map(post => <Post post={post} />)}
 </div>
-
-{
-	isTruncated && (
-		<div class="mt-8 flex justify-center">
-			<a href="/posts" class="btn btn-ghost">All posts →</a>
-		</div>
-	)
-}
+{isTruncated && <div class="mt-8"><a href="/posts" class="font-bold text-purple-600 dark:text-purple-300">All writing →</a></div>}

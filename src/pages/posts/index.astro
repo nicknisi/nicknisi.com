@@ -2,49 +2,17 @@
 import BaseLayout from '@/layouts/Base.astro';
 import Posts from '@/components/sections/Posts.astro';
 import { getPosts } from '@/utils/common';
-
 const posts = await getPosts();
-
-// Most-used tags for a lightweight filter row.
-const tagCounts = new Map<string, number>();
-for (const post of posts) {
-	for (const tag of post.data.tags ?? []) {
-		tagCounts.set(tag, (tagCounts.get(tag) ?? 0) + 1);
-	}
-}
-const tags = [...tagCounts.entries()]
-	.sort((a, b) => b[1] - a[1])
-	.slice(0, 8)
-	.map(([tag]) => tag);
-
-const dots = ['bg-tomato', 'bg-grape', 'bg-pine', 'bg-sky', 'bg-marigold'] as const;
+const tagCounts = new Map<string,number>();
+for (const post of posts) for (const tag of post.data.tags ?? []) tagCounts.set(tag,(tagCounts.get(tag) ?? 0)+1);
+const tags = [...tagCounts.entries()].sort((a,b)=>b[1]-a[1]).slice(0,8).map(([tag])=>tag);
 ---
 
-<BaseLayout title="Posts" description="Writing on developer experience, tooling, TypeScript, and the occasional Vim rabbit hole.">
-	<section class="pt-12 pb-8 md:pt-16">
-		<p class="font-mono text-xs tracking-[0.14em] text-ink-soft uppercase">the blog</p>
-		<h1 class="mt-2 text-5xl font-extrabold tracking-tight md:text-6xl">
-			Writing
-		</h1>
-		<p class="mt-4 max-w-[52ch] text-lg text-ink-soft">
-			Notes on developer experience, tooling, and TypeScript, plus the occasional Vim rabbit hole and conference story.
-		</p>
-
-		{
-			tags.length > 0 && (
-				<div class="mt-7 flex flex-wrap gap-2.5">
-					{tags.map((tag, i) => (
-						<a href={`/tags/${tag}`} class="sticker no-underline transition-transform duration-150 hover:-rotate-2">
-							<span class:list={['sticker-dot', dots[i % dots.length]]} />
-							{tag}
-						</a>
-					))}
-				</div>
-			)
-		}
+<BaseLayout title="Writing" description="Field notes on AI-native developer experience, tooling, TypeScript, and software craft.">
+	<section class="pt-16 pb-12 md:pt-24">
+		<h1 class="max-w-[9ch] text-6xl md:text-8xl">Work from the field.</h1>
+		<p class="mt-6 max-w-[58ch] text-xl leading-relaxed text-ink-soft">Notes from building with AI daily, designing the systems around it, and teaching teams what survives contact with real work.</p>
+		{tags.length > 0 && <nav class="mt-8 flex flex-wrap gap-x-5 gap-y-3" aria-label="Popular topics">{tags.map(tag=><a href={`/tags/${tag}`} class="font-mono text-xs tracking-wider text-ink-soft uppercase no-underline hover:text-purple-600">{tag}</a>)}</nav>}
 	</section>
-
-	<section class="pb-16">
-		<Posts list />
-	</section>
+	<section class="pb-20"><Posts list /></section>
 </BaseLayout>

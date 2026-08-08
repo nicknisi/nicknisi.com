@@ -15,34 +15,21 @@ const socials = Object.entries(metadata.social).filter(([, { hidden }]) => !hidd
 
 <BaseLayout
 	title="About Nick Nisi"
-	description="Learn more about Nick Nisi, a developer experience engineer, conference speaker, and weekly streamer."
+	description="Nick Nisi is a staff engineer and engineering manager working at the intersection of AI adoption, developer experience, and software practice."
 	fullWidth
 >
 	<!-- Hero -->
 	<section class="mx-auto max-w-4xl px-6 pt-12 pb-10 md:pt-16">
 		<div class="grid items-center gap-8 md:grid-cols-[1.4fr_1fr] md:gap-12">
 			<div>
-				<p class="font-mono text-xs tracking-[0.14em] text-ink-soft uppercase">
-					developer experience engineer · workos
-				</p>
+				<h1 class="text-6xl leading-[0.9] font-extrabold tracking-tight md:text-8xl">About Nick.</h1>
 
-				<h1 class="mt-2 text-6xl leading-[0.95] font-extrabold tracking-tight md:text-7xl">
-					About{' '}
-					<span class="relative inline-block text-tomato">
-						Nick
-						<svg class="absolute -bottom-2 left-0 h-3 w-full overflow-visible" viewBox="0 0 200 18" fill="none" aria-hidden="true">
-							<path d="M3 12 C 50 6, 90 14, 130 9 S 188 6, 197 10" stroke="currentColor" stroke-width="5" stroke-linecap="round"></path>
-						</svg>
-					</span>
-				</h1>
-
-				<p class="mt-5 max-w-[26ch] font-display text-xl leading-snug font-bold text-ink md:text-2xl">
-					Dad of two, husband, and the guy who makes developer tools less annoying.
+				<p class="mt-5 max-w-[28ch] font-display text-xl leading-snug font-bold text-ink md:text-2xl">
+					I build the systems and practices that help technical teams work differently with AI.
 				</p>
 
 				<p class="mt-3 max-w-[52ch] text-ink-soft">
-					TypeScript advocate, conference organizer, and officiant of {metadata.officiantCount} weddings. I care about
-					the craft of building great software and the people who build it.
+					Staff engineer, engineering manager, TypeScript advocate, conference organizer, and long-time developer-tooling community voice.
 				</p>
 
 				<div class="mt-8 flex flex-wrap gap-3">
@@ -52,7 +39,7 @@ const socials = Object.entries(metadata.social).filter(([, { hidden }]) => !hidd
 			</div>
 
 			<div class="justify-self-center md:justify-self-end">
-				<div class="w-[clamp(220px,26vw,300px)] -rotate-2 overflow-hidden rounded-2xl border-2 border-ink bg-card shadow-hard-lg">
+				<div class="w-[clamp(220px,26vw,300px)] overflow-hidden rounded-lg border border-line bg-card shadow-soft">
 					<Image
 						src={profileImg}
 						alt="Nick Nisi"
@@ -70,18 +57,18 @@ const socials = Object.entries(metadata.social).filter(([, { hidden }]) => !hidd
 	<section class="mx-auto max-w-4xl px-6 pb-14">
 		<div class="max-w-[60ch] space-y-4 text-lg leading-relaxed text-ink-soft [&_a:hover]:decoration-tomato [&_a]:font-bold [&_a]:text-ink [&_a]:underline [&_a]:decoration-marigold [&_a]:decoration-2 [&_a]:underline-offset-4">
 			<p>
-				Hi! I'm Nick Nisi, dad of two, husband, and Developer Experience Engineer at <a href="https://workos.com">WorkOS</a>.
+				Hi! I'm Nick Nisi, dad of two, husband, and an engineering manager on the DX / AI team at <a href="https://workos.com">WorkOS</a>. I build internal harnesses and developer systems that help teams put AI to work safely and repeatably.
 			</p>
 			<p>
 				You might know me from co-hosting the <a href="https://jsparty.fm">JS Party</a> podcast, or from organizing
 				<a href="https://nejsconf.com">NEJS Conf</a> and <a href="https://archive.tsconf.io/2021/">TypeScript Conf</a>.
 				These days I run the <a href="https://nebraskajs.com">NebraskaJS</a> meetup, stream weekly on
-				<a href="https://www.youtube.com/nicknisi">YouTube</a>, and focus on developer tooling and TypeScript.
+				<a href="https://www.youtube.com/nicknisi">YouTube</a>, and focus on AI-native developer experience, tooling, and TypeScript.
 			</p>
-			<p>
-				Outside of tech, I've officiated {metadata.officiantCount} weddings. Turns out "conference emcee" translates
-				surprisingly well to "wedding officiant."
-			</p>
+			<details class="mt-6 text-sm">
+				<summary class="cursor-pointer font-bold text-ink">A small non-technical footnote</summary>
+				<p class="mt-3">I've also officiated {metadata.officiantCount} weddings. Turns out conference emceeing transfers surprisingly well.</p>
+			</details>
 			<p>
 				Connect with me on <a href="https://bsky.app/profile/nicknisi.com">Bluesky</a>,
 				<a href="https://github.com/nicknisi">GitHub</a>, or <a href="https://linkedin.com/in/nicknisi">LinkedIn</a>.
@@ -115,8 +102,7 @@ const socials = Object.entries(metadata.social).filter(([, { hidden }]) => !hidd
 
 	<!-- Press Kit -->
 	<section class="mx-auto max-w-4xl px-6 pb-14">
-		<p class="font-mono text-xs tracking-[0.14em] text-ink-soft uppercase">copy &amp; paste</p>
-		<h2 class="mt-2 text-3xl font-extrabold md:text-4xl">Press kit</h2>
+		<h2 class="text-3xl font-extrabold md:text-5xl">Press kit</h2>
 		<p class="mt-3 max-w-[60ch] text-ink-soft">A few different versions of my bio that you can use.</p>
 
 		<div class="mt-7 grid gap-6 md:grid-cols-2">
@@ -127,16 +113,10 @@ const socials = Object.entries(metadata.social).filter(([, { hidden }]) => !hidd
 				</h3>
 				<CopyableContent padding border>
 					<p>
-						Hey, I'm Nick! I'm a Developer Experience Engineer at <a href="https://workos.com">WorkOS</a>, where I focus
-						on creating tools and experiences that make life easier for developers building for the modern web. I'm a
-						long-time TypeScript enthusiast and community builder. I've organized conferences like
-						<a href="https://nejsconf.com">NEJS Conf</a> and <a href="https://archive.tsconf.io">TypeScript Conf</a>,
-						emcee'd more than ten events, and taught JavaScript and TypeScript workshops for years.
+						Hey, I'm Nick! I'm a staff engineer and engineering manager on the DX / AI team at <a href="https://workos.com">WorkOS</a>. I build internal harnesses, tools, and workflows that help teams work effectively with AI, then teach those practices through hands-on workshops, talks, writing, and a weekly stream.
 					</p>
 					<p>
-						Previously, I co-hosted the <a href="https://changelog.com/jsparty">JS Party</a> podcast, chatting about all
-						things JavaScript and web development. These days, I'm focused on developer productivity, open source, and
-						helping teams build with confidence, and maybe still sneaking in a few conference talks along the way.
+						I'm also a long-time TypeScript advocate and community builder. I've organized NEJS Conf and TypeScript Conf, emcee'd more than a dozen events, and previously co-hosted the JS Party podcast.
 					</p>
 				</CopyableContent>
 			</div>
@@ -148,12 +128,7 @@ const socials = Object.entries(metadata.social).filter(([, { hidden }]) => !hidd
 				</h3>
 				<CopyableContent padding border>
 					<p>
-						Nick Nisi is a Developer Experience Engineer at <a href="https://workos.com">WorkOS</a>, where he helps
-						developers build faster and smarter for the modern web. A long-time TypeScript advocate, Nick has organized
-						events like <a href="https://nejsconf.com">NEJS Conf</a> and <a href="https://archive.tsconf.io">TypeScript Conf</a>,
-						emcee'd more than a dozen conferences, and taught JavaScript workshops for years. He previously co-hosted the
-						<a href="https://changelog.com/jsparty">JS Party</a> podcast and continues to share his passion for developer
-						experience, open source, and the craft of building great software.
+						Nick Nisi is a staff engineer and engineering manager on the DX / AI team at <a href="https://workos.com">WorkOS</a>, where he builds internal harnesses and developer systems for AI-native work. He teaches these practices through hands-on workshops, technical talks, writing, and a weekly stream. A long-time TypeScript advocate and community builder, Nick has organized NEJS Conf and TypeScript Conf, emcee'd more than a dozen conferences, and previously co-hosted the JS Party podcast.
 					</p>
 				</CopyableContent>
 			</div>

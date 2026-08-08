@@ -1,32 +1,14 @@
 ---
 import Appearance from '@/components/cards/Appearance.astro';
 import { getAppearances } from '@/utils/common';
-
-interface Props {
-	limit?: number | undefined;
-	promoted?: boolean | undefined;
-}
-
+interface Props { limit?: number; promoted?: boolean; }
 const { limit, promoted } = Astro.props;
 let appearances = await getAppearances(promoted ? undefined : limit);
-let isTruncated = limit !== undefined || promoted !== undefined;
-
-if (promoted) {
-	appearances = appearances.filter(appearance => appearance.data.promote).slice(0, limit);
-}
+const isTruncated = limit !== undefined || promoted !== undefined;
+if (promoted) appearances = appearances.filter(appearance => appearance.data.promote).slice(0, limit);
 ---
 
-<div class="scroll-reveal flex flex-col gap-5">
-	<div class="fade-up-grid grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-		{appearances.map(appearance => <Appearance appearance={appearance} />)}
-	</div>
-	{
-		isTruncated && (
-			<div class="mt-4 flex justify-center">
-				<a href="/speaking/all" class="btn btn-ghost">
-					All appearances →
-				</a>
-			</div>
-		)
-	}
+<div class="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+	{appearances.map(appearance => <Appearance appearance={appearance} />)}
 </div>
+{isTruncated && <div class="mt-9"><a href="/speaking/all" class="font-bold text-purple-600 dark:text-purple-300">All appearances →</a></div>}

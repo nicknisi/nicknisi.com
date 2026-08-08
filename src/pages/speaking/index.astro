@@ -1,36 +1,14 @@
 ---
 import PageLayout from '@/layouts/Page.astro';
-import Callout from '@/components/Callout.astro';
 import Appearances from '@/components/sections/Appearances.astro';
-import metadata from '@/data/metadata.json';
 ---
 
-<PageLayout title="Speaking">
-	<p class="mb-10 max-w-[60ch] font-display text-xl leading-snug font-bold text-ink md:text-2xl">
-		Technical insights and engaging conversations for conferences, meetups, podcasts, and industry events. Spanning
-		technical presentations, panel moderation, and event hosting.
-	</p>
-
+<PageLayout title="Speaking & workshops">
+	<p class="mb-12 max-w-[58ch] text-xl leading-relaxed text-ink-soft">Technical talks, hands-on workshops, panels, and live demonstrations from a long-running public practice—now focused on AI-native developer experience and the systems around it.</p>
 	<Appearances limit={9} />
-
-	<div class="mt-16 mb-8 flex justify-center">
-		<Callout title="Fun fact" variant="info">
-			<p>
-				Beyond tech conferences, I've had the honor of officiating <span class="font-bold"
-					>{metadata.officiantCount} weddings</span
-				>, bringing the same dedication to creating meaningful moments in people's lives.
-			</p>
-		</Callout>
-	</div>
-
-	<section class="mt-12">
-		<div class="rounded-2xl border-2 border-ink bg-marigold p-6 shadow-hard md:p-8">
-			<h2 class="mt-0 mb-3 font-display text-2xl font-extrabold text-ink md:text-3xl">Want me at your event?</h2>
-			<p class="m-0 max-w-[56ch] font-display text-lg font-bold text-ink">
-				I'm always interested in new speaking opportunities. Whether it's a conference talk, panel moderation, or event
-				hosting, let's discuss how I can contribute to making your event successful.{' '}
-				<a href="/about" class="whitespace-nowrap underline decoration-ink decoration-2 underline-offset-4">say hi →</a>
-			</p>
-		</div>
+	<section class="mt-20 border-t border-line pt-10">
+		<h2 class="max-w-[12ch] text-4xl md:text-6xl">Bring the practice into the room.</h2>
+		<p class="mt-5 max-w-[58ch] text-lg text-ink-soft">Looking for an organization-wide workshop? Start with the workshop format. Planning a conference or technical event? Email me directly.</p>
+		<div class="mt-7 flex flex-wrap gap-3"><a href="/workshops" class="btn btn-primary">Explore workshops</a><a href="mailto:nick@nisi.org" class="btn btn-ghost">Invite Nick to speak</a></div>
 	</section>
 </PageLayout>

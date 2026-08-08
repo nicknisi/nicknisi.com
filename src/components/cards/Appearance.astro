@@ -1,80 +1,23 @@
 ---
 import { type CollectionEntry } from 'astro:content';
 import { getThumbnail } from '@/utils/image.js';
-import Card from '@/components/cards/Card.astro';
-import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
 import { toReadableDate } from '@/utils/common';
-import FormattedDate from '../FormattedDate.astro';
 
-interface Props {
-	appearance: CollectionEntry<'appearances'>;
-}
-
-const talkTypeMap = {
-	'Conference Talk': { icon: 'mdi:presentation-play', bgClass: 'bg-sky' },
-	Panel: { icon: 'mdi:forum', bgClass: 'bg-pine' },
-	Workshop: { icon: 'mdi:hammer-wrench', bgClass: 'bg-marigold' },
-	Keynote: { icon: 'mdi:star', bgClass: 'bg-tomato' },
-	'Lightning Talk': { icon: 'mdi:flash', bgClass: 'bg-grape' },
-	Podcast: { icon: 'mdi:microphone', bgClass: 'bg-marigold' },
-	Moderation: { icon: 'mdi:forum', bgClass: 'bg-grape' },
-} as const;
-
+interface Props { appearance: CollectionEntry<'appearances'>; }
 const { appearance: talk } = Astro.props;
 const { slug } = talk;
 const { type, title, instances, detailsUrl } = talk.data;
 const thumbnail = await getThumbnail(talk.data);
 const hasMultipleInstances = instances.length > 1;
 const firstInstance = instances[0]!;
-const { icon, bgClass } = talkTypeMap[type as keyof typeof talkTypeMap];
-const date = toReadableDate(firstInstance.date);
+const href = detailsUrl || (hasMultipleInstances ? `/speaking/${slug}` : firstInstance.url);
 ---
 
-<Card
-	image={thumbnail}
-	imageWidth={320}
-	imageHeight={180}
-	imageAlt={title}
-	hover
-	title={title}
-	interactive
-	border
-	href={detailsUrl || (hasMultipleInstances ? `/speaking/${slug}` : firstInstance.url)}
->
-	<div>
-		<div class="mb-2">
-			<span class="flex items-center gap-2 font-display text-xs font-bold text-ink">
-				<span class:list={[bgClass, 'inline-flex items-center justify-center rounded-full border-2 border-ink p-1']}>
-					<Icon name={icon} class="h-4 w-4 text-ink" />
-				</span>
-				<span class="text-base font-bold uppercase">{type}</span>
-			</span>
-
-			{
-				hasMultipleInstances ? (
-					<div class="mt-2 flex items-center gap-1 font-mono text-sm text-ink-soft">
-						<Icon name="mdi:star-circle" />
-						<span>{instances.length} appearances</span>
-					</div>
-				) : (
-					<div class="mt-2 flex flex-col gap-1 font-mono text-sm text-ink-soft">
-						<div class="flex items-center gap-1">
-							<Icon name="mdi:ticket" />
-							{firstInstance.event}
-						</div>
-						<div class="flex flex-wrap gap-2">
-							<div class="flex items-center gap-1">
-								<Icon name="mdi:map-marker" />
-								{firstInstance.location}
-							</div>
-							<div class="flex items-center gap-1">
-								<Icon name="mdi:calendar" />
-								<FormattedDate date={new Date(date)} />
-							</div>
-						</div>
-					</div>
-				)
-			}
-		</div>
-	</div>
-</Card>
+<a href={href} class="group flex flex-col border-t border-line pt-5 text-ink no-underline">
+	{thumbnail && <div class="mb-5 overflow-hidden rounded-md border border-line"><Image src={thumbnail} alt="" width={640} height={360} class="aspect-video w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]" /></div>}
+	<span class="evidence-label">{type} · {toReadableDate(firstInstance.date)}</span>
+	<h3 class="mt-3 text-2xl decoration-teal-500 decoration-1 underline-offset-4 group-hover:underline">{title}</h3>
+	<p class="mt-3 text-sm text-ink-soft">{hasMultipleInstances ? `${instances.length} appearances` : `${firstInstance.event} · ${firstInstance.location}`}</p>
+	<span class="mt-auto pt-5 text-sm font-bold text-purple-600 dark:text-purple-300">View →</span>
+</a>

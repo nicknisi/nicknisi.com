@@ -1,22 +1,23 @@
 ---
 import Base from './Base.astro';
 import type { MarkdownLayoutProps } from 'astro';
-
-interface Props extends Partial<
-	MarkdownLayoutProps<{
-		title?: string;
-		description?: string;
-		headerImage?: string;
-	}>
-> {}
-
+interface Props extends Partial<MarkdownLayoutProps<{ title?: string; description?: string; headerImage?: string }>> {}
 const { frontmatter } = Astro.props;
 const title = frontmatter?.title;
 const description = frontmatter?.description;
 ---
 
 <Base title={title} description={description}>
-	<div class="prose lg:prose-lg prose-headings:font-display prose-headings:font-extrabold max-w-none pt-8 pb-12">
-		<slot />
-	</div>
+	<article class="pt-12 pb-20 md:pt-20">
+		<header class="mb-12 border-b border-line pb-10">
+			<a href="/posts" class="evidence-label no-underline hover:text-purple-600">Writing / Field notes</a>
+			{title && <h1 class="mt-4 max-w-[15ch] text-5xl md:text-7xl">{title}</h1>}
+			{description && <p class="mt-5 max-w-[62ch] text-lg leading-relaxed text-ink-soft">{description}</p>}
+		</header>
+		<div class="prose lg:prose-lg mx-auto pb-12"><slot /></div>
+		<footer class="mx-auto mt-12 max-w-[72ch] border-t border-line pt-8">
+			<p class="text-sm leading-relaxed text-ink-soft">Nick Nisi writes about AI-native developer experience, tooling, and the craft of building software.</p>
+			<div class="mt-5 flex flex-wrap gap-3"><a href="/posts" class="btn btn-ghost">More writing</a><a href="/workshops" class="btn btn-primary">Explore workshops</a></div>
+		</footer>
+	</article>
 </Base>
