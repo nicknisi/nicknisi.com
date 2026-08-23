@@ -19,8 +19,8 @@ import Callout from '@/components/Callout.astro';
 
 <Callout title="TL;DR" variant="info">
 	I spent four months treating [pi](https://pi.dev) as a faster Claude Code, got bored, and told
-	people it wasn't worth the switch. Then I noticed that every tool I'd built around my harness —
-	bash hooks, tmux scrapers, standalone CLIs — existed because the harness wouldn't let me inside.
+	people it wasn't worth the switch. Then I noticed that every tool I'd built around my harness
+	(bash hooks, tmux scrapers, standalone CLIs) existed because the harness wouldn't let me inside.
 	pi will. Ten days later I had 26 extensions in
 	[a monorepo](https://github.com/nicknisi/pi-extensions) and had deleted 25,635 lines from my
 	dotfiles.
@@ -32,13 +32,15 @@ On July 20th, a coworker asked this in our `#pi` Slack channel:
 
 Zack had started building on pi and had just heard me say it wasn't worth it. Fair question. He wanted the reasoning.
 
-My entire reply was: "Love pi though! :homer-disappear:"
+My reply came in two messages: "Haha I merely said that there's real innovation in harnesses that shouldn't be ignored!" and then "Love pi though! :homer-disappear:"
+
+Zack: "WHAT DO YOU MEAN MAN"
 
 I dodged it.
 
 Two weeks later I'd run 188 pi sessions in ten days and 17 Claude Code sessions. Zack, here's the actual answer.
 
-## The city I'd already built
+## What I'd built around Claude Code
 
 I live in the terminal. tmux, Neovim, `rg` piped into `fzf`, a statusline I've tuned past the point of anyone else being able to read it.
 
@@ -62,7 +64,7 @@ By 3:20pm I was symlinking `~/.pi` into my dotfiles repo. By 3:27pm I'd pasted i
 
 Day two, I asked pi whether it could write its own extensions. It wrote one. I posted the result in Slack with a single 🤯.
 
-## The drift
+## The usage numbers
 
 Here's my pi usage by month, measured in sessions on disk:
 
@@ -76,13 +78,13 @@ Here's my pi usage by month, measured in sessions on disk:
 
 Pi commits in my dotfiles tell the same story: 19 in March, then 2, 5, 1, 4. Zero sessions in July.
 
-pi wasn't bad. It was great — faster, quieter, fewer permission prompts, model swapping that actually worked. Everyone in `#pi` kept saying so, and they were right.
+pi wasn't bad. It was great: faster, quieter, fewer permission prompts, model swapping that actually worked. Everyone in `#pi` kept saying so, and they were right.
 
-My city just didn't move with me. Fleet only knew how to read Claude Code's hooks. case only knew how to dispatch Claude. My tmux notifications only lit up for Claude panes. Every hour in pi was an hour outside the tooling I'd spent months sharpening.
+My city just didn't move with me. Fleet only knew how to read Claude Code's hooks, case only dispatched Claude, and my tmux notifications never lit up for a pi pane. Every hour in pi was an hour outside the tooling I'd spent months sharpening.
 
-The most telling commit in my dotfiles is from May 28th: `feat: cut tmux + Claude Code over to fleet`. Same day I published the Fleet post. Peak of the city, and the moment pi became structurally impossible for me.
+The most telling commit in my dotfiles is from May 28th: `feat: cut tmux + Claude Code over to fleet`. Same day I published the Fleet post. That was the peak of the city, and the moment pi became structurally impossible for me.
 
-So when Zack asked, I told him it wasn't worth it. I wasn't lying. I was describing a real cost. I just had the cause wrong.
+So when Zack asked, I told him it wasn't worth it. I wasn't lying, the cost was real. I just had the cause wrong.
 
 ## What I'd been missing
 
@@ -98,7 +100,7 @@ pi deliberately ships _without_ subagents, plan mode, permission popups, todos, 
 
 I'd built both sides of this comparison, which is why it hit.
 
-To know whether a Claude Code agent is working, waiting, or done, Fleet fuses three signals, none of which it can trust alone. Bash hooks writing status files (fast, structured, arrive out of order). A per-pane JSONL event log (knows intent, lags). And `tmux capture-pane` (ground truth, costs ~50ms, and Claude's spinner _animates_, so a fixed glyph match misses half the frames). The whole lesson of that project was **each layer is authoritative only for what it can actually be trusted on** — because nothing in the stack could just ask the agent what it was doing.
+To know whether a Claude Code agent is working, waiting, or done, Fleet fuses three signals, none of which it can trust alone. Bash hooks writing status files (fast, structured, arrive out of order). A per-pane JSONL event log (knows intent, lags). And `tmux capture-pane` (ground truth, costs ~50ms, and Claude's spinner _animates_, so a fixed glyph match misses half the frames). The whole lesson of that project was that each layer is authoritative only for what it can be trusted on, because nothing in the stack could just ask the agent what it was doing.
 
 The pi statusline extension is 519 lines of TypeScript. It subscribes to `tool_execution_start` and `agent_end`, calls `ctx.getContextUsage()`, hands a render function to `ui.setFooter()`, and reads the branch off `footerData`. No scraping, no fusion, no freshness rule. Every bash hook and `capture-pane` scrape in my old Fleet stack was doing work that one subscription replaces.
 
@@ -110,20 +112,20 @@ I posted "Anyone have their pi configs open source? I'd love to scour them!" in 
 
 I ported the creature comforts I actually missed: dynamic workflows, `/goal` and `/loop`, `/btw`, session auto-naming, `AskUserQuestion`, draft stashing, recap cards. I replaced the web search tool I'd been complaining about for weeks. I built `/mg` — a Severance-style "100% File Completion" animation starring a pixelated version of my CEO, with audio — because I could and nobody could stop me. Two hours later I [posted it](https://x.com/nicknisi/status/2084377731123355695) with the only caption it deserved: the work of a Developer and Agent Experiences Engineer at WorkOS is mysterious and important.
 
-I also asked pi, seriously, whether I should package all of it as a distro for other people. It spun up an 18-agent research workflow, came back, and told me no. The distro slot in that ecosystem is filled and empty at the same time, and capability packages beat curated configs by roughly 400×. Then it kept going and told me two things I hadn't asked about: I was loading ~2,600 lines of broken code into every single session, and my `trust.json` was committed to a public repo with my absolute paths in it.
+I also asked pi, seriously, whether I should package all of it as a distro for other people. It spun up an 18-agent research workflow, came back, and told me no. The distro slot in that ecosystem is already crowded with no clear winner, and capability packages beat curated configs by roughly 400×. Then it kept going and told me two things I hadn't asked about: I was loading ~2,600 lines of broken code into every single session, and my `trust.json` was committed to a public repo with my absolute paths in it.
 
 That was the useful part. It disagreed with me, backed it up with numbers, and then went looking for what else was wrong.
 
 On August 6th at 10:36am I moved everything out of my dotfiles into its own monorepo. One commit: 53 files changed, 25 insertions, **25,635 deletions**.
 
-## Coming home
+## The monorepo today
 
 Today `pi-extensions` is 26 packages and 32,847 lines of TypeScript. Statusline, composer, header, spinner, turn timer, pinned prompts. Subagent dispatch, workflows, codemode, an LLM council. `relay` for session-to-session messaging. `cloak` to redact secrets out of `read` results before they hit the model. `claude-compat`, so my Claude Code plugins keep working. Most of them are on npm now.
 
-And there's `bosun`: a pi session that turns into a liaison over a fleet of headless pi crewmates — spawning tasks, relaying progress, approving delivery. One night I pointed it at seven agents at once and went to bed.
+And there's `bosun`: a pi session that turns into a liaison over a fleet of headless pi crewmates. It spawns tasks, relays progress, approves delivery. One night I pointed it at seven agents at once and went to bed.
 
-It's Fleet again. Same problem, same shape. The difference is Fleet is a compiled binary outside the harness squinting at terminal output, and bosun is a package inside the session.
+It's Fleet again, same problem, same shape. The difference is Fleet is a compiled binary outside the harness squinting at terminal output, and bosun is a package inside the session.
 
-There's a work version of this story too, which I'll tell properly when I'm allowed to. Short version: the same week I was tearing my dotfiles apart, we started building on pi at WorkOS. Because pi's entire surface is extensions, the distance between "what would our own harness even look like" and "here, install it" turned out to be measured in days.
+There's a work version of this story too, which I'll tell properly when I'm allowed to. Short version: the same week I was tearing my dotfiles apart, we started building on pi at WorkOS. Because pi's entire surface is extensions, going from "what would our own harness even look like" to "here, install it" took days.
 
-The switch wasn't speed or cost or model choice. Those matter, and none of them moved me for four months. What moved me was noticing how much of my stack (case, Fleet, the scrapers, the files under `~/.cache`) only existed because I couldn't get inside the harness. pi lets you in. Zack, sorry for the dodge — this is what I should have said.
+The switch wasn't speed or cost or model choice. Those matter, and none of them moved me for four months. What moved me was noticing how much of my stack (case, Fleet, the scrapers, the files under `~/.cache`) only existed because I couldn't get inside the harness. pi lets you in. Zack, sorry for the dodge. This is what I should have said.
