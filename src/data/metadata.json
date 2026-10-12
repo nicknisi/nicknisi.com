@@ -20,8 +20,8 @@
 	},
 	"links": [
 		{
-			"title": "About My Coworkers Talk",
-			"url": "https://nicknisi.com/speaking/about-my-coworkers",
+			"title": "Beyond Done Workshop",
+			"url": "https://talks.workos.cloud/beyond-done",
 			"icon": "mdi:microphone"
 		},
 		{
@@ -30,19 +30,19 @@
 			"icon": "simple-icons:linkedin"
 		},
 		{
+			"title": "Follow on Twitter",
+			"url": "https://x.com/nicknisi",
+			"icon": "mdi:twitter"
+		},
+		{
 			"title": "Meet with me",
-			"url": "https://calendly.com/nicknisi/30min",
+			"url": "https://cal.com/nicknisi/meet",
 			"icon": "mdi:calendar"
 		},
 		{
-			"title": "Watch me stream",
+			"title": "YouTube",
 			"url": "https://www.youtube.com/nicknisi",
 			"icon": "mdi:youtube"
-		},
-		{
-			"title": "What I'm doing now",
-			"url": "https://nicknisi.com/now",
-			"icon": "mdi:clock-alert"
 		},
 		{
 			"title": "my dotfiles",
@@ -52,7 +52,12 @@
 	],
 	"ventures": [
 		{
-			"name": "Side Effects",
+			"name": "Typed Void LLC",
+			"url": "https://sideeffects.dev",
+			"tagline": "Fractional CTO, contracting & training, with John Christopher"
+		},
+		{
+			"name": "Side Effects LLC",
 			"url": "https://sideeffects.dev",
 			"tagline": "Fractional CTO, contracting & training, with John Christopher"
 		}
