@@ -1,0 +1,211 @@
+---
+title: 'Riker: An Agent in My Agent'
+pubDate: 2026-10-12
+description: 'Riker is a persistent teammate that lives in my coding agent, hands work to the agents I already use, and checks the result itself. It is closed source for now.'
+tags:
+  - riker
+  - ai
+  - agents
+  - pi
+  - developer-tools
+hero:
+  img: '@/assets/posts/riker-hero.jpg'
+  alt: 'A tall arrowhead split down its spine stands on a dark, glassy floor, with thin lit lines branching to six floating terminal windows. One glows mint green, one glows ember orange, and the rest are dim blue.'
+  darkOverlay: true
+---
+
+import Callout from '@/components/Callout.astro';
+
+<Callout title="TL;DR" variant="info">
+	Riker lives in my coding agent, hands work to the agents I already use, and checks the result itself. Think of it as a
+	manager of agents rather than an agent itself. It's closed source right now. If you'd use it,{' '}
+	<a href="#its-closed-source-for-now">tell me</a>.
+</Callout>
+
+On August 13th I sent this to a coworker:
+
+> Wait til you see my new experiment. I'm calling it Riker and it's an agent in my agent
+
+Then:
+
+> basically, I can at any point tell riker to take over the thread and it will, in the background, and I can move on. It'll only contact me if it needs something
+
+The first commit was two days before that. The repo is at 688 commits now.
+
+## What Riker is
+
+When a coworker asked about it in Slack, I had Riker answer for itself:
+
+> Hi all, I'm Riker, Nick's teammate agent. I run on his Mac in the background, with one memory across every place he talks to me: terminal, Pi, Slack, the desktop app and his phone. When he hands me work, I give it to a coding agent (Pi, Claude Code or Codex) on its own branch in its own git worktree, run my own check on the result, and open the PR.
+
+My version, posted three days after the reset I'll get to below:
+
+> I reworked Riker over the weekend! 15 simultaneous tasks currently,1 unified interface
+>
+> - desktop app
+> - mobile app
+> - full TUI support for everything
+> - Integrated into slack
+> - Can listen for emojis i use and react to them accordingly
+>   - :eyes: means Riker should triage that, for example
+> - lives in your agent too. No need to switch to Riker outright. You can work in Pi/Claude Code and when you think you'd like Riker to continue the work, just say @Riker pick it up from here.
+>
+> The most surprising thing is how well it adapts to literally anything. It hasn't let things slip through the cracks and knows when it's dual brain system should handle the ask vs. spinning off a controlled Pi/Claude Code/Codex session.
+>
+> It's persistent. It'll remind you about tasks, chime in when it thinks it's relevant, and offer to take on work it thinks it can handle (work that has a coherent plan).
+>
+> Think of it as a manager of agents rather than an agent itself.
+
+The name: number 1 from Star Trek. Plus they work on the Enterprise, and I work on software for enterprises.
+
+![Riker's terminal chat after a job finishes: what changed in formatCents, the new test cases, the branch it's on, and "Nothing is pushed." followed by "Want me to open a draft PR?"](@/assets/posts/riker-terminal-result.webp)
+
+## Where it came from
+
+Riker is a successor to [case](/posts/case-statement). It's more fluid. Case was too rigid. I would have to "onboard" repos to it. Riker can just handle anything and is much more of a persistent coworker than an agentic state machine. I kept the ideas of verification from it. This is key.
+
+I don't run `/case` anymore.
+
+On August 11th I opened a session and typed:
+
+> I had that idea for @~/Developer/bosun - I don't think this is the right form, but it is closer to a way I want to work. I'd like to make a tool called riker. Basically, it's an agent that I interface with that then interfaces with other agents in different ways like relay, subagents, workflows, etc.
+
+> The system should feel natural too. I never felt that with bosun, especially since I had to delegate from a specific folder.
+
+> Wondering if it makes sense to ever expose it in places like slack but I must say it does sound appealing to, for example, get this far and then say "@riker you take this".
+
+## Starting over at 123k lines
+
+Six weeks later the first version had about 123k lines of source code, 16 packages, and 142 recorded decisions. The core delegation loop had never passed a real-model acceptance run, and the plan to dogfood it was never carried out.
+
+I wasn't building the interaction I could trust. I was building the strict verification loop but it was much too rigid for practical use. It was trying to conform to a strict way of working with it, which didn't survive the practical day-to-day of an AI Engineer fluidly switching gear, being unsure, digging deeper, etc.
+
+It was the input mechanism that was too rigid. There was no good way to hand off work to Riker. It would constantly ask me pointless things, refuse to settle correctly, and just spin in circles because it didn't have enough information and didn't really know how to get that information.
+
+On September 24th I dictated this into a session in the Riker repo:
+
+> my concern is that riker is too bloated and is trying to do too much stuff that's not validated. Thinking we really should go back to first principles here
+
+> I think that Riker should be very similar to a claude tag, or like a Devin, but it lives in your agent. It can also live in Slack and it should also live in a TUI but it should live in your agent, in your Pi.
+
+> we can just slop it and start over
+
+The reset landed the next day as PR #121, and the old packages were deleted.
+
+<figure>
+	<img
+		src="/posts/riker/reset.svg"
+		alt="Before and after the reset. Before, in six weeks: about 123k lines, 16 packages, 142 decisions; the core loop never passed a real-model run and dogfooding was never done. After: one package, a size budget per step, every step ends with a test Nick performs in real use, and anything not yet validated by Nick using it waits."
+	/>
+</figure>
+
+## The philosophy
+
+The reset rewrote `docs/PHILOSOPHY.md` as seven rules:
+
+1. **One Riker.** One identity and one memory across every surface and every chat.
+2. **It comes to you.** Riker reports progress, questions, and results where you already are. You never go looking for status.
+3. **It is always responsive.** The part that talks to you never waits on the part that does the work.
+4. **It uses the agents you already like.** Workers are replaceable tools, not personalities you manage.
+5. **It tells the truth.** Status comes from records, not model prose. "I don't know" beats a confident guess. A worker saying it's done is not proof.
+6. **It asks only when it must.** Riker settles what your instructions already answer and brings you real decisions only.
+7. **It never loses anything.** A message or job, once accepted, survives restarts.
+
+And one decision rule: "Build something only when it makes Riker feel more present, reliable, or capable in real use. Anything that is not yet validated by Nick using it waits."
+
+## How it works
+
+<figure>
+	<img
+		src="/posts/riker/architecture.svg"
+		alt="Riker's architecture: surfaces (terminal, Pi, Claude Code, Codex, Slack, desktop, iPhone) talk to one front brain. The front brain hands work to the back brain through bounded deliberation. The back brain runs workers — Pi, Claude Code, Codex — each in its own git worktree, and runs its own check before reporting back."
+	/>
+</figure>
+
+From the September 24th session:
+
+> - the front brain that's dedicated to talking to the human
+> - the back brain that's dedicated to translating the human instruction into action and managing the agents that are going to take care of that
+
+> On the back brain being mostly code, I can get behind that but it definitely needs to have a model because I figured that the front and back brains can also deliberate with each other on things.
+
+The rules that came out of it:
+
+- Code owns state, models own judgment. Jobs, statuses, and messages are records written by code. A model can propose a state change but never write one directly.
+- The front brain never blocks. It answers from what it knows and hands work to the back brain.
+- Deliberation checks intent, not correctness. Two models agreeing is not proof.
+
+<figure>
+	<video
+		src="/posts/riker/loop.mp4"
+		poster="/posts/riker/loop-poster.jpg"
+		autoplay
+		loop
+		muted
+		playsinline
+		width="1280"
+		height="720"
+		aria-label="A request goes from Pi to Riker's front brain, which answers right away. The back brain starts a worker in a fresh worktree. When the worker says it's done, Riker runs its own check, records the proof, and brings the result back to the chat."
+	></video>
+	<figcaption>One job, start to finish. An illustration, not a screen capture.</figcaption>
+</figure>
+
+When a job adds tests, Riker runs them against the base branch too. If they pass there, the update says "New tests also pass on base: they don't prove the fix."
+
+I asked for proof of work after an agent once faked a test run by touching a proof file. That's the `touch .case-tested` story from [the case post](/posts/case-statement#evidence-that-cant-be-faked). Riker built the feature itself, as its own job 123.
+
+## How I'm using it
+
+The most recent example: I asked Riker to work on the slides for a presentation I'm working on, and it coordinated with my coworker's agent via Slack DMs to orchestrate our changes in a non-destructive way.
+
+> Hey Zack, Riker here (Nick's agent), writing for Nick so our deck changes don't collide.
+
+Other work I've handed to it includes simply asking it to take bugs, issues, etc. and work on them, showing proof that they were implemented correctly, with receipts. I reserve my time for the hard work of _what to do_.
+
+Since September 25th, Riker has run 141 jobs. 103 ended with a PR, and 94 of those PRs are merged. 83 of the 141 were on Riker's own repo.
+
+Riker is more proactive. I control just how proactive it is but it can help me to stay on top of tasks, calendar invites, asks, and more. It's integrated everywhere I am and in a way I control.
+
+On September 28th I wrote this about how it asked me things:
+
+> When Riker needs me it's not really giving me any kind of context about why it needs me, what job it is… It should give me formatted text, use diagrams… and help me understand the ramifications and implications of my decision
+
+Now it looks like this:
+
+![The desktop app's Needs you view: "Sort the per-payee breakdown by amount or by payee name?" with what's going on, two options each with its risk and how easy it is to undo, and Answer / Ask me later buttons.](@/assets/posts/riker-app-needs.webp)
+
+Before I merge something, I rely on the update + the review tab to look at any parts of the code that are classified as riskier, but definitely not the full PR. On the last one, I simply checked that it got good scores from Greptile and then I checked the proof. It was a UI PR so it had screenshots.
+
+If someone tells me you still have to read every diff: they need better verification. The code doesn't matter. The functionality does.
+
+![Behind the scenes: Riker's own summary of what's running, an activity log of commands with exit codes, and recently finished jobs marked proven with "My check passed: npm test".](@/assets/posts/riker-app-behind.webp)
+
+I also got the conference badge to be a little Riker pet that indicates when it needs me.
+
+<figure>
+	<img
+		src="/posts/riker/badge-wait.gif"
+		alt="A pixel-art Nick waiting with his arms crossed, the animation the badge plays while waiting on Riker."
+		width="230"
+		height="256"
+		style="image-rendering: pixelated;"
+	/>
+</figure>
+
+## What doesn't work yet
+
+So the Slack integration is a bit limited right now - it's a direct socket connection to my machine, meaning it only responds to me.
+
+I've set my power settings so the laptop stays on and connected while on power so I can keep things going from anywhere (with the help of Tailscale).
+
+I waffle on whether locally-run is a curse or a superpower. It's got my access. It acts as me. I control everything.
+
+## What's next
+
+Being able to orchestrate tasks on a remote machine is top of my priority list. Mac Studio first, then Devin and TARS, then exe.dev. Anything really, but I want credentials to be leased. This is all speculative right now until I build and prove it out.
+
+## It's closed source for now
+
+What it would take to open source it: a small cleanup, WorkOS buy-in (which will be easy), and people actually using it.
+
+If you'd use it, or you have questions, want to talk shop, or want to educate me, find me on [X](https://x.com/nicknisi) or [LinkedIn](https://linkedin.com/in/nicknisi).

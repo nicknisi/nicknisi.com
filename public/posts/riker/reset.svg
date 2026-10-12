@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" role="img" aria-labelledby="t d">
+  <title id="t">The Riker reset</title>
+  <desc id="d">Before: about 123k lines of source, 16 packages, 142 decisions in six weeks; the core loop never passed a real-model run, and dogfooding was never done. After: one package, a size budget per step, every step ends with a test Nick performs in real use, and anything not yet validated by Nick using it waits.</desc>
+  <defs>
+    <style>
+      .bg{fill:#0a0f15}
+      .panel{fill:#101823;stroke:#1c2a38;stroke-width:1.5}
+      .lab{font:500 15px ui-monospace,'JetBrains Mono',Menlo,monospace;fill:#82b5e8;letter-spacing:.08em}
+      .labm{font:500 15px ui-monospace,'JetBrains Mono',Menlo,monospace;fill:#6b7c8e;letter-spacing:.08em}
+      .big{font:700 54px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#8a9aab}
+      .unit{font:400 22px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#6b7c8e}
+      .x{font:400 19px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#6b7c8e}
+      .h{font:600 26px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#e8eef4}
+      .b{font:400 20px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#c5d1dc}
+      .code{font:400 19px ui-monospace,'JetBrains Mono',Menlo,monospace;fill:#82b5e8}
+      .arrow{stroke:#5f7286;stroke-width:2;fill:none}
+    </style>
+  </defs>
+  <rect class="bg" width="1200" height="560" rx="16"/>
+
+  <!-- Before -->
+  <text class="labm" x="48" y="64">AUG 11 – SEP 24 · SIX WEEKS</text>
+  <rect class="panel" x="40" y="84" width="520" height="436" rx="12" fill-opacity=".6"/>
+  <text class="big" x="76" y="170">~123k</text><text class="unit" x="270" y="168">lines of source</text>
+  <text class="big" x="76" y="250">16</text><text class="unit" x="160" y="248">packages</text>
+  <text class="big" x="76" y="330">142</text><text class="unit" x="190" y="328">decisions</text>
+  <text class="x" x="76" y="428">× core loop never passed a real-model run</text>
+  <text class="x" x="76" y="466">× dogfooding never done</text>
+
+  <path class="arrow" d="M576 302 H616"/>
+  <path d="M616 294 L630 302 L616 310 z" fill="#5f7286"/>
+
+  <!-- After -->
+  <text class="lab" x="654" y="64">SEP 25 → · THE RESET (PR #121)</text>
+  <rect class="panel" x="646" y="84" width="514" height="436" rx="12"/>
+  <text class="h" x="682" y="148">One package</text>
+  <text class="code" x="682" y="182">packages/riker</text>
+  <text class="h" x="682" y="250">A size budget per step</text>
+  <text class="b" x="682" y="284">Blow it, and you cut scope.</text>
+  <text class="h" x="682" y="352">Every step ends with a test</text>
+  <text class="b" x="682" y="386">Nick performs in real use.</text>
+  <text class="h" x="682" y="454">One decision rule</text>
+  <text class="b" x="682" y="488">Not yet validated by Nick using it? It waits.</text>
+</svg>

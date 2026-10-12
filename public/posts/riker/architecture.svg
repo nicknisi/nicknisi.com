@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 660" role="img" aria-labelledby="t d">
+  <title id="t">Riker's architecture</title>
+  <desc id="d">Surfaces talk to one front brain. The front brain hands work to the back brain through bounded deliberation. The back brain runs a worker in its own git worktree, then runs Riker's own check and records proof before the result comes back to you.</desc>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#5f7286"/>
+    </marker>
+    <style>
+      .bg{fill:#0a0f15}
+      .panel{fill:#101823;stroke:#1c2a38;stroke-width:1.5}
+      .pill{fill:#101823;stroke:#24364a;stroke-width:1.5}
+      .h{font:600 26px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#e8eef4}
+      .b{font:400 19px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#b4c2d0}
+      .s{font:400 18px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#e8eef4}
+      .lab{font:500 15px ui-monospace,'JetBrains Mono',Menlo,monospace;fill:#82b5e8;letter-spacing:.08em}
+      .m{font:400 17px ui-monospace,'JetBrains Mono',Menlo,monospace;fill:#8a9aab}
+      .edge{stroke:#5f7286;stroke-width:2;fill:none}
+      .proven{fill:#46d1a1}
+      .pt{font:600 16px system-ui,-apple-system,sans-serif;fill:#0a0f15}
+    </style>
+  </defs>
+  <rect class="bg" width="1200" height="660" rx="16"/>
+
+  <!-- Surfaces -->
+  <text class="lab" x="40" y="58">SURFACES</text>
+  <g>
+    <rect class="pill" x="40" y="78" width="200" height="44" rx="22"/><text class="s" x="140" y="106" text-anchor="middle">terminal</text>
+    <rect class="pill" x="40" y="132" width="200" height="44" rx="22"/><text class="s" x="140" y="160" text-anchor="middle">@riker in Pi</text>
+    <rect class="pill" x="40" y="186" width="200" height="44" rx="22"/><text class="s" x="140" y="214" text-anchor="middle">Claude Code · Codex</text>
+    <rect class="pill" x="40" y="240" width="200" height="44" rx="22"/><text class="s" x="140" y="268" text-anchor="middle">Slack</text>
+    <rect class="pill" x="40" y="294" width="200" height="44" rx="22"/><text class="s" x="140" y="322" text-anchor="middle">desktop · iPhone</text>
+  </g>
+  <path class="edge" d="M248 208 H318" marker-end="url(#a)"/>
+
+  <!-- Front brain -->
+  <text class="lab" x="330" y="58">FRONT BRAIN</text>
+  <rect class="panel" x="330" y="78" width="380" height="186" rx="12"/>
+  <text class="h" x="356" y="122">One Riker, one memory</text>
+  <text class="b" x="356" y="160">Talks to you, in every surface.</text>
+  <text class="b" x="356" y="192">Answers from what it knows.</text>
+  <text class="b" x="356" y="224">Never waits on the work.</text>
+
+  <!-- deliberation -->
+  <path class="edge" d="M520 272 V368" marker-end="url(#a)"/>
+  <path class="edge" d="M490 368 V272" marker-end="url(#a)"/>
+  <text class="m" x="540" y="316">bounded deliberation</text>
+  <text class="m" x="540" y="340">≤2 rounds, journaled</text>
+
+  <!-- Back brain -->
+  <text class="lab" x="330" y="398">BACK BRAIN</text>
+  <rect class="panel" x="330" y="414" width="380" height="186" rx="12"/>
+  <text class="h" x="356" y="458">Turns asks into jobs</text>
+  <text class="b" x="356" y="496">Code owns state.</text>
+  <text class="b" x="356" y="528">A model owns judgment.</text>
+  <text class="b" x="356" y="560">Supervises the workers.</text>
+
+  <path class="edge" d="M718 470 H788" marker-end="url(#a)"/>
+
+  <!-- Workers -->
+  <text class="lab" x="800" y="398">WORKERS</text>
+  <rect class="panel" x="800" y="414" width="360" height="104" rx="12"/>
+  <text class="h" x="826" y="454">Pi · Claude Code · Codex</text>
+  <text class="m" x="826" y="490">own worktree, own branch</text>
+
+  <path class="edge" d="M980 526 V556" marker-end="url(#a)"/>
+  <rect class="panel" x="800" y="560" width="360" height="66" rx="12"/>
+  <text class="s" x="826" y="600">Riker's own check</text>
+  <rect class="proven" x="1052" y="577" width="86" height="32" rx="16"/>
+  <text class="pt" x="1095" y="599" text-anchor="middle">proven</text>
+
+  <!-- comes to you -->
+  <path class="edge" d="M1160 590 H1180 V170 H718" marker-end="url(#a)"/>
+  <text class="m" x="800" y="160">comes back to you, where you are</text>
+</svg>
