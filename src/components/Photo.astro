@@ -1,0 +1,41 @@
+---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+
+interface Props {
+	src: ImageMetadata;
+	alt: string;
+	/** Bold caption, bottom left. */
+	caption?: string;
+	/** Mono label, bottom right, e.g. "New York · 2026". */
+	label?: string;
+	class?: string;
+}
+
+const { src, alt, caption, label, class: className } = Astro.props;
+---
+
+<!-- Same treatment as the presenting photo on the home page. -->
+<figure
+	class:list={[
+		'not-prose border-line shadow-soft-sm relative my-8 overflow-hidden rounded-lg border dark:shadow-none',
+		className,
+	]}
+>
+	<Image src={src} alt={alt} class="block w-full" />
+	{
+		(caption || label) && (
+			<>
+				<div class="absolute inset-0 bg-gradient-to-t from-purple-950/50 via-transparent to-transparent" />
+				<figcaption class="absolute right-3 bottom-3 left-3 flex items-end justify-between gap-3 text-white sm:right-5 sm:bottom-5 sm:left-5">
+					<span class="text-xs font-bold sm:text-sm">{caption}</span>
+					{label && (
+						<span class="shrink-0 font-mono text-[0.65rem] tracking-wider whitespace-nowrap uppercase sm:text-xs">
+							{label}
+						</span>
+					)}
+				</figcaption>
+			</>
+		)
+	}
+</figure>
