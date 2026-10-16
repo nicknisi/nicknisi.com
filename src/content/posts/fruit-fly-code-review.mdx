@@ -2,7 +2,6 @@
 title: 'Are You Smarter Than A Fruit Fly?'
 pubDate: 2026-10-15
 description: 'My AI Engineer NYC talk: I taught a simulated fruit-fly brain to review code, then tested whether it could. Slides, demo, and code inside.'
-draft: true
 tags:
   - ai
   - talks
@@ -26,9 +25,9 @@ import onStage from '@/assets/posts/fruit-fly-on-stage.jpg';
 	label="New York · 2026"
 />
 
-On October 14th I gave a talk at AI Engineer in New York called "Are You Smarter Than A Fruit Fly?" [source: interview logistics]. There's no recording yet. The [slides](https://fruitfly.review/presentation) are a web page with a live fly brain behind them, the fly itself is at [fruitfly.review](https://fruitfly.review), and the code is at [github.com/nicknisi/fly-review](https://github.com/nicknisi/fly-review).
+On October 14th I gave a talk at AI Engineer in New York called "Are You Smarter Than A Fruit Fly?" There's no recording yet. The [slides](https://fruitfly.review/presentation) are a web page with a live fly brain behind them, the fly itself is at [fruitfly.review](https://fruitfly.review), and the code is at [github.com/nicknisi/fly-review](https://github.com/nicknisi/fly-review).
 
-The pitch, from when I first proposed it [source: pi session 2026-09-18T21-54-17, msg 0]:
+The pitch, from when I first proposed it:
 
 > Code review is done poorly in the age of agents. I want to tickle with the idea that maybe we don't need to be reviewing the code, especially if we're not the ones writing the code.
 
@@ -36,15 +35,15 @@ The pitch, from when I first proposed it [source: pi session 2026-09-18T21-54-17
 
 ## The fly
 
-I took Google's [connectome of the male fruit fly](https://research.google/blog/a-connectomics-milestone-mapping-the-complete-male-fruit-fly-brain/), 176,422 neurons, and made it run on a laptop [source: data/deck.json]. A fly can't read code, so [Jev](https://docs.typesafe.ai/) answers 30 yes/no questions about what changed, and the answers become a smell. Test results teach it: a reproduced bug is bitter, a harmless change that passes every test is sugar. If the smell alone makes its tongue come out, it approves [source: README "What the fly actually does"].
+I took Google's [connectome of the male fruit fly](https://research.google/blog/a-connectomics-milestone-mapping-the-complete-male-fruit-fly-brain/), 176,422 neurons, and made it run on a laptop. A fly can't read code, so [Jev](https://docs.typesafe.ai/) answers 30 yes/no questions about what changed, and the answers become a smell. Test results teach it: a reproduced bug is bitter, a harmless change that passes every test is sugar. If the smell alone makes its tongue come out, it approves.
 
 > I tried to train the fly on the codebase by using mutation testing to identify good and bad parts of the code and then train the fly to have memories based on that.
 
-Then the room played against it. Three changes drawn at random, hands up to approve or request changes, then the fly's vote, then the tests [source: presentation.ts game slide]. The room got it right all the time [source: interview Q1 follow-up]. On 301 changes it had never seen, the fly scored 88.3%, where a coin flip gets 50% [source: data/deck.json].
+Then the room played against it. Three changes drawn at random, hands up to approve or request changes, then the fly's vote, then the tests. The room got it right all the time. On 301 changes it had never seen, the fly scored 88.3%, where a coin flip gets 50%.
 
 ## The harder test
 
-That exam had a flaw: every bug changed behavior, and every harmless change didn't. So the morning of the talk I gave it 24 tickets that are supposed to change what the code does, each with a right change and a plausible mistake. It approved 0 of the 24 correct changes [source: data/deck.json intent]. It learned "did the behavior change," not "is this change right" [source: README "Intended changes"].
+That exam had a flaw: every bug changed behavior, and every harmless change didn't. So the morning of the talk I gave it 24 tickets that are supposed to change what the code does, each with a right change and a plausible mistake. It approved 0 of the 24 correct changes. It learned "did the behavior change," not "is this change right."
 
 <ImageRow>
 	![The audience round slide: "Are you smarter than a fruit fly?" in a lit marquee, with three slot-machine reels landed on three source files.](@/assets/posts/fruit-fly-game.webp)
@@ -52,11 +51,11 @@ That exam had a flaw: every bug changed behavior, and every harmless change didn
 	![The harder test slide. Ticket: free shipping from $50. The right change and the mistake side by side, and the fly requests changes on both.](@/assets/posts/fruit-fly-harder.webp)
 </ImageRow>
 
-I was just trying to be provocative [sic: cleaned]. I do think we need to eliminate the current way of code review, but handing off to a fruit fly is not the answer [source: interview Q3].
+I was just trying to be provocative. I do think we need to eliminate the current way of code review, but handing off to a fruit fly is not the answer.
 
 ## What I proposed instead
 
-Teams maintain their own review skill, a classifier decides what's risky, automated review handles the rest, and only what fails or is too complex escalates to a human, in summary form [source: pi session 2026-10-13T14-40-25, msg 404]. That human should understand "what the code is doing and why, and specifically why not other methods." [source: pi session 2026-09-18T21-54-17, msg 0]
+Teams maintain their own review skill, a classifier decides what's risky, automated review handles the rest, and only what fails or is too complex escalates to a human, in summary form. That human should understand "what the code is doing and why, and specifically why not other methods."
 
 ![The proposal slide: Team review skill, Classifier, Automated review with the fly sitting on it, Merge or escalate, A human summarized.](@/assets/posts/fruit-fly-proposal.webp)
 
