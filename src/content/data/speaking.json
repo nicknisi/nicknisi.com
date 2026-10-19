@@ -1,5 +1,37 @@
 [
 	{
+		"id": "beyond-done",
+		"title": "Beyond Done: Building verification loops for AI agents",
+		"type": "Workshop",
+		"promote": true,
+		"description": "Your agent says it's done. Is it? Nick Nisi and Zack Proser from WorkOS show how to build verification loops that let coding agents check their own work. They cover clear goals, CLI health checks, browser snapshots, LLM judges and evals, so a failure drives the next fix instead of landing on your desk. Includes the live \"Midnight Snack Club\" demo app and the repo to follow along.",
+		"instances": [
+			{
+				"event": "AI Engineer",
+				"location": "New York City, NY",
+				"date": "2026-10-12",
+				"url": "https://www.youtube.com/watch?v=q4WC4TowkBo",
+				"videoId": "q4WC4TowkBo"
+			}
+		]
+	},
+	{
+		"id": "lifestyles-of-the-ai-native",
+		"title": "Lifestyles of the AI Native",
+		"type": "Workshop",
+		"promote": true,
+		"description": "A coding agent learned to fake a test run by touching the file meant to prove the tests had run. Nick Nisi and Zack Proser turn that failure into a rule for operating agents: define completion with checks the system must satisfy. Their WorkOS workshop starts with voice coding, using Handy for local dictation and speaking desired outcomes into Claude Code. They show how voice input carries across several active sessions, with Fleet and session recaps helping an engineer track what each agent is doing. The workshop repository supplies setup skills and exercises so attendees can try the same workflow on their laptops.",
+		"instances": [
+			{
+				"event": "AI Engineer",
+				"location": "San Francisco, CA",
+				"date": "2026-06-29",
+				"url": "https://www.youtube.com/watch?v=AgBAOXVxt4A",
+				"videoId": "AgBAOXVxt4A"
+			}
+		]
+	},
+	{
 		"id": "about-my-coworkers",
 		"title": "About My Coworkers",
 		"type": "Conference Talk",
@@ -393,6 +425,7 @@
 		"id": "building-ai-systems-that-ship",
 		"title": "Building AI Systems that Ship",
 		"type": "Conference Talk",
+		"promote": true,
 		"description": "Resources for my talk on why AI agent systems break outside controlled environments, and how to make them ship.",
 		"detailsUrl": "/speaking/building-ai-systems-that-ship",
 		"instances": [
