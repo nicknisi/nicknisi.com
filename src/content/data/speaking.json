@@ -1,5 +1,22 @@
 [
 	{
+		"id": "are-you-smarter-than-a-fruit-fly",
+		"title": "Are You Smarter Than A Fruit Fly?",
+		"type": "Conference Talk",
+		"promote": true,
+		"description": "Nick Nisi took Google's connectome of the male fruit fly, made it run on a laptop, and taught that simulated fly brain to review code. Then he tested whether it could, with the room playing against it.",
+		"detailsUrl": "/posts/fruit-fly-code-review",
+		"instances": [
+			{
+				"event": "AI Engineer",
+				"location": "New York City, NY",
+				"date": "2026-10-14",
+				"url": "https://www.youtube.com/watch?v=geMAe-PLJF4",
+				"videoId": "geMAe-PLJF4"
+			}
+		]
+	},
+	{
 		"id": "beyond-done",
 		"title": "Beyond Done: Building verification loops for AI agents",
 		"type": "Workshop",
