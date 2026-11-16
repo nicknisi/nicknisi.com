@@ -1,0 +1,82 @@
+---
+title: 'Visor: My Hyprland Shell'
+pubDate: 2026-11-16
+description: 'A look at my Quickshell desktop for Hyprland: an expanding island, agents in the bar, and switchable looks that use my existing themes.'
+tags:
+  - hyprland
+  - quickshell
+  - linux
+  - claude-code
+  - ai
+  - dotfiles
+---
+
+Visor is the shell I've been building for my Hyprland desktop, using [Quickshell](https://quickshell.org/). It replaces my old bar and its Hud popup with an island at the top of the screen. The island expands to show the launcher, control center, calendar and notifications.
+
+![Visor at rest, with lettered workspaces on the left, a clock in the middle, and the current song on the right.](@/assets/posts/visor-rest.png)
+
+The workspaces are lettered rather than numbered. The active one gets a filled shape. The right side changes with the context: music, a repository or an agent. There is also a notch form, attached to the top edge of the display.
+
+Hovering opens the media controls, date and system status. The line underneath comes from the current theme pack.
+
+![Visor expanded on hover, showing media controls, the date, connectivity and battery status, a Claude Code session, and the theme tagline.](@/assets/posts/visor-hover.png)
+
+Clicking the clock opens the calendar. The status pill opens the control center. Clicking the empty space pins the island open, so it stays there when the pointer leaves.
+
+## The Crew
+
+The bots in the bar represent running agents. Their appearance changes with their state: working, waiting for me, or idle. Opening the Crew panel shows which agent is doing what, along with its project and today's reported spend.
+
+![The Crew panel, with Pi waiting for approval, Riker and Claude Code working, and Codex idle.](@/assets/posts/visor-crew.png)
+
+The feed combines [Fleet](/posts/fleet) for tmux sessions with a process scan for agents running elsewhere. Selecting a bot jumps to its window or tmux pane.
+
+When an agent starts needing attention, Visor opens a hail with a button to go to it.
+
+![A hail from Pi, waiting for approval in the dotfiles tmux session, with a Go to pane button.](@/assets/posts/visor-hail.png)
+
+These screenshots use sandbox fixtures. The agents, session details and spending shown are test data, not a report of what the build cost.
+
+## Looks and themes
+
+After seeing the initial mocks in Claude Design, I asked:
+
+> I like this, but can we have more personalization? More... me?
+
+An early version included a pixel-art avatar of me. My response:
+
+> hmm, I don't think I want to use the Nick guy... I tried that and it felt kind of kludgy
+
+The avatar came out. The lettered workspaces, Crew bots and theme taglines stayed. There are also switchable looks for the bar:
+
+![Visor's looks: the plain island, Phosphor's terminal-style text, Bridge's LCARS-style segments, Arcade's hearts and invaders, Liner Notes' handwritten labels, Outrun's neon outlines, and the plain notch form.](@/assets/posts/visor-looks.png)
+
+Phosphor uses terminal-style text and a cursor. Bridge has a stardate and an away-team count. Arcade uses hearts and invaders. Liner Notes has handwritten workspace labels and a stamp when an agent needs attention. Outrun separates the workspaces, clock and bots into neon outlines.
+
+A look changes the bar's layout and typography. The theme pack supplies its colors. Opening the control center or launcher still gets the same panel layout, whichever look is selected.
+
+The theme picker shows my 37 installed packs with their wallpapers. Moving the selection previews the palette on the shell; Enter applies it. Esc clears the filter first, then closes the picker and cancels the preview.
+
+![The theme picker, with wallpaper thumbnails and palette dots for each pack, and hackerman marked as current.](@/assets/posts/visor-themes.png)
+
+The looks have contrast checks across the theme packs. Where a look's preferred color is too close to its background, it uses the pack's foreground color instead.
+
+## Launcher and controls
+
+The launcher uses the existing search providers: apps, files, clipboard history, emoji, calculations, timers and colors, plus a Codex chat. Its view now opens inside the island. Holding `Super`+`Space` starts dictation.
+
+![The launcher searching for shot, with Screenshot Region selected and its command shown in the detail pane.](@/assets/posts/visor-launcher.png)
+
+The control center puts connectivity, media, volume, brightness and notifications in the same panel. Wi-Fi, Bluetooth and Tailscale open detail sheets. The smaller controls below the sliders include keep-awake, power mode, display settings, themes, recording and clipboard history.
+
+![The control center, with connectivity tiles, media controls, volume and brightness sliders, quick controls, and notifications.](@/assets/posts/visor-control-center.png)
+
+## Lock screen
+
+The lock screen uses the theme's wallpaper and a separate Quickshell process for authentication through PAM. The `shell-lock` wrapper falls back to hyprlock if the new lock does not confirm that it secured the session.
+
+![The lock screen over a teal wireframe wallpaper, with the time and a password field for Nick Nisi on milhouse.](@/assets/posts/visor-lock.png)
+
+The polkit password prompt for system actions has a matching view inside the island. Enabling it is a separate step in the switch-over instructions, after testing the lock.
+
+The screenshots here come from a headless, nested Hyprland session. That lets the agents render specific states and measure the result against the mocks. It doesn't test real passwords, keyboard focus on the laptop, or suspend and resume. The switch-over checklist keeps those as real-hardware checks.
