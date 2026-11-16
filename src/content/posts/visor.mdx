@@ -96,10 +96,20 @@ The screenshots here come from a headless, nested Hyprland session. That lets th
 
 ## On my Mac
 
-My dotfiles also run my Mac, where there's no Hyprland or Quickshell. On macOS I use [OmniWM](https://omniwm.app/), a tiling window manager. Its config in `config/omniwm` is ported from my Hyprland config, with the same nine numbered workspaces and eight lettered ones. `Option` stands in for `Super`, so `Command` shortcuts stay with the apps.
+My dotfiles also run my Mac, where there's no Hyprland or Quickshell. On macOS I use [OmniWM](https://omniwm.app/), a tiling window manager. Its config in `config/omniwm` is ported from my Hyprland config, with the same nine numbered workspaces and eight lettered ones. `Option` stands in for `Super`, so `Command` shortcuts stay with the apps. `Option`+`D` goes to the development workspace, and adding `Shift` sends the focused window there instead. App rules put the first window of Ghostty on D, Slack on S and the browsers on W. OmniWM reloads `settings.toml` as soon as it changes, so there's no restart step.
 
 OmniWM has its own shell, with bar widgets written in Luau, and the Mac bar got there first. Its agents widget landed on November 11 and the switchable looks on November 12, two days before Visor's first commit. Visor's Crew bots, its looks and the shapes behind the focused workspace all started on the Mac. The shapes come from OmniWM's own shape library, and my looks build on Wayline, a bar style by OmniWM's author, OmniNull.
 
-The scripts are shared. `bin/omniwm-agents` finds running agents on both systems: on the Mac a LaunchAgent runs it and pushes the result into the bar, and on Linux Visor reads its output. `theme` switches the pack on both, copying the palette and tagline into OmniWM on the Mac. `bar phosphor` switches the look on whichever machine I'm sitting at.
+Each look is an OmniWM shell profile, a folder under `config/omniwm/shell/` with its own theme and layout. They all share one set of widgets: agents, status, notifications, the island, Prairie and a calendar chip. `shell.toml` names the active profile, and `bar <look>` switches it with `omniwmctl shell profile`. The Mac has eight looks: Crew (the Wayline-based one), Phosphor, Liner, Sky, Outrun, Bridge, Arcade and Blueprint.
 
-The Mac's island wraps the MacBook's notch and grows wings for a meeting that's about to start, music, or a keep-awake timer. The Mac bar also has Prairie, a pixel cat that naps when the machine is idle, gets the zoomies when it's busy, ducks out of sight while the camera is on, and perks up with a "!" when an agent needs me.
+![The Mac bar in each of its eight looks, top to bottom: Crew, Phosphor, Liner, Sky, Outrun, Bridge, Arcade and Blueprint. Workspaces are on the left; Prairie, the agents, status, notifications and the clock are on the right.](@/assets/posts/omniwm-looks.png)
+
+Unlike the Visor screenshots, these come from my real desktop, with each bar cropped to its two ends. The window title and the notch in the middle are cut out. The agents are real too, which is why Liner and Bridge say four of them need me.
+
+The scripts are shared. `bin/omniwm-agents` finds running agents on both systems. On the Mac a LaunchAgent runs it every 15 seconds and pushes the JSON into the bar with `omniwmctl shell set agents`, and on Linux Visor reads its output. `theme` switches the pack on both, copying the palette and tagline into OmniWM on the Mac. `bar phosphor` switches the look on whichever machine I'm sitting at. A second LaunchAgent runs `omniwm-monitors` whenever a display connects, adding gap and window-size settings for any screen that doesn't have them yet.
+
+The Mac's island wraps the MacBook's notch and grows wings for a meeting that's about to start, music, or a keep-awake timer. Clicking the notch opens it to the current song, with synced lyrics and playback controls, plus chips for the next event and the agents. The theme pack's tagline sits along the bottom, like the line under Visor's hover view. It only opens by itself for a few seconds when a meeting is about to start or I switch theme packs.
+
+![The Mac's island opened from the notch, showing a Sam Hunt song with playback controls and a lyric, chips for a Practice event in 235 minutes and 9 agents with 4 needing me, and the hackerman pack's tagline.](@/assets/posts/omniwm-island.png)
+
+The Mac bar also has Prairie, a pixel cat that naps when the machine is idle, gets the zoomies when it's busy, ducks out of sight while the camera is on, and perks up with a "!" when an agent needs me.
