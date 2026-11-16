@@ -1,7 +1,7 @@
 ---
 title: 'Visor: My Hyprland Shell'
 pubDate: 2026-11-16
-description: 'A look at my Quickshell desktop for Hyprland: an expanding island, agents in the bar, and switchable looks that use my existing themes.'
+description: 'A look at my Quickshell desktop for Hyprland: an expanding island, agents in the bar, and switchable looks that use my existing themes. Plus the OmniWM bar on my Mac, where a lot of it started.'
 tags:
   - hyprland
   - quickshell
@@ -9,9 +9,10 @@ tags:
   - claude-code
   - ai
   - dotfiles
+  - macos
 ---
 
-Visor is the shell I've been building for my Hyprland desktop, using [Quickshell](https://quickshell.org/). It replaces my old bar and its Hud popup with an island at the top of the screen. The island expands to show the launcher, control center, calendar and notifications.
+Visor is the shell I've been building for my Hyprland desktop, using [Quickshell](https://quickshell.org/). It replaces my old bar and its Hud popup with an island at the top of the screen. The island expands to show the launcher, control center, calendar and notifications. It's merged into my [dotfiles](https://github.com/nicknisi/dotfiles) now and runs my laptop's desktop.
 
 ![Visor at rest, with lettered workspaces on the left, a clock in the middle, and the current song on the right.](@/assets/posts/visor-rest.png)
 
@@ -67,9 +68,21 @@ The launcher uses the existing search providers: apps, files, clipboard history,
 
 ![The launcher searching for shot, with Screenshot Region selected and its command shown in the detail pane.](@/assets/posts/visor-launcher.png)
 
-The control center puts connectivity, media, volume, brightness and notifications in the same panel. Wi-Fi, Bluetooth and Tailscale open detail sheets. The smaller controls below the sliders include keep-awake, power mode, display settings, themes, recording and clipboard history.
+The control center puts connectivity, media, volume, brightness and notifications in the same panel. Wi-Fi, Bluetooth and Tailscale open detail sheets. The smaller controls below the sliders include keep-awake, the night light, display settings, themes, recording and clipboard history.
 
-![The control center, with connectivity tiles, media controls, volume and brightness sliders, quick controls, and notifications.](@/assets/posts/visor-control-center.png)
+![The control center, with connectivity tiles, media controls, volume and brightness sliders, quick controls including the night light, notifications, and a footer with my picture and the battery.](@/assets/posts/visor-control-center.png)
+
+## Keys, corners, night light and sleep
+
+The keybinds go straight to the shell now, as Hyprland global shortcuts. Before, the launcher, dictation and clipboard keys each ran `qs ipc call`, which starts a new process on every press. In the sandbox, `Super`+`Space` to an open launcher went from about 168 ms to 99 ms, and `Super`+`V` to the clipboard went from 154 ms to 76 ms. `Super`+`Alt`+`C` and `Super`+`Alt`+`D` open the control center and the calendar.
+
+The screen corners are rounded too. They default to 14 px, the same radius as the cards and panels, and the Display sheet switches them between rounded and square.
+
+The night light drives the hyprsunset service I already run. It takes the power mode button's spot in the control center, with a warmth setting that defaults to 4000 K and an optional schedule.
+
+Before the laptop sleeps, the screens fade to black over 0.4 seconds. The sandbox tests that against a fake logind, and it hasn't been through a real suspend yet.
+
+The lock card, the password prompt and the control center show a profile picture now in place of an initial. It reads `~/.face`, the traditional spot for one on Linux, then the AccountsService icon, then falls back to the initial. Mine is the pixel-art beef guy from this site, the same character as the avatar I cut. That one was an animated sprite; this is one still picture I picked. It's in the control center's footer above. The lock screenshot below is from before it landed.
 
 ## Lock screen
 
@@ -80,3 +93,13 @@ The lock screen uses the theme's wallpaper and a separate Quickshell process for
 The polkit password prompt for system actions has a matching view inside the island. Enabling it is a separate step in the switch-over instructions, after testing the lock.
 
 The screenshots here come from a headless, nested Hyprland session. That lets the agents render specific states and measure the result against the mocks. It doesn't test real passwords, keyboard focus on the laptop, or suspend and resume. The switch-over checklist keeps those as real-hardware checks.
+
+## On my Mac
+
+My dotfiles also run my Mac, where there's no Hyprland or Quickshell. On macOS I use [OmniWM](https://omniwm.app/), a tiling window manager. Its config in `config/omniwm` is ported from my Hyprland config, with the same nine numbered workspaces and eight lettered ones. `Option` stands in for `Super`, so `Command` shortcuts stay with the apps.
+
+OmniWM has its own shell, with bar widgets written in Luau, and the Mac bar got there first. Its agents widget landed on November 11 and the switchable looks on November 12, two days before Visor's first commit. Visor's Crew bots, its looks and the shapes behind the focused workspace all started on the Mac. The shapes come from OmniWM's own shape library, and my looks build on Wayline, a bar style by OmniWM's author, OmniNull.
+
+The scripts are shared. `bin/omniwm-agents` finds running agents on both systems: on the Mac a LaunchAgent runs it and pushes the result into the bar, and on Linux Visor reads its output. `theme` switches the pack on both, copying the palette and tagline into OmniWM on the Mac. `bar phosphor` switches the look on whichever machine I'm sitting at.
+
+The Mac's island wraps the MacBook's notch and grows wings for a meeting that's about to start, music, or a keep-awake timer. The Mac bar also has Prairie, a pixel cat that naps when the machine is idle, gets the zoomies when it's busy, ducks out of sight while the camera is on, and perks up with a "!" when an agent needs me.
