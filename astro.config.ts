@@ -4,7 +4,6 @@ import sitemap from '@astrojs/sitemap';
 import icon from 'astro-icon';
 import { readFileSync } from 'fs';
 import astroExpressiveCode from 'astro-expressive-code';
-import ecTwoSlash from 'expressive-code-twoslash';
 import { pluginLineNumbers } from '@expressive-code/plugin-line-numbers';
 import { pluginCollapsibleSections } from '@expressive-code/plugin-collapsible-sections';
 
@@ -21,6 +20,9 @@ export default defineConfig({
 
 	prefetch: true,
 
+	// Keep Astro 6's HTML-aware whitespace; v7's 'jsx' default glues inline elements together.
+	compressHTML: true,
+
 	image: {
 		domains: ['img.youtube.com', 'vimeo.com'],
 		layout: 'constrained',
@@ -34,7 +36,7 @@ export default defineConfig({
 				showLineNumbers: false,
 			},
 			themes: ['tokyo-night', 'github-light'],
-			plugins: [pluginLineNumbers(), pluginCollapsibleSections(), ecTwoSlash()],
+			plugins: [pluginLineNumbers(), pluginCollapsibleSections()],
 		}),
 		icon(),
 		react(),
