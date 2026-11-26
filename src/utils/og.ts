@@ -128,7 +128,7 @@ export const fieldOgNode = ({ title, label, detail, image, description, imagePos
 			),
 			jsx(
 				'div',
-				{ style: { display: 'flex', flexDirection: 'column', justifyContent: 'space-between', width: '54%', padding: '48px 54px 42px' } },
+				{ style: { display: 'flex', flexDirection: 'column', justifyContent: 'space-between', boxSizing: 'border-box', width: '54%', padding: '48px 54px 42px' } },
 				evidenceLabel(label, detail),
 				jsx(
 					'div',
@@ -147,14 +147,14 @@ export const fieldOgNode = ({ title, label, detail, image, description, imagePos
 		{ style: { display: 'flex', width: '100%', height: '100%', background: PALETTE.paper, color: PALETTE.ink } },
 		jsx(
 			'div',
-			{ style: { display: 'flex', flexDirection: 'column', justifyContent: 'space-between', width: '34%', height: '100%', padding: '48px 42px 42px', overflow: 'hidden', background: PALETTE.purpleDark, color: PALETTE.white } },
+			{ style: { display: 'flex', flexDirection: 'column', justifyContent: 'space-between', boxSizing: 'border-box', width: '34%', height: '100%', padding: '48px 42px 42px', overflow: 'hidden', background: PALETTE.purpleDark, color: PALETTE.white } },
 			evidenceLabel(label, detail, true),
 			eventDiagram(),
 			jsx('div', { style: { display: 'flex', fontFamily: 'JetBrains Mono Variable', fontSize: 15, fontWeight: 500, letterSpacing: 1.5, color: PALETTE.darkFaint, textTransform: 'uppercase' } }, 'Build · Teach · Write · Speak'),
 		),
 		jsx(
 			'div',
-			{ style: { display: 'flex', flexDirection: 'column', justifyContent: 'space-between', width: '66%', padding: '54px 58px 42px' } },
+			{ style: { display: 'flex', flexDirection: 'column', justifyContent: 'space-between', boxSizing: 'border-box', width: '66%', padding: '54px 58px 42px' } },
 			jsx('div', { style: { display: 'flex', width: '100%', height: '1px', background: PALETTE.line } }),
 			jsx('div', { style: { display: 'flex', fontFamily: 'Bricolage Grotesque Variable', fontWeight: 800, fontSize: titleSize(title, false), lineHeight: 0.92, letterSpacing: -2.4, color: PALETTE.ink } }, title),
 			signalRule(),
